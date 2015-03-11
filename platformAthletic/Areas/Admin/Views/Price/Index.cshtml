@@ -1,0 +1,69 @@
+﻿@model platformAthletic.Models.Info.PriceInfoView
+
+@{
+    ViewBag.Title = "Prices";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var message = ViewBag.Message;
+}
+@section header {
+   <script type="text/javascript" src="/Media/scripts/admin/price.js"></script>
+}
+<h2>Prices</h2>
+<p></p>
+@if(message != null) {
+<div class="alert alert-success">@message</div>
+}
+@using (Html.BeginForm("Index", "Price", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Hidden("TeamPriceImagePath", Model.TeamPriceImagePath)
+    @Html.Hidden("IndividualPriceImagePath", Model.IndividualPriceImagePath)
+	<fieldset>
+		<div class="control-group">
+            <label class="control-label" for="Type">
+                Team Subscription Price
+			</label>
+            <div class="controls">
+				@Html.TextBox("TeamPrice", Model.TeamPrice)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Team Price Image
+            </label>
+            <div class="controls">
+                <img src="@Model.TeamPriceImagePath" alt="TeamPriceImage" id="PreviewTeamPriceImage" />
+                <br />
+                <div id="ChangeTeamPriceImage">
+                    Change
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Type">
+                Individual Price
+			</label>
+            <div class="controls">
+				@Html.TextBox("IndividualPrice", Model.IndividualPrice)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                Individual Price Image
+            </label>
+            <div class="controls">
+                <img src="@Model.IndividualPriceImagePath" alt="IndividualPriceImage" id="PreviewIndividualPriceImage" />
+                <br />
+                <div id="ChangeIndividualPriceImage">
+                    Change
+                </div>
+            </div>
+        </div>
+
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

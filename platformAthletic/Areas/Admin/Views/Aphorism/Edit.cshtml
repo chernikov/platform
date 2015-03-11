@@ -1,0 +1,37 @@
+@model platformAthletic.Models.ViewModels.AphorismView
+@{
+    ViewBag.Title = (Model.ID == 0 ? "Add" : "Edit") + " what people are saying";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>@(Model.ID == 0 ? "Add" : "Edit")  what people are saying</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Aphorism", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+        <div class="control-group">
+            <label class="control-label" for="Author">
+                Author
+            </label>
+            <div class="controls">
+                @Html.TextBox("Author", Model.Author)
+                @Html.ValidationMessage("Author")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Text">
+                Text
+            </label>
+            <div class="controls">
+                @Html.TextArea("Text", Model.Text, new { @class = "textarea" })
+                @Html.ValidationMessage("Text")
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

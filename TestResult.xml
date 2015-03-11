@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="D:\Projects\RepositoryMercurial\platformAthletics\source\test.nunit" total="7" errors="3" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-26" time="18:49:20">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.2\bin" machine-name="SATURN-PC" user="Saturn" user-domain="SATURN-PC" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Project" name="D:\Projects\RepositoryMercurial\platformAthletics\source\test.nunit" executed="True" result="Failure" success="False" time="2.223" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.UnitTest\bin\Debug\platformAthletic.UnitTest.dll" executed="True" result="Failure" success="False" time="2.207" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="platformAthletic" executed="True" result="Failure" success="False" time="2.206" asserts="0">
+            <results>
+              <test-suite type="SetUpFixture" name="UnitTest" executed="True" result="Failure" success="False" time="2.205" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="MailTemplateTest" executed="True" result="Failure" success="False" time="0.153" asserts="0">
+                    <results>
+                      <test-case name="platformAthletic.UnitTest.MailTemplateTest.MailTemplates_ExistForgotPasswordTemplate_Exist" executed="True" result="Error" success="False" time="0.134" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.Configuration.ConfigurationErrorsException : An error occurred creating the configuration section handler for mailTemplatesConfig: Could not load type 'platformAthletic.Global.Config.MailTemplateConfig' from assembly 'System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. (D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.IntegrationTest\Sandbox\Web.config line 11)
+  ----> System.TypeLoadException : Could not load type 'platformAthletic.Global.Config.MailTemplateConfig' from assembly 'System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.]]></message>
+                          <stack-trace><![CDATA[at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean& isRootDeclaredHere)
+at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+at System.Configuration.Configuration.GetSection(String sectionName)
+at platformAthletic.Global.Config.Config.<.ctor>b__7(String sectionName) in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 52
+at platformAthletic.Global.Config.Config._section(String sectionName) in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 69
+at platformAthletic.Global.Config.Config.get_MailTemlates() in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 151
+at platformAthletic.UnitTest.MailTemplateTest.MailTemplates_ExistForgotPasswordTemplate_Exist() in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.UnitTest\Test\ConfigTest\MailTemplateTest.cs:line 28
+--TypeLoadException
+at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+at System.Configuration.MgmtConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean& isRootDeclaredHere)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="platformAthletic.UnitTest.MailTemplateTest.MailTemplates_ExistRegisterTemplate_Exist" executed="True" result="Error" success="False" time="0.002" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.Configuration.ConfigurationErrorsException : An error occurred creating the configuration section handler for mailTemplatesConfig: Could not load type 'platformAthletic.Global.Config.MailTemplateConfig' from assembly 'System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. (D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.IntegrationTest\Sandbox\Web.config line 11)
+  ----> System.TypeLoadException : Could not load type 'platformAthletic.Global.Config.MailTemplateConfig' from assembly 'System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.]]></message>
+                          <stack-trace><![CDATA[at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean& isRootDeclaredHere)
+at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+at System.Configuration.Configuration.GetSection(String sectionName)
+at platformAthletic.Global.Config.Config.<.ctor>b__7(String sectionName) in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 52
+at platformAthletic.Global.Config.Config._section(String sectionName) in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 69
+at platformAthletic.Global.Config.Config.get_MailTemlates() in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 151
+at platformAthletic.UnitTest.MailTemplateTest.MailTemplates_ExistRegisterTemplate_Exist() in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.UnitTest\Test\ConfigTest\MailTemplateTest.cs:line 20
+--TypeLoadException
+at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+at System.Configuration.MgmtConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean& isRootDeclaredHere)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="MimeTypesTest" executed="True" result="Failure" success="False" time="0.002" asserts="0">
+                    <results>
+                      <test-case name="platformAthletic.UnitTest.MimeTypesTest.MimeTypes_AreManyMimeTypesExist_ManyMimeTypesExist" executed="True" result="Error" success="False" time="0.001" asserts="0">
+                        <failure>
+                          <message><![CDATA[System.Configuration.ConfigurationErrorsException : An error occurred creating the configuration section handler for mimeConfig: Could not load type 'platformAthletic.Global.Config.MimeTypesConfigSection' from assembly 'System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. (D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.IntegrationTest\Sandbox\Web.config line 9)
+  ----> System.TypeLoadException : Could not load type 'platformAthletic.Global.Config.MimeTypesConfigSection' from assembly 'System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.]]></message>
+                          <stack-trace><![CDATA[at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean& isRootDeclaredHere)
+at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+at System.Configuration.Configuration.GetSection(String sectionName)
+at platformAthletic.Global.Config.Config.<.ctor>b__7(String sectionName) in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 52
+at platformAthletic.Global.Config.Config._section(String sectionName) in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 69
+at platformAthletic.Global.Config.Config.get_MimeTypes() in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic\Global\Config\Config.cs:line 133
+at platformAthletic.UnitTest.MimeTypesTest.MimeTypes_AreManyMimeTypesExist_ManyMimeTypesExist() in d:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.UnitTest\Test\ConfigTest\MimeTypesTest.cs:line 20
+--TypeLoadException
+at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+at System.Configuration.MgmtConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean& isRootDeclaredHere)
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                  <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="1.885" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="AdminHomeControllerTest" executed="True" result="Success" success="True" time="1.842" asserts="0">
+                        <results>
+                          <test-case name="platformAthletic.UnitTest.Test.AdminHomeControllerTest.Index_AuthorizeGetDefaultView_GetViewResult" executed="True" result="Success" success="True" time="1.825" asserts="1" />
+                          <test-case name="platformAthletic.UnitTest.Test.AdminHomeControllerTest.Index_NotAuthorizeGetDefaultView_RedirectToLoginPage" executed="True" result="Success" success="True" time="0.013" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="Controller" executed="True" result="Success" success="True" time="0.040" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="AdminUserControllerTest" executed="True" result="Success" success="True" time="0.028" asserts="0">
+                            <results>
+                              <test-case name="platformAthletic.UnitTest.Test.Controller.AdminUserControllerTest.Index_AskForDefaultPage_GetViewResult" executed="True" result="Success" success="True" time="0.028" asserts="1" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="DefaultHomeControllerTest" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                            <results>
+                              <test-case name="platformAthletic.UnitTest.Test.Controller.DefaultHomeControllerTest.Index_AskForDefaultPage_GetViewResult" executed="True" result="Success" success="True" time="0.009" asserts="1" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -1,0 +1,45 @@
+@model IEnumerable<platformAthletic.Model.Aphorism>
+
+@{
+    ViewBag.Title = "Aphorism";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Aphorism
+</h2>
+@Html.ActionLink("Create", "Create", "Aphorism", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				Author
+			</th>
+			<th>
+				Text
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+			@item.Author
+		</td>		
+		<td> 
+			@item.Text
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "Aphorism", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "Aphorism", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

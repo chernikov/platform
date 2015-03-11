@@ -1,0 +1,20 @@
+﻿@model platformAthletic.Model.PageableData<platformAthletic.Model.File>
+@{
+    var showMore = (bool)ViewBag.ShowMore;
+    var page = (int)ViewBag.Page;
+}
+@foreach (var item in Model.List)
+{
+    <li class="span2">
+        <a class="thumbnail" data-path="@item.Path">
+            <img src="@item.Preview" alt="" />
+            <i class="icon-remove" data-id="@item.ID"></i>
+        </a>
+    </li>
+}
+@if (showMore)
+{
+    <li class="span2" id="ShowMore" data-page="@page">
+        <div class="btn">Еще...</div>
+    </li>
+}

@@ -1,0 +1,59 @@
+@model IEnumerable<platformAthletic.Model.TrainingSet>
+@{
+    ViewBag.Title = "TrainingSet";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var search = (platformAthletic.Models.Info.FilterTrainingSetInfo)ViewBag.Search;
+}
+@section header
+{
+    <script type="text/javascript" src="/Media/scripts/admin/list-training-set.js"></script>
+}
+<h2>TrainingSet
+</h2>
+@using (Html.BeginForm("Index", "TrainingSet", FormMethod.Post, new { @class = "well form-search" }))
+{
+    @Html.DropDownList("PhaseID", search.SelectListPhases, new { @class = "input-medium" })
+       @Html.DropDownList("DayID", search.SelectListDays, new { @class = "input-medium" })
+ 
+    <button type="submit" class="btn">Filter</button> 
+}
+
+@Html.ActionLink("Create", "Create", "TrainingSet", null, new { @class = "btn" })
+@*@Html.ActionLink("Create batch", "CreateBatch", "TrainingSet", null, new { @class = "btn" })*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Phase
+            </th>
+            <th>Day
+            </th>
+            <th>Names
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                 @item.Phase.Cycle.Season.Name<br/> @item.Phase.Name
+            </td>
+            <td>
+                @item.Day.Name
+            </td>
+            <td title="@item.Names">
+                @item.Names.Teaser(70, "...")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "TrainingSet", new { id = item.ID }, new { @class = "btn" })
+                <div class="btn remove" data-id="@item.ID">Remove</div>
+            </td>
+        </tr>
+    }
+</table>

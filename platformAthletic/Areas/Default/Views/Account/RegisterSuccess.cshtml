@@ -1,0 +1,111 @@
+﻿@model platformAthletic.Model.User
+@{
+    ViewBag.Title = "Register Success - Platform Athletics";
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayoutInner.cshtml";
+    var seasonID = Model.CurrentSeason != null ? Model.CurrentSeason.SeasonID : 1;
+}
+@section links {
+    <link href="@Url.Content("/Media/css/datepicker.css")" rel="stylesheet" type="text/css" />
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/jquery-ui-1.9.2.custom.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/jquery.ImageColorPicker.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/set-color.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/select-season.js"></script>
+}
+
+<div class="post-registration-wrapper">
+    <div class="step1-wrapper">
+        <div class="block-wrapper">
+            <div class="step-circle">
+                <span>
+                    Step <br />1
+                </span>
+            </div>
+            <div class="main-title">Choose Your Colors</div>
+            @Html.Hidden("primaryColor", Model.PrimaryColor)
+            @Html.Hidden("secondaryColor", Model.SecondaryColor)
+            <div class="content-wrapper">
+                <div class="setcolor-box clear">
+                    <div class="color-wrp">
+                        <div class="color-picker-wrp">
+                            <div class="color-image">
+                                <img src="/Media/images/color_picker_img.png" id="primary_color" alt="color picker"
+                                     data-color="@Model.PrimaryColor" />
+                            </div>
+                            <div class="title">
+                                Primary color
+                            </div>
+                        </div>
+                        <div class="color-picker-wrp">
+                            <div class="color-image">
+                                <img src="/Media/images/color_picker_img.png" id="secondary_color" alt="color picker"
+                                     data-color="@Model.SecondaryColor" />
+                            </div>
+                            <div class="title">
+                                Secondary color
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step2-wrapper">
+        <div class="shadow"></div>
+        <div class="block-wrapper">
+            <div class="step-circle">
+                step 2
+            </div>
+            <div class="main-title">
+                Choose Your Start<br />
+                Date For Workouts
+            </div>
+            <div class="content-wrapper">
+                <h3>Choose Type of Workouts:</h3>
+
+                @Html.Hidden("SeasonID", seasonID)
+                @Html.Hidden("SettedSeason", Model.CurrentSeason != null)
+                <div class="form">
+                    <div class="choose">
+                        <label>
+                            In-Season
+                            <div class="select">
+                                <div class="checkbox-wrp" id="InSeasonCheck">
+                                    <div class="checkbox-image"></div>
+                                    @Html.CheckBox("SeasonType", @seasonID == 2, new { @class = "selectCheckBox" })
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="choose">
+                        <label>
+                            Off-Season
+                            <div class="select">
+                                <div class="checkbox-wrp" id="OffSeasonCheck">
+                                    <div class="checkbox-image"></div>
+                                    @Html.CheckBox("SeasonType", @seasonID == 1, new { @class = "selectCheckBox" })
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="form">
+                    <div class="start-date-wrapper">
+                        <input type="text" id="datepicker" placeholder="Select Workout Start Date" value="@(Model.CurrentSeason != null ? Model.CurrentSeason.StartDay.ToString("MM/dd/yyyy") : "")" />
+                        
+                        <button class="confirm-btn" id="ConfirmBtn">Confirm</button>
+                        <div class="error" id="DateError" style="display:none;">Start date must be a Sunday. Please click on date box and use calendar to select which week you wish to start workouts.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="finish-wrapper">
+        <div class="to-work-btn" id="ToWork">
+            Lets Get To work!
+        </div>
+    </div>
+</div>

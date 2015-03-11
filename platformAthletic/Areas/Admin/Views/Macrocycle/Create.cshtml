@@ -1,0 +1,32 @@
+﻿@model platformAthletic.Models.ViewModels.MacrocycleView
+
+@using (Html.BeginForm("Create", "Macrocycle", FormMethod.Post, new { @class = "form-horizontal", id = "CreateMacrocycleForm" }))
+{
+    <fieldset>
+        @if (Model.SelectListWeeks.Any())
+        {
+            @Html.Hidden("ID", Model.ID)
+            <div class="control-group">
+                <label class="control-label" for="Name">
+                    Name
+                </label>
+                <div class="controls">
+                    @Html.TextBox("Name", Model.Name)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="Name">
+                    Week
+                </label>
+                <div class="controls">
+                    @Html.DropDownList("WeekID", Model.SelectListWeeks)
+                </div>
+            </div>
+        }
+        else
+        {
+            <p>All weeks already have Macrocycles associated with them. Please create new Week.</p>
+        }
+    </fieldset>
+}
+

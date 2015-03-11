@@ -1,0 +1,63 @@
+@model IEnumerable<platformAthletic.Model.Week>
+@{
+    ViewBag.Title = "Week";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Week
+</h2>
+@Html.ActionLink("Create", "Create", "Week", null, new { @class = "btn" })
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Phase
+            </th>
+            <th>
+                Number
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Macrocycle
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.Phase.Name (@item.Phase.Cycle.Season.Name)
+            </td>
+            <td>
+                @item.Number
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @if (item.Macrocycle != null)
+                {
+                    <p>@item.MacrocycleName</p>
+                }
+                else
+                {
+                    @Html.ActionLink("Fix", "FixMacrocycle", "Week", new { id = item.ID }, new { @class = "btn btn-mini btn-primary" })
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Week", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "Week", new { id = item.ID }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+</table>

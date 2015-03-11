@@ -1,0 +1,32 @@
+﻿@using System.Threading
+@model platformAthletic.Models.ViewModels.LoginViewModel
+@{
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayoutInner.cshtml";
+    ViewBag.Title = "Login";
+}
+
+
+<div class="login-wrapper">
+    <h2>Please enter email</h2>
+    <div class="block-wrapper center">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form LoginForm" }))
+        {
+            <div class="form-group">
+                <label>* Email</label>
+                @Html.TextBox("Email", Model.Email)
+
+                <div class="warning">@Html.ValidationMessage("Email")</div>
+            </div>
+               <div class="form-group">
+                <label>* Password</label>
+                @Html.Password("Password", Model.Password)
+
+                <div class="warning">@Html.ValidationMessage("Password")</div>
+            </div>
+
+            <div class="btn-wrapper">
+                <button class="submit">Login</button>
+            </div>
+        }
+    </div>
+</div>

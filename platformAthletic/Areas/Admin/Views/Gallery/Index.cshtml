@@ -1,0 +1,39 @@
+@model IEnumerable<platformAthletic.Model.Gallery>
+
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Gallery
+</h2>
+@Html.ActionLink("Create", "Create", "Gallery", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				ImagePath
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+            <img src="@(item.ImagePath).ashx?w=200" style="width : 150px;" />
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "Gallery", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "Gallery", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

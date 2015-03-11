@@ -1,0 +1,137 @@
+﻿@model platformAthletic.Model.PageableData<platformAthletic.Model.User>
+@{
+    ViewBag.Title = "User";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var searchWord = ViewData["search"];
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/admin/user-list.js"></script>
+}
+<h2>User
+</h2>
+@using (Html.BeginForm("Index", "User", FormMethod.Post, new { @class = "well form-search" }))
+{
+    <div class="input-append">@Html.TextBox("search", ViewData["search"])<span class="add-on"><i
+        class="icon-search"></i></span>
+         <button type="submit" class="btn">
+        Search</button> 
+    </div>
+}
+<div class="well">
+    @Html.ActionLink("Create new admin", "CreateAdmin", "User", null, new { @class = "btn" })
+    @Html.ActionLink("Export", "Excel", "User", null, new { @class = "btn" })
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#
+                </th>
+                 <th>Role
+                </th>
+                <th>Email
+                </th>
+                <th>Name
+                </th>
+                <th>Team
+                </th>
+                <th>Payed till
+                </th>
+                <th>Used codes</th>
+                <th>Current season</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Role
+                </td>
+                <td title="@item.Email">
+                    @item.Email.Teaser(10)
+                </td>
+                <td>
+                 @if (item.InRoles("coach"))
+                 {
+                    <strong>@item.FirstName @item.LastName </strong>
+                 }
+                 else
+                 {
+                     <span>@item.FirstName @item.LastName </span>
+                 }
+                </td>
+                <td>
+                   @((item.Team ?? item.OwnTeam) != null ? (item.Team ?? item.OwnTeam).Name : "")&nbsp;
+                </td>
+                <td>
+                    @if (item.InRoles("coach,player") && item.PaidTill.HasValue)
+                    {
+                        DateTime paidTill;
+                        if (item.InRoles("player"))
+                        {
+                            paidTill = item.Team.User.PaidTill.Value;
+                        }
+                        else
+                        {
+                            paidTill = item.PaidTill.Value;
+                        }
+                        if (paidTill < DateTime.Now)
+                        {
+                            <span class="label label-important">@paidTill.ToString("d")</span>
+                        }
+                        else if (paidTill.AddMonths(-1) < DateTime.Now)
+                        {
+                            <span class="label label-warning">@paidTill.ToString("d")</span>
+                        } else {
+                             <span class="label label-success">@paidTill.ToString("d")</span>
+                        }
+                    }&nbsp;
+                </td>
+                <td>
+                @if(item.PromoCodes.Any()) {
+                     foreach(var promocode in item.PromoCodes)
+                     {
+                            <span class="label label-info">@promocode</span>
+                     }
+                }
+                </td>
+                <td>@if(item.InRoles("coach,individual")) 
+                    {
+                        if (item.CurrentSeason != null)
+                        {
+                            <a href="@Url.Action("Edit", "UserSeason", new { id = item.CurrentSeason.ID })">@item.CurrentSeason.StartDay.ToString("d")</a>
+                        }
+                    }
+                </td>
+                <td>
+                    @if(item.InRoles("admin")) {
+                        <a title="Edit admin" href="@Url.Action("EditAdmin", "User", new { id = item.ID })"><i class="icon-pencil"></i></a>
+                    } else {
+                        <a title="Edit" href="@Url.Action("Edit", "User", new { id = item.ID })"><i class="icon-pencil"></i></a>
+                    }
+                    <a title="Remove" href="#confirmDeleteModal" role="button" data-toggle="modal" data-id="@item.ID" class="confirm-delete"><i class="icon-remove"></i></a>
+                    <span title="Login as" data-id="@item.ID" class="loginAs"><i class="icon-user"></i></span>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="pager">
+    @Html.PageLinks(Model.PageNo, Model.CountPage, x => Url.Action(Model.Action, new { page = x, search = ViewData["search"]}))
+</div>
+<div class="modal small hide fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Delete Confirmation</h3>
+    </div>
+    <div class="modal-body">
+        <p class="error-text">Are you sure you want to delete the user?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <a href="/admin/User/Remove?id=0" class="btn btn-danger">Delete</a>
+    </div>
+</div>

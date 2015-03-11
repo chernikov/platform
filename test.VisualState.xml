@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]D:\Projects\RepositoryMercurial\platformAthletics\source\test.nunit</TopNode>
+  <SelectedNode>[0-1014]D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.UnitTest\bin\Debug\platformAthletic.UnitTest.dll</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]D:\Projects\RepositoryMercurial\platformAthletics\source\test.nunit" Expanded="true" />
+    <Node UniqueName="[0-1014]D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.UnitTest\bin\Debug\platformAthletic.UnitTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1015]platformAthletic" Expanded="true" />
+    <Node UniqueName="[0-1007]platformAthletic.UnitTest.UnitTestSetupFixture" Expanded="true" />
+    <Node UniqueName="[0-1004]platformAthletic.UnitTest.MailTemplateTest" Expanded="true" />
+    <Node UniqueName="[0-1008]platformAthletic.UnitTest.MimeTypesTest" Expanded="true" />
+    <Node UniqueName="[0-1017]platformAthletic.UnitTest.Test" Expanded="true" />
+    <Node UniqueName="[0-1001]platformAthletic.UnitTest.Test.AdminHomeControllerTest" Expanded="true" />
+    <Node UniqueName="[0-1018]platformAthletic.UnitTest.Test.Controller" Expanded="true" />
+    <Node UniqueName="[0-1010]platformAthletic.UnitTest.Test.Controller.AdminUserControllerTest" Expanded="true" />
+    <Node UniqueName="[0-1012]platformAthletic.UnitTest.Test.Controller.DefaultHomeControllerTest" Expanded="true" />
+  </Nodes>
+</VisualState>

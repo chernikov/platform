@@ -1,0 +1,82 @@
+@model platformAthletic.Models.ViewModels.BannerView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Banner" : "Edit Banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header 
+{
+    <script type="text/javascript" src="/Media/scripts/admin/banner-edit.js"></script>
+}
+<h2>@(Model.ID == 0 ? "Add Banner" : "Edit Banner")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Banner", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+        @Html.Hidden("SourcePath", Model.SourcePath)
+        @Html.Hidden("ImagePath", Model.ImagePath)
+        <div class="control-group">
+            <label class="control-label" for="BannerPlaceID">
+                Banner Place
+            </label>
+            <div class="controls">
+                @Html.DropDownList("BannerPlaceID", Model.SelectListBannerPlaceID)
+                @Html.ValidationMessage("BannerPlaceID")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("Name", Model.Name)
+                @Html.ValidationMessage("Name")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Link
+            </label>
+            <div class="controls">
+                @Html.TextBox("Link", Model.Link)
+                @Html.ValidationMessage("Link")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Code">
+                Code
+            </label>
+            <div class="controls">
+                @Html.TextArea("Code", Model.Code)
+                @Html.ValidationMessage("Code")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Text">
+                Image
+            </label>
+            <div class="controls">
+                <div id="UploadImage">
+                    Upload 
+                </div>
+            </div>
+        </div>
+         <div id="ImagePreviewWrapper" style="@(!string.IsNullOrWhiteSpace(Model.SourcePath) ? "" : "display : none;")">
+            <img src="@Model.ImagePath" alt="" id="ImagePreview"/>
+         </div>
+        <div class="control-group">
+            <label class="control-label" for="InRotation">
+                InRotation
+            </label>
+            <div class="controls">
+                @Html.CheckBox("InRotation", Model.InRotation)
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

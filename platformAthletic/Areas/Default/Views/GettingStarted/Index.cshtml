@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Getting Started";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var page = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Pages["getting_started"];
+    var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["left side banner"];
+}
+@section header
+ {
+    <script type="text/javascript" src="/Media/scripts/jquery.highlight-4.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/intext-search.js"></script>
+}
+
+<div class="help-wrp account-wrp clear">
+    <div class="left">
+        <div class="menu all-content-wrp">
+            <div class="item"><a href="/faq">FAQ</a></div>
+            <div class="item selected"><a href="/getting-started">Getting Started</a></div>
+            <div class="item"><a href="/contact-us">Contact Us</a></div>
+        </div>
+
+        @if (banner != null)
+        {
+            <div class="banner">
+
+                @Html.Raw(banner.Show)
+            </div>
+        }
+    </div>
+    <div class="right">
+        <div class="top all-content-wrp">
+            <h1>Getting Started</h1>
+        </div>
+        <div class="bottom all-transparent-wrp">
+            <div class="search-box clear">
+                <div class="search-wrp">
+                    <div class="label">Search help</div>
+                    <div class="input-light">
+                        <input type="text" id="SearchText" />
+                    </div>
+                    <div class="button"><a class="secondaryColor" id="FindWord" href="#">Find</a></div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="title">
+                    <h3>Getting Started</h3>
+                </div>
+                <div class="text">
+                    @Html.Raw(page)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

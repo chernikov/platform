@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Page] (
+    [ID]   INT            IDENTITY (1, 1) NOT NULL,
+    [Name] NVARCHAR (50)  NOT NULL,
+    [Text] NVARCHAR (MAX) NOT NULL,
+    CONSTRAINT [PK_Page] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

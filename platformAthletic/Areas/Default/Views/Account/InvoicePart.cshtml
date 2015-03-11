@@ -1,0 +1,51 @@
+﻿@model platformAthletic.Models.ViewModels.InvoiceView
+<fieldset class="billing-info">
+    <legend>Invoice Billing</legend>
+    @Html.Hidden("Invoice.ID", Model.ID)
+    @Html.Hidden("Invoice.UserID", Model.UserID)
+
+    <div class="field-group">
+        <label>* Name of the Organization:</label>
+        <div class="control">
+            @Html.TextBox("Invoice.NameOfOrganization", Model.NameOfOrganization)
+        </div>
+        @Html.ValidationMessage("Invoice.NameOfOrganization")
+    </div>
+    <div class="field-group">
+        <label>* City:</label>
+        <div class="control">
+            @Html.TextBox("Invoice.City", Model.City)
+        </div>
+        @Html.ValidationMessage("Invoice.City")
+    </div>
+    <div class="field-group">
+        <label>* State:</label>
+        <div class="control">
+            @Html.DropDownList("Invoice.StateID", Model.SelectListStateID, new { @class = "short dropdown-styled" })
+        </div>
+    </div>
+    <div class="field-group">
+        <label>* Zip:</label>
+        <div class="control">
+            @Html.TextBox("Invoice.ZipCode", Model.ZipCode, new { @class = "short" })
+        </div>
+        @Html.ValidationMessage("Invoice.ZipCode")
+    </div>
+    <div class="field-group">
+        <label>* Phone Number:</label>
+        <div class="control">
+            @Html.TextBox("Invoice.PhoneNumber", Model.PhoneNumber)
+        </div>
+        @Html.ValidationMessage("Invoice.PhoneNumber")
+    </div>
+    <div class="field-group referral-wrapper">
+        <label>Referral code:</label>
+        <div class="control">
+            @Html.TextBox("Invoice.ReferralCode", Model.ReferralCode, new { @class = "short", id="ReferralCodeValue" })
+        </div>
+        <button class="sprite" id="ApplyReferralCode">Apply</button>
+        <div class="field-validation-error" id="PromoCodeError" style="display :none;">
+            Referral code is invalid
+        </div>
+    </div>
+</fieldset>

@@ -1,0 +1,41 @@
+﻿@model platformAthletic.Models.ViewModels.TrainingDayView
+@{
+    ViewBag.Title = "Table";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/admin/edit-training-day.js"></script>
+}
+<h2>@Model.DayName (@Model.WeekFullName)</h2>
+
+@Html.Hidden("TrainingDayViewID", Model.ID)
+@using (Html.BeginForm("Edit", "TrainingDay", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @if (Model.WeekPhaseCycleSeasonType == (int)platformAthletic.Model.Season.TypeEnum.OffSeason)
+        {
+            @Html.Partial("OffSeasonTable", Model)
+        } else {
+            @Html.Partial("InSeasonTable", Model)
+        }
+
+        <div class="form-actions">
+            @Html.ActionLink("Back", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+    
+}
+<div id="cellModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Cell Edit</h3>
+    </div>
+    <div class="modal-body" id="cellModalWrapper">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="saveCellModal">Save changes</button>
+        <button class="btn btn-danger" id="clearCellModal">Clear cell</button>
+    </div>
+</div>

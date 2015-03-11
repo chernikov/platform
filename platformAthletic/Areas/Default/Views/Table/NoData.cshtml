@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+    var startDate = (DateTime)ViewBag.StartDate;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="/Media/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/Media/css/table.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="/Media/scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="/Media/scripts/default/print.js" type="text/javascript"></script>
+    <title>No Data
+    </title>
+</head>
+<body>
+    <div class="print print_2">Print</div>
+   <h1>Your Platform Training will start on @startDate.ToString("d")</h1>
+</body>
+</html>

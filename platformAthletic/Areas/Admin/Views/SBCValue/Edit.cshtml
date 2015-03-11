@@ -1,0 +1,66 @@
+@model platformAthletic.Models.ViewModels.SBCValueView
+@{
+    ViewBag.Title = "Edit SBCValue";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Edit SBCValue</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "SBCValue", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	<fieldset>
+		@Html.Hidden("ID", Model.ID)
+		@Html.Hidden("UserID", Model.UserID)
+        <div class="control-group">
+            <label class="control-label" for="FirstName">
+                FirstName
+			</label>
+            <div class="controls">
+				@Html.TextBox("FirstName", Model.FirstName)
+				@Html.ValidationMessage("FirstName")
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="LastName">
+                LastName
+			</label>
+            <div class="controls">
+				@Html.TextBox("LastName", Model.LastName)
+				@Html.ValidationMessage("LastName")
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="Squat">
+                Squat
+			</label>
+            <div class="controls">
+				@Html.TextBox("Squat", Model.Squat.Round5())
+				@Html.ValidationMessage("Squat")
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="Bench">
+                Bench
+			</label>
+            <div class="controls">
+				@Html.TextBox("Bench", Model.Bench.Round5())
+				@Html.ValidationMessage("Bench")
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="Clean">
+                Clean
+			</label>
+            <div class="controls">
+				@Html.TextBox("Clean", Model.Clean.Round5())
+				@Html.ValidationMessage("Clean")
+            </div>
+        </div>
+		
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

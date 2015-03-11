@@ -1,0 +1,23 @@
+﻿@model IEnumerable<platformAthletic.Model.About>
+
+<div class="query-gallery">
+    <div class="gallery-wrp clear">
+        <div class="icon-arrow-left sprite">
+        </div>
+        <div class="content">
+            <div class="container">
+                @foreach (var item in Model)
+                {
+                    <div class="item">
+                        @item.Text
+                        <br />
+                        <br />
+                        @item.Author
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="icon-arrow-right sprite">
+        </div>
+    </div>
+</div>

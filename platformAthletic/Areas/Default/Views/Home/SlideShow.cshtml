@@ -1,0 +1,14 @@
+﻿@model IEnumerable<platformAthletic.Model.Gallery>
+<div class="slide-box">
+    <div class="background"></div>
+    <div class="wrapper">
+        <ul class="bxslider">
+            @foreach (var item in Model)
+            {
+                <li class="slide-item">
+                    <img src="@(item.ImagePath).ashx?w=1200&h=750&mode=crop" />
+                </li>    
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+8/25/2014 7:39:29 PM	This log contains information about the import schema operation into project 'platformAthletic.Db' on computer 'SATURN' by user 'Chernikov'.
+8/25/2014 7:39:29 PM	Import of database schema has started.
+8/25/2014 7:39:29 PM	Gathering database options
+8/25/2014 7:39:29 PM	Gathering users
+8/25/2014 7:39:29 PM	Gathering roles
+8/25/2014 7:39:29 PM	Gathering application roles
+8/25/2014 7:39:29 PM	Gathering role memberships
+8/25/2014 7:39:29 PM	Gathering filegroups
+8/25/2014 7:39:29 PM	Gathering full-text catalogs
+8/25/2014 7:39:29 PM	Gathering assemblies
+8/25/2014 7:39:29 PM	Gathering certificates
+8/25/2014 7:39:29 PM	Gathering asymmetric keys
+8/25/2014 7:39:29 PM	Gathering symmetric keys
+8/25/2014 7:39:29 PM	Gathering encrypted symmetric keys
+8/25/2014 7:39:29 PM	Gathering schemas
+8/25/2014 7:39:29 PM	Gathering XML schema collections
+8/25/2014 7:39:29 PM	Gathering user-defined data types
+8/25/2014 7:39:29 PM	Gathering user-defined types
+8/25/2014 7:39:29 PM	Gathering table types
+8/25/2014 7:39:29 PM	Gathering unique keys for table types
+8/25/2014 7:39:29 PM	Gathering primary keys for table types
+8/25/2014 7:39:29 PM	Gathering check constraints for table types
+8/25/2014 7:39:29 PM	Gathering default constraints for table types
+8/25/2014 7:39:29 PM	Gathering partition functions
+8/25/2014 7:39:29 PM	Gathering partition schemes
+8/25/2014 7:39:29 PM	Gathering functions
+8/25/2014 7:39:29 PM	Gathering encrypted functions
+8/25/2014 7:39:29 PM	Gathering aggregates
+8/25/2014 7:39:29 PM	Gathering procedures
+8/25/2014 7:39:29 PM	Gathering encrypted procedures
+8/25/2014 7:39:29 PM	Gathering tables
+8/25/2014 7:39:29 PM	Gathering primary keys
+8/25/2014 7:39:29 PM	Gathering unique constraints
+8/25/2014 7:39:29 PM	Gathering foreign keys
+8/25/2014 7:39:29 PM	Gathering default constraints
+8/25/2014 7:39:29 PM	Gathering check constraints
+8/25/2014 7:39:29 PM	Gathering views
+8/25/2014 7:39:29 PM	Gathering encrypted views
+8/25/2014 7:39:29 PM	Gathering indexes
+8/25/2014 7:39:29 PM	Gathering statistics
+8/25/2014 7:39:29 PM	Gathering full-text index stoplists
+8/25/2014 7:39:29 PM	Gathering search property lists
+8/25/2014 7:39:29 PM	Gathering search properties
+8/25/2014 7:39:29 PM	Gathering full-text indexes
+8/25/2014 7:39:29 PM	Gathering column store indexes
+8/25/2014 7:39:29 PM	Gathering spatial indexes
+8/25/2014 7:39:29 PM	Gathering XML indexes
+8/25/2014 7:39:29 PM	Gathering encrypted triggers
+8/25/2014 7:39:29 PM	Gathering triggers
+8/25/2014 7:39:29 PM	Gathering encrypted and clr ddl triggers
+8/25/2014 7:39:29 PM	Gathering ddl triggers
+8/25/2014 7:39:29 PM	Gathering synonyms
+8/25/2014 7:39:29 PM	Gathering defaults
+8/25/2014 7:39:29 PM	Gathering data constraint uddt bindings
+8/25/2014 7:39:29 PM	Gathering rules
+8/25/2014 7:39:29 PM	Gathering data constraint uddt bindings
+8/25/2014 7:39:29 PM	Gathering message types
+8/25/2014 7:39:29 PM	Gathering queues
+8/25/2014 7:39:29 PM	Gathering contracts
+8/25/2014 7:39:29 PM	Gathering services
+8/25/2014 7:39:29 PM	Gathering event notifications
+8/25/2014 7:39:29 PM	Gathering remote service bindings
+8/25/2014 7:39:29 PM	Gathering broker priorities
+8/25/2014 7:39:29 PM	Gathering signatures
+8/25/2014 7:39:29 PM	Gathering data compression options
+8/25/2014 7:39:29 PM	Gathering sequence types
+8/25/2014 7:39:29 PM	Gathering extended properties
+8/25/2014 7:39:29 PM	Gathering credentials
+8/25/2014 7:39:29 PM	Gathering logins
+8/25/2014 7:39:29 PM	Gathering server audits
+8/25/2014 7:39:30 PM	Scanning project for duplicate elements
+8/25/2014 7:39:30 PM	Finished duplicate element processing
+8/25/2014 7:39:30 PM	Finished importing database.
+8/25/2014 7:39:30 PM	A summary of the import was saved to the following location: D:\Projects\RepositoryMercurial\platformAthletics\source\platformAthletic.Db\Import Schema Logs\platformAthletic.Db_20140825043929.log
+8/25/2014 7:39:30 PM	Click Finish to continue...

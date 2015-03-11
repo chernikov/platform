@@ -1,0 +1,52 @@
+@model platformAthletic.Model.PageableData<platformAthletic.Model.PaymentDetail>
+@{
+    ViewBag.Title = "Payment Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Payment Details
+</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>UserID
+            </th>
+            <th>Amount
+            </th>
+            <th>Date
+            </th>
+            <th>Code
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.User.FirstName @item.User.LastName
+            </td>
+            <td>
+                @item.Amount
+            </td>
+            <td>
+                @item.ProcessedDate.Value.ToString("d")
+            </td>
+            <td>
+                @item.ReferralCode
+            </td>
+            <td>
+                @Html.ActionLink("Detail", "Detail", "PaymentDetail", new { id = item.ID }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+</table>
+<div class="pager">
+    @Html.PageLinks(Model.PageNo, Model.CountPage, x => Url.Action(Model.Action, new { page = x }))
+</div>

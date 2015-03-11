@@ -1,0 +1,39 @@
+@model IEnumerable<platformAthletic.Model.Day>
+
+@{
+    ViewBag.Title = "Day";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Day
+</h2>
+@Html.ActionLink("Create", "Create", "Day", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+			@item.Name
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "Day", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "Day", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

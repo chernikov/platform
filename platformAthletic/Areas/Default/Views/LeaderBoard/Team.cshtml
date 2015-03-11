@@ -1,0 +1,140 @@
+﻿@model platformAthletic.Models.Info.LeaderBoardTeamInfo
+@{
+    ViewBag.Title = "Team leader board";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<div class="board-team-wrp final-leader-wrp all-transparent-wrp">
+    <div class="top">
+        <a class="link-button secondaryColorBg" href="/leader-board">Team</a>
+        <div class="logo-platform">
+            <img src="/Media/images/logo_platform.png" alt="logo platform" />
+        </div>
+        <a class="link-button primaryColorBg" href="/national-leader-board">National</a>
+    </div>
+    <div class="bottom">
+        <div class="header">
+            <div class="team-name">
+                <h1>@Model.Team.Name</h1>
+            </div>
+            <div class="all-time-wrp">
+                <div class="name">
+                    All Time Records
+                </div>
+                <table class="all-time">
+                    <thead>
+                        <tr>
+                            <th>Squat</th>
+                            <th>Bench</th>
+                            <th>Clean</th>
+                            <th>All</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@(!string.IsNullOrWhiteSpace(Model.AllTimeSquat.AllTimeLastName) ? Model.AllTimeSquat.AllTimeLastName.ToUpper() : "")<br />
+                                <span>@Model.AllTimeSquat.AllTimeValue</span></td>
+                            <td>@(!string.IsNullOrWhiteSpace(Model.AllTimeBench.AllTimeLastName) ? Model.AllTimeBench.AllTimeLastName.ToUpper() : "")<br />
+                                <span>@Model.AllTimeBench.AllTimeValue</span></td>
+                            <td>@(!string.IsNullOrWhiteSpace(Model.AllTimeClean.AllTimeLastName) ? Model.AllTimeClean.AllTimeLastName.ToUpper() : "")<br />
+                                <span>@Model.AllTimeClean.AllTimeValue</span></td>
+                            <td>@(!string.IsNullOrWhiteSpace(Model.AllTimeAll.AllTimeLastName) ? Model.AllTimeAll.AllTimeLastName.ToUpper() : "")<br />
+                                <span>@Model.AllTimeAll.AllTimeValue</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="separate-line"></div>
+        <div class="content clear">
+            <div class="legend">
+                <div class="name">Position</div>
+                @foreach (var fieldPosition in Model.FieldPositions)
+                {
+                    <div class="item">@fieldPosition.Code</div>    
+                }
+            </div>
+            <table class="double">
+                <caption>Squat</caption>
+                <thead>
+                    <tr>
+                        <th>Current</th>
+                        <th>All time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var squatRecord in Model.Squats)
+                    {
+                        <tr>
+                            <td>
+                                @(squatRecord.CurrentUser != null ? squatRecord.CurrentUser.InitialAndLastName : "")
+                                <br />
+                                <span>@squatRecord.CurrentValue</span>
+                            </td>
+                            <td>
+                                @(!string.IsNullOrWhiteSpace(squatRecord.AllTimeLastName) ? squatRecord.AllTimeInitialAndLastName : "")
+                                <br />
+                                <span>@squatRecord.AllTimeValue
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <table class="double">
+                <caption>Bench</caption>
+                <thead>
+                    <tr>
+                        <th>Current</th>
+                        <th>All time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var squatRecord in Model.Benchs)
+                    {
+                        <tr>
+                            <td>
+                                @(squatRecord.CurrentUser != null ? squatRecord.CurrentUser.InitialAndLastName : "")
+                                <br />
+                                <span>@squatRecord.CurrentValue</span>
+                            </td>
+                            <td>
+                                @(!string.IsNullOrWhiteSpace(squatRecord.AllTimeFirstName) ? squatRecord.AllTimeInitialAndLastName : "")
+                                <br />
+                                <span>@squatRecord.AllTimeValue
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <table class="double">
+                <caption>Clean</caption>
+                <thead>
+                    <tr>
+                        <th>Current</th>
+                        <th>All time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var squatRecord in Model.Cleans)
+                    {
+                         <tr>
+                            <td>
+                                @(squatRecord.CurrentUser != null ? squatRecord.CurrentUser.InitialAndLastName : "")
+                                <br />
+                                <span>@squatRecord.CurrentValue</span>
+                            </td>
+                            <td>
+                                @(!string.IsNullOrWhiteSpace(squatRecord.AllTimeFirstName) ? squatRecord.AllTimeInitialAndLastName : "")
+                                <br />
+                                <span>@squatRecord.AllTimeValue
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

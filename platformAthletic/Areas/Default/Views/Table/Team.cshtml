@@ -1,0 +1,29 @@
+﻿@model IEnumerable<platformAthletic.Models.Info.TableInfo>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="/Media/css/table.css" rel="stylesheet" type="text/css" />
+    <link href="/Media/css/print.css" rel="stylesheet" type="text/css" media="print" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="/Media/scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="/Media/scripts/default/print.js" type="text/javascript"></script>
+
+    <title>@DateTime.Now.ToString("d")</title>
+</head>
+<body>
+    <div class="print print_2">Print</div>
+    <div>
+        @foreach (var table in Model.OrderBy(p => p.User.LastName))
+        {   
+            <div class="page-breaker">
+                @Html.Partial("Table", table)
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+@model platformAthletic.Models.ViewModels.MacrocycleView
+@{
+    ViewBag.Title =  "Edit Macrocycle name";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<p></p>
+@using (Html.BeginForm("EditName", "Macrocycle", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	<fieldset>
+		@Html.Hidden("ID", Model.ID)
+		<div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+			</label>
+            <div class="controls">
+                @Html.ValidationMessage("Name")
+				@Html.TextBox("Name", Model.Name)
+            </div>
+        </div>
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

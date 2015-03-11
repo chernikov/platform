@@ -1,0 +1,131 @@
+﻿@model platformAthletic.Models.Info.LeaderBoardNationalInfo
+@{
+    ViewBag.Title = "National Leader Board";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var search = (platformAthletic.Models.Info.SearchNationalLeaderBoard)ViewBag.Search;
+}
+<div class="board-national-wrp final-leader-wrp all-transparent-wrp">
+    <div class="top">
+        <a class="link-button primaryColorBg" href="/leader-board">Team</a>
+        <div class="logo-platform">
+            <img src="/Media/images/logo_platform.png" alt="logo platform" />
+        </div>
+        <a class="link-button secondaryColorBg" href="/national-leader-board">National</a>
+    </div>
+    <div class="bottom">
+        <div class="header">
+            @using (Html.BeginForm("Index", "LeaderBoard", FormMethod.Get))
+            {
+                <div class="action-wrp">
+
+                    <div class="name">Search by:</div>
+                    <div class="input">
+                        <div class="title">Demographic</div>
+                        <div class="select-wrp">
+                            @Html.DropDownList("StateID", search.SelectListStateID, new { @class = "dropdown-styled" })
+                        </div>
+                    </div>
+                    <div class="input">
+                        <div class="title">Exercise</div>
+                        <div class="select-wrp">
+                            @Html.DropDownList("TrainingType", search.SelectListTrainingType, new { @class = "dropdown-styled" })
+                        </div>
+                    </div>
+                    <div class="button-wrp">
+                        <button class="btn-transparent">Show Results</button>
+                    </div>
+                </div>
+            }
+            <div class="all-time-wrp">
+                <div class="name">
+                    All Time Records
+                </div>
+                <table class="all-time">
+                    <thead>
+                        <tr>
+                            <th>Squat</th>
+                            <th>Bench</th>
+                            <th>Clean</th>
+                            <th>All</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeSquat.FirstName))
+                                {
+                                    var firstName = Model.AllTimeSquat.FirstName.Substring(0, 1);
+                                    var lastName = Model.AllTimeSquat.LastName.ToUpper();
+                                    <text>@firstName.&nbsp;@lastName</text><br />
+                                    <span>@Model.AllTimeSquat.Value</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeBench.FirstName))
+                                {
+                                    var firstName = Model.AllTimeBench.FirstName.Substring(0, 1);
+                                    var lastName = Model.AllTimeBench.LastName.ToUpper();
+                                    <text>@firstName.&nbsp;@lastName</text><br />
+                                    <span>@Model.AllTimeBench.Value</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeClean.FirstName))
+                                {
+                                    var firstName = Model.AllTimeClean.FirstName.Substring(0, 1);
+                                    var lastName = Model.AllTimeClean.LastName.ToUpper();
+                                   <text>@firstName.&nbsp;@lastName</text><br />
+                                    <span>@Model.AllTimeClean.Value</span>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeAll.FirstName))
+                                {
+                                    var firstName = Model.AllTimeAll.FirstName.Substring(0, 1);
+                                    var lastName = Model.AllTimeAll.LastName.ToUpper();
+                                    <text>@firstName.&nbsp;@lastName</text><br />
+                                    <span>@Model.AllTimeAll.Value</span>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="separate-line"></div>
+        <div class="title-table">@search.SelectListTrainingType.First(p => p.Selected).Text</div>
+        <div class="separate-line"></div>
+        <div class="content">
+            <table class="national">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        @foreach (var fieldPosition in Model.FieldPositions)
+                        {
+                            <th>@fieldPosition.Code</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            @foreach (var fieldPosition in Model.FieldPositions)
+                            {
+                                <td>
+                                @if (!string.IsNullOrWhiteSpace(Model.List[fieldPosition][i].FirstName))
+                                {
+                                    @Model.List[fieldPosition][i].InitialAndLastName<br/>
+                                    <span>@Model.List[fieldPosition][i].Value</span>
+                                }
+                            </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

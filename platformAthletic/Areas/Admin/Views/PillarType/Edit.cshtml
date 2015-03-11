@@ -1,0 +1,85 @@
+@model platformAthletic.Models.ViewModels.PillarTypeView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add PillarType" : "Edit PillarType";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header
+{
+    <script type="text/javascript" src="/Media/scripts/admin/edit-pillar-type.js"></script>
+}
+<h2>@(Model.ID == 0 ? "Add PillarType" : "Edit PillarType")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "PillarType", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Hidden("ID", Model.ID)
+    @Html.Hidden("VideoCode", Model.VideoCode)
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("Name", Model.Name)
+                @Html.ValidationMessage("Name")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Type">
+                Type
+            </label>
+            <div class="controls">
+                @Html.DropDownList("Type", Model.SelectListType)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Placeholder">
+                Placeholder
+            </label>
+            <div class="controls">
+                @Html.TextBox("Placeholder", Model.Placeholder)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Measure">
+                Measure
+            </label>
+            <div class="controls">
+                @Html.TextBox("Measure", Model.Measure)
+                @Html.ValidationMessage("Measure")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Text above
+            </label>
+            <div class="controls">
+                @Html.TextBox("TextAbove", Model.TextAbove)
+                @Html.ValidationMessage("TextAbove")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="VideoUrl">
+                Video Url
+            </label>
+            <div class="controls">
+                <div class="input-append">
+                    @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "input-xlarge" })
+                    <button class="btn" type="button" id="processVideoUrl">
+                        Ok</button>
+                </div>
+            </div>
+            <div id="VideoWrapper">
+                <div id="VideoCodeWrapper">
+                    @Html.Raw(Model.VideoCode)
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

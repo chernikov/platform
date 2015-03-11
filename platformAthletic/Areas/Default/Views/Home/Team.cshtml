@@ -1,0 +1,45 @@
+﻿@model platformAthletic.Model.PageableData<platformAthletic.Model.Post>
+@{
+    ViewBag.Title = "Platform Athletics";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["left side banner"];
+}
+@section header
+{
+    <script src="/Media/scripts/default/post.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Media/scripts/default/logged-index.js"></script>
+}
+<div class="team-final-wrp clear">
+    <div class="left">
+        @Html.Action("Top5User", "Home")
+        @if (currentUser.InRoles("coach"))
+        {
+            @Html.Partial("TodoList", currentUser)
+        }
+        else
+        {
+            if (banner != null)
+            {
+            @Html.Raw(banner.Show)
+            }
+        }
+    </div>
+    <div class="right all-transparent-wrp">
+        @if (currentUser.InRoles("coach"))
+        {
+            <div class="add-button-wrp clear">
+                <a href="/add-post" class="btn-black-110">Add Post</a>
+            </div>
+            <hr class="separate-line" />
+        }
+        <div class="scroll-pane">
+            <div class="scroll-content clear">
+                @foreach (var post in Model.List)
+                {
+                    @Html.Partial("PostItem", post)
+                }
+            </div>
+        </div>
+    </div>
+</div>

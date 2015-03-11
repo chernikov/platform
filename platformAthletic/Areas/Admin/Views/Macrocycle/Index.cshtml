@@ -1,0 +1,64 @@
+﻿@model IEnumerable<platformAthletic.Model.Macrocycle>
+@{
+    ViewBag.Title = "Macrocycles";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var off = (bool)ViewBag.Offseason;
+}
+
+@section header 
+{
+    <script type="text/javascript" src="/Media/scripts/admin/macrocycle-list.js"></script>
+}
+<h2>Macrocycles</h2>
+<ul class="nav nav-pills">
+    <li class="@(off ? "active": "")">
+        <a href="@Url.Action("Index", "Macrocycle", new { offSeason = true })">Off Season</a>
+    </li>
+    <li class="@(!off ? "active": "")">
+        <a href="@Url.Action("Index", "Macrocycle", new { offSeason = false })">In Season</a>
+    </li>
+</ul>
+@Html.ActionLink("Create", "Create", "Macrocycle", new { offSeason = off }, new { @class = "btn", id="CreateMacrocycle"})
+<table class="table">
+    <thead>
+        <tr>
+            <th>Default week
+            </th>
+            <th>Name
+            </th>
+            <th>WWS</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="macrocycle-week-wrapper" data-id="@item.ID">
+                <div class="macrocycle-week"> @item.Week.Number</div>
+            </td>
+            <td class="macrocycle-name-wrapper"  data-id="@item.ID">
+               <div class="macrocycle-name"> @item.Name</div>
+               
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Macrocycle", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Edit name", "EditName", "Macrocycle", new { id = item.ID }, new { @class = "btn" }) 
+                @*@Html.ActionLink("Remove", "Delete", "Macrocycle", new { id = item.ID }, new { @class = "btn btn-danger" })*@
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="MacrocycleModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Create Macrocycle</h3>
+    </div>
+    <div class="modal-body" id="MacrocycleModalWrapper">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" id="CreateMacrocycleBtn">Create</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>

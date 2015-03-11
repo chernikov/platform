@@ -1,0 +1,47 @@
+@model platformAthletic.Models.ViewModels.WeekView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Week" : "Edit Week";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>@(Model.ID == 0 ? "Add Week" : "Edit Week")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Week", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	<fieldset>
+		@Html.Hidden("ID", Model.ID)
+
+		<div class="control-group">
+            <label class="control-label" for="PhaseID">
+                Phase
+			</label>
+            <div class="controls">
+                @Html.ValidationMessage("PhaseID")
+				@Html.DropDownList("PhaseID", Model.SelectListPhaseID)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Number">
+                Number
+			</label>
+            <div class="controls">
+                @Html.ValidationMessage("Number")
+				@Html.TextBox("Number", Model.Number)
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+			</label>
+            <div class="controls">
+                @Html.ValidationMessage("Name")
+				@Html.TextBox("Name", Model.Name)
+            </div>
+        </div>
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

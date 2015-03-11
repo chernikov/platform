@@ -1,0 +1,27 @@
+@model platformAthletic.Model.Feedback
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Feedback
+</h2>
+
+<dl class="dl-horizontal">
+    <dt>Name</dt>
+    <dd>@Model.Name</dd>
+    <dt>Email</dt>
+    <dd>@Model.Email &nbsp;</dd>
+    <dt>Phone</dt>
+    <dd>@Model.Phone &nbsp;</dd>
+    <dt>School</dt>
+    <dd>@Model.School &nbsp;</dd>
+    <dt>City</dt>
+    <dd>@Model.City &nbsp;</dd>
+    <dt>State</dt>
+    <dd>@Model.State.Name &nbsp;</dd>
+    <dt>Message</dt>
+    <dd>@Model.Message &nbsp;</dd>
+    <dt>Added Date</dt>
+    <dd>@Model.AddedDate.ToString("d") &nbsp;</dd>
+</dl>
+@Html.ActionLink("Back", "Index", null, null, new { @class = "btn" })

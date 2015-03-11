@@ -1,0 +1,229 @@
+@model platformAthletic.Models.ViewModels.User.UserView
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <link rel="stylesheet" type="text/css" href="/Media/css/colorpicker.css" media="all" />
+    <script type="text/javascript" src="/Media/scripts/bootstrap-colorpicker.js"></script>
+    <script type="text/javascript" src="/Media/scripts/admin/edit-user.js"></script>
+}
+<h2>Edit User</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+        @Html.Hidden("AvatarPath", Model.AvatarPath)
+        <div class="control-group">
+            <label class="control-label" for="Email">
+                Email
+            </label>
+            <div class="controls">
+                @Html.TextBox("Email", Model.Email)
+                @Html.ValidationMessage("Email")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="FirstName">
+                First Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("FirstName", Model.FirstName)
+                @Html.ValidationMessage("FirstName")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="LastName">
+                Last Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("LastName", Model.LastName)
+                @Html.ValidationMessage("LastName")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="PhoneNumber">
+                Phone Number
+            </label>
+            <div class="controls">
+                @Html.TextBox("PhoneNumber", Model.PhoneNumber)
+                @Html.ValidationMessage("PhoneNumber")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="PaidTill">
+                Paid till
+            </label>
+            <div class="controls">
+                @Html.TextBox("PaidTill", Model.PaidTill.HasValue ? Model.PaidTill.Value.ToString("d") : "", new { @class = "datepicker" })
+                @Html.ValidationMessage("PaidTill")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="AvatarPath">
+                Avatar
+            </label>
+            <div class="controls">
+                <div id="UploadImage">
+                    Upload 
+                </div>
+            </div>
+        </div>
+        <div id="ImagePreviewWrapper" style="@(!string.IsNullOrWhiteSpace(Model.AvatarPath) ? "" : "display : none;")">
+            <img src="@Model.AvatarPath" alt="" id="ImagePreview"/>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="PlayerOfTeamID">
+                Team
+            </label>
+            <div class="controls">
+                @Html.DropDownList("PlayerOfTeamID", Model.SelectListPlayerOfTeamID)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="FieldPositionID">
+                Field Position
+            </label>
+            <div class="controls">
+                @Html.DropDownList("FieldPositionID", Model.SelectListFieldPositionID)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Year">
+                Year
+            </label>
+            <div class="controls">
+                @Html.TextBox("Year", Model.Year)
+                @Html.ValidationMessage("Year")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Squat">
+                Squat
+            </label>
+            <div class="controls">
+                @Html.TextBox("Squat", Model.Squat.Round5())
+                @Html.ValidationMessage("Squat")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Bench">
+                Bench
+            </label>
+            <div class="controls">
+                @Html.TextBox("Bench", Model.Bench)
+                @Html.ValidationMessage("Bench")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Clean">
+                Clean
+            </label>
+            <div class="controls">
+                @Html.TextBox("Clean", Model.Clean)
+                @Html.ValidationMessage("Clean")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Height">
+                Height
+            </label>
+            <div class="controls">
+                @Html.TextBox("Height", Model.Height)
+                @Html.ValidationMessage("Height")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Weight">
+                Weight
+            </label>
+            <div class="controls">
+                @Html.TextBox("Weight", Model.Weight)
+                @Html.ValidationMessage("Weight")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="BodyFat">
+                BodyFat
+            </label>
+            <div class="controls">
+                @Html.TextBox("BodyFat", Model.BodyFat)
+                @Html.ValidationMessage("BodyFat")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="_40YardDash">
+                40 Yard Dash
+            </label>
+            <div class="controls">
+                @Html.TextBox("_40YardDash", Model._40YardDash)
+                @Html.ValidationMessage("_40YardDash")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Vertical">
+                Vertical
+            </label>
+            <div class="controls">
+                @Html.TextBox("Vertical", Model.Vertical)
+                @Html.ValidationMessage("Vertical")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="_3Cone">
+                3Cone
+            </label>
+            <div class="controls">
+                @Html.TextBox("_3Cone", Model._3Cone)
+                @Html.ValidationMessage("_3Cone")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="TDrill">
+                TDrill
+            </label>
+            <div class="controls">
+                @Html.TextBox("TDrill", Model.TDrill)
+                @Html.ValidationMessage("TDrill")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="PrimaryColor">
+                PrimaryColor
+            </label>
+            <div class="controls">
+                @Html.TextBox("PrimaryColor", Model.PrimaryColor, new { @class = "colorpicker" })
+                @Html.ValidationMessage("PrimaryColor")
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="SecondaryColor">
+                SecondaryColor
+            </label>
+            <div class="controls">
+                @Html.TextBox("SecondaryColor", Model.SecondaryColor, new { @class = "colorpicker" })
+                @Html.ValidationMessage("SecondaryColor")
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

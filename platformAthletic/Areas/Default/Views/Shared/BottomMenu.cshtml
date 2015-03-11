@@ -1,0 +1,58 @@
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var controllerName = ViewContext.RequestContext.RouteData.Values["controller"] as string;
+    var actionName = ViewContext.RequestContext.RouteData.Values["action"] as string;
+}
+<ul class="menu">
+    <li><a href="/" class="@((controllerName == "Home" && actionName == "Index") ? "selected primaryColorBg" : "")">
+        Home</a></li>
+    @if (currentUser == null)
+    {
+        <li><a href="/features"  class="
+            @((controllerName == "Feature") ? "selected primaryColorBg" : "")">Features</a>
+        </li>
+        <li><a href="/about-us" class="
+            @((controllerName == "AboutUs") ? "selected primaryColorBg" : "")">About Us</a>
+        </li>
+        <li><a href="/join" class=" 
+            @((controllerName == "Home" && actionName == "Join") ? "selected primaryColorBg" : "")
+            @((controllerName == "Account" && actionName == "Register") ? "selected primaryColorBg" : "")
+            ">Join</a></li>
+        <li><a href="/contact-us" class="
+             @((controllerName == "Contact") ? "selected primaryColorBg" : "")">Contact Us</a>
+        </li>
+    }
+    else
+    {
+        if (currentUser.InRoles("coach"))
+        {
+        <li><a href="/team" class="
+        @((string.Compare(controllerName, "Team", true) == 0) ? "selected primaryColorBg" : "")">
+            My Team</a></li>
+        }
+        if (currentUser.InRoles("individual,player"))
+        {
+        <li><a href="/my-page" class="
+        @((string.Compare(controllerName, "Player", true) == 0) ? "selected primaryColorBg" : "")">
+            My Page</a></li>
+        }
+        if (currentUser.InRoles("coach,individual"))
+        {
+            <li><a href="/report" class="
+             @((string.Compare(controllerName, "Report", true) == 0) ? "selected primaryColorBg" : "")">Reports</a></li>
+        }
+        if (currentUser.InRoles("coach,player"))
+        {
+            <li><a href="/leader-board" class="
+            @((string.Compare(controllerName, "LeaderBoard", true) == 0) ? "selected primaryColorBg" : "")">Leader Board</a></li>
+        }
+        <li><a href="/video" class="
+         @((string.Compare(controllerName, "Video", true) == 0) ? "selected primaryColorBg" : "")
+        ">Video Library</a></li>
+        <li><a href="/faq" class="
+        @((string.Compare(controllerName, "Contact", true) == 0) ? "selected primaryColorBg" : "")
+        @((string.Compare(controllerName, "GettingStarted", true) == 0) ? "selected primaryColorBg" : "")
+        @((string.Compare(controllerName, "Faq", true) == 0) ? "selected primaryColorBg" : "")">
+            Help</a></li>
+    }
+</ul>

@@ -1,0 +1,31 @@
+@model IEnumerable<platformAthletic.Model.Faq>
+
+@{
+    ViewBag.Title = "Faq";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/admin/faq-list.js"></script>
+}
+<h2>
+	Faqs
+</h2>
+@Html.ActionLink("Create", "Create", "Faq", null, new { @class = "btn" })
+
+
+<div class="faq-list faqList">
+    @foreach (var item in Model)
+    {
+        <div class="item faqItem" data-id="@item.ID">
+
+            <div class="title">
+                @item.Header
+            </div>
+            <div class="actions">
+                @Html.ActionLink("Edit", "Edit", "Faq", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "Faq", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>
+

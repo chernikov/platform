@@ -1,0 +1,45 @@
+@model IEnumerable<platformAthletic.Model.State>
+
+@{
+    ViewBag.Title = "States";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	States
+</h2>
+@Html.ActionLink("Create", "Create", "State", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+				Code
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+			@item.Name
+		</td>		
+		<td> 
+			@item.Code
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "State", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "State", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

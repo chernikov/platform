@@ -1,0 +1,125 @@
+﻿@model  platformAthletic.Models.Info.CommonReport
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+@section header 
+{
+    <script type="text/javascript" src="/Media/scripts/default/report.js"></script>
+}
+
+<div class="final-report-wrp all-transparent-wrp clear">
+    <div class="left">
+        <div class="top primaryColorBg">
+            <h2>Attendance</h2>
+        </div>
+        <div class="content">
+            <h3>@Model.Team.Name</h3>
+            <div class="text">
+               Displayed below is your team's cumulative attendance.
+            </div>
+            <div class="progress-wrp">
+                <div class="title">Month</div>
+                <div class="bar-wrp">
+                    @if (Model.MonthAttendance > 0)
+                    {
+                        <div class="insert-bar primaryColorBg" style="width: @(Model.MonthAttendance * 14 / 5)px;">
+                            <div class="insert-bar-arrow"></div>
+                        </div>
+                    }
+                </div>
+                <div class="legend-wrp">
+                    <div class="legend-0">
+                        <span>|</span><br>
+                        0%
+                    </div>
+                    <div class="legend-50">
+                        <span>|</span><br>
+                        50%
+                    </div>
+                    <div class="legend-100">
+                        <span>|</span><br>
+                        100%
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrp">
+                <div class="title">Year - to -Date</div>
+                <div class="bar-wrp">
+                    @if (Model.MonthAttendance > 0)
+                    {
+                        <div class="insert-bar primaryColorBg" style="width: @(Model.YearToDateAttendance * 14 / 5)px;">
+                            <div class="insert-bar-arrow"></div>
+                        </div>
+                    }
+                </div>
+                <div class="legend-wrp">
+                    <div class="legend-0">
+                        <span>|</span><br>
+                        0%
+                    </div>
+                    <div class="legend-50">
+                        <span>|</span><br>
+                        50%
+                    </div>
+                    <div class="legend-100">
+                        <span>|</span><br>
+                        100%
+                    </div>
+                </div>
+            </div>
+            @if (currentUser.FullAttendanceStartDate.HasValue)
+            {
+                <div class="since">
+                    <div class="title">Results Since: @currentUser.FullAttendanceStartDate.Value.ToString("d")
+                    </div>
+                    <button  id="ResetAttendance">Reset</button>
+                </div>
+            }
+            <div class="button-wrp">
+                <a href="/attendance-report" class="btn-active primaryColorBg">Create Custom Report</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="right">
+        <div class="top primaryColorBg">
+            <h2>Progress</h2>
+        </div>
+        <div class="content">
+            <h3>@Model.Team.Name</h3>
+            <div class="text">
+                Displayed below is a per player average of changes in max values.
+            </div>
+            <div class="list">
+                <div class="item">
+                    <div class="name">Squat</div>
+                    <div class="@(Model.Squat > 0 ? "icon-plus" : "icon-minus")"></div>
+                    <div class="value">@Model.Squat.Round5().ToString("0")</div>
+                </div>
+                <div class="item">
+                    <div class="name">Bench</div>
+                    <div class="@(Model.Bench > 0 ? "icon-plus" : "icon-minus")"></div>
+                    <div class="value">@Model.Bench.Round5().ToString("0")</div>
+                </div>
+                <div class="item">
+                    <div class="name">Clean</div>
+                    <div class="@(Model.Clean > 0 ? "icon-plus" : "icon-minus")"></div>
+                    <div class="value">@Model.Clean.Round5().ToString("0")</div>
+                </div>
+            </div>
+             @if (currentUser.FullProgressStartDate.HasValue)
+            {
+                <div class="since">
+                    <div class="title">Results Since: @currentUser.FullProgressStartDate.Value.ToString("d")
+                    </div>
+                    <button id="ResetProgress">Reset</button>
+                </div>
+            }
+            <div class="button-wrp">
+                <a href="/progress-report" class="btn-active primaryColorBg">Create Custom Report</a>
+            </div>
+        </div>
+    </div>
+</div>

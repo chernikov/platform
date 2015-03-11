@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Group] (
+    [ID]     INT            IDENTITY (1, 1) NOT NULL,
+    [TeamID] INT            NOT NULL,
+    [Name]   NVARCHAR (500) NOT NULL,
+    CONSTRAINT [PK_Group] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_Group_Team] FOREIGN KEY ([TeamID]) REFERENCES [dbo].[Team] ([ID]) ON DELETE CASCADE ON UPDATE CASCADE
+);
+

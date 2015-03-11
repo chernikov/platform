@@ -1,0 +1,69 @@
+﻿@model IEnumerable<platformAthletic.Model.TrainingDay>
+@{
+    ViewBag.Title = "Training Days";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var search = (platformAthletic.Models.Info.FilterTrainingDayInfo)ViewBag.Search;
+}
+<h2>Training Days
+</h2>
+@using (Html.BeginForm("Index", "TrainingDay", FormMethod.Post, new { @class = "well form-search" }))
+{
+    @Html.DropDownList("PhaseID", search.SelectListPhases, new { @class = "input-medium" })
+    @Html.DropDownList("WeekID", search.SelectListWeeks, new { @class = "input-medium" })
+    <button type="submit" class="btn">Filter</button> 
+}
+@Html.ActionLink("Create", "Create", "TrainingDay", null, new { @class = "btn" })
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Season
+            </th>
+            <th>Cycle
+            </th>
+            <th>Phase
+            </th>
+            <th>Week
+            </th>
+            <th>Day
+            </th>
+            <th>Exercise
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.Week.Phase.Cycle.Season.Name
+            </td>
+            <td>
+                @item.Week.Phase.Cycle.Name
+            </td>
+            <td>
+                @item.Week.Phase.Name
+            </td>
+            <td>
+                @item.Week.Name
+            </td>
+            <td>
+                @item.Day.Name
+            </td>
+             <td>
+                @item.CountExercise
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "TrainingDay", new { id = item.ID }, new { @class = "btn" })
+               @* @Html.ActionLink("Edit batch", "EditBatch", "TrainingDay", new { id = item.ID }, new { @class = "btn" })*@
+                @Html.ActionLink("Edit Table", "EditTable", "TrainingDay", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "TrainingDay", new { id = item.ID }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+</table>

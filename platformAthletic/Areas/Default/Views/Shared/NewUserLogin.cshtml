@@ -1,0 +1,15 @@
+﻿@model platformAthletic.Model.User
+
+@if (Model == null) 
+{
+    <div class="login-form">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal LoginForm" }))
+        {
+            <label>My Account</label><br>
+            @Html.TextBox("Email", "", new { placeholder = "Your Email" })
+            @Html.Password("Password", "", new { placeholder = "Password" })
+            <input type="submit" class="LoginBtn" value="" /><br/>
+            <a class="forgot-password" href="/forgot-password">Forgot your password?</a>
+        }
+    </div>
+}

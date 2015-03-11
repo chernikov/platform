@@ -1,0 +1,94 @@
+﻿@model IEnumerable<platformAthletic.Model.User>
+
+@{
+    ViewBag.Title = "Manage players";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/default/manage-player.js"></script>
+}
+
+<div class="equipment-wrp account-wrp clear">
+    <div class="left">
+        <div class="menu all-content-wrp">
+            <div class="item"><a href="/account">Basic Information</a></div>
+            <div class="item"><a href="/settings">Settings</a></div>
+            <div class="item"><a href="/change-password">Change password</a></div>
+            <div class="item"><a href="/billing">Billing</a></div>
+            <div class="item "><a href="/equipment">Equipment Log</a></div>
+            <div class="item selected"><a href="/manage-players">Manage Players</a></div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="top all-content-wrp">
+            <h1>MANAGE PLAYERS</h1>
+        </div>
+        <div class="bottom all-transparent-wrp manage-player">
+            <div class="top-content">
+                <div class="table-manage-players">
+                    <div class="header">
+                        <div class="name">
+                            Name
+                        </div>
+                        <div class="email">
+                            Email
+                        </div>
+                        <div class="position">
+                            Position
+                        </div>
+                        <div class="group">
+                            Group
+                        </div>
+                        <div class="edit">
+                            Edit
+                        </div>
+                        <div class="welcome">
+                            Login Info
+                        </div>
+                    </div>
+
+                    <div class="body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="row">
+                                <div class="name">
+                                    @item.LastName, @item.FirstName
+                                </div>
+                                <div class="email">
+                                    <span title="@item.Email">@item.Email.Teaser(28)</span>
+                                </div>
+                                <div class="position">
+                                    @item.FieldPosition.Name
+                                </div>
+                                <div class="group">
+                                    @(item.GroupID.HasValue ? item.Group.Name : item.Team.Name)
+                                </div>
+                                <div class="edit">
+                                    <button class="btn btn-edit" data-id="@item.ID">Edit</button>
+                                </div>
+                                <div class="welcome">
+                                    @if (item.LoginInfoSent.HasValue)
+                                    {
+                                        if (item.LoginInfoSent.Value.AddDays(1) > DateTime.Now)
+                                        {
+                                        <button class="btn btn-send disable" data-id="@item.ID" disabled="disabled">Sent</button>
+                                        }
+                                        else
+                                        {
+                                        <button class="btn btn-send active" data-id="@item.ID">Resend</button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-send active" data-id="@item.ID">Send</button>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

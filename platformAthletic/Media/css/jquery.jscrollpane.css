@@ -1,0 +1,163 @@
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	top: 0;
+	right: 5px;
+	width: 20px;
+	height: 100%;
+	background: rgba(0,0,0,0.35);
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	border: solid 1px #414141;
+	-moz-box-shadow: inset 2px 2px 6px 2px #000;
+	-webkit-box-shadow: inset 2px 2px 6px 2px #000;
+	box-shadow: inset 2px 2px 6px 2px #000;
+}
+
+.jspHorizontalBar
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 16px;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack
+{
+	position: relative;
+}
+
+.jspDrag
+{
+	background: #ccc;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+}
+
+.jspDragTop {
+	height: 50%;
+	background: #d9d9d9;
+	-webkit-border-radius: 11px 11px 0 0;
+	-moz-border-radius: 11px 11px 0 0;
+	border-radius: 11px 11px 0 0;
+}
+
+.jspDragBottom {
+	height: 50%;
+	background: #a9a9a9;
+	-webkit-border-radius: 0 0 11px 11px;
+	-moz-border-radius: 0 0 11px 11px;
+	border-radius: 0 0 11px 11px;
+}
+
+.jspVerticalBar .jspDragCenter {
+	width: 9px;
+	height: 37px;
+	background: url("data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAlCAYAAACQ/8NdAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAlJJREFUeNrUlE2IEmEYx9+ZsdEUR13QxDHJDxDBg7KGFyOIULyEh2ChS4f21KVOERTRoeuCly3wUiAUUQRBHWyhq21Q63XxsCEMlO2HH5va+NX/mZwY2gk6BT3w53l9/T2vz7zPf+Tm8zkrFAoiY2wFWoa2oee1Wu0rWwSXz+e9yG94nk/5/X4mSRIbjUYHKL5YqVTeEmSB1kRRTGUyGeZ0OvViD4qedTqdZbfb/YnHxoV4PG4EtJjNZkuKolzFkidI8Pl8zCysVquE5CPoNcdxZkA3HA5/oTVB17vdbtsICIKg5nK5l8gdfGxzdAXVavWEw+GoTKdTGScM8BAfA4EAFT6BdjRoEXRXp6El6Bu0BR1o92SA/hg8+4v4xxDNjlxAQ75pcMEDuKBhdEEYeRND9uKGNRcMh8MZ7my1XC4/1E+6b7fbvdlslgH81QZue73VajVCodAW9XQ2kUgYAS1w0vF+v38Fy2MEHXo8HtOGYZ+57oJHqDIDFPzUHpbfCbrd6/UaRgA97hWLxRdYKtCuPjuhXq/fhbdTOKGXTCZ3bDbbZ+w/hvZ/H/BJ6gHqk0Wg8f/vgoUTBKQUPRUcsG+EuMUfxi2s7+D9E8kFqqo+hRNWAR9qJwGgId6LRqMsEongndY6WJlMJgHk85BKO9eCwSCLxWI68LMPi+VMs9m8rDcewyBNGx6Px1kkiaBtDPQIgP6msiyTC1wE3RgMBkcgWHnT5XJR47s8nmADJ13CRouq8Z/QTqfTr0ql0gaAd9DQOOBT0DlIpmroPfSBvvghwADB8cyOmxnr2wAAAABJRU5ErkJggg==") no-repeat 0 0;
+	position: absolute;
+	left: 6px;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+	float: left;
+	height: 100%;
+}
+
+.jspArrow
+{
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+	/*background: #80808d;*/
+}
+
+.jspVerticalBar .jspArrow
+{
+	height: 20px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.jspVerticalBar .jspArrowUp {
+	background: url("data:;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMpJREFUeNpi/P//PwM1ARMDlcGogZQDFnQBRkZGDEXAlJAMlZuLzRCUlALiIGMsio2B+Offv39/p6SkNOEyEK4fn4FAvigQP/zw4cN/EH706NE/f39/F7IMBLKZgXjX58+f/z979gyMQewDBw58V1BQkCDHwPavX7/CDYNhkNisWbPuA5UwYzOQCUeYBP748aMC6CIMOZBYbGysQnl5+SoGQgEKxepA/OE/AQAK05iYmBxivawOxB9AaglgkBp1ZP2Mo6XNCDAQIMAADs4nCXdu5+YAAAAASUVORK5CYII=") no-repeat 0 0;
+}
+
+.jspVerticalBar .jspArrowDown {
+	background: url("data:;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAOVJREFUeNrslEsKgzAQhpvmDIGewW2u0CPkBsV9z9C9R+gpegCDO/fubTbqUggSYqHTDFjrEynYVf3hJ0My8zF5EAIAuzW1362sDfgboOesnWHBmOMRQvrV+Gy6RoVheDbGQJ7nkGVZzziHa0KIFtqrnwKi4ji+VVU1AuJcEATvLsWwqVmgi2mSJHetdQvDWEoJlFJMDKZ2OQtEpWl6KIrClGUJaKUUMMYwSTrTr4HNeR7run5aa4FzjgnKmc3dwyIQFUXRxff9hwutMx+ud+vJEDJ6Bh+dmvE6BWzrt9/mD4AvAQYAVSUXAeJ25NsAAAAASUVORK5CYII=") no-repeat 0 0;
+}
+
+.jspHorizontalBar .jspArrow
+{
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+}

@@ -1,0 +1,70 @@
+﻿@model platformAthletic.Models.Info.TableInfo
+@{
+    var firstDay = Model.Days.First();
+    var aphorism = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Aphorisms.Get;
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<div class="print-wrapper">
+    
+        @if (!string.IsNullOrWhiteSpace(currentUser.TeamLogo))
+            {
+            <div class="logo">
+                <img src="@currentUser.TeamLogo" />
+            </div>
+        }
+    <div class="header">
+        <div class="logo">
+         <img src="/Media/images/logo_table_small.png" />
+         </div>
+    </div>
+    <h2 class="clear">@firstDay.Macrocycle.Name</h2>
+    @if (Model.User.GroupID.HasValue)
+    {
+        <h5>(group: @Model.User.Group.Name)</h5>
+    }
+    <div class="sbc-wrapper">
+        <table class="sbc-value">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Squat</th>
+                    <th>Bench</th>
+                    <th>Clean</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="surname">@Model.User.LastName, @Model.User.FirstName</td>
+                <td>@Model.User.Squat</td>
+                <td>@Model.User.Bench</td>
+                <td>@Model.User.Clean</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        @foreach (var day in Model.Days)
+        {
+            Model.CurrentDay = day;
+            if (Model.CurrentDay.Week.Phase.Cycle.Season.Type == (int)platformAthletic.Model.Season.TypeEnum.OffSeason)
+            {
+            @Html.Partial("OffSeasonTable", Model)
+            }
+            else
+            {
+            @Html.Partial("InSeasonTable", Model)
+            }
+            <div class="clearfix-br"></div>
+        }
+        @if (aphorism  != null) {
+        <div class="aphorism">
+            <div class="text">
+                @aphorism.Text.NlToBr()
+            </div>
+            <div class="author">
+               &mdash; @aphorism.Author
+            </div>
+        </div>
+        }
+    </div>
+</div>

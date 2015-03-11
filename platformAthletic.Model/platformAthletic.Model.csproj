@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54305171-F603-4070-9E75-1F7173681E8A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>platformAthletic.Model</RootNamespace>
+    <AssemblyName>platformAthletic.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Proxy\About.cs" />
+    <Compile Include="Proxy\Aphorism.cs" />
+    <Compile Include="Proxy\Banner.cs" />
+    <Compile Include="Proxy\BannerPlace.cs" />
+    <Compile Include="Proxy\BillingInfo.cs" />
+    <Compile Include="Proxy\Cell.cs" />
+    <Compile Include="Proxy\Cycle.cs" />
+    <Compile Include="Proxy\Day.cs" />
+    <Compile Include="Proxy\Equipment.cs" />
+    <Compile Include="Proxy\FailedMail.cs" />
+    <Compile Include="Proxy\Faq.cs" />
+    <Compile Include="Proxy\FeatureCatalog.cs" />
+    <Compile Include="Proxy\FeatureText.cs" />
+    <Compile Include="Proxy\Feedback.cs" />
+    <Compile Include="Proxy\FieldPosition.cs" />
+    <Compile Include="Proxy\File.cs" />
+    <Compile Include="Proxy\Gallery.cs" />
+    <Compile Include="Proxy\Group.cs" />
+    <Compile Include="Proxy\Invoice.cs" />
+    <Compile Include="Proxy\Macrocycle.cs" />
+    <Compile Include="Proxy\Page.cs" />
+    <Compile Include="Proxy\PagePart.cs" />
+    <Compile Include="Proxy\PaymentDetail.cs" />
+    <Compile Include="Proxy\PeopleSaying.cs" />
+    <Compile Include="Proxy\PersonalSchedule.cs" />
+    <Compile Include="Proxy\Phase.cs" />
+    <Compile Include="Proxy\PillarType.cs" />
+    <Compile Include="Proxy\Post.cs" />
+    <Compile Include="Proxy\PromoAction.cs" />
+    <Compile Include="Proxy\PromoCode.cs" />
+    <Compile Include="Proxy\Role.cs" />
+    <Compile Include="Proxy\SBCValue.cs" />
+    <Compile Include="Proxy\Schedule.cs" />
+    <Compile Include="Proxy\Season.cs" />
+    <Compile Include="Proxy\Setting.cs" />
+    <Compile Include="Proxy\State.cs" />
+    <Compile Include="Proxy\Team.cs" />
+    <Compile Include="Proxy\Training.cs" />
+    <Compile Include="Proxy\TrainingDay.cs" />
+    <Compile Include="Proxy\TrainingDayCell.cs" />
+    <Compile Include="Proxy\TrainingEquipment.cs" />
+    <Compile Include="Proxy\TrainingSet.cs" />
+    <Compile Include="Proxy\User.cs" />
+    <Compile Include="Proxy\UserAttendance.cs" />
+    <Compile Include="Proxy\UserEquipment.cs" />
+    <Compile Include="Proxy\UserPillar.cs" />
+    <Compile Include="Proxy\UserRole.cs" />
+    <Compile Include="Proxy\UserSeason.cs" />
+    <Compile Include="Proxy\Video.cs" />
+    <Compile Include="Proxy\Week.cs" />
+    <Compile Include="SqlRepository\About.cs" />
+    <Compile Include="SqlRepository\Aphorism.cs" />
+    <Compile Include="SqlRepository\Banner.cs" />
+    <Compile Include="SqlRepository\BannerPlace.cs" />
+    <Compile Include="SqlRepository\BillingInfo.cs" />
+    <Compile Include="SqlRepository\Cell.cs" />
+    <Compile Include="SqlRepository\Cycle.cs" />
+    <Compile Include="SqlRepository\Day.cs" />
+    <Compile Include="SqlRepository\Equipment.cs" />
+    <Compile Include="SqlRepository\FailedMail.cs" />
+    <Compile Include="SqlRepository\Faq.cs" />
+    <Compile Include="SqlRepository\FeatureCatalog.cs" />
+    <Compile Include="SqlRepository\FeatureText.cs" />
+    <Compile Include="SqlRepository\Feedback.cs" />
+    <Compile Include="SqlRepository\FieldPosition.cs" />
+    <Compile Include="SqlRepository\File.cs" />
+    <Compile Include="SqlRepository\Gallery.cs" />
+    <Compile Include="SqlRepository\Group.cs" />
+    <Compile Include="SqlRepository\Invoice.cs" />
+    <Compile Include="SqlRepository\Macrocycle.cs" />
+    <Compile Include="SqlRepository\Page.cs" />
+    <Compile Include="SqlRepository\PagePart.cs" />
+    <Compile Include="SqlRepository\PaymentDetail.cs" />
+    <Compile Include="SqlRepository\PeopleSaying.cs" />
+    <Compile Include="SqlRepository\PersonalSchedule.cs" />
+    <Compile Include="SqlRepository\Phase.cs" />
+    <Compile Include="SqlRepository\PillarType.cs" />
+    <Compile Include="SqlRepository\Post.cs" />
+    <Compile Include="SqlRepository\PromoAction.cs" />
+    <Compile Include="SqlRepository\PromoCode.cs" />
+    <Compile Include="SqlRepository\Role.cs" />
+    <Compile Include="SqlRepository\SBCValue.cs" />
+    <Compile Include="SqlRepository\Schedule.cs" />
+    <Compile Include="SqlRepository\Season.cs" />
+    <Compile Include="SqlRepository\Setting.cs" />
+    <Compile Include="SqlRepository\State.cs" />
+    <Compile Include="SqlRepository\Team.cs" />
+    <Compile Include="SqlRepository\Training.cs" />
+    <Compile Include="SqlRepository\TrainingDay.cs" />
+    <Compile Include="SqlRepository\TrainingDayCell.cs" />
+    <Compile Include="SqlRepository\TrainingEquipment.cs" />
+    <Compile Include="SqlRepository\TrainingSet.cs" />
+    <Compile Include="SqlRepository\User.cs" />
+    <Compile Include="SqlRepository\UserAttendance.cs" />
+    <Compile Include="SqlRepository\UserEquipment.cs" />
+    <Compile Include="SqlRepository\UserPillar.cs" />
+    <Compile Include="SqlRepository\UserRole.cs" />
+    <Compile Include="SqlRepository.cs" />
+    <Compile Include="platformAthleticDb.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>platformAthleticDb.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="SqlRepository\UserSeason.cs" />
+    <Compile Include="SqlRepository\Video.cs" />
+    <Compile Include="SqlRepository\Week.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CodeTemplates\Scaffolders\IRepository\IRepositoryItemTemplate.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\IRepository\IRepository.ps1" />
+    <None Include="CodeTemplates\Scaffolders\IRepository\IRepositoryTemplate.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\ProviderRepository\ProviderRepository.ps1" />
+    <None Include="CodeTemplates\Scaffolders\Proxy\ProxyLangTemplate.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\Proxy\Proxy.ps1" />
+    <None Include="CodeTemplates\Scaffolders\Proxy\ProxyTemplate.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\SqlRepository\SqlRepositoryLangTemplate.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\SqlRepository\SqlRepository.ps1" />
+    <None Include="CodeTemplates\Scaffolders\SqlRepository\SqlRepositoryTemplate.cs.t4" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="platformAthleticDb.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>platformAthleticDb.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="platformAthleticDb.dbml.layout">
+      <DependentUpon>platformAthleticDb.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ManageAttribute\ManageAttribute.csproj">
+      <Project>{05960685-9A37-4B71-A94E-D009358ABA71}</Project>
+      <Name>ManageAttribute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\platformAthletic.Tools\platformAthletic.Tools.csproj">
+      <Project>{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}</Project>
+      <Name>platformAthletic.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

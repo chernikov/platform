@@ -1,0 +1,85 @@
+﻿@model platformAthletic.Models.Info.PriceInfoView
+@{
+    ViewBag.Title = "Join";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var hostName = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).HostName;
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/default/join.js"></script>
+}
+<div class="all-content-wrp join-wrapper clear">
+    <h1>START YOUR 60-DAY FREE TRIAL TODAY!
+</h1>
+    <h2>Choose your plan and in less than five minutes 
+you will be on the fast track for
+        success!
+</h2>
+    <div class="team-plan">
+        <div class="header clear">
+            <div class="_799price">
+                <img src="@Model.TeamPriceImagePath" alt="@Model.TeamPrice" />
+                Per year
+            </div>
+            <h1>Team
+                <br />
+                Subscription </h1>
+        </div>
+        <div class="list">
+            <ul>
+                <li class="odd"><span></span>Workouts Tailored to Your Space and Equipment
+                </li>
+                <li> <span></span>Personalized Workouts For Each and Every Player
+                </li>
+                <li class="odd"> <span></span>Customized Team Home Page With Live Newsfeed 
+                </li>
+                <li > <span></span>Attendance Tracking and Customized Reports
+                </li>
+                <li  class="odd"> <span></span>Player and Group Progress Reports
+                </li>
+                <li>  <span></span>The Platform Blog   
+                </li>
+                <li  class="odd"> <span></span>Instructional Videos For Improved Safety and Efficiency 
+                </li>
+            </ul>
+        </div>
+        <div class="submit-wrapper">
+            <div class="info">Get all of this for less than $3 a day</div>
+            <a href="https://@hostName/register" class="btn-active primaryColorBg">
+                Start The Platform Today!
+            </a>
+        </div>
+    </div>
+    <div class="individual-plan">
+        <div class="header">
+            <div class="_199price">
+                <img src="@Model.IndividualPriceImagePath" alt="@Model.IndividualPrice" />
+                Per year
+            </div>
+            <h1>Individual 
+                <br />
+                Subscription </h1>
+        </div>
+           <div class="list">
+        <ul>
+            <li class="odd"><span></span>Individualized Workouts Tailored To Your Space and Equipment
+            </li>
+            <li><span></span>Innovative Record Keeping to Track Results
+            </li>
+            <li class="odd"><span></span>Individualized Progress Reports 
+            </li>
+            <li><span></span>The Platform Blog
+            </li>
+            <li class="odd"><span></span>Instructional Videos For Improved Safety and Efficiency 
+            </li>
+        </ul>
+        </div>
+        <div class="submit-wrapper">
+            <div class="info">Get all of this for less than $1 a day</div>
+            <a href="https://@hostName/register?type=2" class="btn-active primaryColorBg">
+                Start The Platform Today!
+            </a>
+        </div>
+    </div>
+</div>
+
+

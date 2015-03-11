@@ -1,0 +1,45 @@
+@model IEnumerable<platformAthletic.Model.Season>
+
+@{
+    ViewBag.Title = "Season";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Season
+</h2>
+@Html.ActionLink("Create", "Create", "Season", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				Type
+			</th>
+			<th>
+				Name
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+			@((platformAthletic.Model.Season.TypeEnum)item.Type)
+		</td>		
+		<td> 
+			@item.Name
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "Season", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "Season", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

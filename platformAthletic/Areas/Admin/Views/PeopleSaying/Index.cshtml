@@ -1,0 +1,51 @@
+@model IEnumerable<platformAthletic.Model.PeopleSaying>
+
+@{
+    ViewBag.Title = " What people saying";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    What people saying
+</h2>
+@Html.ActionLink("Create", "Create", "PeopleSaying", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				ID
+			</th>
+			<th>
+				Author
+			</th>
+			<th>
+				Image
+			</th>
+			<th>
+				Text
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>		
+		<td> 
+			@item.Author
+		</td>		
+		<td> 
+			<img src="@(item.ImagePath).ashx?w=135&h=135&mode=crop" />
+		</td>		
+		<td> 
+			@item.Text
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "PeopleSaying", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "PeopleSaying", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

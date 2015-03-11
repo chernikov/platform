@@ -1,0 +1,38 @@
+﻿@model platformAthletic.Model.Post
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+@if (Model.User.InRoles("admin"))
+{
+    <div class="admin-message">
+        <div class="item">
+            <div class="posted">Posted by The Platform Team</div>
+            <div class="title">@Model.Header</div>
+            <div class="content">
+                @Html.Raw(Model.Text)
+            </div>
+            <div class="date">Date: @Model.AddedDate.ToString("d")</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        <div class="item">
+            @if (Model.CanEdit(currentUser))
+            {
+                <div class="edit-wrp">
+                    <a class="link-button primaryColorBg" href="@Url.Action("EditPost", "Home", new {id = Model.ID})">Edit</a>
+                    <a class="link-button primaryColorBg" href="@Url.Action("DeletePost", "Home", new {id = Model.ID})">Remove</a>
+                </div>
+            }
+
+            <div class="posted">Posted by Coach</div>
+            <div class="title">@Model.Header</div>
+            <div class="content">
+                @Html.Raw(Model.Text.NlToBr())
+            </div>
+            <div class="date">Date: @Model.AddedDate.ToString("d")</div>
+        </div>
+    </div>
+}

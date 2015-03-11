@@ -1,0 +1,43 @@
+@model platformAthletic.Model.PageableData<platformAthletic.Model.Video>
+
+@{
+    ViewBag.Title = "Video";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Video
+</h2>
+@Html.ActionLink("Create", "Create", "Video", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				Header
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model.List) 
+    {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+			@item.Header
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "Video", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "Video", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>
+<div class="pager">
+    @Html.PageLinks(Model.PageNo, Model.CountPage, x => Url.Action(Model.Action, new {page = x}))
+</div>

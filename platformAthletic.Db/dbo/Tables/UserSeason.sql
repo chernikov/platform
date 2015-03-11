@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[UserSeason] (
+    [ID]       INT      IDENTITY (1, 1) NOT NULL,
+    [SeasonID] INT      NOT NULL,
+    [UserID]   INT      NOT NULL,
+    [StartDay] DATETIME NOT NULL,
+    CONSTRAINT [PK_UserSeason] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_UserSeason_Season] FOREIGN KEY ([SeasonID]) REFERENCES [dbo].[Season] ([ID]) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT [FK_UserSeason_User] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID]) ON DELETE CASCADE ON UPDATE CASCADE
+);
+

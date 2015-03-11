@@ -1,0 +1,42 @@
+﻿@model platformAthletic.Models.Info.YoutubeInfo
+
+@{
+    ViewBag.Title = "Title youtube";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var message = ViewBag.Message;
+}
+<h2>Title youtube</h2>
+<p></p>
+@if(message != null) 
+{
+<div class="alert alert-success">@message</div>
+}
+@using (Html.BeginForm("Index", "Youtube", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+		<div class="control-group">
+            <label class="control-label" for="VideoUrl">
+                Youtube url
+			</label>
+            <div class="controls">
+				@Html.TextBox("VideoUrl", Model.VideoUrl)
+
+                @Html.ValidationMessage("VideoUrl")
+            </div>
+        </div>
+       <div class="control-group">
+            <label class="control-label" for="VideoUrl">
+                Sample 
+			</label>
+            <div class="controls">
+				@Html.Raw(platformAthletic.Tools.Video.VideoHelper.GetVideoByUrl(Model.VideoUrl, 420, 315))
+            </div>
+       </div>
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

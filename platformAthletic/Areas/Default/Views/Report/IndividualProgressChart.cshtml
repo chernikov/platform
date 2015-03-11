@@ -1,0 +1,27 @@
+﻿@model platformAthletic.Models.Info.FilterCustomProgressReport
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(function() {
+               progressReport.loadChart();
+        });
+    </script>
+<div class="separate-line"></div>
+<div class="chart-wrp clear">
+    <div class="chart" id="mainChart">
+        CHART
+    </div>
+    <div class="menu-list">
+        <div class="item current">Progress Report</div>
+        <div class="item">@Model.SelectListPeriod.FirstOrDefault(p => p.Selected).Text</div>
+        <div class="item">@Model.SelectListWeight.FirstOrDefault(p => p.Selected).Text</div>
+    </div>
+    <div class="menu-list">
+        <div class="item current"></div>
+        <div class="item">Total: <span id="total"></span></div>
+    </div>
+    <div class="print-wrp" id="PrintButton">
+        <div class="icon-print"></div>
+        <a class="link-button primaryColorBg" href="#">Print</a>
+    </div>
+</div>

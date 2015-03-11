@@ -1,0 +1,241 @@
+﻿@model platformAthletic.Models.Info.TableInfo
+
+@{
+    var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["inseason_banner"];
+}
+<table class="training-table in-season">
+    <tbody>
+        <tr>
+            <td colspan="4" class="bold bold-border bold-border-right invert center" width="250">@Model.CurrentDay.Day.Name
+            </td>
+            <td class="bold bold-border bold-border-right exercise" width="80">EXERCISE
+            </td>
+            <td class="bold bold-border bold-border-right center"  width="40">tempo
+            </td>
+            <td class="bold bold-border center"  width="40">wt
+            </td>
+            <td class="bold bold-border bold-border-right center"  width="40">rep
+            </td>
+            <td class="bold bold-border bold-border-right exercise" width="80">EXERCISE
+            </td>
+            <td class="bold bold-border bold-border-right center"  width="40">tempo
+            </td>
+            <td class="bold bold-border center"  width="40">wt
+            </td>
+            <td class="bold bold-border bold-border-right center"  width="40">rep
+            </td>
+            <td rowspan="13" class="bold bold-border bold-border-right center image" width="200">
+                @if (banner != null) {
+                    @Html.Raw(banner.Show)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="bold-border-right"></td>
+            <td colspan="2" class="bold bold-border-right center gray">Date
+            </td>
+            <td rowspan="8" class="bold bold-border-top bold-border-left bold-border-right dashed-border-bottom exercise color exerciseCell cell"
+                data-id="74">@Model.GetCellInfo(74)
+            </td>
+            <td class="value  bold-border-right color infoCell cell" data-id="9">@Model.GetCellInfo(9)
+            </td>
+            <td class="value valueCell cell" data-id="84">@Model.GetCellInfo(84)
+            </td>
+            <td class="value  bold-border-right infoCell cell" data-id="10">@Model.GetCellInfo(10)
+            </td>
+            <td rowspan="3" class="bold bold-border bold-border-right  bold-border-left exercise color exerciseCell cell"
+                data-id="76">@Model.GetCellInfo(76)
+            </td>
+            <td class="value  bold-border-right color infoCell cell" data-id="33">@Model.GetCellInfo(33)
+            </td>
+            <td class="value valueCell cell" data-id="96">@Model.GetCellInfo(96)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="34">@Model.GetCellInfo(34)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" rowspan="2" class="bold bold-border bold-border-right exerciseCell cell" data-id="69">@Model.GetCellInfo(69)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="11">@Model.GetCellInfo(11)
+            </td>
+            <td class="value valueCell cell" data-id="85">@Model.GetCellInfo(85)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="12">@Model.GetCellInfo(12)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="35">@Model.GetCellInfo(35)
+            </td>
+            <td class="value valueCell cell" data-id="97">@Model.GetCellInfo(97)
+            </td>
+            <td class="value infoCell bold-border-right cell" data-id="36">@Model.GetCellInfo(36)
+            </td>
+        </tr>
+        <tr>
+            <td class="value bold-border-right color infoCell cell" data-id="13">@Model.GetCellInfo(13)
+            </td>
+            <td class="value valueCell cell" data-id="86">@Model.GetCellInfo(86)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="14">@Model.GetCellInfo(14)
+            </td>
+            <td class="value bold-border-right bold-border-bottom color infoCell cell" data-id="37">@Model.GetCellInfo(37)
+            </td>
+            <td class="value bold-border-bottom valueCell cell" data-id="98">@Model.GetCellInfo(98)
+            </td>
+            <td class="value bold-border-bottom bold-border-right infoCell cell" data-id="38">@Model.GetCellInfo(38)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="bold no-border no-border-right">Core
+            </td>
+
+            <td class="bold no-border border-right">&nbsp;Time&nbsp;&nbsp;
+            </td>
+            <td class="bold no-border center">Rep
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="15">@Model.GetCellInfo(15)
+            </td>
+            <td class="value valueCell cell" data-id="87">@Model.GetCellInfo(87)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="16">@Model.GetCellInfo(16)
+            </td>
+            <td rowspan="3" class="bold bold-border exercise bold-border-right color bold-border-left dashed-border-bottom exerciseCell cell"
+                data-id="77">@Model.GetCellInfo(77)
+            </td>
+            <td class="value  bold-border-right color infoCell cell" data-id="39">@Model.GetCellInfo(39)
+            </td>
+            <td class="value valueCell cell" data-id="99">@Model.GetCellInfo(99)
+            </td>
+            <td class="value  bold-border-right infoCell cell" data-id="40">@Model.GetCellInfo(40)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="bold no-border exerciseCell cell" data-id="70">@Model.GetCellInfo(70)
+            </td>
+            <td class="value no-border border-right infoCell cell" data-id="1">@Model.GetCellInfo(1)
+            </td>
+            <td class="value no-border center infoCell cell" data-id="2">@Model.GetCellInfo(2)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="17">@Model.GetCellInfo(17)
+            </td>
+            <td class="value valueCell cell" data-id="88">@Model.GetCellInfo(88)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="18">@Model.GetCellInfo(18)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="41">@Model.GetCellInfo(41)
+            </td>
+            <td class="value valueCell cell" data-id="100">@Model.GetCellInfo(100)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="42">@Model.GetCellInfo(42)
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" class="bold no-border exerciseCell cell" data-id="71">@Model.GetCellInfo(71)
+            </td>
+            <td class="value no-border border-right infoCell cell" data-id="3">@Model.GetCellInfo(3)
+            </td>
+            <td class="value no-border center infoCell cell" data-id="4">@Model.GetCellInfo(4)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="19">@Model.GetCellInfo(19)
+            </td>
+            <td class="value valueCell cell" data-id="89">@Model.GetCellInfo(89)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="20">@Model.GetCellInfo(20)
+            </td>
+            <td class="value bold-border-right double-border-bottom color infoCell cell" data-id="43">@Model.GetCellInfo(43)
+            </td>
+            <td class="value  double-border-bottom valueCell cell" data-id="101">@Model.GetCellInfo(101)
+            </td>
+            <td class="value  double-border-bottom bold-border-right infoCell cell" data-id="44">@Model.GetCellInfo(44)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="bold no-border exerciseCell cell" data-id="72">@Model.GetCellInfo(72)
+            </td>
+            <td class="value no-border border-right infoCell cell" data-id="5">@Model.GetCellInfo(5)
+            </td>
+            <td class="value no-border center infoCell cell" data-id="6">@Model.GetCellInfo(6)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="21">@Model.GetCellInfo(21)
+            </td>
+            <td class="value valueCell cell" data-id="90">@Model.GetCellInfo(90)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="22">@Model.GetCellInfo(22)
+            </td>
+            <td rowspan="3" class="bold exercise bold-border bold-border-right bold-border-left no-border-top color exerciseCell cell"
+                data-id="78">@Model.GetCellInfo(78)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="45">@Model.GetCellInfo(45)
+            </td>
+            <td class="value valueCell cell" data-id="102">@Model.GetCellInfo(102)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="46">@Model.GetCellInfo(46)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="bold no-border exerciseCell cell" data-id="73">@Model.GetCellInfo(73)
+            </td>
+            <td class="value no-border border-right infoCell cell" data-id="7">@Model.GetCellInfo(7)
+            </td>
+            <td class="value no-border center infoCell cell" data-id="8">@Model.GetCellInfo(8)
+            </td>
+            <td class="value bold-border-right double-border-bottom color infoCell cell" data-id="23">@Model.GetCellInfo(23)
+            </td>
+            <td class="value double-border-bottom valueCell cell" data-id="91">@Model.GetCellInfo(91)
+            </td>
+            <td class="value double-border-bottom bold-border-right infoCell cell" data-id="24">@Model.GetCellInfo(24)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="47">@Model.GetCellInfo(47)
+            </td>
+            <td class="value valueCell cell" data-id="103">@Model.GetCellInfo(103)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="48">@Model.GetCellInfo(48)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" rowspan="4" class="bold central center bold-border bold-border-right">
+            </td>
+            <td rowspan="4" class="bold exercise bold-border-bottom bold-border-right bold-border-left no-border-top  color exerciseCell cell" data-id="75">@Model.GetCellInfo(75)
+            </td>
+            <td class="value bold-border-right color infoCell cell" data-id="25">@Model.GetCellInfo(25)
+            </td>
+            <td class="value valueCell cell" data-id="92">@Model.GetCellInfo(92)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="26">@Model.GetCellInfo(26)
+            </td>
+            <td class="value bold-border-right color bold-border-bottom infoCell cell" data-id="49">@Model.GetCellInfo(49)
+            </td>
+            <td class="value bold-border-bottom valueCell cell" data-id="104">@Model.GetCellInfo(104)
+            </td>
+            <td class="value bold-border-right  bold-border-bottom infoCell cell" data-id="50">@Model.GetCellInfo(50)
+            </td>
+        </tr>
+        <tr>
+            <td class="value bold-border-right color infoCell cell" data-id="27">@Model.GetCellInfo(27)
+            </td>
+            <td class="value valueCell cell" data-id="93">@Model.GetCellInfo(93)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="28">@Model.GetCellInfo(28)
+            </td>
+            <td colspan="4" class="bold bold-border bold-border-right exerciseCell cell" data-id="79">@Model.GetCellInfo(79)
+            </td>
+        </tr>
+        <tr>
+            <td class="value bold-border-right color infoCell cell" data-id="29">@Model.GetCellInfo(29)
+            </td>
+            <td class="value valueCell cell" data-id="94">@Model.GetCellInfo(94)
+            </td>
+            <td class="value bold-border-right infoCell cell" data-id="30">@Model.GetCellInfo(30)
+            </td>
+            <td colspan="4" rowspan="3" class="bold central center" data-id="53">
+            </td>
+        </tr>
+        <tr>
+            <td class="value bold-border-bottom bold-border-right color infoCell cell" data-id="31">@Model.GetCellInfo(31)
+            </td>
+            <td class="value bold-border-bottom valueCell cell" data-id="95">@Model.GetCellInfo(95)
+            </td>
+            <td class="value bold-border-bottom bold-border-right infoCell cell" data-id="32">@Model.GetCellInfo(32)
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,48 @@
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/Media/css/bootstrap.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/Media/css/admin.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/Media/css/admin-datepicker.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/Media/css/jquery-ui-1.9.2.custom.css" media="all" />
+    <script src="/Media/scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="/Media/scripts/tinymce/tinymce.jquery.js" type="text/javascript"></script>
+    <script src="/Media/scripts/bootstrap.js" type="text/javascript"></script>
+    <script src="/Media/scripts/bootstrap-datepicker.js" type="text/javascript"></script>
+
+    <script src="/Media/scripts/admin/common.js" type="text/javascript"></script>
+    @RenderSection("header", false)
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="btn-group pull-right">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i>
+                        @currentUser.Email<span class="caret"></span> 
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">Home page</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Logout", "Login", new { area = "Default"})">Logout</a></li>
+                    </ul>
+                </div>
+                <a class="brand" href="@Url.Action("Index", "Home")">platformAthletic</a>
+                <a class="brand" href="@Url.Action("Index", "Home", new { area = "Cms" })">CMS</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        @Html.Action("AdminMenu", "Home")
+        <div class="span12">
+            @RenderBody()
+        </div>
+    </div>
+   
+</body>
+</html>

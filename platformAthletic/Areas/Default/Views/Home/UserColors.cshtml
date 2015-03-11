@@ -1,0 +1,24 @@
+﻿@model platformAthletic.Model.User
+
+  <script type="text/javascript" src="/Media/scripts/default/colors.js"></script>
+
+@if (Model != null)
+{
+    if (!string.IsNullOrWhiteSpace(Model.RealPrimaryColor) || !string.IsNullOrWhiteSpace(Model.RealSecondaryColor))
+    {
+        <script type="text/javascript">
+            var colors = null;
+            $().ready(function () {
+                colors = new Colors();
+                colors.init("@Model.RealPrimaryColor", "@Model.RealSecondaryColor");
+            });
+        </script>
+    } else {
+        <script type="text/javascript">
+            var colors = null;
+            $().ready(function () {
+                colors = new Colors();
+            });
+           </script>
+    }
+} 
