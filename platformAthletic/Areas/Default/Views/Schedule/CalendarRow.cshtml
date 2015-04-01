@@ -10,7 +10,7 @@
         <div class="drop-down"></div>
         </button>
         <div class="week-name">
-            @Model.Macrocycle.Name 
+            @Model.Macrocycle.Name @Model.IsDefault
             @if (diffWeeks > -13 && diffWeeks < 12)
             {
                 <a class="preview-workout" target="_blank" href="@Url.Action("Preview", "Table", new {macrocycleId = Model.Macrocycle.ID})">View Workout</a>

@@ -492,7 +492,7 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             ViewBag.OpenPayment = true;
             int? promoCode = null;
-            ValidatePromoCode(billingUserView.Target, billingUserView.ReferralCode, out promoCode);
+            ValidatePromoCode(billingUserView.Target, billingUserView.BillingInfo.ReferralCode, out promoCode);
             if (promoCode != null)
             {
                 billingUserView.PromoCodeID = promoCode;
@@ -509,7 +509,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     billingInfo = Repository.UpdateBillingInfo(billingInfo);
                 }
-                if (ProcessPayment(billingInfo, billingUserView.TotalSum, billingUserView.ReferralCode, billingUserView.Target))
+                if (ProcessPayment(billingInfo, billingUserView.TotalSum, billingUserView.BillingInfo.ReferralCode, billingUserView.Target))
                 {
                     ViewBag.Message = "Payment accepted";
                     ViewBag.OpenPayment = false;

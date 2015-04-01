@@ -14,5 +14,7 @@ namespace platformAthletic.Models.ViewModels
 
         public int NumberOfWeek { get; set; }
 
+        public bool IsDefault { get; set; }
+
     }
 }

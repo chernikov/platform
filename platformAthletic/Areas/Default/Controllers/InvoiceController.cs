@@ -15,7 +15,7 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             Invoice invoice = Repository.Invoices.OrderByDescending(p => p.ID).FirstOrDefault(p => p.UserID == CurrentUser.ID);
             var totalSum = Double.Parse(Repository.Settings.First(p => p.Name == "TeamPrice").Value);
-               
+
             if (invoice == null)
             {
                 /*var billingInfo = Repository.BillingInfoes.FirstOrDefault(p => p.UserID == CurrentUser.ID);
@@ -23,7 +23,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 invoice = new Invoice()
                 {
                     UserID = CurrentUser.ID,
-                    City = "", 
+                    City = "",
                     ZipCode = "",
                     StateID = CurrentUser.OwnTeam.StateID,
                     PhoneNumber = CurrentUser.PhoneNumber,
@@ -32,13 +32,20 @@ namespace platformAthletic.Areas.Default.Controllers
                 invoice.TotalSum = totalSum;
                 Repository.CreateInvoice(invoice);
             }
-            else
+            else if (invoice.DateSent.AddYears(1) < DateTime.Now && invoice.TotalSum != totalSum)
             {
-                if (invoice.TotalSum != totalSum)
+                var newInvoice = new Invoice()
                 {
-                    invoice.TotalSum = totalSum;
-                    Repository.CreateInvoice(invoice);
-                }
+                    UserID = invoice.UserID,
+                    City = invoice.City,
+                    Code = invoice.Code,
+                    StateID = invoice.StateID,
+                    PhoneNumber = invoice.PhoneNumber,
+                    NameOfOrganization = invoice.NameOfOrganization,
+                    TotalSum = totalSum
+                };
+                Repository.CreateInvoice(newInvoice);
+                return View(newInvoice);
             }
             if (invoice != null)
             {

@@ -158,7 +158,8 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     CurrentSunday = date,
                     Macrocycle = macrocycle,
-                    NumberOfWeek = numberOfWeek
+                    NumberOfWeek = numberOfWeek,
+                    IsDefault = true
                 };
                 if (groupId.HasValue)
                 {
@@ -166,6 +167,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     if (schedule != null)
                     {
                         calendarRowInfo.Macrocycle = schedule.Macrocycle;
+                        calendarRowInfo.IsDefault = false;
                     }
                 }
                 else
@@ -174,6 +176,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     if (schedule != null)
                     {
                         calendarRowInfo.Macrocycle = schedule.Macrocycle;
+                        calendarRowInfo.IsDefault = false;
                     }
                 }
                 return View(calendarRowInfo);
