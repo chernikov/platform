@@ -1,18 +1,22 @@
 @model IEnumerable<platformAthletic.Model.FieldPosition>
 
 @{
-    ViewBag.Title = "FieldPosition";
+    ViewBag.Title = "Field Position";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <h2>
-	FieldPosition
+    Field Position
 </h2>
+@Html.ActionLink("Create", "Create", "FieldPosition", null, new { @class = "btn" })
 <table class="table">
 	<thead>
 		<tr>
 			<th>
 					#
 			</th>
+            <th>
+                Sport
+            </th>
 			<th>
 				Code
 			</th>
@@ -29,6 +33,9 @@
 		<td> 
 			@item.ID
 		</td>
+        <td>
+            @item.Sport.Name
+        </td>		
 		<td> 
 			@item.Code
 		</td>		

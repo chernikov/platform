@@ -98,7 +98,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 case FilterCustomAttendanceReport.Type.Position:
                     foreach (var fieldPosition in Repository.FieldPositions.ToList())
                     {
-                        var users = team.Users.Where(p => p.FieldPositionID == fieldPosition.ID);
+                        var users = team.Users.Where(p => p.FieldPositions.Any(r => r.ID == fieldPosition.ID));
                         GenerateAttendance(users, fieldPosition.Name, filter.BeginDate, filter.EndDate, output);
                     }
                     break;
@@ -326,7 +326,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     }
                     break;
                 case FilterCustomProgressReport.Type.Position:
-                    foreach (var user in team.Users.Where(p => p.FieldPositionID == filter.FieldPositionID).ToList())
+                    foreach (var user in team.Users.Where(p => p.FieldPositions.Any(r => r.ID == filter.FieldPositionID)).ToList())
                     {
                         var value = GetUserValue(user, filter.Weight, beginDate);
                         if (value.HasValue)

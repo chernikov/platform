@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
-    <TargetDatabaseName>platform2015_current</TargetDatabaseName>
+    <TargetDatabaseName>platform2014_main</TargetDatabaseName>
     <DeployScriptFileName>platformAthletic.Db.sql</DeployScriptFileName>
     <TargetConnectionString>Data Source=WORKER\MSSQL;Integrated Security=True;Pooling=False</TargetConnectionString>
     <ProfileVersionNumber>1</ProfileVersionNumber>

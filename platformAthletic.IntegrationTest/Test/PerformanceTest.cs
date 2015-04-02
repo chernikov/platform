@@ -109,7 +109,7 @@ namespace platformAthletic.IntegrationTest.Test
                     }
                     break;
                 case FilterCustomProgressReport.Type.Position:
-                    foreach (var user in team.Users.Where(p => p.FieldPositionID == filter.FieldPositionID).ToList())
+                    foreach (var user in team.Users.Where(p => p.FieldPositions.Any(r => r.ID == filter.FieldPositionID)).ToList())
                     {
                         var value = GetUserValue(user, filter.Weight, beginDate);
                         if (value.HasValue)

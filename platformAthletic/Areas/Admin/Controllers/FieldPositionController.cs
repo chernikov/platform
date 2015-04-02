@@ -16,12 +16,12 @@ namespace platformAthletic.Areas.Admin.Controllers
             var list = Repository.FieldPositions.ToList();
             return View(list);
         }
-        /*
+        
         public ActionResult Create()
         {
             var fieldpositionView = new FieldPositionView();
             return View("Edit", fieldpositionView);
-        }*/
+        }
 
         [HttpGet]
         public ActionResult Edit(int id)

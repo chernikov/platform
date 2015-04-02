@@ -158,7 +158,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     {
                         Value = item.ID.ToString(),
                         Text = item.Name,
-                        Selected = user.FieldPositionID == item.ID
+                        Selected = user.FieldPositions.Any(p => p.ID == item.ID)
                     });
                 }
                 return View(selectList);

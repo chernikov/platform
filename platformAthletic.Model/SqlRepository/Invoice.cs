@@ -26,7 +26,7 @@ namespace platformAthletic.Model
                 lastID = lastID * 12 + 100000;
                 instance.DateSent = DateTime.Now;
                 instance.DateDue = DateTime.Now.AddMonths(1);
-                instance.Code = string.Format("INV-{0}", lastID.ToString().Insert(3, "-")); //TODO: Generate Invoice Code;
+                instance.Code = string.Format("INV-{0}", lastID.ToString().Insert(3, "-")); 
                 Db.Invoices.InsertOnSubmit(instance);
                 Db.Invoices.Context.SubmitChanges();
                 return true;

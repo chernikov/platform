@@ -61,6 +61,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Migrations" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Role.sql" />
@@ -115,11 +116,18 @@
     <Build Include="dbo\Tables\PeopleSaying.sql" />
     <Build Include="dbo\Tables\Sport.sql" />
     <Build Include="dbo\Tables\UserFieldPosition.sql" />
+    <None Include="Migrations\MigrationScript_001.sql" />
+    <Build Include="dbo\Tables\Level.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="platformAthletic.Db.publish.xml" />
     <None Include="platform_data.publish.publish.xml" />
-    <None Include="platform2015_current.publish.xml" />
+    <None Include="platform2014_main.publish.xml" />
+    <None Include="Migrations\MigrationScript_002.sql" />
+    <None Include="Migrations\MigrationScript_003.sql" />
+    <None Include="Migrations\MigrationScript_004.sql" />
+    <None Include="Migrations\MIgrationScript_005.sql" />
+    <None Include="Migrations\MigrationScript_006.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="platformAthletic.Db.refactorlog" />

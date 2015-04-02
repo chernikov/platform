@@ -2,6 +2,8 @@
     <div class="well sidebar-nav">
         <ul class="nav nav-list">
             <li class="nav-header">Users</li>
+            <li>@Html.ActionLink("Levels", "Index", "Level")</li>
+            <li>@Html.ActionLink("Sports", "Index", "Sport")</li> 
             <li>@Html.ActionLink("Field Positions", "Index", "FieldPosition")</li>
             <li>@Html.ActionLink("Pillar Types", "Index", "PillarType")</li>
             <li>@Html.ActionLink("Teams", "Index", "Team")</li>
@@ -16,7 +18,9 @@
             <li>@Html.ActionLink("Phases", "Index", "Phase")</li>
             <li>@Html.ActionLink("Weeks", "Index", "Week")</li>
             <li>@Html.ActionLink("Days", "Index", "Day")</li>
+             
         </ul>
+
         <ul class="nav nav-list">
             <li class="nav-header">States</li>
             <li>@Html.ActionLink("States", "Index", "State")</li>

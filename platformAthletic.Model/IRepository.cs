@@ -315,6 +315,8 @@ namespace platformAthletic.Model
         #region User
         
         IQueryable<User> Users { get; }
+
+        IQueryable<User> AllUsers { get; }
         
         bool CreateUser(User instance);
         
@@ -346,6 +348,8 @@ namespace platformAthletic.Model
 
         bool SetSbcValue(int idUser, SBCValue.SbcType type, double value);
 
+        bool PurgeUser(int idUser);
+
         bool RemoveUser(int idUser);
 
         bool ChangeGroup(User instance);
@@ -364,7 +368,6 @@ namespace platformAthletic.Model
 
         bool SetProgressDate(User instance);
         #endregion 
-
 
         #region UserAttendance
         
@@ -660,5 +663,43 @@ namespace platformAthletic.Model
         bool RemovePeopleSaying(int idPeopleSaying);
         
         #endregion 
+
+
+        #region Level
+
+        IQueryable<Level> Levels { get; }
+
+        bool CreateLevel(Level instance);
+
+        bool UpdateLevel(Level instance);
+
+        bool RemoveLevel(int idLevel);
+
+        #endregion 
+        
+
+        #region Sport
+
+        IQueryable<Sport> Sports { get; }
+
+        bool CreateSport(Sport instance);
+
+        bool UpdateSport(Sport instance);
+
+        bool RemoveSport(int idSport);
+
+        #endregion 
+        
+
+        #region UserFieldPosition
+
+        IQueryable<UserFieldPosition> UserFieldPositions { get; }
+
+        bool CreateUserFieldPosition(UserFieldPosition instance);
+
+        bool RemoveUserFieldPosition(int idUserFieldPosition);
+
+        #endregion 
+        
     }
 }

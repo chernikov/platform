@@ -81,7 +81,7 @@ namespace platformAthletic.Models.Info
             foreach (var fieldPosition in FieldPositions)
             {
                 var squatRecord = new Record();
-                var maxSquatUser = team.Users.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Squat).FirstOrDefault();
+                var maxSquatUser = team.Users.Where(p => p.FieldPositions.Any(r => r.ID == fieldPosition.ID)).OrderByDescending(p => p.Squat).FirstOrDefault();
                 if (maxSquatUser != null)
                 {
                     squatRecord.CurrentUser = maxSquatUser;
@@ -97,7 +97,7 @@ namespace platformAthletic.Models.Info
                 Squats.Add(squatRecord);
 
                 var benchRecord = new Record();
-                var maxBenchUser = team.Users.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Bench).FirstOrDefault();
+                var maxBenchUser = team.Users.Where(p => p.FieldPositions.Any(r => r.ID == fieldPosition.ID)).OrderByDescending(p => p.Bench).FirstOrDefault();
                 if (maxBenchUser != null)
                 {
                     benchRecord.CurrentUser = maxBenchUser;
@@ -113,7 +113,7 @@ namespace platformAthletic.Models.Info
                 Benchs.Add(benchRecord);
 
                 var cleanRecord = new Record();
-                var maxCleanUser = team.Users.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Clean).FirstOrDefault();
+                var maxCleanUser = team.Users.Where(p => p.FieldPositions.Any(r => r.ID == fieldPosition.ID)).OrderByDescending(p => p.Clean).FirstOrDefault();
                 if (maxCleanUser != null)
                 {
                     cleanRecord.CurrentUser = maxCleanUser;

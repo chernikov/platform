@@ -88,7 +88,7 @@ namespace platformAthletic.Models.Info
             {
                 var topRecord = new TopRecords();
 
-                var fieldValues = users.Where(p => p.FieldPositionID == fieldPosition.ID);
+                var fieldValues = users.Where(p => p.FieldPositions.Any(r => r.ID == fieldPosition.ID));
 
                 switch (search.TrainingType)
                 {

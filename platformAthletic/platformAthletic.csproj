@@ -159,8 +159,10 @@
     <Compile Include="Areas\Admin\Controllers\AphorismController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerPlaceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LevelController.cs" />
     <Compile Include="Areas\Admin\Controllers\MacrocycleController.cs" />
     <Compile Include="Areas\Admin\Controllers\PeopleSayingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SportController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\YoutubeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentDetailController.cs" />
@@ -295,6 +297,7 @@
     <Compile Include="Models\ViewModels\GalleryView.cs" />
     <Compile Include="Models\ViewModels\GroupView.cs" />
     <Compile Include="Models\ViewModels\InvoiceView.cs" />
+    <Compile Include="Models\ViewModels\LevelView.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\MacrocycleView.cs" />
     <Compile Include="Models\ViewModels\PageView.cs" />
@@ -308,6 +311,7 @@
     <Compile Include="Models\ViewModels\RoleView.cs" />
     <Compile Include="Models\ViewModels\SBCValueView.cs" />
     <Compile Include="Models\ViewModels\SeasonView.cs" />
+    <Compile Include="Models\ViewModels\SportView.cs" />
     <Compile Include="Models\ViewModels\StateView.cs" />
     <Compile Include="Models\ViewModels\TeamView.cs" />
     <Compile Include="Models\ViewModels\TrainingDayCellView.cs" />
@@ -1398,6 +1402,10 @@
     <Content Include="Areas\Admin\Views\Team\Edit.cshtml" />
     <Content Include="Areas\Default\Views\Team\MaxPlayers.cshtml" />
     <Content Include="Areas\Admin\Views\Macrocycle\EditName.cshtml" />
+    <Content Include="Areas\Admin\Views\Sport\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sport\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Level\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Level\Index.cshtml" />
     <None Include="CodeTemplates\Scaffolders\Controller\Controller.ps1" />
     <None Include="CodeTemplates\Scaffolders\Controller\ControllerTemplate.cs.t4" />
     <None Include="CodeTemplates\Scaffolders\EditView\EditView.ps1" />

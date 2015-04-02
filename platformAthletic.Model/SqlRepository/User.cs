@@ -11,9 +11,18 @@ namespace platformAthletic.Model
         {
             get
             {
+                return Db.Users.Where(p => !p.IsDeleted);
+            }
+        }
+
+        public IQueryable<User> AllUsers
+        {
+            get
+            {
                 return Db.Users;
             }
         }
+
 
         public bool CreateUser(User instance)
         {
@@ -115,7 +124,6 @@ namespace platformAthletic.Model
                 cache.FirstName = instance.FirstName;
                 cache.LastName = instance.LastName;
                 cache.PhoneNumber = instance.PhoneNumber;
-                cache.FieldPositionID = instance.FieldPositionID;
                 cache.Email = instance.Email;
                 cache.GroupID = instance.GroupID;
                 Db.Users.Context.SubmitChanges();
@@ -284,13 +292,26 @@ namespace platformAthletic.Model
             return false;
         }
 
-
+        //TODO SetFieldPosition 
         public bool SetFieldPosition(int idUser, int fieldPositionID)
         {
             var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
             if (instance != null)
             {
-                instance.FieldPositionID = fieldPositionID;
+                //instance.FieldPositionID = fieldPositionID;
+                Db.Users.Context.SubmitChanges();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SFieldPosition(int idUser, int fieldPositionID)
+        {
+            var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (instance != null)
+            {
+                //instance.FieldPositionID = fieldPositionID;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }
@@ -345,7 +366,7 @@ namespace platformAthletic.Model
         }
 
 
-        public bool RemoveUser(int idUser)
+        public bool PurgeUser(int idUser)
         {
             var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
             if (instance != null)
@@ -378,6 +399,18 @@ namespace platformAthletic.Model
             }
             return false;
         }
+
+        public bool RemoveUser(int idUser)
+        {
+            var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (instance != null)
+            {
+                instance.IsDeleted = true;
+                Db.Users.Context.SubmitChanges();
+            }
+            return false;
+        }
+
 
         public bool ChangeGroup(User instance)
         {
@@ -443,7 +476,7 @@ namespace platformAthletic.Model
                 cache.PhoneNumber = instance.PhoneNumber;
                 cache.PaidTill = instance.PaidTill;
                 cache.PlayerOfTeamID = instance.PlayerOfTeamID;
-                cache.FieldPositionID = instance.FieldPositionID;
+                cache.LevelID = instance.LevelID;
                 cache.Squat = instance.Squat;
                 cache.Bench = instance.Bench;
                 cache.Clean = instance.Clean;

@@ -13,7 +13,6 @@
     [PhoneNumber]             NVARCHAR (50)  NULL,
     [PlayerOfTeamID]          INT            NULL,
     [GroupID]                 INT            NULL,
-    [FieldPositionID]         INT            NULL,
     [VisitGettingStartedPage] BIT            NULL,
     [Year]                    INT            NULL,
     [Squat]                   FLOAT (53)     NOT NULL,
@@ -33,8 +32,12 @@
     [ProgressStartDate]       DATETIME       NULL,
 	[Birthday]				  DATETIME		 NULL,
     [Gender] BIT NOT NULL DEFAULT 1, 
+    [LevelID] INT NULL, 
+    [GradYear] INT NULL, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0, 
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_User_Group] FOREIGN KEY ([GroupID]) REFERENCES [dbo].[Group] ([ID]),
-    CONSTRAINT [FK_User_Team] FOREIGN KEY ([PlayerOfTeamID]) REFERENCES [dbo].[Team] ([ID])
+    CONSTRAINT [FK_User_Team] FOREIGN KEY ([PlayerOfTeamID]) REFERENCES [dbo].[Team] ([ID]),
+	CONSTRAINT [FK_User_Level] FOREIGN KEY ([LevelID]) REFERENCES [dbo].[Level] ([ID])
 );
 

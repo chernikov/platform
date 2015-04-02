@@ -59,6 +59,8 @@ namespace platformAthletic.Mappers
             MapperCollection.MacrocycleMapper.Init();
             MapperCollection.GroupMapper.Init();
             MapperCollection.PeopleSayingMapper.Init();
+            MapperCollection.LevelMapper.Init();
+            MapperCollection.SportMapper.Init();
         }
 
         public object Map(object source, Type sourceType, Type destinationType)

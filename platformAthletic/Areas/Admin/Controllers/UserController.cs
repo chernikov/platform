@@ -147,21 +147,6 @@ namespace platformAthletic.Areas.Admin.Controllers
             return this.Excel(list, "users.xls", headers);
         }
 
-        public ActionResult UpdateSbcValues()
-        {
-            foreach (var user in Repository.Users.ToList())
-            {
-                foreach (var sbcValue in user.SBCValues.ToList())
-                {
-                    sbcValue.FirstName = user.FirstName;
-                    sbcValue.LastName = user.LastName;
-                    sbcValue.TeamID = user.PlayerOfTeamID;
-                    sbcValue.FieldPositionID = user.FieldPositionID;
-                    Repository.UpdateSbcValue(sbcValue);
-                }
-            }
-            return null;
-        }
 
         public ActionResult Schedulers()
         {

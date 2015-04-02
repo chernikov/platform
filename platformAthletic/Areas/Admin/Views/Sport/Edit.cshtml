@@ -1,0 +1,29 @@
+@model platformAthletic.Models.ViewModels.SportView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Sport" : "Edit Sport";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.ID == 0 ? "Add Sport" : "Edit Sport")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Sport", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	<fieldset>
+		@Html.Hidden("ID", Model.ID)
+		<div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+			</label>
+            <div class="controls">
+                @Html.ValidationMessage("Name")
+				@Html.TextBox("Name", Model.Name)
+            </div>
+        </div>
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

@@ -541,7 +541,23 @@ namespace platformAthletic.Mappers
         	}
         }
 
-        
-       
+
+        public static class LevelMapper
+        {
+            public static void Init()
+            {
+                Mapper.CreateMap<Level, LevelView>();
+                Mapper.CreateMap<LevelView, Level>();
+            }
+        }
+
+        public static class SportMapper
+        {
+            public static void Init()
+            {
+                Mapper.CreateMap<Sport, SportView>();
+                Mapper.CreateMap<SportView, Sport>();
+            }
+        }
     }
 }

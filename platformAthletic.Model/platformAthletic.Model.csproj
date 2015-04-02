@@ -72,6 +72,7 @@
     <Compile Include="Proxy\Gallery.cs" />
     <Compile Include="Proxy\Group.cs" />
     <Compile Include="Proxy\Invoice.cs" />
+    <Compile Include="Proxy\Level.cs" />
     <Compile Include="Proxy\Macrocycle.cs" />
     <Compile Include="Proxy\Page.cs" />
     <Compile Include="Proxy\PagePart.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Proxy\Schedule.cs" />
     <Compile Include="Proxy\Season.cs" />
     <Compile Include="Proxy\Setting.cs" />
+    <Compile Include="Proxy\Sport.cs" />
     <Compile Include="Proxy\State.cs" />
     <Compile Include="Proxy\Team.cs" />
     <Compile Include="Proxy\Training.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="SqlRepository\Gallery.cs" />
     <Compile Include="SqlRepository\Group.cs" />
     <Compile Include="SqlRepository\Invoice.cs" />
+    <Compile Include="SqlRepository\Level.cs" />
     <Compile Include="SqlRepository\Macrocycle.cs" />
     <Compile Include="SqlRepository\Page.cs" />
     <Compile Include="SqlRepository\PagePart.cs" />
@@ -138,6 +141,7 @@
     <Compile Include="SqlRepository\Schedule.cs" />
     <Compile Include="SqlRepository\Season.cs" />
     <Compile Include="SqlRepository\Setting.cs" />
+    <Compile Include="SqlRepository\Sport.cs" />
     <Compile Include="SqlRepository\State.cs" />
     <Compile Include="SqlRepository\Team.cs" />
     <Compile Include="SqlRepository\Training.cs" />
@@ -148,6 +152,7 @@
     <Compile Include="SqlRepository\User.cs" />
     <Compile Include="SqlRepository\UserAttendance.cs" />
     <Compile Include="SqlRepository\UserEquipment.cs" />
+    <Compile Include="SqlRepository\UserFieldPosition.cs" />
     <Compile Include="SqlRepository\UserPillar.cs" />
     <Compile Include="SqlRepository\UserRole.cs" />
     <Compile Include="SqlRepository.cs" />

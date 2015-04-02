@@ -36,6 +36,7 @@ namespace platformAthletic.Model
             {
                 cache.Code = instance.Code;
 				cache.Name = instance.Name;
+                cache.SportID = instance.SportID;
                 Db.FieldPositions.Context.SubmitChanges();
                 return true;
             }

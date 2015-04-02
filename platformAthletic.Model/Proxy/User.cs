@@ -45,6 +45,15 @@ namespace platformAthletic.Model
             return false;
         }
 
+        
+        public IQueryable<FieldPosition> FieldPositions
+        {
+            get 
+            {
+                return UserFieldPositions.Select(p => p.FieldPosition).AsQueryable();
+            }  
+        }
+
         public bool IsActivated
         {
             get { return ActivatedDate.HasValue; }
