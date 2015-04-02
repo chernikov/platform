@@ -42,7 +42,8 @@ namespace platformAthletic.Areas.Default.Controllers
                     StateID = invoice.StateID,
                     PhoneNumber = invoice.PhoneNumber,
                     NameOfOrganization = invoice.NameOfOrganization,
-                    TotalSum = totalSum
+                    TotalSum = totalSum,
+                    ZipCode = invoice.ZipCode
                 };
                 Repository.CreateInvoice(newInvoice);
                 return View(newInvoice);
