@@ -31,8 +31,9 @@
     [LoginInfoSent]           DATETIME       NULL,
     [AttendanceStartDate]     DATETIME       NULL,
     [ProgressStartDate]       DATETIME       NULL,
+	[Birthday]				  DATETIME		 NULL,
+    [Gender] BIT NOT NULL DEFAULT 1, 
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_User_FieldPosition] FOREIGN KEY ([FieldPositionID]) REFERENCES [dbo].[FieldPosition] ([ID]),
     CONSTRAINT [FK_User_Group] FOREIGN KEY ([GroupID]) REFERENCES [dbo].[Group] ([ID]),
     CONSTRAINT [FK_User_Team] FOREIGN KEY ([PlayerOfTeamID]) REFERENCES [dbo].[Team] ([ID])
 );

@@ -18,8 +18,6 @@ namespace platformAthletic.Areas.Default.Controllers
 
             if (invoice == null)
             {
-                /*var billingInfo = Repository.BillingInfoes.FirstOrDefault(p => p.UserID == CurrentUser.ID);
-                if (billingInfo != null)*/
                 invoice = new Invoice()
                 {
                     UserID = CurrentUser.ID,
@@ -42,7 +40,8 @@ namespace platformAthletic.Areas.Default.Controllers
                     StateID = invoice.StateID,
                     PhoneNumber = invoice.PhoneNumber,
                     NameOfOrganization = invoice.NameOfOrganization,
-                    TotalSum = totalSum
+                    TotalSum = totalSum,
+                    ZipCode = invoice.ZipCode
                 };
                 Repository.CreateInvoice(newInvoice);
                 return View(newInvoice);

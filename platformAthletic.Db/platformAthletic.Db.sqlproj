@@ -113,10 +113,13 @@
     <Build Include="dbo\Tables\About.sql" />
     <Build Include="dbo\Tables\PagePart.sql" />
     <Build Include="dbo\Tables\PeopleSaying.sql" />
+    <Build Include="dbo\Tables\Sport.sql" />
+    <Build Include="dbo\Tables\UserFieldPosition.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="platformAthletic.Db.publish.xml" />
     <None Include="platform_data.publish.publish.xml" />
+    <None Include="platform2015_current.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="platformAthletic.Db.refactorlog" />
