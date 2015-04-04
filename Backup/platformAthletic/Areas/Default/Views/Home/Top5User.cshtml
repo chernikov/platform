@@ -1,0 +1,24 @@
+﻿@model IEnumerable<platformAthletic.Model.User>
+
+
+<div class="board-wrp primaryColorBorder">
+    <div class="board-header primaryColorBg">
+        <div class="title">Team Leaders</div>
+        <div class="value-name">C</div>
+        <div class="value-name">B</div>
+        <div class="value-name">S</div>
+    </div>
+    <div class="board-content">
+        @foreach (var user in Model)
+        {
+            <div class="board-item">
+                <div class="name">
+                    <a href="/player-page/@user.ID">@user.FirstName.Initial() @user.LastName</a>
+                </div>
+                <div class="value">@user.Clean.Round5()</div>
+                <div class="value">@user.Bench.Round5()</div>
+                <div class="value">@user.Squat.Round5()</div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model platformAthletic.Models.Info.FilterCustomAttendanceReport
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="/Media/css/report-print.css" rel="stylesheet" type="text/css" />
+    <link href="/Media/css/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="/Media/scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="/Media/scripts/default/attendance-report.js"></script>
+     <script src="/Media/scripts/default/print.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            attendanceReport.loadChart();
+        }
+    </script>
+</head>
+<body>
+    
+    @using (Html.BeginForm("Attendance", "Report", FormMethod.Get, new { id = "AttendanceReportForm" }))
+    {
+        @Html.Hidden("TeamID", Model.TeamID)
+        @Html.Hidden("SelectedType", Model.SelectedType)
+        @Html.Hidden("BeginDate", Model.BeginDate.ToString("d"))
+        @Html.Hidden("EndDate", Model.EndDate.ToString("d"))
+    }
+    <div class="chart-wrp clear">
+        <div class="print print_2">Print</div>
+        <div class="menu-list">
+            <div class="item current">Attendance Report</div>
+            <div class="item">@Model.SelectListType.FirstOrDefault(p => p.Selected).Text</div>
+            <div class="item">@Model.BeginDate.ToString("d")</div>
+            <div class="item">@Model.EndDate.ToString("d")</div>
+        </div>
+        <div class="chart" id="mainChart">
+            CHART
+        </div>
+    </div>
+</body>
+</html>

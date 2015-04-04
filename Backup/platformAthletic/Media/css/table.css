@@ -1,0 +1,242 @@
+﻿body
+{
+    font-family: Arial;
+    padding: 10px;
+}
+
+.print-wrapper
+{
+    width: 950px;
+}
+
+.logo
+{
+    float: right;
+    text-align: center;
+}
+
+.header
+{
+    text-align: center;
+    float: left;
+}
+
+.clear:after
+{
+    clear: both;
+    display: block;
+    content: '';
+    height: 0;
+    overflow: hidden;
+}
+
+.header .logo
+{
+    float: left;
+}
+
+.print-wrapper h2
+{
+    text-align: center;
+    margin: 0;
+    padding: 20px 0 0 0;
+}
+
+.sbc-wrapper
+{
+    padding: 0px 0 10px 0;
+}
+
+.sbc-value
+{
+    border-collapse: collapse;
+}
+
+    .sbc-value thead tr th
+    {
+        font-weight: normal;
+    }
+
+    .sbc-value .surname
+    {
+        width: 150px;
+        text-align: left;
+        padding: 0 0 0 10px;
+    }
+
+    .sbc-value tbody tr td
+    {
+        border: 1px solid #000;
+        width: 100px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+.print
+{
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    float: right;
+}
+
+.page-breaker
+{
+    page-break-after: always;
+    margin: 0 0 20px 0;
+}
+
+    .page-breaker:last-child
+    {
+        page-break-after: avoid;
+    }
+
+.training-table
+{
+    width: 950px;
+    font-size: 11px;
+    border-collapse: collapse;
+    border: 2px solid #000;
+}
+
+    .training-table.in-season
+    {
+        /*   width: 750px;*/
+    }
+
+    .training-table th, .training-table td
+    {
+        border: 1px solid black;
+        padding: 2px;
+    }
+
+        .training-table td.image
+        {
+            padding: 0;
+        }
+
+        .training-table td.center
+        {
+            text-align: center;
+        }
+
+        .training-table td.central
+        {
+            vertical-align: central;
+        }
+
+        .training-table td.bold
+        {
+            font-weight: bold;
+        }
+
+        .training-table td.value
+        {
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .training-table td.exercise
+        {
+            max-width: 80px;
+            padding: 0 10px 0 10px;
+            text-align: center;
+        }
+
+        .training-table td.color
+        {
+            background-color: #fabf8f;
+        }
+
+        .training-table td.invert
+        {
+            background-color: #000;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .training-table td.bold-border
+        {
+            border-bottom: 2px solid #000;
+            border-top: 2px solid #000;
+        }
+
+        .training-table td.bold-border-bottom
+        {
+            border-bottom: 2px solid #000;
+        }
+
+        .training-table td.bold-border-top
+        {
+            border-top: 2px solid #000;
+        }
+
+        .training-table td.bold-border-right
+        {
+            border-right: 2px solid #000;
+        }
+
+        .training-table td.bold-border-left
+        {
+            border-left: 2px solid #000;
+        }
+
+
+        .training-table td.dashed-border-bottom
+        {
+            border-bottom: 1px dashed #000;
+        }
+
+        .training-table td.dashed-border-top
+        {
+            border-top: 1px dashed #000;
+        }
+
+        .training-table td.double-border-bottom
+        {
+            border-bottom: 4px double #000;
+        }
+
+        .training-table td.no-border
+        {
+            border: none;
+        }
+
+        .training-table td.no-border-top
+        {
+            border-top: none;
+        }
+
+        .training-table td.border-right
+        {
+            border-right: 1px solid #000;
+        }
+
+        .training-table td.gray
+        {
+            background-color: #808080;
+        }
+
+.aphorism
+{
+    margin : 5px 0 0 0;
+}
+
+    .aphorism .text
+    {
+        text-align: center;
+        font-style: italic;
+        font-size: 20px;
+    }
+
+    .aphorism .author
+    {
+        text-align: center;
+        font-size: 16px;
+    }
+
+.clearfix-br
+{
+    height : 5px;
+}

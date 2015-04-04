@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>@ViewBag.Title</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic' type='text/css' media='all' />
+    <link rel='stylesheet' href='/Media/css/newtheme/genericons.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="/Media/css/newtheme/reset.css" type="text/css" media="all" />
+    <link rel='stylesheet' href='/Media/css/newtheme/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='/Media/css/jquery.bxslider.css' type='text/css' media='all' />
+    
+    @RenderSection("links", false)
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="top-background"></div>
+        <div class="top-shadow"></div>
+        <header class="main">
+            <div class="position-relative">
+                <a href="/">
+                    <img class="logo"  src="/Media/images/logo_new.png" />
+                </a>
+                @Html.Action("NewUserLogin", "Home")
+                <div class="textAbs">
+                    <span>Revolutionize Your</span><br>
+                    <span>Training&nbsp;&nbsp; With</span><br>
+                    <span class="other">The&nbsp;&nbsp; platform</span>
+                </div>
+            </div>
+        </header>
+        @Html.Partial("NewTopMenu")
+        @RenderBody()
+        <footer>
+            <div class="footer-background"></div>
+            <div class="position-relative">
+                <div class="go-up">GO UP</div>
+                <div class="footer-wrapper">
+                    <div class="item">
+                        @Html.Partial("NewBottomMenu")
+                    </div>
+                    <div class="item">
+                        <span class="get-in-touch">Get in touch with us: (855) 862-5502</span>
+                    </div>
+                    <div class="item">
+                        <span class="comps">
+                            © PLATFORM ATHLETICS, LLC<br>
+                            Website designed by: <a href="http://ditley.com/">Chicago Web Design</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/Media/scripts/renderedfont-0.8.min.js#free"></script>
+    <script src="/Media/scripts/new/common.js"></script>
+    @RenderSection("header", false)
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+html, body
+{
+    height: 100%;
+    color : #000;
+}
+
+a
+{
+    color: #fff;
+}
+
+.print 
+{
+    font-size : 15px;
+    font-weight : bold;
+    cursor : pointer;
+    text-decoration : underline;
+    float : right;
+    color : #000;
+    margin : 0 20px 0 0;
+}
+
+button
+{
+    cursor: pointer;
+}
+
+textarea
+{
+    font-family: Arial;
+}
+
+body
+{
+    font-family: Arial;
+    color: #fff;
+    text-align: left;
+    font-size: 19px;
+    line-height: 18px;
+}
+
+
+
+.separate-line
+{
+    border-top: solid 1px #696969;
+    background: #d8d8d8;
+    height: 1px;
+    width: 100%;
+}
+
+.chart-wrp
+{
+    padding-top: 19px;
+    position: relative;
+}
+
+   .chart-wrp .chart
+    {
+        width: 678px;
+        min-height: 458px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        background: #969696;
+        float: left;
+    }
+
+ .chart-wrp .menu-list
+    {
+        width: 274px;
+        float: left;
+        margin-left: 8px;
+    }
+
+        .chart-wrp .menu-list .item
+        {
+            height: 39px;
+            border-top: solid 1px #d8d8d8;
+            border-bottom: solid 1px #696969;
+            margin-left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 39px;
+            text-decoration: none;
+            color : #000;
+        }
+
+             .chart-wrp .menu-list .item.current
+            {
+                color: #000;
+                text-shadow: none;
+            }
+
+             .chart-wrp .menu-list .item:first-child
+            {
+                border-top: none;
+            }
+
+             .chart-wrp .menu-list .item:last-child
+            {
+                border-bottom: none;
+            }
+

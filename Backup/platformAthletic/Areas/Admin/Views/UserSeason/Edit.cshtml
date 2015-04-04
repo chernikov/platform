@@ -1,0 +1,72 @@
+﻿@model platformAthletic.Models.ViewModels.UserSeasonView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add UserSeason" : "Edit UserSeason";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/admin/edit-user-season.js"></script>
+}
+<h2>@(Model.ID == 0 ? "Add UserSeason" : "Edit UserSeason")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "UserSeason", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	<fieldset>
+        @Html.Hidden("ID", Model.ID)
+		@Html.Hidden("UserID", Model.UserID)
+		<div class="control-group">
+            <label class="control-label" for="WeekID">
+                Week 
+			</label>
+            <div class="controls">
+				@Html.DropDownList("WeekID", Model.SelectListWeek)
+				@Html.ValidationMessage("WeekID")
+            </div>
+        </div>
+            <div class="control-group">
+            <label class="control-label">
+            or
+            </label>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="SeasonID">
+                Season 
+			</label>
+            <div class="controls">
+				@Html.DropDownList("SeasonID", Model.SelectListSeason)
+            </div>
+        </div>
+    
+		
+		<div class="control-group">
+            <label class="control-label" for="StartDay">
+                StartDay
+			</label>
+            <div class="controls">
+				@Html.TextBox("StartDay", Model.StartDay.ToString("d"), new { @class = "datepicker" })
+				@Html.ValidationMessage("StartDay")
+            </div>
+        </div>
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", "User", null, new { @class = "btn" })
+            <a href="#confirmDeleteModal" role="button" data-toggle="modal" class="btn btn-danger">Remove</a>
+        </div>
+	</fieldset>
+}
+
+<div class="modal small hide fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Delete Confirmation</h3>
+    </div>
+    <div class="modal-body">
+        <p class="error-text">This action will remove the current season and erase all the stats of this team. This is not retroactive action. Are you sure you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <a href="@Url.Action("Delete", "UserSeason", new { id = Model.ID })" class="btn btn-danger">Remove</a>
+        
+    </div>
+</div>

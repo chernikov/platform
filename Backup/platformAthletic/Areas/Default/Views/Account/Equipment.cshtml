@@ -1,0 +1,75 @@
+﻿@model platformAthletic.Models.Info.SelectedEquipmentList
+@{
+    ViewBag.Title = "Equipment log";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+@section header
+{
+    <script src="/Media/scripts/default/checkbox.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Media/scripts/default/equipment.js"></script>
+}
+<div class="equipment-wrp account-wrp clear">
+    <div class="left">
+        <div class="menu all-content-wrp">
+            <div class="item"><a href="/account">Basic Information</a></div>
+            @if (currentUser.InRoles("coach"))
+            {
+                <div class="item"><a href="/settings">Settings</a></div>
+            }
+            <div class="item"><a href="/change-password">Change password</a></div>
+            <div class="item"><a href="/billing">Billing</a></div>
+            <div class="item selected"><a href="/equipment">Equipment Log</a></div>
+            @if (currentUser.InRoles("coach"))
+            {
+                <div class="item"><a href="/manage-players">Manage Players</a></div>
+            }
+        </div>
+    </div>
+    <div class="right">
+        <div class="top all-content-wrp">
+            <h1>EQUIPMENT LOG</h1>
+        </div>
+        @using (Html.BeginForm("Equipment", "Account", FormMethod.Post))
+        {
+            <div class="bottom all-transparent-wrp">
+                <div class="top-content">
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="message">
+                            <h2>@ViewBag.Message</h2>
+                        </div>
+                    }
+                    <div class="scroll-pane">
+                        <div class="scroll-content clear">
+                            @foreach (var item in Model.List)
+                            {
+                                var guid = Guid.NewGuid(); 
+                                @Html.Hidden("List.index", guid.ToString("N"))
+                                @Html.Hidden("List[" + guid.ToString("N") + "].Equipment.ID", item.Equipment.ID)
+                                @Html.Hidden("List[" + guid.ToString("N") + "].Equipment.Name", item.Equipment.Name)
+                                @Html.Hidden("List[" + guid.ToString("N") + "].Equipment.ImagePath", item.Equipment.ImagePath)
+                                <div class="item">
+
+                                    <div class="image">
+                                        <img src="@item.Equipment.FullImagePath" alt="@item.Equipment.Name" />
+                                    </div>
+                                    <div class="title">
+                                        <h4>@item.Equipment.Name</h4>
+                                    </div>
+                                    <div class="checkbox-wrp">
+                                        <div class="checkbox-image"></div>
+                                        @Html.CheckBox("List[" + guid.ToString("N") + "].Select", item.Select)
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="button-box clear">
+                    <button class="btn-active btn-right primaryColorBg">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

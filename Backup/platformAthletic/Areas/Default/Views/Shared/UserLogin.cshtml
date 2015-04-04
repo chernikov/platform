@@ -1,0 +1,54 @@
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var controllerName = ViewContext.RequestContext.RouteData.Values["controller"] as string;
+    var actionName = ViewContext.RequestContext.RouteData.Values["action"] as string;
+}
+@if (currentUser != null)
+{
+    <div class="user-loged">
+        <div class="user-logo">
+            @if (!string.IsNullOrWhiteSpace(currentUser.TeamLogo))
+            {
+                <img src="@currentUser.TeamLogo" />
+            }
+        </div>
+        <div class="user-nav">
+            @if (currentUser.InRoles("coach,individual,player"))
+            {
+                <a href="/account" class="btn-account @(string.Compare(controllerName, "Account", true) == 0 ? "secondaryColorBg" : "primaryColorBg")">Account</a>
+            }
+            @if (currentUser.InRoles("admin"))
+            {
+                   <a href="/admin" class="btn-account primaryColorBg">Admin Panel</a>
+            }
+            <a href="/contact" class="btn-contact @(string.Compare(controllerName, "Contact", true) == 0 ? "secondaryColorBg" : "primaryColorBg")">Contact us</a>
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="user-login">
+        <div class="my-account">
+            My Account
+        </div>
+        <div class="input-wrapper">
+            <a href="/join">Register now!</a>
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal LoginForm" }))
+            {
+                <div class="input">
+                    @Html.TextBox("Email", "", new { placeholder = "E-mail" })
+                </div>
+                <div class="input">
+                    @Html.Password("Password", "", new { placeholder = "Password" })
+                </div>
+                <div class="button">
+                    <input type="submit" class="LoginBtn" value="Login" />
+                </div>
+                <div class="forgot-password">
+                    <a href="/forgot-password">Forgot password</a>
+                </div>
+            }
+        </div>
+    </div>
+}

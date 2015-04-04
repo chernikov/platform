@@ -1,0 +1,20 @@
+﻿@model IEnumerable<platformAthletic.Model.FeatureCatalog>
+@{
+    var selectedId = (int)ViewBag.FeatureTextID;
+}
+@foreach (var catalog in Model)
+{
+    <div class="menu-item">
+        <div class="name">@catalog.Header</div>
+        <div class="link-list">
+            @foreach (var item in catalog.SubTexts)
+            {
+                <div class="item">
+                    <div class="link-line"></div>
+                    <a href="/features/@item.ID" class="@(selectedId == item.ID ? "selected" : "")">@item.Header.Teaser(30)</a>
+                </div>    
+            }
+        </div>
+    </div>
+    
+}

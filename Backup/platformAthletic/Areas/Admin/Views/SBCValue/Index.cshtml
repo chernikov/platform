@@ -1,0 +1,72 @@
+@model platformAthletic.Model.PageableData<platformAthletic.Model.SBCValue>
+
+@{
+    ViewBag.Title = "SBCValues";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>SBCValues
+</h2>
+@using (Html.BeginForm("Index", "SBCValue", FormMethod.Post, new { @class = "well form-search" }))
+{
+    <div class="input-append">@Html.TextBox("search", ViewData["search"])<span class="add-on"><i
+        class="icon-search"></i></span>
+         <button type="submit" class="btn">
+        Search</button> 
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Added Date
+            </th>
+            <th>Name
+            </th>
+            <th>Squat
+            </th>
+            <th>Bench
+            </th>
+             <th>Clean
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td>
+                
+                @item.ID
+            </td>
+            <td>
+                @item.AddedDate
+            </td>
+            <td>
+            @if (!item.UserID.HasValue) 
+            {
+               <em title="User deleted">@item.FirstName @item.LastName</em>
+            } else {
+                @item.FirstName<text> </text> @item.LastName
+            }
+            </td>
+            <td>
+                @item.Squat.Round5()
+            </td>
+            <td>
+                @item.Bench.Round5()
+            </td>
+            <td>
+                @item.Clean.Round5()
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "SBCValue", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "SBCValue", new { id = item.ID }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+</table>
+<div class="pager">
+    @Html.PageLinks(Model.PageNo, Model.CountPage, x => Url.Action(Model.Action, new { page = x, search = ViewData["search"] }))
+</div>

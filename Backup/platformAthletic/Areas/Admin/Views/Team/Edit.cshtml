@@ -1,0 +1,34 @@
+@model platformAthletic.Models.ViewModels.TeamView
+@{
+    ViewBag.Title = "Edit team";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Edit team</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Team", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+        @Html.Hidden("Name", Model.Name)
+
+        <div class="control-group">
+            <label class="control-label">
+               @Model.Name
+            </label>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="MaxCount">
+                Max count of players
+            </label>
+            <div class="controls">
+                @Html.DropDownList("MaxCount", Model.SelectListMaxCount)
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

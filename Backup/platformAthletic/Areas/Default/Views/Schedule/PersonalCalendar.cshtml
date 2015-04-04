@@ -1,0 +1,66 @@
+﻿@model platformAthletic.Models.ViewModels.PersonalCalendarInfo
+
+@Html.Hidden("Month", Model.Month.ToString("MM\\dd\\yyyy"))
+<div class="bottom all-content-wrp calendar-wrapper">
+    <div class="title-group">
+        @Model.User.FirstName @Model.User.LastName
+    </div>
+
+    <div class="calendar">
+        <div class="title">
+            <div class="left-arrow-personal" data-month="@Model.Month.AddMonths(-1)"></div>
+            <div class="right-arrow-personal" data-month="@Model.Month.AddMonths(1)"></div>
+            <div class="month">@Model.Month.ToString("MMMM").ToUpper()</div>
+        </div>
+        <div class="table">
+            <div class="head">
+                <div class="day sunday">Sun</div>
+                <div class="day">Mon</div>
+                <div class="day">Tue</div>
+                <div class="day">Wed</div>
+                <div class="day">Thu</div>
+                <div class="day">Fri</div>
+                <div class="day">Sat</div>
+            </div>
+            @{
+                var currentSunday = Model.Month.AddDays(6).StartOfWeek(DayOfWeek.Sunday);
+            }
+            @while (currentSunday.Month == Model.Month.Month)
+            {
+                @Html.Action("PersonalCalendarRow", "Schedule", new { date = currentSunday })
+                currentSunday = currentSunday.AddDays(7);
+            }
+        </div>
+    </div>
+    <div class="calendar-drop-down-list" style="display: none;">
+        <div class="list-title">
+            @foreach (var season in Model.Seasons)
+            {
+                <div class="season @(season.ID == Model.Season.ID ? "selected" : "")" data-id="@season.ID" >@season.Name.ToUpper()
+                </div>    
+            }
+        </div>
+        @foreach (var season in Model.Seasons)
+        {
+            <div class="season-data" data-id="@season.ID" style="display: @(season.ID == Model.Season.ID ? "block" : "none");">
+                <div class="scroll-pane">
+                    <div class="scroll-content">
+
+                        <div class="list">
+                            @foreach (var item in season.Macrocycles)
+                            {
+                                <div class="item personal-item" data-id="@item.ID">
+                                    @item.Name
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="button-wrp">
+    <button class="btn-gray" id="ResetPersonalShowBtn">Reset to default</button>
+</div>

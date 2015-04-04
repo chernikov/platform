@@ -1,0 +1,48 @@
+﻿@model platformAthletic.Models.ViewModels.TrainingSetView
+
+@{
+    ViewBag.Title = "CreateBatch";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateBatch</h2>
+
+
+<p></p>
+@using (Html.BeginForm("CreateBatch", "TrainingSet", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+        <div class="control-group">
+            <label class="control-label" for="DayID">
+                Day
+			</label>
+            <div class="controls">
+				@Html.DropDownList("DayID", Model.SelectListDayID)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Phase">
+                Phase
+			</label>
+            <div class="controls">
+                @Html.ValidationMessage("PhaseID")
+				@Html.DropDownList("PhaseID", Model.SelectListPhaseID)
+            </div>
+        </div>  
+         <div class="control-group">
+            <label class="control-label" for="batch">
+                Batch
+			</label>
+            <div class="controls">
+				@Html.TextArea("batch", "")
+            </div>
+        </div>  
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

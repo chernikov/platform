@@ -1,0 +1,40 @@
+﻿@model platformAthletic.Models.ViewModels.TrainingDayCellView
+@using (Html.BeginForm("EditCellInfo", "TrainingDay", FormMethod.Post, new { @class = "form-horizontal", id = "EditCellForm" }))
+{
+    <fieldset>
+        @Html.Hidden("_ID", Model._ID)
+        @Html.Hidden("CellID", Model.CellID)
+        @Html.Hidden("TrainingDayID", Model.TrainingDayID)
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Coefficient
+            </label>
+            <div class="controls">
+                @Html.TextBox("Coefficient", Model.Coefficient)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Reference to
+            </label>
+            <div class="controls">
+                @Html.DropDownList("SBCType", Model.SelectListSBCType)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                <div class="btn primaryTextBtn">Enter primary text</div>
+            </label>
+        </div>
+        <div class="valuePrimaryText">
+            <div class="control-group">
+                <label class="control-label" for="Name">
+                    Primary text
+                </label>
+                <div class="controls">
+                    @Html.TextBox("PrimaryText", Model.PrimaryText)
+                </div>
+            </div>
+        </div>
+    </fieldset>
+}

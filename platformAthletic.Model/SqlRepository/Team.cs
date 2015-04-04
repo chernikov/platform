@@ -40,6 +40,7 @@ namespace platformAthletic.Model
 				cache.Name = instance.Name;
 				cache.LogoPath = instance.LogoPath;
 				cache.StateID = instance.StateID;
+                cache.SchoolID = instance.SchoolID;
                 cache.SBCControl = instance.SBCControl;
 				cache.PrimaryColor = instance.PrimaryColor ?? "#ffffff";
                 cache.SecondaryColor = instance.SecondaryColor ?? "#000000";

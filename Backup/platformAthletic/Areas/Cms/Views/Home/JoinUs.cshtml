@@ -1,0 +1,117 @@
+﻿@model platformAthletic.Models.Info.PriceInfoView
+@{
+    ViewBag.Title = "Join Us - Platform Athletics";
+    Layout = "~/Areas/Cms/Views/Shared/_CmsLayoutInner.cshtml";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+
+@section header {
+    <script type="text/javascript" src="/Media/scripts/cms/cms-join-us.js"></script>
+}
+<div class="join-us-wrapper">
+    <div class="select-wrapper">
+        <h2>Put the <span>platform</span> to work for you today!</h2>
+        <div class="team">
+            <a href="/team-registration">
+                <img src="/Media/images/new/team-select.png" />
+            </a>
+        </div>
+        <div class="separator"></div>
+        <div class="individual">
+            <a href="/individual-registration">
+                <img src="/Media/images/new/individual-select.png" />
+            </a>
+        </div>
+    </div>
+    <div class="team-select">
+        <div class="shadow"></div>
+        <h2>get the platform for your team</h2>
+        <br />
+        <h3>
+            Put our 60-day FREE Trial to the Test!
+        </h3>
+        <br />
+        <h3>
+            No Credit Card. No Commitment.
+        </h3>
+        <div class="proposal">
+            <div class="left position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="JoinUsFirstTeamList">
+                        @pageParts["JoinUsFirstTeamList"]
+                    </div>
+                    <div class="action-wrapper" id="ActionWrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+            <div class="right position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="JoinUsSecondTeamList">
+                        @pageParts["JoinUsSecondTeamList"]
+                    </div>
+                    <div class="action-wrapper" id="ActionWrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div class="start-today-wrapper">
+            <a href="/team-registration">
+                <span>Start Today!</span>
+                <span class="price">@Model.TeamPrice.ToString("C0")/yr</span>
+            </a>
+        </div>
+    </div>
+    <div class="individual-select">
+        <h2>get the platform for yourself</h2>
+        <br />
+        <h3>
+            Why pay $50/hr for a personal trainer when you can
+        </h3>
+        <br />
+        <h3>
+            get a full year’s program
+        </h3><br />
+        <h3>
+            and the tools needed for success for a fraction of the cost?
+        </h3>
+        <div class="proposal">
+            <div class="left  position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="JoinUsSecondIndividualList">
+                        @pageParts["JoinUsSecondIndividualList"]
+                    </div>
+                     <div class="action-wrapper" id="ActionWrapper">
+                         <button class="btn btn-primary SaveRouteBtn">Save</button>
+                         <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+            <div class="right  position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="JoinUsSecondIndividualmList">
+                        @pageParts["JoinUsSecondIndividualmList"]
+                    </div>
+                     <div class="action-wrapper" id="ActionWrapper">
+                         <button class="btn btn-primary SaveRouteBtn">Save</button>
+                         <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="start-today-wrapper">
+            <a href="/individual-registration">
+                <span>Start Today!</span>
+                <span class="price">@Model.IndividualPrice.ToString("C0")/yr</span>
+            </a>
+        </div>
+    </div>
+</div>

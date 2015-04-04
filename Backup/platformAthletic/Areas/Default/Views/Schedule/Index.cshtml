@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Scheduling";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/default/checkbox.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/group.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/scheduling.js"></script>
+}
+
+<div class="account-wrp scheduling">
+    <div class="left group-wrapper">
+        @if (currentUser.InRoles("coach"))
+        {
+            @Html.Action("Group", "Schedule")
+        }
+    </div>
+    <div class="right">
+        @if (currentUser.OwnTeam != null)
+        {
+            @Html.Action("Scheduling", "Schedule")
+        }
+        else
+        {
+            @Html.Action("PersonalScheduling", "Schedule")
+        }
+    </div>
+</div>

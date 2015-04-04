@@ -1,0 +1,49 @@
+@model platformAthletic.Models.ViewModels.FieldPositionView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Field Position" : "Edit Field Position";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>@(Model.ID == 0 ? "Add FieldPosition" : "Edit FieldPosition")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "FieldPosition", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	<fieldset>
+		@Html.Hidden("ID", Model.ID)
+
+        <div class="control-group">
+            <label class="control-label" for="SportID">
+                Sport
+            </label>
+            <div class="controls">
+                @Html.DropDownList("SportID", Model.SelectListSportID)
+                @Html.ValidationMessage("Sport")
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="Code">
+                Code
+			</label>
+            <div class="controls">
+				@Html.TextBox("Code", Model.Code)
+				@Html.ValidationMessage("Code")
+            </div>
+        </div>
+       
+		<div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+			</label>
+            <div class="controls">
+				@Html.TextBox("Name", Model.Name)
+				@Html.ValidationMessage("Name")
+            </div>
+        </div>
+        
+	   <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+			</button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+	</fieldset>
+}

@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Areas/Cms/Views/Shared/_CmsLayout.cshtml";
+    ViewBag.Title = "Platform Athletics";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="/Media/scripts/new/index.js"></script>
+    <script type="text/javascript" src="/Media/scripts/cms/cms-index.js"></script>
+}
+<div class="middle-text">
+    <div class="background"></div>
+    <div class="contlayer">
+        @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+        {
+            <div class="header-text">
+                <h1 class="editable" id="IndexTitle">
+                    @pageParts["IndexTitle"]
+                </h1>
+                <div class="editable" id="IndexText">
+                    @pageParts["IndexText"]
+                </div>
+            </div>
+            <div class="action-wrapper inner" id="ActionWrapper">
+                <button class="btn btn-primary SaveRouteBtn">Save</button>
+                <button class="btn btn-default CancelBtn">Cancel</button>
+            </div>
+        }
+        @Html.Action("WhatPeopleSaying", "Home")
+        <div class="stay-connected">
+            <h2>Stay connected</h2>
+            <a href="https://www.facebook.com/Platform.Athletics" class="social-link fb"></a>
+            <a href="https://twitter.com/PLT4M" class="social-link tw"></a>
+        </div>
+    </div>
+</div>
+@Html.Action("SlideShow", "Home")
+
+

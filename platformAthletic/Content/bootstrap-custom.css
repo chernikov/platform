@@ -1,0 +1,679 @@
+﻿:focus {
+    outline: none;
+}
+
+.no-padding-left {
+    padding-left: 0 !important;
+}
+
+.top-padding {
+    padding-top: 20px !important;
+}
+
+.platform {
+}
+
+    .platform .navbar {
+        margin-bottom: 0;
+        height: 61px;
+    }
+
+    .platform .navbar-nav {
+        margin: 0 0;
+    }
+
+    .platform .content {
+        margin-top: 61px;
+    }
+
+    .platform .top-menu {
+    }
+
+        .platform .top-menu li {
+            float: left;
+        }
+
+        .platform .top-menu .dropdown-menu li {
+            float: none;
+        }
+
+        .platform .top-menu .dropdown.open {
+            /*    width : 200px;*/
+        }
+
+        .platform .top-menu li > a {
+            color: #fff;
+        }
+
+            .platform .top-menu li > a > i {
+                font-size: 23px;
+            }
+
+            .platform .top-menu li > a > .label {
+                border-radius: 20px;
+                position: relative;
+                top: -15px;
+                left: -15px;
+            }
+
+        .platform .top-menu .dropdown-menu > li > a {
+            color: #4d4d4d;
+        }
+
+    .platform .navbar-default .top-menu.navbar-nav > li > a {
+        height: 61px;
+    }
+
+    .platform .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+
+    /* 
+    Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
+    A quick fix is to change.platform .side-menu to 
+
+    -> position:absolute
+    
+    and uncomment the code below.
+    You also need to uncomment 
+    
+    -> <div class="absolute-wrapper"> </div> in the html file
+
+    you also need to tweek the animation. Just uncomment the code in that section
+    --------------------------------------------------------------------------------------------------------------------
+    If you want to make it really neat i suggest you look into an alternative like http://areaaperta.com/nicescroll/
+    This will allow the menu to say fixed on body scoll and scoll on the side bar if it get to large
+*/
+    /*.absolute-wrapper{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f8f8;
+    border-right: 1px solid #e7e7e7;
+}*/
+
+    .platform .side-menu {
+        position: fixed;
+        width: 300px;
+        height: 100%;
+        background-color: #495b6c;
+    }
+
+        .platform .side-menu .navbar {
+            border: none;
+            background-color: #495b6c;
+            height: auto;
+        }
+
+        .platform .side-menu .navbar-header {
+            width: 100%;
+        }
+
+        .platform .side-menu .navbar-nav li {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #3c4c5d;
+        }
+
+    .platform .navbar-default .navbar-nav > li > a {
+        color: #fff;
+        text-shadow: none;
+        padding-top: 20px;
+    }
+
+        .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
+            margin-right: 15px;
+        }
+
+        .platform .navbar-default .navbar-nav > li > a:hover {
+            color: #fff;
+            text-shadow: none;
+        }
+
+    .platform .side-menu .navbar-nav .active a {
+        color: #fc8675;
+        background-color: #ffffff;
+    }
+
+    .platform .navbar-default .navbar-nav > .active > a:hover {
+        color: #fc8675;
+    }
+
+    .platform .side-menu .navbar-nav .active a > span.glyphicon {
+        color: #495b6c;
+    }
+
+
+    .platform .side-menu .navbar-nav li a {
+        padding: 15px;
+    }
+
+        .platform .side-menu .navbar-nav li a .glyphicon {
+            padding-right: 10px;
+        }
+
+    .platform .side-menu #dropdown {
+        border: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+
+
+    .platform .side-menu .brand-name-wrapper {
+        min-height: 50px;
+    }
+
+        .platform .side-menu .brand-name-wrapper .navbar-brand {
+            display: block;
+        }
+
+/* Main body section */
+.side-body {
+    margin-left: 300px;
+}
+
+
+/* small screen */
+@media (max-width: 768px) {
+
+    .platform .navbar-nav .open .dropdown-menu {
+        background-color: #eeeeee;
+        float: left;
+    }
+
+    .platform .side-menu {
+        position: relative;
+        width: 100%;
+        height: 0;
+        border-right: 0;
+        border-bottom: 1px solid #495b6c;
+    }
+
+        .platform .side-menu .brand-name-wrapper .navbar-brand {
+            display: inline-block;
+        }
+    /* Slide in animation */
+    @-moz-keyframes slidein {
+        0% {
+            left: -300px;
+        }
+
+        100% {
+            left: 10px;
+        }
+    }
+
+    @-webkit-keyframes slidein {
+        0% {
+            left: -300px;
+        }
+
+        100% {
+            left: 10px;
+        }
+    }
+
+    @keyframes slidein {
+        0% {
+            left: -300px;
+        }
+
+        100% {
+            left: 10px;
+        }
+    }
+
+    @-moz-keyframes slideout {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: -300px;
+        }
+    }
+
+    @-webkit-keyframes slideout {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: -300px;
+        }
+    }
+
+    @keyframes slideout {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: -300px;
+        }
+    }
+    /* Slide side menu*/
+    /* Add .absolute-wrapper.slide-in for scrollable menu -> see top comment */
+    .platform .side-menu-container > .navbar-nav.slide-in {
+        -moz-animation: slidein 300ms forwards;
+        -o-animation: slidein 300ms forwards;
+        -webkit-animation: slidein 300ms forwards;
+        animation: slidein 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .platform .side-menu-container > .navbar-nav {
+        /* Add position:absolute for scrollable menu -> see top comment */
+        position: fixed;
+        left: -300px;
+        width: 300px;
+        top: 111px;
+        height: 100%;
+        border-right: none;
+        margin-left: -10px;
+        background-color: #495b6c;
+        -moz-animation: slideout 300ms forwards;
+        -o-animation: slideout 300ms forwards;
+        -webkit-animation: slideout 300ms forwards;
+        animation: slideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    /* Uncomment for scrollable menu -> see top comment */
+    /*.absolute-wrapper{
+        width:285px;
+        -moz-animation: slideout 300ms forwards;
+        -o-animation: slideout 300ms forwards;
+        -webkit-animation: slideout 300ms forwards;
+        animation: slideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }*/
+    @-moz-keyframes bodyslidein {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 300px;
+        }
+    }
+
+    @-webkit-keyframes bodyslidein {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 300px;
+        }
+    }
+
+    @keyframes bodyslidein {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 300px;
+        }
+    }
+
+    @-moz-keyframes bodyslideout {
+        0% {
+            left: 300px;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+
+    @-webkit-keyframes bodyslideout {
+        0% {
+            left: 300px;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+
+    @keyframes bodyslideout {
+        0% {
+            left: 300px;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+    /* Slide side body*/
+    .side-body {
+        margin-left: 0;
+        margin-top: 49px;
+        position: relative;
+        -moz-animation: bodyslideout 300ms forwards;
+        -o-animation: bodyslideout 300ms forwards;
+        -webkit-animation: bodyslideout 300ms forwards;
+        animation: bodyslideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .body-slide-in {
+        -moz-animation: bodyslidein 300ms forwards;
+        -o-animation: bodyslidein 300ms forwards;
+        -webkit-animation: bodyslidein 300ms forwards;
+        animation: bodyslidein 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    /* Hamburger */
+    .platform .navbar-toggle {
+        border: 0;
+        float: left;
+        padding: 18px;
+        margin: 0;
+        border-radius: 0;
+        background-color: #65cea7;
+    }
+
+        .platform .navbar-toggle:hover, .platform .navbar-toggle:focus {
+            background-color: #65cea7;
+        }
+
+    .platform .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+    /* Dropdown tweek */
+    #dropdown .panel-body .navbar-nav {
+        margin: 0;
+    }
+}
+
+.custom-style {
+    position: relative;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+    .custom-style select {
+        background: #495b6c url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUNBNzVDNkVEQUJEMTFFNEFEMDI5OEQ4OTIyMUUyRkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUNBNzVDNkZEQUJEMTFFNEFEMDI5OEQ4OTIyMUUyRkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1Q0E3NUM2Q0RBQkQxMUU0QUQwMjk4RDg5MjIxRTJGQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1Q0E3NUM2RERBQkQxMUU0QUQwMjk4RDg5MjIxRTJGQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhVKY/EAAACOSURBVBgZBcGxSgIAAEDBZ84Ntog0hLRFH+LcIOgUBNEcQR/k0FwIrg2N/kXgIgVJkNt1l1NXkiRJkuTCOEt/Hp1IkiTJrR9PeQPvppIkGXsF28zswMGdJLmxB98WyZkXwNrEyAqwca4kmfsCe5/g14OBlCSZWAP4cClJSZIM3Ds4ejaUJCVJkkxdS5KkfxYVvcYUdcO/AAAAAElFTkSuQmCC") no-repeat 95% center;
+        text-indent: 0.01px; /* Removes default arrow from firefox*/
+        text-overflow: ""; /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+        appearance: none;
+        -moz-appearance: none; /* Firefox */
+        -webkit-appearance: none; /* Safari and Chrome */
+        color: #fff;
+    }
+
+.platform h3 {
+    font-family: Arial;
+    font-weight: bold;
+    color: #495b6c;
+    font-size: 18px;
+}
+
+.platform .table-players {
+    margin-top: 20px;
+}
+
+    .platform .table-players thead {
+        background-color: #eeeeee;
+        font-family: 'Montserrat', sans-serif;
+        color: #495b6c;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+        .platform .table-players thead td {
+            padding: 15px 0 20px 30px;
+            position: relative;
+        }
+
+            .platform .table-players thead td p {
+                margin: 0;
+            }
+
+    .platform .table-players .calendar {
+        color: #fc8675;
+        position: absolute;
+        font-size: 26px;
+        top: 16px;
+        right: 50px;
+        cursor: pointer;
+    }
+
+    .platform .table-players .date {
+        color: #fc8675;
+        font-family: Arial;
+        font-size: 12px;
+        margin-left: 20px;
+    }
+
+    .platform .table-players tbody {
+        font-size: 14px;
+        font-family: Arial;
+    }
+
+        .platform .table-players tbody tr:nth-child(2n) td {
+            background-color: #eee;
+        }
+
+        .platform .table-players tbody tr:hover td {
+            background-color: #fff7e6;
+        }
+
+        .platform .table-players tbody td {
+            border: none;
+        }
+
+            .platform .table-players tbody td:last-child {
+                border-left: 1px solid #eeeeee;
+                padding: 10px 0 10px 30px;
+            }
+
+.styled-checkbox {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 5px;
+    border: 2px solid #cccccc;
+    margin: 0 auto;
+    position: relative;
+}
+
+    .styled-checkbox label {
+        cursor: pointer;
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        left: 0;
+        top: 0;
+        background: transparent;
+    }
+
+
+    .styled-checkbox input[type=checkbox] {
+        visibility: hidden;
+    }
+
+    .styled-checkbox label:after {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+        opacity: 0;
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkQ5QjcwODFEQUM5MTFFNDkzM0VDQjlFRjY4OEI1RDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ5QjcwODJEQUM5MTFFNDkzM0VDQjlFRjY4OEI1RDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRDlCNzA3RkRBQzkxMUU0OTMzRUNCOUVGNjg4QjVENCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRDlCNzA4MERBQzkxMUU0OTMzRUNCOUVGNjg4QjVENCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph/cvbsAAADISURBVHjaYvz//z8DKYAFn2Ta+RXyQGoeEF8F4rJZhhE/WPAoFgNSPUDsBMUvgbiVCYdiPiDVCMQhUKG/QPwD7iSgAgMglQPEU4DWXgDSSUCcgWTGDCCeA2IwgjwN1LATyHYDYpDiRUDcBMQ8UMXrgTgVaNBbZE8/h9IGUAwDJ4G4AKYYBGB+KATiuWheeQTEWUDFj5AFwRqAgu+BVCUQL4aKfwZ5DSh+Dj1AGJEjDugXOSCVD8QPgYonYQtBRlJjmomBRAAQYAB9dD6cwZ5QTgAAAABJRU5ErkJggg==") no-repeat center center;
+        left: 0;
+        top: 0;
+    }
+
+    .styled-checkbox label:hover::after {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+        filter: alpha(opacity=30);
+        opacity: 0.3;
+    }
+
+    .styled-checkbox input[type=checkbox]:checked + label:after {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
+        opacity: 1;
+    }
+
+.overflow {
+    overflow: hidden;
+}
+
+.platform-icon {
+    background: #eee url("/Content/img/platform-icon.png") no-repeat center center;
+    width: 205px;
+    height: 205px;
+    border: #e3e2e2;
+}
+
+.user-part {
+    background-color: #f5f5f5;
+}
+
+.user {
+}
+
+    .user h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 0;
+    }
+
+dl.power {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #65696f;
+}
+
+    dl.power dt {
+        width: 60px;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    dl.power dd {
+        margin-left: 80px;
+        margin-bottom: 5px;
+        color: #495b6c;
+    }
+
+        dl.power dd .value {
+            width: 40px;
+            display: inline-block;
+            text-align: center;
+        }
+
+
+dl.sport {
+    font-family: 'Myriad Pro';
+}
+
+    dl.sport dt {
+        width: 45px;
+        margin-top: 3px;
+    }
+
+    dl.sport dd {
+        margin-left: 55px;
+        margin-bottom: 5px;
+        color: #495b6c;
+        background-color: #fff;
+        padding: 3px 5px 0 5px;
+    }
+
+
+dl.sport-2 {
+    font-family: 'Myriad Pro';
+}
+
+    dl.sport-2 dt {
+        width: 60px;
+        margin-top: 3px;
+    }
+
+    dl.sport-2 dd {
+        margin-left: 70px;
+        margin-bottom: 5px;
+        color: #495b6c;
+        background-color: #fff;
+        padding: 3px 5px 0 5px;
+    }
+
+
+.platform .panel {
+    background-color: #eee;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+    height: 50px;
+    padding-top : 10px;
+    margin-top : 30px;
+}
+
+    .platform .panel a {
+        color: #33485c;
+    }
+
+    .platform .panel h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #33485c;
+        margin : 10px 0 0 0 ;
+    }
+
+.platform .table-calendar {
+    margin-top: 0;
+    font-family : 'Myriad Pro';
+}
+
+    .platform .table-calendar thead {
+        background-color: #fff;
+        color: #63cda6;
+        
+    }
+
+        .platform .table-calendar thead tr th {
+        }
+
+    .platform .table-calendar tbody {
+        background-color: #fff;
+    }
+
+.table-calendar > tbody > tr > td {
+    border-top: none;
+}
+
+.table-calendar > thead > tr > th {
+    border-bottom: none;
+    font-weight: normal;
+}
+
+
+.table-calendar span {
+    color : #fff;
+    border-radius : 20px;
+    background-color :  #63cda6;
+    padding : 3px;
+}

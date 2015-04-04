@@ -20,12 +20,13 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>4.0</OldToolsVersion>
+    <OldToolsVersion>12.0</OldToolsVersion>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -199,6 +200,7 @@
     <Compile Include="Areas\Default\Controllers\AboutUsController.cs" />
     <Compile Include="Areas\Default\Controllers\AccountController.cs" />
     <Compile Include="Areas\Default\Controllers\ContactController.cs" />
+    <Compile Include="Areas\Default\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Default\Controllers\FaqController.cs" />
     <Compile Include="Areas\Default\Controllers\GettingStartedController.cs" />
     <Compile Include="Areas\Default\Controllers\InvoiceController.cs" />
@@ -353,7 +355,15 @@
   <ItemGroup>
     <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
     <Content Include="App_Readme\glimpse.readme.txt" />
+    <Content Include="Content\bootstrap-custom.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\platform-icon.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Media\css\admin-datepicker.css" />
     <Content Include="Media\css\admin.css" />
@@ -1124,6 +1134,15 @@
     <Content Include="Media\scripts\yoxview\yoxview-nojquery.js" />
     <Content Include="Media\scripts\yoxview\yoxview.css" />
     <Content Include="needed\OpenPop\OpenPop.dll" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\default\common.js" />
+    <Content Include="Scripts\jquery-1.9.0.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1133,6 +1152,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Scripts\jquery-1.9.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1406,6 +1426,10 @@
     <Content Include="Areas\Admin\Views\Sport\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Level\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Level\Index.cshtml" />
+    <Content Include="Areas\Default\Views\Shared\_BootstrapLayout.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\AddPlayer.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\MaxPlayers.cshtml" />
     <None Include="CodeTemplates\Scaffolders\Controller\Controller.ps1" />
     <None Include="CodeTemplates\Scaffolders\Controller\ControllerTemplate.cs.t4" />
     <None Include="CodeTemplates\Scaffolders\EditView\EditView.ps1" />

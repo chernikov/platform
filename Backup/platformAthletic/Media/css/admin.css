@@ -1,0 +1,350 @@
+﻿body
+{
+    padding-top: 60px;
+}
+
+/* Additional ----------------------------------- */
+.left
+{
+    float: left;
+}
+
+.right
+{
+    float: right;
+}
+
+.overflow
+{
+    position: relative;
+    overflow: hidden;
+}
+
+.clear:after
+{
+    clear: both;
+    display: block;
+    content: '';
+    height: 0;
+    overflow: hidden;
+}
+
+/* Pager ---------------*/
+
+
+.pager
+{
+    float: right;
+    margin: 10px;
+}
+
+    .pager a
+    {
+        color: #000;
+        text-decoration: none;
+        padding: 0 5px;
+    }
+
+        .pager a:hover
+        {
+            background-color: #999;
+            color: #fff;
+        }
+
+        .pager a.selected
+        {
+            background-color: #999;
+            color: #fff;
+        }
+
+.textarea
+{
+    width: 99%;
+    height: 400px;
+}
+
+.htmltext
+{
+    width: 99%;
+    height: 400px;
+}
+
+.field-validation-error
+{
+    margin: 5px 10px;
+    color: #b94a48;
+}
+
+.training-table
+{
+    width: 950px;
+    font-size: 11px;
+    border-collapse: collapse;
+    border: 2px solid #000;
+}
+
+    .training-table th, .training-table td
+    {
+        border: 1px solid black;
+        padding: 2px;
+    }
+
+        .training-table td.center
+        {
+            text-align: center;
+        }
+
+        .training-table td.central
+        {
+            vertical-align: central;
+        }
+
+        .training-table td.bold
+        {
+            font-weight: bold;
+        }
+
+        .training-table td.value
+        {
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .training-table td.exercise
+        {
+            max-width: 80px;
+            padding: 0 10px 0 10px;
+            text-align: center;
+        }
+
+        .training-table td.color
+        {
+            background-color: #fabf8f;
+        }
+
+        .training-table td.invert
+        {
+            background-color: #000;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .training-table td.bold-border
+        {
+            border-bottom: 2px solid #000;
+            border-top: 2px solid #000;
+        }
+
+        .training-table td.bold-border-right
+        {
+            border-right: 2px solid #000;
+        }
+
+        .training-table td.bold-border-bottom
+        {
+            border-bottom: 2px solid #000;
+        }
+
+        .training-table td.no-border
+        {
+            border: none;
+        }
+
+        .training-table td.border-right
+        {
+            border-right: 1px solid #000;
+        }
+
+        .training-table td.gray
+        {
+            background-color: #808080;
+        }
+
+
+.TrainingEqupmentWrapper
+{
+    margin-top: 18px;
+    margin-bottom: 18px;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.infoCell
+{
+    color: #fff;
+    background-color: #000 !important;
+    cursor: pointer;
+}
+
+.exerciseCell
+{
+    color: Red;
+    cursor: pointer;
+}
+
+.valueCell
+{
+    background-color: Blue;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+
+
+.feature-list
+{
+    margin-top: 20px;
+    clear: both;
+}
+
+    .feature-list .item
+    {
+        margin: 10px 0 0 0;
+    }
+
+        .feature-list .item .title
+        {
+            float: left;
+            margin: 0 20px;
+            height: 20px;
+            width: 350px;
+        }
+
+    .feature-list .sub-wrapper
+    {
+        margin: 10px 0 0 40px;
+    }
+
+.subFeatureItem
+{
+    background: transparent url("/Media/images/actions/tree_move.png") no-repeat left top;
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    float: left;
+    cursor: move;
+}
+
+.feature-placeholder
+{
+    overflow: hidden;
+    height: 35px;
+    margin: 10px 0 0 0;
+}
+
+.feature-select
+{
+    width: 300px;
+}
+
+    .feature-select select
+    {
+        margin: 10px 0 0 0;
+    }
+
+.highlight
+{
+    background-color: #eee;
+}
+
+.ui-draggable .title
+{
+    cursor: move;
+}
+
+.ui-widget-move
+{
+    background: transparent url("/Media/images/actions/tree_move.png") no-repeat left top;
+    height: 22px;
+    background-color: #fff;
+    padding: 0 10px 0 28px;
+    font-weight: bold;
+}
+
+.draggable
+{
+    border: 1px solid #aaa;
+    background-color: #fff;
+    float: left;
+    padding: 10px;
+    width: 300px;
+    cursor: move;
+}
+
+.thumbnail
+{
+    position: relative;
+    cursor: pointer;
+}
+
+    .thumbnail .icon-remove
+    {
+        top: -2px;
+        right: -2px;
+        position: absolute;
+        cursor: pointer;
+    }
+    
+.faq-list
+{
+    margin-top: 20px;
+    clear: both;
+}
+
+    .faq-list .item
+    {
+        margin: 10px 0 0 0;
+    }
+
+        .faq-list .item .title
+        {
+            float: left;
+            margin: 0 20px;
+            height: 20px;
+            width: 350px;
+        }
+
+    .faq-list .sub-wrapper
+    {
+        margin: 10px 0 0 40px;
+    }
+
+.subFaqItem
+{
+    background: transparent url("/Media/images/actions/tree_move.png") no-repeat left top;
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    float: left;
+    cursor: move;
+}
+
+.faq-placeholder
+{
+    overflow: hidden;
+    height: 35px;
+    margin: 10px 0 0 0;
+}
+
+.faq-select
+{
+    width: 300px;
+}
+
+    .faq-select select
+    {
+        margin: 10px 0 0 0;
+    }
+
+.hidden
+{
+    display : none;
+}
+
+.show-promocodes
+{
+    color : #0088cc;
+    border-bottom : 1px dashed  #0088cc;
+    margin-right : 10px;
+    cursor : pointer;
+}

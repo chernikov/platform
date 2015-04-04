@@ -1,0 +1,35 @@
+﻿@model platformAthletic.Models.ViewModels.TrainingDayView
+@{
+    ViewBag.Title = "EditBatch";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditBatch</h2>
+<p></p>
+@using (Html.BeginForm("EditBatch", "TrainingDay", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Batch
+            </label>
+            <div class="controls">
+                @Html.TextArea("Batch", Model.Batch)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                @Html.Raw(Model.Batch.NlToBr())
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset> 
+    
+}

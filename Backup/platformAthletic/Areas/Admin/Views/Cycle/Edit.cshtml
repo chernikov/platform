@@ -1,0 +1,37 @@
+@model platformAthletic.Models.ViewModels.CycleView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Cycle" : "Edit Cycle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>@(Model.ID == 0 ? "Add Cycle" : "Edit Cycle")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Cycle", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+
+        <div class="control-group">
+            <label class="control-label" for="SeasonID">
+                SeasonID
+            </label>
+            <div class="controls">
+                @Html.DropDownList("SeasonID", Model.SelectListSeasonID)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("Name", Model.Name)
+                @Html.ValidationMessage("Name")
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

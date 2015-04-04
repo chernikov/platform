@@ -1,0 +1,17 @@
+﻿@model IEnumerable<platformAthletic.Models.ViewModels.TrainingDayView>
+@{
+    ViewBag.Title = "Edit WWS";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var macrocycle = (platformAthletic.Model.Macrocycle)ViewBag.Macrocycle;
+}
+
+@section header 
+{
+    <script type="text/javascript" src="/Media/scripts/admin/edit-macrocycle-table.js"></script>
+}
+<h2>Edit WWS (@macrocycle.Name)</h2>
+
+@foreach (var trainingDay in Model)
+{
+    @Html.Partial("EditTable", trainingDay)
+}

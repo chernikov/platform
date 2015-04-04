@@ -1,0 +1,47 @@
+﻿@model platformAthletic.Models.ViewModels.CalendarRowInfo
+@{
+    var diffWeeks = (Model.CurrentSunday - DateTime.Now.StartOfWeek(DayOfWeek.Sunday)).TotalDays / 7;
+}
+@if (Model.Macrocycle != null)
+{
+    <div class="row">
+        <button class="edit-week" data-id="@Model.NumberOfWeek" data-date="@Model.CurrentSunday" data-macrocycle="@Model.Macrocycle.ID">
+            Edit Week
+            <div class="drop-down"></div>
+        </button>
+        <div class="week-name">
+            @Model.Macrocycle.Name @Model.Macrocycle.Season.Name
+            @if (diffWeeks > -13 && diffWeeks < 12)
+            {
+                <a class="preview-workout" target="_blank" href="@Url.Action("Preview", "Table", new {macrocycleId = Model.Macrocycle.ID})">View Workout</a>
+            }
+        </div>
+        <div class="row-days">
+            <div class="day sunday">@Model.CurrentSunday.Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(1).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(2).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(3).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(4).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(5).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(6).Day</div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="row">
+        <button class="edit-week-empty"></button>
+        <div class="week-name">
+        </div>
+        <div class="row-days">
+            <div class="day sunday">@Model.CurrentSunday.Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(1).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(2).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(3).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(4).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(5).Day</div>
+            <div class="day">@Model.CurrentSunday.AddDays(6).Day</div>
+        </div>
+    </div>
+}

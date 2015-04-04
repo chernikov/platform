@@ -1,0 +1,51 @@
+﻿@model platformAthletic.Models.Info.FilterCustomProgressReport
+@{
+    ViewBag.Title = "Custom report";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+@section header 
+{
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="/Media/scripts/default/progress-report.js"></script>
+}
+<div class="custom-report-wrp all-transparent-wrp">
+    <div class="top primaryColorBg">
+        <h1>Custom report</h1>
+    </div>
+    <div class="bottom">
+        @using (Html.BeginForm("Progress", "Report", FormMethod.Get, new { id = "ProgressReportForm" }))
+        {
+            <div class="title-wrp clear">
+                <div class="name from-individual">From</div>
+                <div class="name to">To</div>
+            </div>
+            <div class="sort-wrp clear">
+                <div class="input">
+                    <div class="date-wrp">
+                        @Html.TextBox("BeginDate", Model.BeginDate)
+                        <div class="date-icon" id="BeginDateIcon"></div>
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="date-wrp">
+                        @Html.TextBox("EndDate", Model.EndDate)
+                        <div class="date-icon" id="EndDateIcon"></div>
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="select-wrp">
+                        @Html.DropDownList("SelectedPeriod", Model.SelectListPeriod, new { @class = "dropdown-styled" })
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="select-wrp">
+                        @Html.DropDownList("Weight", Model.SelectListWeight, new { @class = "dropdown-styled" })
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="ProgressChartWrapper">
+            @Html.Partial("IndividualProgressChart", Model)
+        </div>
+    </div>
+</div>

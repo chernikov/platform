@@ -1,0 +1,25 @@
+﻿@model IEnumerable<platformAthletic.Model.PeopleSaying>
+<div class="testimonials">
+    <div class="header">
+        What People are
+        <br>
+        Saying about The Platform
+    </div>
+    <div class="list-of-content">
+        @foreach (var item in Model)
+        {
+            <div class="element hidden">
+                <img class="picture" src="@(item.ImagePath).ashx?w=135&h=135&mode=crop">
+                <div class="text">
+                    @Html.Raw(item.Text.NlToBr())
+                    
+                </div>
+                <div class="author">@item.Author</div>
+            </div>
+        }
+    </div>
+    <div class="arrow-wrapper">
+        <div class="arrow prev"></div>
+        <div class="arrow next"></div>
+    </div>
+</div>

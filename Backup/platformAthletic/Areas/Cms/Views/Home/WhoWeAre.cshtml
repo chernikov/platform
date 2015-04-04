@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "Who We Are - Platform Athletics";
+    Layout = "~/Areas/Cms/Views/Shared/_CmsLayoutInner.cshtml";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+
+@section header {
+    <script type="text/javascript" src="/Media/scripts/cms/cms-who-we-are.js"></script>
+}
+
+<div class="who-we-are-wrapper position-relative">
+    <div class="background"></div>
+    <div class="additional-background"></div>
+    <div class="block-wrapper">
+        <div class="main-title">
+
+            <h1>Our mission: </h1>
+
+            @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+            {
+                <div class="editable" id="WhoWeAreTitle">
+                    @pageParts["WhoWeAreTitle"]
+                </div>
+                <div class="action-wrapper inner right" id="ActionWrapper">
+                    <button class="btn btn-primary SaveRouteBtn">Save</button>
+                    <button class="btn btn-default CancelBtn">Cancel</button>
+                </div>
+            }
+            <div class="start-image">
+                <a href="/join-us">
+                    <img src="/Media/images/new/wwastb.png">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper">
+        <ul class="additional">
+            <li class="separator"></li>
+            <li class="position-relative">
+                <div class="picture">
+                    <img src="/Media/images/new/wwa1.png">
+                </div>
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhoWeAreText1">
+                        @pageParts["WhoWeAreText1"]
+                    </div>
+                    <div class="action-wrapper inner right">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </li>
+            <li class="separator"></li>
+            <li class="position-relative">
+                <div class="picture">
+                    <img src="/Media/images/new/wwa2.png">
+                </div>
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhoWeAreText2">
+                        @pageParts["WhoWeAreText2"]
+                    </div>
+                    <div class="action-wrapper inner right">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </li>
+            <li class="separator"></li>
+        </ul>
+    </div>
+</div>
+<div class="biographics">
+    <div class="shadow"></div>
+    <div class="block-wrapper">
+        <div class="item clear">
+            <img class="picture" src="/Media/images/new/1.png">
+            <h2 class="title">
+                <strong>Alex Relph</strong>
+                / Co-Founder
+                <div class="separator"></div>
+                Director of Business
+            </h2>
+            <div class="description position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhoWeAreAuthor1">
+                        @pageParts["WhoWeAreAuthor1"]
+                    </div>
+                    <div class="action-wrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="item clear">
+            <img class="picture" src="/Media/images/new/3.png">
+            <h2 class="title">
+                <strong>Sam Breslin</strong>
+                / Co-Founder
+                <div class="separator"></div>
+                Director of Programing
+            </h2>
+            <div class="description position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhoWeAreAuthor2">
+                        @pageParts["WhoWeAreAuthor2"]
+                    </div>
+                    <div class="action-wrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="item clear">
+            <img class="picture" src="/Media/images/new/2.png">
+            <h2 class="title">
+                <strong>Justin Belanger</strong>
+                <div class="separator"></div>
+                Programming Associate
+            </h2>
+
+
+            <div class="description position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhoWeAreAuthor3">
+                        @pageParts["WhoWeAreAuthor3"]
+                    </div>
+                    <div class="action-wrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="item clear">
+            <img class="picture" src="/Media/images/new/4.png">
+            <h2 class="title">
+                <strong>Geoff Leard</strong>
+                <div class="separator"></div>
+                Programming Associate
+            </h2>
+            <div class="description position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhoWeAreAuthor4">
+                        @pageParts["WhoWeAreAuthor4"]
+                    </div>
+                    <div class="action-wrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

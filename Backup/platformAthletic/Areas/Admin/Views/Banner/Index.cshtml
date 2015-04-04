@@ -1,0 +1,45 @@
+@model IEnumerable<platformAthletic.Model.Banner>
+@{
+    ViewBag.Title = "Banner";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Banner
+</h2>
+@Html.ActionLink("Create", "Create", "Banner", null, new { @class = "btn" })
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Place
+            </th>
+            <th>Link
+            </th>
+            <th>Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.BannerPlace.Name
+            </td>
+              <td>
+                @item.Link
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Banner", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "Banner", new { id = item.ID }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+</table>

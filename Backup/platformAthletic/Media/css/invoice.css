@@ -1,0 +1,81 @@
+﻿body
+{
+    font-family: Arial;
+    padding: 12px;
+    font-size : 12px;
+}
+
+.print
+{
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    float: right;
+}
+
+.wrapper
+{
+    width : 1100px;
+    margin : 0 auto;
+}
+.logo
+{
+    width : 300px; 
+    float : left;
+}
+
+.invoice-head
+{
+    width : 300px;
+    float : right;
+}
+
+.clear
+{
+    clear : both;
+}
+
+.address
+{
+    width : 300px;
+    margin : 50px 0 0 0;
+}
+table.small
+{
+    width: 250px;
+    font-size: 13px;
+    border-collapse: collapse;
+    border: 2px solid #000;
+    margin : 40px 0 0 0;
+}
+
+    table.small td
+    {
+        border : 1px solid #000;
+        padding : 5px;
+    }
+
+table.big
+{
+    width: 1050px;
+    font-size: 13px;
+    border-collapse: collapse;
+    border: 1px solid #000;
+    margin : 40px 0 40px 0;
+}
+
+
+    table.big td
+    {
+        border : 1px solid #000;
+        padding : 10px;
+    }
+
+
+footer
+{
+    width : 500px;
+    text-align : center;
+    margin : 0 auto;
+}

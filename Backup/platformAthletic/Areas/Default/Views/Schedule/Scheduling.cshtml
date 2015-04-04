@@ -1,0 +1,10 @@
+﻿@model platformAthletic.Model.Team
+@{
+    var month = DateTime.Now.AddDays(-DateTime.Now.Day + 1);
+}
+<div class="top all-content-wrp">
+    <h1>CALENDAR</h1>
+</div>
+<div id="CalendarWrapper">
+    @Html.Action("Calendar", "Schedule", new {month = month, teamId = Model.ID})
+</div>

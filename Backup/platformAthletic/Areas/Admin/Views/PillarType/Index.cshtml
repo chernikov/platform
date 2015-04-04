@@ -1,0 +1,63 @@
+@model IEnumerable<platformAthletic.Model.PillarType>
+
+@{
+    ViewBag.Title = "PillarType";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	PillarType
+</h2>
+@Html.ActionLink("Create", "Create", "PillarType", null, new { @class = "btn" })
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+					#
+			</th>
+			<th>
+				Name
+			</th>
+            <th>
+				Type
+			</th>
+            <th>
+				Placeholder
+			</th>
+             <th>
+				Text Above
+			</th>
+			<th>
+				Measure
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	
+	@foreach(var item in Model) {
+	<tr>
+		<td> 
+			@item.ID
+		</td>
+		<td> 
+			@item.Name
+		</td>	
+        <td> 
+			@((platformAthletic.Models.ViewModels.PillarTypeView.TypeEnum)item.Type)
+		</td>		
+        <td> 
+			@item.Placeholder
+		</td>
+        <td> 
+			@item.TextAbove
+		</td>
+		<td> 
+			@item.Measure
+		</td>		
+		<td>
+			@Html.ActionLink("Edit", "Edit", "PillarType", new { id = item.ID }, new { @class = "btn" })
+            @Html.ActionLink("Remove", "Delete", "PillarType", new { id = item.ID }, new { @class = "btn" })
+		</td>
+	</tr>
+	}
+</table>

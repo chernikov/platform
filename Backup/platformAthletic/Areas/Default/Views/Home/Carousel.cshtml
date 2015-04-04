@@ -1,0 +1,19 @@
+﻿@model IEnumerable<platformAthletic.Model.Gallery>
+
+<div class="carousel-wrapper">
+    
+    @*<iframe width="993" height="559" src="http://www.youtube.com/embed/m-LJfwt7-NM" frameborder="0" allowfullscreen></iframe>*@
+    <div class="content">
+        <div class="container">
+            @foreach (var item in Model)
+            {
+                <div class="item">
+                    <img src="@item.ImagePath" alt="Slide show" />
+                </div>
+            }
+        </div>
+    </div>
+    <div class="switcher clear">
+        <ul></ul>
+    </div>
+</div>

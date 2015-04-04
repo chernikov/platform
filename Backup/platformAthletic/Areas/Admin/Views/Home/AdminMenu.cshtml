@@ -1,0 +1,71 @@
+﻿<div class="span3">
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+            <li class="nav-header">Users</li>
+            <li>@Html.ActionLink("Levels", "Index", "Level")</li>
+            <li>@Html.ActionLink("Sports", "Index", "Sport")</li> 
+            <li>@Html.ActionLink("Field Positions", "Index", "FieldPosition")</li>
+            <li>@Html.ActionLink("Pillar Types", "Index", "PillarType")</li>
+            <li>@Html.ActionLink("Teams", "Index", "Team")</li>
+            <li>@Html.ActionLink("Users", "Index", "User")</li>
+            <li>@Html.ActionLink("SBCs", "Index", "SBCValue")</li>
+            <li>@Html.ActionLink("Payments", "Index", "PaymentDetail")</li>
+        </ul>
+        <ul class="nav nav-list">
+            <li class="nav-header">Season etc.</li>
+            <li>@Html.ActionLink("Season", "Index", "Season")</li>
+            <li>@Html.ActionLink("Cycle", "Index", "Cycle")</li>
+            <li>@Html.ActionLink("Phases", "Index", "Phase")</li>
+            <li>@Html.ActionLink("Weeks", "Index", "Week")</li>
+            <li>@Html.ActionLink("Days", "Index", "Day")</li>
+             
+        </ul>
+
+        <ul class="nav nav-list">
+            <li class="nav-header">States</li>
+            <li>@Html.ActionLink("States", "Index", "State")</li>
+        </ul>
+        <ul class="nav nav-list">
+            <li class="nav-header">Training</li>
+            <li>@Html.ActionLink("Equipment", "Index", "Equipment")</li>
+            <li>@Html.ActionLink("Training", "Index", "Training")</li>
+            <li>@Html.ActionLink("Training Sets", "Index", "TrainingSet")</li>
+            @*<li>@Html.ActionLink("Training Days", "Index", "TrainingDay")</li>*@
+            <li>@Html.ActionLink("Macrocycles", "Index", "Macrocycle")</li>
+        </ul>
+
+        <ul class="nav nav-list">
+            <li class="nav-header">Prices</li>
+            <li>@Html.ActionLink("Prices", "Index", "Price")</li>
+            <li>@Html.ActionLink("Promo Actions", "Index", "PromoAction")</li>
+
+        </ul>
+        <ul class="nav nav-list">
+            <li class="nav-header">CMS</li>
+            <li><strong>@Html.ActionLink("CMS", "Index", "Home", new { area = "Cms"}, null)</strong></li>
+            <li>@Html.ActionLink("Pages", "Index", "Page")</li>
+            <li>@Html.ActionLink("Features", "Index", "Feature")</li>
+            <li>@Html.ActionLink("Videos", "Index", "Video")</li>
+            <li>@Html.ActionLink("Faqs", "Index", "Faq")</li>
+            <li>@Html.ActionLink("Abouts", "Index", "About")</li>
+            <li>@Html.ActionLink("Posts", "Index", "Post")</li>
+            <li>@Html.ActionLink("What people saying", "Index", "PeopleSaying")</li>
+            <li>@Html.ActionLink("Aphorism", "Index", "Aphorism")</li>
+            <li>@Html.ActionLink("Gallery", "Index", "Gallery")</li>
+             <li>@Html.ActionLink("Youtube title", "Index", "Youtube")</li>
+        </ul>
+        <ul class="nav nav-list">
+            <li class="nav-header">Banners</li>
+            <li>@Html.ActionLink("Banner Places", "Index", "BannerPlace")</li>
+            <li>@Html.ActionLink("Banners", "Index", "Banner")</li>
+            <li>@Html.ActionLink("Slider images", "Index", "Gallery")</li>
+        </ul>
+        <ul class="nav nav-list">
+            <li class="nav-header">Feedback</li>
+            <li>
+                <a href="@Url.Action("Index", "Feedback")">Feedback @Html.Action("Count", "Feedback")</a>
+            </li>
+        </ul>
+    </div>
+
+</div>

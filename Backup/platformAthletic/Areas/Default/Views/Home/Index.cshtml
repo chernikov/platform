@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayout.cshtml";
+    ViewBag.Title = "Platform Athletics";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="/Media/scripts/new/index.js"></script>
+}
+<div class="middle-text">
+    <div class="background"></div>
+    <div class="contlayer">
+        <div class="header-text">
+            <h1>
+               @pageParts["IndexTitle"]
+            </h1>
+            @pageParts["IndexText"]
+        </div>
+        @Html.Action("WhatPeopleSaying", "Home")
+       
+        <a href="/join-us" class="start-free"></a>
+        <div class="stay-connected">
+            <h2>Stay connected</h2>
+            <a href="https://www.facebook.com/Platform.Athletics"  class="social-link fb"></a>
+            <a href="https://twitter.com/PLT4M" class="social-link tw"></a>
+        </div>
+    </div>
+</div>
+@Html.Action("SlideShow", "Home")

@@ -1,0 +1,21 @@
+﻿@model platformAthletic.Model.FeatureText
+
+@{
+    ViewBag.Title = "Feature";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ft-wrp">
+
+    <div class="left all-content-wrp">
+        @Html.Action("MenuFeature", "Feature", new { id = Model.ID })
+    </div>
+    <div class="right">
+        <div class="top all-content-wrp">
+            <h1>@Model.Header</h1>
+        </div>
+        <div class="bottom all-transparent-wrp">
+            @Html.Raw(Model.Text)
+        </div>
+    </div>
+</div>

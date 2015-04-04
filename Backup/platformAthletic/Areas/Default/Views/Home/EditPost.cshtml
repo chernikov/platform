@@ -1,0 +1,34 @@
+﻿@model platformAthletic.Models.ViewModels.PostView
+@{
+    ViewBag.Title =  Model.ID == 0 ? "Add Post" : "Edit Post";
+    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+}
+
+<div class="add-post-wrp all-transparent-wrp">
+    <h1>@(Model.ID == 0 ? "Add Post" : "Edit Post")</h1>
+    <div class="add-post-form">
+        @using (Html.BeginForm("EditPost", "Home", FormMethod.Post))
+        {
+            @Html.Hidden("ID", Model.ID)
+            <div class="item-input">
+                <div class="name"><span>*</span> Header</div>
+                <div class="input">
+                    @Html.TextBox("Header", Model.Header)
+                </div>
+                @Html.ValidationMessage("Header")
+            </div>
+            <div class="item-area">
+                <div class="name"><span class="text-red">*</span> Text</div>
+                <div class="area">
+                    @Html.TextArea("Text", Model.Text)
+                </div>
+                @Html.ValidationMessage("Text")
+            </div>
+            <hr class="separate-line" />
+            <div class="button-wrp clear">
+                <a href="/" class="btn-gray-a">Cancel</a>
+                <button class="btn-active primaryColorBg">Send</button>
+            </div>
+        }
+    </div>
+</div>

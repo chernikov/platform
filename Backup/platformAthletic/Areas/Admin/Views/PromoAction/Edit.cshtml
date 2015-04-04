@@ -1,0 +1,100 @@
+﻿@model platformAthletic.Models.ViewModels.PromoActionView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Promo Action" : "Edit Promo Action";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(Model.ID == 0 ? "Add Promo Action" : "Edit Promo Action")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "PromoAction", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Hidden("ID", Model.ID)
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("Name", Model.Name)
+                @Html.ValidationMessage("Name")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Target
+            </label>
+            <div class="controls">
+                @Html.DropDownList("Target", Model.SelectListTarget)
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Amount
+            </label>
+            <div class="controls">
+                @Html.TextBox("Amount", Model.Amount)
+                @Html.ValidationMessage("Amount")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Type
+            </label>
+            <div class="controls">
+                @Html.DropDownList("Type", Model.SelectListType)
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Valid Date
+            </label>
+            <div class="controls">
+                @Html.TextBox("ValidDate", Model.ValidDate, new { @class = "datepicker" })
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Quantity
+            </label>
+            <div class="controls">
+                @Html.TextBox("Quantity", Model.Quantity)
+                @Html.ValidationMessage("Quantity")
+            </div>
+        </div>
+        @if (Model.ID == 0)
+        {
+            <div class="control-group">
+            <label class="control-label" for="Name">
+                Referral Code
+            </label>
+            <div class="controls">
+                @Html.TextBox("ReferralCode", Model.ReferralCode)
+                @Html.ValidationMessage("ReferralCode")
+            </div>
+        </div>
+        }
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Reusable promo codes
+            </label>
+            <div class="controls">
+                @if (Model.CanChangeReusable)
+                {
+                    @Html.DropDownList("Reusable", Model.SelectListReusable)
+                }
+                else
+                {
+                    @Html.Hidden("Reusable", Model.Reusable)
+                    @Model.SelectListReusable.First(p => p.Selected).Text
+                }
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

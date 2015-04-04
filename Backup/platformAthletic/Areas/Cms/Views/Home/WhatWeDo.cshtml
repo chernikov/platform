@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "What We Do - Platform Athletics";
+    Layout = "~/Areas/Cms/Views/Shared/_CmsLayoutInner.cshtml";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/cms/cms-what-we-do.js"></script>
+}
+
+<div class="what-we-do-wrapper">
+    <div class="white-wrapper">
+        <div class="video-box">
+            <iframe width="638" height="384" id="wwdV" src="http://www.youtube.com/embed/6v2L2UGZJAM" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <img class="picture" src="/Media/images/new/wwd.png">
+    </div>
+    <div class="success-3">
+        <div class="shadow"></div>
+        <div class="title">
+            “For Coaches and Athletes Everywhere, The Platform Provides the Tools for Success.”
+        </div>
+        <div class="top-separator"></div>
+        <ul>
+            <li>
+                <h2>train</h2>
+                <img src="/Media/images/new/wwd1.png">
+                <div class="text position-relative">
+                    @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                    {
+                        <div class="editable" id="WhatWeDoTrain">
+                            @pageParts["WhatWeDoTrain"]
+                        </div>
+                        <div class="action-wrapper">
+                            <button class="btn btn-primary SaveRouteBtn">Save</button>
+                            <button class="btn btn-default CancelBtn">Cancel</button>
+                        </div>
+                    }
+                </div>
+            </li>
+            <li class="separator"></li>
+            <li>
+                <h2>manage</h2>
+                <img src="/Media/images/new/wwd2.png">
+                <div class="text position-relative">
+                    @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                    {
+                        <div class="editable" id="WhatWeDoManage">
+                            @pageParts["WhatWeDoManage"]
+                        </div>
+                        <div class="action-wrapper">
+                            <button class="btn btn-primary SaveRouteBtn">Save</button>
+                            <button class="btn btn-default CancelBtn">Cancel</button>
+                        </div>
+                    }
+                </div>
+            </li>
+            <li class="separator"></li>
+            <li>
+                <h2>compete</h2>
+                <img src="/Media/images/new/wwd3.png">
+                <div class="text position-relative">
+                    @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                    {
+                        <div class="editable" id="WhatWeDoCompete">
+                            @pageParts["WhatWeDoCompete"]
+                        </div>
+                        <div class="action-wrapper">
+                            <button class="btn btn-primary SaveRouteBtn">Save</button>
+                            <button class="btn btn-default CancelBtn">Cancel</button>
+                        </div>
+                    }
+                </div>
+            </li>
+        </ul>
+        <div class="top-separator"></div>
+        <a class="start-free" href="/join-us">
+            <img src="/Media/images/new/wwdStB.png">
+        </a>
+    </div>
+    <div class="philosophy-wrapper">
+        <div class="philosophy">
+            <h2>Our training philosophy</h2>
+            <article class="position-relative">
+                @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+                {
+                    <div class="editable" id="WhatWeDoArticle">
+                        @pageParts["WhatWeDoArticle"]
+                    </div>
+                    <div class="action-wrapper">
+                        <button class="btn btn-primary SaveRouteBtn">Save</button>
+                        <button class="btn btn-default CancelBtn">Cancel</button>
+                    </div>
+                }
+              
+            </article>
+        </div>
+    </div>
+</div>

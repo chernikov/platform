@@ -1,0 +1,48 @@
+@model platformAthletic.Models.ViewModels.BannerPlaceView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add BannerPlace" : "Edit BannerPlace";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>@(Model.ID == 0 ? "Add BannerPlace" : "Edit BannerPlace")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "BannerPlace", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("ID", Model.ID)
+
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Name
+            </label>
+            <div class="controls">
+                @Html.TextBox("Name", Model.Name)
+                @Html.ValidationMessage("Name")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Width">
+                Width
+            </label>
+            <div class="controls">
+                @Html.TextBox("Width", Model.Width)
+                @Html.ValidationMessage("Width")
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Height">
+                Height
+            </label>
+            <div class="controls">
+                @Html.TextBox("Height", Model.Height)
+                @Html.ValidationMessage("Height")
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

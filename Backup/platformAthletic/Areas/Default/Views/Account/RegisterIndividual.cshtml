@@ -1,0 +1,151 @@
+﻿@model platformAthletic.Models.ViewModels.User.RegisterIndividualView
+
+@{
+    ViewBag.Title = "Individual registration process - Platform Athletics";
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayoutInner.cshtml";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/select.js"></script>
+    <script type="text/javascript" src="/Media/scripts/default/register.js"></script>
+    <script type="text/javascript" src="/Media/scripts/new/individual-register.js"></script>
+}
+
+<div class="individual-register-wrapper">
+    @using (Html.BeginForm("RegisterIndividual", "Account", FormMethod.Post, new { @class = "form", id = "RegisterForm" }))
+    {
+        @Html.Hidden("RegisterType", Model.RegisterType)
+        @Html.Hidden("PromoCodeID", Model.PromoCodeID)
+        @Html.Hidden("Target", Model.Target)
+        @Html.Hidden("ID", Model.ID)
+        <div class="white-wrapper">
+            <div class="block-wrapper">
+                <h2>Lets get to work!</h2>
+                <div class="error-message">
+                    @Html.ValidationMessage("Payment")
+                    @Html.ValidationMessage("Agreement")
+                </div>
+                <div class="left">
+                    @if (@pageParts["IndividualRegisterReferalText"].ToString().Length > 0) { 
+                    <div class="referal-code-wrapper">
+                        @pageParts["IndividualRegisterReferalText"]
+                    </div>
+                    }
+                </div>
+                <div class="right">
+                    <div class="form-group">
+                        <label>First name</label>
+                        @Html.TextBox("FirstName", Model.FirstName)
+                    </div>
+                    <div class="form-group">
+                        <label>Last name</label>
+                        @Html.TextBox("LastName", Model.LastName)
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        @Html.Password("Password", Model.Password)
+                    </div>
+                    <div class="form-group">
+                        <label>Repeat password</label>
+                        @Html.Password("ConfirmPassword", Model.ConfirmPassword)
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        @Html.TextBox("Email", Model.Email, new { placeholder = "Will be username" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-wrapper">
+            <div class="shadow"></div>
+            <div class="block-wrapper">
+                <div class="form-group-2">
+                    <label>Name on card</label>
+                    @Html.TextBox("BillingInfo.NameOnCard", Model.BillingInfo.NameOnCard)
+                </div>
+                <div class="form-group-2">
+                    <label>Type of card</label>
+                    @Html.DropDownList("BillingInfo.CardType", Model.BillingInfo.SelectListCardType, new { @class = "mySelectBoxClass" })
+                </div>
+                <div class="form-group-2">
+                    <label>billing address</label>
+                    @Html.TextBox("BillingInfo.BillingAddress", Model.BillingInfo.BillingAddress)
+                </div>
+                <div class="form-group-2">
+                    <label>Credit card number</label>
+                    @Html.TextBox("BillingInfo.CreditCardNumber", Model.BillingInfo.CreditCardNumber)
+                </div>
+                <div class="form-group-2">
+                    <label>city</label>
+                    @Html.TextBox("BillingInfo.City", Model.BillingInfo.City)
+                </div>
+                <div class="form-group-2">
+                    <label>Expiration date</label>
+                    <div class="expiration-month">
+                        @Html.DropDownList("BillingInfo.ExpirationMonth", Model.BillingInfo.ExpirationMonthSelectList, new { @class = "mySelectBoxClass" })
+                    </div>
+                    <div class="expiration-year">
+                        @Html.DropDownList("BillingInfo.ExpirationYear", Model.BillingInfo.ExpirationYearSelectList, new { @class = "mySelectBoxClass" })
+                    </div>
+                </div>
+                <div class="form-group-2 state">
+                    <label>State</label>
+                    @Html.DropDownList("BillingInfo.StateID", Model.BillingInfo.SelectListStateID, new { @class = "mySelectBoxClass" })
+                </div>
+                <div class="form-group-2">
+                    <div class="sub-group">
+                        <label>CVC</label>
+                        @Html.TextBox("BillingInfo.CVC", Model.BillingInfo.CVC)
+                    </div>
+                </div>
+                <div class="form-group-2">
+                    <div class="sub-group">
+                        <label>Zip</label>
+                        @Html.TextBox("BillingInfo.ZipCode", Model.BillingInfo.ZipCode)
+                    </div>
+                </div>
+                <br />
+                <div class="form-group-2">
+                    <div class="sub-group">
+                        <label>Referral code</label>
+                        @Html.TextBox("ReferralCode", Model.ReferralCode, new { @class = "short" })
+                        <button class="apply-btn" id="ApplyReferralCode">Apply</button>
+                    </div>
+                    <div class="sub-group-2">
+                        <label>Total</label>
+                        @Html.TextBox("TotalSum", Model.TotalSum.ToString("C"), new { @class = "shortest" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-wrapper">
+            <div class="block-wrapper">
+                <div class="form-group">
+                    <label>
+                        <div class="select">
+                            <div class="checkbox-wrp">
+                                <div class="checkbox-image"></div>
+                                @Html.CheckBox("AgreementTermCondition", Model.AgreementTermCondition, new { @class = "selectCheckBox" })
+                            </div>
+                        </div>
+                        <a href="/term-and-condition" target="_blank">Terms and Conditions</a>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <div class="select">
+                            <div class="checkbox-wrp">
+                                <div class="checkbox-image"></div>
+                                @Html.CheckBox("AgreementPrivacyPolicy", Model.AgreementPrivacyPolicy, new { @class = "selectCheckBox" })
+                            </div>
+                        </div>
+                        <a href="/privacy" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+                <div class="btn-wrapper">
+                    <button class="submit" id="StartFreeTrial">Start free Trial!</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

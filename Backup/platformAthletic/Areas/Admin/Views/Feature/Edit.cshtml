@@ -1,0 +1,28 @@
+@model platformAthletic.Models.ViewModels.FeatureCatalogView
+@{
+    ViewBag.Title = Model.ID == 0 ? "Add Catalog" : "Edit Catalog";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>@(Model.ID == 0 ? "Add Catalog" : "Edit Catalog")</h2>
+<p></p>
+@using (Html.BeginForm("Edit", "Feature", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        @Html.Hidden("_ID", Model._ID)
+        <div class="control-group">
+            <label class="control-label" for="Header">
+                Header
+            </label>
+            <div class="controls">
+                @Html.TextBox("Header", Model.Header)
+                @Html.ValidationMessage("Header")
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}

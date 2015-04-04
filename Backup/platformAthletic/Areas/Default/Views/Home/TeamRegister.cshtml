@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Team Register - Platform Athletics";
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayoutInner.cshtml";
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/select.js"></script>
+    <script type="text/javascript" src="/Media/scripts/new/team-register.js"></script>
+}
+
+<div class="team-register-wrapper">
+    <form class="form">
+        <div class="white-wrapper">
+            <div class="block-wrapper">
+                <h2>Lets get to work!</h2>
+                <div class="left">
+                    <div class="referal-code-wrapper">
+                        Use referal<br/>
+                        code<br />
+                        “platform”<br />
+                        now through may<br />
+                        to lock in<br />
+                        50% off
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="form-group">
+                        <label>School</label>
+                        <input type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">State</label>
+                        <select required class="mySelectBoxClass" name="rstate">
+                            <option value="AL">AL</option>
+                            <option value="AK">AK</option>
+                            <option value="AZ">AZ</option>
+                            <option value="AR">AR</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DE">DE</option>
+                            <option value="DC">DC</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="IA">IA</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="ME">ME</option>
+                            <option value="MD">MD</option>
+                            <option value="MA">MA</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MS">MS</option>
+                            <option value="MO">MO</option>
+                            <option value="MT">MT</option>
+                            <option value="NE">NE</option>
+                            <option value="NV">NV</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>
+                            <option value="NY">NY</option>
+                            <option value="NC">NC</option>
+                            <option value="ND">ND</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VT">VT</option>
+                            <option value="VA">VA</option>
+                            <option value="WA">WA</option>
+                            <option value="WV">WV</option>
+                            <option value="WI">WI</option>
+                            <option value="WY">WY</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>First name</label>
+                        <input type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Last name</label>
+                        <input type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" placeholder="Will be username" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gray-wrapper">
+            <div class="shadow"></div>
+            <div class="block-wrapper">
+                <div class="form-group-2">
+                    <label>Password</label>
+                    <input type="password" />
+                </div>
+                <div class="form-group-2">
+                    <label>Phone</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group-2">
+                    <label>Repeat password</label>
+                    <input type="password" />
+                </div>
+                <div class="form-group-2">
+                    <div class="sub-group">
+                        <label>Referral code</label>
+                        <input type="text" class="short" />
+                        <button class="apply-btn">Apply</button>
+                    </div>
+                    <div class="sub-group-2">
+                        <label>Total</label>
+                        <input type="text" class="shortest" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear-wrapper">
+            <div class="block-wrapper">
+                <div class="form-group">
+                    <label>
+                        <div class="select">
+                            <div class="checkbox-wrp">
+                                <div class="checkbox-image"></div>
+                                <input type="checkbox" class="selectCheckBox" />
+                            </div>
+                        </div>
+                        <span>Terms and Conditions</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <div class="select">
+                            <div class="checkbox-wrp">
+                                <div class="checkbox-image"></div>
+                                <input type="checkbox" class="selectCheckBox" checked />
+                            </div>
+                        </div>
+                        <span>Privacy Policy</span>
+                    </label>
+                </div>
+                <div class="btn-wrapper">
+                    <button class="submit">Start free Trial!</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

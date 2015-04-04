@@ -1,0 +1,61 @@
+﻿@model platformAthletic.Models.Info.YoutubeInfo
+@{
+    ViewBag.Title = "What We Do - Platform Athletics";
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayoutInner.cshtml";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+
+<div class="what-we-do-wrapper">
+    <div class="white-wrapper">
+        <div class="wide-block-wrapper">
+            <div class="video-box">
+                @Html.Raw(Model.VideoCode)
+            </div>
+            <img class="picture" src="/Media/images/new/wwd.png">
+        </div>
+    </div>
+    <div class="success-3">
+        <div class="shadow"></div>
+        <div class="title">
+            “For Coaches and Athletes Everywhere, The Platform Provides the Tools for Success.”
+        </div>
+        <div class="top-separator"></div>
+        <ul>
+            <li>
+                <h2>train</h2>
+                <img src="/Media/images/new/wwd1.png">
+                <div class="text">
+                    @pageParts["WhatWeDoTrain"]
+                </div>
+            </li>
+            <li class="separator"></li>
+            <li>
+                <h2>manage</h2>
+                <img src="/Media/images/new/wwd2.png">
+                <div class="text">
+                    @pageParts["WhatWeDoManage"]
+                </div>
+            </li>
+            <li class="separator"></li>
+            <li>
+                <h2>compete</h2>
+                <img src="/Media/images/new/wwd3.png">
+                <div class="text">
+                    @pageParts["WhatWeDoCompete"]
+                </div>
+            </li>
+        </ul>
+        <div class="top-separator"></div>
+        <a class="start-free" href="/join-us">
+            <img src="/Media/images/new/wwdStB.png">
+        </a>
+    </div>
+    <div class="philosophy-wrapper">
+        <div class="philosophy">
+            <h2>Our training philosophy</h2>
+            <article>
+                @pageParts["WhatWeDoArticle"]
+            </article>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,393 @@
+﻿:focus {
+    outline: none;
+}
+
+.platform {
+}
+
+    .platform .navbar {
+        margin-bottom: 0;
+        height: 61px;
+    }
+
+    .platform .navbar-nav {
+        margin: 0 0;
+    }
+
+    .platform .content {
+        margin-top: 61px;
+    }
+
+    .platform .top-menu {
+    }
+
+        .platform .top-menu li {
+            float: left;
+        }
+
+        .platform .top-menu .dropdown-menu li {
+            float: none;
+        }
+
+        .platform .top-menu .dropdown.open {
+            /*    width : 200px;*/
+        }
+
+        .platform .top-menu li > a {
+            color: #fff;
+        }
+
+            .platform .top-menu li > a > i {
+                font-size: 23px;
+            }
+
+            .platform .top-menu li > a > .label {
+                border-radius: 20px;
+                position: relative;
+                top: -15px;
+                left: -15px;
+            }
+
+        .platform .top-menu .dropdown-menu > li > a {
+            color: #4d4d4d;
+        }
+
+    .platform .navbar-default .top-menu.navbar-nav > li > a {
+        height: 61px;
+    }
+
+    .platform .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+
+    /* 
+    Sometimes the sub menus get too large for the page and prevent the menu from scrolling, limiting functionality
+    A quick fix is to change.platform .side-menu to 
+
+    -> position:absolute
+    
+    and uncomment the code below.
+    You also need to uncomment 
+    
+    -> <div class="absolute-wrapper"> </div> in the html file
+
+    you also need to tweek the animation. Just uncomment the code in that section
+    --------------------------------------------------------------------------------------------------------------------
+    If you want to make it really neat i suggest you look into an alternative like http://areaaperta.com/nicescroll/
+    This will allow the menu to say fixed on body scoll and scoll on the side bar if it get to large
+*/
+    /*.absolute-wrapper{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f8f8;
+    border-right: 1px solid #e7e7e7;
+}*/
+
+    .platform .side-menu {
+        position: fixed;
+        width: 300px;
+        height: 100%;
+        background-color: #495b6c;
+    }
+
+        .platform .side-menu .navbar {
+            border: none;
+            background-color: #495b6c;
+            height : auto;
+        }
+
+        .platform .side-menu .navbar-header {
+            width: 100%;
+        }
+
+        .platform .side-menu .navbar-nav li {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid #3c4c5d;
+        }
+
+    .platform .navbar-default .navbar-nav > li > a {
+        color: #fff;
+        text-shadow: none;
+        padding-top: 20px;
+    }
+
+        .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
+            margin-right: 15px;
+        }
+
+        .platform .navbar-default .navbar-nav > li > a:hover {
+            color: #fff;
+            text-shadow: none;
+        }
+
+    .platform .side-menu .navbar-nav .active a {
+        color: #fc8675;
+        background-color: #ffffff;
+    }
+
+        .platform .navbar-default .navbar-nav > .active > a:hover {
+            color: #fc8675;
+        }
+
+        .platform .side-menu .navbar-nav .active a > span.glyphicon {
+            color: #495b6c;
+        }
+
+
+    .platform .side-menu .navbar-nav li a {
+        padding: 15px;
+    }
+
+        .platform .side-menu .navbar-nav li a .glyphicon {
+            padding-right: 10px;
+        }
+
+    .platform .side-menu #dropdown {
+        border: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+      
+
+    .platform .side-menu .brand-name-wrapper {
+        min-height: 50px;
+    }
+
+        .platform .side-menu .brand-name-wrapper .navbar-brand {
+            display: block;
+        }
+   
+    /* Main body section */
+    .side-body {
+        margin-left: 300px;
+    }
+
+
+/* small screen */
+@media (max-width: 768px) {
+
+    .platform .navbar-nav .open .dropdown-menu {
+        background-color: #eeeeee;
+        float: left;
+    }
+
+    .platform .side-menu {
+        position: relative;
+        width: 100%;
+        height: 0;
+        border-right: 0;
+        border-bottom: 1px solid #495b6c;
+    }
+
+        .platform .side-menu .brand-name-wrapper .navbar-brand {
+            display: inline-block;
+        }
+    /* Slide in animation */
+    @-moz-keyframes slidein {
+        0% {
+            left: -300px;
+        }
+
+        100% {
+            left: 10px;
+        }
+    }
+
+    @-webkit-keyframes slidein {
+        0% {
+            left: -300px;
+        }
+
+        100% {
+            left: 10px;
+        }
+    }
+
+    @keyframes slidein {
+        0% {
+            left: -300px;
+        }
+
+        100% {
+            left: 10px;
+        }
+    }
+
+    @-moz-keyframes slideout {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: -300px;
+        }
+    }
+
+    @-webkit-keyframes slideout {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: -300px;
+        }
+    }
+
+    @keyframes slideout {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: -300px;
+        }
+    }
+    /* Slide side menu*/
+    /* Add .absolute-wrapper.slide-in for scrollable menu -> see top comment */
+    .platform .side-menu-container > .navbar-nav.slide-in {
+        -moz-animation: slidein 300ms forwards;
+        -o-animation: slidein 300ms forwards;
+        -webkit-animation: slidein 300ms forwards;
+        animation: slidein 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .platform .side-menu-container > .navbar-nav {
+        /* Add position:absolute for scrollable menu -> see top comment */
+        position: fixed;
+        left: -300px;
+        width: 300px;
+        top: 111px;
+        height: 100%;
+        border-right: none;
+        margin-left : -10px;
+        background-color: #495b6c;
+        -moz-animation: slideout 300ms forwards;
+        -o-animation: slideout 300ms forwards;
+        -webkit-animation: slideout 300ms forwards;
+        animation: slideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    /* Uncomment for scrollable menu -> see top comment */
+    /*.absolute-wrapper{
+        width:285px;
+        -moz-animation: slideout 300ms forwards;
+        -o-animation: slideout 300ms forwards;
+        -webkit-animation: slideout 300ms forwards;
+        animation: slideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }*/
+    @-moz-keyframes bodyslidein {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 300px;
+        }
+    }
+
+    @-webkit-keyframes bodyslidein {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 300px;
+        }
+    }
+
+    @keyframes bodyslidein {
+        0% {
+            left: 0;
+        }
+
+        100% {
+            left: 300px;
+        }
+    }
+
+    @-moz-keyframes bodyslideout {
+        0% {
+            left: 300px;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+
+    @-webkit-keyframes bodyslideout {
+        0% {
+            left: 300px;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+
+    @keyframes bodyslideout {
+        0% {
+            left: 300px;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+    /* Slide side body*/
+    .side-body {
+        margin-left: 0;
+        margin-top: 49px;
+        position: relative;
+        -moz-animation: bodyslideout 300ms forwards;
+        -o-animation: bodyslideout 300ms forwards;
+        -webkit-animation: bodyslideout 300ms forwards;
+        animation: bodyslideout 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .body-slide-in {
+        -moz-animation: bodyslidein 300ms forwards;
+        -o-animation: bodyslidein 300ms forwards;
+        -webkit-animation: bodyslidein 300ms forwards;
+        animation: bodyslidein 300ms forwards;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    /* Hamburger */
+    .platform .navbar-toggle {
+        border: 0;
+        float: left;
+        padding: 18px;
+        margin: 0;
+        border-radius: 0;
+        background-color: #65cea7;
+    }
+     .platform .navbar-toggle:hover, .platform .navbar-toggle:focus
+     {
+        background-color: #65cea7;
+    }
+
+    .platform .navbar-default .navbar-toggle .icon-bar {
+        background-color : #fff;
+    }
+    /* Dropdown tweek */
+    #dropdown .panel-body .navbar-nav {
+        margin: 0;
+    }
+}

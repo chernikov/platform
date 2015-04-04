@@ -1,0 +1,49 @@
+@model IEnumerable<platformAthletic.Model.FeatureCatalog>
+@{
+    ViewBag.Title = "Feature train";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/admin/feature-list.js"></script>
+}
+<h2>Features
+</h2>
+@Html.ActionLink("Create", "Create", "Feature", null, new { @class = "btn" })
+
+
+<div class="feature-list featureList">
+    @foreach (var item in Model)
+    {
+        <div class="item featureItem" data-id="@item.ID">
+
+            <div class="title">
+                @item.Header
+            </div>
+            <div class="actions">
+                @Html.ActionLink("Create train", "CreateText", "Feature", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Edit", "Edit", "Feature", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "Feature", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </div>
+            <div class="sub-wrapper">
+                <div class="sub-forum featureTextList">
+                    @foreach (var subText in item.SubTexts)
+                    {
+                        <div class="item featureTextItem" data-id="@subText.ID">
+
+                            <div class="subFeatureItem">
+                            </div>
+                            <div class="title">
+                                @subText.Header
+                            </div>
+                            <div class="actions">
+                                @Html.ActionLink("Edit", "EditText", "Feature", new { id = subText.ID }, new { @class = "btn" })
+                                @Html.ActionLink("Remove", "DeleteText", "Feature", new { id = subText.ID }, new { @class = "btn btn-danger" })
+                            </div>
+                        </div> 
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

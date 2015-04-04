@@ -1,0 +1,68 @@
+﻿@model platformAthletic.Model.User
+@{
+    var percentage = (Model.AnyUserPlayer ? 2 : 0) + (Model.VisitGettingStartedPage == true ? 2 : 0) +
+         (Model.AnyUserEquipments == true ? 2 : 0) + (!string.IsNullOrWhiteSpace(Model.OwnTeam.LogoPath) ? 2 : 0);
+    var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["left side todo-banner"];
+}
+@if (percentage < 8)
+{
+    <div class="board-wrp board-todo primaryColorBorder">
+        <div class="board-header primaryColorBg">
+            <div class="title">To Do List</div>
+        </div>
+        <div class="board-content clear">
+            <div class="progress-wrp">
+                <div class="title">Team Progress</div>
+                <div class="bar-wrp">
+                    <div class="insert-bar primaryColorBg" style="width : @(percentage * 28)px;">
+                    </div>
+                </div>
+                <div class="legend-wrp">
+                    <div class="legend-0">
+                        <span>|</span><br />
+                        0%
+                    </div>
+                    <div class="legend-50">
+                        <span>|</span><br />
+                        50%
+                    </div>
+                    <div class="legend-100">
+                        <span>|</span><br />
+                        100%
+                    </div>
+                    <div class="todo-wrp">
+                        <div class="todo-item @(Model.AnyUserPlayer ? "checked" : "unchecked")">
+                            <div class="icon sprite @(Model.AnyUserPlayer ? "primaryColorBg" : "")">
+                            </div>
+                            <div class="text"><a href="/team">Click here to add at least one Player to team roster on the My Team page.</a></div>
+                        </div>
+                        <div class="todo-item @(Model.AnyUserEquipments ? "checked" : "unchecked")">
+                            <div class="icon sprite @(Model.AnyUserEquipments ? "primaryColorBg" : "")">
+                            </div>
+                            <div class="text"><a href="/equipment">Click here to go to Equipment Log and enter any applicable pieces of Equipment.</a></div>
+                        </div>
+                        <div class="todo-item @(Model.VisitGettingStartedPage == true ? "checked" : "unchecked")">
+                            <div class="icon sprite @(Model.VisitGettingStartedPage == true ? "primaryColorBg" : "")">
+                            </div>
+                            <div class="text"><a href="/getting-started">Click here to read the “Getting Started” manual to learn about the great features The Platform has to offer.</a></div>
+                        </div>
+                        <div class="todo-item @(!string.IsNullOrWhiteSpace(Model.OwnTeam.LogoPath) ? "checked" : "unchecked")">
+                            <div class="icon sprite @(!string.IsNullOrWhiteSpace(Model.OwnTeam.LogoPath) ? "primaryColorBg" : "")">
+                            </div>
+                            <div class="text"><a href="/account">Click here to upload team logo.</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (banner != null)
+    {
+        <div class="banner">
+            @Html.Raw(banner.Show)
+        </div>
+    }
+}

@@ -1,0 +1,80 @@
+﻿@model platformAthletic.Models.Info.PriceInfoView
+@{
+    ViewBag.Title = "Join Us - Platform Athletics";
+    Layout = "~/Areas/Default/Views/Shared/_CmsLayoutInner.cshtml";
+    var pageParts = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).PageParts;
+}
+<div class="join-us-wrapper">
+    <div class="select-wrapper">
+		<div class="block-wrapper">
+            <h2>Put the <span>platform</span> to work for you today!</h2>
+			<div class="team">
+				<a href="/team-registration">
+					<img src="/Media/images/new/team-select.png" />
+				</a>
+			</div>
+			<div class="separator"></div>
+			<div class="individual">
+				<a href="/individual-registration">
+					<img src="/Media/images/new/individual-select.png" />
+				</a>
+			</div>
+		</div>
+    </div>
+    <div class="team-select">
+        <div class="shadow"></div>
+        <h2>get the platform for your team</h2>
+        <br />
+        <h3>
+            Put our 60-day FREE Trial to the Test!
+        </h3>
+        <br />
+        <h3>
+            No Credit Card. No Commitment.
+        </h3>
+        <div class="proposal">
+            <div class="left">
+                @pageParts["JoinUsFirstTeamList"]
+            </div>
+            <div class="right">
+                @pageParts["JoinUsSecondTeamList"]
+            </div>
+        </div>
+        <div class="start-today-wrapper">
+            <a href="/team-registration">
+                <span>Start Today!</span>
+                <span class="price">@Model.TeamPrice.ToString("C0")<span class="year">/yr</span></span>
+            </a>
+        </div>
+    </div>
+    <div class="individual-select">
+        <h2>get the platform for yourself</h2>
+        <br />
+        <h3>
+            Why pay $50/hr for a personal trainer when you can
+        </h3>
+        <br />
+        <h3>
+            get a full year’s program
+        </h3><br />
+        <h3>
+            and the tools needed for success for a fraction of the cost?
+        </h3>
+        <div class="proposal">
+            <div class="left">
+                @pageParts["JoinUsSecondIndividualList"]
+            </div>
+            <div class="right">
+                @pageParts["JoinUsSecondIndividualmList"]
+            </div>
+        </div>
+        <div class="start-today-wrapper">
+            <a href="/individual-registration">
+                <span>Start Today!</span>
+                <span class="price">@Model.IndividualPrice.ToString("C0")<span class="year">/yr</span></span>
+            </a>
+        </div>
+    </div>
+
+</div>
+

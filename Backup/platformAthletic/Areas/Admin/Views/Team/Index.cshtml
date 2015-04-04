@@ -1,0 +1,56 @@
+@model IEnumerable<platformAthletic.Model.Team>
+@{
+    ViewBag.Title = "Teams";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Teams
+</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Name
+            </th>
+            <th>Coach
+            </th>
+            <th>State
+            </th>
+            <th>Count of players
+            </th>
+            <th>
+                Max Count
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.User.FirstName @item.User.LastName
+            </td>
+            <td>
+                @item.State.Name
+            </td>
+            <td>
+                @item.CountPlayers
+            </td>
+            <td>
+                @item.MaxCount
+            </td>
+            <td>
+               @Html.ActionLink("Edit", "Edit", "Team", new { id = item.ID }, new { @class = "btn" })
+
+            </td>
+        </tr>
+    }
+</table>

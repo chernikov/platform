@@ -1,0 +1,56 @@
+@model IEnumerable<platformAthletic.Model.Feedback>
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2>Feedbacks
+</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Name
+            </th>
+            <th>Email
+            </th>
+            <th>Phone
+            </th>
+            <th>Added Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (!item.IsReaded)
+                {
+                    <span class="badge badge-important">@item.ID</span>
+                }
+                else
+                {
+                    @item.ID
+                }
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td>
+                @item.AddedDate.ToString("d")
+            </td>
+            <td>
+                @Html.ActionLink("Show", "Item", "Feedback", new { id = item.ID }, new { @class = "btn" })
+                @Html.ActionLink("Remove", "Delete", "Feedback", new { id = item.ID }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+</table>

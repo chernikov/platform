@@ -664,7 +664,6 @@ namespace platformAthletic.Model
         
         #endregion 
 
-
         #region Level
 
         IQueryable<Level> Levels { get; }
@@ -677,7 +676,6 @@ namespace platformAthletic.Model
 
         #endregion 
         
-
         #region Sport
 
         IQueryable<Sport> Sports { get; }
@@ -689,7 +687,6 @@ namespace platformAthletic.Model
         bool RemoveSport(int idSport);
 
         #endregion 
-        
 
         #region UserFieldPosition
 
@@ -700,6 +697,17 @@ namespace platformAthletic.Model
         bool RemoveUserFieldPosition(int idUserFieldPosition);
 
         #endregion 
-        
+
+        #region School
+
+        IQueryable<School> Schools { get; }
+
+        bool CreateSchool(School instance);
+
+        bool UpdateSchool(School instance);
+
+        bool RemoveSchool(int idSchool);
+
+        #endregion 
     }
 }

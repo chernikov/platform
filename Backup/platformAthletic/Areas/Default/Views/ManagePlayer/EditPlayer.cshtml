@@ -1,0 +1,52 @@
+﻿@model platformAthletic.Models.ViewModels.User.PlayerUserView
+<div class="popup-roster-wrp">
+    <div class="inner-wrp">
+        <div class="popup-title">Edit Player</div>
+        @using (Html.BeginForm("EditPlayer", "ManagePlayer", FormMethod.Post, new { id = "EditPlayerForm" }))
+        {
+            @Html.Hidden("ID", Model.ID)
+            @Html.Hidden("PlayerOfTeamID", Model.PlayerOfTeamID)
+            <div class="form">
+                <div class="bg-blur-top"></div>
+                <div class="item-input">
+                    <div class="name"><span>*</span> First Name:</div>
+                    <div class="input">
+                        @Html.TextBox("FirstName", Model.FirstName)
+                    </div>
+                    @Html.ValidationMessage("FirstName")
+                </div>
+                <div class="item-input">
+                    <div class="name"><span>*</span> Last Name:</div>
+                    <div class="input">
+                        @Html.TextBox("LastName", Model.LastName)
+                    </div>
+                    @Html.ValidationMessage("LastName")
+                </div>
+                <div class="item-input">
+                    <div class="name"><span>*</span> Email (User ID):</div>
+                    <div class="input">
+                      @Html.TextBox("Email", Model.Email)
+                    </div>
+                     @Html.ValidationMessage("Email")
+                </div>
+                <div class="item-input">
+                    <div class="name"><span>*</span> Position:</div>
+                    <div class="select-state">
+                        @Html.DropDownList("FieldPositionID", Model.SelectListFieldPositionID, new { @class = "dropdown-styled" })
+                    </div>
+                </div>
+                <div class="item-input">
+                    <div class="name"><span>*</span> Group:</div>
+                    <div class="select-state">
+                        @Html.DropDownList("GroupID", Model.SelectListGroupID, new { @class = "dropdown-styled" })
+                    </div>
+                </div>
+                <div class="bg-blur-bottom"></div>
+            </div>
+            <div class="button-wrp">
+                <button class="btn-active primaryColorBg" id="EditPlayerBtn">Save</button>
+                <button class="btn-gray">Cancel</button>
+            </div>
+        }
+    </div>
+</div>

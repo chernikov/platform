@@ -1,8 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D5E9A25A-AA2E-46B7-A4F7-4095B20FA012}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{FDF7B81A-EF61-4F81-87F6-CC5AD46B599A}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\platformback.bak = ..\..\..\..\platformback.bak
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManageAttribute", "ManageAttribute\ManageAttribute.csproj", "{05960685-9A37-4B71-A94E-D009358ABA71}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic.Tools", "platformAthletic.Tools\platformAthletic.Tools.csproj", "{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}"
@@ -11,8 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic", "platfor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic.Model", "platformAthletic.Model\platformAthletic.Model.csproj", "{54305171-F603-4070-9E75-1F7173681E8A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D5E9A25A-AA2E-46B7-A4F7-4095B20FA012}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic.IntegrationTest", "platformAthletic.IntegrationTest\platformAthletic.IntegrationTest.csproj", "{9B19CF7A-7710-436A-971E-43D411789B74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic.UnitTest", "platformAthletic.UnitTest\platformAthletic.UnitTest.csproj", "{A86BCC92-47CC-47C0-9FF8-254198693A6A}"
@@ -20,11 +25,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic.SeleniumTest", "platformAthletic.SeleniumTest\platformAthletic.SeleniumTest.csproj", "{C13ED9CB-354E-48C4-91A1-4984077213F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateData", "GenerateData\GenerateData.csproj", "{6B127020-1BCC-4D06-A290-9E30726FB10B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{FDF7B81A-EF61-4F81-87F6-CC5AD46B599A}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\platformback.bak = ..\..\..\..\platformback.bak
-	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "platformAthletic.Db", "platformAthletic.Db\platformAthletic.Db.sqlproj", "{E4EE3736-9289-4946-BFF2-1F801BFD0221}"
 EndProject

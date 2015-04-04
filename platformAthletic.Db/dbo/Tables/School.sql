@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[School]
+(
+	[ID]  INT            IDENTITY (1, 1) NOT NULL,
+	[StateID] INT NOT NULL,
+	[Name] NVARCHAR(50) NOT NULL,
+	CONSTRAINT [PK_School] PRIMARY KEY CLUSTERED ([ID] ASC),
+	CONSTRAINT [FK_School_State] FOREIGN KEY ([StateID]) REFERENCES [dbo].[State] ([ID]),
+)
