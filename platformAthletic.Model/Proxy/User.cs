@@ -403,5 +403,55 @@ namespace platformAthletic.Model
                 return null;
             }
         }
+
+        public IEnumerable<UserFieldPosition> SubPositions
+        {
+            get
+            {
+                return UserFieldPositions.AsEnumerable();
+            }
+        }
+
+        #region 
+        public int WeekAttendanceCount
+        {
+            get
+            {
+                int diff = DateTime.Now.DayOfWeek - DayOfWeek.Sunday;
+                if (diff < 0)
+                {
+                    diff += 7;
+                }
+                var startWeek =  DateTime.Now.AddDays(-1 * diff).Date;
+                return UserAttendances.Count(p => p.AddedDate > startWeek);
+            }
+        }
+
+        public int MonthAttendanceCount
+        {
+            get
+            {
+                var startMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                return UserAttendances.Count(p => p.AddedDate > startMonth);
+            }
+        }
+
+        public int YearAttendanceCount
+        {
+            get
+            {
+                var startYear = new DateTime(DateTime.Now.Year,1, 1);
+                return UserAttendances.Count(p => p.AddedDate > startYear);
+            }
+        }
+
+        public int AllAttendanceCount
+        {
+            get
+            {
+                return UserAttendances.Count();
+            }
+        }
+        #endregion 
     }
 }

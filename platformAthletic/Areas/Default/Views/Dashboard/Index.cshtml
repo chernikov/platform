@@ -1,53 +1,56 @@
-﻿@model IEnumerable<platformAthletic.Model.User>
+﻿@model PageableData<User>
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
     var inTraining = currentUser.IsWeekAvaiable;
+    var groupId = (int?)ViewBag.GroupId;
 }
-@section header
-{
-    <script src="/Media/scripts/default/checkbox.js" type="text/javascript"></script>
-    <script src="/Media/scripts/default/styled-select-list.js" type="text/javascript"></script>
-    <script src="/Media/scripts/default/team.js" type="text/javascript"></script>
-    <script src="/Media/scripts/default/updown.js" type="text/javascript"></script>
+
+@section header {
+    <script src="~/Scripts/hogan.js"></script>
+    <script src="~/Scripts/typeahead.jquery.js"></script>
+    <script src="~/Scripts/default/dashboard.js"></script>
+    <script src="~/Scripts/default/team-player-info.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
 }
 <div class="breadcrumb">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-3 overflow">
             <ol>
                 <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
-                <li class="active">Dashboard</li>
+                <li class="active"><a href="/dashboard">Dashboard</a></li>
             </ol>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3">
             <button class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="SEARCH ATHLETE">
-                <span class="input-group-btn">
-                    <button class="btn btn-aslink" type="button"><span class="glyphicon glyphicon-search"></button>
-                </span>
-            </div><!-- /input-group -->
+            @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
+            {
+                <div class="input-group">
+                    <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
+                    <span class="input-group-btn">
+                        <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></button>
+                    </span>
+                </div>
+            }
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <div class="custom-style">
-                <select class="form-control">
-                    <option>ALL GROUPS</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <div></div>
+        @if (ViewBag.SelectedListGroups != null)
+        {
+
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="custom-style">
+                    @Html.DropDownList("GroupId", ViewBag.SelectedListGroups as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    <div></div>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-6 col-sm-12 top-padding">
-        <span class="glyphicon glyphicon-fullscreen pull-right"></span>
+<div class="row  row-same-height">
+    <div class="col-lg-12 col-sm-12 col-md-12 top-padding" id="TablePart">
+        <span class="glyphicon glyphicon-fullscreen pull-right clickable" id="FullTable"></span>
         <div class="row">
             <div class="col-lg-6 col-sm-6">
                 <h3>
@@ -71,16 +74,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.List)
                 {
-                    <tr>
+                    <tr class="user-item">
                         <td>
                             <div class="styled-checkbox">
                                 <input type="checkbox" id="Attendance_@item.ID" @(item.HasAttendanceToday ? "checked" : "") />
                                 <label for="Attendance_@item.ID"></label>
                             </div>
                         </td>
-                        <td>
+                        <td class="user-name" data-id="@item.ID">
                             @item.FirstName @item.LastName
                         </td>
                     </tr>
@@ -89,146 +92,13 @@
         </table>
         <div class="text-center">
             <ul class="pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
+                @for (int i = 1; i <= Model.CountPage; i++)
+                {
+                    <li class="@(i == Model.PageNo ? "active": "")"><a href="@Url.Action("Index", new {groupId, page = i})">@i</a></li>
+                }
             </ul>
         </div>
-
     </div>
-    <div class="col-lg-6 user-part top-padding">
-        <div class="row">
-            <div class="col-lg-12 no-padding-left">
-                <div class="pull-right">
-                    <span class="glyphicon glyphicon-print"></span>
-                </div>
-                <h3>PLAYER INFORMATION</h3>
-                <div class="row user">
-                    <div class="col-lg-6 no-padding-left">
-                        <div class="platform-icon">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h1>BEN DEGIGLIO</h1>
-                        <dl class="dl-horizontal">
-                            <dt>HEIGHT</dt>
-                            <dd>6'3''</dd>
-                            <dt>WEIGHT (lbs)</dt>
-                            <dd>200</dd>
-                        </dl>
-
-                        <dl class="power dl-horizontal">
-                            <dt>BENCH</dt>
-                            <dd>
-                                <button class="btn btn-danger btn-xs">-</button>
-                                <div class="value">200</div>
-                                <button class="btn btn-green btn-xs">+</button>
-                            </dd>
-                            <dt>CLEAN</dt>
-                            <dd>
-                                <button class="btn btn-danger btn-xs">-</button>
-                                <div class="value">250</div>
-                                <button class="btn btn-green btn-xs">+</button>
-                            </dd>
-                            <dt>SQUAT</dt>
-                            <dd>
-                                <button class="btn btn-danger btn-xs">-</button>
-                                <div class="value">300</div>
-                                <button class="btn btn-green btn-xs">+</button>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <dl class="dl-horizontal sport">
-                            <dt>SPORT:</dt>
-                            <dd>American Football</dd>
-                        </dl>
-                    </div>
-                    <div class="col-lg-6">
-                        <dl class="dl-horizontal sport-2">
-                            <dt>POSITION:</dt>
-                            <dd>Defensive Back</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel">
-                    <div class="pull-left">
-                        <a class="btn"><span class="glyphicon glyphicon-arrow-left"></span></a>
-                    </div>
-                    <div class="pull-right">
-                        <a class="btn"><span class="glyphicon glyphicon-arrow-right"></span></a>
-                    </div>
-                    <h1 class="text-center">MARCH 2015</h1>
-                </div>
-                
-                <table class="table table-calendar">
-                    <thead>
-                        <tr>
-                            <th>S</th>
-                            <th>M</th>
-                            <th>T</th>
-                            <th>W</th>
-                            <th>T</th>
-                            <th>F</th>
-                            <th>S</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="muted"></td>
-                            <td class="muted"></td>
-                            <td class="muted"></td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>13</td>
-                            <td>14</td>
-                            <td>15</td>
-                            <td>16</td>
-                            <td>17</td>
-                            <td>18</td>
-                        </tr>
-                        <tr>
-                            <td>19</td>
-                            <td><strong>20</strong></td>
-                            <td><span>21</span></td>
-                            <td>22</td>
-                            <td>23</td>
-                            <td>24</td>
-                            <td>25</td>
-                        </tr>
-                        <tr>
-                            <td>26</td>
-                            <td>27</td>
-                            <td>28</td>
-                            <td>29</td>
-                            <td class="muted"></td>
-                            <td class="muted"></td>
-                            <td class="muted"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div id="UserInfoWrapper" class="col-lg-6 col-md-12 col-sm-12 user-part top-padding">
     </div>
 </div>

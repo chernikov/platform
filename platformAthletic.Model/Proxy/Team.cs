@@ -46,6 +46,14 @@ namespace platformAthletic.Model
             }
         }
 
+        public IQueryable<User> ActiveUsers
+        {
+            get
+            {
+                return Users.Where(p => !p.IsDeleted).AsQueryable();
+            }
+        }
+
 
         public IEnumerable<User> SubUsers
         {

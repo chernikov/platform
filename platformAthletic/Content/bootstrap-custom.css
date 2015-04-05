@@ -2,6 +2,22 @@
     outline: none;
 }
 
+@media (min-width: 1200px) {
+    .row-same-height {
+        display: table;
+        width: 100%;
+        /* fix overflow */
+        table-layout: fixed;
+    }
+
+    .col-lg-height {
+        display: table-cell;
+        float: none !important;
+        vertical-align: top;
+    }
+}
+
+
 .no-padding-left {
     padding-left: 0 !important;
 }
@@ -105,6 +121,11 @@
             border: none;
             background-color: #495b6c;
             height: auto;
+        }
+
+        .platform .side-menu .navbar-fixed-top {
+            top: 61px;
+            background-color: #495b6c;
         }
 
         .platform .side-menu .navbar-header {
@@ -554,7 +575,7 @@
         font-family: 'Montserrat', sans-serif;
         font-size: 18px;
         font-weight: bold;
-        margin-top: 0;
+        margin-top: 20px;
     }
 
 dl.power {
@@ -627,8 +648,8 @@ dl.sport-2 {
     border-bottom-right-radius: 0;
     margin-bottom: 0;
     height: 50px;
-    padding-top : 10px;
-    margin-top : 30px;
+    padding-top: 10px;
+    margin-top: 30px;
 }
 
     .platform .panel a {
@@ -640,18 +661,17 @@ dl.sport-2 {
         font-size: 16px;
         font-weight: bold;
         color: #33485c;
-        margin : 10px 0 0 0 ;
+        margin: 10px 0 0 0;
     }
 
 .platform .table-calendar {
     margin-top: 0;
-    font-family : 'Myriad Pro';
+    font-family: 'Myriad Pro';
 }
 
     .platform .table-calendar thead {
         background-color: #fff;
         color: #63cda6;
-        
     }
 
         .platform .table-calendar thead tr th {
@@ -670,10 +690,171 @@ dl.sport-2 {
     font-weight: normal;
 }
 
-
 .table-calendar span {
-    color : #fff;
-    border-radius : 20px;
-    background-color :  #63cda6;
-    padding : 3px;
+    border-radius: 20px;
+    padding: 4px;
+    display : block;
+    width : 27px;
+    text-align : center;
+}
+
+    .table-calendar span.attendance {
+        color: #fff;
+        background-color: #63cda6;
+    }
+
+.platform .tab-content {
+    margin: -1px 0 0 0;
+    border: 1px solid #e7ebee;
+    background: #fff;
+}
+
+    .platform .tab-content .tab-pane {
+        padding: 20px 15px;
+    }
+
+        .platform .tab-content .tab-pane.performance {
+            padding: 0px 0px 0px 15px;
+            position: relative;
+        }
+
+            .platform .tab-content .tab-pane.performance h1.performance {
+                margin: 0;
+                padding: 20px 0 15px 0;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 18px;
+                text-align: center;
+                color: #495b6c;
+            }
+
+            .platform .tab-content .tab-pane.performance .performance-chart {
+                width: 310px;
+                height: 256px;
+            }
+
+        .platform .tab-content .tab-pane.attendance {
+        }
+
+.platform .nav-tabs > li > a {
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #929598;
+    background-color: #e7e6e6;
+}
+
+.platform .nav-tabs > li.active > a {
+    color: #495b6c;
+    background-color: #fff;
+}
+
+.badge.badge-attendance {
+    border-radius: 0;
+    background-color: #65cea7;
+    width: 96px;
+    height: 96px;
+    padding: 20px 0;
+    margin: 0 3px 10px 0;
+    float: left;
+}
+
+    .badge.badge-attendance h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .badge.badge-attendance h1 {
+        font-family: 'Myriad Pro';
+        font-weight: bold;
+        font-size: 42px;
+        margin: 10px 0 0 0;
+    }
+
+.perfomance-change {
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.badge.badge-performance {
+    border-radius: 0;
+    background-color: transparent;
+    color: #63717e;
+    display: block;
+    width: 80px;
+}
+
+    .badge.badge-performance h2 {
+        margin: 15px 0 10px 0;
+        font-family: 'Myriad Pro';
+        font-size: 16px;
+        text-align: center;
+        color: #495b6c;
+    }
+
+    .badge.badge-performance h1 {
+        margin: 0px 0 0px 0;
+        font-family: 'Myriad Pro';
+        font-weight: bold;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .badge.badge-performance.squat h1 {
+        color: #ed4848;
+    }
+
+    .badge.badge-performance.bench h1 {
+        color: #3bcb67;
+    }
+
+    .badge.badge-performance.clean h1 {
+        color: #60b1c2;
+    }
+
+
+    .badge.badge-performance.total h1 {
+        color: #495b6c;
+    }
+
+.search-suggestion {
+    background-color: #fff;
+    overflow: hidden;
+    padding: 3px 10px;
+    width: 200px;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 10px;
+}
+
+    .search-suggestion img {
+        float: left;
+    }
+
+    .search-suggestion .name {
+        padding: 10px 10px 0 10px;
+        float: left;
+        color: #2b333c;
+    }
+
+    .search-suggestion .state {
+        padding: 0 0 10px 10px;
+        margin-left: 0;
+        float: left;
+        color: #6c7d8d;
+    }
+
+.tt-dropdown-menu {
+    height: 324px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.user-item .user-name {
+    cursor: pointer;
+}
+
+.clickable {
+    cursor: pointer;
 }
