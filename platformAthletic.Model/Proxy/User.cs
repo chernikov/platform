@@ -412,6 +412,58 @@ namespace platformAthletic.Model
             }
         }
 
+        public SBCValue SBCHistory(DateTime date)
+        {
+            return SBCValues.Where(p => p.AddedDate <= date).OrderBy(p => p.ID).LastOrDefault();
+        }
+
+        public SBCValue Last12Week
+        {
+            get
+            {
+                var startWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek).Date;
+                var date12WeekAgo = startWeek.AddDays(-7*12);
+                var sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
+                return sbc;
+            }
+        }
+        
+        public int DiffSquat12Week
+        {
+            get
+            {
+                if (Last12Week != null) {
+                    return (int)(Squat - Last12Week.Squat);
+                }
+                return (int)Squat;
+            }
+        }
+
+        public int DiffBench12Week
+        {
+            get
+            {
+                if (Last12Week != null)
+                {
+                    return (int)(Bench - Last12Week.Bench);
+                }
+                return (int)Bench;
+            }
+        }
+
+
+        public int DiffClean12Week
+        {
+            get
+            {
+                if (Last12Week != null)
+                {
+                    return (int)(Clean - Last12Week.Clean);
+                }
+                return (int)Clean;
+            }
+        }
+
         #region 
         public int WeekAttendanceCount
         {

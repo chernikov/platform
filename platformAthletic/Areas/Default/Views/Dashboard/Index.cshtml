@@ -6,7 +6,6 @@
     var inTraining = currentUser.IsWeekAvaiable;
     var groupId = (int?)ViewBag.GroupId;
 }
-
 @section header {
     <script src="~/Scripts/hogan.js"></script>
     <script src="~/Scripts/typeahead.jquery.js"></script>
@@ -14,6 +13,7 @@
     <script src="~/Scripts/default/team-player-info.js"></script>
     <script src="~/Scripts/Chart.js"></script>
 }
+
 <div class="breadcrumb">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-3 overflow">
@@ -31,7 +31,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
                     <span class="input-group-btn">
-                        <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></button>
+                        <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
             }
@@ -49,8 +49,10 @@
     </div>
 </div>
 <div class="row  row-same-height">
-    <div class="col-lg-12 col-sm-12 col-md-12 top-padding" id="TablePart">
-        <span class="glyphicon glyphicon-fullscreen pull-right clickable" id="FullTable"></span>
+    <div class="col-lg-6 col-sm-12 col-md-12 top-padding" id="TablePart">
+        <div class="pull-right">
+            <a href="/dashboard/extended"> <span class="glyphicon glyphicon-fullscreen"></span></a>
+        </div>
         <div class="row">
             <div class="col-lg-6 col-sm-6">
                 <h3>
@@ -58,14 +60,14 @@
                 </h3>
             </div>
             <div class="col-lg-6  col-sm-6">
-                <div class="btn btn-success"><span class="glyphicon glyphicon-user"></span> ADD PLAYERS</div>
+                <div class="btn btn-info"><span class="glyphicon glyphicon-user"></span> ADD PLAYERS</div>
             </div>
         </div>
         <table class="table table-players">
             <thead>
                 <tr>
                     <td>
-                        <p>ATTENDANCE <span class="glyphicon glyphicon-calendar calendar"></span></p>
+                        <p class="attendance-header"><span class="title">ATTENDANCE</span> <span class="glyphicon glyphicon-calendar calendar"></span></p>
                         <p><span class="date">@DateTime.Now.ToString("MM/dd/yyyy")</span></p>
                     </td>
                     <td>

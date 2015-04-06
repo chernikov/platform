@@ -16,6 +16,7 @@ namespace platformAthletic.Areas.Default.Controllers
     public class DashboardController : DefaultController
     {
         private int pageSize = 20;
+
         [SeasonCheck]
         public ActionResult Index(string searchString = null, int? groupId = null, int page = 1)
         {
@@ -39,7 +40,41 @@ namespace platformAthletic.Areas.Default.Controllers
                     list = SearchEngine.SearchTeamUser(searchString, list.AsQueryable()).ToList();
                 }
                 var data = new PageableData<User>();
-                data.Init(list.AsQueryable(), page, "Index", itemPerPage : pageSize);
+                data.Init(list.AsQueryable(), page, "Index", itemPerPage: pageSize);
+
+                if (list.Count == 0)
+                {
+                    return RedirectToAction("Extended");
+                }
+                return View(data);
+            }
+            return RedirectToLoginPage;
+        }
+
+        [SeasonCheck]
+        public ActionResult Extended(string searchString = null, int? groupId = null, int page = 1)
+        {
+            var team = CurrentUser.OwnTeam;
+            ViewBag.SearchString = searchString;
+            ViewBag.GroupId = groupId;
+            if (CurrentUser.OwnTeam.SubGroups.Any())
+            {
+                ViewBag.SelectedListGroups = GetSelectedListGroups(CurrentUser.OwnTeam.SubGroups, groupId);
+            }
+
+            if (team != null)
+            {
+                var list = team.ActiveUsers.OrderBy(p => p.LastName).ToList();
+                if (groupId.HasValue)
+                {
+                    list = list.Where(p => p.GroupID == groupId.Value).ToList();
+                }
+                if (!string.IsNullOrWhiteSpace(searchString))
+                {
+                    list = SearchEngine.SearchTeamUser(searchString, list.AsQueryable()).ToList();
+                }
+                var data = new PageableData<User>();
+                data.Init(list.AsQueryable(), page, "Extended", itemPerPage: pageSize);
                 return View(data);
             }
             return RedirectToLoginPage;
@@ -61,6 +96,93 @@ namespace platformAthletic.Areas.Default.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Last12WeekPerformancePlayer(int id)
+        {
+            var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
+            if (user != null)
+            {
+                var sunday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
+                var currentSunday = sunday.AddDays(-7 * 12);
+                var labels = new List<string>();
+                var sData = new List<int>();
+                var bData = new List<int>();
+                var cData = new List<int>();
+                var tData = new List<int>();
+                for (int i = 0; i < 12; i++)
+                {
+                    var sbc = user.SBCHistory(currentSunday);
+                    if (sbc != null)
+                    {
+                        labels.Add(currentSunday.ToString("MMM/dd"));
+                        sData.Add((int)sbc.Squat);
+                        bData.Add((int)sbc.Bench);
+                        cData.Add((int)sbc.Clean);
+                        tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
+                        currentSunday = currentSunday.AddDays(7);
+                    }
+                };
+                var datasets = new List<PerformanceGraphInfo>();
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Squat",
+                    fillColor = "transparent",
+                    strokeColor = "#ed4848",
+                    pointColor = "#ed4848",
+                    pointStrokeColor = "#ed4848",
+                    pointHighlightFill = "#fff",
+                    pointHighlightStroke = "#fff",
+                    datasetFill = false,
+                    data = sData
+                });
+
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Bench",
+                    fillColor = "transparent",
+                    strokeColor = "#3bcb67",
+                    pointColor = "#3bcb67",
+                    pointStrokeColor = "#3bcb67",
+                    pointHighlightFill = "#fff",
+                    pointHighlightStroke = "#fff",
+                    datasetFill = false,
+                    data = bData
+                });
+
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Clean",
+                    fillColor = "transparent",
+                    strokeColor = "#60b1c2",
+                    pointColor = "#60b1c2",
+                    pointStrokeColor = "#60b1c2",
+                    pointHighlightFill = "#fff",
+                    pointHighlightStroke = "#fff",
+                    datasetFill = false,
+                    data = cData
+                });
+
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Total",
+                    fillColor = "transparent",
+                    strokeColor = "#495b6c",
+                    pointColor = "#495b6c",
+                    pointStrokeColor = "#495b6c",
+                    pointHighlightFill = "#fff",
+                    pointHighlightStroke = "#fff",
+                    datasetFill = false,
+                    data = tData
+                });
+                var data = new
+                {
+                    labels,
+                    datasets
+                };
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+            return null;
+        }
+
         public ActionResult UserInfo(int id)
         {
             var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
@@ -74,9 +196,10 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult AttendanceCalendar(int id, DateTime date)
         {
             var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
-            if (user != null) 
+            if (user != null)
             {
-                var attendanceInfo = new AttendanceInfo() {
+                var attendanceInfo = new AttendanceInfo()
+                {
                     UserID = user.ID,
                     Date = date,
                 };

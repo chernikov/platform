@@ -1,0 +1,144 @@
+﻿@model PageableData<User>
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var inTraining = currentUser.IsWeekAvaiable;
+    var groupId = (int?)ViewBag.GroupId;
+}
+
+@section header {
+    <script src="~/Scripts/hogan.js"></script>
+    <script src="~/Scripts/typeahead.jquery.js"></script>
+    <script src="~/Scripts/default/extended-dashboard.js"></script>
+}
+<div class="breadcrumb">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-2 overflow">
+            <ol>
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                <li class="active"><a href="/dashboard">Dashboard</a></li>
+            </ol>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <button class="btn btn-success"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT SELECTED ONLY</button>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+            <button class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-2">
+            @using (Html.BeginForm("Extended", "Dashboard", FormMethod.Get))
+            {
+                <div class="input-group">
+                    <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
+                    <span class="input-group-btn">
+                        <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            }
+        </div>
+        @if (ViewBag.SelectedListGroups != null)
+        {
+
+            <div class="col-sm-12 col-md-6 col-lg-2">
+                <div class="custom-style">
+                    @Html.DropDownList("GroupId", ViewBag.SelectedListGroups as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                    <div></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row  row-same-height">
+    <div class="col-md-12 top-padding" id="TablePart">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="pull-right relative-btn">
+                    <a href="/dashboard"><span class="glyphicon glyphicon-remove-circle h4"></span></a>
+                </div>
+                <div class="pull-right">
+                    <div class="btn btn-info"><span class="glyphicon glyphicon-user"></span> ADD PLAYERS</div>
+                </div>
+                <h3>
+                    @currentUser.OwnTeam.Name.ToUpper()
+                </h3>
+            </div>
+        </div>
+        <table class="table table-extended-players">
+            <thead>
+                <tr>
+                    <td>
+                        SELECT
+                    </td>
+                    <td>
+                        <p class="attendance-header"><span class="title">ATTENDANCE</span> <span class="glyphicon glyphicon-calendar calendar"></span></p>
+                        <p><span class="date">@DateTime.Now.ToString("MM/dd/yyyy")</span></p>
+                    </td>
+                    <td>
+                        PLAYER NAME
+                    </td>
+                    <td>
+                        SQUAT
+                    </td>
+                    <td>
+                        BENCH
+                    </td>
+                    <td>
+                        CLEAN
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.List)
+                {
+                    <tr class="user-item">
+                        <td>
+                            <div class="styled-checkbox">
+                                <input type="checkbox" class="forPrint" id="Select_@item.ID" value="@item.ID" />
+                                <label for="Select_@item.ID"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="styled-checkbox">
+                                <input type="checkbox" id="Attendance_@item.ID" @(item.HasAttendanceToday ? "checked" : "") />
+                                <label for="Attendance_@item.ID"></label>
+                            </div>
+                        </td>
+                        <td class="user-name" data-id="@item.ID">
+                            @item.FirstName @item.LastName
+                        </td>
+                        <td>
+                            <div class="value-wrapper" data-id="@item.ID" data-type="Squat">
+                                <span class="glyphicon glyphicon-minus  clickable"></span>
+                                <span class="value">@item.Squat</span>
+                                <span class="glyphicon glyphicon-plus  clickable"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="value-wrapper" data-id="@item.ID" data-type="Bench">
+                                <span class="glyphicon glyphicon-minus  clickable"></span>
+                                <span class="value">@item.Bench</span>
+                                <span class="glyphicon glyphicon-plus  clickable"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="value-wrapper" data-id="@item.ID" data-type="Clean">
+                                <span class="glyphicon glyphicon-minus clickable"></span>
+                                <span class="value">@item.Clean</span>
+                                <span class="glyphicon glyphicon-plus  clickable"></span>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-right">
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.CountPage; i++)
+                {
+                    <li class="@(i == Model.PageNo ? "active": "")"><a href="@Url.Action("Extended", new {groupId, page = i})">@i</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

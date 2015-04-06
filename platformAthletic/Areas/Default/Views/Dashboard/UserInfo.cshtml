@@ -8,6 +8,10 @@
             <div class="row user">
                 <div class="col-sm-6 col-md-6 col-xs-12 no-padding-left">
                     <div class="platform-icon">
+                        @if (Model.AvatarPath != null)
+                        {
+                            <img src="@Model.AvatarPath?w=205&h=205&mode=max" />
+                        }
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -77,47 +81,97 @@
                         <a href="#attendance" data-toggle="tab">ATTENDANCE</a>
                     </li>
                 </ul>
+
+             
                 <div id="playerTabs-content" class="tab-content">
                     <div class="tab-pane active performance" id="performance">
-                        <div class="pull-right perfomance-change">
-                            <div class="badge badge-performance squat">
-                                <h2 class="text-center">
-                                    SQUAT
-                                </h2>
-                                <h1 class="text-center">
-                                    +30
-                                </h1>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <h1 class="performance">LAST 12 WEEKS</h1>
+                                <canvas id="PerformanceChart" class="performance-chart"></canvas>
                             </div>
-                            <div class="badge badge-performance bench">
-                                <h2 class="text-center">
-                                    BENCH
-                                </h2>
-                                <h1 class="text-center">
-                                    -30
-                                </h1>
-                            </div>
-                            <div class="badge badge-performance clean">
-                                <h2 class="text-center">
-                                    CLEAN
-                                </h2>
-                                <h1 class="text-center">
-                                    +25
-                                </h1>
-                            </div>
-                            <div class="badge badge-performance total">
-                                <h2 class="text-center">
-                                    TOTAL
-                                </h2>
-                                <h1 class="text-center">
-                                    +35
-                                </h1>
-                            </div>
+                            <div class="col-lg-2 no-padding-right">
+                                <div class="pull-right perfomance-change">
+                                    <div class="badge badge-performance squat">
+                                        <h2 class="text-center">
+                                            SQUAT
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var squat = Model.DiffSquat12Week;
+                                            }
+                                            @if (squat > 0)
+                                            {
+                                                <text>+</text>@squat
+                                            }
+                                            else
+                                            {
+                                                @squat
+                                            }
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance bench">
+                                        <h2 class="text-center">
+                                            BENCH
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var bench = Model.DiffBench12Week;
+                                            }
+                                            @if (squat > 0)
+                                            {
+                                                <text>+</text>@bench
+                                            }
+                                            else
+                                            {
+                                                @bench
+                                            }
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance clean">
+                                        <h2 class="text-center">
+                                            CLEAN
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var clean = Model.DiffClean12Week;
+                                            }
+                                            @if (clean > 0)
+                                            {
+                                                <text>+</text>@clean
+                                            }
+                                            else
+                                            {
+                                                @clean
+                                            }
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance total">
+                                        <h2 class="text-center">
+                                            TOTAL
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var total = clean + squat + bench;
+                                            }
+                                            @if (total > 0)
+                                            {
+                                                <text>+</text>@total
+                                            }
+                                            else
+                                            {
+                                                @total
+                                            }
+                                        </h1>
+                                    </div>
+                                </div>
                         </div>
-                        <h1 class="performance">LAST 12 WEEKS</h1>
-                        <canvas id="PerformanceChart" class="performance-chart"></canvas>
+                        
+                        </div>
+                       
                     </div>
                     <div class="tab-pane attendance" id="attendance">
-                        <div class="container no-padding-left">
+                        <div class="no-padding-left text-center">
                             <div class="badge badge-attendance">
                                 <h2 class="text-center">
                                     ALL-TIME

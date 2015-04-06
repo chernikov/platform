@@ -44,15 +44,6 @@
             _this.showUserInfo($(this).data("id"));
         });
 
-        $("#FullTable").click(function () {
-            $("#UserInfoWrapper").empty();
-            $("#UserInfoWrapper").hide();
-            $("#TablePart").removeClass("col-lg-6");
-            $("#TablePart").removeClass("col-lg-height");
-            $("#TablePart").addClass("col-lg-12");
-            $("#TablePart").addClass("col-lg-height");
-        });
-
         $(document).on("click", ".attendanceMonth", function () {
             var date = $(this).data("date");
             var id = $(this).data("id");
@@ -65,6 +56,9 @@
                 }
             });
         });
+
+        var firstUser = $(".user-name").first().data("id");
+        this.showUserInfo(firstUser)
     }
 
 
@@ -99,17 +93,8 @@
             data: { id: id },
             success: function (data)
             {
-        
-                $("#TablePart").removeClass("col-lg-12");
-                $("#TablePart").removeClass("col-lg-height");
-                $("#UserInfoWrapper").removeClass("col-lg-height");
                 $("#UserInfoWrapper").html(data);
-                $("#UserInfoWrapper").show();
-                $("#TablePart").addClass("col-lg-6");
-                $("#TablePart").addClass("col-sm-12");
-                $("#TablePart").addClass("col-lg-height");
-                $("#UserInfoWrapper").addClass("col-lg-height");
-                teamPlayerInfo.init();
+                teamPlayerInfo.init(id);
             }
         });
     }
