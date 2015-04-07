@@ -16,6 +16,10 @@ namespace platformAthletic.Areas.Default.Controllers
         [Authorize(Roles = "coach")]
         public ActionResult Team(int[] idUsers)
         {
+            if (idUsers == null)
+            {
+                return null;
+            }
             var list = Repository.Users.Where(p => idUsers.Contains(p.ID));
 
             var currentSeason = CurrentUser.CurrentSeason;

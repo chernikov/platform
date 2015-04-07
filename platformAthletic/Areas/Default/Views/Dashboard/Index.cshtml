@@ -5,12 +5,15 @@
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
     var inTraining = currentUser.IsWeekAvaiable;
     var groupId = (int?)ViewBag.GroupId;
+    var date = (DateTime)ViewBag.SelectedDate;
 }
 @section header {
     <script src="~/Scripts/hogan.js"></script>
     <script src="~/Scripts/typeahead.jquery.js"></script>
     <script src="~/Scripts/default/dashboard.js"></script>
     <script src="~/Scripts/default/team-player-info.js"></script>
+    <script src="~/Scripts/default/modal-attendance.js"></script>
+    <script src="~/Scripts/default/team.js"></script>
     <script src="~/Scripts/Chart.js"></script>
 }
 
@@ -23,7 +26,7 @@
             </ol>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3">
-            <button class="btn btn-primary"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
+            <button class="btn btn-primary" id="PrintAll"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3">
             @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
@@ -67,8 +70,8 @@
             <thead>
                 <tr>
                     <td>
-                        <p class="attendance-header"><span class="title">ATTENDANCE</span> <span class="glyphicon glyphicon-calendar calendar"></span></p>
-                        <p><span class="date">@DateTime.Now.ToString("MM/dd/yyyy")</span></p>
+                        <p class="attendance-header"><span class="title">ATTENDANCE</span> <span class="glyphicon glyphicon-calendar calendar" id="CalendarButton"></span></p>
+                        <p><span class="date" id="CurrentDate" data-date="@date">@date.ToString("MM/dd/yyyy")</span></p>
                     </td>
                     <td>
                         PLAYER NAME
@@ -78,10 +81,10 @@
             <tbody>
                 @foreach (var item in Model.List)
                 {
-                    <tr class="user-item">
+                    <tr class="user-item playerItem" data-id="@item.ID">
                         <td>
                             <div class="styled-checkbox">
-                                <input type="checkbox" id="Attendance_@item.ID" @(item.HasAttendanceToday ? "checked" : "") />
+                                <input type="checkbox" class="AttendanceCheck" data-id="@item.ID" id="Attendance_@item.ID" @(item.HasAttendance(date) ? "checked" : "") />
                                 <label for="Attendance_@item.ID"></label>
                             </div>
                         </td>
@@ -96,7 +99,7 @@
             <ul class="pagination">
                 @for (int i = 1; i <= Model.CountPage; i++)
                 {
-                    <li class="@(i == Model.PageNo ? "active": "")"><a href="@Url.Action("Index", new {groupId, page = i})">@i</a></li>
+                    <li class="@(i == Model.PageNo ? "active": "")"><a href="@Url.Action("Index", new { groupId, selectedDate = date, page = i})">@i</a></li>
                 }
             </ul>
         </div>

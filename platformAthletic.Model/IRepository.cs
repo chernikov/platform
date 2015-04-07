@@ -348,13 +348,15 @@ namespace platformAthletic.Model
 
         bool SetSbcValue(int idUser, SBCValue.SbcType type, double value);
 
+        bool ChangeSbcValue(int idUser, SBCValue.SbcType type, double value);
+
         bool PurgeUser(int idUser);
 
         bool RemoveUser(int idUser);
 
         bool ChangeGroup(User instance);
 
-        bool SetAttendance(int idUser, bool attendance, int idUserSeason);
+        bool SetAttendance(int idUser, bool attendance, int idUserSeason, DateTime? date = null);
 
         bool VisitGettingStarted(int idUser);
 

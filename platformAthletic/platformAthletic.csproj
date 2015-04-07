@@ -279,6 +279,7 @@
     <Compile Include="Mappers\CommonMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\MapperCollection.cs" />
+    <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
     <Compile Include="Models\Info\CalendarInfo.cs" />
     <Compile Include="Models\Info\PerformanceGraphInfo.cs" />
@@ -1159,6 +1160,8 @@
     <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\default\extended-dashboard.js" />
     <Content Include="Scripts\default\dashboard.js" />
+    <Content Include="Scripts\default\modal-attendance.js" />
+    <Content Include="Scripts\default\team.js" />
     <Content Include="Scripts\hogan.js" />
     <Content Include="Scripts\hogan.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1167,6 +1170,8 @@
     <Content Include="Areas\Default\Views\Dashboard\UserInfo.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\AttendanceCalendar.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\Extended.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\Calendar.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\CalendarBody.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1177,6 +1182,7 @@
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\jquery.ba-bbq.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\typeahead.bundle.min.js" />
     <Content Include="Scripts\typeahead.jquery.js" />

@@ -1,7 +1,8 @@
 ﻿function ExtendedDashboard() {
     var _this = this;
 
-    this.init = function () {
+    this.init = function ()
+    {
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {
@@ -9,6 +10,7 @@
             },
             async: false
         });
+
         $('#SearchAthlete').typeahead({
             hint: true,
             highlight: function () {
@@ -32,13 +34,55 @@
             window.location = "/dashboard/extended?searchString=" + selected.value.name;
         });
 
-        $("#SearchBtn").click(function () {
+        $("#SearchBtn").click(function ()
+        {
             window.location = "/dashboard/extended?searchString=" + $("#SearchAthlete").val();
         });
 
-        $("#GroupId").change(function () {
+        $("#GroupId").change(function ()
+        {
             window.location = "/dashboard/extended?groupId=" + $("#GroupId").val();
         });
+
+        $(document).on("click", ".sbc-change", function () {
+            var parent = $(this).closest(".value-wrapper");
+            var valueWrapper = $(".value", parent);
+            var id = $(this).data("id");
+            var type = $(this).data("type");
+            var value = $(this).data("value");
+            $.ajax({
+                type: "GET",
+                url: "/Dashboard/ChangeSbc",
+                data: {
+                    id: id,
+                    type: type,
+                    value: value
+                },
+                success: function (data) {
+                    valueWrapper.text(data.value);
+                }
+            });
+        });
+
+        $(document).on("click", ".AttendanceCheck", function () {
+            var ajaxData = {
+                id: $(this).data("id"),
+                date: $("#CurrentDate").data("date"),
+                value: $(this).prop('checked')
+            };
+            $.ajax({
+                type: "POST",
+                url: "/dashboard/SetAttendance",
+                data: {
+                    id: id,
+                    date: date,
+                    attendance: value,
+                },
+                success: function (data) {
+                }
+            });
+        });
+
     }
 
 

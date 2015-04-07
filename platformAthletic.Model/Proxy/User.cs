@@ -246,6 +246,11 @@ namespace platformAthletic.Model
             }
         }
 
+        public bool HasAttendance(DateTime date)
+        {
+            return UserAttendances.Any(p => p.AddedDate == date.Date);
+        }
+
         public double SbcSum
         {
             get

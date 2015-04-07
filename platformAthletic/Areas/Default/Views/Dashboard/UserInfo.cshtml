@@ -24,24 +24,25 @@
                     </dl>
 
                     <dl class="power dl-horizontal">
+                        <dt>SQUAT</dt>
+                        <dd>
+                            <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="-5">-</button>
+                            <div class="value">@Model.Squat</div>
+                            <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="5">+</button>
+                        </dd>
                         <dt>BENCH</dt>
                         <dd>
-                            <button class="btn btn-danger btn-xs">-</button>
+                            <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="-5">-</button>
                             <div class="value">@Model.Bench</div>
-                            <button class="btn btn-green btn-xs">+</button>
+                            <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="5">+</button>
                         </dd>
                         <dt>CLEAN</dt>
                         <dd>
-                            <button class="btn btn-danger btn-xs">-</button>
+                            <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="-5">-</button>
                             <div class="value">@Model.Clean</div>
-                            <button class="btn btn-green btn-xs">+</button>
+                            <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="5">+</button>
                         </dd>
-                        <dt>SQUAT</dt>
-                        <dd>
-                            <button class="btn btn-danger btn-xs">-</button>
-                            <div class="value">@Model.Squat</div>
-                            <button class="btn btn-green btn-xs">+</button>
-                        </dd>
+                     
                     </dl>
                 </div>
             </div>

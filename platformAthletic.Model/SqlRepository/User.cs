@@ -215,11 +215,33 @@ namespace platformAthletic.Model
                         instance.Clean = value;
                         break;
                 }
-                SaveSBCValue(idUser, type, value);
+                SaveSBCValue(idUser, instance.Squat, instance.Bench, instance.Clean);
             }
             return false;
         }
 
+
+        public bool ChangeSbcValue(int idUser, SBCValue.SbcType type, double difference)
+        {
+            var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (instance != null)
+            {
+                switch (type)
+                {
+                    case SBCValue.SbcType.Squat:
+                        instance.Squat += difference;
+                        break;
+                    case SBCValue.SbcType.Bench:
+                        instance.Bench +=difference;
+                        break;
+                    case SBCValue.SbcType.Clean:
+                        instance.Clean +=difference;
+                        break;
+                }
+                SaveSBCValue(idUser, instance.Squat, instance.Bench, instance.Clean);
+            }
+            return false;
+        }
         public bool SetUserField(int idUser, User.FieldType fieldType, string value)
         {
             var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
@@ -319,9 +341,10 @@ namespace platformAthletic.Model
             return false;
         }
 
-        public bool SetAttendance(int idUser, bool attendance, int idUserSeason)
+        public bool SetAttendance(int idUser, bool attendance, int idUserSeason, DateTime? date = null)
         {
-            var exist = Db.UserAttendances.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == DateTime.Now.Date);
+            var attendanceDate = date ?? DateTime.Now.Date;
+            var exist = Db.UserAttendances.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == attendanceDate.Date);
 
             if (exist != null)
             {
@@ -344,7 +367,7 @@ namespace platformAthletic.Model
                     {
                         UserID = idUser,
                         UserSeasonID = idUserSeason,
-                        AddedDate = DateTime.Now.Date
+                        AddedDate = attendanceDate.Date
                     };
                     Db.UserAttendances.InsertOnSubmit(userAttendance);
                     Db.UserAttendances.Context.SubmitChanges();

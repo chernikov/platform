@@ -18,16 +18,16 @@ namespace platformAthletic.Areas.Default.Controllers
         private int pageSize = 20;
 
         [SeasonCheck]
-        public ActionResult Index(string searchString = null, int? groupId = null, int page = 1)
+        public ActionResult Index(string searchString = null, int? groupId = null, int page = 1, DateTime? selectedDate = null)
         {
             var team = CurrentUser.OwnTeam;
             ViewBag.SearchString = searchString;
             ViewBag.GroupId = groupId;
+            ViewBag.SelectedDate = selectedDate ?? DateTime.Now;
             if (CurrentUser.OwnTeam.SubGroups.Any())
             {
                 ViewBag.SelectedListGroups = GetSelectedListGroups(CurrentUser.OwnTeam.SubGroups, groupId);
             }
-
             if (team != null)
             {
                 var list = team.ActiveUsers.OrderBy(p => p.LastName).ToList();
@@ -52,11 +52,12 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [SeasonCheck]
-        public ActionResult Extended(string searchString = null, int? groupId = null, int page = 1)
+        public ActionResult Extended(string searchString = null, int? groupId = null, int page = 1, DateTime? selectedDate = null)
         {
             var team = CurrentUser.OwnTeam;
             ViewBag.SearchString = searchString;
             ViewBag.GroupId = groupId;
+            ViewBag.SelectedDate = selectedDate ?? DateTime.Now;
             if (CurrentUser.OwnTeam.SubGroups.Any())
             {
                 ViewBag.SelectedListGroups = GetSelectedListGroups(CurrentUser.OwnTeam.SubGroups, groupId);
@@ -294,23 +295,53 @@ namespace platformAthletic.Areas.Default.Controllers
             return Json(new { result = "error" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SetSbc(int id, double value, SBCValue.SbcType type)
+        public ActionResult ChangeSbc(int id,  SBCValue.SbcType type, double value)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null && user.PlayerOfTeamID == CurrentUser.OwnTeam.ID)
             {
-                Repository.SetSbcValue(id, type, value);
-                return Json(new { result = "ok" });
+                Repository.ChangeSbcValue(id, type, value);
+                var newUser = Repository.Users.FirstOrDefault(p => p.ID == id);
+                var newValue = 0;
+                switch (type)
+                {
+                    case SBCValue.SbcType.Squat : 
+                        newValue = (int)newUser.Squat;
+                        break;
+                    case SBCValue.SbcType.Bench:
+                        newValue = (int)newUser.Bench;
+                        break;
+                    case SBCValue.SbcType.Clean:
+                        newValue = (int)newUser.Clean;
+                        break;
+                }
+                return Json(new { result = "ok", 
+                    value = newValue
+                }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { result = "error" });
+            return Json(new { result = "error" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SetAttendance(int id, bool attendance)
+        public ActionResult Calendar(DateTime date)
+        {
+            return View(date);
+        }
+
+        public ActionResult CalendarBody(DateTime date)
+        {
+            var attendanceDateInfo = new AttendanceDateInfo()
+            {
+                Date = date
+            };
+            return View(attendanceDateInfo);
+        }
+
+        public ActionResult SetAttendance(int id, DateTime date, bool attendance)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null && user.PlayerOfTeamID == CurrentUser.OwnTeam.ID)
             {
-                Repository.SetAttendance(id, attendance, user.CurrentSeason.ID);
+                Repository.SetAttendance(id, attendance, user.CurrentSeason.ID, date);
                 return Json(new { result = "ok" });
             }
             return Json(new { result = "error" });

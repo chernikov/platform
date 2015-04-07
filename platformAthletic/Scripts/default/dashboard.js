@@ -57,8 +57,50 @@
             });
         });
 
-        var firstUser = $(".user-name").first().data("id");
-        this.showUserInfo(firstUser)
+        $(document).on("click", ".sbc-player-change", function () {
+            var parent = $(this).closest("dd");
+            var valueWrapper = $(".value", parent);
+            var id = $(this).data("id");
+            var type = $(this).data("type");
+            var value = $(this).data("value");
+            $.ajax({
+                type: "GET",
+                url: "/Dashboard/ChangeSbc",
+                data: {
+                    id: id,
+                    type: type,
+                    value : value
+                },
+                success: function (data)
+                {
+                    valueWrapper.text(data.value);
+                }
+            });
+        });
+
+
+        $(document).on("click", ".AttendanceCheck", function ()
+        {
+            var ajaxData = {
+                id : $(this).data("id"),
+                date : $("#CurrentDate").data("date"),
+                value : $(this).prop('checked')
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/dashboard/SetAttendance",
+                data: {
+                    id: id,
+                    date: date,
+                    attendance: value,
+                },
+                success: function (data) {
+                }
+            });
+        });
+        
+        this.showUserInfo( $(".user-name").first().data("id"));
     }
 
 
