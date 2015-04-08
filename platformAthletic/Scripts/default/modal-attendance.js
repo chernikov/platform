@@ -19,8 +19,6 @@
             })
         });
 
-
-
         $(document).on("click", ".attendanceModalMonth", function ()
         {
             var date = $(this).data("date");

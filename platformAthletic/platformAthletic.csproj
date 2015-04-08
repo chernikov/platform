@@ -347,12 +347,14 @@
     <Compile Include="Models\ViewModels\UserSeasonView.cs" />
     <Compile Include="Models\ViewModels\User\AdminUserView.cs" />
     <Compile Include="Models\ViewModels\User\BaseUserView.cs" />
+    <Compile Include="Models\ViewModels\User\BatchPlayersView.cs" />
     <Compile Include="Models\ViewModels\User\BillingUserView.cs" />
     <Compile Include="Models\ViewModels\User\ChangePasswordView.cs" />
     <Compile Include="Models\ViewModels\User\IndividualBillingUserView.cs" />
     <Compile Include="Models\ViewModels\User\ForgotPasswordView.cs" />
     <Compile Include="Models\ViewModels\User\IndividualUserView.cs" />
     <Compile Include="Models\ViewModels\User\PlayerUserView.cs" />
+    <Compile Include="Models\ViewModels\User\PlayerView.cs" />
     <Compile Include="Models\ViewModels\User\RegisterIndividualView.cs" />
     <Compile Include="Models\ViewModels\User\RegisterTeamView.cs" />
     <Compile Include="Models\ViewModels\User\RegisterUserView.cs" />
@@ -1158,6 +1160,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
+    <Content Include="Scripts\default\add-players.js" />
     <Content Include="Scripts\default\extended-dashboard.js" />
     <Content Include="Scripts\default\dashboard.js" />
     <Content Include="Scripts\default\modal-attendance.js" />
@@ -1172,6 +1175,8 @@
     <Content Include="Areas\Default\Views\Dashboard\Extended.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\Calendar.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\CalendarBody.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\AddPlayersBody.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\AddPlayerItem.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1471,7 +1476,7 @@
     <Content Include="Areas\Admin\Views\Level\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Level\Index.cshtml" />
     <Content Include="Areas\Default\Views\Shared\_BootstrapLayout.cshtml" />
-    <Content Include="Areas\Default\Views\Dashboard\AddPlayer.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\AddPlayers.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\MaxPlayers.cshtml" />
     <None Include="CodeTemplates\Scaffolders\Controller\Controller.ps1" />

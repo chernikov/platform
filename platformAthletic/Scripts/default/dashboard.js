@@ -1,7 +1,8 @@
 ﻿function Dashboard() {
     var _this = this;
 
-    this.init = function () {
+    this.init = function ()
+    {
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {
@@ -9,6 +10,7 @@
             },
             async: false
         });
+
         $('#SearchAthlete').typeahead({
             hint: true,
             highlight: function () {
@@ -78,9 +80,7 @@
             });
         });
 
-
-        $(document).on("click", ".AttendanceCheck", function ()
-        {
+        $(document).on("click", ".AttendanceCheck", function () {
             var ajaxData = {
                 id : $(this).data("id"),
                 date : $("#CurrentDate").data("date"),
@@ -99,7 +99,8 @@
                 }
             });
         });
-        
+       
+
         this.showUserInfo( $(".user-name").first().data("id"));
     }
 

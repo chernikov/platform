@@ -232,15 +232,18 @@ namespace platformAthletic.Areas.Default.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult AddPlayers()
+        {
+            var batchPlayersView = new BatchPlayersView();
+            batchPlayersView.Init();
+            return View(batchPlayersView);
+        }
 
         [HttpGet]
-        public ActionResult AddPlayer()
+        public ActionResult AddPlayerItem()
         {
-            var playerUserView = new PlayerUserView()
-            {
-                PlayerOfTeamID = CurrentUser.OwnTeam.ID
-            };
-            return View(playerUserView);
+            return View(new KeyValuePair<string, PlayerView>(Guid.NewGuid().ToString("N"), new PlayerView()));
         }
 
         [HttpGet]
@@ -250,38 +253,39 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPlayer(PlayerUserView playerUserView)
+        public ActionResult AddPlayers(BatchPlayersView batchPlayersView)
         {
             if (ModelState.IsValid)
             {
-                var user = (User)ModelMapper.Map(playerUserView, typeof(PlayerUserView), typeof(User));
-
-                user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
-                Repository.CreateUser(user);
-
-                var userRole = new UserRole()
+                foreach (var playerView in batchPlayersView.Players.Values)
                 {
-                    UserID = user.ID,
-                    RoleID = 3 //player
-                };
+                    var user = (User)ModelMapper.Map(playerView, typeof(PlayerView), typeof(User));
+                    user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
+                    user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
+                    Repository.CreateUser(user);
 
-                Repository.CreateUserRole(userRole);
+                    var userRole = new UserRole()
+                    {
+                        UserID = user.ID,
+                        RoleID = 3 //player
+                    };
 
-                NotifyMail.SendNotify(Config, "RegisterPlayer", user.Email,
-                             (u, format) => string.Format(format, HostName),
-                             (u, format) => string.Format(format, u.Email, u.Password, HostName),
-                             user);
+                    Repository.CreateUserRole(userRole);
 
-                var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
-                if (existFailMail != null)
-                {
-                    Repository.RemoveFailedMail(existFailMail.ID);
+                    NotifyMail.SendNotify(Config, "RegisterPlayer", user.Email,
+                                 (u, format) => string.Format(format, HostName),
+                                 (u, format) => string.Format(format, u.Email, u.Password, HostName),
+                                 user);
+
+                    var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
+                    if (existFailMail != null)
+                    {
+                        Repository.RemoveFailedMail(existFailMail.ID);
+                    }
                 }
-
                 return View("_OK");
-
             }
-            return View(playerUserView);
+            return View("AddPlayersBody", batchPlayersView);
         }
 
         public ActionResult DeletePlayer(int id)
@@ -295,7 +299,7 @@ namespace platformAthletic.Areas.Default.Controllers
             return Json(new { result = "error" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ChangeSbc(int id,  SBCValue.SbcType type, double value)
+        public ActionResult ChangeSbc(int id, SBCValue.SbcType type, double value)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null && user.PlayerOfTeamID == CurrentUser.OwnTeam.ID)
@@ -305,7 +309,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var newValue = 0;
                 switch (type)
                 {
-                    case SBCValue.SbcType.Squat : 
+                    case SBCValue.SbcType.Squat:
                         newValue = (int)newUser.Squat;
                         break;
                     case SBCValue.SbcType.Bench:
@@ -315,7 +319,9 @@ namespace platformAthletic.Areas.Default.Controllers
                         newValue = (int)newUser.Clean;
                         break;
                 }
-                return Json(new { result = "ok", 
+                return Json(new
+                {
+                    result = "ok",
                     value = newValue
                 }, JsonRequestBehavior.AllowGet);
             }

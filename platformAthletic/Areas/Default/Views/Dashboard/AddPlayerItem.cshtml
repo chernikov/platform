@@ -1,0 +1,22 @@
+﻿@model KeyValuePair<string,platformAthletic.Models.ViewModels.User.PlayerView>
+@{
+    var id = Model.Key;
+}
+
+<div class="row add-player-item">
+    @Html.Hidden("Players.index", id)
+    @Html.Hidden("Players[" + id + "].Key", id)
+    <div class="col-sm-4">
+        @Html.TextBox("Players["+id+"].Value.FirstName", Model.Value.FirstName, new {@class="form-control", placeholder="FIRST NAME *"})
+        @Html.ValidationMessage("Players[" + id + "].Value.FirstName")
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBox("Players[" + id + "].Value.LastName", Model.Value.LastName, new { @class = "form-control", placeholder = "LAST NAME *" })
+        @Html.ValidationMessage("Players[" + id + "].Value.LastName")
+    </div>
+    <div class="col-sm-4">
+        @Html.TextBox("Players[" + id + "].Value.Email", Model.Value.Email, new { @class = "form-control", placeholder = "EMAIL ADDRESS *" })
+        @Html.ValidationMessage("Players[" + id + "].Value.Email")
+        <div class="remove remove-row clickable">X</div>
+    </div>
+</div>

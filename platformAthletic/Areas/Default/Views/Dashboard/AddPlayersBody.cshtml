@@ -1,0 +1,24 @@
+﻿@model platformAthletic.Models.ViewModels.User.BatchPlayersView
+<div class="modal-body add-players">
+    <div id="ListOfFields">
+        @using (Html.BeginForm("AddPlayers", "Dashboard", FormMethod.Post, new {id = "AddPlayersForm"}))
+        {
+            if (Model.Players != null) 
+            { 
+                foreach (var player in Model.Players)
+                {
+                    @Html.Partial("AddPlayerItem", player)
+                }
+            }
+        }
+    </div>
+    <div class="row">
+        <div class="pull-right">
+            <div class="btn btn-empty" id="AddMoreRow">ADD MORE <span class="glyphicon glyphicon-plus-sign"></span></div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer text-center">
+    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+    <button type="button" class="btn btn-primary" id="SubmitAddPlayers">SUBMIT</button>
+</div>

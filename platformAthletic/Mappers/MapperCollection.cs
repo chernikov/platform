@@ -95,6 +95,9 @@ namespace platformAthletic.Mappers
                     });
                 Mapper.CreateMap<User, PlayerUserView>();
                 Mapper.CreateMap<PlayerUserView, User>();
+
+                Mapper.CreateMap<User, PlayerView>();
+                Mapper.CreateMap<PlayerView, User>();
             }
         }
 

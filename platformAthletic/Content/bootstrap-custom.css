@@ -1019,3 +1019,52 @@ dl.sport-2 {
 .clickable {
     cursor: pointer;
 }
+
+
+.add-player-item {
+    position : relative;
+    margin-bottom : 15px;
+}
+
+.add-player-item .remove {
+    position : absolute;
+    top : 5px;
+    right : -2px;
+    color : #d10c0c;
+    font-weight : bold;
+}
+
+.add-player-item .col-lg-4 {
+    margin-bottom : 5px;
+}
+
+.modal.modal-wide .modal-dialog {
+  width: 800px;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+
+.add-players .btn-empty 
+{
+    font-weight : normal;
+    font-family : 'Myriad Pro';
+    position : relative;
+    left : 16px;
+}
+
+.add-players .btn-empty .glyphicon 
+{
+    color : #65cea7;
+    margin-left : 10px;
+}
+.input-validation-error 
+{
+    background : #fedad5;
+}
+
+.field-validation-error {
+    color : #fc8675;
+    font-size : 10px;
+    font-family : 'Myriad Pro';
+}
