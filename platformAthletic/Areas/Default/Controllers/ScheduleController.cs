@@ -226,18 +226,6 @@ namespace platformAthletic.Areas.Default.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult ResetSchedule(int? groupId = null)
-        {
-            Repository.ResetSchedule(CurrentUser.OwnTeam.ID, groupId);
-            return View("_OK");
-        }
-
-        public ActionResult PersonalScheduling()
-        {
-            return View(CurrentUser.OwnTeam);
-        }
-
         public ActionResult PersonalCalendar(DateTime month)
         {
             var currentSeason = CurrentUser.SeasonByDate(month);
@@ -290,17 +278,5 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(calendarRowInfo);
         }
 
-        [HttpGet]
-        public ActionResult ResetPersonalSchedule()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult ResetPersonalSchedule(int id = 0)
-        {
-            Repository.ResetPersonalSchedule(CurrentUser.ID);
-            return View("_OK");
-        }
     }
 }

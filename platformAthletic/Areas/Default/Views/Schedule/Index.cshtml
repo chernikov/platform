@@ -1,22 +1,19 @@
 ﻿@{
     ViewBag.Title = "Scheduling";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
-@section header {
-    <script type="text/javascript" src="/Media/scripts/default/checkbox.js"></script>
-    <script type="text/javascript" src="/Media/scripts/default/group.js"></script>
-    <script type="text/javascript" src="/Media/scripts/default/scheduling.js"></script>
+@section header
+{
+    <script src="~/Scripts/default/schedule.js"></script>
 }
-
-<div class="account-wrp scheduling">
-    <div class="left group-wrapper">
-        @if (currentUser.InRoles("coach"))
-        {
-            @Html.Action("Group", "Schedule")
-        }
-    </div>
-    <div class="right">
+<div class="row row-same-height">
+    @if (currentUser.InRoles("coach"))
+    {
+        @Html.Action("Group", "Schedule")
+    }
+  
+    <div class="@(currentUser.InRoles("coach") ? "col-lg-8" : "col-lg-12") col-sm-12 col-md-12 top-padding schedule-table-wrapper col-lg-height" id="TablePart">
         @if (currentUser.OwnTeam != null)
         {
             @Html.Action("Scheduling", "Schedule")
@@ -27,3 +24,4 @@
         }
     </div>
 </div>
+

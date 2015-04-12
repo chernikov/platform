@@ -32,12 +32,7 @@
         <div class="col-sm-12 col-md-6 col-lg-2">
             @using (Html.BeginForm("Extended", "Dashboard", FormMethod.Get))
             {
-                <div class="input-group">
-                    <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
-                    <span class="input-group-btn">
-                        <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-                </div>
+                <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
             }
         </div>
         @if (ViewBag.SelectedListGroups != null)

@@ -2,9 +2,6 @@
 @{
     var month = DateTime.Now.AddDays(-DateTime.Now.Day + 1);
 }
-<div class="top all-content-wrp">
-    <h1>CALENDAR</h1>
-</div>
-<div id="CalendarWrapper">
-    @Html.Action("PersonalCalendar", "Schedule", new {month = month})
+<div id="CalendarWrapper" class="schedule-calendar">
+    @Html.Action("PersonalCalendar", "Schedule", new { month = month })
 </div>

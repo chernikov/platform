@@ -4,8 +4,8 @@
 @Html.Hidden("GroupID", Model.Group != null ? (int?)Model.Group.ID : null)
 @Html.Hidden("Month", Model.Month.ToString("MM\\dd\\yyyy"))
 
-<div class="bottom all-content-wrp calendar-wrapper">
-    <div class="title-group">
+<div class="row calendar-wrapper">
+    <h1 class="text-center">
         @if (Model.Group != null)
         {
             @Model.Group.Name.ToUpper()
@@ -14,24 +14,30 @@
         {
             @Model.Team.Name.ToUpper()
         }
+    </h1>
+    <div class="panel">
+        <div class="pull-left">
+            <a class="btn scheduleMonth" data-month="@Model.Month.AddMonths(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        </div>
+        <div class="pull-right">
+            <a class="btn scheduleMonth" data-month="@Model.Month.AddMonths(1)"><span class="glyphicon glyphicon-arrow-right"></span></a>
+        </div>
+        <h1 class="text-center">@Model.Month.ToString("MMMM yyyy").ToUpper()</h1>
     </div>
 
-    <div class="calendar">
-        <div class="title">
-            <div class="left-arrow" data-month="@Model.Month.AddMonths(-1)"></div>
-            <div class="right-arrow" data-month="@Model.Month.AddMonths(1)"></div>
-            <div class="month">@Model.Month.ToString("MMMM").ToUpper()</div>
-        </div>
-        <div class="table">
-            <div class="head">
-                <div class="day sunday">Sun</div>
-                <div class="day">Mon</div>
-                <div class="day">Tue</div>
-                <div class="day">Wed</div>
-                <div class="day">Thu</div>
-                <div class="day">Fri</div>
-                <div class="day">Sat</div>
-            </div>
+    <table class="table table-calendar">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
             @{
                 var currentSunday = Model.Month.AddDays(6).StartOfWeek(DayOfWeek.Sunday);
             }
@@ -40,37 +46,29 @@
                 @Html.Action("CalendarRow", "Schedule", new { date = currentSunday, teamId = Model.Team.ID, groupId = (Model.Group != null ? (int?)Model.Group.ID : null) })
                 currentSunday = currentSunday.AddDays(7);
             }
-        </div>
-    </div>
+        </tbody>
+    </table>
     <div class="calendar-drop-down-list" style="display: none;">
         <div class="list-title">
             @foreach (var season in Model.Seasons)
             {
-                <div class="season @(season.ID == Model.Season.ID ? "selected" : "")" data-id="@season.ID" >@season.Name.ToUpper()
-                </div>    
+                <div class="season @(season.ID == Model.Season.ID ? "selected" : "")" data-id="@season.ID">
+                    @season.Name.ToUpper()
+                </div>
             }
         </div>
         @foreach (var season in Model.Seasons)
         {
             <div class="season-data" data-id="@season.ID" style="display: @(season.ID == Model.Season.ID ? "block" : "none");">
-                <div class="scroll-pane">
-                    <div class="scroll-content">
-
-                        <div class="list">
-                            @foreach (var item in season.Macrocycles)
-                            {
-                                <div class="item team-item" data-id="@item.ID">
-                                    @item.Name
-                                </div>
-                            }
+                <div class="list">
+                    @foreach (var item in season.Macrocycles)
+                    {
+                        <div class="item team-item" data-id="@item.ID">
+                            @item.Name
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         }
     </div>
-</div>
-
-<div class="button-wrp">
-    <button class="btn-gray" id="ResetShowBtn">Reset to default</button>
 </div>

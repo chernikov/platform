@@ -24,6 +24,7 @@
 .no-padding-right {
     padding-right: 0 !important;
 }
+
 .top-padding {
     padding-top: 20px !important;
 }
@@ -464,11 +465,10 @@
         font-weight: bold;
     }
 
-        .platform .table-players thead td 
-        {
+        .platform .table-players thead td {
             padding: 15px 0 20px 0;
             position: relative;
-            text-align : center;
+            text-align: center;
         }
 
             .platform .table-players thead td p {
@@ -651,6 +651,8 @@
 
     .platform .table-extended-players .value-wrapper .value {
         font-weight: bold;
+        width: 30px;
+        display: inline-block;
     }
 
     .platform .table-extended-players .value-wrapper .glyphicon-plus {
@@ -725,7 +727,7 @@
 
 .user-part {
     background-color: #f5f5f5;
-    padding-bottom : 40px;
+    padding-bottom: 40px;
 }
 
 .user {
@@ -887,10 +889,9 @@ dl.sport-2 {
                 color: #495b6c;
             }
 
-            .platform .tab-content .tab-pane.performance .performance-chart 
-            {
-                width : 100%;  
-                height : 256px;
+            .platform .tab-content .tab-pane.performance .performance-chart {
+                width: 100%;
+                height: 256px;
             }
 
         .platform .tab-content .tab-pane.attendance {
@@ -1022,49 +1023,317 @@ dl.sport-2 {
 
 
 .add-player-item {
-    position : relative;
-    margin-bottom : 15px;
+    position: relative;
+    margin-bottom: 15px;
 }
 
-.add-player-item .remove {
-    position : absolute;
-    top : 5px;
-    right : -2px;
-    color : #d10c0c;
-    font-weight : bold;
-}
+    .add-player-item .remove {
+        position: absolute;
+        top: 5px;
+        right: -2px;
+        color: #d10c0c;
+        font-weight: bold;
+    }
 
-.add-player-item .col-lg-4 {
-    margin-bottom : 5px;
-}
+    .add-player-item .col-lg-4 {
+        margin-bottom: 5px;
+    }
 
 .modal.modal-wide .modal-dialog {
-  width: 800px;
+    width: 800px;
 }
+
 .modal-wide .modal-body {
-  overflow-y: auto;
+    overflow-y: auto;
 }
 
-.add-players .btn-empty 
-{
-    font-weight : normal;
-    font-family : 'Myriad Pro';
-    position : relative;
-    left : 16px;
+.add-players .btn-empty {
+    font-weight: normal;
+    font-family: 'Myriad Pro';
+    position: relative;
+    left: 16px;
 }
 
-.add-players .btn-empty .glyphicon 
-{
-    color : #65cea7;
-    margin-left : 10px;
-}
-.input-validation-error 
-{
-    background : #fedad5;
+    .add-players .btn-empty .glyphicon {
+        color: #65cea7;
+        margin-left: 10px;
+    }
+
+.input-validation-error {
+    background: #fedad5;
 }
 
 .field-validation-error {
-    color : #fc8675;
-    font-size : 10px;
-    font-family : 'Myriad Pro';
+    color: #fc8675;
+    font-size: 10px;
+    font-family: 'Myriad Pro';
 }
+
+/*Scheduling */
+.schedule-group-wrapper {
+    border-right: 1px solid #ebeaea;
+    position: relative;
+}
+
+    .schedule-group-wrapper.collapsed {
+        width: 0;
+    }
+
+        .schedule-group-wrapper.collapsed .body {
+            display: none;
+            width: 0;
+        }
+
+.slide-button {
+    position: absolute;
+    border-top: 1px solid #ebeaea;
+    border-bottom: 1px solid #ebeaea;
+    border-right: 1px solid #ebeaea;
+    width: 20px;
+    top: 0;
+    right: -20px;
+    z-index: 2;
+    background: #fff;
+    padding-left: 2px;
+}
+
+.schedule-group-wrapper.collapsed .slide-button {
+    right: -21px;
+}
+
+    .schedule-group-wrapper.collapsed .slide-button .schedule-table-wrapper {
+        background-color: #f5f5f5;
+    }
+
+/*Scheduling group*/
+.schedule-group-wrapper .group-list {
+    margin: 30px 0 0 0;
+}
+
+.schedule-group-wrapper > .body .btn {
+    margin: 5px 0;
+}
+
+.schedule-group-wrapper .group-list .team .header {
+    border: 1px solid #e3e1e1;
+    border-radius: 2px;
+    margin: 5px 0px;
+    padding: 5px 10px;
+    font-family: 'Myriad Pro';
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+
+    .schedule-group-wrapper .group-list .team .header .drop-down {
+        content: "";
+        position: absolute;
+        width: 33px;
+        height: 33px;
+        top: 0;
+        right: 0;
+        background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDJFNkU2N0FFMEQzMTFFNDg3NjNEQUQ5MTNFQzA5MTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDJFNkU2N0JFMEQzMTFFNDg3NjNEQUQ5MTNFQzA5MTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEMkU2RTY3OEUwRDMxMUU0ODc2M0RBRDkxM0VDMDkxMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEMkU2RTY3OUUwRDMxMUU0ODc2M0RBRDkxM0VDMDkxMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pn57Kk8AAADkSURBVHjaYvSMztFhYGBoA2J+KL2TAT9wB+IqIP4IolmAxBQgtodKagNxJBDvxqHZFYiXArEwlM/HBNUEAyCJxUBshUWzFVROGElMC2TAZjSF4lBb9JHE9KFi4mhqt4AMqAbig2gSClAN8lC8FCqGDEB6qkFh8ByIE4B4HRAbIikAeW0VEhsZnIfqec4EFXgADbzraArNoBgZXIeqBelhYEKSuAnEsUD8CE8UPoKquQkTYEJTcBaq4DUWza+hcmeRBZmwKDwE9d87JLH3ULFD6IqZcDh1GxDHQW07C2Vvw6YQIMAAaFIsKmJN/igAAAAASUVORK5CYII=") no-repeat center center;
+    }
+
+
+
+.schedule-group-wrapper .group-list .group {
+    padding: 5px 0;
+}
+
+    .schedule-group-wrapper .group-list .group .btn {
+        float: right;
+        padding: 5px;
+        color: #e0dede;
+    }
+
+    .schedule-group-wrapper .group-list .group .header {
+        border: 1px solid #e3e1e1;
+        border-radius: 2px;
+        margin: 0;
+        padding: 5px 10px;
+        font-family: 'Myriad Pro';
+        font-size: 16px;
+        font-weight: bold;
+        position: relative;
+        cursor: pointer;
+        width: 240px;
+    }
+
+        .schedule-group-wrapper .group-list .group .header .drop-down {
+            content: "";
+            position: absolute;
+            width: 33px;
+            height: 33px;
+            top: 0;
+            right: 0;
+            background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAYAAAB24g05AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDJFNkU2N0FFMEQzMTFFNDg3NjNEQUQ5MTNFQzA5MTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDJFNkU2N0JFMEQzMTFFNDg3NjNEQUQ5MTNFQzA5MTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEMkU2RTY3OEUwRDMxMUU0ODc2M0RBRDkxM0VDMDkxMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEMkU2RTY3OUUwRDMxMUU0ODc2M0RBRDkxM0VDMDkxMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pn57Kk8AAADkSURBVHjaYvSMztFhYGBoA2J+KL2TAT9wB+IqIP4IolmAxBQgtodKagNxJBDvxqHZFYiXArEwlM/HBNUEAyCJxUBshUWzFVROGElMC2TAZjSF4lBb9JHE9KFi4mhqt4AMqAbig2gSClAN8lC8FCqGDEB6qkFh8ByIE4B4HRAbIikAeW0VEhsZnIfqec4EFXgADbzraArNoBgZXIeqBelhYEKSuAnEsUD8CE8UPoKquQkTYEJTcBaq4DUWza+hcmeRBZmwKDwE9d87JLH3ULFD6IqZcDh1GxDHQW07C2Vvw6YQIMAAaFIsKmJN/igAAAAASUVORK5CYII=") no-repeat center center;
+        }
+
+.schedule-group-wrapper .group-list .body {
+    margin: 5px 0 10px 0;
+}
+
+    .schedule-group-wrapper .group-list .body .item {
+        margin: 4px 10px 8px 0;
+    }
+
+        .schedule-group-wrapper .group-list .body .item .styled-checkbox {
+            margin: 4px 0 0 0;
+        }
+
+        .schedule-group-wrapper .group-list .body .item .name {
+            padding: 2px 0 0px 30px;
+        }
+
+.schedule-group-wrapper .assign-list {
+    background-color: #495b6c;
+    color: #fff;
+    width: 230px;
+    padding: 5px 10px;
+    position: relative;
+    right: -62px;
+    border-radius: 2px;
+}
+
+    .schedule-group-wrapper .assign-list .item {
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 4px 0px 4px 4px;
+    }
+
+.schedule-calendar {
+}
+
+    .schedule-calendar h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .schedule-calendar .table-calendar thead th {
+        background-color: #fc8675;
+        color: #fff;
+        text-align: center;
+        border-right: 1px solid #fff;
+    }
+
+        .schedule-calendar .table-calendar thead th:last-child {
+            border-right: none;
+        }
+
+    .schedule-calendar .table-calendar .edit-wrapper td {
+        background-color: #495b6c;
+        color: #fff;
+        border-right: 1px solid #fff;
+    }
+
+        .schedule-calendar .table-calendar .edit-wrapper td:last-child {
+            border-right: none;
+        }
+
+
+        .schedule-calendar .table-calendar .edit-wrapper td .week-name {
+            font-family: 'Myriad Pro';
+            font-size: 13px;
+            border-radius: 4px;
+            background-color: #5d6f81;
+            text-shadow: 2px 2px 1px #333;
+            padding: 3px 10px 2px 10px;
+            float: left;
+        }
+
+        .schedule-calendar .table-calendar .edit-wrapper td .preview-workout {
+            font-family: 'Myriad Pro';
+            text-transform: uppercase;
+            background-color: #65cea7;
+            color: #fff;
+            padding: 3px 10px 2px 10px;
+            border-radius: 4px;
+            float: right;
+            text-decoration: none;
+        }
+
+
+        .schedule-calendar .table-calendar .edit-wrapper td .edit-week {
+            background: none;
+            color: #fff;
+            border: none;
+            width: 100%;
+            position: relative;
+            text-align: left;
+        }
+
+            .schedule-calendar .table-calendar .edit-wrapper td .edit-week .drop-down {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                top: 0;
+                right: 0;
+                background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAICAYAAADJEc7MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTY3QjJCNkZFMEU5MTFFNDhENzNDMDk3NDJBOTIwNkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTY3QjJCNzBFMEU5MTFFNDhENzNDMDk3NDJBOTIwNkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNjdCMkI2REUwRTkxMUU0OEQ3M0MwOTc0MkE5MjA2QiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxNjdCMkI2RUUwRTkxMUU0OEQ3M0MwOTc0MkE5MjA2QiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlyBHhQAAABjSURBVHjaYkw9t3waAwNDJgNpYDoTkMgF4k0kaAKpzQVp/AvEkUB8kghNJ6Fq/zJBBb4BsS8Q38Gj6Q5UDUgtAxOSxGsg9oTS6ABDjgmfqfhcw4TPH/j8z4Iv5KDyWEMcIMAA3D4cy9TTQW8AAAAASUVORK5CYII=") no-repeat center center;
+            }
+
+            .schedule-calendar .table-calendar .edit-wrapper td .edit-week:hover .drop-down {
+                background-color: #374656;
+                border-radius: 4px;
+            }
+
+            .schedule-calendar .table-calendar .numbers td  {
+                font-family : 'Myriad Pro';
+                font-size : 14px;
+                padding : 20px 0;
+                text-align : center;
+            }
+
+.calendar-wrapper {
+    position: relative;
+}
+
+    .calendar-wrapper .calendar-drop-down-list {
+        position: absolute;
+        left: 0;
+        padding: 0;
+        box-shadow : #222 3px 3px 5px;
+        background-color : #fff;
+
+    }
+
+        .calendar-wrapper .calendar-drop-down-list .list-title {
+            font-size: 12px;
+            overflow: hidden;
+        }
+
+            .calendar-wrapper .calendar-drop-down-list .list-title .season {
+                float: left;
+                cursor: pointer;
+                padding: 6px 12px;
+                background-color : #f5f5f5;
+            }
+
+                .calendar-wrapper .calendar-drop-down-list .list-title .season.selected {
+                    background-color: #fff;
+                }
+
+        .calendar-wrapper .calendar-drop-down-list .list {
+            margin: 0 0 0 15px;
+        }
+
+            .calendar-wrapper .calendar-drop-down-list .list .item {
+                font-size: 16px;
+                cursor: pointer;
+                padding: 4px 10px;
+                border-bottom : 1px solid #ebeaea;
+                font-family : Arial;
+                font-size : 11px;
+
+            }
+
+                .calendar-wrapper .calendar-drop-down-list .list .item:hover,
+                .calendar-wrapper .calendar-drop-down-list .list .item.selected {
+                    background-color: #ebeaea;
+                }
+
+

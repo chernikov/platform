@@ -4,31 +4,83 @@
 }
 @if (Model.Macrocycle != null)
 {
-    <div class="row">
-        <button class="edit-week" data-id="@Model.NumberOfWeek" data-date="@Model.CurrentSunday" data-macrocycle="@Model.Macrocycle.ID">
-            Edit Week 
-        <div class="drop-down"></div>
-        </button>
-        <div class="week-name">
-            @Model.Macrocycle.Name @Model.IsDefault
+    <tr class="edit-wrapper">
+        <td>
+            <button class="edit-week" data-id="@Model.NumberOfWeek" data-date="@Model.CurrentSunday" data-macrocycle="@Model.Macrocycle.ID">
+                Edit Week
+                <div class="drop-down"></div>
+            </button>
+        </td>
+        <td colspan="6">
+            <div class="week-name">
+                @Model.Macrocycle.Name
+               
+            </div>
             @if (diffWeeks > -13 && diffWeeks < 12)
             {
                 <a class="preview-workout" target="_blank" href="@Url.Action("Preview", "Table", new {macrocycleId = Model.Macrocycle.ID})">View Workout</a>
             }
-        </div>
-        <div class="row-days">
-            <div class="day sunday">@Model.CurrentSunday.Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(1).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(2).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(3).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(4).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(5).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(6).Day</div>
-        </div>
-    </div>
+        </td>
+    </tr>
+    <tr class="numbers">
+        <td>
+            @Model.CurrentSunday.Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(1).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(2).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(3).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(4).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(5).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(6).Day
+        </td>
+    </tr>
 }
 else
 {
+    <tr class="edit-wrapper">
+        <td>
+            <button class="edit-week-empty"></button>
+        </td>
+        <td colspan="6">
+            <div class="week-name">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.CurrentSunday.Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(1).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(2).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(3).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(4).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(5).Day
+        </td>
+        <td>
+            @Model.CurrentSunday.AddDays(6).Day
+        </td>
+    </tr>
+    
     <div class="row">
         <button class="edit-week-empty">
         </button>

@@ -1,33 +1,26 @@
 ﻿@model platformAthletic.Models.ViewModels.GroupView
-<div class="popup-roster-wrp group">
-    <div class="inner-wrp">
-        <div class="popup-title">@(Model.ID == 0 ? "Create New Group" : "Edit Group")</div>
-        @using (Html.BeginForm("EditGroup", "Schedule", FormMethod.Post, new { id = "EditGroupForm" }))
-        {
-            @Html.Hidden("ID", Model.ID)
-            
-            <div class="form">
-                <div class="bg-blur-top"></div>
-                <div class="item-input">
-                    <div class="text">
-                    Please enter group name
-                    </div>
-                </div>
-                <div class="item-input">
-                    <div class="input">
-                        @Html.TextBox("Name", Model.Name, new { @class = "big" })
-                    </div>
-                </div>
-                <div class="item-input">
-                    @Html.ValidationMessage("Name")
-                </div>
-                <div class="bg-blur-bottom"></div>
+
+<div class="modal fade" id="modalGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@(Model.ID == 0 ? "CREATE NEW GROUP" : "EDIT GROUP")</h4>
             </div>
-            <div class="button-wrp">
-                
-                <button class="btn-active primaryColorBg" id="EditGroupBtn">@(Model.ID == 0 ? "Create" : "Edit")</button>
-                <button class="btn-gray">Cancel</button>
+            <div class="modal-body">
+                @using (Html.BeginForm("EditGroup", "Schedule", FormMethod.Post, new { id = "EditGroupForm" }))
+                {
+                    @Html.Hidden("ID", Model.ID)
+                    <div class="form-group">
+                        <label>PLEASE ENTER GROUP NAME</label>
+                        @Html.TextBox("Name", Model.Name, new { @class = "form-control" })
+                    </div>
+                }
             </div>
-        }
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-primary" id="EditGroupBtn">@(Model.ID == 0 ? "CREATE" : "SUBMIT")</button>
+            </div>
+        </div>
     </div>
 </div>

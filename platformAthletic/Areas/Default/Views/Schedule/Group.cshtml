@@ -1,40 +1,69 @@
 ﻿@model platformAthletic.Model.Team
 
-<div class="top all-content-wrp">
-    <h1>GROUPS</h1>
-</div>
-<div class="bottom all-content-wrp">
-    <button class="btn btn-green">Create New Group</button>
-    <button class="btn btn-drop-down" id="AssignBtn" disabled="disabled">
-        Assign Players
-        <div class="drop-down"></div>
-    </button>
-    <div class="drop-down-list" id="AssignList" style="display: none;">
-     <div class="item" data-id="0">
+<div class="col-lg-4 col-sm-12 col-md-12 top-padding col-lg-height schedule-group-wrapper" id="GroupPart">
+    <div class="slide-button clickable" id="toggleSlideButton">
+        <span class="glyphicon glyphicon-menu-left"></span>
+    </div>
+    <div class="body">
+        <button class="btn btn-primary" id="CreateGroupBtn">CREATE GROUP</button>
+        <button class="btn btn-default" id="AssignPlayersBtn">ASSIGN PLAYERS</button>
+        <div class="assign-list" id="AssignList" style="display: none;">
+            <div class="item" data-id="0">
                 @Model.Name
             </div>
-        @foreach (var group in Model.SubGroups)
-        {
-            <div class="item" data-id="@group.ID">
-                @group.Name
+            @foreach (var group in Model.SubGroups)
+            {
+                <div class="item" data-id="@group.ID">
+                    @group.Name
+                </div>
+            }
+        </div>
+
+        <div class="group-list">
+            <div class="team">
+                <div class="header" data-id="@Model.ID">
+                    @Model.Name
+                    <div class="drop-down"></div>
+                </div>
+                <div class="body" style="display: none;">
+                    @foreach (var user in Model.SubUngroupUsers)
+                    {
+                        <div class="item" data-id="@user.ID">
+                            <div class="pull-left">
+                                <div class="styled-checkbox">
+                                    <input type="checkbox" data-id="@user.ID" id="Team_@user.ID" />
+                                    <label for="Team_@user.ID"></label>
+                                </div>
+                            </div>
+                            <div class="name">
+                                @user.LastName, @user.FirstName
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
-        }
-    </div>
-    <div class="group-list">
-        <div class="scroll-pane">
-            <div class="scroll-content">
+            @foreach (var group in Model.SubGroups)
+            {
                 <div class="group">
-                    <div class="header" data-id="@Model.ID">@Model.Name.Teaser(18)
+
+                    <button class="btn btn-empty remove-group" data-id="@group.ID">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button class="btn btn-empty edit-group" data-id="@group.ID">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </button>
+                    <div class="header header-group" data-id="@group.ID">
+                        @group.Name
                         <div class="drop-down"></div>
                     </div>
                     <div class="body" style="display: none;">
-                        @foreach (var user in Model.SubUngroupUsers)
+                        @foreach (var user in group.SubUsers)
                         {
                             <div class="item" data-id="@user.ID">
-                                <div class="select">
-                                    <div class="checkbox-wrp">
-                                        <div class="checkbox-image"></div>
-                                        <input type="checkbox" class="selectCheckBox" />
+                                <div class="pull-left">
+                                    <div class="styled-checkbox">
+                                        <input type="checkbox" data-id="@user.ID" id="Group_@user.ID" />
+                                        <label for="Group_@user.ID"></label>
                                     </div>
                                 </div>
                                 <div class="name">
@@ -44,35 +73,7 @@
                         }
                     </div>
                 </div>
-
-                @foreach (var group in Model.SubGroups)
-                {
-                    <div class="group">
-                        <div class="header header-group" data-id="@group.ID">@group.Name.Teaser(18)
-                            <div class="drop-down"></div>
-                        </div>
-                        <button class="edit edit-group" data-id="@group.ID"></button>
-                        <button class="remove remove-group" data-id="@group.ID"></button>
-                        <div class="body" style="display: none;">
-                            @foreach (var user in group.SubUsers)
-                            {
-                                <div class="item" data-id="@user.ID">
-                                    <div class="select">
-                                        <div class="checkbox-wrp">
-                                            <div class="checkbox-image"></div>
-                                            <input type="checkbox" class="selectCheckBox" />
-                                        </div>
-                                    </div>
-                                    <div class="name">
-                                        @user.LastName, @user.FirstName
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
+            }
         </div>
     </div>
 </div>
-
