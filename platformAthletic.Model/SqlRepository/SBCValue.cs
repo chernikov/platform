@@ -17,12 +17,10 @@ namespace platformAthletic.Model
             }
         }
 
-        //TODO: Спросить про такую коллизию, если я на какой-то позиции будучи установил рекорд, а потом каким-то образом меня перевели на другую позицию, 
-        //то все мои рекорды как считаются? Должен ли записываться рекорд на текущую позицию, или переносится вместе с позицией.
-        private bool SaveSBCValue(int idUser, double squat, double bench, double clean)
+        private bool SaveSBCValue(int idUser, double squat, double bench, double clean, DateTime? addedDate = null)
         {
 
-            var sbcValue = Db.SBCValues.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == DateTime.Now.Date);
+            var sbcValue = Db.SBCValues.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == (addedDate ?? DateTime.Now).Date);
             if (sbcValue == null)
             {
                 var user = Db.Users.FirstOrDefault(p => p.ID == idUser);
@@ -37,11 +35,8 @@ namespace platformAthletic.Model
                         Squat = previous.Squat,
                         Bench = previous.Bench,
                         Clean = previous.Clean,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
                         TeamID = user.PlayerOfTeamID,
-                        FieldPositionID = null,
-                        AddedDate = DateTime.Now.Date
+                        AddedDate = (addedDate ?? DateTime.Now).Date
                     };
                 }
                 else
@@ -49,11 +44,8 @@ namespace platformAthletic.Model
                     sbcValue = new SBCValue
                     {
                         UserID = idUser,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
                         TeamID = user.PlayerOfTeamID,
-                        FieldPositionID = null,
-                        AddedDate = DateTime.Now.Date
+                        AddedDate = (addedDate ?? DateTime.Now).Date
                     };
                 }
                 Db.SBCValues.InsertOnSubmit(sbcValue);
@@ -67,6 +59,7 @@ namespace platformAthletic.Model
             return true;
         }
 
+
         public bool UpdateSbcValue(SBCValue instance)
         {
             var cache = Db.SBCValues.FirstOrDefault(p => p.ID == instance.ID);
@@ -75,10 +68,7 @@ namespace platformAthletic.Model
                 cache.Squat = instance.Squat;
                 cache.Bench = instance.Bench;
                 cache.Clean = instance.Clean;
-                cache.FirstName = instance.FirstName;
-                cache.LastName = instance.LastName;
                 cache.TeamID = instance.TeamID;
-                cache.FieldPositionID = instance.FieldPositionID;
                 Db.SBCValues.Context.SubmitChanges();
                 return true;
             }

@@ -148,11 +148,11 @@ namespace platformAthletic.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Schedulers()
+        /*public ActionResult Schedulers()
         {
             foreach (var schedule in Repository.Schedules)
             {
-                schedule.UserSeasonID = schedule.Team.CurrentSeason.ID;
+                schedule.UserSeasonID = schedule.Team.GetCurrentSeason().ID;
                 Repository.UpdateSchedule(schedule);
 
             }
@@ -164,6 +164,6 @@ namespace platformAthletic.Areas.Admin.Controllers
             }
 
             return Content("OK");
-        }
+        }*/
     }
 }

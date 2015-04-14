@@ -198,7 +198,7 @@ namespace platformAthletic.Model
             return false;
         }
 
-        public bool SetSbcValue(int idUser, SBCValue.SbcType type, double value)
+        public bool SetSbcValue(int idUser, SBCValue.SbcType type, double value, DateTime? addedDate = null)
         {
             var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
             if (instance != null)
@@ -215,10 +215,11 @@ namespace platformAthletic.Model
                         instance.Clean = value;
                         break;
                 }
-                SaveSBCValue(idUser, instance.Squat, instance.Bench, instance.Clean);
+                SaveSBCValue(idUser, instance.Squat, instance.Bench, instance.Clean, addedDate);
             }
             return false;
         }
+
 
 
         public bool ChangeSbcValue(int idUser, SBCValue.SbcType type, double difference)

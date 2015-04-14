@@ -14,12 +14,19 @@ namespace platformAthletic.Model
             CoachAndPlayer = 0x01
         }
 
-        public UserSeason CurrentSeason
+        public UserSeason GetCurrentSeason(int? groupID = null)
         {
-            get
+            var coach = this.User;
+            if (groupID != null)
             {
-                return User.CurrentSeason;
-            }
+                var currentSeason = coach.SeasonByDateAndGroup(DateTime.Now, groupID);
+                if (currentSeason == null)
+                {
+                    return coach.SeasonByDateAndGroup(DateTime.Now);
+                }
+                return currentSeason;
+            };
+            return coach.SeasonByDateAndGroup(DateTime.Now);
         }
 
         public UserSeason NextSeason

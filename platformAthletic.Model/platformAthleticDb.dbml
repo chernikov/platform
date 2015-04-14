@@ -1,18 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="platform_data" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SATURN\MSSQL;Initial Catalog=platform_data;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="platform_dataConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.UserSeason" Member="UserSeasons">
-    <Type Name="UserSeason">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StartDay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="UserSeason_UserAttendance" Member="UserAttendances" ThisKey="ID" OtherKey="UserSeasonID" Type="UserAttendance" />
-      <Association Name="UserSeason_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserSeasonID" Type="PersonalSchedule" />
-      <Association Name="UserSeason_Schedule" Member="Schedules" ThisKey="ID" OtherKey="UserSeasonID" Type="Schedule" />
-      <Association Name="Season_UserSeason" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="User_UserSeason" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="platform2015_current" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WORKER\MSSQL;Initial Catalog=platform2015_current;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="platform2015_currentConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Equipment" Member="Equipments">
     <Type Name="Equipment">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -53,8 +40,8 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Association Name="Season_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="SeasonID" Type="UserSeason" />
       <Association Name="Season_Cycle" Member="Cycles" ThisKey="ID" OtherKey="SeasonID" Type="Cycle" />
+      <Association Name="Season_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="SeasonID" Type="UserSeason" />
     </Type>
   </Table>
   <Table Name="dbo.State" Member="States">
@@ -205,8 +192,8 @@
       <Column Name="UserSeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="UserSeason_UserAttendance" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
       <Association Name="User_UserAttendance" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="UserSeason_UserAttendance" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Video" Member="Videos">
@@ -322,23 +309,6 @@
       <Association Name="BannerPlace_Banner" Member="BannerPlace" ThisKey="BannerPlaceID" OtherKey="ID" Type="BannerPlace" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SBCValue" Member="SBCValues">
-    <Type Name="SBCValue">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FieldPositionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Squat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Bench" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Clean" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Association Name="FieldPosition_SBCValue" Member="FieldPosition" ThisKey="FieldPositionID" OtherKey="ID" Type="FieldPosition" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="Team_SBCValue" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.PillarType" Member="PillarTypes">
     <Type Name="PillarType">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -429,8 +399,8 @@
       <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MacrocycleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Macrocycle_PersonalSchedule" Member="Macrocycle" ThisKey="MacrocycleID" OtherKey="ID" Type="Macrocycle" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="UserSeason_PersonalSchedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
       <Association Name="User_PersonalSchedule" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="UserSeason_PersonalSchedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Schedule" Member="Schedules">
@@ -442,9 +412,9 @@
       <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MacrocycleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Macrocycle_Schedule" Member="Macrocycle" ThisKey="MacrocycleID" OtherKey="ID" Type="Macrocycle" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="UserSeason_Schedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
       <Association Name="Group_Schedule" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Team_Schedule" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
+      <Association Name="UserSeason_Schedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PagePart" Member="PageParts">
@@ -493,6 +463,7 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Association Name="Group_Schedule" Member="Schedules" ThisKey="ID" OtherKey="GroupID" Type="Schedule" />
       <Association Name="Group_User" Member="Users" ThisKey="ID" OtherKey="GroupID" Type="User" />
+      <Association Name="Group_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="GroupID" Type="UserSeason" />
       <Association Name="Team_Group" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -510,7 +481,6 @@
       <Column Name="SportID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Association Name="FieldPosition_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="FieldPositionID" Type="SBCValue" />
       <Association Name="FieldPosition_UserFieldPosition" Member="UserFieldPositions" ThisKey="ID" OtherKey="FieldPositionID" Type="UserFieldPosition" />
       <Association Name="Sport_FieldPosition" Member="Sport" ThisKey="SportID" OtherKey="ID" Type="Sport" IsForeignKey="true" />
     </Type>
@@ -560,19 +530,19 @@
       <Column Name="LevelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GradYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="User_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="UserID" Type="UserSeason" />
       <Association Name="User_UserEquipment" Member="UserEquipments" ThisKey="ID" OtherKey="UserID" Type="UserEquipment" />
       <Association Name="User_UserRole" Member="UserRoles" ThisKey="ID" OtherKey="UserID" Type="UserRole" />
       <Association Name="User_UserAttendance" Member="UserAttendances" ThisKey="ID" OtherKey="UserID" Type="UserAttendance" />
       <Association Name="User_BillingInfo" Member="BillingInfos" ThisKey="ID" OtherKey="UserID" Type="BillingInfo" />
       <Association Name="User_Post" Member="Posts" ThisKey="ID" OtherKey="UserID" Type="Post" />
-      <Association Name="User_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="UserID" Type="SBCValue" />
       <Association Name="User_UserPillar" Member="UserPillars" ThisKey="ID" OtherKey="UserID" Type="UserPillar" />
       <Association Name="User_PaymentDetail" Member="PaymentDetails" ThisKey="ID" OtherKey="UserID" Type="PaymentDetail" />
       <Association Name="User_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserID" Type="PersonalSchedule" />
       <Association Name="User_Invoice" Member="Invoices" ThisKey="ID" OtherKey="UserID" Type="Invoice" />
       <Association Name="User_UserFieldPosition" Member="UserFieldPositions" ThisKey="ID" OtherKey="UserID" Type="UserFieldPosition" />
       <Association Name="User_Team" Member="Teams" ThisKey="ID" OtherKey="UserID" Type="Team" />
+      <Association Name="User_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="UserID" Type="SBCValue" />
+      <Association Name="User_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="UserID" Type="UserSeason" />
       <Association Name="Group_User" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
       <Association Name="Level_User" Member="Level" ThisKey="LevelID" OtherKey="ID" Type="Level" IsForeignKey="true" />
       <Association Name="Team_User" Member="Team" ThisKey="PlayerOfTeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
@@ -610,13 +580,41 @@
       <Column Name="SecondaryColor" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="SBCControl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MaxCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Team_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="TeamID" Type="SBCValue" />
       <Association Name="Team_Schedule" Member="Schedules" ThisKey="ID" OtherKey="TeamID" Type="Schedule" />
       <Association Name="Team_Group" Member="Groups" ThisKey="ID" OtherKey="TeamID" Type="Group" />
       <Association Name="Team_User" Member="Users" ThisKey="ID" OtherKey="PlayerOfTeamID" Type="User" />
+      <Association Name="Team_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="TeamID" Type="SBCValue" />
       <Association Name="School_Team" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" />
       <Association Name="State_Team" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
       <Association Name="User_Team" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SBCValue" Member="SBCValues">
+    <Type Name="SBCValue">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Squat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Bench" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Clean" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Team_SBCValue" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
+      <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserSeason" Member="UserSeasons">
+    <Type Name="UserSeason">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="UserSeason_UserAttendance" Member="UserAttendances" ThisKey="ID" OtherKey="UserSeasonID" Type="UserAttendance" />
+      <Association Name="UserSeason_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserSeasonID" Type="PersonalSchedule" />
+      <Association Name="UserSeason_Schedule" Member="Schedules" ThisKey="ID" OtherKey="UserSeasonID" Type="Schedule" />
+      <Association Name="Group_UserSeason" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
+      <Association Name="Season_UserSeason" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_UserSeason" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

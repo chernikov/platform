@@ -132,6 +132,8 @@
     <None Include="platform_data.saturn.publish.xml" />
     <None Include="Migrations\MigrationScript_007.sql" />
     <None Include="platform2015_current.publish.xml" />
+    <None Include="Migrations\MigrationScript_008.sql" />
+    <None Include="Migrations\MIgrationScript_009.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="platformAthletic.Db.refactorlog" />

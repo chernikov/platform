@@ -131,30 +131,30 @@ namespace platformAthletic.Models.Info
             var squatUser = repository.SBCValues.OrderByDescending(p => p.Squat).FirstOrDefault();
             if (squatUser != null)
             {
-                AllTimeSquat.LastName = squatUser.LastName;
-                AllTimeSquat.FirstName = squatUser.FirstName;
+                AllTimeSquat.LastName = squatUser.User.LastName;
+                AllTimeSquat.FirstName = squatUser.User.FirstName;
                 AllTimeSquat.Value = squatUser.Squat;
             }
             var benchUser = repository.SBCValues.OrderByDescending(p => p.Bench).FirstOrDefault();
             if (benchUser != null)
             {
-                AllTimeBench.LastName = benchUser.LastName;
-                AllTimeBench.FirstName = benchUser.FirstName;
+                AllTimeBench.LastName = benchUser.User.LastName;
+                AllTimeBench.FirstName = benchUser.User.FirstName;
                 AllTimeBench.Value = benchUser.Squat;
             }
             var cleanUser = repository.SBCValues.OrderByDescending(p => p.Clean).FirstOrDefault();
             if (cleanUser != null)
             {
-                AllTimeClean.LastName = cleanUser.LastName;
-                AllTimeClean.FirstName = cleanUser.FirstName;
+                AllTimeClean.LastName = cleanUser.User.LastName;
+                AllTimeClean.FirstName = cleanUser.User.FirstName;
                 AllTimeClean.Value = cleanUser.Clean;
             }
 
             var allTimeAllUser = repository.SBCValues.OrderByDescending(p => p.Squat + p.Bench + p.Clean).FirstOrDefault();
             if (allTimeAllUser != null)
             {
-                AllTimeAll.LastName = allTimeAllUser.LastName;
-                AllTimeAll.FirstName = allTimeAllUser.FirstName;
+                AllTimeAll.LastName = allTimeAllUser.User.LastName;
+                AllTimeAll.FirstName = allTimeAllUser.User.FirstName;
                 AllTimeAll.Value = allTimeAllUser.Squat + allTimeAllUser.Bench + allTimeAllUser.Clean;
             }
         }

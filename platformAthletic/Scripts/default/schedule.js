@@ -90,6 +90,14 @@
             _this.setSelected(_this.number, $(this).data("id"), _this.date);
         });
 
+        $(document).on('click', '.calendar-drop-down-list .season-item', function () {
+            _this.startSeason($(this).data("id"), _this.date);
+        });
+
+        $(document).on('click', '.calendar-drop-down-list .cycle-item', function () {
+            _this.startCycle(_this.number, $(this).data("id"), _this.date);
+        });
+
         $(document).on('click', '.calendar-drop-down-list .personal-item', function () {
             _this.setSelectedPersonal(_this.number, $(this).data("id"), _this.date);
         });
@@ -229,6 +237,43 @@
         });
     }
 
+    this.startCycle = function (number, id, date) {
+        var ajaxData = {
+            number: number,
+            cycleId: id,
+            date: date,
+            teamId: $("#TeamID").val(),
+            groupId: $("#GroupID").val()
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/Schedule/StartCycle",
+            data: ajaxData,
+            success: function (data) {
+                _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+            }
+        });
+    }
+
+    this.startSeason = function (id, date) {
+        var ajaxData = {
+            seasonId: id,
+            date: date,
+            teamId: $("#TeamID").val(),
+            groupId: $("#GroupID").val()
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/Schedule/StartSeason",
+            data: ajaxData,
+            success: function (data) {
+                _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+            }
+        });
+    }
+
     this.setSelectedPersonal = function (number, id, date) {
         var ajaxData = {
             number: number,
@@ -245,6 +290,41 @@
             }
         });
     }
+
+
+    this.startCyclePersonal = function (number, id, date) {
+        var ajaxData = {
+            number: number,
+            cycleId: id,
+            date: date,
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/Schedule/StartPersonalCycle",
+            data: ajaxData,
+            success: function (data) {
+                _this.loadCalendarPersonal($("#Month").val());
+            }
+        });
+    }
+
+    this.startSeasonPersonal = function (id, date) {
+        var ajaxData = {
+            seasonId: id,
+            date: date
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/Schedule/StartPersonalSeason",
+            data: ajaxData,
+            success: function (data) {
+                _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+            }
+        });
+    }
+
 }
 
 var schedule = null;

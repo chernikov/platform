@@ -87,13 +87,13 @@ namespace platformAthletic.Models.Info
                     squatRecord.CurrentUser = maxSquatUser;
                     squatRecord.CurrentValue = maxSquatUser.Squat;
                 }
-                var maxSquatValue = team.SBCValues.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Squat).FirstOrDefault();
+                /*var maxSquatValue = team.SBCValues.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Squat).FirstOrDefault();
                 if (maxSquatValue != null)
                 {
                     squatRecord.AllTimeFirstName = maxSquatValue.FirstName;
                     squatRecord.AllTimeLastName = maxSquatValue.LastName;
                     squatRecord.AllTimeValue = maxSquatValue.Squat;
-                }
+                }*/
                 Squats.Add(squatRecord);
 
                 var benchRecord = new Record();
@@ -103,13 +103,13 @@ namespace platformAthletic.Models.Info
                     benchRecord.CurrentUser = maxBenchUser;
                     benchRecord.CurrentValue = maxBenchUser.Bench;
                 }
-                var maxBenchValue = team.SBCValues.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Bench).FirstOrDefault();
+               /* var maxBenchValue = team.SBCValues.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Bench).FirstOrDefault();
                 if (maxBenchValue != null)
                 {
                     benchRecord.AllTimeFirstName = maxBenchValue.FirstName;
                     benchRecord.AllTimeLastName = maxBenchValue.LastName;
                     benchRecord.AllTimeValue = maxBenchValue.Bench;
-                }
+                }*/
                 Benchs.Add(benchRecord);
 
                 var cleanRecord = new Record();
@@ -119,24 +119,24 @@ namespace platformAthletic.Models.Info
                     cleanRecord.CurrentUser = maxCleanUser;
                     cleanRecord.CurrentValue = maxCleanUser.Clean;
                 }
-                var maxCleanValue = team.SBCValues.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Clean).FirstOrDefault();
+               /* var maxCleanValue = team.SBCValues.Where(p => p.FieldPositionID == fieldPosition.ID).OrderByDescending(p => p.Clean).FirstOrDefault();
                 if (maxCleanValue != null)
                 {
                     cleanRecord.AllTimeFirstName = maxCleanValue.FirstName;
                     cleanRecord.AllTimeLastName = maxCleanValue.LastName;
                     cleanRecord.AllTimeValue = maxCleanValue.Clean;
-                }
+                }*/
                 Cleans.Add(cleanRecord);
             }
 
             AllTimeAll = new Record();
             var maxAllValue = team.SBCValues.OrderByDescending(p => p.Clean + p.Bench + p.Squat).FirstOrDefault();
-            if (maxAllValue != null)
+            /*if (maxAllValue != null)
             {
                 AllTimeAll.AllTimeFirstName = maxAllValue.FirstName;
                 AllTimeAll.AllTimeLastName = maxAllValue.LastName;
                 AllTimeAll.AllTimeValue = maxAllValue.Squat + maxAllValue.Bench + maxAllValue.Clean;
-            }
+            }*/
         }
     }
 }

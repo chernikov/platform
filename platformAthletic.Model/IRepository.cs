@@ -346,7 +346,7 @@ namespace platformAthletic.Model
 
         bool ChangePassword(User instance);
 
-        bool SetSbcValue(int idUser, SBCValue.SbcType type, double value);
+        bool SetSbcValue(int idUser, SBCValue.SbcType type, double value, DateTime? addedDate = null);
 
         bool ChangeSbcValue(int idUser, SBCValue.SbcType type, double value);
 

@@ -65,13 +65,13 @@ namespace platformAthletic.Global
             {
                 rank = 0;
 
-                if (entry.FirstName != null)
+                if (entry.User.FirstName != null)
                 {
-                    rank += Regex.Matches(entry.FirstName.ToLowerInvariant(), regex).Count;
+                    rank += Regex.Matches(entry.User.FirstName.ToLowerInvariant(), regex).Count;
                 }
-                if (entry.LastName != null)
+                if (entry.User.LastName != null)
                 {
-                    rank += Regex.Matches(entry.LastName.ToLowerInvariant(), regex).Count;
+                    rank += Regex.Matches(entry.User.LastName.ToLowerInvariant(), regex).Count;
                 }
                 rank += Regex.Matches(entry.AddedDate.ToString("d"), regex).Count;
                 rank += Regex.Matches(entry.Squat.ToString(), regex).Count;

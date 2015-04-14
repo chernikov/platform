@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\IntegratedTestSetupFixture.cs" />
+    <Compile Include="Test\GenerateUserTest.cs" />
     <Compile Include="Test\PerformanceTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GenerateData\GenerateData.csproj">
+      <Project>{6b127020-1bcc-4d06-a290-9e30726fb10b}</Project>
+      <Name>GenerateData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\platformAthletic.Model\platformAthletic.Model.csproj">
       <Project>{54305171-f603-4070-9e75-1f7173681e8a}</Project>
       <Name>platformAthletic.Model</Name>

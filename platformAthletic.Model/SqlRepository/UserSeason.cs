@@ -34,6 +34,7 @@ namespace platformAthletic.Model
             var cache = Db.UserSeasons.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
+                cache.GroupID = instance.GroupID;
                 cache.SeasonID = instance.SeasonID;
 				cache.StartDay = instance.StartDay;
                 Db.UserSeasons.Context.SubmitChanges();

@@ -21,6 +21,14 @@ namespace platformAthletic.Model
             }
         }
 
+        public IEnumerable<Cycle> SubCycles
+        {
+            get
+            {
+                return Cycles.AsEnumerable();
+            }
+        }
+
         public IEnumerable<Macrocycle> Macrocycles
         {
             get

@@ -1158,7 +1158,7 @@ dl.sport-2 {
         font-weight: bold;
         position: relative;
         cursor: pointer;
-        width: 240px;
+        width: calc(100% - 60px);
     }
 
         .schedule-group-wrapper .group-list .group .header .drop-down {
@@ -1281,12 +1281,12 @@ dl.sport-2 {
                 border-radius: 4px;
             }
 
-            .schedule-calendar .table-calendar .numbers td  {
-                font-family : 'Myriad Pro';
-                font-size : 14px;
-                padding : 20px 0;
-                text-align : center;
-            }
+    .schedule-calendar .table-calendar .numbers td {
+        font-family: 'Myriad Pro';
+        font-size: 14px;
+        padding: 20px 0;
+        text-align: center;
+    }
 
 .calendar-wrapper {
     position: relative;
@@ -1296,9 +1296,8 @@ dl.sport-2 {
         position: absolute;
         left: 0;
         padding: 0;
-        box-shadow : #222 3px 3px 5px;
-        background-color : #fff;
-
+        box-shadow: #222 3px 3px 5px;
+        background-color: #fff;
     }
 
         .calendar-wrapper .calendar-drop-down-list .list-title {
@@ -1310,7 +1309,7 @@ dl.sport-2 {
                 float: left;
                 cursor: pointer;
                 padding: 6px 12px;
-                background-color : #f5f5f5;
+                background-color: #f5f5f5;
             }
 
                 .calendar-wrapper .calendar-drop-down-list .list-title .season.selected {
@@ -1318,22 +1317,28 @@ dl.sport-2 {
                 }
 
         .calendar-wrapper .calendar-drop-down-list .list {
-            margin: 0 0 0 15px;
+            margin: 0;
         }
 
             .calendar-wrapper .calendar-drop-down-list .list .item {
                 font-size: 16px;
                 cursor: pointer;
                 padding: 4px 10px;
-                border-bottom : 1px solid #ebeaea;
-                font-family : Arial;
-                font-size : 11px;
-
+                border-bottom: 1px solid #ebeaea;
+                font-family: Arial;
+                font-size: 11px;
             }
 
-                .calendar-wrapper .calendar-drop-down-list .list .item:hover,
-                .calendar-wrapper .calendar-drop-down-list .list .item.selected {
-                    background-color: #ebeaea;
-                }
+            .calendar-wrapper .calendar-drop-down-list .list .season-item {
+                background-color: #ebeaea;
+                font-weight: bold;
+            }
 
+            .calendar-wrapper .calendar-drop-down-list .list .cycle-item {
+                font-style: italic;
+            }
 
+            .calendar-wrapper .calendar-drop-down-list .list .item:hover,
+            .calendar-wrapper .calendar-drop-down-list .list .item.selected {
+                background-color: #ebeaea;
+            }

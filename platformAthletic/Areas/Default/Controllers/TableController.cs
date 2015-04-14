@@ -12,6 +12,8 @@ namespace platformAthletic.Areas.Default.Controllers
 {
     public class TableController : DefaultController
     {
+
+        //TODO: current season for each user separately
         [SeasonCheck]
         [Authorize(Roles = "coach")]
         public ActionResult Team(int[] idUsers)

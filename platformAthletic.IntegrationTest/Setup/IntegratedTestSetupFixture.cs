@@ -30,18 +30,21 @@ namespace platformAthletic.IntegrationTest
             public string Type { get; set; }
         }
 
-        protected static string NameDb = "platform_data";
+        protected static string NameDb = "platform2015_current";
+
+        protected static bool RemoveAfter = false;
 
         protected static string TestDbName;
 
         protected override void InitRepository(StandardKernel kernel)
         {
-            FileInfo sandboxFile;
+           // FileInfo sandboxFile;
             string connectionString;
-            CopyDb(kernel, out sandboxFile, out connectionString);
+            //CopyDb(kernel, out sandboxFile, out connectionString);
+            connectionString = "Data Source=ms-sql-8.in-solve.ru;Initial Catalog=1gb_platformath;User Id=1gb_chernikov;Password=994d312c;";
             kernel.Bind<platformAthleticDbDataContext>().ToMethod(c =>  new platformAthleticDbDataContext(connectionString));
             kernel.Bind<IRepository>().To<SqlRepository>();
-            sandboxFile.Delete();
+            //sandboxFile.Delete();
         }
 
         private void CopyDb(StandardKernel kernel, out FileInfo sandboxFile, out string connectionString)
@@ -75,7 +78,10 @@ namespace platformAthletic.IntegrationTest
         [TearDown]
         public override void TearDown()
         {
-            RemoveDb();
+            if (RemoveAfter)
+            {
+                RemoveDb();
+            }
             Console.WriteLine("===============");
             Console.WriteLine("=====BYE!======");
             Console.WriteLine("===============");
@@ -83,7 +89,7 @@ namespace platformAthletic.IntegrationTest
 
         private void RemoveDb()
         {
-            var config =  DependencyResolver.Current.GetService<IConfig>();
+          /*  var config =  DependencyResolver.Current.GetService<IConfig>();
 
             var db = new DataContext(config.ConnectionStrings("ConnectionString"));
 
@@ -91,7 +97,7 @@ namespace platformAthletic.IntegrationTest
             db.ExecuteCommand(textCloseConnectionTestDb);
 
             var textDropTestDb = string.Format(@"DROP DATABASE [{0}]", TestDbName);
-            db.ExecuteCommand(textDropTestDb);
+            db.ExecuteCommand(textDropTestDb);*/
         }
     }
 }

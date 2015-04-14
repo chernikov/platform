@@ -139,40 +139,46 @@ namespace platformAthletic.Model
         {
             get
             {
+                //if player of team
                 if (Team != null && ID != Team.UserID)
                 {
-                    return Team.CurrentSeason;
+                    var coach = Team.User;
+                    if (GroupID != null)
+                    {
+                        var currentSeason = coach.SeasonByDateAndGroup(DateTime.Now, GroupID.Value);
+                        if (currentSeason == null)
+                        {
+                            return coach.SeasonByDateAndGroup(DateTime.Now);
+                        }
+                        return currentSeason;
+                    }
+                    else
+                    {
+                        return coach.SeasonByDateAndGroup(DateTime.Now);
+                    }
                 }
                 else
                 {
-                    var season = UserSeasons.OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= DateTime.Now);
-
-                    if (season == null)
-                    {
-                        season = UserSeasons.Where(p => p.StartDay >= DateTime.Now).OrderBy(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault();
-                    }
-                    return season;
+                    //user is coach
+                    return SeasonByDateAndGroup(DateTime.Now);
                 }
             }
         }
 
-        public UserSeason SeasonByDate(DateTime dateTime)
+        public UserSeason SeasonByDateAndGroup(DateTime dateTime, int? groupID = null, bool getTeam = false)
         {
-            if (Team != null && ID != Team.UserID)
+            var season = UserSeasons.OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= dateTime && p.GroupID == groupID);
+            if (season == null && groupID == null)
             {
-                return Team.User.SeasonByDate(dateTime);
+                season = UserSeasons.Where(p => p.StartDay >= dateTime && p.GroupID == groupID).OrderBy(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault();
             }
-            else
+            if (season == null && getTeam)
             {
-                var season = UserSeasons.OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= dateTime);
-                if (season == null)
-                {
-                    season = UserSeasons.Where(p => p.StartDay >= dateTime).OrderBy(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault();
-                }
-                return season;
+                return SeasonByDateAndGroup(dateTime, null);
             }
-            
+            return season;
         }
+
 
         public UserSeason NextSeason
         {

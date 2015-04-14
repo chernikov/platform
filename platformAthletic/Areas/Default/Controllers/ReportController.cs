@@ -62,10 +62,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var reportEndDate = DateTime.Now.Date;
                 reportEndDate = reportEndDate.AddDays(-(int)reportEndDate.DayOfWeek);
-                if (reportEndDate > team.CurrentSeason.StartDay.AddDays(team.CurrentSeason.Season.DaysLength))
-                {
-                    reportEndDate = team.CurrentSeason.StartDay.AddDays(team.CurrentSeason.Season.DaysLength);
-                }
+              
                 Dictionary<string, double> output = null;
                 output = GetAttendance(team, filterCustomAttendanceReport);
                   
