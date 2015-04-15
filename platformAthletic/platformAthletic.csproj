@@ -220,6 +220,7 @@
     <Compile Include="Areas\Default\Controllers\FaqController.cs" />
     <Compile Include="Areas\Default\Controllers\GettingStartedController.cs" />
     <Compile Include="Areas\Default\Controllers\InvoiceController.cs" />
+    <Compile Include="Areas\Default\Controllers\OldLeaderBoardController.cs" />
     <Compile Include="Areas\Default\Controllers\LeaderBoardController.cs" />
     <Compile Include="Areas\Default\Controllers\ManagePlayerController.cs" />
     <Compile Include="Areas\Default\Controllers\PageController.cs" />
@@ -1163,6 +1164,7 @@
     <Content Include="Scripts\default\add-players.js" />
     <Content Include="Scripts\default\extended-dashboard.js" />
     <Content Include="Scripts\default\dashboard.js" />
+    <Content Include="Scripts\default\leaderboard.js" />
     <Content Include="Scripts\default\modal-attendance.js" />
     <Content Include="Scripts\default\schedule.js" />
     <Content Include="Scripts\default\team.js" />
@@ -1184,6 +1186,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\Default\Views\OldLeaderBoard\Index.cshtml" />
+    <Content Include="Areas\Default\Views\OldLeaderBoard\Team.cshtml" />
+    <Content Include="Areas\Default\Views\Shared\MainMenu.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

@@ -1,0 +1,20 @@
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var controllerName = ViewContext.RequestContext.RouteData.Values["controller"] as string;
+    var actionName = ViewContext.RequestContext.RouteData.Values["action"] as string;
+}
+<div class="side-menu-container">
+    <ul class="nav navbar-nav">
+        <li class="@((controllerName == "Home" && actionName == "Index") ? "active" : "")">
+            <a href="/">
+                <span class="glyphicon glyphicon-home"></span> HOME
+            </a>
+        </li>
+        <li class="@(controllerName == "dashboard" ? "active" : "")"><a href="/dashboard"><span class="glyphicon glyphicon-user"></span> DASHBOARD</a></li>
+        <li class="@(controllerName == "Schedule" ? "active" : "")"><a href="/scheduling"><span class="glyphicon glyphicon-calendar"></span> SCHEDULING</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
+        <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-play-circle"></span> VIDEOGALLERY</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
+    </ul>
+</div><!-- /.navbar-collapse -->

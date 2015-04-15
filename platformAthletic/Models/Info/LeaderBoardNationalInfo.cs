@@ -9,153 +9,280 @@ namespace platformAthletic.Models.Info
 {
     public class LeaderBoardNationalInfo
     {
-
         public class Record
         {
-            public string FirstName { get; set; }
+            public int Position { get; set; }
 
-            public string LastName { get; set; }
+            public User User { get; set; }
 
-            public double? Value { get; set; }
+            public int Squat { get; set; }
 
-            public string InitialAndLastName
-            {
-                get
-                {
-                    return (FirstName.Substring(0, 1) + ". " + LastName).ToUpper();
-                }
-            }
+            public int Bench { get; set; }
+
+            public int Clean { get; set; }
+
+            public int Total { get; set; }
         }
 
-        public class TopRecords
+        public List<Record> TopList { get; set; }
+
+        public List<Record> List { get; set; }
+
+        public int TotalCount { get; set; }
+
+        public int CountPage
         {
-            public List<Record> Records { get; set; }
-
-
-            public Record this[int index]
+            get
             {
-                get
-                {
-                    if (Records.Count > index)
-                    {
-                        return Records[index];
-                    }
-                    else
-                    {
-                        return new Record();
-                    }
-                }
-            }
-
-            public TopRecords()
-            {
-                Records = new List<Record>(10);
+                return (int)decimal.Remainder(TotalCount, SearchNationalLeaderBoard.PageSize) == 0 ? TotalCount / SearchNationalLeaderBoard.PageSize : TotalCount / SearchNationalLeaderBoard.PageSize + 1;
             }
         }
 
-        public Dictionary<FieldPosition, TopRecords> List { get; set; }
-
-        public Record AllTimeSquat { get; set; }
-
-        public Record AllTimeBench { get; set; }
-
-        public Record AllTimeClean { get; set; }
-
-        public Record AllTimeAll { get; set; }
-
-
-        public List<FieldPosition> FieldPositions { get; set; }
+        public SearchNationalLeaderBoard Search { get; set; }
 
         public LeaderBoardNationalInfo(SearchNationalLeaderBoard search)
         {
+            Search = search;
+
+            TopList = new List<Record>();
+            List = new List<Record>();
+
+            IQueryable<SBCValue> sbcValues;
+            IQueryable<User> users;
+            IOrderedQueryable<SBCValue> topOrderSbcValues;
+            IOrderedQueryable<User> orderUsers;
+            Filter(out sbcValues, out users);
+
+            Order(sbcValues, users, out topOrderSbcValues, out orderUsers);
+            MakeTopAllTime(topOrderSbcValues);
+            MakeChart(orderUsers);
+            CutSearchCriteria(users);
+        }
+
+        private void MakeChart(IOrderedQueryable<User> orderUsers)
+        {
+            var localUsers = orderUsers.Skip((Search.Page - 1) * 20).Take(20);
+            TotalCount = orderUsers.Count();
+
+            var i = (Search.Page - 1) * 20 + 1;
+            foreach (var user in localUsers)
+            {
+                List.Add(new Record()
+                {
+                    Position = i,
+                    User = user,
+                    Squat = (int)user.Squat,
+                    Bench = (int)user.Bench,
+                    Clean = (int)user.Clean,
+                    Total = (int)(user.Squat + user.Bench + user.Clean)
+                });
+                i++;
+            }
+        }
+
+        private void MakeTopAllTime(IOrderedQueryable<SBCValue> topOrderSbcValues)
+        {
+            var i = 1;
+            foreach (var sbcValue in topOrderSbcValues)
+            {
+                if (!TopList.Any(p => p.User.ID == sbcValue.UserID))
+                {
+                    TopList.Add(new Record()
+                    {
+                        Position = i,
+                        User = sbcValue.User,
+                        Squat = (int)sbcValue.Squat,
+                        Bench = (int)sbcValue.Bench,
+                        Clean = (int)sbcValue.Clean,
+                        Total = (int)(sbcValue.Squat + sbcValue.Bench + sbcValue.Clean)
+                    });
+                    if (i == 3)
+                    {
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        private void Order(IQueryable<SBCValue> sbcValues, IQueryable<User> users, out IOrderedQueryable<SBCValue> topOrderSbcValues, out IOrderedQueryable<User> orderUsers)
+        {
+            switch (Search.Sort)
+            {
+                case SearchNationalLeaderBoard.SortEnum.NameAsc:
+                    orderUsers = users.OrderBy(p => p.LastName).ThenBy(p => p.FirstName);
+                    topOrderSbcValues = sbcValues.OrderBy(p => p.User.LastName).ThenBy(p => p.User.FirstName);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.NameDesc:
+                    orderUsers = users.OrderByDescending(p => p.LastName).ThenByDescending(p => p.FirstName);
+                    topOrderSbcValues = sbcValues.OrderByDescending(p => p.User.LastName).ThenByDescending(p => p.User.FirstName);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.SquatAsc:
+                    orderUsers = users.OrderBy(p => p.Squat);
+                    topOrderSbcValues = sbcValues.OrderBy(p => p.Squat);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.SquatDesc:
+                    orderUsers = users.OrderByDescending(p => p.Squat);
+                    topOrderSbcValues = sbcValues.OrderByDescending(p => p.Squat);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.BenchAsc:
+                    orderUsers = users.OrderBy(p => p.Bench);
+                    topOrderSbcValues = sbcValues.OrderBy(p => p.Bench);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.BenchDesc:
+                    orderUsers = users.OrderByDescending(p => p.Bench);
+                    topOrderSbcValues = sbcValues.OrderByDescending(p => p.Bench);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.CleanAsc:
+                    orderUsers = users.OrderBy(p => p.Clean);
+                    topOrderSbcValues = sbcValues.OrderBy(p => p.Clean);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.CleanDesc:
+                    orderUsers = users.OrderByDescending(p => p.Clean);
+                    topOrderSbcValues = sbcValues.OrderByDescending(p => p.Clean);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.TotalAsc:
+                    orderUsers = users.OrderBy(p => p.Squat + p.Clean + p.Bench);
+                    topOrderSbcValues = sbcValues.OrderBy(p => p.Squat + p.Clean + p.Bench);
+                    break;
+                case SearchNationalLeaderBoard.SortEnum.TotalDesc:
+                    orderUsers = users.OrderByDescending(p => p.Squat + p.Clean + p.Bench);
+                    topOrderSbcValues = sbcValues.OrderByDescending(p => p.Squat + p.Clean + p.Bench);
+                    break;
+                default : 
+                    orderUsers = users.OrderByDescending(p => p.Squat + p.Clean + p.Bench);
+                    topOrderSbcValues = sbcValues.OrderByDescending(p => p.Squat + p.Clean + p.Bench);
+                    break;
+            }
+        }
+
+        private void Filter(out IQueryable<SBCValue> sbcValues, out IQueryable<User> users)
+        {
             var repository = DependencyResolver.Current.GetService<IRepository>();
 
-            List = new Dictionary<FieldPosition, TopRecords>();
-            AllTimeSquat = new Record();
-            AllTimeBench = new Record();
-            AllTimeClean = new Record();
-            AllTimeAll = new Record();
-        
-            var users = repository.Users.Where(p => p.PlayerOfTeamID.HasValue);
+            sbcValues = repository.SBCValues;
+            users = repository.Users;
 
-            if (search.StateID > 0) 
+            if (Search.SportID != null)
             {
-                users = users.Where(p => p.Team.StateID == search.StateID);
+                sbcValues = sbcValues.Where(p => p.User.UserFieldPositions.Any(r => r.SportID == Search.SportID));
+                users = users.Where(p => p.UserFieldPositions.Any(r => r.SportID == Search.SportID));
             }
-            //Except Athlete
-            FieldPositions = repository.FieldPositions.Where(p => p.ID < 9).ToList();
-            foreach (var fieldPosition in FieldPositions)
+            if (Search.FieldPositionID != null)
             {
-                var topRecord = new TopRecords();
+                sbcValues = sbcValues.Where(p => p.User.UserFieldPositions.Any(r => r.FieldPositionID == Search.FieldPositionID));
+                users = users.Where(p => p.UserFieldPositions.Any(r => r.FieldPositionID == Search.FieldPositionID));
+            }
+            if (Search.Gender != null)
+            {
+                sbcValues = sbcValues.Where(p => p.User.Gender == Search.Gender.Value);
+                users = users.Where(p => p.Gender == Search.Gender.Value);
+            }
+            if (Search.StateID != null)
+            {
+                sbcValues = sbcValues.Where(p => p.User.Team.StateID == Search.StateID.Value);
+                users = users.Where(p => p.Team.StateID == Search.StateID.Value);
+            }
+            if (Search.LevelID != null)
+            {
+                sbcValues = sbcValues.Where(p => p.User.LevelID == Search.LevelID.Value);
+                users = users.Where(p => p.LevelID == Search.LevelID.Value);
+            }
+            if (Search.Age != null)
+            {
+                DateTime start;
+                DateTime end;
+                GetStartEndDateByAge(Search.Age.Value, out start, out end);
+                sbcValues = sbcValues.Where(p => p.User.Birthday != null && (p.User.Birthday > start && p.User.Birthday < end));
+                users = users.Where(p => p.Birthday != null && (p.Birthday > start && p.Birthday < end));
+            }
+        }
 
-                var fieldValues = users.Where(p => p.FieldPositions.Any(r => r.ID == fieldPosition.ID));
+        private void GetStartEndDateByAge(int age, out DateTime start, out DateTime end)
+        {
+            start = DateTime.Now.AddYears(-age);
+            end = DateTime.Now.AddYears(-age + 5);
+            if (age == 70)
+            {
+                start = DateTime.Now.AddYears(200);
+            }
+            if (age == 0)
+            {
+                start = DateTime.Now.AddYears(-15);
+                end = DateTime.Now;
+            }
+        }
 
-                switch (search.TrainingType)
+        private void CutSearchCriteria(IQueryable<User> users) 
+        {
+            if (!Search.SportID.HasValue)
+            {
+                //Sport
+                foreach (var sport in Search.Sports.ToList())
                 {
-                    case 0 : //all
-                        topRecord.Records = fieldValues.OrderByDescending(p => p.Squat + p.Bench + p.Clean).Take(10).Select(p => new Record()
-                        {
-                            LastName = p.LastName,
-                            FirstName = p.FirstName,
-                            Value = p.Squat + p.Bench + p.Clean
-                        }).ToList();
-                        break;
-                    case 1: //squat
-                        topRecord.Records = fieldValues.OrderByDescending(p => p.Squat).Take(10).Select(p => new Record()
-                        {
-                            LastName = p.LastName,
-                            FirstName = p.FirstName,
-                            Value = p.Squat 
-                        }).ToList();
-                        break;
-                    case 2: //bench
-                        topRecord.Records = fieldValues.OrderByDescending(p => p.Bench).Take(10).Select(p => new Record()
-                        {
-                            LastName = p.LastName,
-                            FirstName = p.FirstName,
-                            Value = p.Bench
-                        }).ToList();
-                        break;
-                    case 3: //clean
-                        topRecord.Records = fieldValues.OrderByDescending(p => p.Clean).Take(10).Select(p => new Record()
-                        {
-                            LastName = p.LastName,
-                            FirstName = p.FirstName,
-                            Value = p.Clean
-                        }).ToList();
-                        break;
+                    if (!users.Any(p => p.UserFieldPositions.Any(r => r.SportID == sport.ID)))
+                    {
+                        Search.Sports.Remove(sport);
+                    }
                 }
-                List.Add(fieldPosition, topRecord);
             }
-
-            var squatUser = repository.SBCValues.OrderByDescending(p => p.Squat).FirstOrDefault();
-            if (squatUser != null)
+            if (!Search.FieldPositionID.HasValue)
             {
-                AllTimeSquat.LastName = squatUser.User.LastName;
-                AllTimeSquat.FirstName = squatUser.User.FirstName;
-                AllTimeSquat.Value = squatUser.Squat;
+                //FieldPosition
+                foreach (var fieldPosition in Search.FieldPositions.ToList())
+                {
+                    if (!users.Any(p => p.UserFieldPositions.Any(r => r.FieldPositionID == fieldPosition.ID)))
+                    {
+                        Search.FieldPositions.Remove(fieldPosition);
+                    }
+                }
             }
-            var benchUser = repository.SBCValues.OrderByDescending(p => p.Bench).FirstOrDefault();
-            if (benchUser != null)
+            if (!Search.Age.HasValue)
             {
-                AllTimeBench.LastName = benchUser.User.LastName;
-                AllTimeBench.FirstName = benchUser.User.FirstName;
-                AllTimeBench.Value = benchUser.Squat;
+                //Age
+                foreach (var age in Search.Ages.ToList())
+                {
+                    DateTime start;
+                    DateTime end;
+                    GetStartEndDateByAge(age, out start, out end);
+                    if (!users.Any(p => p.Birthday != null && (p.Birthday > start && p.Birthday < end)))
+                    {
+                        Search.Ages.Remove(age);
+                    }
+                }
             }
-            var cleanUser = repository.SBCValues.OrderByDescending(p => p.Clean).FirstOrDefault();
-            if (cleanUser != null)
+            if (!Search.LevelID.HasValue)
             {
-                AllTimeClean.LastName = cleanUser.User.LastName;
-                AllTimeClean.FirstName = cleanUser.User.FirstName;
-                AllTimeClean.Value = cleanUser.Clean;
+                //Levels
+                foreach (var level in Search.Levels.ToList())
+                {
+                    if (!users.Any(p => p.LevelID == level.ID))
+                    {
+                        Search.Levels.Remove(level);
+                    }
+                }
             }
-
-            var allTimeAllUser = repository.SBCValues.OrderByDescending(p => p.Squat + p.Bench + p.Clean).FirstOrDefault();
-            if (allTimeAllUser != null)
+            if (!Search.Gender.HasValue)
             {
-                AllTimeAll.LastName = allTimeAllUser.User.LastName;
-                AllTimeAll.FirstName = allTimeAllUser.User.FirstName;
-                AllTimeAll.Value = allTimeAllUser.Squat + allTimeAllUser.Bench + allTimeAllUser.Clean;
+                //Genders
+                foreach (var gender in Search.Genders.ToList())
+                {
+                    if (!users.Any(p => p.Gender == gender))
+                    {
+                        Search.Genders.Remove(gender);
+                    }
+                }
+            }
+            if (!Search.StateID.HasValue)
+            {
+                //States
+                foreach (var state in Search.States.ToList())
+                {
+                    if (!users.Any(p => p.Team.StateID == state.ID))
+                    {
+                        Search.States.Remove(state);
+                    }
+                }
             }
         }
     }

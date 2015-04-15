@@ -1,131 +1,110 @@
 ﻿@model platformAthletic.Models.Info.LeaderBoardNationalInfo
 @{
     ViewBag.Title = "National Leader Board";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var search = (platformAthletic.Models.Info.SearchNationalLeaderBoard)ViewBag.Search;
 }
-<div class="board-national-wrp final-leader-wrp all-transparent-wrp">
-    <div class="top">
-        <a class="link-button primaryColorBg" href="/leader-board">Team</a>
-        <div class="logo-platform">
-            <img src="/Media/images/logo_platform.png" alt="logo platform" />
-        </div>
-        <a class="link-button secondaryColorBg" href="/national-leader-board">National</a>
-    </div>
-    <div class="bottom">
-        <div class="header">
-            @using (Html.BeginForm("Index", "LeaderBoard", FormMethod.Get))
-            {
-                <div class="action-wrp">
+@section header {
+    <script src="~/Scripts/default/leaderboard.js"></script>
+}
 
-                    <div class="name">Search by:</div>
-                    <div class="input">
-                        <div class="title">Demographic</div>
-                        <div class="select-wrp">
-                            @Html.DropDownList("StateID", search.SelectListStateID, new { @class = "dropdown-styled" })
+@*search panel*@
+
+@Html.Hidden("Sort", Model.Search.Sort)
+<div class="leaderboard-wrapper">
+    <div class="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="/leaderboard" aria-controls="home" role="tab" data-toggle="tab">NATIONAL LEADERBOARD</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active">
+                <form class="form-inline search-wrapper">
+                    <div class="form-group">
+                        <div class="select-style">
+                            @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
+                            <div></div>
                         </div>
                     </div>
-                    <div class="input">
-                        <div class="title">Exercise</div>
-                        <div class="select-wrp">
-                            @Html.DropDownList("TrainingType", search.SelectListTrainingType, new { @class = "dropdown-styled" })
+                    <div class="form-group">
+                        <div class="select-style">
+                            @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
+                            <div></div>
                         </div>
                     </div>
-                    <div class="button-wrp">
-                        <button class="btn-transparent">Show Results</button>
+                    <div class="form-group">
+                        <div class="select-style">
+                            @Html.DropDownList("Gender", Model.Search.SelectListGender, new { @class = "form-control filter" })
+                            <div></div>
+                        </div>
                     </div>
-                </div>
-            }
-            <div class="all-time-wrp">
-                <div class="name">
-                    All Time Records
-                </div>
-                <table class="all-time">
+                    <div class="form-group">
+                        <div class="select-style">
+                            @Html.DropDownList("Age", Model.Search.SelectListAge, new { @class = "form-control filter" })
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="select-style">
+                            @Html.DropDownList("Level", Model.Search.SelectListLevelID, new { @class = "form-control filter" })
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="select-style">
+                            @Html.DropDownList("StateID", Model.Search.SelectListStateID, new { @class = "form-control filter" })
+                            <div></div>
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <table class="table">
                     <thead>
-                        <tr>
-                            <th>Squat</th>
-                            <th>Bench</th>
-                            <th>Clean</th>
-                            <th>All</th>
+                        <tr class="leaderboard-header">
+                            <th>RANK</th>
+                            <th class="reverse-sortable"><span data-type="Name" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameDesc ? "desc" : "")"></span>NAME</th>
+                            <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatDesc ? "desc" : "")"></span>SQUAT</th>
+                            <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchDesc ? "desc" : "")"></span>BENCH</th>
+                            <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanDesc ? "desc" : "")"></span>CLEAN</th>
+                            <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeSquat.FirstName))
-                                {
-                                    var firstName = Model.AllTimeSquat.FirstName.Substring(0, 1);
-                                    var lastName = Model.AllTimeSquat.LastName.ToUpper();
-                                    <text>@firstName.&nbsp;@lastName</text><br />
-                                    <span>@Model.AllTimeSquat.Value</span>
-                                }
-                            </td>
-                            <td>
-                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeBench.FirstName))
-                                {
-                                    var firstName = Model.AllTimeBench.FirstName.Substring(0, 1);
-                                    var lastName = Model.AllTimeBench.LastName.ToUpper();
-                                    <text>@firstName.&nbsp;@lastName</text><br />
-                                    <span>@Model.AllTimeBench.Value</span>
-                                }
-                            </td>
-                            <td>
-                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeClean.FirstName))
-                                {
-                                    var firstName = Model.AllTimeClean.FirstName.Substring(0, 1);
-                                    var lastName = Model.AllTimeClean.LastName.ToUpper();
-                                   <text>@firstName.&nbsp;@lastName</text><br />
-                                    <span>@Model.AllTimeClean.Value</span>
-                                }
-                            </td>
-                            <td>
-                                @if (!string.IsNullOrWhiteSpace(Model.AllTimeAll.FirstName))
-                                {
-                                    var firstName = Model.AllTimeAll.FirstName.Substring(0, 1);
-                                    var lastName = Model.AllTimeAll.LastName.ToUpper();
-                                    <text>@firstName.&nbsp;@lastName</text><br />
-                                    <span>@Model.AllTimeAll.Value</span>
-                                }
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="separate-line"></div>
-        <div class="title-table">@search.SelectListTrainingType.First(p => p.Selected).Text</div>
-        <div class="separate-line"></div>
-        <div class="content">
-            <table class="national">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        @foreach (var fieldPosition in Model.FieldPositions)
-                        {
-                            <th>@fieldPosition.Code</th>
-                        }
+                    <tr class="header">
+                        <td colspan="6">ALL TIME LEADERS</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @for (var i = 0; i < 10; i++)
+                    @foreach (var item in Model.TopList)
                     {
-                        <tr>
-                            <td>@(i + 1)</td>
-                            @foreach (var fieldPosition in Model.FieldPositions)
-                            {
-                                <td>
-                                @if (!string.IsNullOrWhiteSpace(Model.List[fieldPosition][i].FirstName))
-                                {
-                                    @Model.List[fieldPosition][i].InitialAndLastName<br/>
-                                    <span>@Model.List[fieldPosition][i].Value</span>
-                                }
-                            </td>
-                            }
+                        <tr class="top-list-item">
+                            <td class="rank"><span>@item.Position</span></td>
+                            <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalDesc) ? "selected" : "")">@item.Total.ToString("N0")</span></td>
                         </tr>
                     }
-                </tbody>
-            </table>
+                    <tr class="header">
+                        <td colspan="6">CURRENT LEADERS</td>
+                    </tr>
+                    @foreach (var item in Model.List)
+                    {
+                        <tr class="item">
+                            <td class="rank"><span>@item.Position</span></td>
+                            <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalDesc) ? "selected" : "")">@item.Total.ToString("N0")</span></td>
+                        </tr>
+                    }
+                </table>
+                <div class="text-center">
+                    <ul class="pagination">
+                        @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Index", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, StateID = Model.Search.StateID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age }))
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-

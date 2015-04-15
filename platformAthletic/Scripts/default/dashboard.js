@@ -86,7 +86,6 @@
                 date : $("#CurrentDate").data("date"),
                 value : $(this).prop('checked')
             };
-
             $.ajax({
                 type: "POST",
                 url: "/dashboard/SetAttendance",
@@ -99,11 +98,8 @@
                 }
             });
         });
-       
-
         this.showUserInfo( $(".user-name").first().data("id"));
     }
-
 
     this.substringMatcher = function (strs) {
         return function findMatches(q, cb) {

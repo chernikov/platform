@@ -422,16 +422,31 @@ namespace platformAthletic.Areas.Default
             );
 
             context.MapRoute(
+               null,
+               "leaderboard",
+               new { controller = "LeaderBoard", action = "Index" },
+               new[] { "platformAthletic.Areas.Default.Controllers" }
+           );
+
+            context.MapRoute(
+                null,
+                "team-leaderboard",
+                new { controller = "LeaderBoard", action = "Team" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+
+            context.MapRoute(
                 null,
                 "leader-board",
-                new { controller = "LeaderBoard", action = "Team" },
+                new { controller = "OldLeaderBoard", action = "Team" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
             context.MapRoute(
                 null,
                 "national-leader-board",
-                new { controller = "LeaderBoard", action = "Index" },
+                new { controller = "OldLeaderBoard", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

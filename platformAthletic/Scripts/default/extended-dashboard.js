@@ -82,9 +82,7 @@
                 }
             });
         });
-
     }
-
 
     this.substringMatcher = function (strs)
     {
