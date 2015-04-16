@@ -40,7 +40,7 @@ namespace platformAthletic.Models.Info
 
         public SearchNationalLeaderBoard Search { get; set; }
 
-        public LeaderBoardNationalInfo(SearchNationalLeaderBoard search)
+        public LeaderBoardNationalInfo(SearchNationalLeaderBoard search, bool allPages = false)
         {
             Search = search;
 
@@ -51,12 +51,43 @@ namespace platformAthletic.Models.Info
             IQueryable<User> users;
             IOrderedQueryable<SBCValue> topOrderSbcValues;
             IOrderedQueryable<User> orderUsers;
-            Filter(out sbcValues, out users);
 
-            Order(sbcValues, users, out topOrderSbcValues, out orderUsers);
-            MakeTopAllTime(topOrderSbcValues);
-            MakeChart(orderUsers);
-            CutSearchCriteria(users);
+            var repository = DependencyResolver.Current.GetService<IRepository>();
+            sbcValues = repository.SBCValues;
+            users = repository.Users;
+            CutSearchCriteria(users, true);
+            Filter(ref sbcValues,ref users);
+            if (allPages)
+            {
+                Order(sbcValues, users, out topOrderSbcValues, out orderUsers);
+                MakeUnpageChart(orderUsers);
+            }
+            else
+            {
+                Order(sbcValues, users, out topOrderSbcValues, out orderUsers);
+                MakeTopAllTime(topOrderSbcValues);
+                MakeChart(orderUsers);
+                CutSearchCriteria(users);
+            }
+        }
+
+        private void MakeUnpageChart(IOrderedQueryable<User> orderUsers)
+        {
+            TotalCount = orderUsers.Count();
+            var i = 1;
+            foreach (var user in orderUsers)
+            {
+                List.Add(new Record()
+                {
+                    Position = i,
+                    User = user,
+                    Squat = (int)user.Squat,
+                    Bench = (int)user.Bench,
+                    Clean = (int)user.Clean,
+                    Total = (int)(user.Squat + user.Bench + user.Clean)
+                });
+                i++;
+            }
         }
 
         private void MakeChart(IOrderedQueryable<User> orderUsers)
@@ -156,13 +187,8 @@ namespace platformAthletic.Models.Info
             }
         }
 
-        private void Filter(out IQueryable<SBCValue> sbcValues, out IQueryable<User> users)
+        private void Filter(ref IQueryable<SBCValue> sbcValues,ref IQueryable<User> users)
         {
-            var repository = DependencyResolver.Current.GetService<IRepository>();
-
-            sbcValues = repository.SBCValues;
-            users = repository.Users;
-
             if (Search.SportID != null)
             {
                 sbcValues = sbcValues.Where(p => p.User.UserFieldPositions.Any(r => r.SportID == Search.SportID));
@@ -187,7 +213,14 @@ namespace platformAthletic.Models.Info
             {
                 sbcValues = sbcValues.Where(p => p.User.LevelID == Search.LevelID.Value);
                 users = users.Where(p => p.LevelID == Search.LevelID.Value);
+
+                if (Search.GradYear != null)
+                {
+                    sbcValues = sbcValues.Where(p => p.User.GradYear == Search.GradYear.Value);
+                    users = users.Where(p => p.GradYear == Search.GradYear.Value);
+                }
             }
+
             if (Search.Age != null)
             {
                 DateTime start;
@@ -213,9 +246,9 @@ namespace platformAthletic.Models.Info
             }
         }
 
-        private void CutSearchCriteria(IQueryable<User> users) 
+        private void CutSearchCriteria(IQueryable<User> users, bool force = false) 
         {
-            if (!Search.SportID.HasValue)
+            if (!Search.SportID.HasValue || force)
             {
                 //Sport
                 foreach (var sport in Search.Sports.ToList())
@@ -226,7 +259,7 @@ namespace platformAthletic.Models.Info
                     }
                 }
             }
-            if (!Search.FieldPositionID.HasValue)
+            if (!Search.FieldPositionID.HasValue || force)
             {
                 //FieldPosition
                 foreach (var fieldPosition in Search.FieldPositions.ToList())
@@ -237,7 +270,7 @@ namespace platformAthletic.Models.Info
                     }
                 }
             }
-            if (!Search.Age.HasValue)
+            if (!Search.Age.HasValue || force)
             {
                 //Age
                 foreach (var age in Search.Ages.ToList())
@@ -251,7 +284,7 @@ namespace platformAthletic.Models.Info
                     }
                 }
             }
-            if (!Search.LevelID.HasValue)
+            if (!Search.LevelID.HasValue || force)
             {
                 //Levels
                 foreach (var level in Search.Levels.ToList())
@@ -262,7 +295,14 @@ namespace platformAthletic.Models.Info
                     }
                 }
             }
-            if (!Search.Gender.HasValue)
+
+            //Grad Years
+            if (Search.ShowGradYear)
+            {
+                Search.GradYears = users.Where(p => p.GradYear != null).Select(p => p.GradYear.Value).Distinct().ToList();
+            }
+
+            if (!Search.Gender.HasValue || force)
             {
                 //Genders
                 foreach (var gender in Search.Genders.ToList())
@@ -273,7 +313,7 @@ namespace platformAthletic.Models.Info
                     }
                 }
             }
-            if (!Search.StateID.HasValue)
+            if (!Search.StateID.HasValue || force)
             {
                 //States
                 foreach (var state in Search.States.ToList())

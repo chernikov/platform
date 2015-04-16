@@ -433,7 +433,7 @@
     .custom-style select {
         background: #495b6c url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUNBNzVDNkVEQUJEMTFFNEFEMDI5OEQ4OTIyMUUyRkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUNBNzVDNkZEQUJEMTFFNEFEMDI5OEQ4OTIyMUUyRkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1Q0E3NUM2Q0RBQkQxMUU0QUQwMjk4RDg5MjIxRTJGQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1Q0E3NUM2RERBQkQxMUU0QUQwMjk4RDg5MjIxRTJGQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhVKY/EAAACOSURBVBgZBcGxSgIAAEDBZ84Ntog0hLRFH+LcIOgUBNEcQR/k0FwIrg2N/kXgIgVJkNt1l1NXkiRJkuTCOEt/Hp1IkiTJrR9PeQPvppIkGXsF28zswMGdJLmxB98WyZkXwNrEyAqwca4kmfsCe5/g14OBlCSZWAP4cClJSZIM3Ds4ejaUJCVJkkxdS5KkfxYVvcYUdcO/AAAAAElFTkSuQmCC") no-repeat 95% center;
         text-indent: 0.01px; /* Removes default arrow from firefox*/
-        text-overflow: ""; /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+        text-overflow: ''; /*Removes default arrow from firefox*/ /*My custom style for fonts*/
         appearance: none;
         -moz-appearance: none; /* Firefox */
         -webkit-appearance: none; /* Safari and Chrome */
@@ -767,7 +767,7 @@ dl.power {
 
 
 dl.sport {
-    font-family: 'Myriad Pro';
+    font-family: 'Montserrat', sans-serif;
 }
 
     dl.sport dt {
@@ -785,7 +785,7 @@ dl.sport {
 
 
 dl.sport-2 {
-    font-family: 'Myriad Pro';
+    font-family: 'Montserrat', sans-serif;
 }
 
     dl.sport-2 dt {
@@ -828,7 +828,7 @@ dl.sport-2 {
 
 .platform .table-calendar {
     margin-top: 0;
-    font-family: 'Myriad Pro';
+    font-family: 'Montserrat', sans-serif;
 }
 
     .platform .table-calendar thead {
@@ -928,7 +928,7 @@ dl.sport-2 {
     }
 
     .badge.badge-attendance h1 {
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-weight: bold;
         font-size: 42px;
         margin: 10px 0 0 0;
@@ -949,7 +949,7 @@ dl.sport-2 {
 
     .badge.badge-performance h2 {
         margin: 15px 0 10px 0;
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-size: 16px;
         text-align: center;
         color: #495b6c;
@@ -957,7 +957,7 @@ dl.sport-2 {
 
     .badge.badge-performance h1 {
         margin: 0px 0 0px 0;
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-weight: bold;
         font-size: 28px;
         text-align: center;
@@ -980,7 +980,9 @@ dl.sport-2 {
         color: #495b6c;
     }
 
+
 .search-suggestion {
+    list-style : none;
     background-color: #fff;
     overflow: hidden;
     padding: 3px 10px;
@@ -992,18 +994,22 @@ dl.sport-2 {
 
     .search-suggestion img {
         float: left;
+        width : 40px;
+        height : 40px;
+        margin-right : 10px;
+    }
+    .search-suggestion.tt-cursor {
+        background : #fc8675;
     }
 
     .search-suggestion .name {
         padding: 10px 10px 0 10px;
-        float: left;
         color: #2b333c;
     }
 
     .search-suggestion .state {
         padding: 0 0 10px 10px;
         margin-left: 0;
-        float: left;
         color: #6c7d8d;
     }
 
@@ -1049,7 +1055,7 @@ dl.sport-2 {
 
 .add-players .btn-empty {
     font-weight: normal;
-    font-family: 'Myriad Pro';
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     left: 16px;
 }
@@ -1066,7 +1072,7 @@ dl.sport-2 {
 .field-validation-error {
     color: #fc8675;
     font-size: 10px;
-    font-family: 'Myriad Pro';
+    font-family: 'Montserrat', sans-serif;
 }
 
 /*Scheduling */
@@ -1119,7 +1125,7 @@ dl.sport-2 {
     border-radius: 2px;
     margin: 5px 0px;
     padding: 5px 10px;
-    font-family: 'Myriad Pro';
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     font-weight: bold;
     position: relative;
@@ -1153,7 +1159,7 @@ dl.sport-2 {
         border-radius: 2px;
         margin: 0;
         padding: 5px 10px;
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-size: 16px;
         font-weight: bold;
         position: relative;
@@ -1237,7 +1243,7 @@ dl.sport-2 {
 
 
         .schedule-calendar .table-calendar .edit-wrapper td .week-name {
-            font-family: 'Myriad Pro';
+            font-family: 'Montserrat', sans-serif;
             font-size: 13px;
             border-radius: 4px;
             background-color: #5d6f81;
@@ -1247,7 +1253,7 @@ dl.sport-2 {
         }
 
         .schedule-calendar .table-calendar .edit-wrapper td .preview-workout {
-            font-family: 'Myriad Pro';
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             background-color: #65cea7;
             color: #fff;
@@ -1282,7 +1288,7 @@ dl.sport-2 {
             }
 
     .schedule-calendar .table-calendar .numbers td {
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         padding: 20px 0;
         text-align: center;
@@ -1392,7 +1398,7 @@ dl.sport-2 {
 
     .leaderboard-wrapper .table .top-list-item {
         color: #fff;
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         font-weight: bold;
     }
@@ -1442,7 +1448,7 @@ dl.sport-2 {
 
     .leaderboard-wrapper .table .item {
         color: #495b6c;
-        font-family: 'Myriad Pro';
+        font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         font-weight: bold;
     }
@@ -1511,3 +1517,14 @@ dl.sport-2 {
         border-radius: 3px;
         padding-right: 30px;
     }
+
+
+.leaderboard-wrapper .search-wrapper .input-group
+{
+    width : 400px;
+}
+
+
+.leaderboard-wrapper .search-wrapper .input-group .form-control {
+    width : 400px;
+}

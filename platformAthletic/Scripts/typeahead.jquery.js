@@ -652,6 +652,7 @@
             },
             clear: function clear() {
                 this.cancel();
+                //console.log(this.$el.html());
                 this.$el.empty();
                 this.trigger("rendered");
             },
@@ -736,7 +737,9 @@
             _getCursor: function getCursor() {
                 return this.$menu.find(".tt-cursor").first();
             },
-            _setCursor: function setCursor($el, silent) {
+            _setCursor: function setCursor($el, silent)
+            {
+                console.log($el.first().html());
                 $el.first().addClass("tt-cursor");
                 !silent && this.trigger("cursorMoved");
             },

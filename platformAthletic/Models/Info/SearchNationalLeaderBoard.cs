@@ -11,6 +11,18 @@ namespace platformAthletic.Models.Info
     {
         public static int PageSize = 20;
 
+        public static List<Level> GradYearLevels = new List<Level>{
+            new Level() {
+                ID = 2, 
+                Name = "High School"
+            },
+            new Level() {
+                ID = 3, 
+                Name = "College"
+            },
+        };
+
+
         public enum SortEnum
         {
             NameAsc,
@@ -40,6 +52,16 @@ namespace platformAthletic.Models.Info
         public int? Age { get; set; }
 
         public int? LevelID { get; set; }
+
+        public bool ShowGradYear
+        {
+            get
+            {
+                return LevelID.HasValue && SearchNationalLeaderBoard.GradYearLevels.Any(p => p.ID == LevelID.Value);
+            }
+        }
+
+        public int? GradYear { get; set; }
 
         public List<State> States {get; set; }
         
@@ -216,6 +238,30 @@ namespace platformAthletic.Models.Info
                         Value = level.ID.ToString(),
                         Text = level.Name,
                         Selected = level.ID == LevelID
+                    };
+                }
+            }
+        }
+
+        public List<int> GradYears { get; set; }
+
+        public IEnumerable<SelectListItem> SelectListGradYears
+        {
+            get
+            {
+                yield return new SelectListItem
+                {
+                    Value = "",
+                    Text = "All Years",
+                    Selected = GradYear == null
+                };
+                foreach (var gradYear in GradYears)
+                {
+                    yield return new SelectListItem
+                    {
+                        Value = gradYear.ToString(),
+                        Text = gradYear.ToString(),
+                        Selected = gradYear == GradYear
                     };
                 }
             }
