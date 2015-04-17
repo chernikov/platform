@@ -45,7 +45,7 @@
             highlight: function () {
                 return true;
             },
-            minLength: 1
+            minLength: 3
         },
        {
            name: 'searchString',

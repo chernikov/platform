@@ -68,12 +68,6 @@
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Core">
-      <HintPath>..\packages\Glimpse.0.87\lib\net40\Glimpse.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Glimpse.Mvc3">
-      <HintPath>..\packages\Glimpse.Mvc3.0.87\lib\net40\Glimpse.Mvc3.dll</HintPath>
-    </Reference>
     <Reference Include="ImageResizer">
       <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
     </Reference>
@@ -88,8 +82,9 @@
     <Reference Include="Microsoft.Web.Optimization">
       <HintPath>..\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="MiniProfiler">
-      <HintPath>..\packages\MiniProfiler.2.0.1\lib\net40\MiniProfiler.dll</HintPath>
+    <Reference Include="MiniProfiler, Version=3.1.1.140, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MiniProfiler.3.1.1.140\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -221,7 +216,7 @@
     <Compile Include="Areas\Default\Controllers\GettingStartedController.cs" />
     <Compile Include="Areas\Default\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Default\Controllers\OldLeaderBoardController.cs" />
-    <Compile Include="Areas\Default\Controllers\LeaderBoardController.cs" />
+    <Compile Include="Areas\Default\Controllers\LeaderboardController.cs" />
     <Compile Include="Areas\Default\Controllers\ManagePlayerController.cs" />
     <Compile Include="Areas\Default\Controllers\PageController.cs" />
     <Compile Include="Areas\Default\Controllers\PlayerController.cs" />
@@ -283,17 +278,20 @@
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
     <Compile Include="Models\Info\CalendarInfo.cs" />
+    <Compile Include="Models\Info\JsonNationalLeaderboard.cs" />
+    <Compile Include="Models\Info\NationalTopList.cs" />
     <Compile Include="Models\Info\PerformanceGraphInfo.cs" />
     <Compile Include="Models\Info\PersonalCalendarInfo.cs" />
     <Compile Include="Models\Info\FilterCustomAttendanceReport.cs" />
     <Compile Include="Models\Info\FilterCustomProgressReport.cs" />
     <Compile Include="Models\Info\FilterTrainingDayInfo.cs" />
     <Compile Include="Models\Info\FilterTrainingSetInfo.cs" />
-    <Compile Include="Models\Info\LeaderBoardNationalInfo.cs" />
+    <Compile Include="Models\Info\LeaderBoardNational.cs" />
     <Compile Include="Models\Info\LeaderBoardTeamInfo.cs" />
     <Compile Include="Models\Info\PageableData.cs" />
     <Compile Include="Models\Info\PriceInfoView.cs" />
-    <Compile Include="Models\Info\SearchNationalLeaderBoard.cs" />
+    <Compile Include="Models\Info\SearchNationalLeaderboard.cs" />
+    <Compile Include="Models\Info\SearchNationalLeaderboardFilter.cs" />
     <Compile Include="Models\Info\SelectedEquipmentList.cs" />
     <Compile Include="Models\Info\TableInfo.cs" />
     <Compile Include="Models\Info\UserExportInfo.cs" />
@@ -375,8 +373,6 @@
     <Compile Include="Tools\Sms\SmsSender.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
-    <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Content\bootstrap-custom.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1189,6 +1185,7 @@
     <Content Include="Areas\Default\Views\OldLeaderBoard\Index.cshtml" />
     <Content Include="Areas\Default\Views\OldLeaderBoard\Team.cshtml" />
     <Content Include="Areas\Default\Views\Shared\MainMenu.cshtml" />
+    <Content Include="Areas\Default\Views\LeaderBoard\NationalTop.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

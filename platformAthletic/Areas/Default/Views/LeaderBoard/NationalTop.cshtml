@@ -1,0 +1,15 @@
+﻿@model NationalTopList
+<tr class="header">
+    <td colspan="6">ALL TIME LEADERS</td>
+</tr>
+@foreach (var item in Model.TopAllTime)
+{
+    <tr class="top-list-item">
+        <td class="rank"><span>@item.Position</span></td>
+        <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
+        <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>
+        <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench.ToString("N0")</span></td>
+        <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.CleanAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean.ToString("N0")</span></td>
+        <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalDesc) ? "selected" : "")">@item.Total.ToString("N0")</span></td>
+    </tr>
+}

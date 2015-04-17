@@ -12,15 +12,15 @@ namespace platformAthletic.Areas.Default.Controllers
     public class OldLeaderBoardController : DefaultController
     {
         [SeasonCheck]
-        public ActionResult Index(SearchNationalLeaderBoard searchNationalLeaderBoard)
+        public ActionResult Index(SearchNationalLeaderboard searchNationalLeaderBoard)
         {
             if (searchNationalLeaderBoard == null) 
             {
-                searchNationalLeaderBoard = new SearchNationalLeaderBoard();
+                searchNationalLeaderBoard = new SearchNationalLeaderboard();
             }
             ViewBag.Search = searchNationalLeaderBoard;
 
-            var leaderBoardNationalInfo = new LeaderBoardNationalInfo(searchNationalLeaderBoard);
+            var leaderBoardNationalInfo = new NationalLeaderboard(searchNationalLeaderBoard);
             return View(leaderBoardNationalInfo);
         }
 

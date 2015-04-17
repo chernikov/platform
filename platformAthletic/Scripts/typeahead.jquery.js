@@ -739,7 +739,6 @@
             },
             _setCursor: function setCursor($el, silent)
             {
-                console.log($el.first().html());
                 $el.first().addClass("tt-cursor");
                 !silent && this.trigger("cursorMoved");
             },

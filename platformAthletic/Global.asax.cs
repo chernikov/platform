@@ -101,6 +101,10 @@ namespace platformAthletic
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            if (Request.IsLocal) //or any number of other checks, up to you 
+            { 
+                MiniProfiler.Start(); 
+            } 
             var ajaxRequestHeader = Request.Headers.Get("X-Requested-With");
             var enableHttps = bool.Parse(ConfigurationManager.AppSettings["EnableHttps"]);
             if ((ajaxRequestHeader == null || ajaxRequestHeader != "XMLHttpRequest") && !Request.IsLocal && enableHttps && !Request.Url.AbsolutePath.Contains("/Media"))
@@ -135,7 +139,7 @@ namespace platformAthletic
 
         protected void Application_BeginRequest()
         {
-            if (Request.IsLocal) { MiniProfiler.Start(); } //or any number of other checks, up to you 
+           
         }
 
         protected void Application_EndRequest()

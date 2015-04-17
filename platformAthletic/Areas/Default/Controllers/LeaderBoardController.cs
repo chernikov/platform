@@ -9,19 +9,27 @@ using platformAthletic.Attributes;
 namespace platformAthletic.Areas.Default.Controllers
 {
     [Authorize(Roles="coach,player")]
-    public class LeaderBoardController : DefaultController
+    public class LeaderboardController : DefaultController
     {
         [SeasonCheck]
-        public ActionResult Index(SearchNationalLeaderBoard searchNationalLeaderBoard)
+        public ActionResult Index(SearchNationalLeaderboard search)
         {
-            if (searchNationalLeaderBoard == null) 
+            if (search == null) 
             {
-                searchNationalLeaderBoard = new SearchNationalLeaderBoard();
+                search = new SearchNationalLeaderboard();
             }
-            ViewBag.Search = searchNationalLeaderBoard;
+            var nationalLeaderboard = new NationalLeaderboard(search);
+            return View(nationalLeaderboard);
+        }
 
-            var leaderBoardNationalInfo = new LeaderBoardNationalInfo(searchNationalLeaderBoard);
-            return View(leaderBoardNationalInfo);
+        public ActionResult NationalTop(SearchNationalLeaderboard search)
+        {
+            if (search == null)
+            {
+                search = new SearchNationalLeaderboard();
+            }
+            var nationalTopList = new NationalTopList(search);
+            return View(nationalTopList);
         }
 
         public ActionResult Team()
@@ -32,16 +40,16 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(leaderBoardTeamInfo);
         }
 
-        public ActionResult JsonPlayers(SearchNationalLeaderBoard searchNationalLeaderBoard)
+        public ActionResult JsonPlayers(SearchNationalLeaderboard search)
         {
-            if (searchNationalLeaderBoard == null)
+            if (search == null)
             {
-                searchNationalLeaderBoard = new SearchNationalLeaderBoard();
+                search = new SearchNationalLeaderboard();
             }
-            var leaderBoardNationalInfo = new LeaderBoardNationalInfo(searchNationalLeaderBoard, true);
+            var jsonNationalLeaderboard = new JsonNationalLeaderboard(search);
             return Json(new
             {
-                users = leaderBoardNationalInfo.List.Where(p => p.User.PlayerOfTeamID != null).ToList().Select(p => new
+                users = jsonNationalLeaderboard.List.Where(p => p.User.PlayerOfTeamID != null).ToList().Select(p => new
                 {
                     rank = p.Position,
                     id = p.User.ID,

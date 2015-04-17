@@ -7,7 +7,7 @@ using platformAthletic.Model;
 
 namespace platformAthletic.Models.Info
 {
-    public class SearchNationalLeaderBoard
+    public class SearchNationalLeaderboard
     {
         public static int PageSize = 20;
 
@@ -21,7 +21,6 @@ namespace platformAthletic.Models.Info
                 Name = "College"
             },
         };
-
 
         public enum SortEnum
         {
@@ -51,13 +50,49 @@ namespace platformAthletic.Models.Info
 
         public int? Age { get; set; }
 
+        public DateTime MinDate
+        {
+            get
+            {
+                if (Age.HasValue)
+                {
+                    if (Age.Value == 70)
+                    {
+                       return DateTime.Now.AddYears(200);
+                    }
+                    if (Age.Value == 0)
+                    {
+                        return DateTime.Now.AddYears(-15);
+                    }
+                    return DateTime.Now.AddYears(-Age.Value);
+                }
+                return DateTime.MinValue;
+            }
+        }
+
+        public DateTime MaxDate
+        {
+            get
+            {
+                if (Age.HasValue)
+                {
+                    if (Age.Value == 0)
+                    {
+                        return DateTime.Now;
+                    }
+                    return DateTime.Now.AddYears(-Age.Value + 5);
+                }
+                return DateTime.MaxValue;
+            }
+        }
+
         public int? LevelID { get; set; }
 
         public bool ShowGradYear
         {
             get
             {
-                return LevelID.HasValue && SearchNationalLeaderBoard.GradYearLevels.Any(p => p.ID == LevelID.Value);
+                return LevelID.HasValue && SearchNationalLeaderboard.GradYearLevels.Any(p => p.ID == LevelID.Value);
             }
         }
 
@@ -267,7 +302,7 @@ namespace platformAthletic.Models.Info
             }
         }
 
-        public SearchNationalLeaderBoard()
+        public SearchNationalLeaderboard()
         {
             var repository = DependencyResolver.Current.GetService<IRepository>();
             Page = 1;

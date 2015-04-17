@@ -1,18 +1,14 @@
-﻿@model platformAthletic.Models.Info.LeaderBoardNationalInfo
+﻿@model platformAthletic.Models.Info.NationalLeaderboard
 @{
     ViewBag.Title = "National Leader Board";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
-    var search = (platformAthletic.Models.Info.SearchNationalLeaderBoard)ViewBag.Search;
+    var search = (platformAthletic.Models.Info.SearchNationalLeaderboard)ViewBag.Search;
 }
 @section header {
     <script src="~/Scripts/hogan.js"></script>
     <script src="~/Scripts/typeahead.jquery.js"></script>
     <script src="~/Scripts/default/leaderboard.js"></script>
 }
-
-@*search panel*@
-
-
 @Html.Hidden("Sort", Model.Search.Sort)
 <div class="leaderboard-wrapper">
     <div class="pull-right search-wrapper">
@@ -83,27 +79,16 @@
                     <thead>
                         <tr class="leaderboard-header">
                             <th>RANK</th>
-                            <th class="reverse-sortable"><span data-type="Name" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameDesc ? "desc" : "")"></span>NAME</th>
-                            <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatDesc ? "desc" : "")"></span>SQUAT</th>
-                            <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchDesc ? "desc" : "")"></span>BENCH</th>
-                            <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanDesc ? "desc" : "")"></span>CLEAN</th>
-                            <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
+                            <th class="reverse-sortable"><span data-type="Name" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameDesc ? "desc" : "")"></span>NAME</th>
+                            <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatDesc ? "desc" : "")"></span>SQUAT</th>
+                            <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchDesc ? "desc" : "")"></span>BENCH</th>
+                            <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.CleanDesc ? "desc" : "")"></span>CLEAN</th>
+                            <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
                         </tr>
                     </thead>
-                    <tr class="header">
-                        <td colspan="6">ALL TIME LEADERS</td>
-                    </tr>
-                    @foreach (var item in Model.TopList)
-                    {
-                        <tr class="top-list-item">
-                            <td class="rank"><span>@item.Position</span></td>
-                            <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench.ToString("N0")</span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean.ToString("N0")</span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalDesc) ? "selected" : "")">@item.Total.ToString("N0")</span></td>
-                        </tr>
-                    }
+                   
+                    @Html.Action("NationalTop", "Leaderboard", new { search = Model.Search})
+                   
                     <tr class="header">
                         <td colspan="6">CURRENT LEADERS</td>
                     </tr>
@@ -111,11 +96,11 @@
                     {
                         <tr class="item">
                             <td class="rank"><span>@item.Position</span></td>
-                            <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench.ToString("N0")</span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean.ToString("N0")</span></td>
-                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalAsc || Model.Search.Sort == SearchNationalLeaderBoard.SortEnum.TotalDesc) ? "selected" : "")">@item.Total.ToString("N0")</span></td>
+                            <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.CleanAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean.ToString("N0")</span></td>
+                            <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalDesc) ? "selected" : "")">@item.Total.ToString("N0")</span></td>
                         </tr>
                     }
                 </table>

@@ -980,6 +980,9 @@ dl.sport-2 {
         color: #495b6c;
     }
 
+.tt-cursor .search-suggestion {
+    background-color: #B0D8E0;
+}
 
 .search-suggestion {
     list-style : none;
@@ -992,14 +995,12 @@ dl.sport-2 {
     font-size: 10px;
 }
 
-    .search-suggestion img {
+    .search-suggestion img 
+    {
         float: left;
         width : 40px;
         height : 40px;
         margin-right : 10px;
-    }
-    .search-suggestion.tt-cursor {
-        background : #fc8675;
     }
 
     .search-suggestion .name {
@@ -1012,6 +1013,8 @@ dl.sport-2 {
         margin-left: 0;
         color: #6c7d8d;
     }
+
+    
 
 .tt-dropdown-menu {
     height: 324px;
