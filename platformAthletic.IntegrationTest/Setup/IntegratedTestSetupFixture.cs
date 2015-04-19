@@ -30,7 +30,7 @@ namespace platformAthletic.IntegrationTest
             public string Type { get; set; }
         }
 
-        protected static string NameDb = "platform2015_current";
+        protected static string NameDb = "platform_empty";
 
         protected static bool RemoveAfter = false;
 
@@ -38,10 +38,10 @@ namespace platformAthletic.IntegrationTest
 
         protected override void InitRepository(StandardKernel kernel)
         {
-           // FileInfo sandboxFile;
+            FileInfo sandboxFile;
             string connectionString;
-            //CopyDb(kernel, out sandboxFile, out connectionString);
-            connectionString = "Data Source=ms-sql-8.in-solve.ru;Initial Catalog=1gb_platformath;User Id=1gb_chernikov;Password=994d312c;";
+            CopyDb(kernel, out sandboxFile, out connectionString);
+            //connectionString = "Data Source=ms-sql-8.in-solve.ru;Initial Catalog=1gb_platformath;User Id=1gb_chernikov;Password=994d312c;";
             kernel.Bind<platformAthleticDbDataContext>().ToMethod(c =>  new platformAthleticDbDataContext(connectionString));
             kernel.Bind<IRepository>().To<SqlRepository>();
             //sandboxFile.Delete();

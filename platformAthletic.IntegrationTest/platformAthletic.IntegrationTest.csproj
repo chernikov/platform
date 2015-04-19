@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -58,10 +59,11 @@
     <Compile Include="Setup\IntegratedTestSetupFixture.cs" />
     <Compile Include="Test\GenerateUserTest.cs" />
     <Compile Include="Test\PerformanceTest.cs" />
+    <Compile Include="Tools\Filerarium.cs" />
+    <Compile Include="Tools\Imaginarium.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sandbox\" />
-    <Folder Include="Tools\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

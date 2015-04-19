@@ -54,7 +54,7 @@ namespace platformAthletic.Models.Info
 
         protected virtual void Process()
         {
-            var users = Repository.Users;
+            var users = Repository.TeamPlayersUsers;
             SearchNationalLeaderboardFilter.CutSearchCriteria(Search, users, preFilter : true);
             Filter(ref users);
             var orderUsers= Order(users);
@@ -90,6 +90,15 @@ namespace platformAthletic.Models.Info
                         Total = (int)(user.Squat + user.Bench + user.Clean)
                     });
                     i++;
+                }
+                if (Search.StartID.HasValue)
+                {
+                    var item = List.FirstOrDefault(p => p.User.ID == Search.StartID.Value);
+                    if (item != null) 
+                    {
+                        var index = List.IndexOf(item);
+                        Search.Page = index / 20 + 1;
+                    } 
                 }
                 GetPage();
             }

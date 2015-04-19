@@ -59,5 +59,15 @@ namespace platformAthletic.Areas.Default.Controllers
                 })
             }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult PlayerInfo(int id)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null) 
+            {
+                return View(user);
+            }
+            return null;
+        }
     }
 }

@@ -1,0 +1,63 @@
+﻿@model platformAthletic.Model.User
+
+<div class="modal fade player-info" id="modalPlayerInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">PLAYER PROFILE</h4>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                   <div class="col-sm-3">
+                       <img  src="@Model.FullAvatarPath?w=100&h=100&mode=crop" />
+                   </div>
+                   <div class="col-sm-9">
+                       <h1>@Model.FirstName @Model.LastName</h1>
+                       <table class="table sbc">
+                           <thead>
+                               <tr>
+                                   <th>S</th>
+                                   <th>B</th>
+                                   <th>C</th>
+                                   <th>TOTAL</th>
+                               </tr>
+                           </thead>
+                           <tr>
+                               <td>
+                                   @((int)Model.Squat)
+                               </td>
+                               <td>
+                                   @((int)Model.Bench)
+                               </td>
+                               <td>
+                                   @((int)Model.Clean)
+                               </td>
+                               <td>
+                                   @Model.Total
+                               </td>
+                           </tr>
+                       </table>
+
+                       <table class="table vertical">
+                           <tr>
+                               <td class="name">Gender@(Model.Age.HasValue ?"/Age" : "")</td>
+                               <td class="value">@Model.GenderStr@(Model.Age.HasValue ? "/" : "")@Model.Age</td>
+                           </tr>
+                           @if (Model.Team != null && Model.Team.School != null)
+                           { 
+                           <tr>
+                               <td class="name">School/State</td>
+                               <td class="value">@Model.Team.School.Name/@Model.Team.State.Name</td>
+                           </tr>
+                           }
+                       </table>
+                   </div>
+               </div>
+            </div>
+            <div class="modal-footer text-center">
+                <a  href="/User/@Model.ID" class="btn btn-primary" id="RemoveGroupBtn">VISIT PROFILE</a>
+            </div>
+        </div>
+    </div>
+</div>

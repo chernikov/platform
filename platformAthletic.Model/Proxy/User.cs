@@ -45,13 +45,13 @@ namespace platformAthletic.Model
             return false;
         }
 
-        
+
         public IQueryable<FieldPosition> FieldPositions
         {
-            get 
+            get
             {
                 return UserFieldPositions.Select(p => p.FieldPosition).AsQueryable();
-            }  
+            }
         }
 
         public bool IsActivated
@@ -433,17 +433,18 @@ namespace platformAthletic.Model
             get
             {
                 var startWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek).Date;
-                var date12WeekAgo = startWeek.AddDays(-7*12);
+                var date12WeekAgo = startWeek.AddDays(-7 * 12);
                 var sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
                 return sbc;
             }
         }
-        
+
         public int DiffSquat12Week
         {
             get
             {
-                if (Last12Week != null) {
+                if (Last12Week != null)
+                {
                     return (int)(Squat - Last12Week.Squat);
                 }
                 return (int)Squat;
@@ -475,7 +476,39 @@ namespace platformAthletic.Model
             }
         }
 
-        #region 
+
+        public int Total
+        {
+            get
+            {
+                return (int)(Squat + Bench + Clean);
+            }
+        }
+
+        public string GenderStr
+        {
+            get
+            {
+                return Gender ? "M" : "F";
+            }
+        }
+
+        public int? Age
+        {
+            get
+            {
+                if (Birthday != null)
+                {
+                    var today = DateTime.Today;
+                    var birthday = Birthday.Value;
+                    int age = today.Year - birthday.Year;
+                    if (birthday > today.AddYears(-age)) age--;
+                    return age;
+                }
+                return null;
+            }
+        }
+        #region
         public int WeekAttendanceCount
         {
             get
@@ -485,7 +518,7 @@ namespace platformAthletic.Model
                 {
                     diff += 7;
                 }
-                var startWeek =  DateTime.Now.AddDays(-1 * diff).Date;
+                var startWeek = DateTime.Now.AddDays(-1 * diff).Date;
                 return UserAttendances.Count(p => p.AddedDate > startWeek);
             }
         }
@@ -503,7 +536,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                var startYear = new DateTime(DateTime.Now.Year,1, 1);
+                var startYear = new DateTime(DateTime.Now.Year, 1, 1);
                 return UserAttendances.Count(p => p.AddedDate > startYear);
             }
         }
@@ -515,6 +548,6 @@ namespace platformAthletic.Model
                 return UserAttendances.Count();
             }
         }
-        #endregion 
+        #endregion
     }
 }

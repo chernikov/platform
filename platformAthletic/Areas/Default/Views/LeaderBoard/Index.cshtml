@@ -10,10 +10,11 @@
     <script src="~/Scripts/default/leaderboard.js"></script>
 }
 @Html.Hidden("Sort", Model.Search.Sort)
+@Html.Hidden("StartID", Model.Search.StartID)
 <div class="leaderboard-wrapper">
     <div class="pull-right search-wrapper">
         <div class="input-group">
-            <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
+            @Html.TextBox("SearchString", Model.Search.SearchString, new { @class = "form-control", id = "SearchAthlete", placeholder = "SEARCH ATHLETE" })
             <span class="input-group-btn">
                 <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
             </span>
@@ -94,7 +95,7 @@
                     </tr>
                     @foreach (var item in Model.List)
                     {
-                        <tr class="item">
+                        <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
                             <td class="rank"><span>@item.Position</span></td>
                             <td class="name"><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameDesc) ? "selected" : "")"><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
                             <td><span class="@((Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatAsc || Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat.ToString("N0")</span></td>

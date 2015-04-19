@@ -316,6 +316,8 @@ namespace platformAthletic.Model
         
         IQueryable<User> Users { get; }
 
+        IQueryable<User> TeamPlayersUsers { get; }
+
         IQueryable<User> AllUsers { get; }
         
         bool CreateUser(User instance);

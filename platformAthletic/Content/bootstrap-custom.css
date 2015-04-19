@@ -115,7 +115,7 @@
 
     .platform .side-menu {
         position: fixed;
-        width: 300px;
+        width: 200px;
         height: 100%;
         background-color: #495b6c;
     }
@@ -124,6 +124,7 @@
             border: none;
             background-color: #495b6c;
             height: auto;
+            padding-top: 10px;
         }
 
         .platform .side-menu .navbar-fixed-top {
@@ -150,7 +151,8 @@
     }
 
         .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
-            margin-right: 15px;
+            margin-right: 10px;
+            margin-left: 5px;
         }
 
         .platform .navbar-default .navbar-nav > li > a:hover {
@@ -200,7 +202,7 @@
 
 /* Main body section */
 .side-body {
-    margin-left: 300px;
+    margin-left: 200px;
 }
 
 
@@ -985,7 +987,7 @@ dl.sport-2 {
 }
 
 .search-suggestion {
-    list-style : none;
+    list-style: none;
     background-color: #fff;
     overflow: hidden;
     padding: 3px 10px;
@@ -995,12 +997,11 @@ dl.sport-2 {
     font-size: 10px;
 }
 
-    .search-suggestion img 
-    {
+    .search-suggestion img {
         float: left;
-        width : 40px;
-        height : 40px;
-        margin-right : 10px;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
     }
 
     .search-suggestion .name {
@@ -1014,7 +1015,7 @@ dl.sport-2 {
         color: #6c7d8d;
     }
 
-    
+
 
 .tt-dropdown-menu {
     height: 324px;
@@ -1368,7 +1369,7 @@ dl.sport-2 {
         background-color: #60b1c2;
         color: #fff;
         border: none;
-        padding-left : 30px;
+        padding-left: 30px;
         cursor: pointer;
     }
 
@@ -1405,36 +1406,37 @@ dl.sport-2 {
         font-size: 14px;
         font-weight: bold;
     }
+
         .leaderboard-wrapper .table .top-list-item td {
             border: none;
             padding: 0;
         }
 
-        .leaderboard-wrapper .table .top-list-item td > span {
-            display: block;
-            height: 40px;
-            padding: 7px 10px;
-            margin: 0 0 0 20px;
-        }
+            .leaderboard-wrapper .table .top-list-item td > span {
+                display: block;
+                height: 40px;
+                padding: 7px 10px;
+                margin: 0 0 0 20px;
+            }
 
-          .leaderboard-wrapper .table .top-list-item td.rank > span {
+            .leaderboard-wrapper .table .top-list-item td.rank > span {
                 width: auto;
-                text-align : right;
+                text-align: right;
             }
 
             .leaderboard-wrapper .table .top-list-item td.name > span {
                 padding-left: 40px;
-                width: 450px;
-                text-align : left;
+                width: auto;
+                text-align: left;
             }
 
             .leaderboard-wrapper .table .top-list-item td .selected {
-                 background : rgba(96,177,194, 0.3);
+                background: rgba(96,177,194, 0.3);
             }
 
             .leaderboard-wrapper .table .top-list-item td > span {
                 width: 100px;
-                text-align : center;
+                text-align: center;
             }
 
         .leaderboard-wrapper .table .top-list-item:nth-child(2) td {
@@ -1459,34 +1461,40 @@ dl.sport-2 {
         .leaderboard-wrapper .table .item td {
             border: none;
             padding: 0;
+            cursor: pointer;
         }
 
-            .leaderboard-wrapper .table .item td > span {
-                display: block;
-                height: 40px;
-                padding: 7px 10px;
-                margin: 0 0 0 20px;
-            }
+        .leaderboard-wrapper .table .item.selected td,
+        .leaderboard-wrapper .table .item.selected:nth-child(2n) td {
+            background: rgba(96,177,194, 0.3);
+        }
 
-            .leaderboard-wrapper .table .item td.rank > span {
-                width: auto;
-                text-align : right;
-            }
+        .leaderboard-wrapper .table .item td > span {
+            display: block;
+            height: 40px;
+            padding: 7px 10px;
+            margin: 0 0 0 20px;
+        }
 
-            .leaderboard-wrapper .table .item td.name > span {
-                padding-left: 40px;
-                width: 450px;
-                text-align : left;
-            }
+        .leaderboard-wrapper .table .item td.rank > span {
+            width: auto;
+            text-align: right;
+        }
 
-            .leaderboard-wrapper .table .item td .selected {
-                background : rgba(96,177,194, 0.3);
-            }
+        .leaderboard-wrapper .table .item td.name > span {
+            padding-left: 40px;
+            width: auto;
+            text-align: left;
+        }
 
-            .leaderboard-wrapper .table .item td > span {
-                width: 100px;
-                text-align : center;
-            }
+        .leaderboard-wrapper .table .item td .selected {
+            background: rgba(96,177,194, 0.3);
+        }
+
+        .leaderboard-wrapper .table .item td > span {
+            width: 100px;
+            text-align: center;
+        }
 
 
 
@@ -1522,12 +1530,78 @@ dl.sport-2 {
     }
 
 
-.leaderboard-wrapper .search-wrapper .input-group
-{
-    width : 400px;
+.leaderboard-wrapper .search-wrapper .input-group {
+    width: 400px;
 }
 
 
-.leaderboard-wrapper .search-wrapper .input-group .form-control {
-    width : 400px;
+    .leaderboard-wrapper .search-wrapper .input-group .form-control {
+        width: 400px;
+    }
+
+.modal.player-info {
+    font-family: 'Montserrat', sans-serif;
 }
+
+    .modal.player-info .modal-header {
+        background: #fff;
+        padding: 10px;
+    }
+
+        .modal.player-info .modal-header .modal-title {
+            text-align: left;
+            color: #495b6c;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+    .modal.player-info h1 {
+        margin: 0 0 5px 0;
+        color: #60b1c2;
+        font-weight: normal;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+    }
+
+    .modal.player-info .table.sbc th {
+        background: #495b6c;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #495b6c;
+    }
+
+    .modal.player-info .table.sbc td {
+        color: #2b333c;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #e8e7e7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .modal.player-info .table.vertical td.name {
+        background: #495b6c;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #495b6c;
+        width: 50%;
+    }
+
+    .modal.player-info .table.vertical td.value {
+        color: #2b333c;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #e8e7e7;
+        margin: 0;
+        padding: 0;
+        width: 50%;
+    }
+
+    .modal.player-info .modal-footer {
+        border-top: none;
+    }

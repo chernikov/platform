@@ -1186,6 +1186,7 @@
     <Content Include="Areas\Default\Views\OldLeaderBoard\Team.cshtml" />
     <Content Include="Areas\Default\Views\Shared\MainMenu.cshtml" />
     <Content Include="Areas\Default\Views\LeaderBoard\NationalTop.cshtml" />
+    <Content Include="Areas\Default\Views\LeaderBoard\PlayerInfo.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

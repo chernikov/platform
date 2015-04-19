@@ -50,6 +50,10 @@ namespace platformAthletic.Models.Info
 
         public int? Age { get; set; }
 
+        public string SearchString { get; set; }
+
+        public int? StartID { get; set; }
+
         public DateTime MinDate
         {
             get

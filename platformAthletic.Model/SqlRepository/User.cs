@@ -14,6 +14,13 @@ namespace platformAthletic.Model
                 return Db.Users.Where(p => !p.IsDeleted);
             }
         }
+        public IQueryable<User> TeamPlayersUsers
+        {
+            get
+            {
+                return Db.Users.Where(p => !p.IsDeleted && p.UserRoles.Any(r => r.RoleID == 3));
+            }
+        }
 
         public IQueryable<User> AllUsers
         {

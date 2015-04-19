@@ -61,9 +61,22 @@
            engine: Hogan
        }).bind('typeahead:selected', function (obj, selected, name)
        {
-        /*   window.location = "/dashboard?searchString=" + selected.value.name;*/
+           var params = _this.getCurrentFilter();
+           params = $.param.querystring(params, 'StartID=' + selected.value.id);
+           params = $.param.querystring(params, 'SearchString=' + selected.value.name);
+           window.location = $.param.querystring("/Leaderboard/", params);
        });
 
+        if ($("#StartID").val() != "") {
+            $('html, body').animate({
+                scrollTop: $(".item.selected").offset().top
+            }, 1000);
+        }
+
+        $(".item").click(function () {
+            var id = $(this).data("id");
+            _this.showPlayerInfo(id);
+        })
     }
 
     this.filterAll = function ()
@@ -109,6 +122,19 @@
             cb(matches);
         };
     };
+
+    this.showPlayerInfo = function (id) {
+        $.ajax({
+            type: "GET",
+            url: "/Leaderboard/PlayerInfo",
+            data : {id : id},
+            success: function (data)
+            {
+                $("#ModalWrapper").html(data);
+                $("#modalPlayerInfo").modal();
+            }
+        });
+    }
 }
 
 var leaderboard = null;
