@@ -32,38 +32,47 @@
         var currentFilter = _this.getCurrentFilter();
         var players = null;
 
-        $.ajax({
+       /* $.ajax({
             url: $.param.querystring("/Leaderboard/JsonPlayers", currentFilter),
             success: function (result) {
                 players = result.users;
             },
             async: false
         });
-
+        */
         $('#SearchAthlete').typeahead({
             hint: true,
             highlight: function () {
                 return true;
             },
-            minLength: 3
+            minLength: 2
         },
        {
            name: 'searchString',
            displayKey: function (data) {
-               return data.value.name;
+               return data.name;
            },
-           source: _this.substringMatcher(players),
+           source: function (query, process) 
+           {
+               var filter = _this.getCurrentFilter();
+               filter = $.param.querystring(filter, 'SearchString=' + query);
+               $.get('/Leaderboard/JsonPlayers' + filter, null, function (data)
+               {
+                   //return _this.substringMatcher(data.users);
+                   return process(data.users);
+               });
+           },
            templates: {
                suggestion: function (data) {
-                   return '<li class="search-suggestion"><img src="' + data.value.avatar + '?w=38&h=38&mode=max"><div class="name">' + data.value.name + '</div><div class="state">' + data.value.state + '</div></li>';
+                   return '<li class="search-suggestion"><img src="' + data.avatar + '?w=38&h=38&mode=max"><div class="name">' + data.name + '</div><div class="state">' + data.state + '</div></li>';
                }
            },
            engine: Hogan
        }).bind('typeahead:selected', function (obj, selected, name)
        {
            var params = _this.getCurrentFilter();
-           params = $.param.querystring(params, 'StartID=' + selected.value.id);
-           params = $.param.querystring(params, 'SearchString=' + selected.value.name);
+           params = $.param.querystring(params, 'StartID=' + selected.id);
+           params = $.param.querystring(params, 'SearchString=' + selected.name);
            window.location = $.param.querystring("/Leaderboard/", params);
        });
 
@@ -92,7 +101,11 @@
         href = $.param.querystring(href, 'FieldPositionID=' + $("#FieldPositionID").val());
         href = $.param.querystring(href, 'Gender=' + $("#Gender").val());
         href = $.param.querystring(href, 'Age=' + $("#Age").val());
-        href = $.param.querystring(href, 'Level=' + $("#Level").val());
+        href = $.param.querystring(href, 'LevelID=' + $("#LevelID").val());
+        if ($("#GradYear").length > 0)
+        {
+            href = $.param.querystring(href, 'GradYear=' + $("#GradYear").val());
+        }
         href = $.param.querystring(href, 'Page=1');
         href = $.param.querystring(href, 'Sort=TotalDesc');
         console.log(href);

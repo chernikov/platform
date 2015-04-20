@@ -62,13 +62,13 @@ namespace platformAthletic.Models.Info
                 {
                     if (Age.Value == 70)
                     {
-                       return DateTime.Now.AddYears(200);
+                       return DateTime.Now.AddYears(200).Date;
                     }
                     if (Age.Value == 0)
                     {
-                        return DateTime.Now.AddYears(-15);
+                        return DateTime.Now.AddYears(-15).Date;
                     }
-                    return DateTime.Now.AddYears(-Age.Value);
+                    return DateTime.Now.AddYears(-Age.Value - 5).Date;
                 }
                 return DateTime.MinValue;
             }
@@ -82,9 +82,9 @@ namespace platformAthletic.Models.Info
                 {
                     if (Age.Value == 0)
                     {
-                        return DateTime.Now;
+                        return DateTime.Now.Date;
                     }
-                    return DateTime.Now.AddYears(-Age.Value + 5);
+                    return DateTime.Now.AddYears(-Age.Value).Date;
                 }
                 return DateTime.MaxValue;
             }
@@ -294,7 +294,7 @@ namespace platformAthletic.Models.Info
                     Text = "All Years",
                     Selected = GradYear == null
                 };
-                foreach (var gradYear in GradYears)
+                foreach (var gradYear in GradYears.OrderBy(p => p))
                 {
                     yield return new SelectListItem
                     {

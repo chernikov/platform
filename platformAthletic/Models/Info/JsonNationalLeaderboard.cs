@@ -16,7 +16,12 @@ namespace platformAthletic.Models.Info
 
         protected override void Process()
         {
-            var users = Repository.Users;
+            var users = Repository.TeamPlayersUsers;
+            if (!string.IsNullOrWhiteSpace(Search.SearchString))
+            {
+                var lowerString = Search.SearchString.ToLower();
+                users = users.Where(p => p.FirstName.ToLower().Contains(lowerString) || p.LastName.ToLower().Contains(lowerString));
+            }
             Filter(ref users);
             var orderUsers = Order(users);
             FillRecords(orderUsers);

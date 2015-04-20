@@ -51,8 +51,8 @@ namespace platformAthletic.Models.Info
                     }
                     else
                     {
-                        minDate = DateTime.Now.AddYears(-age);
-                        maxDate = DateTime.Now.AddYears(-age + 5);
+                        minDate = DateTime.Now.AddYears(-age - 5);
+                        maxDate = DateTime.Now.AddYears(-age);
                     }
                     if (!users.Any(p => p.Birthday != null && (p.Birthday > minDate && p.Birthday < maxDate)))
                     {
@@ -73,7 +73,7 @@ namespace platformAthletic.Models.Info
             }
 
             //Grad Years
-            if (Search.ShowGradYear)
+            if (Search.ShowGradYear && preFilter)
             {
                 Search.GradYears = users.Where(p => p.GradYear != null).Select(p => p.GradYear.Value).Distinct().ToList();
             }

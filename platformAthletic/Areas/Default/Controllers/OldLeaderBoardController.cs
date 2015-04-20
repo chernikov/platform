@@ -23,13 +23,13 @@ namespace platformAthletic.Areas.Default.Controllers
             var leaderBoardNationalInfo = new NationalLeaderboard(searchNationalLeaderBoard);
             return View(leaderBoardNationalInfo);
         }
-
+        /*
         public ActionResult Team()
         {
             var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
 
             var leaderBoardTeamInfo = new LeaderBoardTeamInfo(team);
             return View(leaderBoardTeamInfo);
-        }
+        }*/
     }
 }

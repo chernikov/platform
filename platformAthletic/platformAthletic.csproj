@@ -225,6 +225,7 @@
     <Compile Include="Areas\Default\Controllers\TableController.cs" />
     <Compile Include="Areas\Default\Controllers\TeamController.cs" />
     <Compile Include="Areas\Default\Controllers\TestController.cs" />
+    <Compile Include="Areas\Default\Controllers\UserController.cs" />
     <Compile Include="Areas\Default\Controllers\VideoController.cs" />
     <Compile Include="Areas\Default\Controllers\FeatureController.cs" />
     <Compile Include="Areas\Default\Controllers\DefaultController.cs" />
@@ -278,7 +279,9 @@
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
     <Compile Include="Models\Info\CalendarInfo.cs" />
+    <Compile Include="Models\Info\JsonSchoolLeaderboard.cs" />
     <Compile Include="Models\Info\JsonNationalLeaderboard.cs" />
+    <Compile Include="Models\Info\SchoolTopList.cs" />
     <Compile Include="Models\Info\NationalTopList.cs" />
     <Compile Include="Models\Info\PerformanceGraphInfo.cs" />
     <Compile Include="Models\Info\PersonalCalendarInfo.cs" />
@@ -286,14 +289,16 @@
     <Compile Include="Models\Info\FilterCustomProgressReport.cs" />
     <Compile Include="Models\Info\FilterTrainingDayInfo.cs" />
     <Compile Include="Models\Info\FilterTrainingSetInfo.cs" />
-    <Compile Include="Models\Info\LeaderBoardNational.cs" />
-    <Compile Include="Models\Info\LeaderBoardTeamInfo.cs" />
+    <Compile Include="Models\Info\NationalLeaderboard.cs" />
     <Compile Include="Models\Info\PageableData.cs" />
     <Compile Include="Models\Info\PriceInfoView.cs" />
     <Compile Include="Models\Info\SearchNationalLeaderboard.cs" />
     <Compile Include="Models\Info\SearchNationalLeaderboardFilter.cs" />
+    <Compile Include="Models\Info\SearchSchoolLeaderboard.cs" />
+    <Compile Include="Models\Info\SearchSchoolLeaderboardFilter.cs" />
     <Compile Include="Models\Info\SelectedEquipmentList.cs" />
     <Compile Include="Models\Info\TableInfo.cs" />
+    <Compile Include="Models\Info\SchoolLeaderboard.cs" />
     <Compile Include="Models\Info\UserExportInfo.cs" />
     <Compile Include="Models\Info\VideoCollection.cs" />
     <Compile Include="Models\Info\YoutubeInfo.cs" />
@@ -1160,6 +1165,7 @@
     <Content Include="Scripts\default\add-players.js" />
     <Content Include="Scripts\default\extended-dashboard.js" />
     <Content Include="Scripts\default\dashboard.js" />
+    <Content Include="Scripts\default\school-leaderboard.js" />
     <Content Include="Scripts\default\leaderboard.js" />
     <Content Include="Scripts\default\modal-attendance.js" />
     <Content Include="Scripts\default\schedule.js" />
@@ -1185,8 +1191,10 @@
     <Content Include="Areas\Default\Views\OldLeaderBoard\Index.cshtml" />
     <Content Include="Areas\Default\Views\OldLeaderBoard\Team.cshtml" />
     <Content Include="Areas\Default\Views\Shared\MainMenu.cshtml" />
-    <Content Include="Areas\Default\Views\LeaderBoard\NationalTop.cshtml" />
-    <Content Include="Areas\Default\Views\LeaderBoard\PlayerInfo.cshtml" />
+    <Content Include="Areas\Default\Views\Leaderboard\NationalTop.cshtml" />
+    <Content Include="Areas\Default\Views\Leaderboard\PlayerInfo.cshtml" />
+    <Content Include="Areas\Default\Views\Leaderboard\School.cshtml" />
+    <Content Include="Areas\Default\Views\Leaderboard\SchoolTop.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1360,8 +1368,7 @@
     <Content Include="Areas\Default\Views\Home\Individual.cshtml" />
     <Content Include="Areas\Default\Views\Home\Team.cshtml" />
     <Content Include="Areas\Default\Views\Player\Index.cshtml" />
-    <Content Include="Areas\Default\Views\LeaderBoard\Index.cshtml" />
-    <Content Include="Areas\Default\Views\LeaderBoard\Team.cshtml" />
+    <Content Include="Areas\Default\Views\Leaderboard\Index.cshtml" />
     <Content Include="Areas\Default\Views\Report\Index.cshtml" />
     <Content Include="Areas\Default\Views\Report\Attendance.cshtml" />
     <Content Include="Areas\Default\Views\Report\Progress.cshtml" />

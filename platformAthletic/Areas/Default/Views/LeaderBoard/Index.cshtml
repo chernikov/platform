@@ -1,8 +1,8 @@
 ﻿@model platformAthletic.Models.Info.NationalLeaderboard
 @{
-    ViewBag.Title = "National Leader Board";
+    ViewBag.Title = "National Leaderboard";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
-    var search = (platformAthletic.Models.Info.SearchNationalLeaderboard)ViewBag.Search;
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
 @section header {
     <script src="~/Scripts/hogan.js"></script>
@@ -23,7 +23,10 @@
     <div class="tabpanel">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="/leaderboard" aria-controls="home" role="tab" data-toggle="tab">NATIONAL LEADERBOARD</a></li>
+            <li class="active"><a href="/leaderboard">NATIONAL LEADERBOARD</a></li>
+            @if (currentUser.OwnTeam != null || currentUser.Team != null) { 
+                <li><a href="/leaderboard/school">SCHOOL LEADERBOARD</a></li>
+            }
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -55,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <div class="select-style">
-                            @Html.DropDownList("Level", Model.Search.SelectListLevelID, new { @class = "form-control filter" })
+                            @Html.DropDownList("LevelID", Model.Search.SelectListLevelID, new { @class = "form-control filter" })
                             <div></div>
                         </div>
                     </div>

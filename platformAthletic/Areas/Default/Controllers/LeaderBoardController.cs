@@ -31,15 +31,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var nationalTopList = new NationalTopList(search);
             return View(nationalTopList);
         }
-
-        public ActionResult Team()
-        {
-            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
-
-            var leaderBoardTeamInfo = new LeaderBoardTeamInfo(team);
-            return View(leaderBoardTeamInfo);
-        }
-
+       
         public ActionResult JsonPlayers(SearchNationalLeaderboard search)
         {
             if (search == null)
@@ -69,5 +61,61 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             return null;
         }
+
+        public ActionResult School(SearchSchoolLeaderboard search)
+        {
+            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            if (team == null)
+            {
+                return RedirectToAction("Index");
+            }
+            if (search == null)
+            {
+                search = new SearchSchoolLeaderboard();
+            }
+            var leaderBoardTeamInfo = new SchoolLeaderboard( search, team);
+            return View(leaderBoardTeamInfo);
+        }
+
+        public ActionResult SchoolTop(SearchSchoolLeaderboard search)
+        {
+            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            if (team == null)
+            {
+                return RedirectToAction("Index");
+            }
+            if (search == null)
+            {
+                search = new SearchSchoolLeaderboard();
+            }
+            var nationalTopList = new SchoolTopList(search, team);
+            return View(nationalTopList);
+        }
+
+        public ActionResult JsonSchoolPlayers(SearchSchoolLeaderboard search)
+        {
+            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            if (team == null)
+            {
+                return RedirectToAction("Index");
+            }
+            if (search == null)
+            {
+                search = new SearchSchoolLeaderboard();
+            }
+            var jsonNationalLeaderboard = new JsonSchoolLeaderboard(search, team);
+            return Json(new
+            {
+                users = jsonNationalLeaderboard.List.Where(p => p.User.PlayerOfTeamID != null).ToList().Select(p => new
+                {
+                    rank = p.Position,
+                    id = p.User.ID,
+                    name = p.User.FirstName + " " + p.User.LastName,
+                    state = p.User.Team.State.Name,
+                    avatar = p.User.FullAvatarPath
+                })
+            }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
