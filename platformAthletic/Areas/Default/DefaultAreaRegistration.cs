@@ -528,6 +528,14 @@ namespace platformAthletic.Areas.Default
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
+
+            context.MapRoute(
+                null,
+                "user/{id}",
+                new { controller = "User", action = "Index" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
             context.MapRoute(
                 null,
                 "{controller}/{action}/{id}",

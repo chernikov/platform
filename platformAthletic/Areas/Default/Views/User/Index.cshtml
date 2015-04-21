@@ -1,0 +1,200 @@
+﻿@model User
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<div class="user-page">
+    <div class="breadcrumb">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-3 overflow">
+                <ol>
+                    <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                    @if (currentUser == User)
+                    {
+                        <li class="active"><a href="/my-page">My Page</a></li>
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-right">
+                                @* buttons*@
+                                <button class="btn btn-success btn-large">EDIT PROFILE</button>
+                                <button class="btn btn-success btn-large">VIEW WORKOUT</button>
+                                <button class="btn btn-success btn-large">ATTENDANCE LOGGED</button>
+                            </div>
+                            <h1>PLAYER INFORMATION</h1>
+                        </div>
+                    </div>
+                    @* image *@
+                    <div class="image">
+                        <img src="@Model.FullAvatarPath?w=200&h=200&mode=crop" />
+                    </div>
+                    <table class="table info-table">
+                        <tr>
+                            <td class="header">NAME</td>
+                            <td class="value" colspan="3">@Model.FirstName @Model.LastName</td>
+                        </tr>
+                        <tr>
+                            <td class="header">GENDER/AGE</td>
+                            <td class="value" colspan="3">@Model.GenderStr/@Model.Age</td>
+                        </tr>
+                        <tr>
+                            <td class="header">SPORT</td>
+                            <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Sport.Name : "")</td>
+                            <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Sport.Name : "")</td>
+                            <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Sport.Name : "")</td>
+                        </tr>
+                        <tr>
+                            <td class="header">POSITION</td>
+                            <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Name : "")</td>
+                            <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Name : "")</td>
+                            <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Name : "")</td>
+                        </tr>
+                        <tr>
+                            <td class="header">LEVEL</td>
+                            <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
+                        </tr>
+                        <tr>
+                            <td class="header">SCHOOL</td>
+                            <td class="value" colspan="3">@Model.Team.School.Name</td>
+                        </tr>
+                        <tr>
+                            <td class="header">STATE</td>
+                            <td class="value" colspan="3">@Model.Team.State.Name</td>
+                        </tr>
+                    </table>
+                    @* data-table *@
+                    @* sbc-data-table *@
+                    @* value-data-table *@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <button class="btn btn-success btn-large">REPORTS</button>
+                    </div>
+                    <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
+                    @* performance *@
+                    @* chart *@
+                    @* changes *@
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="panel-body">
+
+                                <h1 class="text-center">WORKOUTS COMPLETED</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default no-padding">
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <h3 class="text-center">How does your total progress <br/>stack up at “School”?</h3>
+                                <div class="progress-rank">
+                                    <h2>PROGRESS RANK <span>08</span></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="leaderboard-table table">
+                <thead>
+                    <tr class="header">
+                        <td colspan="4">
+                            <div class="pull-right">
+                                <button class="btn btn-large btn-primary">LEADERBOARD</button>
+                            </div>
+                            <h1>LEADERBOARD RANKS</h1>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="header">
+                        <td>&nbsp;</td>
+                        <td>NATION</td>
+                        <td>STATES</td>
+                        <td>TEAM</td>
+                    </tr>
+                    <tr>
+                        <td class="header squat">
+                            <h2>SQUAT</h2>
+                        </td>
+                        <td class="nation value">88<span>th</span></td>
+                        <td class="state value">30<span>th</span></td>
+                        <td class="team value">20<span>th</span></td>
+                    </tr>
+                    <tr>
+                        <td class="header bench">
+                            <h2>BENCH</h2>
+                        </td>
+                        <td class="nation value">88<span>th</span></td>
+                        <td class="state value">30<span>th</span></td>
+                        <td class="team value">20<span>th</span></td>
+                    </tr>
+                    <tr>
+                        <td class="header clean">
+                            <h2>CLEAN</h2>
+                        </td>
+                        <td class="nation value">88<span>th</span></td>
+                        <td class="state value">30<span>th</span></td>
+                        <td class="team value">20<span>th</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @* leader-board rank *@
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-right">
+                                <button class="btn btn-success btn-large">UPLOAD</button>
+                            </div>
+                            <h1>MY VIDEOS</h1>
+                        </div>
+                    </div>
+                    @* buttons*@
+                    @* image *@
+                    @* data-table *@
+                    @* sbc-data-table *@
+                    @* value-data-table *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

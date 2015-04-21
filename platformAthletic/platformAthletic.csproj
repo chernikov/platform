@@ -171,6 +171,7 @@
     <Compile Include="Areas\Admin\Controllers\AphorismController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
     <Compile Include="Areas\Admin\Controllers\BannerPlaceController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoachController.cs" />
     <Compile Include="Areas\Admin\Controllers\LevelController.cs" />
     <Compile Include="Areas\Admin\Controllers\MacrocycleController.cs" />
     <Compile Include="Areas\Admin\Controllers\PeopleSayingController.cs" />
@@ -1195,6 +1196,8 @@
     <Content Include="Areas\Default\Views\Leaderboard\PlayerInfo.cshtml" />
     <Content Include="Areas\Default\Views\Leaderboard\School.cshtml" />
     <Content Include="Areas\Default\Views\Leaderboard\SchoolTop.cshtml" />
+    <Content Include="Areas\Default\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Coach\Index.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<platformAthletic.Model.User>
+@{
+    ViewBag.Title = "Coaches";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var searchWord = ViewData["search"];
+}
+@section header {
+    <script type="text/javascript" src="/Media/scripts/admin/user-list.js"></script>
+}
+<h2>Coaches
+</h2>
+<div class="well">
+    @Html.ActionLink("Create new admin", "CreateAdmin", "User", null, new { @class = "btn" })
+    @Html.ActionLink("Export", "Excel", "User", null, new { @class = "btn" })
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#
+                </th>
+                 <th>Role
+                </th>
+                <th>Email
+                </th>
+                <th>Name
+                </th>
+                <th>Team
+                </th>
+                <th>Payed till
+                </th>
+                <th>Used codes</th>
+                <th>Current season</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Role
+                </td>
+                <td title="@item.Email">
+                    @item.Email.Teaser(10)
+                </td>
+                <td>
+                 @if (item.InRoles("coach"))
+                 {
+                    <strong>@item.FirstName @item.LastName </strong>
+                 }
+                 else
+                 {
+                     <span>@item.FirstName @item.LastName </span>
+                 }
+                </td>
+                <td>
+                   @((item.Team ?? item.OwnTeam) != null ? (item.Team ?? item.OwnTeam).Name : "")&nbsp;
+                </td>
+                <td>
+                    @if (item.InRoles("coach,player") && item.PaidTill.HasValue)
+                    {
+                        DateTime paidTill;
+                        if (item.InRoles("player"))
+                        {
+                            paidTill = item.Team.User.PaidTill.Value;
+                        }
+                        else
+                        {
+                            paidTill = item.PaidTill.Value;
+                        }
+                        if (paidTill < DateTime.Now)
+                        {
+                            <span class="label label-important">@paidTill.ToString("d")</span>
+                        }
+                        else if (paidTill.AddMonths(-1) < DateTime.Now)
+                        {
+                            <span class="label label-warning">@paidTill.ToString("d")</span>
+                        } else {
+                             <span class="label label-success">@paidTill.ToString("d")</span>
+                        }
+                    }&nbsp;
+                </td>
+                <td>
+                @if(item.PromoCodes.Any()) {
+                     foreach(var promocode in item.PromoCodes)
+                     {
+                            <span class="label label-info">@promocode</span>
+                     }
+                }
+                </td>
+                <td>@if(item.InRoles("coach,individual")) 
+                    {
+                        if (item.CurrentSeason != null)
+                        {
+                            <a href="@Url.Action("Edit", "UserSeason", new { id = item.CurrentSeason.ID })">@item.CurrentSeason.StartDay.ToString("d")</a>
+                        }
+                    }
+                </td>
+                <td>
+                    @if(item.InRoles("admin")) {
+                        <a title="Edit admin" href="@Url.Action("EditAdmin", "User", new { id = item.ID })"><i class="icon-pencil"></i></a>
+                    } else {
+                        <a title="Edit" href="@Url.Action("Edit", "User", new { id = item.ID })"><i class="icon-pencil"></i></a>
+                    }
+                    <a href="@Url.Action("Login", "User", new { id = item.ID })"><i class="icon-user"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

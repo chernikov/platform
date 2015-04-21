@@ -508,7 +508,35 @@ namespace platformAthletic.Model
                 return null;
             }
         }
-        #region
+
+        #region FieldPosition
+
+        public FieldPosition FirstFieldPosition
+        {
+            get
+            {
+                return FieldPositions.FirstOrDefault();
+            }
+        }
+
+        public FieldPosition SecondFieldPosition
+        {
+            get
+            {
+                return FieldPositions.Skip(1).FirstOrDefault();
+            }
+        }
+
+        public FieldPosition ThirdFieldPosition
+        {
+            get
+            {
+                return FieldPositions.Skip(2).FirstOrDefault();
+            }
+        }
+        #endregion
+
+        #region AttendanceCount
         public int WeekAttendanceCount
         {
             get
