@@ -97,7 +97,7 @@ namespace platformAthletic.Areas.Default.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Last12WeekPerformancePlayer(int id)
+       /* public ActionResult Last12WeekPerformance(int id)
         {
             var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
@@ -182,7 +182,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
             return null;
-        }
+        }*/
 
         public ActionResult UserInfo(int id)
         {

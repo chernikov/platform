@@ -10,7 +10,7 @@
         // This will get the first returned node in the jQuery collection.
         var data = null;
         $.ajax({
-            url: "/Dashboard/Last12WeekPerformancePlayer",
+            url: "/User/Last12WeekPerformance",
             data :  {
                 id: userID
             },

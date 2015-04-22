@@ -328,5 +328,35 @@ namespace platformAthletic.Tools
         {
             return (int)Math.Round(source / 5.0) * 5;
         }
+
+        public static string CountWord(this int count, string first, string second, string five)
+        {
+            if (count % 10 == 1 && (int)(count / 10) != 1)
+            {
+                return first;
+            }
+            if (count % 10 > 1 && count % 10 < 5 && ((int)(count / 10) % 10) != 1)
+            {
+                return second;
+            }
+            return five;
+        }
+
+        public static string Ordinal(this int count)
+        {
+            if (count % 10 == 1 && ((int)(count / 10) % 10) != 1)
+            {
+                return "st";
+            }
+            if (count % 10 == 2 && ((int)(count / 10) % 10) != 1)
+            {
+                return "nd";
+            }
+            if (count % 10 == 3 && ((int)(count / 10) % 10) != 1)
+            {
+                return "rd";
+            }
+            return "th";
+        }
     }
 }

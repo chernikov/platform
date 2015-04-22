@@ -25,6 +25,18 @@
     padding-right: 0 !important;
 }
 
+.no-padding-bottom {
+    padding-bottom: 0 !important;
+}
+
+.left-padding {
+    padding-left: 15px !important;
+}
+
+.right-padding {
+    padding-right: 15px !important;
+}
+
 .top-padding {
     padding-top: 20px !important;
 }
@@ -877,27 +889,23 @@ dl.sport-2 {
         padding: 20px 15px;
     }
 
-        .platform .tab-content .tab-pane.performance {
-            padding: 0px 0px 0px 15px;
-            position: relative;
-        }
+.performance {
+    padding: 0px 0px 0px 15px;
+    position: relative;
+}
 
-            .platform .tab-content .tab-pane.performance h1.performance {
-                margin: 0;
-                padding: 20px 0 15px 0;
-                font-family: 'Montserrat', sans-serif;
-                font-size: 18px;
-                text-align: center;
-                color: #495b6c;
-            }
+    .performance h1.performance {
+        margin: 0;
+        padding: 20px 0 15px 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        text-align: center;
+        color: #495b6c;
+    }
 
-            .platform .tab-content .tab-pane.performance .performance-chart {
-                width: 100%;
-                height: 256px;
-            }
-
-        .platform .tab-content .tab-pane.attendance {
-        }
+    .performance .performance-chart {
+        width: 83%;
+    }
 
 .platform .nav-tabs > li > a {
     border-radius: 0;
@@ -939,14 +947,16 @@ dl.sport-2 {
 .perfomance-change {
     overflow: hidden;
     background-color: #f5f5f5;
+    width: 15%;
 }
 
 .badge.badge-performance {
     border-radius: 0;
     background-color: transparent;
     color: #63717e;
-    display: block;
-    width: 80px;
+    width: 100%;
+    text-align: center;
+    padding: 6px 7px;
 }
 
     .badge.badge-performance h2 {
@@ -961,7 +971,7 @@ dl.sport-2 {
         margin: 0px 0 0px 0;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
-        font-size: 28px;
+        font-size: 28px !important;
         text-align: center;
     }
 
@@ -1628,75 +1638,202 @@ dl.sport-2 {
         box-shadow: none;
     }
 
-        .user-page .panel .col-lg-12 {
-            padding-left: 0px;
-        }
+.no-margin-top {
+    margin-top: 0 !important;
+}
 
-        .user-page .panel h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
+.user-page .panel .col-lg-12 {
+    padding-left: 0px;
+}
+
+.user-page .panel h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 9px;
+    color: #495b6c;
+}
+
+    .user-page .panel h1.player-info {
+        font-size: 24px;
+        padding-top: 6px;
+        margin-left: 30px;
+    }
+
+    .user-page .panel h1 span {
+        margin-left: 30px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+.user-page .panel.no-padding .panel-body {
+    padding: 0;
+}
+
+.user-page .panel h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 20px 0 15px 0;
+    line-height: 24px;
+}
+
+.user-page .panel .progress-rank {
+    background-color: #3bcb75;
+    padding: 10px 65px 26px 65px;
+}
+
+    .user-page .panel .progress-rank h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: normal;
+        text-align: center;
+        color: #fff;
+    }
+
+        .user-page .panel .progress-rank h2 span {
+            font-size: 48px;
             font-weight: bold;
-            margin-top: 9px;
-            /*padding-top: 6px;*/
-            color: #495b6c;
+            top: 8px;
+            position: relative;
         }
 
-            .user-page .panel h1 span {
-                margin-left: 30px;
-                font-size: 14px;
-                font-weight: normal;
-            }
+.user-page .info-table {
+    margin-top: 30px;
+}
+
+    .user-page .info-table td {
+        border: 1px solid #e7e6e6;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        padding: 7px 3px 3px 3px;
+        margin: 0;
+    }
 
 
-
-        .user-page .panel.no-padding .panel-body {
+        .user-page .info-table td.image {
             padding: 0;
+            width: 200px;
         }
 
-        .user-page .panel h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin: 20px 0 15px 0;
-            line-height: 24px;
+        .user-page .info-table td.header {
+            padding-right: 10px;
+            background-color: #60b1c2;
+            color: #fff;
+            text-align: right;
         }
 
-        .user-page .panel .progress-rank {
-            background-color: #3bcb75;
-            padding: 10px 65px 26px 65px;
+        .user-page .info-table td.value {
+            padding-left: 10px;
         }
 
-            .user-page .panel .progress-rank h2 {
-                font-family: 'Montserrat', sans-serif;
-                font-size: 24px;
-                font-weight: normal;
-                text-align: center;
-                color: #fff;
-            }
+.user-page .sbc-table {
+    margin-top: 50px;
+}
 
-                .user-page .panel .progress-rank h2 span {
-                    font-size: 48px;
-                    font-weight: bold;
-                    top: 8px;
-                    position: relative;
-                }
+    .user-page .sbc-table thead th {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        text-align: center;
+        background-color: #60b1c2;
+        color: #fff;
+        border: 1px solid #e7e6e6;
+    }
+
+        .user-page .sbc-table thead th.total {
+            background-color: #fc8675;
+            color: #fff;
+        }
+
+    .user-page .sbc-table td {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        font-size: 12px;
+        border: 1px solid #e7e6e6;
+    }
+
+        .user-page .sbc-table td .minus, .user-page .sbc-table td .plus {
+            background-color: #f5f5f5;
+            display: inline-block;
+            padding: 2px;
+            width: 16px;
+        }
+
+        .user-page .sbc-table td .minus {
+            color: #f56854;
+        }
+
+        .user-page .sbc-table td .plus {
+            color: #65cea7;
+        }
+
+        .user-page .sbc-table td .value {
+            width: 40px;
+            display: inline-block;
+        }
+
+.user-page .value-data-table {
+    width: 90%;
+    margin: 30px auto;
+}
+
+    .user-page .value-data-table td {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        border: 1px solid #e7e6e6;
+    }
+
+        .user-page .value-data-table td.header {
+            background-color: #f5f5f5;
+            width: 30%;
+        }
+
+        .user-page .value-data-table td.value {
+            width: 20%;
+        }
+
+.user-page .performance {
+    margin-top: 30px;
+    border: 1px solid #e7ebee;
+}
 
 
-.leaderboard-table {
+.user-page .workouts-table {
+}
+
+    .user-page .workouts-table th {
+        border: 1px solid #e7ebee;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #60b1c2;
+        color: #fff;
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+    }
+
+    .user-page .workouts-table td {
+        border: 1px solid #e7ebee;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        color: #2b333c;
+        text-align: center;
+    }
+
+.user-page .leaderboard-table {
     background: #60b1c2;
     color: #fff;
 }
 
-    .leaderboard-table h1 {
+    .user-page .leaderboard-table h1 {
         font-family: 'Montserrat', sans-serif;
         text-align: center;
         font-size: 20px;
     }
 
-    .leaderboard-table td {
+    .user-page .leaderboard-table td {
         border: 1px solid #e4e5e5;
         font-family: 'Montserrat', sans-serif;
     }
 
-    .leaderboard-table .btn-primary {
+    .user-page .leaderboard-table .btn-primary {
         background-color: #fff;
         color: #60b1c2;
         margin-top: 15px;
@@ -1704,43 +1841,275 @@ dl.sport-2 {
     }
 
 
-    .leaderboard-table .header td {
+    .user-page .leaderboard-table .header td {
         text-align: center;
     }
 
-    .leaderboard-table td.header {
+    .user-page .leaderboard-table td.header {
         height: 133px;
     }
 
-    .leaderboard-table .header h2 {
+    .user-page .leaderboard-table .header h2 {
         font-family: 'Montserrat', sans-serif;
         text-align: center;
         margin-top: 100px;
         font-size: 14px;
     }
 
-    .leaderboard-table .header.squat {
+
+    .user-page .leaderboard-table .header.squat {
         background: #60b1c2 url("/Content/img/squat-icon.png") no-repeat center center;
     }
 
-    .leaderboard-table .header.bench {
+    .user-page .leaderboard-table .header.bench {
         background: #60b1c2 url("/Content/img/bench-icon.png") no-repeat center center;
     }
 
-    .leaderboard-table .header.clean {
+    .user-page .leaderboard-table .header.clean {
         background: #60b1c2 url("/Content/img/clean-icon.png") no-repeat center center;
     }
 
-    .leaderboard-table .value {
+    .user-page .leaderboard-table .value {
         color: #60b1c2;
-        background: #fff;
+        background-color: #fff;
         font-size: 31px;
-        font-weight : bold;
-        text-align : center;
-        vertical-align : middle;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
     }
 
+    .user-page .leaderboard-table .nation {
+        background-image: url("/Content/img/states/usa.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 150px;
+    }
 
-     .leaderboard-table .value span {
-          font-size: 20px;
-     }
+    .user-page .leaderboard-table .state {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 120px;
+    }
+
+        .user-page .leaderboard-table .state.ak {
+            background-image: url("/Content/img/states/ak.png");
+        }
+
+        .user-page .leaderboard-table .state.al {
+            background-image: url("/Content/img/states/al.png");
+        }
+
+        .user-page .leaderboard-table .state.ar {
+            background-image: url("/Content/img/states/ar.png");
+        }
+
+        .user-page .leaderboard-table .state.az {
+            background-image: url("/Content/img/states/az.png");
+        }
+
+        .user-page .leaderboard-table .state.ca {
+            background-image: url("/Content/img/states/ca.png");
+        }
+
+        .user-page .leaderboard-table .state.co {
+            background-image: url("/Content/img/states/co.png");
+        }
+
+        .user-page .leaderboard-table .state.ct {
+            background-image: url("/Content/img/states/ct.png");
+        }
+
+        .user-page .leaderboard-table .state.de {
+            background-image: url("/Content/img/states/de.png");
+        }
+
+        .user-page .leaderboard-table .state.fl {
+            background-image: url("/Content/img/states/fl.png");
+        }
+
+        .user-page .leaderboard-table .state.ga {
+            background-image: url("/Content/img/states/ga.png");
+        }
+
+        .user-page .leaderboard-table .state.hi {
+            background-image: url("/Content/img/states/hi.png");
+        }
+
+        .user-page .leaderboard-table .state.ia {
+            background-image: url("/Content/img/states/ia.png");
+        }
+
+        .user-page .leaderboard-table .state.id {
+            background-image: url("/Content/img/states/id.png");
+        }
+
+        .user-page .leaderboard-table .state.il {
+            background-image: url("/Content/img/states/il.png");
+        }
+
+        .user-page .leaderboard-table .state.in {
+            background-image: url("/Content/img/states/in.png");
+        }
+
+        .user-page .leaderboard-table .state.ks {
+            background-image: url("/Content/img/states/ks.png");
+        }
+
+        .user-page .leaderboard-table .state.ky {
+            background-image: url("/Content/img/states/ky.png");
+        }
+
+        .user-page .leaderboard-table .state.la {
+            background-image: url("/Content/img/states/la.png");
+        }
+
+        .user-page .leaderboard-table .state.ma {
+            background-image: url("/Content/img/states/ma.png");
+        }
+
+        .user-page .leaderboard-table .state.md {
+            background-image: url("/Content/img/states/md.png");
+        }
+
+        .user-page .leaderboard-table .state.me {
+            background-image: url("/Content/img/states/me.png");
+        }
+
+        .user-page .leaderboard-table .state.mi {
+            background-image: url("/Content/img/states/mi.png");
+        }
+
+        .user-page .leaderboard-table .state.mn {
+            background-image: url("/Content/img/states/mn.png");
+        }
+
+        .user-page .leaderboard-table .state.mo {
+            background-image: url("/Content/img/states/mo.png");
+        }
+
+        .user-page .leaderboard-table .state.ms {
+            background-image: url("/Content/img/states/ms.png");
+        }
+
+        .user-page .leaderboard-table .state.mt {
+            background-image: url("/Content/img/states/mt.png");
+        }
+
+        .user-page .leaderboard-table .state.nc {
+            background-image: url("/Content/img/states/nc.png");
+        }
+
+        .user-page .leaderboard-table .state.nd {
+            background-image: url("/Content/img/states/nd.png");
+        }
+
+        .user-page .leaderboard-table .state.ne {
+            background-image: url("/Content/img/states/ne.png");
+        }
+
+        .user-page .leaderboard-table .state.nh {
+            background-image: url("/Content/img/states/nh.png");
+        }
+
+        .user-page .leaderboard-table .state.nj {
+            background-image: url("/Content/img/states/nj.png");
+        }
+
+        .user-page .leaderboard-table .state.nm {
+            background-image: url("/Content/img/states/nm.png");
+        }
+
+        .user-page .leaderboard-table .state.nv {
+            background-image: url("/Content/img/states/nv.png");
+        }
+
+        .user-page .leaderboard-table .state.ny {
+            background-image: url("/Content/img/states/ny.png");
+        }
+
+        .user-page .leaderboard-table .state.oh {
+            background-image: url("/Content/img/states/oh.png");
+        }
+
+        .user-page .leaderboard-table .state.ok {
+            background-image: url("/Content/img/states/ok.png");
+        }
+
+        .user-page .leaderboard-table .state.or {
+            background-image: url("/Content/img/states/or.png");
+        }
+
+        .user-page .leaderboard-table .state.pa {
+            background-image: url("/Content/img/states/pa.png");
+        }
+
+        .user-page .leaderboard-table .state.ri {
+            background-image: url("/Content/img/states/ri.png");
+        }
+
+        .user-page .leaderboard-table .state.sc {
+            background-image: url("/Content/img/states/sc.png");
+        }
+
+        .user-page .leaderboard-table .state.sd {
+            background-image: url("/Content/img/states/sd.png");
+        }
+
+        .user-page .leaderboard-table .state.tn {
+            background-image: url("/Content/img/states/tn.png");
+        }
+
+        .user-page .leaderboard-table .state.tx {
+            background-image: url("/Content/img/states/tx.png");
+        }
+
+        .user-page .leaderboard-table .state.ut {
+            background-image: url("/Content/img/states/ut.png");
+        }
+
+        .user-page .leaderboard-table .state.va {
+            background-image: url("/Content/img/states/va.png");
+        }
+
+        .user-page .leaderboard-table .state.vt {
+            background-image: url("/Content/img/states/vt.png");
+        }
+
+        .user-page .leaderboard-table .state.wa {
+            background-image: url("/Content/img/states/wa.png");
+        }
+
+        .user-page .leaderboard-table .state.wi {
+            background-image: url("/Content/img/states/wi.png");
+        }
+
+        .user-page .leaderboard-table .state.wv {
+            background-image: url("/Content/img/states/wv.png");
+        }
+
+        .user-page .leaderboard-table .state.wy {
+            background-image: url("/Content/img/states/wy.png");
+        }
+
+        .user-page .leaderboard-table .team {
+            position : relative;
+        }
+
+        .user-page .leaderboard-table .team .team-bg {
+            position : absolute;
+            top : 50%;
+            left : 50%;
+            margin-left : -100px;
+            margin-top : -42px;
+            opacity : 0.15;
+            z-index : 1;
+        }
+
+         .user-page .leaderboard-table .team .value-text {
+             z-index : 2;
+             position : relative;
+         }
+
+    .user-page .leaderboard-table .value span {
+        font-size: 20px;
+    }

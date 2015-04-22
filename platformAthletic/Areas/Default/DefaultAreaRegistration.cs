@@ -533,6 +533,7 @@ namespace platformAthletic.Areas.Default
                 null,
                 "user/{id}",
                 new { controller = "User", action = "Index" },
+                new {id = @"\d+" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

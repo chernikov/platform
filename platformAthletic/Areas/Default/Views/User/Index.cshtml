@@ -1,9 +1,15 @@
 ﻿@model User
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.FirstName + " " + Model.LastName;
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var rank = (RankInfo)ViewBag.RankInfo;
 }
+@section header {
+    <script src="~/Scripts/Chart.js"></script>
+    <script src="~/Scripts/default/user.js"></script>
+}
+@Html.Hidden("UserID", Model.ID)
 <div class="user-page">
     <div class="breadcrumb">
         <div class="row">
@@ -22,59 +28,117 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body no-padding-left">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
                                 @* buttons*@
-                                <button class="btn btn-success btn-large">EDIT PROFILE</button>
-                                <button class="btn btn-success btn-large">VIEW WORKOUT</button>
-                                <button class="btn btn-success btn-large">ATTENDANCE LOGGED</button>
+                                <button class="btn btn-success btn-lg">EDIT PROFILE</button>
+                                <button class="btn btn-success btn-lg">VIEW WORKOUT</button>
+                                <button class="btn btn-success btn-lg">ATTENDANCE LOGGED</button>
                             </div>
-                            <h1>PLAYER INFORMATION</h1>
+                            <h1 class="player-info">PLAYER INFORMATION</h1>
                         </div>
                     </div>
-                    @* image *@
-                    <div class="image">
-                        <img src="@Model.FullAvatarPath?w=200&h=200&mode=crop" />
-                    </div>
-                    <table class="table info-table">
-                        <tr>
-                            <td class="header">NAME</td>
-                            <td class="value" colspan="3">@Model.FirstName @Model.LastName</td>
-                        </tr>
-                        <tr>
-                            <td class="header">GENDER/AGE</td>
-                            <td class="value" colspan="3">@Model.GenderStr/@Model.Age</td>
-                        </tr>
-                        <tr>
-                            <td class="header">SPORT</td>
-                            <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Sport.Name : "")</td>
-                            <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Sport.Name : "")</td>
-                            <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Sport.Name : "")</td>
-                        </tr>
-                        <tr>
-                            <td class="header">POSITION</td>
-                            <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Name : "")</td>
-                            <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Name : "")</td>
-                            <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Name : "")</td>
-                        </tr>
-                        <tr>
-                            <td class="header">LEVEL</td>
-                            <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
-                        </tr>
-                        <tr>
-                            <td class="header">SCHOOL</td>
-                            <td class="value" colspan="3">@Model.Team.School.Name</td>
-                        </tr>
-                        <tr>
-                            <td class="header">STATE</td>
-                            <td class="value" colspan="3">@Model.Team.State.Name</td>
-                        </tr>
-                    </table>
                     @* data-table *@
-                    @* sbc-data-table *@
-                    @* value-data-table *@
+                    <div class="row">
+                        <div class="col-lg-8 no-padding-left">
+                            <table class="table info-table">
+                                <tr>
+                                    @* image *@
+                                    <td rowspan="7" class="image">
+                                        <img src="@Model.FullAvatarPath?w=200&h=200&mode=crop" />
+                                    </td>
+                                    <td class="header">NAME</td>
+                                    <td class="value" colspan="3">@Model.FirstName @Model.LastName</td>
+                                </tr>
+                                <tr>
+                                    <td class="header">GENDER/AGE</td>
+                                    <td class="value" colspan="3">@Model.GenderStr/@Model.Age</td>
+                                </tr>
+                                <tr>
+                                    <td class="header">SPORT</td>
+                                    <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Sport.Name : "")</td>
+                                    <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Sport.Name : "")</td>
+                                    <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Sport.Name : "")</td>
+                                </tr>
+                                <tr>
+                                    <td class="header">POSITION</td>
+                                    <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Name : "")</td>
+                                    <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Name : "")</td>
+                                    <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Name : "")</td>
+                                </tr>
+                                <tr>
+                                    <td class="header">LEVEL</td>
+                                    <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
+                                </tr>
+                                <tr>
+                                    <td class="header">SCHOOL</td>
+                                    <td class="value" colspan="3">@Model.Team.School.Name</td>
+                                </tr>
+                                <tr>
+                                    <td class="header">STATE</td>
+                                    <td class="value" colspan="3">@Model.Team.State.Name</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @* sbc-data-table *@
+                                    <table class="table sbc-table">
+                                        <thead>
+                                            <tr>
+                                                <th>SQUAT</th>
+                                                <th>BENCH</th>
+                                                <th>CLEAN</th>
+                                                <th class="total">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span class="glyphicon-minus glyphicon minus"></span>
+                                                    <span class="value">@Model.Squat</span>
+                                                    <span class="glyphicon-plus glyphicon plus"></span>
+                                                </td>
+                                                <td>
+                                                    <span class="glyphicon-minus glyphicon minus"></span>
+                                                    <span class="value">@Model.Bench</span>
+                                                    <span class="glyphicon-plus glyphicon plus"></span>
+                                                </td>
+                                                <td>
+                                                    <span class="glyphicon-minus glyphicon minus"></span>
+                                                    <span class="value">@Model.Clean</span>
+                                                    <span class="glyphicon-plus glyphicon plus"></span>
+                                                </td>
+                                                <td>
+                                                    <span class="value">@Model.Total</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-12">
+                                    @* value-data-table *@
+                                    <table class="table value-data-table">
+                                        <tr>
+                                            <td class="header">HEIGHT</td>
+                                            <td class="value">@Model.Height</td>
+                                            <td class="header">40 YARD DASH</td>
+                                            <td class="value">@Model._40YardDash</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">WEIGHT</td>
+                                            <td class="value">@Model.Weight</td>
+                                            <td class="header">VERTICAL</td>
+                                            <td class="value">@Model.Vertical</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,16 +146,97 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="pull-right">
-                        <button class="btn btn-success btn-large">REPORTS</button>
+                <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
+                    <div class="left-padding right-padding">
+                        <div class="pull-right">
+                            <button class="btn btn-success btn-large">REPORTS</button>
+                        </div>
+                        <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
                     </div>
-                    <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
                     @* performance *@
-                    @* chart *@
-                    @* changes *@
-
-
+                    <div class="performance">
+                        <div class="row">
+                            <div class="col-lg-12 no-padding-right">
+                                @* chart *@
+                                <canvas id="PerformanceChart" class="performance-chart" width="590" height="256"></canvas>
+                                @* changes *@
+                                <div class="pull-right perfomance-change">
+                                    <div class="badge badge-performance squat">
+                                        <h2 class="text-center">
+                                            SQUAT
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var squat = Model.DiffSquat12Week;
+                                            }
+                                            @if (squat > 0)
+                                            {
+                                                <text>+</text>@squat
+                                            }
+                                            else
+                                            {
+                                                @squat
+                                            }
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance bench">
+                                        <h2 class="text-center">
+                                            BENCH
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var bench = Model.DiffBench12Week;
+                                            }
+                                            @if (bench > 0)
+                                            {
+                                                <text>+</text>@bench
+                                            }
+                                            else
+                                            {
+                                                @bench
+                                            }
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance clean">
+                                        <h2 class="text-center">
+                                            CLEAN
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var clean = Model.DiffClean12Week;
+                                            }
+                                            @if (clean > 0)
+                                            {
+                                                <text>+</text>@clean
+                                            }
+                                            else
+                                            {
+                                                @clean
+                                            }
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance total">
+                                        <h2 class="text-center">
+                                            TOTAL
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var total = clean + squat + bench;
+                                            }
+                                            @if (total > 0)
+                                            {
+                                                <text>+</text>@total
+                                            }
+                                            else
+                                            {
+                                                @total
+                                            }
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,9 +245,34 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="panel-body">
-
-                                <h1 class="text-center">WORKOUTS COMPLETED</h1>
+                            <h1 class="text-center">WORKOUTS COMPLETED</h1>
+                            @*workouts*@
+                            <table class="table workouts-table">
+                                <thead>
+                                    <tr>
+                                        <th>ALL-TIME</th>
+                                        <th>YEAR</th>
+                                        <th>MONTH</th>
+                                        <th>WEEK</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        @Model.AllAttendanceCount
+                                    </td>
+                                    <td>
+                                        @Model.YearAttendanceCount
+                                    </td>
+                                    <td>
+                                        @Model.MonthAttendanceCount
+                                    </td>
+                                    <td>
+                                        @Model.WeekAttendanceCount
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="text-center">
+                                <a href="/" class="btn btn-warning"><span class="glyphicon glyphicon-calendar"></span> VIEW HISTORY</a>
                             </div>
                         </div>
                     </div>
@@ -110,12 +280,12 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-default no-padding">
+                    <div class="panel panel-default no-padding no-margin-top">
                         <div class="panel-body">
                             <div class="panel-body">
-                                <h3 class="text-center">How does your total progress <br/>stack up at “School”?</h3>
+                                <h3 class="text-center">How does your total progress <br />stack up at “School”?</h3>
                                 <div class="progress-rank">
-                                    <h2>PROGRESS RANK <span>08</span></h2>
+                                    <h2>PROGRESS RANK <span>@rank.School.Total.ToString("D2")</span></h2>
                                 </div>
                             </div>
                         </div>
@@ -126,12 +296,13 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            @* leader-board rank *@
             <table class="leaderboard-table table">
                 <thead>
                     <tr class="header">
                         <td colspan="4">
                             <div class="pull-right">
-                                <button class="btn btn-large btn-primary">LEADERBOARD</button>
+                                <a href="/leaderboard" class="btn btn-large btn-primary">LEADERBOARD</a>
                             </div>
                             <h1>LEADERBOARD RANKS</h1>
                         </td>
@@ -148,33 +319,56 @@
                         <td class="header squat">
                             <h2>SQUAT</h2>
                         </td>
-                        <td class="nation value">88<span>th</span></td>
-                        <td class="state value">30<span>th</span></td>
-                        <td class="team value">20<span>th</span></td>
+                        <td class="nation value">@rank.Nation.Squat<span>@rank.Nation.Squat.Ordinal()</span></td>
+                        <td class="state value @Model.Team.State.Code.ToLower()">@rank.State.Squat<span>@rank.State.Squat.Ordinal()</span></td>
+                        <td class="team value">
+                            @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
+                            {
+                                <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                            }
+                            <div class="value-text">
+                                @rank.School.Squat<span>@rank.School.Squat.Ordinal()</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td class="header bench">
                             <h2>BENCH</h2>
                         </td>
-                        <td class="nation value">88<span>th</span></td>
-                        <td class="state value">30<span>th</span></td>
-                        <td class="team value">20<span>th</span></td>
+                        <td class="nation value">
+                            @rank.Nation.Bench<span>@rank.Nation.Bench.Ordinal()</span>
+                        </td>
+                        <td class="state value @Model.Team.State.Code.ToLower()">@rank.State.Bench<span>@rank.State.Bench.Ordinal()</span></td>
+                        <td class="team value">
+                            @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
+                            {
+                                <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                            }
+                            <div class="value-text">
+                                @rank.School.Bench<span>@rank.School.Bench.Ordinal()</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td class="header clean">
                             <h2>CLEAN</h2>
                         </td>
-                        <td class="nation value">88<span>th</span></td>
-                        <td class="state value">30<span>th</span></td>
-                        <td class="team value">20<span>th</span></td>
+                        <td class="nation value">@rank.Nation.Clean<span>@rank.Nation.Clean.Ordinal()</span></td>
+                        <td class="state value @Model.Team.State.Code.ToLower()">@rank.State.Clean<span>@rank.State.Clean.Ordinal()</span></td>
+                        <td class="team value">
+                            @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
+                            {
+                                <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                            }
+                            <div class="value-text">
+                                @rank.School.Clean<span>@rank.School.Clean.Ordinal()</span>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    @* leader-board rank *@
-
-
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
@@ -187,14 +381,8 @@
                             <h1>MY VIDEOS</h1>
                         </div>
                     </div>
-                    @* buttons*@
-                    @* image *@
-                    @* data-table *@
-                    @* sbc-data-table *@
-                    @* value-data-table *@
                 </div>
             </div>
         </div>
     </div>
 </div>
-
