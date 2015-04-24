@@ -1,0 +1,69 @@
+﻿@model User 
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<div class="col-lg-8 no-padding-left">
+    <table class="table info-table">
+        <tr>
+            @* image *@
+            <td rowspan="7" class="image">
+                <img src="@(Model.FullAvatarPath)?w=200&h=200&mode=crop&scale=both" />
+            </td>
+            <td class="header">NAME</td>
+            <td class="value name" colspan="3">@Model.FirstName @Model.LastName</td>
+        </tr>
+        <tr>
+            <td class="header">GENDER/AGE</td>
+            <td class="value" colspan="3">@Model.GenderStr/@Model.Age</td>
+        </tr>
+        <tr>
+            <td class="header">SPORT</td>
+            <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Sport.Name : "")</td>
+            <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Sport.Name : "")</td>
+            <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Sport.Name : "")</td>
+        </tr>
+        <tr>
+            <td class="header">POSITION</td>
+            <td class="value">@(Model.FirstFieldPosition != null && Model.FirstFieldPosition.FieldPosition != null ? Model.FirstFieldPosition.FieldPosition.Name : "")</td>
+            <td class="value">@(Model.SecondFieldPosition != null && Model.SecondFieldPosition.FieldPosition != null ? Model.SecondFieldPosition.FieldPosition.Name : "")</td>
+            <td class="value">@(Model.ThirdFieldPosition != null && Model.ThirdFieldPosition.FieldPosition != null ? Model.ThirdFieldPosition.FieldPosition.Name : "")</td>
+        </tr>
+        <tr>
+            <td class="header">LEVEL</td>
+            <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
+        </tr>
+        <tr>
+            <td class="header">SCHOOL</td>
+            <td class="value" colspan="3">@Model.Team.School.Name</td>
+        </tr>
+        <tr>
+            <td class="header">STATE</td>
+            <td class="value" colspan="3">@Model.Team.State.Name</td>
+        </tr>
+    </table>
+</div>
+<div class="col-lg-4">
+    <div class="row">
+        <div class="col-sm-12" id="SbcWrapper">
+            @* sbc-data-table *@
+            @Html.Action("SbcData", "User", new {id = Model.ID })
+        </div>
+        <div class="col-sm-12">
+            @* value-data-table *@
+            <table class="table value-data-table">
+                <tr>
+                    <td class="header">HEIGHT</td>
+                    <td class="value">@Model.Height</td>
+                    <td class="header">40 YARD DASH</td>
+                    <td class="value">@Model._40YardDash</td>
+                </tr>
+                <tr>
+                    <td class="header">WEIGHT</td>
+                    <td class="value">@Model.Weight</td>
+                    <td class="header">VERTICAL</td>
+                    <td class="value">@Model.Vertical</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

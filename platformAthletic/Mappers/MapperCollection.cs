@@ -98,6 +98,22 @@ namespace platformAthletic.Mappers
 
                 Mapper.CreateMap<User, PlayerView>();
                 Mapper.CreateMap<PlayerView, User>();
+
+                Mapper.CreateMap<User, UserInfoView>()
+                    .ForMember(p => p.Birthday, opt => opt.MapFrom(p => p.Birthday ?? DateTime.Now))
+                    .ForMember(p => p.Sports, opt => opt.MapFrom(p => p.UserFieldPositions.Select(r => new UserInfoView.SportInfo()
+                    {
+                        FieldPositionID = r.FieldPositionID,
+                        SportID = r.SportID
+                    })))
+                     .AfterMap((src, dest) =>
+                     {
+                         while (dest.Sports.Count < 3)
+                         {
+                             dest.Sports.Add(new UserInfoView.SportInfo());
+                         };
+                     });
+                Mapper.CreateMap<UserInfoView, User>();
             }
         }
 

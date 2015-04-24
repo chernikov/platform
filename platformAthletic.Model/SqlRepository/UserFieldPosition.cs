@@ -29,7 +29,7 @@ namespace platformAthletic.Model
 
         public bool RemoveUserFieldPosition(int idUserFieldPosition)
         {
-            UserFieldPosition instance = Db.UserFieldPositions.Where(p => p.ID == idUserFieldPosition).FirstOrDefault();
+            var instance = Db.UserFieldPositions.Where(p => p.ID == idUserFieldPosition).FirstOrDefault();
             if (instance != null)
             {
                 Db.UserFieldPositions.DeleteOnSubmit(instance);

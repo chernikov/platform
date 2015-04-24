@@ -123,6 +123,24 @@ namespace platformAthletic.Model
             return false;
         }
 
+        public bool UpdateUserInfo(User instance)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
+            if (cache != null)
+            {
+                cache.AvatarPath = instance.AvatarPath;
+                cache.FirstName = instance.FirstName;
+                cache.LastName = instance.LastName;
+                cache.Birthday = instance.Birthday;
+                cache.LevelID = instance.LevelID;
+                cache.GradYear = instance.GradYear;
+                cache.Gender = instance.Gender;
+                Db.Users.Context.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
         public bool UpdateManageUser(User instance)
         {
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);

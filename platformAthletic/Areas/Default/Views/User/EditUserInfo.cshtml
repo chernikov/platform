@@ -1,0 +1,82 @@
+﻿@model platformAthletic.Models.ViewModels.User.UserInfoView
+
+@using (Html.BeginForm("EditUserInfo", "User", FormMethod.Post, new { id = "EditUserInfoForm" }))
+{
+    @Html.Hidden("ID", Model.ID)
+    @Html.Hidden("FullAvatarPath", Model.FullAvatarPath)
+    @Html.Hidden("AvatarPath", Model.AvatarPath)
+    @Html.Hidden("TeamSchoolName", Model.TeamSchoolName)
+    @Html.Hidden("TeamStateName", Model.TeamStateName)
+
+    <div class="col-lg-8 no-padding-left edit-profile-wrapper">
+        <table class="table info-table">
+            <tr>
+                @* image *@
+                <td rowspan="7" class="image">
+                    <img src="@Model.FullAvatarPath?w=200&h=200&mode=crop&scale=both" id="ImagePreview" />
+                    <div id="UploadImage" class="upload-image"></div>
+                </td>
+                <td class="header">NAME</td>
+                <td class="value name" colspan="3">@Html.TextBox("FirstName", Model.FirstName) @Html.TextBox("LastName", Model.LastName)</td>
+            </tr>
+            <tr>
+                <td class="header">GENDER/AGE</td>
+                <td class="value" colspan="3"><div class="dropdown-wrapper gender">@Html.DropDownList("Gender", Model.SelectListGender)</div> / @Html.TextBox("Birthday", Model.Birthday.ToString("MM/dd/yyyy")) </td>
+            </tr>
+            <tr>
+                <td class="header">SPORT</td>
+                <td class="value select-sport" data-id="0"><div class="dropdown-wrapper">@Html.DropDownList("Sports[0].SportID", Model.Sports[0].SelectListSports, new { @class = "full-dropdown" })</div></td>
+                <td class="value select-sport" data-id="1"><div class="dropdown-wrapper">@Html.DropDownList("Sports[1].SportID", Model.Sports[1].SelectListSports, new { @class = "full-dropdown" })</div></td>
+                <td class="value select-sport" data-id="2"><div class="dropdown-wrapper">@Html.DropDownList("Sports[2].SportID", Model.Sports[2].SelectListSports, new { @class = "full-dropdown" })</div></td>
+            </tr>
+            <tr>
+                <td class="header">POSITION</td>
+                <td class="value select-position" data-id="0"><div class="dropdown-wrapper">@Html.DropDownList("Sports[0].FieldPositionID", Model.Sports[0].SelectListFieldPositionID, new { @class = "full-dropdown" })</div></td>
+                <td class="value select-position" data-id="1"><div class="dropdown-wrapper">@Html.DropDownList("Sports[1].FieldPositionID", Model.Sports[1].SelectListFieldPositionID, new { @class = "full-dropdown" })</div></td>
+                <td class="value select-position" data-id="2"><div class="dropdown-wrapper">@Html.DropDownList("Sports[2].FieldPositionID", Model.Sports[2].SelectListFieldPositionID, new { @class = "full-dropdown" })</div></td>
+            </tr>
+            <tr>
+                <td class="header">LEVEL</td>
+                <td class="value" colspan="3">
+                    <div class="@(Model.IsGradYear ? "half" : "full")">
+                        <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
+                    </div> 
+                    <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">@Html.TextBox("GradYear", Model.GradYear)</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="header">SCHOOL</td>
+                <td class="value" colspan="3">@Model.TeamSchoolName</td>
+            </tr>
+            <tr>
+                <td class="header">STATE</td>
+                <td class="value" colspan="3">@Model.TeamStateName</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-sm-12" id="SbcWrapper">
+                @* sbc-data-table *@
+                @Html.Action("SbcData", "User", new { id = Model.ID })
+            </div>
+            <div class="col-sm-12">
+                @* value-data-table *@
+                <table class="table value-data-table edit-valuedata-wrapper">
+                    <tr>
+                        <td class="header">HEIGHT</td>
+                        <td class="value">@Html.TextBox("Height", Model.Height) </td>
+                        <td class="header">40 YARD DASH</td>
+                        <td class="value">@Html.TextBox("_40YardDash", Model._40YardDash)</td>
+                    </tr>
+                    <tr>
+                        <td class="header">WEIGHT</td>
+                        <td class="value">@Html.TextBox("Weight", Model.Weight)</td>
+                        <td class="header">VERTICAL</td>
+                        <td class="value">@Html.TextBox("Vertical", @Model.Vertical)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+}

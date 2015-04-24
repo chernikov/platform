@@ -52,7 +52,7 @@
             var value = $(this).data("value");
             $.ajax({
                 type: "GET",
-                url: "/Dashboard/ChangeSbc",
+                url: "/User/ChangeSbc",
                 data: {
                     id: id,
                     type: type,

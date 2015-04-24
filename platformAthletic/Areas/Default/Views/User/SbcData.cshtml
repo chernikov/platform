@@ -1,0 +1,58 @@
+﻿@model User 
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<table class="table sbc-table">
+    <thead>
+        <tr>
+            <th>SQUAT</th>
+            <th>BENCH</th>
+            <th>CLEAN</th>
+            <th class="total">TOTAL</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @if (currentUser != null && currentUser.CanEditTeamData(Model))
+                {
+                    <span class="glyphicon-minus glyphicon minus clickable" data-value="-5" data-type="Squat"></span>
+                }
+                <span class="value">@Model.Squat</span>
+                @if (currentUser != null && currentUser.CanEditTeamData(Model))
+                {
+                    <span class="glyphicon-plus glyphicon plus clickable" data-value="5" data-type="Squat"></span>
+                }
+            </td>
+            <td>
+                @if (currentUser != null && currentUser.CanEditTeamData(Model))
+                {
+
+                    <span class="glyphicon-minus glyphicon minus clickable" data-value="-5" data-type="Bench"></span>
+                }
+                <span class="value">@Model.Bench</span>
+                @if (currentUser != null && currentUser.CanEditTeamData(Model))
+                {
+
+                    <span class="glyphicon-plus glyphicon plus clickable" data-value="5" data-type="Bench"></span>
+                }
+            </td>
+            <td>
+                @if (currentUser != null && currentUser.CanEditTeamData(Model))
+                {
+
+                    <span class="glyphicon-minus glyphicon minus clickable" data-value="-5" data-type="Clean"></span>
+                }
+                <span class="value">@Model.Clean</span>
+                @if (currentUser != null && currentUser.CanEditTeamData(Model))
+                {
+
+                    <span class="glyphicon-plus glyphicon plus clickable" data-value="5" data-type="Clean"></span>
+                }
+            </td>
+            <td>
+                <span class="value">@(Model.Squat + Model.Bench + Model.Clean)</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

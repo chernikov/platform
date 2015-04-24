@@ -367,7 +367,7 @@ namespace platformAthletic.Areas.Default
             context.MapRoute(
                 null,
                 "my-page",
-                new { controller = "Player", action = "Index" },
+                new { controller = "User", action = "MyPage" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
@@ -500,12 +500,11 @@ namespace platformAthletic.Areas.Default
             );
 
             context.MapRoute(
-               null,
-               "view-workout",
-               new { controller = "Table", action = "Preview" },
-               new[] { "platformAthletic.Areas.Default.Controllers" }
-           );
-
+                null,
+                "view-workout",
+                new { controller = "Table", action = "Preview" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
 
             context.MapRoute(
                 null,
@@ -534,6 +533,13 @@ namespace platformAthletic.Areas.Default
                 "user/{id}",
                 new { controller = "User", action = "Index" },
                 new {id = @"\d+" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+                null,
+                "user/{action}/{id}",
+                new { controller = "User", action = "Index", id = UrlParameter.Optional },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

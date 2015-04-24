@@ -313,6 +313,19 @@ namespace platformAthletic.Model
             return false;
         }
 
+        public bool CanViewWorkOut(User user)
+        {
+            if (user != null)
+            {
+                if (user.ID == ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         public List<Equipment> Equpments
         {
             get
@@ -511,27 +524,27 @@ namespace platformAthletic.Model
 
         #region FieldPosition
 
-        public FieldPosition FirstFieldPosition
+        public UserFieldPosition FirstFieldPosition
         {
             get
             {
-                return FieldPositions.FirstOrDefault();
+                return UserFieldPositions.FirstOrDefault();
             }
         }
 
-        public FieldPosition SecondFieldPosition
+        public UserFieldPosition SecondFieldPosition
         {
             get
             {
-                return FieldPositions.Skip(1).FirstOrDefault();
+                return UserFieldPositions.Skip(1).FirstOrDefault();
             }
         }
 
-        public FieldPosition ThirdFieldPosition
+        public UserFieldPosition ThirdFieldPosition
         {
             get
             {
-                return FieldPositions.Skip(2).FirstOrDefault();
+                return UserFieldPositions.Skip(2).FirstOrDefault();
             }
         }
         #endregion

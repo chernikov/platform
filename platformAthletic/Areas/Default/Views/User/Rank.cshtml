@@ -1,0 +1,74 @@
+﻿@model User
+@{
+    var rank = (RankInfo)ViewBag.RankInfo; 
+}
+<table class="leaderboard-table table">
+    <thead>
+        <tr class="header">
+            <td colspan="4">
+                <div class="pull-right">
+                    <a href="/leaderboard" class="btn btn-large btn-primary">LEADERBOARD</a>
+                </div>
+                <h1>LEADERBOARD RANKS</h1>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="header">
+            <td>&nbsp;</td>
+            <td>NATION</td>
+            <td>STATES</td>
+            <td>TEAM</td>
+        </tr>
+        <tr>
+            <td class="header squat">
+                <h2>SQUAT</h2>
+            </td>
+            <td class="nation value">@rank.Nation.Squat<span>@rank.Nation.Squat.Ordinal()</span></td>
+            <td class="state value @Model.Team.State.Code.ToLower()">@rank.State.Squat<span>@rank.State.Squat.Ordinal()</span></td>
+            <td class="team value">
+                @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
+                {
+                    <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                }
+                <div class="value-text">
+                    @rank.School.Squat<span>@rank.School.Squat.Ordinal()</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="header bench">
+                <h2>BENCH</h2>
+            </td>
+            <td class="nation value">
+                @rank.Nation.Bench<span>@rank.Nation.Bench.Ordinal()</span>
+            </td>
+            <td class="state value @Model.Team.State.Code.ToLower()">@rank.State.Bench<span>@rank.State.Bench.Ordinal()</span></td>
+            <td class="team value">
+                @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
+                {
+                    <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                }
+                <div class="value-text">
+                    @rank.School.Bench<span>@rank.School.Bench.Ordinal()</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="header clean">
+                <h2>CLEAN</h2>
+            </td>
+            <td class="nation value">@rank.Nation.Clean<span>@rank.Nation.Clean.Ordinal()</span></td>
+            <td class="state value @Model.Team.State.Code.ToLower()">@rank.State.Clean<span>@rank.State.Clean.Ordinal()</span></td>
+            <td class="team value">
+                @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
+                {
+                    <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                }
+                <div class="value-text">
+                    @rank.School.Clean<span>@rank.School.Clean.Ordinal()</span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

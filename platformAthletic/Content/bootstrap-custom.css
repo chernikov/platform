@@ -1622,6 +1622,10 @@ dl.sport-2 {
         padding-top: 0;
     }
 
+.no-margin-top {
+    margin-top: 0 !important;
+}
+
 .user-page {
     background-color: #f5f5f5;
 }
@@ -1638,478 +1642,565 @@ dl.sport-2 {
         box-shadow: none;
     }
 
-.no-margin-top {
-    margin-top: 0 !important;
-}
+        .user-page .panel .col-lg-12 {
+            padding-left: 0px;
+        }
 
-.user-page .panel .col-lg-12 {
-    padding-left: 0px;
-}
+        .user-page .panel h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 9px;
+            color: #495b6c;
+        }
 
-.user-page .panel h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 9px;
-    color: #495b6c;
-}
+            .user-page .panel h1.player-info {
+                font-size: 24px;
+                padding-top: 6px;
+                margin-left: 30px;
+            }
 
-    .user-page .panel h1.player-info {
-        font-size: 24px;
-        padding-top: 6px;
-        margin-left: 30px;
+            .user-page .panel h1 span {
+                margin-left: 30px;
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+        .user-page .panel.no-padding .panel-body {
+            padding: 0;
+        }
+
+        .user-page .panel h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 20px 0 15px 0;
+            line-height: 24px;
+        }
+
+        .user-page .panel .progress-rank {
+            background-color: #3bcb75;
+            padding: 10px 65px 26px 65px;
+        }
+
+            .user-page .panel .progress-rank h2 {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 24px;
+                font-weight: normal;
+                text-align: center;
+                color: #fff;
+            }
+
+                .user-page .panel .progress-rank h2 span {
+                    font-size: 48px;
+                    font-weight: bold;
+                    top: 8px;
+                    position: relative;
+                }
+
+    .user-page .info-table {
+        margin-top: 30px;
     }
 
-    .user-page .panel h1 span {
-        margin-left: 30px;
-        font-size: 14px;
-        font-weight: normal;
+        .user-page .info-table td {
+            border: 1px solid #e7e6e6;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            padding: 7px 3px 3px 3px;
+            margin: 0;
+        }
+
+
+            .user-page .info-table td.image {
+                padding: 0;
+                width: 200px;
+                position: relative;
+            }
+
+                .user-page .info-table td.image .upload-image {
+                    position: absolute;
+                    width: 200px;
+                    height: 200px;
+                    background: rgba(0, 0, 0, 0.2);
+                    top: 0;
+                    left: 0;
+                    сursor: pointer;
+                    display : none;
+                }
+
+                .user-page .info-table td.image:hover .upload-image {
+                     display : block;
+                }
+            
+                    .user-page .info-table td.image .upload-image .qq-uploader, 
+                    .user-page .info-table td.image .upload-image .qq-uploader .qq-upload-button {
+                        display: block;
+                        width: 200px;
+                        height: 200px;
+                    }
+
+            .user-page .info-table td.header {
+                padding-right: 10px;
+                background-color: #60b1c2;
+                color: #fff;
+                text-align: right;
+            }
+
+            .user-page .info-table td.value {
+                padding-left: 10px;
+            }
+
+                .user-page .info-table td.value.name {
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+
+    .user-page .edit-profile-wrapper {
     }
 
-.user-page .panel.no-padding .panel-body {
-    padding: 0;
-}
+        .user-page .edit-profile-wrapper input {
+            border: none;
+            background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDI1NzNFRDBFQTY0MTFFNDgyQzRDQjlBQTkyNUY0MTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDI1NzNFRDFFQTY0MTFFNDgyQzRDQjlBQTkyNUY0MTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MjU3M0VDRUVBNjQxMUU0ODJDNENCOUFBOTI1RjQxOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MjU3M0VDRkVBNjQxMUU0ODJDNENCOUFBOTI1RjQxOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoyGBQAAAB/SURBVHjajJA7CoAwEESjRsEPWitY6f0vJAiWtlr4Q3EWElhCXBx4xZKXYROl5BSgtUMkiBnoQAkSsHzJOehBzC5qLYj87Kbm4Kc4urIo0hCyh7riw0UrafOADVS+RhtqTk3rASZw+UQK7dyA2swD2MHp+09tVpnBKomUV4ABAG/rHFYTdoGfAAAAAElFTkSuQmCC") no-repeat right center;
+            padding: 0 10px;
+        }
 
-.user-page .panel h3 {
-    font-family: 'Montserrat', sans-serif;
-    margin: 20px 0 15px 0;
-    line-height: 24px;
-}
+        .user-page .edit-profile-wrapper .name {
+            padding: 0 !important;
+            margin: 0px;
+        }
 
-.user-page .panel .progress-rank {
-    background-color: #3bcb75;
-    padding: 10px 65px 26px 65px;
-}
+            .user-page .edit-profile-wrapper .name input {
+                width: 49%;
+                padding: 0 10px;
+                margin: 3px 0;
+                color: #2b333c;
+            }
 
-    .user-page .panel .progress-rank h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 24px;
-        font-weight: normal;
-        text-align: center;
+        .user-page .edit-profile-wrapper .half {
+            width: 49%;
+            float: left;
+        }
+
+            .user-page .edit-profile-wrapper .half input {
+                width: 100%;
+            }
+
+        .user-page .edit-profile-wrapper .dropdown-wrapper {
+            position: relative;
+            background-position: right center;
+            background-repeat: no-repeat;
+        }
+
+            .user-page .edit-profile-wrapper .dropdown-wrapper select {
+                background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAGCAYAAAD+Bd/7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Mjk5QjY5MjBFQTc0MTFFNEEzQTg4M0JDRkVENjgzMDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Mjk5QjY5MjFFQTc0MTFFNEEzQTg4M0JDRkVENjgzMDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyOTlCNjkxRUVBNzQxMUU0QTNBODgzQkNGRUQ2ODMwOCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyOTlCNjkxRkVBNzQxMUU0QTNBODgzQkNGRUQ2ODMwOCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqlPWlgAAAB0SURBVHjaYvCMzuH8//8/AzYMkmNiYGDY4RWT68qABIB8ZiCeDmQmgRT8B+KtQIFEqCQ3kNoIxOlA/I0FSHgA8UIgnguU1ADSTkCsA8Th25ZMXs0IsgsowQgU6ALiEiB+B8T+QMkjYPvQHJUMxOrIYgABBgA8GENj5sQuTgAAAABJRU5ErkJggg==") no-repeat calc(100% - 10px) center;
+                text-indent: 0.01px; /* Removes default arrow from firefox*/
+                text-overflow: ''; /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+                appearance: none;
+                -moz-appearance: none; /* Firefox */
+                -webkit-appearance: none; /* Safari and Chrome */
+                color: #2b333c;
+                border: none;
+                width: 100%;
+            }
+
+            .user-page .edit-profile-wrapper .dropdown-wrapper.gender {
+                float: left;
+                margin-right: 10px;
+            }
+
+                .user-page .edit-profile-wrapper .dropdown-wrapper.gender select {
+                    width: 100px;
+                }
+
+    .user-page .edit-valuedata-wrapper input {
+        border: none;
+        background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALCAYAAACprHcmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDI1NzNFRDBFQTY0MTFFNDgyQzRDQjlBQTkyNUY0MTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDI1NzNFRDFFQTY0MTFFNDgyQzRDQjlBQTkyNUY0MTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MjU3M0VDRUVBNjQxMUU0ODJDNENCOUFBOTI1RjQxOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MjU3M0VDRkVBNjQxMUU0ODJDNENCOUFBOTI1RjQxOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoyGBQAAAB/SURBVHjajJA7CoAwEESjRsEPWitY6f0vJAiWtlr4Q3EWElhCXBx4xZKXYROl5BSgtUMkiBnoQAkSsHzJOehBzC5qLYj87Kbm4Kc4urIo0hCyh7riw0UrafOADVS+RhtqTk3rASZw+UQK7dyA2swD2MHp+09tVpnBKomUV4ABAG/rHFYTdoGfAAAAAElFTkSuQmCC") no-repeat right center;
+        width: 80px;
+    }
+
+    .user-page .sbc-table {
+        margin-top: 50px;
+    }
+
+        .user-page .sbc-table thead th {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            text-align: center;
+            background-color: #60b1c2;
+            color: #fff;
+            border: 1px solid #e7e6e6;
+        }
+
+            .user-page .sbc-table thead th.total {
+                background-color: #fc8675;
+                color: #fff;
+            }
+
+        .user-page .sbc-table td {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 12px;
+            border: 1px solid #e7e6e6;
+        }
+
+            .user-page .sbc-table td .minus, .user-page .sbc-table td .plus {
+                background-color: #f5f5f5;
+                display: inline-block;
+                padding: 2px;
+                width: 16px;
+            }
+
+            .user-page .sbc-table td .minus {
+                color: #f56854;
+            }
+
+            .user-page .sbc-table td .plus {
+                color: #65cea7;
+            }
+
+            .user-page .sbc-table td .value {
+                width: 40px;
+                display: inline-block;
+            }
+
+    .user-page .value-data-table {
+        width: 90%;
+        margin: 30px auto;
+    }
+
+        .user-page .value-data-table td {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            border: 1px solid #e7e6e6;
+        }
+
+            .user-page .value-data-table td.header {
+                background-color: #f5f5f5;
+                width: 30%;
+            }
+
+            .user-page .value-data-table td.value {
+                width: 20%;
+            }
+
+    .user-page .performance {
+        margin-top: 30px;
+        border: 1px solid #e7ebee;
+    }
+
+
+    .user-page .workouts-table {
+    }
+
+        .user-page .workouts-table th {
+            border: 1px solid #e7ebee;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #60b1c2;
+            color: #fff;
+            font-size: 12px;
+            font-weight: normal;
+            text-align: center;
+        }
+
+        .user-page .workouts-table td {
+            border: 1px solid #e7ebee;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #2b333c;
+            text-align: center;
+        }
+
+    .user-page .leaderboard-table {
+        background: #60b1c2;
         color: #fff;
     }
 
-        .user-page .panel .progress-rank h2 span {
-            font-size: 48px;
+        .user-page .leaderboard-table h1 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .user-page .leaderboard-table td {
+            border: 1px solid #e4e5e5;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .user-page .leaderboard-table .btn-primary {
+            background-color: #fff;
+            color: #60b1c2;
+            margin-top: 15px;
+            margin-right: 15px;
+        }
+
+
+        .user-page .leaderboard-table .header td {
+            text-align: center;
+        }
+
+        .user-page .leaderboard-table td.header {
+            height: 133px;
+        }
+
+        .user-page .leaderboard-table .header h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            font-size: 14px;
+        }
+
+
+        .user-page .leaderboard-table .header.squat {
+            background: #60b1c2 url("/Content/img/squat-icon.png") no-repeat center center;
+        }
+
+        .user-page .leaderboard-table .header.bench {
+            background: #60b1c2 url("/Content/img/bench-icon.png") no-repeat center center;
+        }
+
+        .user-page .leaderboard-table .header.clean {
+            background: #60b1c2 url("/Content/img/clean-icon.png") no-repeat center center;
+        }
+
+        .user-page .leaderboard-table .value {
+            color: #60b1c2;
+            background-color: #fff;
+            font-size: 31px;
             font-weight: bold;
-            top: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .user-page .leaderboard-table .nation {
+            background-image: url("/Content/img/states/usa.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 150px;
+        }
+
+        .user-page .leaderboard-table .state {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 120px;
+        }
+
+            .user-page .leaderboard-table .state.ak {
+                background-image: url("/Content/img/states/ak.png");
+            }
+
+            .user-page .leaderboard-table .state.al {
+                background-image: url("/Content/img/states/al.png");
+            }
+
+            .user-page .leaderboard-table .state.ar {
+                background-image: url("/Content/img/states/ar.png");
+            }
+
+            .user-page .leaderboard-table .state.az {
+                background-image: url("/Content/img/states/az.png");
+            }
+
+            .user-page .leaderboard-table .state.ca {
+                background-image: url("/Content/img/states/ca.png");
+            }
+
+            .user-page .leaderboard-table .state.co {
+                background-image: url("/Content/img/states/co.png");
+            }
+
+            .user-page .leaderboard-table .state.ct {
+                background-image: url("/Content/img/states/ct.png");
+            }
+
+            .user-page .leaderboard-table .state.de {
+                background-image: url("/Content/img/states/de.png");
+            }
+
+            .user-page .leaderboard-table .state.fl {
+                background-image: url("/Content/img/states/fl.png");
+            }
+
+            .user-page .leaderboard-table .state.ga {
+                background-image: url("/Content/img/states/ga.png");
+            }
+
+            .user-page .leaderboard-table .state.hi {
+                background-image: url("/Content/img/states/hi.png");
+            }
+
+            .user-page .leaderboard-table .state.ia {
+                background-image: url("/Content/img/states/ia.png");
+            }
+
+            .user-page .leaderboard-table .state.id {
+                background-image: url("/Content/img/states/id.png");
+            }
+
+            .user-page .leaderboard-table .state.il {
+                background-image: url("/Content/img/states/il.png");
+            }
+
+            .user-page .leaderboard-table .state.in {
+                background-image: url("/Content/img/states/in.png");
+            }
+
+            .user-page .leaderboard-table .state.ks {
+                background-image: url("/Content/img/states/ks.png");
+            }
+
+            .user-page .leaderboard-table .state.ky {
+                background-image: url("/Content/img/states/ky.png");
+            }
+
+            .user-page .leaderboard-table .state.la {
+                background-image: url("/Content/img/states/la.png");
+            }
+
+            .user-page .leaderboard-table .state.ma {
+                background-image: url("/Content/img/states/ma.png");
+            }
+
+            .user-page .leaderboard-table .state.md {
+                background-image: url("/Content/img/states/md.png");
+            }
+
+            .user-page .leaderboard-table .state.me {
+                background-image: url("/Content/img/states/me.png");
+            }
+
+            .user-page .leaderboard-table .state.mi {
+                background-image: url("/Content/img/states/mi.png");
+            }
+
+            .user-page .leaderboard-table .state.mn {
+                background-image: url("/Content/img/states/mn.png");
+            }
+
+            .user-page .leaderboard-table .state.mo {
+                background-image: url("/Content/img/states/mo.png");
+            }
+
+            .user-page .leaderboard-table .state.ms {
+                background-image: url("/Content/img/states/ms.png");
+            }
+
+            .user-page .leaderboard-table .state.mt {
+                background-image: url("/Content/img/states/mt.png");
+            }
+
+            .user-page .leaderboard-table .state.nc {
+                background-image: url("/Content/img/states/nc.png");
+            }
+
+            .user-page .leaderboard-table .state.nd {
+                background-image: url("/Content/img/states/nd.png");
+            }
+
+            .user-page .leaderboard-table .state.ne {
+                background-image: url("/Content/img/states/ne.png");
+            }
+
+            .user-page .leaderboard-table .state.nh {
+                background-image: url("/Content/img/states/nh.png");
+            }
+
+            .user-page .leaderboard-table .state.nj {
+                background-image: url("/Content/img/states/nj.png");
+            }
+
+            .user-page .leaderboard-table .state.nm {
+                background-image: url("/Content/img/states/nm.png");
+            }
+
+            .user-page .leaderboard-table .state.nv {
+                background-image: url("/Content/img/states/nv.png");
+            }
+
+            .user-page .leaderboard-table .state.ny {
+                background-image: url("/Content/img/states/ny.png");
+            }
+
+            .user-page .leaderboard-table .state.oh {
+                background-image: url("/Content/img/states/oh.png");
+            }
+
+            .user-page .leaderboard-table .state.ok {
+                background-image: url("/Content/img/states/ok.png");
+            }
+
+            .user-page .leaderboard-table .state.or {
+                background-image: url("/Content/img/states/or.png");
+            }
+
+            .user-page .leaderboard-table .state.pa {
+                background-image: url("/Content/img/states/pa.png");
+            }
+
+            .user-page .leaderboard-table .state.ri {
+                background-image: url("/Content/img/states/ri.png");
+            }
+
+            .user-page .leaderboard-table .state.sc {
+                background-image: url("/Content/img/states/sc.png");
+            }
+
+            .user-page .leaderboard-table .state.sd {
+                background-image: url("/Content/img/states/sd.png");
+            }
+
+            .user-page .leaderboard-table .state.tn {
+                background-image: url("/Content/img/states/tn.png");
+            }
+
+            .user-page .leaderboard-table .state.tx {
+                background-image: url("/Content/img/states/tx.png");
+            }
+
+            .user-page .leaderboard-table .state.ut {
+                background-image: url("/Content/img/states/ut.png");
+            }
+
+            .user-page .leaderboard-table .state.va {
+                background-image: url("/Content/img/states/va.png");
+            }
+
+            .user-page .leaderboard-table .state.vt {
+                background-image: url("/Content/img/states/vt.png");
+            }
+
+            .user-page .leaderboard-table .state.wa {
+                background-image: url("/Content/img/states/wa.png");
+            }
+
+            .user-page .leaderboard-table .state.wi {
+                background-image: url("/Content/img/states/wi.png");
+            }
+
+            .user-page .leaderboard-table .state.wv {
+                background-image: url("/Content/img/states/wv.png");
+            }
+
+            .user-page .leaderboard-table .state.wy {
+                background-image: url("/Content/img/states/wy.png");
+            }
+
+        .user-page .leaderboard-table .team {
             position: relative;
         }
 
-.user-page .info-table {
-    margin-top: 30px;
-}
+            .user-page .leaderboard-table .team .team-bg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -100px;
+                margin-top: -42px;
+                opacity: 0.15;
+                z-index: 1;
+            }
 
-    .user-page .info-table td {
-        border: 1px solid #e7e6e6;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 11px;
-        padding: 7px 3px 3px 3px;
-        margin: 0;
-    }
+            .user-page .leaderboard-table .team .value-text {
+                z-index: 2;
+                position: relative;
+            }
 
-
-        .user-page .info-table td.image {
-            padding: 0;
-            width: 200px;
+        .user-page .leaderboard-table .value span {
+            font-size: 20px;
         }
-
-        .user-page .info-table td.header {
-            padding-right: 10px;
-            background-color: #60b1c2;
-            color: #fff;
-            text-align: right;
-        }
-
-        .user-page .info-table td.value {
-            padding-left: 10px;
-        }
-
-.user-page .sbc-table {
-    margin-top: 50px;
-}
-
-    .user-page .sbc-table thead th {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 11px;
-        text-align: center;
-        background-color: #60b1c2;
-        color: #fff;
-        border: 1px solid #e7e6e6;
-    }
-
-        .user-page .sbc-table thead th.total {
-            background-color: #fc8675;
-            color: #fff;
-        }
-
-    .user-page .sbc-table td {
-        font-family: 'Montserrat', sans-serif;
-        text-align: center;
-        font-size: 12px;
-        border: 1px solid #e7e6e6;
-    }
-
-        .user-page .sbc-table td .minus, .user-page .sbc-table td .plus {
-            background-color: #f5f5f5;
-            display: inline-block;
-            padding: 2px;
-            width: 16px;
-        }
-
-        .user-page .sbc-table td .minus {
-            color: #f56854;
-        }
-
-        .user-page .sbc-table td .plus {
-            color: #65cea7;
-        }
-
-        .user-page .sbc-table td .value {
-            width: 40px;
-            display: inline-block;
-        }
-
-.user-page .value-data-table {
-    width: 90%;
-    margin: 30px auto;
-}
-
-    .user-page .value-data-table td {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 12px;
-        border: 1px solid #e7e6e6;
-    }
-
-        .user-page .value-data-table td.header {
-            background-color: #f5f5f5;
-            width: 30%;
-        }
-
-        .user-page .value-data-table td.value {
-            width: 20%;
-        }
-
-.user-page .performance {
-    margin-top: 30px;
-    border: 1px solid #e7ebee;
-}
-
-
-.user-page .workouts-table {
-}
-
-    .user-page .workouts-table th {
-        border: 1px solid #e7ebee;
-        font-family: 'Montserrat', sans-serif;
-        background-color: #60b1c2;
-        color: #fff;
-        font-size: 12px;
-        font-weight: normal;
-        text-align: center;
-    }
-
-    .user-page .workouts-table td {
-        border: 1px solid #e7ebee;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 12px;
-        color: #2b333c;
-        text-align: center;
-    }
-
-.user-page .leaderboard-table {
-    background: #60b1c2;
-    color: #fff;
-}
-
-    .user-page .leaderboard-table h1 {
-        font-family: 'Montserrat', sans-serif;
-        text-align: center;
-        font-size: 20px;
-    }
-
-    .user-page .leaderboard-table td {
-        border: 1px solid #e4e5e5;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .user-page .leaderboard-table .btn-primary {
-        background-color: #fff;
-        color: #60b1c2;
-        margin-top: 15px;
-        margin-right: 15px;
-    }
-
-
-    .user-page .leaderboard-table .header td {
-        text-align: center;
-    }
-
-    .user-page .leaderboard-table td.header {
-        height: 133px;
-    }
-
-    .user-page .leaderboard-table .header h2 {
-        font-family: 'Montserrat', sans-serif;
-        text-align: center;
-        margin-top: 100px;
-        font-size: 14px;
-    }
-
-
-    .user-page .leaderboard-table .header.squat {
-        background: #60b1c2 url("/Content/img/squat-icon.png") no-repeat center center;
-    }
-
-    .user-page .leaderboard-table .header.bench {
-        background: #60b1c2 url("/Content/img/bench-icon.png") no-repeat center center;
-    }
-
-    .user-page .leaderboard-table .header.clean {
-        background: #60b1c2 url("/Content/img/clean-icon.png") no-repeat center center;
-    }
-
-    .user-page .leaderboard-table .value {
-        color: #60b1c2;
-        background-color: #fff;
-        font-size: 31px;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    .user-page .leaderboard-table .nation {
-        background-image: url("/Content/img/states/usa.png");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 150px;
-    }
-
-    .user-page .leaderboard-table .state {
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 120px;
-    }
-
-        .user-page .leaderboard-table .state.ak {
-            background-image: url("/Content/img/states/ak.png");
-        }
-
-        .user-page .leaderboard-table .state.al {
-            background-image: url("/Content/img/states/al.png");
-        }
-
-        .user-page .leaderboard-table .state.ar {
-            background-image: url("/Content/img/states/ar.png");
-        }
-
-        .user-page .leaderboard-table .state.az {
-            background-image: url("/Content/img/states/az.png");
-        }
-
-        .user-page .leaderboard-table .state.ca {
-            background-image: url("/Content/img/states/ca.png");
-        }
-
-        .user-page .leaderboard-table .state.co {
-            background-image: url("/Content/img/states/co.png");
-        }
-
-        .user-page .leaderboard-table .state.ct {
-            background-image: url("/Content/img/states/ct.png");
-        }
-
-        .user-page .leaderboard-table .state.de {
-            background-image: url("/Content/img/states/de.png");
-        }
-
-        .user-page .leaderboard-table .state.fl {
-            background-image: url("/Content/img/states/fl.png");
-        }
-
-        .user-page .leaderboard-table .state.ga {
-            background-image: url("/Content/img/states/ga.png");
-        }
-
-        .user-page .leaderboard-table .state.hi {
-            background-image: url("/Content/img/states/hi.png");
-        }
-
-        .user-page .leaderboard-table .state.ia {
-            background-image: url("/Content/img/states/ia.png");
-        }
-
-        .user-page .leaderboard-table .state.id {
-            background-image: url("/Content/img/states/id.png");
-        }
-
-        .user-page .leaderboard-table .state.il {
-            background-image: url("/Content/img/states/il.png");
-        }
-
-        .user-page .leaderboard-table .state.in {
-            background-image: url("/Content/img/states/in.png");
-        }
-
-        .user-page .leaderboard-table .state.ks {
-            background-image: url("/Content/img/states/ks.png");
-        }
-
-        .user-page .leaderboard-table .state.ky {
-            background-image: url("/Content/img/states/ky.png");
-        }
-
-        .user-page .leaderboard-table .state.la {
-            background-image: url("/Content/img/states/la.png");
-        }
-
-        .user-page .leaderboard-table .state.ma {
-            background-image: url("/Content/img/states/ma.png");
-        }
-
-        .user-page .leaderboard-table .state.md {
-            background-image: url("/Content/img/states/md.png");
-        }
-
-        .user-page .leaderboard-table .state.me {
-            background-image: url("/Content/img/states/me.png");
-        }
-
-        .user-page .leaderboard-table .state.mi {
-            background-image: url("/Content/img/states/mi.png");
-        }
-
-        .user-page .leaderboard-table .state.mn {
-            background-image: url("/Content/img/states/mn.png");
-        }
-
-        .user-page .leaderboard-table .state.mo {
-            background-image: url("/Content/img/states/mo.png");
-        }
-
-        .user-page .leaderboard-table .state.ms {
-            background-image: url("/Content/img/states/ms.png");
-        }
-
-        .user-page .leaderboard-table .state.mt {
-            background-image: url("/Content/img/states/mt.png");
-        }
-
-        .user-page .leaderboard-table .state.nc {
-            background-image: url("/Content/img/states/nc.png");
-        }
-
-        .user-page .leaderboard-table .state.nd {
-            background-image: url("/Content/img/states/nd.png");
-        }
-
-        .user-page .leaderboard-table .state.ne {
-            background-image: url("/Content/img/states/ne.png");
-        }
-
-        .user-page .leaderboard-table .state.nh {
-            background-image: url("/Content/img/states/nh.png");
-        }
-
-        .user-page .leaderboard-table .state.nj {
-            background-image: url("/Content/img/states/nj.png");
-        }
-
-        .user-page .leaderboard-table .state.nm {
-            background-image: url("/Content/img/states/nm.png");
-        }
-
-        .user-page .leaderboard-table .state.nv {
-            background-image: url("/Content/img/states/nv.png");
-        }
-
-        .user-page .leaderboard-table .state.ny {
-            background-image: url("/Content/img/states/ny.png");
-        }
-
-        .user-page .leaderboard-table .state.oh {
-            background-image: url("/Content/img/states/oh.png");
-        }
-
-        .user-page .leaderboard-table .state.ok {
-            background-image: url("/Content/img/states/ok.png");
-        }
-
-        .user-page .leaderboard-table .state.or {
-            background-image: url("/Content/img/states/or.png");
-        }
-
-        .user-page .leaderboard-table .state.pa {
-            background-image: url("/Content/img/states/pa.png");
-        }
-
-        .user-page .leaderboard-table .state.ri {
-            background-image: url("/Content/img/states/ri.png");
-        }
-
-        .user-page .leaderboard-table .state.sc {
-            background-image: url("/Content/img/states/sc.png");
-        }
-
-        .user-page .leaderboard-table .state.sd {
-            background-image: url("/Content/img/states/sd.png");
-        }
-
-        .user-page .leaderboard-table .state.tn {
-            background-image: url("/Content/img/states/tn.png");
-        }
-
-        .user-page .leaderboard-table .state.tx {
-            background-image: url("/Content/img/states/tx.png");
-        }
-
-        .user-page .leaderboard-table .state.ut {
-            background-image: url("/Content/img/states/ut.png");
-        }
-
-        .user-page .leaderboard-table .state.va {
-            background-image: url("/Content/img/states/va.png");
-        }
-
-        .user-page .leaderboard-table .state.vt {
-            background-image: url("/Content/img/states/vt.png");
-        }
-
-        .user-page .leaderboard-table .state.wa {
-            background-image: url("/Content/img/states/wa.png");
-        }
-
-        .user-page .leaderboard-table .state.wi {
-            background-image: url("/Content/img/states/wi.png");
-        }
-
-        .user-page .leaderboard-table .state.wv {
-            background-image: url("/Content/img/states/wv.png");
-        }
-
-        .user-page .leaderboard-table .state.wy {
-            background-image: url("/Content/img/states/wy.png");
-        }
-
-        .user-page .leaderboard-table .team {
-            position : relative;
-        }
-
-        .user-page .leaderboard-table .team .team-bg {
-            position : absolute;
-            top : 50%;
-            left : 50%;
-            margin-left : -100px;
-            margin-top : -42px;
-            opacity : 0.15;
-            z-index : 1;
-        }
-
-         .user-page .leaderboard-table .team .value-text {
-             z-index : 2;
-             position : relative;
-         }
-
-    .user-page .leaderboard-table .value span {
-        font-size: 20px;
-    }
