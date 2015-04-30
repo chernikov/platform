@@ -11,7 +11,7 @@
 }
 @Html.Hidden("Sort", Model.Search.Sort)
 @Html.Hidden("StartID", Model.Search.StartID)
-<div class="leaderboard-wrapper">
+<div class="report-wrapper">
     <div class="pull-right search-wrapper">
         <div class="input-group">
             @Html.TextBox("SearchString", Model.Search.SearchString, new { @class = "form-control", id = "SearchAthlete", placeholder = "SEARCH ATHLETE" })
@@ -24,7 +24,8 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="/leaderboard">NATIONAL LEADERBOARD</a></li>
-            @if (currentUser.OwnTeam != null || currentUser.Team != null) { 
+            @if (currentUser.OwnTeam != null || currentUser.Team != null)
+            {
                 <li><a href="/leaderboard/school">SCHOOL LEADERBOARD</a></li>
             }
         </ul>
@@ -90,9 +91,9 @@
                             <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
                         </tr>
                     </thead>
-                   
-                    @Html.Action("NationalTop", "Leaderboard", new { search = Model.Search})
-                   
+
+                    @Html.Action("NationalTop", "Leaderboard", new { search = Model.Search })
+
                     <tr class="header">
                         <td colspan="6">CURRENT LEADERS</td>
                     </tr>

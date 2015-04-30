@@ -216,11 +216,11 @@
     <Compile Include="Areas\Default\Controllers\FaqController.cs" />
     <Compile Include="Areas\Default\Controllers\GettingStartedController.cs" />
     <Compile Include="Areas\Default\Controllers\InvoiceController.cs" />
-    <Compile Include="Areas\Default\Controllers\OldLeaderBoardController.cs" />
     <Compile Include="Areas\Default\Controllers\LeaderboardController.cs" />
     <Compile Include="Areas\Default\Controllers\ManagePlayerController.cs" />
     <Compile Include="Areas\Default\Controllers\PageController.cs" />
     <Compile Include="Areas\Default\Controllers\PlayerController.cs" />
+    <Compile Include="Areas\Default\Controllers\OldReportController.cs" />
     <Compile Include="Areas\Default\Controllers\ReportController.cs" />
     <Compile Include="Areas\Default\Controllers\ScheduleController.cs" />
     <Compile Include="Areas\Default\Controllers\TableController.cs" />
@@ -279,6 +279,7 @@
     <Compile Include="Mappers\MapperCollection.cs" />
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
+    <Compile Include="Models\Info\AttendanceReport.cs" />
     <Compile Include="Models\Info\CalendarInfo.cs" />
     <Compile Include="Models\Info\JsonSchoolLeaderboard.cs" />
     <Compile Include="Models\Info\JsonNationalLeaderboard.cs" />
@@ -295,6 +296,7 @@
     <Compile Include="Models\Info\NationalLeaderboard.cs" />
     <Compile Include="Models\Info\PageableData.cs" />
     <Compile Include="Models\Info\PriceInfoView.cs" />
+    <Compile Include="Models\Info\SearchAttendanceReport.cs" />
     <Compile Include="Models\Info\SearchNationalLeaderboard.cs" />
     <Compile Include="Models\Info\SearchNationalLeaderboardFilter.cs" />
     <Compile Include="Models\Info\SearchSchoolLeaderboard.cs" />
@@ -1248,8 +1250,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Areas\Default\Views\OldLeaderBoard\Index.cshtml" />
-    <Content Include="Areas\Default\Views\OldLeaderBoard\Team.cshtml" />
     <Content Include="Areas\Default\Views\Shared\MainMenu.cshtml" />
     <Content Include="Areas\Default\Views\Leaderboard\NationalTop.cshtml" />
     <Content Include="Areas\Default\Views\Leaderboard\PlayerInfo.cshtml" />
@@ -1262,6 +1262,7 @@
     <Content Include="Areas\Default\Views\User\UserInfo.cshtml" />
     <Content Include="Areas\Default\Views\User\EditUserInfo.cshtml" />
     <Content Include="Areas\Default\Views\User\SbcData.cshtml" />
+    <Content Include="Areas\Default\Views\Report\Index.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1442,9 +1443,9 @@
     <Content Include="Areas\Default\Views\Home\Team.cshtml" />
     <Content Include="Areas\Default\Views\Player\Index.cshtml" />
     <Content Include="Areas\Default\Views\Leaderboard\Index.cshtml" />
-    <Content Include="Areas\Default\Views\Report\Index.cshtml" />
-    <Content Include="Areas\Default\Views\Report\Attendance.cshtml" />
-    <Content Include="Areas\Default\Views\Report\Progress.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\Index.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\Attendance.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\Progress.cshtml" />
     <Content Include="Areas\Admin\Views\Gallery\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Gallery\Edit.cshtml" />
     <Content Include="Areas\Default\Views\Home\Carousel.cshtml" />
@@ -1464,11 +1465,11 @@
     <Content Include="Areas\Default\Views\Table\Index.cshtml" />
     <Content Include="Areas\Default\Views\Table\Team.cshtml" />
     <Content Include="Areas\Default\Views\Table\Table.cshtml" />
-    <Content Include="Areas\Default\Views\Report\Individual.cshtml" />
-    <Content Include="Areas\Default\Views\Report\ProgressChart.cshtml" />
-    <Content Include="Areas\Default\Views\Report\IndividualProgress.cshtml" />
-    <Content Include="Areas\Default\Views\Report\IndividualProgressChart.cshtml" />
-    <Content Include="Areas\Default\Views\Report\AttendanceChart.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\Individual.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\ProgressChart.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\IndividualProgress.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\IndividualProgressChart.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\AttendanceChart.cshtml" />
     <Content Include="Areas\Admin\Views\User\EditAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PaymentDetail\Index.cshtml" />
@@ -1483,8 +1484,8 @@
     <Content Include="Areas\Default\Views\Account\SubscriptionDontPayed.cshtml" />
     <Content Include="Areas\Admin\Views\Aphorism\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Aphorism\Edit.cshtml" />
-    <Content Include="Areas\Default\Views\Report\AttendancePrint.cshtml" />
-    <Content Include="Areas\Default\Views\Report\ProgressPrint.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\AttendancePrint.cshtml" />
+    <Content Include="Areas\Default\Views\OldReport\ProgressPrint.cshtml" />
     <Content Include="Areas\Default\Views\Page\Privacy.cshtml" />
     <Content Include="Areas\Default\Views\Page\TermAndCondition.cshtml" />
     <Content Include="Areas\Default\Views\Shared\BottomMenu.cshtml" />

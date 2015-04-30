@@ -1363,20 +1363,20 @@ dl.sport-2 {
                 background-color: #ebeaea;
             }
 
-.leaderboard-wrapper {
+.report-wrapper {
     background-color: #f5f5f5;
     padding: 20px;
 }
 
-    .leaderboard-wrapper .search-wrapper {
+    .report-wrapper .search-wrapper {
     }
 
-        .leaderboard-wrapper .search-wrapper .form-group {
+        .report-wrapper .search-wrapper .form-group {
             margin-right: 20px;
             margin-bottom: 10px;
         }
 
-    .leaderboard-wrapper .table thead th {
+    .report-wrapper .table thead th {
         background-color: #60b1c2;
         color: #fff;
         border: none;
@@ -1384,7 +1384,7 @@ dl.sport-2 {
         cursor: pointer;
     }
 
-        .leaderboard-wrapper .table thead th .sort {
+        .report-wrapper .table thead th .sort {
             width: 7px;
             height: 14px;
             display: inline-block;
@@ -1394,16 +1394,16 @@ dl.sport-2 {
             top: 2px;
         }
 
-            .leaderboard-wrapper .table thead th .sort.asc {
+            .report-wrapper .table thead th .sort.asc {
                 background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAQAAABuW59YAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NThDMjlGNjZFMzQ2MTFFNDhEMEVCODY2NTQyMEFDOUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NThDMjlGNjdFMzQ2MTFFNDhEMEVCODY2NTQyMEFDOUMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1OEMyOUY2NEUzNDYxMUU0OEQwRUI4NjY1NDIwQUM5QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1OEMyOUY2NUUzNDYxMUU0OEQwRUI4NjY1NDIwQUM5QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv19ji4AAABGSURBVAgdBcFBEYIAAADB++IYgcGXZpEWBCMP448EJAAyrLtJPg5vKXnYHXaDktXm6WdVFqdJJpclt68kszsvSZIxSZL0BwwSPNGBPqjhAAAAAElFTkSuQmCC") no-repeat top left;
             }
 
-            .leaderboard-wrapper .table thead th .sort.desc {
+            .report-wrapper .table thead th .sort.desc {
                 background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAQAAABuW59YAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjlDRjY4MkFFMzQ2MTFFNDk1M0Y5QTRERjFDOEIxMkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjlDRjY4MkJFMzQ2MTFFNDk1M0Y5QTRERjFDOEIxMkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2OUNGNjgyOEUzNDYxMUU0OTUzRjlBNERGMUM4QjEyRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2OUNGNjgyOUUzNDYxMUU0OTUzRjlBNERGMUM4QjEyRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppp9E0kAAABESURBVAgdBcExEYMAAACxnzkktIxoQQbCih3WsnNVANUQkiRJUl6SJFP+FkkWd1aXSd4ua/KxG+02JYOvn8OgJLPTLD0LFzzMcFim9gAAAABJRU5ErkJggg==") no-repeat left bottom;
             }
 
 
-    .leaderboard-wrapper .table .header {
+    .report-wrapper .table .header {
         border-radius: 0;
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
@@ -1411,116 +1411,122 @@ dl.sport-2 {
         text-align: center;
     }
 
-    .leaderboard-wrapper .table .top-list-item {
+    .report-wrapper .table .top-list-item {
         color: #fff;
         font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         font-weight: bold;
     }
 
-        .leaderboard-wrapper .table .top-list-item td {
+        .report-wrapper .table .top-list-item td {
             border: none;
             padding: 0;
         }
 
-            .leaderboard-wrapper .table .top-list-item td > span {
+            .report-wrapper .table .top-list-item td > span {
                 display: block;
                 height: 40px;
                 padding: 7px 10px;
                 margin: 0 0 0 20px;
             }
 
-            .leaderboard-wrapper .table .top-list-item td.rank > span {
+            .report-wrapper .table .top-list-item td.rank > span {
                 width: auto;
                 text-align: right;
             }
 
-            .leaderboard-wrapper .table .top-list-item td.name > span {
+            .report-wrapper .table .top-list-item td.name > span {
                 padding-left: 40px;
                 width: auto;
                 text-align: left;
             }
 
-            .leaderboard-wrapper .table .top-list-item td .selected {
+            .report-wrapper .table .top-list-item td .selected {
                 background: rgba(96,177,194, 0.3);
             }
 
-            .leaderboard-wrapper .table .top-list-item td > span {
+            .report-wrapper .table .top-list-item td > span {
                 width: 100px;
                 text-align: center;
             }
 
-        .leaderboard-wrapper .table .top-list-item:nth-child(2) td {
+        .report-wrapper .table .top-list-item:nth-child(2) td {
             background-color: #495b6c;
         }
 
-        .leaderboard-wrapper .table .top-list-item:nth-child(3) td {
+        .report-wrapper .table .top-list-item:nth-child(3) td {
             background-color: #5b7083;
         }
 
-        .leaderboard-wrapper .table .top-list-item:nth-child(4) td {
+        .report-wrapper .table .top-list-item:nth-child(4) td {
             background-color: #7c95ab;
         }
 
-    .leaderboard-wrapper .table .item {
+    .report-wrapper .table .item {
         color: #495b6c;
         font-family: 'Montserrat', sans-serif;
         font-size: 14px;
         font-weight: bold;
     }
 
-        .leaderboard-wrapper .table .item td {
+        .report-wrapper .table .item td {
             border: none;
             padding: 0;
             cursor: pointer;
         }
 
-        .leaderboard-wrapper .table .item.selected td,
-        .leaderboard-wrapper .table .item.selected:nth-child(2n) td {
+        .report-wrapper .table .item.selected td,
+        .report-wrapper .table .item.selected:nth-child(2n) td {
             background: rgba(96,177,194, 0.3);
         }
 
-        .leaderboard-wrapper .table .item td > span {
+        .report-wrapper .table .item td > span {
             display: block;
             height: 40px;
             padding: 7px 10px;
             margin: 0 0 0 20px;
         }
 
-        .leaderboard-wrapper .table .item td.rank > span {
+        .report-wrapper .table .item td.rank > span {
             width: auto;
             text-align: right;
         }
 
-        .leaderboard-wrapper .table .item td.name > span {
+        .report-wrapper .table .item td.name > span {
             padding-left: 40px;
             width: auto;
             text-align: left;
         }
 
-        .leaderboard-wrapper .table .item td .selected {
+        .report-wrapper .table .item td .selected {
             background: rgba(96,177,194, 0.3);
         }
 
-        .leaderboard-wrapper .table .item td > span {
+        .report-wrapper .table .item td > span {
             width: 100px;
             text-align: center;
         }
 
-
-
-        .leaderboard-wrapper .table .item:nth-child(2n) td {
+        .report-wrapper .table .item:nth-child(2n) td {
             background-color: #f9f9f9;
         }
 
-    .leaderboard-wrapper .table .name span {
+    .report-wrapper .table .name span {
         margin-left: 30px;
     }
 
-    .leaderboard-wrapper .table .rank {
+    .report-wrapper .table .rank {
         text-align: right;
         padding-right: 20px;
     }
+
+    .report-wrapper .search-wrapper .input-group {
+        width: 400px;
+    }
+
+        .report-wrapper .search-wrapper .input-group .form-control {
+            width: 400px;
+        }
 
 .select-style {
     position: relative;
@@ -1542,14 +1548,6 @@ dl.sport-2 {
     }
 
 
-.leaderboard-wrapper .search-wrapper .input-group {
-    width: 400px;
-}
-
-
-    .leaderboard-wrapper .search-wrapper .input-group .form-control {
-        width: 400px;
-    }
 
 .modal.player-info {
     font-family: 'Montserrat', sans-serif;
@@ -1723,19 +1721,19 @@ dl.sport-2 {
                     top: 0;
                     left: 0;
                     сursor: pointer;
-                    display : none;
+                    display: none;
                 }
 
                 .user-page .info-table td.image:hover .upload-image {
-                     display : block;
+                    display: block;
                 }
-            
-                    .user-page .info-table td.image .upload-image .qq-uploader, 
-                    .user-page .info-table td.image .upload-image .qq-uploader .qq-upload-button {
-                        display: block;
-                        width: 200px;
-                        height: 200px;
-                    }
+
+                .user-page .info-table td.image .upload-image .qq-uploader,
+                .user-page .info-table td.image .upload-image .qq-uploader .qq-upload-button {
+                    display: block;
+                    width: 200px;
+                    height: 200px;
+                }
 
             .user-page .info-table td.header {
                 padding-right: 10px;
