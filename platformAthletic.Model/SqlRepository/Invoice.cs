@@ -24,8 +24,8 @@ namespace platformAthletic.Model
             {
                 var lastID = Db.Invoices.OrderByDescending(p => p.ID).Select(p => p.ID).FirstOrDefault() + 1;
                 lastID = lastID * 12 + 100000;
-                instance.DateSent = DateTime.Now;
-                instance.DateDue = DateTime.Now.AddMonths(1);
+                instance.DateSent = CurrentDateTime;
+                instance.DateDue = CurrentDateTime.AddMonths(1);
                 instance.Code = string.Format("INV-{0}", lastID.ToString().Insert(3, "-")); 
                 Db.Invoices.InsertOnSubmit(instance);
                 Db.Invoices.Context.SubmitChanges();

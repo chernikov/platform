@@ -138,7 +138,7 @@ namespace platformAthletic.Areas.Default.Controllers
             if (ModelState.IsValid)
             {
                 var user = (User)ModelMapper.Map(registerIndividualView, typeof(RegisterIndividualView), typeof(User));
-                user.ActivatedDate = DateTime.Now;
+                user.ActivatedDate = DateTime.Now.Current();
                 Repository.CreateUser(user);
 
                 /* process payment */
@@ -205,7 +205,7 @@ namespace platformAthletic.Areas.Default.Controllers
             if (ModelState.IsValid)
             {
                 var user = (User)ModelMapper.Map(registerTeamView, typeof(RegisterTeamView), typeof(User));
-                user.ActivatedDate = DateTime.Now;
+                user.ActivatedDate = DateTime.Now.Current();
                 Repository.CreateUser(user);
 
                 var invoice = new Invoice()
@@ -252,7 +252,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 else
                 {
-                    var code = Repository.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > DateTime.Now)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => string.Compare(p.ReferralCode, referralCode, true) == 0);
+                    var code = Repository.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > DateTime.Now.Current())).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => string.Compare(p.ReferralCode, referralCode, true) == 0);
                     if (code != null)
                     {
                         promoCode = code.ID;
@@ -264,7 +264,7 @@ namespace platformAthletic.Areas.Default.Controllers
         private void ValidateCreditCardExpirationDate(BillingInfoView BillingInfo)
         {
             var expirationDate = new DateTime(BillingInfo.ExpirationYear, BillingInfo.ExpirationMonth, 1);
-            if (expirationDate <= DateTime.Now)
+            if (expirationDate <= DateTime.Now.Current())
             {
                 ModelState.AddModelError("BillingInfo.ExpirationMonth", "Expiration Date not Valid");
                 ModelState.AddModelError("BillingInfo.ExpirationYear", "Expiration Date not Valid");
@@ -301,7 +301,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 total = Repository.Settings.First(p => p.Name == "IndividualPrice").ValueDouble;
             }
-            var promoCode = Repository.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > DateTime.Now)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => string.Compare(p.ReferralCode, code, true) == 0);
+            var promoCode = Repository.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > DateTime.Now.Current())).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => string.Compare(p.ReferralCode, code, true) == 0);
 
             if (promoCode != null)
             {

@@ -32,12 +32,12 @@ namespace platformAthletic.Model
 
        public bool UsePromoCode(string referralCode)
         {
-            var instance = Db.PromoCodes.Where(p => !p.PromoAction.Closed  && (p.PromoAction.ValidDate == null ||  p.PromoAction.ValidDate.Value > DateTime.Now)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => p.ReferralCode == referralCode);
+            var instance = Db.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > CurrentDateTime)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => p.ReferralCode == referralCode);
             if (instance != null)
             {
                 if (!instance.UsedDate.HasValue)
                 {
-                    instance.UsedDate = DateTime.Now;
+                    instance.UsedDate = CurrentDateTime;
                     Db.PromoCodes.Context.SubmitChanges();
                     return true;
                 } 
@@ -71,7 +71,7 @@ namespace platformAthletic.Model
                         var newPromoCode = new PromoCode()
                         {
                             PromoActionID = promoAction.ID,
-                            AddedDate = DateTime.Now,
+                            AddedDate = CurrentDateTime,
                         };
                         if (!string.IsNullOrWhiteSpace(referralCode))
                         {
@@ -107,7 +107,7 @@ namespace platformAthletic.Model
 
         public double GetDiscountByPromoCode(int idPromoCode, double totalPrice, PromoAction.TargetEnum target)
         {
-            var promoCode = Db.PromoCodes.Where(p => !p.PromoAction.Closed  && (p.PromoAction.ValidDate == null ||  p.PromoAction.ValidDate.Value > DateTime.Now)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => p.ID == idPromoCode);
+            var promoCode = Db.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > CurrentDateTime)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => p.ID == idPromoCode);
 
             if (promoCode != null)
             {
@@ -118,7 +118,7 @@ namespace platformAthletic.Model
                     return totalPrice;
                 }
 
-                if (promoAction.ValidDate.HasValue && promoAction.ValidDate.Value < DateTime.Now)
+                if (promoAction.ValidDate.HasValue && promoAction.ValidDate.Value < CurrentDateTime)
                 {
                     return totalPrice;
                 }
@@ -145,7 +145,7 @@ namespace platformAthletic.Model
 
         public bool ValidatePromoCode(string referralCode, PromoAction.TargetEnum target)
         {
-            var promoCode = Db.PromoCodes.Where(p => !p.PromoAction.Closed  && (p.PromoAction.ValidDate == null ||  p.PromoAction.ValidDate.Value > DateTime.Now)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => string.Compare(p.ReferralCode, referralCode, true) == 0);
+            var promoCode = Db.PromoCodes.Where(p => !p.PromoAction.Closed && (p.PromoAction.ValidDate == null || p.PromoAction.ValidDate.Value > CurrentDateTime)).OrderBy(p => p.UsedDate.HasValue ? 1 : 0).FirstOrDefault(p => string.Compare(p.ReferralCode, referralCode, true) == 0);
 
             if (promoCode != null)
             {
@@ -155,7 +155,7 @@ namespace platformAthletic.Model
                 {
                     return false;
                 }
-                if (promoAction.ValidDate.HasValue && promoAction.ValidDate.Value < DateTime.Now)
+                if (promoAction.ValidDate.HasValue && promoAction.ValidDate.Value < CurrentDateTime)
                 {
                     return false;
                 }

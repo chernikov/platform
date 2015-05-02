@@ -105,7 +105,7 @@ namespace platformAthletic.Models.Info
             {
                 startDate = initialStartDate.Value;
             }
-            var endDate = DateTime.Now.AddDays(1).Date;
+            var endDate = DateTime.Now.Current().AddDays(1).Date;
 
             foreach (var user in users)
             {
@@ -152,7 +152,7 @@ namespace platformAthletic.Models.Info
 
         private void GenerateMonthAttendance(List<User> users, UserSeason userSeason, DateTime? initialStartDate = null)
         {
-            var reportEndDate = DateTime.Now.Date;
+            var reportEndDate = DateTime.Now.Current().Date;
             reportEndDate = reportEndDate.AddDays(-(int)reportEndDate.DayOfWeek);
 
             if (reportEndDate > userSeason.StartDay.AddDays(userSeason.Season.DaysLength))
@@ -195,7 +195,7 @@ namespace platformAthletic.Models.Info
 
         private void GenerateTotalAttendance(List<User> users, UserSeason userSeason, DateTime? initialStartDate = null)
         {
-            var reportEndDate = DateTime.Now.Date;
+            var reportEndDate = DateTime.Now.Current().Date;
 			
             reportEndDate = reportEndDate.AddDays(-(int)reportEndDate.DayOfWeek);
 

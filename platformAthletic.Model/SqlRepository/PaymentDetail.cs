@@ -21,7 +21,7 @@ namespace platformAthletic.Model
         {
             if (instance.ID == 0)
             {
-                instance.AddedDate = DateTime.Now;
+                instance.AddedDate = CurrentDateTime;
                 Db.PaymentDetails.InsertOnSubmit(instance);
                 Db.PaymentDetails.Context.SubmitChanges();
                 return true;
@@ -35,7 +35,7 @@ namespace platformAthletic.Model
             var cache = Db.PaymentDetails.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
-                cache.ProcessedDate = DateTime.Now;
+                cache.ProcessedDate = CurrentDateTime;
 				Db.PaymentDetails.Context.SubmitChanges();
                 return true;
             }

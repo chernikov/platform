@@ -20,7 +20,7 @@ namespace platformAthletic.Model
         private bool SaveSBCValue(int idUser, double squat, double bench, double clean, DateTime? addedDate = null)
         {
 
-            var sbcValue = Db.SBCValues.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == (addedDate ?? DateTime.Now).Date);
+            var sbcValue = Db.SBCValues.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == (addedDate ?? CurrentDateTime).Date);
             if (sbcValue == null)
             {
                 var user = Db.Users.FirstOrDefault(p => p.ID == idUser);
@@ -36,7 +36,7 @@ namespace platformAthletic.Model
                         Bench = previous.Bench,
                         Clean = previous.Clean,
                         TeamID = user.PlayerOfTeamID,
-                        AddedDate = (addedDate ?? DateTime.Now).Date
+                        AddedDate = (addedDate ?? CurrentDateTime).Date
                     };
                 }
                 else
@@ -45,7 +45,7 @@ namespace platformAthletic.Model
                     {
                         UserID = idUser,
                         TeamID = user.PlayerOfTeamID,
-                        AddedDate = (addedDate ?? DateTime.Now).Date
+                        AddedDate = (addedDate ?? CurrentDateTime).Date
                     };
                 }
                 Db.SBCValues.InsertOnSubmit(sbcValue);

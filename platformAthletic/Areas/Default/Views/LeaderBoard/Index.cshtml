@@ -11,7 +11,19 @@
 }
 @Html.Hidden("Sort", Model.Search.Sort)
 @Html.Hidden("StartID", Model.Search.StartID)
-<div class="report-wrapper">
+
+
+<div class="breadcrumb">
+    <div class="row">
+        <div class="col-lg-12 overflow">
+            <ol>
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                <li class="active"><a href="/leaderboard">National Leaderboard </a></li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="report-wrapper leaderboard">
     <div class="pull-right search-wrapper">
         <div class="input-group">
             @Html.TextBox("SearchString", Model.Search.SearchString, new { @class = "form-control", id = "SearchAthlete", placeholder = "SEARCH ATHLETE" })

@@ -1,6 +1,7 @@
 ﻿using platformAthletic.Attributes;
 using platformAthletic.Global;
 using platformAthletic.Model;
+using platformAthletic.Helpers;
 using platformAthletic.Models.Info;
 using platformAthletic.Models.ViewModels.User;
 using platformAthletic.Tools;
@@ -10,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using platformAthletic.Helpers;
+
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -23,7 +26,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var team = CurrentUser.OwnTeam;
             ViewBag.SearchString = searchString;
             ViewBag.GroupId = groupId;
-            ViewBag.SelectedDate = selectedDate ?? DateTime.Now;
+            ViewBag.SelectedDate = selectedDate ?? DateTime.Now.Current();
             if (CurrentUser.OwnTeam.SubGroups.Any())
             {
                 ViewBag.SelectedListGroups = GetSelectedListGroups(CurrentUser.OwnTeam.SubGroups, groupId);
@@ -57,7 +60,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var team = CurrentUser.OwnTeam;
             ViewBag.SearchString = searchString;
             ViewBag.GroupId = groupId;
-            ViewBag.SelectedDate = selectedDate ?? DateTime.Now;
+            ViewBag.SelectedDate = selectedDate ?? DateTime.Now.Current();
             if (CurrentUser.OwnTeam.SubGroups.Any())
             {
                 ViewBag.SelectedListGroups = GetSelectedListGroups(CurrentUser.OwnTeam.SubGroups, groupId);
@@ -115,7 +118,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var attendanceInfo = new AttendanceInfo()
                 {
-                    UserID = user.ID,
+                    User = user,
                     Date = date,
                 };
                 var firstDate = new DateTime(date.Year, date.Month, 1);

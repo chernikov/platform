@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -117,7 +118,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult ChangeSbc(int id, SBCValue.SbcType type, double value)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && CurrentUser.CanEditTeamData(user))
+            if (user != null &&  user.CanEditTeamData(CurrentUser))
             {
                 Repository.ChangeSbcValue(id, type, value);
                 var newUser = Repository.Users.FirstOrDefault(p => p.ID == id);
@@ -149,7 +150,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
-                var sunday = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
+                var sunday = DateTime.Now.Current().AddDays(-(int)DateTime.Now.DayOfWeek);
                 var currentSunday = sunday.AddDays(-7 * 12);
                 var labels = new List<string>();
                 var sData = new List<int>();
@@ -177,8 +178,8 @@ namespace platformAthletic.Areas.Default.Controllers
                     strokeColor = "#ed4848",
                     pointColor = "#ed4848",
                     pointStrokeColor = "#ed4848",
-                    pointHighlightFill = "#fff",
-                    pointHighlightStroke = "#fff",
+                    pointHighlightFill = "#ed4848",
+                    pointHighlightStroke = "#ed4848",
                     datasetFill = false,
                     data = sData
                 });
@@ -190,8 +191,8 @@ namespace platformAthletic.Areas.Default.Controllers
                     strokeColor = "#3bcb67",
                     pointColor = "#3bcb67",
                     pointStrokeColor = "#3bcb67",
-                    pointHighlightFill = "#fff",
-                    pointHighlightStroke = "#fff",
+                    pointHighlightFill = "#3bcb67",
+                    pointHighlightStroke = "#3bcb67",
                     datasetFill = false,
                     data = bData
                 });
@@ -203,8 +204,8 @@ namespace platformAthletic.Areas.Default.Controllers
                     strokeColor = "#60b1c2",
                     pointColor = "#60b1c2",
                     pointStrokeColor = "#60b1c2",
-                    pointHighlightFill = "#fff",
-                    pointHighlightStroke = "#fff",
+                    pointHighlightFill = "#60b1c2",
+                    pointHighlightStroke = "#60b1c2",
                     datasetFill = false,
                     data = cData
                 });
@@ -216,8 +217,8 @@ namespace platformAthletic.Areas.Default.Controllers
                     strokeColor = "#495b6c",
                     pointColor = "#495b6c",
                     pointStrokeColor = "#495b6c",
-                    pointHighlightFill = "#fff",
-                    pointHighlightStroke = "#fff",
+                    pointHighlightFill = "#495b6c",
+                    pointHighlightStroke = "#495b6c",
                     datasetFill = false,
                     data = tData
                 });

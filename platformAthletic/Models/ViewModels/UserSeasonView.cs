@@ -88,7 +88,7 @@ namespace platformAthletic.Models.ViewModels
         public void Init()
         {
             var repository = DependencyResolver.Current.GetService<IRepository>();
-            int numberOfWeek = (int)(((int)(DateTime.Now - StartDay).TotalDays + 7) / 7);
+            int numberOfWeek = (int)(((int)(DateTime.Now.Current() - StartDay).TotalDays + 7) / 7);
             var week = repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == SeasonID);
             if (week != null)
             {

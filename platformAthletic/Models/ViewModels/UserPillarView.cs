@@ -75,7 +75,7 @@ namespace platformAthletic.Models.ViewModels
 
         public UserPillarView()
         {
-            AddedDate = DateTime.Now;
+            AddedDate = DateTime.Now.Current();
         }
 
     }

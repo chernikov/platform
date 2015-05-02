@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Models.Info
 {
@@ -59,13 +60,13 @@ namespace platformAthletic.Models.Info
                 {
                     if (Age.Value == 70)
                     {
-                        return DateTime.Now.AddYears(200).Date;
+                        return DateTime.Now.Current().AddYears(200).Date;
                     }
                     if (Age.Value == 0)
                     {
-                        return DateTime.Now.AddYears(-15).Date;
+                        return DateTime.Now.Current().AddYears(-15).Date;
                     }
-                    return DateTime.Now.AddYears(-Age.Value - 5).Date;
+                    return DateTime.Now.Current().AddYears(-Age.Value - 5).Date;
                 }
                 return DateTime.MinValue;
             }
@@ -79,9 +80,9 @@ namespace platformAthletic.Models.Info
                 {
                     if (Age.Value == 0)
                     {
-                        return DateTime.Now.Date;
+                        return DateTime.Now.Current().Date;
                     }
-                    return DateTime.Now.AddYears(-Age.Value).Date;
+                    return DateTime.Now.Current().AddYears(-Age.Value).Date;
                 }
                 return DateTime.MaxValue;
             }

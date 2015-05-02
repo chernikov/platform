@@ -25,8 +25,8 @@ namespace platformAthletic.Areas.Default.Controllers
             var list = Repository.Users.Where(p => idUsers.Contains(p.ID));
 
             var currentSeason = CurrentUser.CurrentSeason;
-            int numberOfWeek = (int)(((int)((DateTime.Now - currentSeason.StartDay).TotalDays) / 7));
-            if (DateTime.Now < currentSeason.StartDay)
+            int numberOfWeek = (int)(((int)((DateTime.Now.Current() - currentSeason.StartDay).TotalDays) / 7));
+            if (DateTime.Now.Current() < currentSeason.StartDay)
             {
                 ViewBag.StartDate = currentSeason.StartDay;
                 return View("NoData");
@@ -71,12 +71,12 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Index()
         {
             var currentSeason = CurrentUser.CurrentSeason;
-            if (DateTime.Now < currentSeason.StartDay)
+            if (DateTime.Now.Current() < currentSeason.StartDay)
             {
                 ViewBag.StartDate = currentSeason.StartDay;
                 return View("NoData");
             }
-            int numberOfWeek = (int)(((int)((DateTime.Now - currentSeason.StartDay).TotalDays) / 7));
+            int numberOfWeek = (int)(((int)((DateTime.Now.Current() - currentSeason.StartDay).TotalDays) / 7));
             int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
             numberOfWeek = numberOfWeek % totalWeeks + 1;
 

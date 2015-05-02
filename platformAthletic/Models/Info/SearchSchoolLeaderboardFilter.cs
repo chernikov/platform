@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Models.Info
 {
@@ -41,18 +42,18 @@ namespace platformAthletic.Models.Info
                     DateTime minDate;
                     if (age == 70)
                     {
-                        minDate = DateTime.Now.AddYears(200);
-                        maxDate = DateTime.Now.AddYears(-age);
+                        minDate = DateTime.Now.Current().AddYears(200);
+                        maxDate = DateTime.Now.Current().AddYears(-age);
                     }
                     else if (age == 0)
                     {
-                        minDate = DateTime.Now.AddYears(-15);
-                        maxDate = DateTime.Now;
+                        minDate = DateTime.Now.Current().AddYears(-15);
+                        maxDate = DateTime.Now.Current();
                     }
                     else
                     {
-                        minDate = DateTime.Now.AddYears(-age);
-                        maxDate = DateTime.Now.AddYears(-age + 5);
+                        minDate = DateTime.Now.Current().AddYears(-age);
+                        maxDate = DateTime.Now.Current().AddYears(-age + 5);
                     }
                     if (!users.Any(p => p.Birthday != null && (p.Birthday > minDate && p.Birthday < maxDate)))
                     {

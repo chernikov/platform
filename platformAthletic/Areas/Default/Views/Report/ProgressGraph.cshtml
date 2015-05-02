@@ -1,0 +1,20 @@
+﻿@model ProgressGraphInfo
+<div class="modal fade" id="modalProgressGraph" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">PROGRESS GRAPH</h4>
+            </div>
+            <div class="modal-body report-progress">
+                <p>Progress graph for:</p>
+                <h2>@Model.User.LastName, @Model.User.FirstName</h2>
+                <p>Date period: @Model.StartDate.ToString("MM/dd/yyyy") to @Model.EndDate.ToString("MM/dd/yyyy")</p>
+                <div class="performance-chart-wrapper">
+                    <canvas id="PerformanceChart" class="performance-chart">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

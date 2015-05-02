@@ -30,7 +30,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 invoice.TotalSum = totalSum;
                 Repository.CreateInvoice(invoice);
             }
-            else if (invoice.DateSent.AddYears(1) < DateTime.Now && invoice.TotalSum != totalSum)
+            else if (invoice.DateSent.AddYears(1) < DateTime.Now.Current() && invoice.TotalSum != totalSum)
             {
                 var newInvoice = new Invoice()
                 {

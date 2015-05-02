@@ -126,7 +126,7 @@ namespace platformAthletic.Areas.Admin.Controllers
                 {
                     var promoCode = (PromoCode)ModelMapper.Map(promoCodeView, typeof(PromoCodeView), typeof(PromoCode));
                     promoCode.ID = 0;
-                    promoCode.AddedDate = DateTime.Now;
+                    promoCode.AddedDate = DateTime.Now.Current();
                     Repository.CreatePromoCode(promoCode);
                 }
                 return View("_OK");

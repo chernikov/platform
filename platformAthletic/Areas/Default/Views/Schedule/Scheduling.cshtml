@@ -1,6 +1,6 @@
 ﻿@model platformAthletic.Model.Team
 @{
-    var month = DateTime.Now.AddDays(-DateTime.Now.Day + 1);
+    var month = DateTime.Now.Current().AddDays(-DateTime.Now.Day + 1);
 }
 <div id="CalendarWrapper" class="schedule-calendar">
     @Html.Action("Calendar", "Schedule", new {month = month, teamId = Model.ID})

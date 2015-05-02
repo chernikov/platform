@@ -58,7 +58,7 @@
                                     <span title="@item.Email">@item.Email.Teaser(28)</span>
                                 </div>
                                 <div class="position">
-                                    @item.FieldPosition.Name
+                                    @*@item.FieldPosition.Name*@
                                 </div>
                                 <div class="group">
                                     @(item.GroupID.HasValue ? item.Group.Name : item.Team.Name)
@@ -69,7 +69,7 @@
                                 <div class="welcome">
                                     @if (item.LoginInfoSent.HasValue)
                                     {
-                                        if (item.LoginInfoSent.Value.AddDays(1) > DateTime.Now)
+                                        if (item.LoginInfoSent.Value.AddDays(1) > DateTime.Now.Current())
                                         {
                                         <button class="btn btn-send disable" data-id="@item.ID" disabled="disabled">Sent</button>
                                         }

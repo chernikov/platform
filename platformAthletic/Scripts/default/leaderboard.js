@@ -98,7 +98,11 @@
         var href = "";
         href = $.param.querystring(href, 'SportID=' + $("#SportID").val());
         href = $.param.querystring(href, 'StateID=' + $("#StateID").val());
-        href = $.param.querystring(href, 'FieldPositionID=' + $("#FieldPositionID").val());
+        if ($("#SportID").val() != "") {
+            href = $.param.querystring(href, 'FieldPositionID=' + $("#FieldPositionID").val());
+        } else {
+            href = $.param.querystring(href, 'FieldPositionID=');
+        }
         href = $.param.querystring(href, 'Gender=' + $("#Gender").val());
         href = $.param.querystring(href, 'Age=' + $("#Age").val());
         href = $.param.querystring(href, 'LevelID=' + $("#LevelID").val());

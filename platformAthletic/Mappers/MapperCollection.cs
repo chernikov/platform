@@ -6,6 +6,7 @@ using AutoMapper;
 using platformAthletic.Model;
 using platformAthletic.Models.ViewModels;
 using platformAthletic.Models.ViewModels.User;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Mappers
 {
@@ -100,7 +101,7 @@ namespace platformAthletic.Mappers
                 Mapper.CreateMap<PlayerView, User>();
 
                 Mapper.CreateMap<User, UserInfoView>()
-                    .ForMember(p => p.Birthday, opt => opt.MapFrom(p => p.Birthday ?? DateTime.Now))
+                    .ForMember(p => p.Birthday, opt => opt.MapFrom(p => p.Birthday ?? DateTime.Now.Current()))
                     .ForMember(p => p.Sports, opt => opt.MapFrom(p => p.UserFieldPositions.Select(r => new UserInfoView.SportInfo()
                     {
                         FieldPositionID = r.FieldPositionID,

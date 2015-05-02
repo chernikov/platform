@@ -9,6 +9,9 @@ namespace platformAthletic.Model
     {
         IQueryable<T> GetTable<T>() where T : class;
 
+        DateTime CurrentDateTime { get;  }
+
+
         #region BillingInfo
         
         IQueryable<BillingInfo> BillingInfoes { get; }

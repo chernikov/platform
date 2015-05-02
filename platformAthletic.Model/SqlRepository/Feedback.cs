@@ -21,7 +21,7 @@ namespace platformAthletic.Model
         {
             if (instance.ID == 0)
             {
-                instance.AddedDate = DateTime.Now;
+                instance.AddedDate = CurrentDateTime;
                 Db.Feedbacks.InsertOnSubmit(instance);
                 Db.Feedbacks.Context.SubmitChanges();
                 return true;

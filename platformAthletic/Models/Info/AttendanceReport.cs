@@ -59,19 +59,188 @@ namespace platformAthletic.Models.Info
 
         public void Process()
         {
-            var users = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == Search.TeamID);
-
-            foreach (var user in users)
+            var profiler = MiniProfiler.Current; // it's ok if this is null
+            using (profiler.Step("Process"))
             {
-                List.Add(new Record()
+                var users = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == Search.TeamID);
+                using (profiler.Step("Filter"))
                 {
-                    User = user,
-                    Week = user.WeekAttendanceCount,
-                    Month = user.MonthAttendanceCount,
-                    Year = user.YearAttendanceCount,
-                    AllTime = user.AllAttendanceCount,
-                });
+                    Filter(ref users);
+                }
+                using (profiler.Step("Fill"))
+                {
+                    var startYear = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, 1, 1);
+                    var startMonth = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, SqlSingleton.sqlRepository.CurrentDateTime.Month, 1);
+                    int diff = SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek - DayOfWeek.Sunday;
+                    if (diff < 0)
+                    {
+                        diff += 7;
+                    }
+                    var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-1 * diff).Date;
+                    foreach (var user in users)
+                    {
+                        var attendances = Repository.UserAttendances.Where(p => p.UserID == user.ID);
+
+                        var allTime = 0;
+                        if (Search.StartPeriod.HasValue || Search.EndPeriod.HasValue)
+                        {
+                            var selectedAttendances = attendances;
+                            if (Search.StartPeriod.HasValue) 
+                            {
+                                selectedAttendances = selectedAttendances.Where(p => p.AddedDate >= Search.StartPeriod.Value);
+                            } 
+                            if (Search.EndPeriod.HasValue) 
+                            {
+                                selectedAttendances = selectedAttendances.Where(p => p.AddedDate < Search.EndPeriod.Value);
+                            } 
+                            allTime = selectedAttendances.Count();
+                        }
+                        else
+                        {
+                          allTime =  attendances.Count();
+                        }
+                        
+                        var year = attendances.Count(p => p.AddedDate >= startYear);
+                        var month = attendances.Count(p => p.AddedDate >= startMonth);
+                        var week = attendances.Count(p => p.AddedDate >= startWeek);
+                        List.Add(new Record()
+                        {
+                            User = user,
+                            Week = week,
+                            Month = month,
+                            Year = year,
+                            AllTime = allTime,
+                        });
+                    }
+                }
+                using (profiler.Step("Order"))
+                {
+                    Order();
+                }
+                using (profiler.Step("SetRanks"))
+                {
+                    SetRanks();
+                }
+
+                if (Search.StartID.HasValue)
+                {
+                    var item = List.FirstOrDefault(p => p.User.ID == Search.StartID.Value);
+                    if (item != null)
+                    {
+                        var index = List.IndexOf(item);
+                        Search.Page = index / 20 + 1;
+                    }
+                }
+                using (profiler.Step("GetPage"))
+                {
+                    GetPage();
+                }
+                if (!Search.StartID.HasValue && List.Count > 0)
+                {
+                    Search.StartID = List[0].User.ID;
+                }
             }
+        }
+
+        protected void Order()
+        {
+            switch (Search.Sort)
+            {
+                case SearchAttendanceReport.SortEnum.AllTimeAsc:
+                    List = List.OrderBy(p => p.AllTime).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.AllTimeDesc:
+                    List = List.OrderByDescending(p => p.AllTime).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.YearAsc:
+                    List = List.OrderBy(p => p.Year).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.YearDesc:
+                    List = List.OrderByDescending(p => p.Year).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.MonthAsc:
+                    List = List.OrderBy(p => p.Month).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.MonthDesc:
+                    List = List.OrderByDescending(p => p.Month).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.WeekAsc:
+                    List = List.OrderBy(p => p.Week).ToList();
+                    break;
+                case SearchAttendanceReport.SortEnum.WeekDesc:
+                    List = List.OrderByDescending(p => p.Week).ToList();
+                    break;
+                default:
+                    List = List.OrderByDescending(p => p.AllTime).ToList();
+                    break;
+            }
+        }
+
+        protected void Filter(ref IQueryable<User> users)
+        {
+            if (Search.SportID != null)
+            {
+                users = users.Where(p => p.UserFieldPositions.Any(r => r.SportID == Search.SportID));
+            }
+            if (Search.FieldPositionID != null)
+            {
+                users = users.Where(p => p.UserFieldPositions.Any(r => r.FieldPositionID == Search.FieldPositionID));
+            }
+            if (Search.GroupID != null)
+            {
+                users = users.Where(p => p.GroupID == Search.GroupID);
+            }
+            if (Search.GradYear != null)
+            {
+                users = users.Where(p => p.GradYear == Search.GradYear);
+            }
+        }
+
+        private void SetRanks()
+        {
+            TotalCount = List.Count();
+            var i = 1;
+            var rank = 0;
+            int rankValue = -1;
+            int currentValue = 0;
+            foreach (var record in List)
+            {
+                currentValue = GetRankValue(record, Search.Sort);
+                if (currentValue != rankValue)
+                {
+                    rank = i;
+                    rankValue = currentValue;
+                }
+                record.Position = rank;
+                i++;
+            }
+           
+        }
+
+        protected int GetRankValue(Record record, SearchAttendanceReport.SortEnum sort)
+        {
+            switch (Search.Sort)
+            {
+                case SearchAttendanceReport.SortEnum.AllTimeAsc:
+                case SearchAttendanceReport.SortEnum.AllTimeDesc:
+                    return record.AllTime;
+                case SearchAttendanceReport.SortEnum.YearAsc:
+                case SearchAttendanceReport.SortEnum.YearDesc:
+                    return record.Year;
+                case SearchAttendanceReport.SortEnum.MonthAsc:
+                case SearchAttendanceReport.SortEnum.MonthDesc:
+                    return record.Month;
+                case SearchAttendanceReport.SortEnum.WeekAsc:
+                case SearchAttendanceReport.SortEnum.WeekDesc:
+                    return record.Week;
+                default:
+                    return record.AllTime;
+            }
+        }
+
+        protected virtual void GetPage()
+        {
+            List = List.Skip((Search.Page - 1) * 20).Take(20).ToList();
         }
     }
 }

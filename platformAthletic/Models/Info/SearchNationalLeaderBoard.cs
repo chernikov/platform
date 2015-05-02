@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using platformAthletic.Model;
-
+using platformAthletic.Helpers;
 namespace platformAthletic.Models.Info
 {
     public class SearchNationalLeaderboard
@@ -62,13 +62,13 @@ namespace platformAthletic.Models.Info
                 {
                     if (Age.Value == 70)
                     {
-                       return DateTime.Now.AddYears(200).Date;
+                        return DateTime.Now.Current().AddYears(200).Date;
                     }
                     if (Age.Value == 0)
                     {
-                        return DateTime.Now.AddYears(-15).Date;
+                        return DateTime.Now.Current().AddYears(-15).Date;
                     }
-                    return DateTime.Now.AddYears(-Age.Value - 5).Date;
+                    return DateTime.Now.Current().AddYears(-Age.Value - 5).Date;
                 }
                 return DateTime.MinValue;
             }

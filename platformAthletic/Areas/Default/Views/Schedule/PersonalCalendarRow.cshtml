@@ -1,6 +1,6 @@
 ﻿@model platformAthletic.Models.ViewModels.CalendarRowInfo
 @{
-    var diffWeeks = (Model.CurrentSunday - DateTime.Now.StartOfWeek(DayOfWeek.Sunday)).TotalDays / 7;
+    var diffWeeks = (Model.CurrentSunday - DateTime.Now.Current().StartOfWeek(DayOfWeek.Sunday)).TotalDays / 7;
 }
 @if (Model.Macrocycle != null)
 {

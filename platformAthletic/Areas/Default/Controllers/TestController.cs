@@ -16,7 +16,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Index()
         {
             //just one
-            var rand = new Random((int)DateTime.Now.Ticks);
+            var rand = new Random((int)DateTime.Now.Current().Ticks);
 
             for (int i = 0; i < 5; i++)
             {
@@ -64,7 +64,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     SeasonID = 1,
                     UserID = coach.ID,
-                    StartDay = DateTime.Now.AddDays(-10)
+                    StartDay = DateTime.Now.Current().AddDays(-10)
                 };
 
                 Repository.CreateUserSeason(userSeason);
@@ -88,7 +88,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var restoreSetting = new Setting()
                 {
                     Name = "CurrentDate",
-                    Value = DateTime.Now.Date.ToString()
+                    Value = DateTime.Now.Current().Date.ToString()
                 };
                 var max = (rand.Next() % 20) + 20;
 
@@ -137,7 +137,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var halfSetting = new Setting()
                 {
                     Name = "CurrentDate",
-                    Value = DateTime.Now.AddDays(60).Date.ToString()
+                    Value = DateTime.Now.Current().AddDays(60).Date.ToString()
                 };
                 Repository.SaveSetting(halfSetting);
                 max = (rand.Next() % 5) + 5;

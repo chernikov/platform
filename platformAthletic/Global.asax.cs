@@ -44,6 +44,7 @@ namespace platformAthletic
             MailSender.config = res.Get<IConfig>();
             MailReceiver.config = res.Get<IConfig>();
             AppKernel = res;
+            
             return res;
         }
 
@@ -72,6 +73,8 @@ namespace platformAthletic
                 var ci = AppKernel.Get<IConfig>().Culture;
                 Thread.CurrentThread.CurrentUICulture = ci;
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
+
+                SqlSingleton.sqlRepository = AppKernel.Get<SqlRepository>();
             }
         }
 

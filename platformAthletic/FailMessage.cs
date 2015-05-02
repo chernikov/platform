@@ -38,7 +38,7 @@ namespace platformAthletic
                             {
                                 var failMail = new FailedMail
                                 {
-                                    AddedDate = DateTime.Now,
+                                    AddedDate = DateTime.Now.Current(),
                                     FailEmail = email, 
                                     Subject = mailMessage.Subject, 
                                     Body = mailMessage.Body,

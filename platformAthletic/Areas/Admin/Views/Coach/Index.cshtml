@@ -70,11 +70,11 @@
                         {
                             paidTill = item.PaidTill.Value;
                         }
-                        if (paidTill < DateTime.Now)
+                        if (paidTill < DateTime.Now.Current())
                         {
                             <span class="label label-important">@paidTill.ToString("d")</span>
                         }
-                        else if (paidTill.AddMonths(-1) < DateTime.Now)
+                        else if (paidTill.AddMonths(-1) < DateTime.Now.Current())
                         {
                             <span class="label label-warning">@paidTill.ToString("d")</span>
                         } else {

@@ -10,7 +10,18 @@
 }
 @Html.Hidden("Sort", Model.Search.Sort)
 @Html.Hidden("StartID", Model.Search.StartID)
-<div class="report-wrapper">
+
+<div class="breadcrumb">
+    <div class="row">
+        <div class="col-lg-12 overflow">
+            <ol>
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                <li class="active"><a href="/leaderboard/school">School Leaderboard</a></li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="report-wrapper leaderboard">
     <div class="pull-right search-wrapper">
         <div class="input-group">
             @Html.TextBox("SearchString", Model.Search.SearchString, new { @class = "form-control", id = "SearchAthlete", placeholder = "SEARCH ATHLETE" })
@@ -81,9 +92,9 @@
                             <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchSchoolLeaderboard.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchSchoolLeaderboard.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
                         </tr>
                     </thead>
-                   
-                    @Html.Action("SchoolTop", "Leaderboard", new { search = Model.Search})
-                   
+
+                    @Html.Action("SchoolTop", "Leaderboard", new { search = Model.Search })
+
                     <tr class="header">
                         <td colspan="6">CURRENT LEADERS</td>
                     </tr>
@@ -101,7 +112,7 @@
                 </table>
                 <div class="text-center">
                     <ul class="pagination">
-                        @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("School", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID,  FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age }))
+                        @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("School", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age }))
                     </ul>
                 </div>
             </div>

@@ -67,7 +67,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12" id="AttendanceMonthWrapper">
-            @Html.Action("AttendanceCalendar", "Dashboard", new { id = Model.ID, date = DateTime.Now })
+            @Html.Action("AttendanceCalendar", "Dashboard", new { id = Model.ID, date = DateTime.Now.Current() })
             
         </div>
     </div>

@@ -145,22 +145,22 @@ namespace platformAthletic.Model
                     var coach = Team.User;
                     if (GroupID != null)
                     {
-                        var currentSeason = coach.SeasonByDateAndGroup(DateTime.Now, GroupID.Value);
+                        var currentSeason = coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime, GroupID.Value);
                         if (currentSeason == null)
                         {
-                            return coach.SeasonByDateAndGroup(DateTime.Now);
+                            return coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime);
                         }
                         return currentSeason;
                     }
                     else
                     {
-                        return coach.SeasonByDateAndGroup(DateTime.Now);
+                        return coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime);
                     }
                 }
                 else
                 {
                     //user is coach
-                    return SeasonByDateAndGroup(DateTime.Now);
+                    return SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime);
                 }
             }
         }
@@ -224,8 +224,8 @@ namespace platformAthletic.Model
             {
                 if (CurrentSeason != null)
                 {
-                    return CurrentSeason.StartDay <= DateTime.Now &&
-                        CurrentSeason.StartDay.AddDays(CurrentSeason.Season.DaysLength) >= DateTime.Now;
+                    return CurrentSeason.StartDay <= SqlSingleton.sqlRepository.CurrentDateTime &&
+                        CurrentSeason.StartDay.AddDays(CurrentSeason.Season.DaysLength) >= SqlSingleton.sqlRepository.CurrentDateTime;
                 }
                 return false;
             }
@@ -237,8 +237,8 @@ namespace platformAthletic.Model
             {
                 if (NextSeason != null)
                 {
-                    return NextSeason.StartDay <= DateTime.Now &&
-                    NextSeason.StartDay.AddDays(NextSeason.Season.DaysLength) >= DateTime.Now;
+                    return NextSeason.StartDay <= SqlSingleton.sqlRepository.CurrentDateTime &&
+                    NextSeason.StartDay.AddDays(NextSeason.Season.DaysLength) >= SqlSingleton.sqlRepository.CurrentDateTime;
                 }
                 return false;
             }
@@ -248,7 +248,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return UserAttendances.Any(p => p.AddedDate == DateTime.Now.Date);
+                return UserAttendances.Any(p => p.AddedDate == SqlSingleton.sqlRepository.CurrentDateTime.Date);
             }
         }
 
@@ -387,7 +387,7 @@ namespace platformAthletic.Model
             {
                 if (CurrentSeason != null)
                 {
-                    int numberOfWeek = (int)(((int)((DateTime.Now - CurrentSeason.StartDay).TotalDays) / 7));
+                    int numberOfWeek = (int)(((int)((SqlSingleton.sqlRepository.CurrentDateTime  - CurrentSeason.StartDay).TotalDays) / 7));
                     int totalWeeks = CurrentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
                     numberOfWeek = numberOfWeek % totalWeeks + 1;
                     return CurrentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Any(p => p.Number == numberOfWeek);
@@ -554,12 +554,12 @@ namespace platformAthletic.Model
         {
             get
             {
-                int diff = DateTime.Now.DayOfWeek - DayOfWeek.Sunday;
+                int diff = SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek - DayOfWeek.Sunday;
                 if (diff < 0)
                 {
                     diff += 7;
                 }
-                var startWeek = DateTime.Now.AddDays(-1 * diff).Date;
+                var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-1 * diff).Date;
                 return UserAttendances.Count(p => p.AddedDate > startWeek);
             }
         }
@@ -568,7 +568,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                var startMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                var startMonth = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, SqlSingleton.sqlRepository.CurrentDateTime.Month, 1);
                 return UserAttendances.Count(p => p.AddedDate > startMonth);
             }
         }
@@ -577,7 +577,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                var startYear = new DateTime(DateTime.Now.Year, 1, 1);
+                var startYear = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, 1, 1);
                 return UserAttendances.Count(p => p.AddedDate > startYear);
             }
         }

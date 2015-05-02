@@ -166,6 +166,7 @@
     <Compile Include="SqlRepository\UserSeason.cs" />
     <Compile Include="SqlRepository\Video.cs" />
     <Compile Include="SqlRepository\Week.cs" />
+    <Compile Include="SqlSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

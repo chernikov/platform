@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ManageAttribute;
 using platformAthletic.Model;
+using platformAthletic.Helpers;
 
 
 namespace platformAthletic.Models.ViewModels
@@ -120,7 +121,7 @@ namespace platformAthletic.Models.ViewModels
         {
             get
             {
-                for (int i = DateTime.Now.Year; i < DateTime.Now.Year + 10; i++)
+                for (int i = DateTime.Now.Current().Year; i < DateTime.Now.Year + 10; i++)
                 {
                     yield return new SelectListItem
                     {

@@ -44,7 +44,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     TeamID = CurrentUser.OwnTeam.ID,
                     BeginDate = CurrentUser.CurrentSeason.StartDay,
-                    EndDate = DateTime.Now
+                    EndDate = DateTime.Now.Current()
                 };
             };
             return View(filterCustomAttendanceReport);
@@ -60,7 +60,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var team = Repository.Teams.FirstOrDefault(p => p.ID == filterCustomAttendanceReport.TeamID);
             if (team != null)
             {
-                var reportEndDate = DateTime.Now.Date;
+                var reportEndDate = DateTime.Now.Date.Current();
                 reportEndDate = reportEndDate.AddDays(-(int)reportEndDate.DayOfWeek);
               
                 Dictionary<string, double> output = null;
@@ -195,7 +195,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 filterCustomProgressReport = new FilterCustomProgressReport
                 {
-                    EndDate = DateTime.Now,
+                    EndDate = DateTime.Now.Current(),
                     BeginDate = CurrentUser.FullProgressStartDate ?? CurrentUser.CurrentSeason.StartDay 
                 };
                 return View("IndividualProgress", filterCustomProgressReport);
@@ -237,7 +237,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 if (!output.Any())
                 {
-                    output.Add(DateTime.Now, 0);
+                    output.Add(DateTime.Now.Current(), 0);
                 }
                 var data = output.Select(p => new { 
                     p.Key, 

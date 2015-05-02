@@ -154,13 +154,26 @@ namespace platformAthletic.Models.Info
             }
         }
 
+        public bool IsDateFilter
+        {
+            get
+            {
+                return StartPeriod.HasValue || EndPeriod.HasValue;
+            }
+        }
+        public SearchAttendanceReport()
+        {
+            Sort = SortEnum.AllTimeDesc;
+            Page = 1;
+        }
+
         public void Init()
         {
             Sports = Repository.Sports.ToList();
             FieldPositions = Repository.FieldPositions.ToList();
             Groups = Repository.Groups.Where(p => p.TeamID == TeamID).ToList();
             GradYears = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == TeamID && p.GradYear.HasValue).Select(p => p.GradYear.Value).Distinct().ToList();
-
+            
         }
     }
 }

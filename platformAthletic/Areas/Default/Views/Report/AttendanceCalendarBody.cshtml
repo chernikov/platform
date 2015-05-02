@@ -1,0 +1,56 @@
+﻿@model AttendanceInfo
+<div class="panel attendance-panel">
+<div class="pull-left">
+    <a class="btn attendanceModalMonth" data-date="@Model.Date.AddMonths(-1)" data-id="@Model.User.ID"><span class="glyphicon glyphicon-arrow-left"></span></a>
+</div>
+<div class="pull-right">
+    <a class="btn attendanceModalMonth" data-date="@Model.Date.AddMonths(1)" data-id="@Model.User.ID"><span class="glyphicon glyphicon-arrow-right"></span></a>
+</div>
+<h1 class="text-center">@Model.Date.ToString("MMMM yyyy").ToUpper()</h1>
+</div>
+<table class="table table-calendar">
+    <thead>
+        <tr>
+            <th>S</th>
+            <th>M</th>
+            <th>T</th>
+            <th>W</th>
+            <th>T</th>
+            <th>F</th>
+            <th>S</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var monday = Model.StartMonthSunday;
+            var month = Model.Date.Month;
+            var currentDate = monday;
+        }
+        @do
+        {
+            <tr>
+                @for (int i = 0; i < 7; i++)
+                {
+                    if (currentDate.Month == month)
+                    {
+                        <td>
+                            @if (Model.Attendances.Contains(currentDate.Date))
+                            {
+                                <span class="attendance">@currentDate.Day</span>
+                            }
+                            else
+                            {
+                                <span>@currentDate.Day</span>
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="muted"></td>
+                    }
+                    currentDate = currentDate.AddDays(1);
+                }
+            </tr>
+        } while (currentDate.Month == month);
+    </tbody>
+</table>

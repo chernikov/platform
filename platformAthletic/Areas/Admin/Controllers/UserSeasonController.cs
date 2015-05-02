@@ -56,7 +56,7 @@ namespace platformAthletic.Areas.Admin.Controllers
                 if (week != null)
                 {
                     var seasonID = week.Phase.Cycle.Season.ID;
-                    var now = DateTime.Now;
+                    var now = DateTime.Now.Current();
                     var startDay = now.AddDays(-(int)now.DayOfWeek).AddDays(-7 * (week.Number.Value - 1));
                     return Json(new
                     {
@@ -74,7 +74,7 @@ namespace platformAthletic.Areas.Admin.Controllers
             var season = Repository.Seasons.FirstOrDefault(p => p.ID == SeasonID);
             if (season != null)
             {
-                int numberOfWeek = (int)((DateTime.Now - StartDay).TotalDays / 7) + 1;
+                int numberOfWeek = (int)((DateTime.Now.Current() - StartDay).TotalDays / 7) + 1;
                 var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == SeasonID);
                 if (week != null)
                 {

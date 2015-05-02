@@ -72,9 +72,9 @@
 
                 @if (inTraining)
                 {
-                    <span>@DateTime.Now.ToString("d")</span>
+                    <span>@DateTime.Now.Current().ToString("d")</span>
                 }
-                else if (currentUser.CurrentSeason != null && currentUser.CurrentSeason.StartDay > @DateTime.Now)
+                else if (currentUser.CurrentSeason != null && currentUser.CurrentSeason.StartDay > @DateTime.Now.Current())
                 {
                     <span>will start @currentUser.CurrentSeason.StartDay.ToString("d")</span>
                 }

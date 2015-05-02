@@ -1,13 +1,28 @@
 ﻿@model AttendanceReport
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Attendance Report";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
-
+@section header {
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script src="~/Scripts/hogan.js"></script>
+    <script src="~/Scripts/typeahead.jquery.js"></script>
+    <script src="~/Scripts/default/attendance-report.js"></script>
+}
+<div class="breadcrumb">
+    <div class="row">
+        <div class="col-lg-12 overflow">
+            <ol>
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                <li class="active"><a href="/report">Attendance Report</a></li>
+            </ol>
+        </div>
+    </div>
+</div>
 <div class="report-wrapper">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-lg-9 col-md-12">
             <div class="pull-right search-wrapper">
                 <div class="input-group">
                     @*search*@
@@ -55,14 +70,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.TextBox("StartPeriod", Model.Search.StartPeriod, new { @class = "form-control filter" })
+                                @Html.TextBox("StartPeriod", Model.Search.StartPeriod.HasValue ? Model.Search.StartPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime start-date", placeholder = "Start date" })
                             </div>
                             <div class="form-group">
-                                @Html.TextBox("EndPeriod", Model.Search.EndPeriod, new { @class = "form-control filter" })
+                                @Html.TextBox("EndPeriod", Model.Search.EndPeriod.HasValue ? Model.Search.EndPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime end-date", placeholder = "End date" })
                             </div>
                         </form>
                         @*table*@
-                        <table class="table">
+                        <table class="table report-table">
                             <thead>
                                 <tr class="report-header">
                                     <th>RANK</th>
@@ -70,14 +85,18 @@
                                     <th class="sortable"><span data-type="Week" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc ? "desc" : "")"></span>WEEK</th>
                                     <th class="sortable"><span data-type="Month" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc ? "desc" : "")"></span>MONTH</th>
                                     <th class="sortable"><span data-type="Year" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc ? "desc" : "")"></span>YEAR</th>
-                                    <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>ALL TIME</th>
+                                    <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>@(Model.Search.IsDateFilter ? "SELECTED" : "ALL TIME")</th>
                                 </tr>
                             </thead>
                             @foreach (var item in Model.List)
                             {
                                 <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
                                     <td class="rank"><span>@item.Position</span></td>
-                                    <td class="name"><span><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span></span></td>
+                                    <td class="name">
+                                        <span class="clickable calendar" data-id="@item.User.ID"></span>
+                                        <span><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
+                                        </span>
+                                    </td>
                                     <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc) ? "selected" : "")">@item.Week</span></td>
                                     <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc) ? "selected" : "")">@item.Month</span></td>
                                     <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc) ? "selected" : "")">@item.Year</span></td>
@@ -96,9 +115,12 @@
             </div>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 hidden-md hidden-sm hidden-xs" id="WorkoutsWrapper">
             @*sidetable*@
+            @if (Model.List.Count > 0)
+            {
+                @Html.Action("Workouts", "Report", new { id = Model.Search.StartID })
+            }
         </div>
     </div>
 </div>
-

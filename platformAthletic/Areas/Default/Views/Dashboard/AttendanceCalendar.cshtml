@@ -1,10 +1,10 @@
 ﻿@model platformAthletic.Models.Info.AttendanceInfo
 <div class="panel attendance-panel">
     <div class="pull-left">
-        <a class="btn attendanceMonth" data-id="@Model.UserID" data-date="@Model.Date.AddMonths(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        <a class="btn attendanceMonth" data-id="@Model.User.ID" data-date="@Model.Date.AddMonths(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
     </div>
     <div class="pull-right">
-        <a class="btn attendanceMonth" data-id="@Model.UserID" data-date="@Model.Date.AddMonths(1)"><span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a class="btn attendanceMonth" data-id="@Model.User.ID" data-date="@Model.Date.AddMonths(1)"><span class="glyphicon glyphicon-arrow-right"></span></a>
     </div>
     <h1 class="text-center">@Model.Date.ToString("MMMM yyyy").ToUpper()</h1>
 </div>

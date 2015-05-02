@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using platformAthletic.Attributes.Validation;
 using platformAthletic.Model;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Models.ViewModels.User
 {
@@ -24,7 +25,7 @@ namespace platformAthletic.Models.ViewModels.User
             get
             {
                 var repository = DependencyResolver.Current.GetService<SqlRepository>();
-                var currentDate = DateTime.Now;
+                var currentDate = DateTime.Now.Current();
                 if (CurrentSeasonStartDay < currentDate)
                 {
                     return currentDate;

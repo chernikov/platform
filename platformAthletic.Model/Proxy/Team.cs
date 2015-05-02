@@ -19,14 +19,14 @@ namespace platformAthletic.Model
             var coach = this.User;
             if (groupID != null)
             {
-                var currentSeason = coach.SeasonByDateAndGroup(DateTime.Now, groupID);
+                var currentSeason = coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime, groupID);
                 if (currentSeason == null)
                 {
-                    return coach.SeasonByDateAndGroup(DateTime.Now);
+                    return coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime);
                 }
                 return currentSeason;
             };
-            return coach.SeasonByDateAndGroup(DateTime.Now);
+            return coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime);
         }
 
         public UserSeason NextSeason

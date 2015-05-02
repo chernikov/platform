@@ -22,9 +22,9 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == billingInfo.UserID);
             if (user != null)
             {
-                var paymentDate = (user.PaidTill.HasValue && user.PaidTill.Value > DateTime.Now) ?
+                var paymentDate = (user.PaidTill.HasValue && user.PaidTill.Value > DateTime.Now.Current()) ?
                        user.PaidTill.Value.AddYears(1)
-                       : DateTime.Now.AddYears(1);
+                       : DateTime.Now.Current().AddYears(1);
 
                 /* create payment */
                 var paymentDetail = new PaymentDetail
@@ -80,9 +80,9 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == invoice.UserID);
             if (user != null)
             {
-                var paymentDate = (user.PaidTill.HasValue && user.PaidTill.Value > DateTime.Now) ?
+                var paymentDate = (user.PaidTill.HasValue && user.PaidTill.Value > DateTime.Now.Current()) ?
                         user.PaidTill.Value.AddYears(1)
-                        : DateTime.Now.AddYears(1);
+                        : DateTime.Now.Current().AddYears(1);
                 /* create payment */
                 var paymentDetail = new PaymentDetail
                 {

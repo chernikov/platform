@@ -35,9 +35,9 @@ namespace platformAthletic.Model
         {
             if (instance.ID == 0)
             {
-                instance.AddedDate = DateTime.Now;
-                instance.LastVisitDate = DateTime.Now;
-                instance.PaidTill = DateTime.Now.AddDays(1);
+                instance.AddedDate = CurrentDateTime;
+                instance.LastVisitDate = CurrentDateTime;
+                instance.PaidTill = CurrentDateTime.AddDays(1);
                 instance.ActivatedLink = StringExtension.GenerateNewFile();
                 Db.Users.InsertOnSubmit(instance);
                 Db.Users.Context.SubmitChanges();
@@ -51,8 +51,8 @@ namespace platformAthletic.Model
         {
             if (instance.ID == 0)
             {
-                instance.AddedDate = DateTime.Now;
-                instance.LastVisitDate = DateTime.Now;
+                instance.AddedDate = CurrentDateTime;
+                instance.LastVisitDate = CurrentDateTime;
                 if (string.IsNullOrWhiteSpace(instance.ActivatedLink))
                 {
                     instance.ActivatedLink = string.Empty;
@@ -85,7 +85,7 @@ namespace platformAthletic.Model
             var user = Db.Users.FirstOrDefault(p => string.Compare(p.Email, email, true) == 0);
             /*  if (user != null)
               {
-                  user.LastVisitDate = DateTime.Now;
+                  user.LastVisitDate = CurrentDateTime;
                   Db.Users.Context.SubmitChanges();
               }*/
             return user;
@@ -96,7 +96,7 @@ namespace platformAthletic.Model
             var user = Db.Users.FirstOrDefault(p => p.ID == idUser);
             if (user != null)
             {
-                user.LastVisitDate = DateTime.Now;
+                user.LastVisitDate = CurrentDateTime;
                 Db.Users.Context.SubmitChanges();
             }
             return true;
@@ -189,7 +189,7 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
-                cache.ActivatedDate = DateTime.Now;
+                cache.ActivatedDate = CurrentDateTime;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }
@@ -202,7 +202,7 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
-                cache.LoginInfoSent = DateTime.Now;
+                cache.LoginInfoSent = CurrentDateTime;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }
@@ -369,7 +369,7 @@ namespace platformAthletic.Model
 
         public bool SetAttendance(int idUser, bool attendance, int idUserSeason, DateTime? date = null)
         {
-            var attendanceDate = date ?? DateTime.Now.Date;
+            var attendanceDate = date ?? CurrentDateTime.Date;
             var exist = Db.UserAttendances.FirstOrDefault(p => p.UserID == idUser && p.AddedDate == attendanceDate.Date);
 
             if (exist != null)
@@ -479,7 +479,7 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
-                cache.AttendanceStartDate = DateTime.Now;
+                cache.AttendanceStartDate = CurrentDateTime;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }
@@ -492,7 +492,7 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
-                cache.ProgressStartDate = DateTime.Now;
+                cache.ProgressStartDate = CurrentDateTime;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }
