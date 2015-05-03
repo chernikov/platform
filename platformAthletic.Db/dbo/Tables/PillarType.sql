@@ -5,6 +5,7 @@
     [TextAbove]   NVARCHAR (500) NULL,
     [VideoUrl]    NVARCHAR (500) NULL,
     [VideoCode]   NVARCHAR (MAX) NULL,
+	[Preview]    NVARCHAR (150) NULL DEFAULT '',
     [Type]        INT            NULL,
     [Placeholder] NVARCHAR (50)  NULL,
     CONSTRAINT [PK_PillarType] PRIMARY KEY CLUSTERED ([ID] ASC)

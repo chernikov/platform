@@ -6,48 +6,13 @@ using System.Web.Mvc;
 using platformAthletic.Controllers;
 using platformAthletic.Model;
 using platformAthletic.Models.Info;
+using platformAthletic.Tools.Video;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
     public class VideoController : DefaultController
     {
-        public ActionResult Index(bool pillar, int? id = null)
-        {
-            
-            if (pillar)
-            {
-                PillarType video = null;
-                if (id.HasValue)
-                {
-                    video = Repository.PillarTypes.FirstOrDefault(p => p.ID == id.Value);
-                }
-                if (video == null)
-                {
-                    video = Repository.PillarTypes.FirstOrDefault();
-                }
-
-                return View("IndexPillarVideo", video);
-            }
-            else
-            {
-                Video video = null;
-                if (id.HasValue)
-                {
-                    video = Repository.Videos.FirstOrDefault(p => p.ID == id.Value);
-                }
-                if (video == null)
-                {
-                    video = Repository.Videos.FirstOrDefault();
-                }
-                if (video != null)
-                {
-                    return View(video);
-                }
-            }
-            return RedirectToNotFoundPage;
-        }
-
-        public ActionResult VideoMenu(int SortType, string SearchString = null)
+        public ActionResult Index(int SortType = 1, string SearchString = null)
         {
             var collection = new VideoCollection()
             {
@@ -65,7 +30,8 @@ namespace platformAthletic.Areas.Default.Controllers
                         Header = p.Training.Name ?? p.Header,
                         VideoCode = p.VideoCode,
                         VideoUrl = p.VideoUrl,
-                        TrainingName = p.Training.Name ?? p.Header
+                        TrainingName = p.Training.Name ?? p.Header,
+                        Preview = p.Preview,
                     }).ToList();
                     break;
 
@@ -76,13 +42,32 @@ namespace platformAthletic.Areas.Default.Controllers
                         Header = p.Name,
                         VideoCode = p.VideoCode,
                         VideoUrl = p.VideoUrl,
-                        TrainingName = p.Name
+                        TrainingName = p.Name,
+                        Preview = p.Preview,
                     }).ToList();
                     break;
             }
             return View(collection);
         }
 
+        public ActionResult SetPreview()
+        {
+            var videos = Repository.Videos.ToList();
+            foreach (var video in videos)
+            {
+                video.Preview = VideoHelper.GetVideoThumbByUrl(video.VideoUrl);
+                Repository.UpdateVideo(video);
+            }
+
+            var pillars = Repository.PillarTypes.ToList();
+            foreach (var pillar in pillars)
+            {
+                pillar.Preview = VideoHelper.GetVideoThumbByUrl(pillar.VideoUrl);
+                Repository.UpdatePillarType(pillar);
+            }
+            return null;
+        }
+        /*
         public ActionResult Video(int id)
         {
             var video = Repository.Videos.FirstOrDefault(p => p.ID == id);
@@ -101,6 +86,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 return View(pillar);
             }
             return null;
-        }
+        }*/
     }
 }

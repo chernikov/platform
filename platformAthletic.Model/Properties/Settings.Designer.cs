@@ -96,5 +96,16 @@ namespace platformAthletic.Model.Properties {
                 return ((string)(this["platform2015_currentConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=WORKER\\MSSQL;Initial Catalog=platform_big_data;Integrated Security=Tr" +
+            "ue")]
+        public string platform_big_dataConnectionString {
+            get {
+                return ((string)(this["platform_big_dataConnectionString"]));
+            }
+        }
     }
 }

@@ -11,120 +11,125 @@
     <script src="~/Scripts/typeahead.jquery.js"></script>
     <script src="~/Scripts/default/progress-report.js"></script>
 }
+<div class="container-fluid">
+    <div class="side-body">
 
-@Html.Hidden("StartDate", Model.Search.StartPeriod)
-@Html.Hidden("EndDate", Model.Search.EndPeriod)
-<div class="breadcrumb">
-    <div class="row">
-        <div class="col-lg-12 overflow">
-            <ol>
-                <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
-                <li class="active"><a href="/report/progress">Progress Report</a></li>
-            </ol>
-        </div>
-    </div>
-</div>
-<div class="report-wrapper">
-    <div class="row">
-        <div class="col-lg-9 col-md-12">
-            <div class="pull-right search-wrapper">
-                <div class="input-group">
-                    @*search*@
-                    @Html.TextBox("SearchString", Model.Search.SearchString, new { @class = "form-control", id = "SearchAthlete", placeholder = "SEARCH ATHLETE" })
-                    <span class="input-group-btn">
-                        <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
+        @Html.Hidden("StartDate", Model.Search.StartPeriod)
+        @Html.Hidden("EndDate", Model.Search.EndPeriod)
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/report/progress">Progress Report</a></li>
+                    </ol>
                 </div>
             </div>
-
-            @*panel*@
-            <div class="tabpanel">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li><a href="/report">ATTENDANCE REPORT</a></li>
-                    <li class="active"><a href="/report/progress">PROGRESS REPORT</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active">
-                        <form class="form-inline search-wrapper">
-                            @*filter*@
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("GroupID", Model.Search.SelectListGroupID, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("GradYear", Model.Search.SelectListGradYear, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.TextBox("StartPeriod", Model.Search.StartPeriod.HasValue ? Model.Search.StartPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime start-date", placeholder = "Start date" })
-                            </div>
-                            <div class="form-group">
-                                @Html.TextBox("EndPeriod", Model.Search.EndPeriod.HasValue ? Model.Search.EndPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime end-date", placeholder = "End date" })
-                            </div>
-                        </form>
-                        @*table*@
-                        <table class="table report-table">
-                            <thead>
-                                <tr class="report-header">
-                                    <th>RANK</th>
-                                    <th class="reverse-sortable">NAME</th>
-                                    <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc ? "desc" : "")"></span>Squat</th>
-                                    <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc ? "desc" : "")"></span>Bench</th>
-                                    <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc ? "desc" : "")"></span>Clean</th>
-                                    <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc ? "desc" : "")"></span>Total</th>
-                                </tr>
-                            </thead>
-                            @foreach (var item in Model.List)
-                            {
-                                <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
-                                    <td class="rank"><span>@item.Position</span></td>
-                                    <td class="name">
-                                        <span class="clickable graph" data-id="@item.User.ID"></span>
-                                        <span><img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
-                                        </span>
-                                    </td>
-                                    <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc || Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat</span></td>
-                                    <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc || Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench</span></td>
-                                    <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc || Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean</span></td>
-                                    <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc || Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc) ? "selected" : "")">@item.Total</span></td>
-                                </tr>
-                            }
-                        </table>
-                        <div class="text-center">
-                            @*paging*@
-                            <ul class="pagination">
-                                @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Progress", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, FieldPositionID = Model.Search.FieldPositionID, GroupID = Model.Search.GroupID, GradYear = Model.Search.GradYear, StartPeriod = Model.Search.StartPeriod, EndPeriod = Model.Search.EndPeriod }))
-                            </ul>
+        </div>
+        <div class="report-wrapper">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="pull-right search-wrapper">
+                        <div class="input-group">
+                            @*search*@
+                            @Html.TextBox("SearchString", Model.Search.SearchString, new { @class = "form-control", id = "SearchAthlete", placeholder = "SEARCH ATHLETE" })
+                            <span class="input-group-btn">
+                                <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
                         </div>
                     </div>
+
+                    @*panel*@
+                    <div class="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li><a href="/report">ATTENDANCE REPORT</a></li>
+                            <li class="active"><a href="/report/progress">PROGRESS REPORT</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active">
+                                <form class="form-inline search-wrapper">
+                                    @*filter*@
+                                    <div class="form-group">
+                                        <div class="select-style">
+                                            @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="select-style">
+                                            @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="select-style">
+                                            @Html.DropDownList("GroupID", Model.Search.SelectListGroupID, new { @class = "form-control filter" })
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="select-style">
+                                            @Html.DropDownList("GradYear", Model.Search.SelectListGradYear, new { @class = "form-control filter" })
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBox("StartPeriod", Model.Search.StartPeriod.HasValue ? Model.Search.StartPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime start-date", placeholder = "Start date" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.TextBox("EndPeriod", Model.Search.EndPeriod.HasValue ? Model.Search.EndPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime end-date", placeholder = "End date" })
+                                    </div>
+                                </form>
+                                @*table*@
+                                <table class="table report-table">
+                                    <thead>
+                                        <tr class="report-header">
+                                            <th>RANK</th>
+                                            <th class="reverse-sortable">NAME</th>
+                                            <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc ? "desc" : "")"></span>Squat</th>
+                                            <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc ? "desc" : "")"></span>Bench</th>
+                                            <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc ? "desc" : "")"></span>Clean</th>
+                                            <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc ? "desc" : "")"></span>Total</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model.List)
+                                    {
+                                        <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
+                                            <td class="rank"><span>@item.Position</span></td>
+                                            <td class="name">
+                                                <span class="clickable graph" data-id="@item.User.ID"></span>
+                                                <span>
+                                                    <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
+                                                </span>
+                                            </td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc || Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc || Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc || Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc || Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc) ? "selected" : "")">@item.Total</span></td>
+                                        </tr>
+                                    }
+                                </table>
+                                <div class="text-center">
+                                    @*paging*@
+                                    <ul class="pagination">
+                                        @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Progress", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, FieldPositionID = Model.Search.FieldPositionID, GroupID = Model.Search.GroupID, GradYear = Model.Search.GradYear, StartPeriod = Model.Search.StartPeriod, EndPeriod = Model.Search.EndPeriod }))
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 hidden-md hidden-sm hidden-xs" id="ProgressSummaryWrapper">
+                    @*sidetable*@
+                    @if (Model.List.Count > 0)
+                    {
+                        @Html.Action("ProgressSummary", "Report", new { id = Model.Search.StartID, startDate = Model.Search.StartPeriod, endDate = Model.Search.EndPeriod })
+                    }
                 </div>
             </div>
-
-        </div>
-        <div class="col-lg-3 hidden-md hidden-sm hidden-xs" id="ProgressSummaryWrapper">
-            @*sidetable*@
-            @if (Model.List.Count > 0)
-            {
-                @Html.Action("ProgressSummary", "Report", new { id = Model.Search.StartID, startDate = Model.Search.StartPeriod, endDate = Model.Search.EndPeriod })
-            }
         </div>
     </div>
 </div>

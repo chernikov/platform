@@ -22,7 +22,7 @@ namespace platformAthletic.Model
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="platform2015_current")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="platform_big_data")]
 	public partial class platformAthleticDbDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -90,9 +90,6 @@ namespace platformAthletic.Model
     partial void InsertUserAttendance(UserAttendance instance);
     partial void UpdateUserAttendance(UserAttendance instance);
     partial void DeleteUserAttendance(UserAttendance instance);
-    partial void InsertVideo(Video instance);
-    partial void UpdateVideo(Video instance);
-    partial void DeleteVideo(Video instance);
     partial void InsertFeatureCatalog(FeatureCatalog instance);
     partial void UpdateFeatureCatalog(FeatureCatalog instance);
     partial void DeleteFeatureCatalog(FeatureCatalog instance);
@@ -123,9 +120,6 @@ namespace platformAthletic.Model
     partial void InsertBanner(Banner instance);
     partial void UpdateBanner(Banner instance);
     partial void DeleteBanner(Banner instance);
-    partial void InsertPillarType(PillarType instance);
-    partial void UpdatePillarType(PillarType instance);
-    partial void DeletePillarType(PillarType instance);
     partial void InsertUserPillar(UserPillar instance);
     partial void UpdateUserPillar(UserPillar instance);
     partial void DeleteUserPillar(UserPillar instance);
@@ -186,16 +180,22 @@ namespace platformAthletic.Model
     partial void InsertTeam(Team instance);
     partial void UpdateTeam(Team instance);
     partial void DeleteTeam(Team instance);
-    partial void InsertSBCValue(SBCValue instance);
-    partial void UpdateSBCValue(SBCValue instance);
-    partial void DeleteSBCValue(SBCValue instance);
     partial void InsertUserSeason(UserSeason instance);
     partial void UpdateUserSeason(UserSeason instance);
     partial void DeleteUserSeason(UserSeason instance);
+    partial void InsertVideo(Video instance);
+    partial void UpdateVideo(Video instance);
+    partial void DeleteVideo(Video instance);
+    partial void InsertSBCValue(SBCValue instance);
+    partial void UpdateSBCValue(SBCValue instance);
+    partial void DeleteSBCValue(SBCValue instance);
+    partial void InsertPillarType(PillarType instance);
+    partial void UpdatePillarType(PillarType instance);
+    partial void DeletePillarType(PillarType instance);
     #endregion
 		
 		public platformAthleticDbDataContext() : 
-				base(global::platformAthletic.Model.Properties.Settings.Default.platform2015_currentConnectionString, mappingSource)
+				base(global::platformAthletic.Model.Properties.Settings.Default.platform_big_dataConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -384,14 +384,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<Video> Videos
-		{
-			get
-			{
-				return this.GetTable<Video>();
-			}
-		}
-		
 		public System.Data.Linq.Table<FeatureCatalog> FeatureCatalogs
 		{
 			get
@@ -469,14 +461,6 @@ namespace platformAthletic.Model
 			get
 			{
 				return this.GetTable<Banner>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PillarType> PillarTypes
-		{
-			get
-			{
-				return this.GetTable<PillarType>();
 			}
 		}
 		
@@ -640,6 +624,22 @@ namespace platformAthletic.Model
 			}
 		}
 		
+		public System.Data.Linq.Table<UserSeason> UserSeasons
+		{
+			get
+			{
+				return this.GetTable<UserSeason>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Video> Videos
+		{
+			get
+			{
+				return this.GetTable<Video>();
+			}
+		}
+		
 		public System.Data.Linq.Table<SBCValue> SBCValues
 		{
 			get
@@ -648,11 +648,11 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<UserSeason> UserSeasons
+		public System.Data.Linq.Table<PillarType> PillarTypes
 		{
 			get
 			{
-				return this.GetTable<UserSeason>();
+				return this.GetTable<PillarType>();
 			}
 		}
 	}
@@ -4612,229 +4612,6 @@ namespace platformAthletic.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Video")]
-	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _TrainingID;
-		
-		private string _Header;
-		
-		private string _Text;
-		
-		private string _VideoUrl;
-		
-		private string _VideoCode;
-		
-		private EntityRef<Training> _Training;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnTrainingIDChanging(System.Nullable<int> value);
-    partial void OnTrainingIDChanged();
-    partial void OnHeaderChanging(string value);
-    partial void OnHeaderChanged();
-    partial void OnTextChanging(string value);
-    partial void OnTextChanged();
-    partial void OnVideoUrlChanging(string value);
-    partial void OnVideoUrlChanged();
-    partial void OnVideoCodeChanging(string value);
-    partial void OnVideoCodeChanged();
-    #endregion
-		
-		public Video()
-		{
-			this._Training = default(EntityRef<Training>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrainingID", DbType="Int")]
-		public System.Nullable<int> TrainingID
-		{
-			get
-			{
-				return this._TrainingID;
-			}
-			set
-			{
-				if ((this._TrainingID != value))
-				{
-					if (this._Training.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTrainingIDChanging(value);
-					this.SendPropertyChanging();
-					this._TrainingID = value;
-					this.SendPropertyChanged("TrainingID");
-					this.OnTrainingIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Header", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string Header
-		{
-			get
-			{
-				return this._Header;
-			}
-			set
-			{
-				if ((this._Header != value))
-				{
-					this.OnHeaderChanging(value);
-					this.SendPropertyChanging();
-					this._Header = value;
-					this.SendPropertyChanged("Header");
-					this.OnHeaderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Text", DbType="NVarChar(MAX)")]
-		public string Text
-		{
-			get
-			{
-				return this._Text;
-			}
-			set
-			{
-				if ((this._Text != value))
-				{
-					this.OnTextChanging(value);
-					this.SendPropertyChanging();
-					this._Text = value;
-					this.SendPropertyChanged("Text");
-					this.OnTextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoUrl", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string VideoUrl
-		{
-			get
-			{
-				return this._VideoUrl;
-			}
-			set
-			{
-				if ((this._VideoUrl != value))
-				{
-					this.OnVideoUrlChanging(value);
-					this.SendPropertyChanging();
-					this._VideoUrl = value;
-					this.SendPropertyChanged("VideoUrl");
-					this.OnVideoUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoCode", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string VideoCode
-		{
-			get
-			{
-				return this._VideoCode;
-			}
-			set
-			{
-				if ((this._VideoCode != value))
-				{
-					this.OnVideoCodeChanging(value);
-					this.SendPropertyChanging();
-					this._VideoCode = value;
-					this.SendPropertyChanged("VideoCode");
-					this.OnVideoCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Training_Video", Storage="_Training", ThisKey="TrainingID", OtherKey="ID", IsForeignKey=true)]
-		public Training Training
-		{
-			get
-			{
-				return this._Training.Entity;
-			}
-			set
-			{
-				Training previousValue = this._Training.Entity;
-				if (((previousValue != value) 
-							|| (this._Training.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Training.Entity = null;
-						previousValue.Videos.Remove(this);
-					}
-					this._Training.Entity = value;
-					if ((value != null))
-					{
-						value.Videos.Add(this);
-						this._TrainingID = value.ID;
-					}
-					else
-					{
-						this._TrainingID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Training");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FeatureCatalog")]
 	public partial class FeatureCatalog : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -6796,264 +6573,6 @@ namespace platformAthletic.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PillarType")]
-	public partial class PillarType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private int _Type;
-		
-		private string _Placeholder;
-		
-		private string _Name;
-		
-		private string _Measure;
-		
-		private string _TextAbove;
-		
-		private string _VideoUrl;
-		
-		private string _VideoCode;
-		
-		private EntitySet<UserPillar> _UserPillars;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnTypeChanging(int value);
-    partial void OnTypeChanged();
-    partial void OnPlaceholderChanging(string value);
-    partial void OnPlaceholderChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnMeasureChanging(string value);
-    partial void OnMeasureChanged();
-    partial void OnTextAboveChanging(string value);
-    partial void OnTextAboveChanged();
-    partial void OnVideoUrlChanging(string value);
-    partial void OnVideoUrlChanged();
-    partial void OnVideoCodeChanging(string value);
-    partial void OnVideoCodeChanged();
-    #endregion
-		
-		public PillarType()
-		{
-			this._UserPillars = new EntitySet<UserPillar>(new Action<UserPillar>(this.attach_UserPillars), new Action<UserPillar>(this.detach_UserPillars));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
-		public int Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Placeholder", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Placeholder
-		{
-			get
-			{
-				return this._Placeholder;
-			}
-			set
-			{
-				if ((this._Placeholder != value))
-				{
-					this.OnPlaceholderChanging(value);
-					this.SendPropertyChanging();
-					this._Placeholder = value;
-					this.SendPropertyChanged("Placeholder");
-					this.OnPlaceholderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Measure", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Measure
-		{
-			get
-			{
-				return this._Measure;
-			}
-			set
-			{
-				if ((this._Measure != value))
-				{
-					this.OnMeasureChanging(value);
-					this.SendPropertyChanging();
-					this._Measure = value;
-					this.SendPropertyChanged("Measure");
-					this.OnMeasureChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TextAbove", DbType="NVarChar(500)")]
-		public string TextAbove
-		{
-			get
-			{
-				return this._TextAbove;
-			}
-			set
-			{
-				if ((this._TextAbove != value))
-				{
-					this.OnTextAboveChanging(value);
-					this.SendPropertyChanging();
-					this._TextAbove = value;
-					this.SendPropertyChanged("TextAbove");
-					this.OnTextAboveChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoUrl", DbType="NVarChar(500)")]
-		public string VideoUrl
-		{
-			get
-			{
-				return this._VideoUrl;
-			}
-			set
-			{
-				if ((this._VideoUrl != value))
-				{
-					this.OnVideoUrlChanging(value);
-					this.SendPropertyChanging();
-					this._VideoUrl = value;
-					this.SendPropertyChanged("VideoUrl");
-					this.OnVideoUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoCode", DbType="NVarChar(MAX)")]
-		public string VideoCode
-		{
-			get
-			{
-				return this._VideoCode;
-			}
-			set
-			{
-				if ((this._VideoCode != value))
-				{
-					this.OnVideoCodeChanging(value);
-					this.SendPropertyChanging();
-					this._VideoCode = value;
-					this.SendPropertyChanged("VideoCode");
-					this.OnVideoCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PillarType_UserPillar", Storage="_UserPillars", ThisKey="ID", OtherKey="PillarTypeID")]
-		public EntitySet<UserPillar> UserPillars
-		{
-			get
-			{
-				return this._UserPillars;
-			}
-			set
-			{
-				this._UserPillars.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserPillars(UserPillar entity)
-		{
-			this.SendPropertyChanging();
-			entity.PillarType = this;
-		}
-		
-		private void detach_UserPillars(UserPillar entity)
-		{
-			this.SendPropertyChanging();
-			entity.PillarType = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserPillar")]
 	public partial class UserPillar : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -7072,9 +6591,9 @@ namespace platformAthletic.Model
 		
 		private int _Value;
 		
-		private EntityRef<PillarType> _PillarType;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<PillarType> _PillarType;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -7096,8 +6615,8 @@ namespace platformAthletic.Model
 		
 		public UserPillar()
 		{
-			this._PillarType = default(EntityRef<PillarType>);
 			this._User = default(EntityRef<User>);
+			this._PillarType = default(EntityRef<PillarType>);
 			OnCreated();
 		}
 		
@@ -7229,40 +6748,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PillarType_UserPillar", Storage="_PillarType", ThisKey="PillarTypeID", OtherKey="ID", IsForeignKey=true)]
-		public PillarType PillarType
-		{
-			get
-			{
-				return this._PillarType.Entity;
-			}
-			set
-			{
-				PillarType previousValue = this._PillarType.Entity;
-				if (((previousValue != value) 
-							|| (this._PillarType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PillarType.Entity = null;
-						previousValue.UserPillars.Remove(this);
-					}
-					this._PillarType.Entity = value;
-					if ((value != null))
-					{
-						value.UserPillars.Add(this);
-						this._PillarTypeID = value.ID;
-					}
-					else
-					{
-						this._PillarTypeID = default(int);
-					}
-					this.SendPropertyChanged("PillarType");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserPillar", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public User User
 		{
@@ -7293,6 +6778,40 @@ namespace platformAthletic.Model
 						this._UserID = default(int);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PillarType_UserPillar", Storage="_PillarType", ThisKey="PillarTypeID", OtherKey="ID", IsForeignKey=true)]
+		public PillarType PillarType
+		{
+			get
+			{
+				return this._PillarType.Entity;
+			}
+			set
+			{
+				PillarType previousValue = this._PillarType.Entity;
+				if (((previousValue != value) 
+							|| (this._PillarType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PillarType.Entity = null;
+						previousValue.UserPillars.Remove(this);
+					}
+					this._PillarType.Entity = value;
+					if ((value != null))
+					{
+						value.UserPillars.Add(this);
+						this._PillarTypeID = value.ID;
+					}
+					else
+					{
+						this._PillarTypeID = default(int);
+					}
+					this.SendPropertyChanged("PillarType");
 				}
 			}
 		}
@@ -10681,9 +10200,9 @@ namespace platformAthletic.Model
 		
 		private EntitySet<Team> _Teams;
 		
-		private EntitySet<SBCValue> _SBCValues;
-		
 		private EntitySet<UserSeason> _UserSeasons;
+		
+		private EntitySet<SBCValue> _SBCValues;
 		
 		private EntityRef<Group> _Group;
 		
@@ -10782,8 +10301,8 @@ namespace platformAthletic.Model
 			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
 			this._UserFieldPositions = new EntitySet<UserFieldPosition>(new Action<UserFieldPosition>(this.attach_UserFieldPositions), new Action<UserFieldPosition>(this.detach_UserFieldPositions));
 			this._Teams = new EntitySet<Team>(new Action<Team>(this.attach_Teams), new Action<Team>(this.detach_Teams));
-			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
 			this._UserSeasons = new EntitySet<UserSeason>(new Action<UserSeason>(this.attach_UserSeasons), new Action<UserSeason>(this.detach_UserSeasons));
+			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
 			this._Group = default(EntityRef<Group>);
 			this._Level = default(EntityRef<Level>);
 			this._Team = default(EntityRef<Team>);
@@ -11665,19 +11184,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<SBCValue> SBCValues
-		{
-			get
-			{
-				return this._SBCValues;
-			}
-			set
-			{
-				this._SBCValues.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserSeason", Storage="_UserSeasons", ThisKey="ID", OtherKey="UserID")]
 		public EntitySet<UserSeason> UserSeasons
 		{
@@ -11688,6 +11194,19 @@ namespace platformAthletic.Model
 			set
 			{
 				this._UserSeasons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<SBCValue> SBCValues
+		{
+			get
+			{
+				return this._SBCValues;
+			}
+			set
+			{
+				this._SBCValues.Assign(value);
 			}
 		}
 		
@@ -11945,18 +11464,6 @@ namespace platformAthletic.Model
 			entity.User = null;
 		}
 		
-		private void attach_SBCValues(SBCValue entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_SBCValues(SBCValue entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
 		private void attach_UserSeasons(UserSeason entity)
 		{
 			this.SendPropertyChanging();
@@ -11964,6 +11471,18 @@ namespace platformAthletic.Model
 		}
 		
 		private void detach_UserSeasons(UserSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_SBCValues(SBCValue entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_SBCValues(SBCValue entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
@@ -12919,294 +12438,6 @@ namespace platformAthletic.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SBCValue")]
-	public partial class SBCValue : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private int _UserID;
-		
-		private System.Nullable<int> _TeamID;
-		
-		private System.DateTime _AddedDate;
-		
-		private double _Squat;
-		
-		private double _Bench;
-		
-		private double _Clean;
-		
-		private EntityRef<Team> _Team;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnUserIDChanging(int value);
-    partial void OnUserIDChanged();
-    partial void OnTeamIDChanging(System.Nullable<int> value);
-    partial void OnTeamIDChanged();
-    partial void OnAddedDateChanging(System.DateTime value);
-    partial void OnAddedDateChanged();
-    partial void OnSquatChanging(double value);
-    partial void OnSquatChanged();
-    partial void OnBenchChanging(double value);
-    partial void OnBenchChanged();
-    partial void OnCleanChanging(double value);
-    partial void OnCleanChanged();
-    #endregion
-		
-		public SBCValue()
-		{
-			this._Team = default(EntityRef<Team>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
-		public int UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="Int")]
-		public System.Nullable<int> TeamID
-		{
-			get
-			{
-				return this._TeamID;
-			}
-			set
-			{
-				if ((this._TeamID != value))
-				{
-					if (this._Team.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTeamIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamID = value;
-					this.SendPropertyChanged("TeamID");
-					this.OnTeamIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime AddedDate
-		{
-			get
-			{
-				return this._AddedDate;
-			}
-			set
-			{
-				if ((this._AddedDate != value))
-				{
-					this.OnAddedDateChanging(value);
-					this.SendPropertyChanging();
-					this._AddedDate = value;
-					this.SendPropertyChanged("AddedDate");
-					this.OnAddedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Squat", DbType="Float NOT NULL")]
-		public double Squat
-		{
-			get
-			{
-				return this._Squat;
-			}
-			set
-			{
-				if ((this._Squat != value))
-				{
-					this.OnSquatChanging(value);
-					this.SendPropertyChanging();
-					this._Squat = value;
-					this.SendPropertyChanged("Squat");
-					this.OnSquatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bench", DbType="Float NOT NULL")]
-		public double Bench
-		{
-			get
-			{
-				return this._Bench;
-			}
-			set
-			{
-				if ((this._Bench != value))
-				{
-					this.OnBenchChanging(value);
-					this.SendPropertyChanging();
-					this._Bench = value;
-					this.SendPropertyChanged("Bench");
-					this.OnBenchChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clean", DbType="Float NOT NULL")]
-		public double Clean
-		{
-			get
-			{
-				return this._Clean;
-			}
-			set
-			{
-				if ((this._Clean != value))
-				{
-					this.OnCleanChanging(value);
-					this.SendPropertyChanging();
-					this._Clean = value;
-					this.SendPropertyChanged("Clean");
-					this.OnCleanChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.SBCValues.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.SBCValues.Add(this);
-						this._TeamID = value.ID;
-					}
-					else
-					{
-						this._TeamID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.SBCValues.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.SBCValues.Add(this);
-						this._UserID = value.ID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserSeason")]
 	public partial class UserSeason : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -13569,6 +12800,823 @@ namespace platformAthletic.Model
 		{
 			this.SendPropertyChanging();
 			entity.UserSeason = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Video")]
+	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _TrainingID;
+		
+		private string _Header;
+		
+		private string _Text;
+		
+		private string _VideoUrl;
+		
+		private string _VideoCode;
+		
+		private string _Preview;
+		
+		private EntityRef<Training> _Training;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTrainingIDChanging(System.Nullable<int> value);
+    partial void OnTrainingIDChanged();
+    partial void OnHeaderChanging(string value);
+    partial void OnHeaderChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    partial void OnVideoUrlChanging(string value);
+    partial void OnVideoUrlChanged();
+    partial void OnVideoCodeChanging(string value);
+    partial void OnVideoCodeChanged();
+    partial void OnPreviewChanging(string value);
+    partial void OnPreviewChanged();
+    #endregion
+		
+		public Video()
+		{
+			this._Training = default(EntityRef<Training>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrainingID", DbType="Int")]
+		public System.Nullable<int> TrainingID
+		{
+			get
+			{
+				return this._TrainingID;
+			}
+			set
+			{
+				if ((this._TrainingID != value))
+				{
+					if (this._Training.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTrainingIDChanging(value);
+					this.SendPropertyChanging();
+					this._TrainingID = value;
+					this.SendPropertyChanged("TrainingID");
+					this.OnTrainingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Header", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Header
+		{
+			get
+			{
+				return this._Header;
+			}
+			set
+			{
+				if ((this._Header != value))
+				{
+					this.OnHeaderChanging(value);
+					this.SendPropertyChanging();
+					this._Header = value;
+					this.SendPropertyChanged("Header");
+					this.OnHeaderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Text", DbType="NVarChar(MAX)")]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoUrl", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string VideoUrl
+		{
+			get
+			{
+				return this._VideoUrl;
+			}
+			set
+			{
+				if ((this._VideoUrl != value))
+				{
+					this.OnVideoUrlChanging(value);
+					this.SendPropertyChanging();
+					this._VideoUrl = value;
+					this.SendPropertyChanged("VideoUrl");
+					this.OnVideoUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoCode", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string VideoCode
+		{
+			get
+			{
+				return this._VideoCode;
+			}
+			set
+			{
+				if ((this._VideoCode != value))
+				{
+					this.OnVideoCodeChanging(value);
+					this.SendPropertyChanging();
+					this._VideoCode = value;
+					this.SendPropertyChanged("VideoCode");
+					this.OnVideoCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preview", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Preview
+		{
+			get
+			{
+				return this._Preview;
+			}
+			set
+			{
+				if ((this._Preview != value))
+				{
+					this.OnPreviewChanging(value);
+					this.SendPropertyChanging();
+					this._Preview = value;
+					this.SendPropertyChanged("Preview");
+					this.OnPreviewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Training_Video", Storage="_Training", ThisKey="TrainingID", OtherKey="ID", IsForeignKey=true)]
+		public Training Training
+		{
+			get
+			{
+				return this._Training.Entity;
+			}
+			set
+			{
+				Training previousValue = this._Training.Entity;
+				if (((previousValue != value) 
+							|| (this._Training.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Training.Entity = null;
+						previousValue.Videos.Remove(this);
+					}
+					this._Training.Entity = value;
+					if ((value != null))
+					{
+						value.Videos.Add(this);
+						this._TrainingID = value.ID;
+					}
+					else
+					{
+						this._TrainingID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Training");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SBCValue")]
+	public partial class SBCValue : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _UserID;
+		
+		private System.Nullable<int> _TeamID;
+		
+		private System.DateTime _AddedDate;
+		
+		private double _Squat;
+		
+		private double _Bench;
+		
+		private double _Clean;
+		
+		private EntityRef<Team> _Team;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnTeamIDChanging(System.Nullable<int> value);
+    partial void OnTeamIDChanged();
+    partial void OnAddedDateChanging(System.DateTime value);
+    partial void OnAddedDateChanged();
+    partial void OnSquatChanging(double value);
+    partial void OnSquatChanged();
+    partial void OnBenchChanging(double value);
+    partial void OnBenchChanged();
+    partial void OnCleanChanging(double value);
+    partial void OnCleanChanged();
+    #endregion
+		
+		public SBCValue()
+		{
+			this._Team = default(EntityRef<Team>);
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="Int")]
+		public System.Nullable<int> TeamID
+		{
+			get
+			{
+				return this._TeamID;
+			}
+			set
+			{
+				if ((this._TeamID != value))
+				{
+					if (this._Team.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTeamIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamID = value;
+					this.SendPropertyChanged("TeamID");
+					this.OnTeamIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime AddedDate
+		{
+			get
+			{
+				return this._AddedDate;
+			}
+			set
+			{
+				if ((this._AddedDate != value))
+				{
+					this.OnAddedDateChanging(value);
+					this.SendPropertyChanging();
+					this._AddedDate = value;
+					this.SendPropertyChanged("AddedDate");
+					this.OnAddedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Squat", DbType="Float NOT NULL")]
+		public double Squat
+		{
+			get
+			{
+				return this._Squat;
+			}
+			set
+			{
+				if ((this._Squat != value))
+				{
+					this.OnSquatChanging(value);
+					this.SendPropertyChanging();
+					this._Squat = value;
+					this.SendPropertyChanged("Squat");
+					this.OnSquatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bench", DbType="Float NOT NULL")]
+		public double Bench
+		{
+			get
+			{
+				return this._Bench;
+			}
+			set
+			{
+				if ((this._Bench != value))
+				{
+					this.OnBenchChanging(value);
+					this.SendPropertyChanging();
+					this._Bench = value;
+					this.SendPropertyChanged("Bench");
+					this.OnBenchChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clean", DbType="Float NOT NULL")]
+		public double Clean
+		{
+			get
+			{
+				return this._Clean;
+			}
+			set
+			{
+				if ((this._Clean != value))
+				{
+					this.OnCleanChanging(value);
+					this.SendPropertyChanging();
+					this._Clean = value;
+					this.SendPropertyChanged("Clean");
+					this.OnCleanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.SBCValues.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.SBCValues.Add(this);
+						this._TeamID = value.ID;
+					}
+					else
+					{
+						this._TeamID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.SBCValues.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.SBCValues.Add(this);
+						this._UserID = value.ID;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PillarType")]
+	public partial class PillarType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Name;
+		
+		private string _Measure;
+		
+		private string _TextAbove;
+		
+		private string _VideoUrl;
+		
+		private string _VideoCode;
+		
+		private string _Preview;
+		
+		private System.Nullable<int> _Type;
+		
+		private string _Placeholder;
+		
+		private EntitySet<UserPillar> _UserPillars;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnMeasureChanging(string value);
+    partial void OnMeasureChanged();
+    partial void OnTextAboveChanging(string value);
+    partial void OnTextAboveChanged();
+    partial void OnVideoUrlChanging(string value);
+    partial void OnVideoUrlChanged();
+    partial void OnVideoCodeChanging(string value);
+    partial void OnVideoCodeChanged();
+    partial void OnPreviewChanging(string value);
+    partial void OnPreviewChanged();
+    partial void OnTypeChanging(System.Nullable<int> value);
+    partial void OnTypeChanged();
+    partial void OnPlaceholderChanging(string value);
+    partial void OnPlaceholderChanged();
+    #endregion
+		
+		public PillarType()
+		{
+			this._UserPillars = new EntitySet<UserPillar>(new Action<UserPillar>(this.attach_UserPillars), new Action<UserPillar>(this.detach_UserPillars));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Measure", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Measure
+		{
+			get
+			{
+				return this._Measure;
+			}
+			set
+			{
+				if ((this._Measure != value))
+				{
+					this.OnMeasureChanging(value);
+					this.SendPropertyChanging();
+					this._Measure = value;
+					this.SendPropertyChanged("Measure");
+					this.OnMeasureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TextAbove", DbType="NVarChar(500)")]
+		public string TextAbove
+		{
+			get
+			{
+				return this._TextAbove;
+			}
+			set
+			{
+				if ((this._TextAbove != value))
+				{
+					this.OnTextAboveChanging(value);
+					this.SendPropertyChanging();
+					this._TextAbove = value;
+					this.SendPropertyChanged("TextAbove");
+					this.OnTextAboveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoUrl", DbType="NVarChar(500)")]
+		public string VideoUrl
+		{
+			get
+			{
+				return this._VideoUrl;
+			}
+			set
+			{
+				if ((this._VideoUrl != value))
+				{
+					this.OnVideoUrlChanging(value);
+					this.SendPropertyChanging();
+					this._VideoUrl = value;
+					this.SendPropertyChanged("VideoUrl");
+					this.OnVideoUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoCode", DbType="NVarChar(MAX)")]
+		public string VideoCode
+		{
+			get
+			{
+				return this._VideoCode;
+			}
+			set
+			{
+				if ((this._VideoCode != value))
+				{
+					this.OnVideoCodeChanging(value);
+					this.SendPropertyChanging();
+					this._VideoCode = value;
+					this.SendPropertyChanged("VideoCode");
+					this.OnVideoCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preview", DbType="NVarChar(150)")]
+		public string Preview
+		{
+			get
+			{
+				return this._Preview;
+			}
+			set
+			{
+				if ((this._Preview != value))
+				{
+					this.OnPreviewChanging(value);
+					this.SendPropertyChanging();
+					this._Preview = value;
+					this.SendPropertyChanged("Preview");
+					this.OnPreviewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int")]
+		public System.Nullable<int> Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Placeholder", DbType="NVarChar(50)")]
+		public string Placeholder
+		{
+			get
+			{
+				return this._Placeholder;
+			}
+			set
+			{
+				if ((this._Placeholder != value))
+				{
+					this.OnPlaceholderChanging(value);
+					this.SendPropertyChanging();
+					this._Placeholder = value;
+					this.SendPropertyChanged("Placeholder");
+					this.OnPlaceholderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PillarType_UserPillar", Storage="_UserPillars", ThisKey="ID", OtherKey="PillarTypeID")]
+		public EntitySet<UserPillar> UserPillars
+		{
+			get
+			{
+				return this._UserPillars;
+			}
+			set
+			{
+				this._UserPillars.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserPillars(UserPillar entity)
+		{
+			this.SendPropertyChanging();
+			entity.PillarType = this;
+		}
+		
+		private void detach_UserPillars(UserPillar entity)
+		{
+			this.SendPropertyChanging();
+			entity.PillarType = null;
 		}
 	}
 }

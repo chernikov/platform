@@ -13,220 +13,224 @@
     <script src="~/Scripts/jquery.fineuploader-3.0.js"></script>
     <script src="~/Scripts/default/user.js"></script>
 }
-@Html.Hidden("UserID", Model.ID)
-<div class="user-page">
-    <div class="breadcrumb">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-3 overflow">
-                <ol>
-                    <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
-                    @if (currentUser == Model)
-                    {
-                        <li class="active"><a href="/my-page">My Page</a></li>
-                    }
-                </ol>
-            </div>
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-body no-padding-left">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="pull-right">
-                                @* buttons*@
-                                @if (currentUser != null && (currentUser.CanEditOwnData(Model) || currentUser.CanEditTeamData(Model)))
-                                {
-                                    <button class="btn btn-success btn-lg edit-profile" data-mode="no-edit">EDIT PROFILE</button>
-                                }
-                                @if (currentUser != null && currentUser.CanViewWorkOut(Model)) 
-                                {
-                                    <button class="btn btn-success btn-lg">VIEW WORKOUT</button>
-                                }
-                                @if (Model.HasAttendanceToday)
-                                {
-                                    <button class="btn btn-success btn-lg">
-                                        <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
-                                    </button>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-success btn-lg">
-                                        LOG ATTENDANCE
-                                    </button>
-                                }
-                            </div>
-                            <h1 class="player-info">PLAYER INFORMATION</h1>
-                        </div>
-                    </div>
-                    @* data-table *@
-                    <div class="row" id="UserInfoWrapper">
-                            @Html.Action("UserInfo", "User", new { id = Model.ID })
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-7">
-            <div class="panel panel-default">
-                <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
-                    <div class="left-padding right-padding">
-                        <div class="pull-right">
-                            <button class="btn btn-success btn-large">REPORTS</button>
-                        </div>
-                        <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
-                    </div>
-                    @* performance *@
-                    <div class="performance">
-                        <div class="row">
-                            <div class="col-lg-12 no-padding-right">
-                                @* chart *@
-                                <canvas id="PerformanceChart" class="performance-chart" width="590" height="256"></canvas>
-                                @* changes *@
-                                <div class="pull-right perfomance-change">
-                                    <div class="badge badge-performance squat">
-                                        <h2 class="text-center">
-                                            SQUAT
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var squat = Model.DiffSquat12Week;
-                                            }
-                                            @if (squat > 0)
-                                            {
-                                                <text>+</text>@squat
-                                            }
-                                            else
-                                            {
-                                                @squat
-                                            }
-                                        </h1>
-                                    </div>
-                                    <div class="badge badge-performance bench">
-                                        <h2 class="text-center">
-                                            BENCH
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var bench = Model.DiffBench12Week;
-                                            }
-                                            @if (bench > 0)
-                                            {
-                                                <text>+</text>@bench
-                                            }
-                                            else
-                                            {
-                                                @bench
-                                            }
-                                        </h1>
-                                    </div>
-                                    <div class="badge badge-performance clean">
-                                        <h2 class="text-center">
-                                            CLEAN
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var clean = Model.DiffClean12Week;
-                                            }
-                                            @if (clean > 0)
-                                            {
-                                                <text>+</text>@clean
+<div class="container-fluid">
+    <div class="side-body">
 
-                                            }
-                                            else
-                                            {
-                                                @clean
-
-                                            }
-                                            </h1>
-                                        </div>
-                                        <div class="badge badge-performance total">
-                                            <h2 class="text-center">
-                                                TOTAL
-                                            </h2>
-                                            <h1 class="text-center">
-                                                @{
-                                                    var total = clean + squat + bench;
-                                                }
-                                                @if (total > 0)
-                                                {
-                                                    <text>+</text>@total
-                                                }
-                                                else
-                                                {
-                                                    @total
-                                                }
-                                            </h1>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
+        @Html.Hidden("UserID", Model.ID)
+        <div class="user-page">
+            <div class="breadcrumb">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1 class="text-center">WORKOUTS COMPLETED</h1>
-                                @*workouts*@
-                                <table class="table workouts-table">
-                                    <thead>
-                                        <tr>
-                                            <th>ALL-TIME</th>
-                                            <th>YEAR</th>
-                                            <th>MONTH</th>
-                                            <th>WEEK</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td>
-                                            @Model.AllAttendanceCount
-                                        </td>
-                                        <td>
-                                            @Model.YearAttendanceCount
-                                        </td>
-                                        <td>
-                                            @Model.MonthAttendanceCount
-                                        </td>
-                                        <td>
-                                            @Model.WeekAttendanceCount
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="text-center">
-                                    <a href="/" class="btn btn-warning"><span class="glyphicon glyphicon-calendar"></span> VIEW HISTORY</a>
+                    <div class="col-sm-12 col-md-6 col-lg-3 overflow">
+                        <ol>
+                            <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                            @if (currentUser == Model)
+                            {
+                                <li class="active"><a href="/my-page">My Page</a></li>
+                            }
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body no-padding-left">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="pull-right">
+                                        @* buttons*@
+                                        @if (currentUser != null && (currentUser.CanEditOwnData(Model) || currentUser.CanEditTeamData(Model)))
+                                        {
+                                            <button class="btn btn-success btn-lg edit-profile" data-mode="no-edit">EDIT PROFILE</button>
+                                        }
+                                        @if (currentUser != null && currentUser.CanViewWorkOut(Model))
+                                        {
+                                            <button class="btn btn-success btn-lg">VIEW WORKOUT</button>
+                                        }
+                                        @if (Model.HasAttendanceToday)
+                                        {
+                                            <button class="btn btn-success btn-lg">
+                                                <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-success btn-lg">
+                                                LOG ATTENDANCE
+                                            </button>
+                                        }
+                                    </div>
+                                    <h1 class="player-info">PLAYER INFORMATION</h1>
+                                </div>
+                            </div>
+                            @* data-table *@
+                            <div class="row" id="UserInfoWrapper">
+                                @Html.Action("UserInfo", "User", new { id = Model.ID })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="panel panel-default">
+                        <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
+                            <div class="left-padding right-padding">
+                                <div class="pull-right">
+                                    <button class="btn btn-success btn-large">REPORTS</button>
+                                </div>
+                                <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
+                            </div>
+                            @* performance *@
+                            <div class="performance">
+                                <div class="row">
+                                    <div class="col-lg-12 no-padding-right">
+                                        @* chart *@
+                                        <canvas id="PerformanceChart" class="performance-chart" width="590" height="256"></canvas>
+                                        @* changes *@
+                                        <div class="pull-right perfomance-change">
+                                            <div class="badge badge-performance squat">
+                                                <h2 class="text-center">
+                                                    SQUAT
+                                                </h2>
+                                                <h1 class="text-center">
+                                                    @{
+                                                        var squat = Model.DiffSquat12Week;
+                                                    }
+                                                    @if (squat > 0)
+                                                    {
+                                                        <text>+</text>@squat
+                                                    }
+                                                    else
+                                                    {
+                                                        @squat
+                                                    }
+                                                </h1>
+                                            </div>
+                                            <div class="badge badge-performance bench">
+                                                <h2 class="text-center">
+                                                    BENCH
+                                                </h2>
+                                                <h1 class="text-center">
+                                                    @{
+                                                        var bench = Model.DiffBench12Week;
+                                                    }
+                                                    @if (bench > 0)
+                                                    {
+                                                        <text>+</text>@bench
+                                                    }
+                                                    else
+                                                    {
+                                                        @bench
+                                                    }
+                                                </h1>
+                                            </div>
+                                            <div class="badge badge-performance clean">
+                                                <h2 class="text-center">
+                                                    CLEAN
+                                                </h2>
+                                                <h1 class="text-center">
+                                                    @{
+                                                        var clean = Model.DiffClean12Week;
+                                                    }
+                                                    @if (clean > 0)
+                                                    {
+                                                        <text>+</text>@clean
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @clean
+
+                                                    }
+                                                </h1>
+                                            </div>
+                                            <div class="badge badge-performance total">
+                                                <h2 class="text-center">
+                                                    TOTAL
+                                                </h2>
+                                                <h1 class="text-center">
+                                                    @{
+                                                        var total = clean + squat + bench;
+                                                    }
+                                                    @if (total > 0)
+                                                    {
+                                                        <text>+</text>@total
+                                                    }
+                                                    else
+                                                    {
+                                                        @total
+                                                    }
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="SchoolRankWrapper">
-                    @Html.Action("SchoolRank", "User", new { id = Model.ID })
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h1 class="text-center">WORKOUTS COMPLETED</h1>
+                                    @*workouts*@
+                                    <table class="table workouts-table">
+                                        <thead>
+                                            <tr>
+                                                <th>ALL-TIME</th>
+                                                <th>YEAR</th>
+                                                <th>MONTH</th>
+                                                <th>WEEK</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>
+                                                @Model.AllAttendanceCount
+                                            </td>
+                                            <td>
+                                                @Model.YearAttendanceCount
+                                            </td>
+                                            <td>
+                                                @Model.MonthAttendanceCount
+                                            </td>
+                                            <td>
+                                                @Model.WeekAttendanceCount
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="text-center">
+                                        <a href="/" class="btn btn-warning"><span class="glyphicon glyphicon-calendar"></span> VIEW HISTORY</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="SchoolRankWrapper">
+                        @Html.Action("SchoolRank", "User", new { id = Model.ID })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12" id="RankWrapper">
-                @* leader-board rank *@
-                @Html.Action("Rank", "User", new { id = Model.ID })
+            <div class="row">
+                <div class="col-lg-12" id="RankWrapper">
+                    @* leader-board rank *@
+                    @Html.Action("Rank", "User", new { id = Model.ID })
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="pull-right">
-                                    <button class="btn btn-success btn-large">UPLOAD</button>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="pull-right">
+                                        <button class="btn btn-success btn-large">UPLOAD</button>
+                                    </div>
+                                    <h1>MY VIDEOS</h1>
                                 </div>
-                                <h1>MY VIDEOS</h1>
                             </div>
                         </div>
                     </div>
@@ -234,3 +238,4 @@
             </div>
         </div>
     </div>
+</div>

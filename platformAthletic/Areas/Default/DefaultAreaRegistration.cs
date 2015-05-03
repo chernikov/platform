@@ -275,6 +275,13 @@ namespace platformAthletic.Areas.Default
 
             context.MapRoute(
                 null,
+                "video/SetPreview",
+                new { controller = "Video", action = "SetPreview" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+                null,
                 "video-code",
                 new { controller = "Video", action = "Video" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
@@ -290,15 +297,15 @@ namespace platformAthletic.Areas.Default
 
             context.MapRoute(
                 null,
-                "video/{id}",
-                new { controller = "Video", action = "Index", pillar = false, id = UrlParameter.Optional },
+                "video",
+                new { controller = "Video", action = "Index", SortType = 1 },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
             context.MapRoute(
                 null,
-                "video-pillar/{id}",
-                new { controller = "Video", action = "Index", pillar = true, id = UrlParameter.Optional },
+                "video-pillar",
+                new { controller = "Video", action = "Index", SortType = 2 },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

@@ -2,6 +2,36 @@
     outline: none;
 }
 
+.fixed {
+    position: fixed;
+    height: 100%;
+    width : 100%;
+}
+
+.height {
+    height: 100%;
+}
+/*  current date */
+.current-date-time-wrapper {
+    position: fixed;
+    top: 0px;
+    right: 410px;
+    font-size: 12px;
+    z-index: 10000;
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+    .current-date-time-wrapper .datepicker-button img {
+        width: 230px;
+        height: 39px;
+        cursor: pointer;
+        background: transparent;
+        position: absolute;
+        left: 0;
+    }
+
+
 @media (min-width: 1200px) {
     .row-same-height {
         display: table;
@@ -1724,7 +1754,7 @@ dl.sport-2 {
     .report-wrapper .progress-table tr:nth-child(2n+1) td.value {
         background-color: #ebebeb;
     }
-   
+
     .report-wrapper .progress-table td.value .sign {
         font-size: 18px;
     }
@@ -1768,8 +1798,8 @@ dl.sport-2 {
 
 
 .report-progress .performance-chart-wrapper .performance-chart {
-   width : 100%;
-   height : 400px;
+    width: 100%;
+    height: 400px;
 }
 
 
@@ -2448,3 +2478,83 @@ dl.sport-2 {
         .user-page .leaderboard-table .value span {
             font-size: 20px;
         }
+
+hr.video {
+    border-top: none;
+    border-bottom: #fff 1px solid;
+    margin: 0;
+}
+
+.video-wrapper {
+    background: #f5f5f5;
+}
+
+
+    .video-wrapper .panel {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .video-wrapper h5 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .video-wrapper .nav-pills > li {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+        .video-wrapper .nav-pills > li > a {
+            color: #000;
+            border: 1px solid #e8e7e7;
+            background-color: #fff;
+            margin-right: 10px;
+        }
+
+
+        .video-wrapper .nav-pills > li.active > a, .video-wrapper .nav-pills > li.active > a:hover, .video-wrapper .nav-pills > li.active > a:focus {
+            background-color: #60b1c2;
+            color: #fff;
+            border: none;
+        }
+
+    .video-wrapper .panel {
+        height: -moz-calc(100% - 150px);
+        height: -webkit-calc(100% - 150px);
+        height: calc(100% - 150px);
+    }
+
+    .video-wrapper .video-content {
+        height: -moz-calc(100% - 120px);
+        height: -webkit-calc(100% - 120px);
+        height: calc(100% - 120px);
+        overflow: hidden;
+        margin : 0 10px 0 10px;
+    }
+    .video-wrapper .video-content .inside {
+        margin : 0 15px;
+    }
+
+    .video-wrapper .video-content .inside h4 {
+        color : #495b6c;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size : 16px;
+    }
+    .video-wrapper .item 
+    {
+        cursor : pointer;
+    }
+    .video-wrapper .item .thumbnail  {
+        border : none;
+    }
+
+    .video-wrapper .item .name {
+        color : #2b2c2d;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size : 16px;
+    }

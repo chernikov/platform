@@ -1,0 +1,45 @@
+﻿@model platformAthletic.Models.Info.VideoCollection
+<div class="top clear">
+    <div class="action">
+        <label>Sort By</label>
+        <a id="SortByExerciseBtn" class="link-button @(Model.SortType == platformAthletic.Models.Info.VideoCollection.SortTypeEnum.Training ? "secondaryColorBg" : "primaryColorBg")">
+            Exercise</a>
+        <a id="SortByPillarBtn" class="link-button @(Model.SortType == platformAthletic.Models.Info.VideoCollection.SortTypeEnum.Pillar ? "secondaryColorBg" : "primaryColorBg")">
+            Pillar</a>
+    </div>
+    @using (Html.BeginForm("VideoMenu", "Video", FormMethod.Post, new { id = "SearchStringForm" }))
+    {
+        @Html.Hidden("SortType", Model.SortType)
+        <div class="search-gray-wrp">
+            @Html.TextBox("SearchString", Model.SearchString, new { placeholder = "Search" })
+            <span id="SearchStringBtn"></span>
+        </div>
+    }
+</div>
+<div class="video-list">
+    <div class="scroll-pane">
+        <div class="scroll-content">
+            @if (Model.SortType == platformAthletic.Models.Info.VideoCollection.SortTypeEnum.Training)
+            {
+                foreach (var sortedPart in Model.SortedParts)
+                {
+                <h4>@sortedPart.Header</h4>
+                    foreach (var video in sortedPart.List)
+                    {
+                <a class="video-link" data-id="@video.ID" data-type="@Model.SortType" href="@Url.Action("Index", "Video", new { id = video.ID })">@video.Header</a>
+                    }
+                }
+            }
+            else
+            {
+                foreach (var sortedPart in Model.SortedParts)
+                {
+                    foreach (var video in sortedPart.List)
+                    {
+                <a class="video-link" data-id="@video.ID" data-type="@Model.SortType" href="@Url.Action("Index", "Video", new { id = video.ID })">@video.Header</a>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>

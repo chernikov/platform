@@ -25,6 +25,8 @@ namespace platformAthletic.Models.Info
             public string VideoUrl { get; set; }
 
             public string VideoCode { get; set; }
+
+            public string Preview { get; set; }
         }
 
         public class SortPart
@@ -67,17 +69,24 @@ namespace platformAthletic.Models.Info
                 foreach (var item in SearchedVideos.OrderBy(p => p.TrainingName))
                 {
                     var firstChar = item.TrainingName[0];
-                    if (currentHeader != firstChar)
+                    if (currentHeader != firstChar && (!(firstChar >= '0' && firstChar <= '9' && currentHeader >= '0' && currentHeader <= '9')))
                     {
                         if (sortPart != null)
                         {
                             yield return sortPart;
                         }
                         currentHeader = firstChar;
-                        sortPart = new SortPart()
-                        {
-                            Header = firstChar.ToString().ToUpper()
-                        };
+                        if (firstChar >= '0' && firstChar <= '9') {
+                            sortPart = new SortPart()
+                            {
+                                Header = "0-9"
+                            };
+                        } else {
+                            sortPart = new SortPart()
+                            {
+                                Header = firstChar.ToString().ToUpper()
+                            };
+                        }
                     }
                     sortPart.List.Add(item);
                 }

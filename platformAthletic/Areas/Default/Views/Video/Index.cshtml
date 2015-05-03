@@ -1,17 +1,112 @@
-﻿@model platformAthletic.Model.Video
+﻿@model VideoCollection
 @{
-    ViewBag.Title = "TeamVideo";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Video Library";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
 }
-@section header
-{
-    <script type="text/javascript" src="/Media/scripts/default/video.js"></script>
+@section styles {
+    <link href="~/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
 }
-<div class="video-wrp all-transparent-wrp clear">
-    <div class="left" id="VideoMenuWrapper">
-        @Html.Action("VideoMenu", "Video", new { SortType = 1 })
-    </div>
-    <div class="right" id="VideoWrapper">
-        @Html.Action("Video", "Video", new { id = Model.ID })
+@section header {
+    <script src="~/Scripts/jquery.mCustomScrollbar.js"></script>
+    <script src="~/Scripts/default/video-library.js"></script>
+}
+<div class="container-fluid fixed">
+    <div class="side-body height">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/video">Video Library</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <hr class="video" />
+        <div class="row video-wrapper height">
+            <div class="col-lg-5 height">
+                <br />
+                <div class="panel panel-default height">
+                    <div class="panel-body no-padding-left no-padding-right height">
+                        <div class="row">
+                            <div class="pull-right right-padding">
+                                @using (Html.BeginForm("Index", "Video", FormMethod.Post))
+                                {
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="Search" name="searchString" placeholder="SEARCH" value="@ViewBag.SearchString">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5>SORT BY</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <ul class="nav nav-pills">
+                                    <li role="presentation" class="@(Model.SortType == VideoCollection.SortTypeEnum.Training ? "active" : "")"><a href="/video">Exercise</a></li>
+                                    <li role="presentation" class="@(Model.SortType == VideoCollection.SortTypeEnum.Pillar ? "active" : "")"><a href="/video-pillar">Pillar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="video-content height" id="VideoContent">
+                            <div class="inside">
+                                @if (Model.SortType == VideoCollection.SortTypeEnum.Training)
+                                {
+                                    foreach (var sortedPart in Model.SortedParts)
+                                    {
+                                        <h4>@sortedPart.Header</h4>
+                                        foreach (var video in sortedPart.List)
+                                        {
+                                            <div class="item">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="thumbnail">
+                                                            <img src="@video.Preview" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <span class="name">@video.Header</span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <h4>Pillars</h4>
+                                    foreach (var sortedPart in Model.SortedParts)
+                                    {
+                                        foreach (var video in sortedPart.List)
+                                        {
+                                            <div class="item">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="thumbnail">
+                                                            <img src="@video.Preview" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <span class="name">@video.Header</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+            </div>
+        </div>
     </div>
 </div>

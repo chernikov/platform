@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="platform2015_current" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WORKER\MSSQL;Initial Catalog=platform2015_current;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="platform2015_currentConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="platform_big_data" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WORKER\MSSQL;Initial Catalog=platform_big_data;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="platform_big_dataConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Equipment" Member="Equipments">
     <Type Name="Equipment">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -196,17 +196,6 @@
       <Association Name="UserSeason_UserAttendance" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Video" Member="Videos">
-    <Type Name="Video">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TrainingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Header" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Training_Video" Member="Training" ThisKey="TrainingID" OtherKey="ID" Type="Training" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.FeatureCatalog" Member="FeatureCatalogs">
     <Type Name="FeatureCatalog">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -309,19 +298,6 @@
       <Association Name="BannerPlace_Banner" Member="BannerPlace" ThisKey="BannerPlaceID" OtherKey="ID" Type="BannerPlace" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.PillarType" Member="PillarTypes">
-    <Type Name="PillarType">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Placeholder" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Measure" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="TextAbove" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="PillarType_UserPillar" Member="UserPillars" ThisKey="ID" OtherKey="PillarTypeID" Type="UserPillar" />
-    </Type>
-  </Table>
   <Table Name="dbo.UserPillar" Member="UserPillars">
     <Type Name="UserPillar">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -330,8 +306,8 @@
       <Column Name="TextValue" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="PillarType_UserPillar" Member="PillarType" ThisKey="PillarTypeID" OtherKey="ID" Type="PillarType" IsForeignKey="true" />
       <Association Name="User_UserPillar" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="PillarType_UserPillar" Member="PillarType" ThisKey="PillarTypeID" OtherKey="ID" Type="PillarType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PaymentDetail" Member="PaymentDetails">
@@ -541,8 +517,8 @@
       <Association Name="User_Invoice" Member="Invoices" ThisKey="ID" OtherKey="UserID" Type="Invoice" />
       <Association Name="User_UserFieldPosition" Member="UserFieldPositions" ThisKey="ID" OtherKey="UserID" Type="UserFieldPosition" />
       <Association Name="User_Team" Member="Teams" ThisKey="ID" OtherKey="UserID" Type="Team" />
-      <Association Name="User_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="UserID" Type="SBCValue" />
       <Association Name="User_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="UserID" Type="UserSeason" />
+      <Association Name="User_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="UserID" Type="SBCValue" />
       <Association Name="Group_User" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
       <Association Name="Level_User" Member="Level" ThisKey="LevelID" OtherKey="ID" Type="Level" IsForeignKey="true" />
       <Association Name="Team_User" Member="Team" ThisKey="PlayerOfTeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
@@ -589,19 +565,6 @@
       <Association Name="User_Team" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SBCValue" Member="SBCValues">
-    <Type Name="SBCValue">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Squat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Bench" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Clean" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Team_SBCValue" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
-      <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.UserSeason" Member="UserSeasons">
     <Type Name="UserSeason">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -615,6 +578,45 @@
       <Association Name="Group_UserSeason" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
       <Association Name="Season_UserSeason" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="User_UserSeason" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Video" Member="Videos">
+    <Type Name="Video">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrainingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Header" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="Training_Video" Member="Training" ThisKey="TrainingID" OtherKey="ID" Type="Training" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SBCValue" Member="SBCValues">
+    <Type Name="SBCValue">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AddedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Squat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Bench" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Clean" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Team_SBCValue" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
+      <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PillarType" Member="PillarTypes">
+    <Type Name="PillarType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Measure" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TextAbove" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Preview" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Placeholder" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PillarType_UserPillar" Member="UserPillars" ThisKey="ID" OtherKey="PillarTypeID" Type="UserPillar" />
     </Type>
   </Table>
 </Database>

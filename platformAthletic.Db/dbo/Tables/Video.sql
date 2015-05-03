@@ -5,6 +5,7 @@
     [Text]       NVARCHAR (MAX) NULL,
     [VideoUrl]   NVARCHAR (500) NOT NULL,
     [VideoCode]  NVARCHAR (MAX) NOT NULL,
+    [Preview] NVARCHAR(150) NOT NULL DEFAULT '', 
     CONSTRAINT [PK_Video] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Video_Training] FOREIGN KEY ([TrainingID]) REFERENCES [dbo].[Training] ([ID])
 );

@@ -42,6 +42,7 @@ namespace platformAthletic.Model
                 cache.TextAbove = instance.TextAbove;
                 cache.VideoCode = instance.VideoCode;
                 cache.VideoUrl = instance.VideoUrl;
+                cache.Preview = instance.Preview;
                 Db.PillarTypes.Context.SubmitChanges();
                 return true;
             }

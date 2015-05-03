@@ -10,9 +10,12 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-custom.css" rel="stylesheet" />
+    <link href="~/Content/datepicker/bootstrap-datepicker3.css" rel="stylesheet" />
     @RenderSection("styles", false)
 </head>
+
 <body class="platform">
+    @Html.Action("CurrentDate", "Setting")
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,11 +74,7 @@
             </nav>
         </div>
         <!-- Main Content -->
-        <div class="container-fluid">
-            <div class="side-body">
-                @RenderBody()
-            </div>
-        </div>
+        @RenderBody()
     </div>
     <div id="ModalWrapper">
     </div>
@@ -83,7 +82,9 @@
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery.ba-bbq.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/default/common.js"></script>
+    <script src="~/Scripts/default/current-date.js"></script>
     @RenderSection("header", false)
 </body>
 </html>
