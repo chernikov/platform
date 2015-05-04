@@ -1,0 +1,18 @@
+﻿@model Video
+
+<div class="video-code-wrapper height">
+    <h1>@Model.Header</h1>
+
+    <div class="code">
+        @Html.Raw(Model.VideoCode)
+    </div>
+    <div class="panel panel-default coach">
+        <div class="panel-body no-padding-left no-padding-right height">
+            <div class="row height">
+                <h2>COACH COMMENT</h2>
+                <hr />
+                <p class="coach-comment" id="CoachComment">@Html.Raw(Model.Text.NlToBr())</p>
+            </div>
+        </div>
+    </div>
+</div>

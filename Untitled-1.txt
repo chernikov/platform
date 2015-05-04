@@ -1,0 +1,14 @@
+video
+	set  lorem texts
+	admin (ok)
+	
+search
+	scroll to (ok)
+
+Show (ok)
+Auto show (ok)
+
+Small monitor 
+
+
+uservideo

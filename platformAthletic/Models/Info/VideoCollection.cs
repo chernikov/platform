@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using platformAthletic.Model;
+using System.Web.Mvc;
 
 namespace platformAthletic.Models.Info
 {
@@ -41,23 +42,16 @@ namespace platformAthletic.Models.Info
             }
         }
 
+        private IRepository repository = DependencyResolver.Current.GetService<IRepository>();
+
+
         public SortTypeEnum SortType { get; set; }
 
         public string SearchString { get; set; }
 
-        public List<InnerVideo> Videos { get; set; }
+        public int StartID { get; set; }
 
-        public List<InnerVideo> SearchedVideos
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(SearchString))
-                {
-                    return Videos.Where(p => p.Header.IndexOf(SearchString, StringComparison.InvariantCultureIgnoreCase) != -1).ToList();
-                }
-                return Videos;
-            }
-        }
+        public List<InnerVideo> Videos { get; set; }
 
 
         public IEnumerable<SortPart> SortedParts
@@ -66,7 +60,7 @@ namespace platformAthletic.Models.Info
             {
                 SortPart sortPart = null;
                 char currentHeader = ' ';
-                foreach (var item in SearchedVideos.OrderBy(p => p.TrainingName))
+                foreach (var item in Videos.OrderBy(p => p.TrainingName))
                 {
                     var firstChar = item.TrainingName[0];
                     if (currentHeader != firstChar && (!(firstChar >= '0' && firstChar <= '9' && currentHeader >= '0' && currentHeader <= '9')))
@@ -76,12 +70,15 @@ namespace platformAthletic.Models.Info
                             yield return sortPart;
                         }
                         currentHeader = firstChar;
-                        if (firstChar >= '0' && firstChar <= '9') {
+                        if (firstChar >= '0' && firstChar <= '9')
+                        {
                             sortPart = new SortPart()
                             {
                                 Header = "0-9"
                             };
-                        } else {
+                        }
+                        else
+                        {
                             sortPart = new SortPart()
                             {
                                 Header = firstChar.ToString().ToUpper()
@@ -94,6 +91,60 @@ namespace platformAthletic.Models.Info
                 {
                     yield return sortPart;
                 }
+            }
+        }
+
+        public VideoCollection(SortTypeEnum sortType, string searchString)
+        {
+            SortType = sortType;
+            SearchString = searchString;
+            Process();
+
+            if (string.IsNullOrWhiteSpace(searchString) && Videos.Count > 0)
+            {
+                StartID = Videos.OrderBy(p => p.Header).FirstOrDefault().ID;
+            }
+            else
+            {
+                var item = Videos.FirstOrDefault(p => p.Header.IndexOf(SearchString, StringComparison.InvariantCultureIgnoreCase) != -1);
+                if (item != null)
+                {
+                    StartID = item.ID;
+                }
+                else if (Videos.Count > 0)
+                {
+                    StartID = Videos.OrderBy(p => p.Header).FirstOrDefault().ID;
+                }
+            }
+        }
+
+        private void Process()
+        {
+            switch ((VideoCollection.SortTypeEnum)SortType)
+            {
+                case VideoCollection.SortTypeEnum.Training:
+                    Videos = repository.Videos.Select(p => new VideoCollection.InnerVideo()
+                    {
+                        ID = p.ID,
+                        Header = p.Training.Name ?? p.Header,
+                        VideoCode = p.VideoCode,
+                        VideoUrl = p.VideoUrl,
+                        TrainingName = p.Training.Name ?? p.Header,
+                        Preview = p.Preview,
+                    }).ToList();
+                    break;
+
+                case VideoCollection.SortTypeEnum.Pillar:
+                    Videos = repository.PillarTypes.Select(p => new VideoCollection.InnerVideo()
+                    {
+                        ID = p.ID,
+                        Header = p.Name,
+                        VideoCode = p.VideoCode,
+                        VideoUrl = p.VideoUrl,
+                        TrainingName = p.Name,
+                        Preview = p.Preview,
+                    }).ToList();
+                    break;
             }
         }
     }

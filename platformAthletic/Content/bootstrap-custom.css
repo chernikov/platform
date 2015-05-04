@@ -5,11 +5,30 @@
 .fixed {
     position: fixed;
     height: 100%;
-    width : 100%;
+    width: 100%;
 }
 
 .height {
     height: 100%;
+}
+.frame-height {
+    height: 100%;
+}
+@media(max-width:1280px) {
+
+    .fixed {
+        position: initial;
+        height: auto;
+        width: auto;
+    }
+
+    .height {
+        height : auto;
+    }
+    .frame-height {
+        height : 400px;
+        margin : 10px 0;
+    }
 }
 /*  current date */
 .current-date-time-wrapper {
@@ -73,6 +92,10 @@
 
 .top-padding {
     padding-top: 20px !important;
+}
+
+.bottom-padding {
+    padding-bottom: 20px !important;
 }
 
 .platform {
@@ -2532,29 +2555,70 @@ hr.video {
         height: -webkit-calc(100% - 120px);
         height: calc(100% - 120px);
         overflow: hidden;
-        margin : 0 10px 0 10px;
-    }
-    .video-wrapper .video-content .inside {
-        margin : 0 15px;
+        margin: 0 10px 0 10px;
     }
 
-    .video-wrapper .video-content .inside h4 {
-        color : #495b6c;
+        .video-wrapper .video-content .inside {
+            margin: 0 15px;
+        }
+
+            .video-wrapper .video-content .inside h4 {
+                color: #495b6c;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+    .video-wrapper .item {
+        cursor: pointer;
+        padding : 15px 0 0 0;
+        height : 112px;
+        overflow : hidden;
+    }
+        .video-wrapper .item.selected {
+            background: #fff7c7;
+        }
+        .video-wrapper .item .thumbnail {
+            border: none;
+        }
+
+        .video-wrapper .item .name {
+            color: #2b2c2d;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+.video-code-wrapper h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+}
+
+.video-code-wrapper .code {
+    height: 40%;
+    margin-bottom: 4px;
+}
+
+.video-code-wrapper .coach {
+    height: -moz-calc(60% - 180px);
+    height: -webkit-calc(60% - 180px);
+    height: calc(60% - 180px);
+}
+
+    .video-code-wrapper .coach h2 {
         font-family: 'Montserrat', sans-serif;
         font-weight: bold;
-        font-size : 16px;
-    }
-    .video-wrapper .item 
-    {
-        cursor : pointer;
-    }
-    .video-wrapper .item .thumbnail  {
-        border : none;
+        font-size: 16px;
+        color: #000;
+        padding: 0 20px;
     }
 
-    .video-wrapper .item .name {
-        color : #2b2c2d;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: bold;
-        font-size : 16px;
+    .video-code-wrapper .coach .coach-comment {
+        overflow: hidden;
+        height: -moz-calc(100% - 80px);
+        height: -webkit-calc(100% - 80px);
+        height: calc(100% - 80px);
+        padding: 0 20px;
     }

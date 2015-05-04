@@ -37,6 +37,8 @@ namespace platformAthletic.Models.ViewModels
 
         public string VideoCode { get; set; }
 
+        public string Text { get; set; }
+
         public IEnumerable<SelectListItem> SelectListType
         {
             get

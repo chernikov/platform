@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="platform_big_data" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=WORKER\MSSQL;Initial Catalog=platform_big_data;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="platform_big_dataConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SATURN\MSSQL;Initial Catalog=platform_big_data;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="platform_big_dataConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Equipment" Member="Equipments">
     <Type Name="Equipment">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -580,18 +580,6 @@
       <Association Name="User_UserSeason" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Video" Member="Videos">
-    <Type Name="Video">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TrainingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Header" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
-      <Association Name="Training_Video" Member="Training" ThisKey="TrainingID" OtherKey="ID" Type="Training" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.SBCValue" Member="SBCValues">
     <Type Name="SBCValue">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -613,10 +601,23 @@
       <Column Name="TextAbove" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Preview" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Placeholder" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="PillarType_UserPillar" Member="UserPillars" ThisKey="ID" OtherKey="PillarTypeID" Type="UserPillar" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Video" Member="Videos">
+    <Type Name="Video">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrainingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Header" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="Training_Video" Member="Training" ThisKey="TrainingID" OtherKey="ID" Type="Training" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

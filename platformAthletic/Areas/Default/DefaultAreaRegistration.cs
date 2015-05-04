@@ -265,36 +265,7 @@ namespace platformAthletic.Areas.Default
                 new { controller = "AboutUs", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
-
-            context.MapRoute(
-                null,
-                "video-menu",
-                new { controller = "Video", action = "VideoMenu", id = UrlParameter.Optional },
-                new[] { "platformAthletic.Areas.Default.Controllers" }
-            );
-
-            context.MapRoute(
-                null,
-                "video/SetPreview",
-                new { controller = "Video", action = "SetPreview" },
-                new[] { "platformAthletic.Areas.Default.Controllers" }
-            );
-
-            context.MapRoute(
-                null,
-                "video-code",
-                new { controller = "Video", action = "Video" },
-                new[] { "platformAthletic.Areas.Default.Controllers" }
-            );
-
-            context.MapRoute(
-               null,
-               "video-pillar-code",
-               new { controller = "Video", action = "PillarVideo" },
-               new[] { "platformAthletic.Areas.Default.Controllers" }
-           );
-
-
+           
             context.MapRoute(
                 null,
                 "video",
@@ -307,6 +278,54 @@ namespace platformAthletic.Areas.Default
                 "video-pillar",
                 new { controller = "Video", action = "Index", SortType = 2 },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+                null,
+                "video-code",
+                new { controller = "Video", action = "Video" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+                null,
+                "video-pillar-code",
+                new { controller = "Video", action = "PillarVideo" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+                null,
+                "video-json",
+                new { controller = "Video", action = "JsonVideos" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+               null,
+               "video-json-pillars",
+               new { controller = "Video", action = "JsonPillars" },
+               new[] { "platformAthletic.Areas.Default.Controllers" }
+           );
+
+            context.MapRoute(
+               null,
+               "video/SetPreview",
+               new { controller = "Video", action = "SetPreview" },
+               new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+            context.MapRoute(
+               null,
+               "video/SetCode",
+               new { controller = "Video", action = "SetCode" },
+               new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+            context.MapRoute(
+               null,
+               "video/SetLorem",
+               new { controller = "Video", action = "SetLorem" },
+               new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
             context.MapRoute(

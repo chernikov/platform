@@ -6,12 +6,17 @@ using System.Web.Mvc;
 using platformAthletic.Models.ViewModels;
 using platformAthletic.Model;
 using platformAthletic.Tools.Video;
+using System.Net;
+using System.IO;
+using platformAthletic.Tools;
 
 
 namespace platformAthletic.Areas.Admin.Controllers
 {
     public class PillarTypeController : AdminController
     {
+        protected string DestinationDir = "Media/files/previews/";
+
         public ActionResult Index()
         {
             var list = Repository.PillarTypes.ToList();
@@ -43,14 +48,17 @@ namespace platformAthletic.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pillartype = (PillarType)ModelMapper.Map(pillartypeView, typeof(PillarTypeView), typeof(PillarType));
-                if (pillartype.ID == 0)
+                var pillarType = (PillarType)ModelMapper.Map(pillartypeView, typeof(PillarTypeView), typeof(PillarType));
+                pillarType.Preview = GetPreview(pillarType.VideoUrl);
+                pillarType.VideoCode = VideoHelper.GetVideoByUrl(pillarType.VideoUrl);
+
+                if (pillarType.ID == 0)
                 {
-                    Repository.CreatePillarType(pillartype);
+                    Repository.CreatePillarType(pillarType);
                 }
                 else
                 {
-                    Repository.UpdatePillarType(pillartype);
+                    Repository.UpdatePillarType(pillarType);
                 }
                 return RedirectToAction("Index");
             }
@@ -71,12 +79,25 @@ namespace platformAthletic.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            var pillartype = Repository.PillarTypes.FirstOrDefault(p => p.ID == id);
-            if (pillartype != null)
+            var pillarType = Repository.PillarTypes.FirstOrDefault(p => p.ID == id);
+            if (pillarType != null)
             {
-                Repository.RemovePillarType(pillartype.ID);
+                Repository.RemovePillarType(pillarType.ID);
             }
             return RedirectToAction("Index");
+        }
+
+        private string GetPreview(string videoUrl)
+        {
+            var url = VideoHelper.GetVideoThumbByUrl(videoUrl);
+            var webClient = new WebClient();
+            var bytes = webClient.DownloadData(url);
+            var stream = new MemoryStream(bytes);
+
+            var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
+            var urlFile = "/" + Path.Combine(DestinationDir, uFile);
+            var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
+            return urlFile;
         }
     }
 }

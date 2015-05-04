@@ -7,9 +7,14 @@
     <link href="~/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
 }
 @section header {
+    <script src="~/Scripts/hogan.js"></script>
+    <script src="~/Scripts/typeahead.jquery.js"></script>
     <script src="~/Scripts/jquery.mCustomScrollbar.js"></script>
     <script src="~/Scripts/default/video-library.js"></script>
+    <script src="~/Scripts/youtube-resizer.js"></script>
 }
+
+@Html.Hidden("SortType", Model.SortType)
 <div class="container-fluid fixed">
     <div class="side-body height">
         <div class="breadcrumb">
@@ -29,7 +34,7 @@
                 <div class="panel panel-default height">
                     <div class="panel-body no-padding-left no-padding-right height">
                         <div class="row">
-                            <div class="pull-right right-padding">
+                            <div class="pull-right right-padding bottom-padding">
                                 @using (Html.BeginForm("Index", "Video", FormMethod.Post))
                                 {
                                     <div class="input-group">
@@ -41,16 +46,15 @@
                                 }
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="pull-left left-padding right-padding">
                                 <h5>SORT BY</h5>
                             </div>
-                            <div class="col-md-8">
-                                <ul class="nav nav-pills">
-                                    <li role="presentation" class="@(Model.SortType == VideoCollection.SortTypeEnum.Training ? "active" : "")"><a href="/video">Exercise</a></li>
-                                    <li role="presentation" class="@(Model.SortType == VideoCollection.SortTypeEnum.Pillar ? "active" : "")"><a href="/video-pillar">Pillar</a></li>
-                                </ul>
-                            </div>
+                            <ul class="nav nav-pills">
+                                <li role="presentation" class="@(Model.SortType == VideoCollection.SortTypeEnum.Training ? "active" : "")"><a href="/video">Exercise</a></li>
+                                <li role="presentation" class="@(Model.SortType == VideoCollection.SortTypeEnum.Pillar ? "active" : "")"><a href="/video-pillar">Pillar</a></li>
+                            </ul>
                         </div>
                         <hr />
                         <div class="video-content height" id="VideoContent">
@@ -62,18 +66,18 @@
                                         <h4>@sortedPart.Header</h4>
                                         foreach (var video in sortedPart.List)
                                         {
-                                            <div class="item">
+                                            <div class="item @(video.ID == Model.StartID? "selected": "")" data-id="@video.ID" data-url="video-code">
                                                 <div class="row">
                                                     <div class="col-sm-4">
                                                         <div class="thumbnail">
-                                                            <img src="@video.Preview" />
+                                                            <img src="@video.Preview?w=300&h=169&mode=crop" />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <span class="name">@video.Header</span>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         }
                                     }
@@ -85,11 +89,11 @@
                                     {
                                         foreach (var video in sortedPart.List)
                                         {
-                                            <div class="item">
+                                            <div class="item @(video.ID == Model.StartID ? "selected": "")" data-id="@video.ID" data-url="video-pillar-code">
                                                 <div class="row">
                                                     <div class="col-sm-4">
                                                         <div class="thumbnail">
-                                                            <img src="@video.Preview" />
+                                                            <img src="@video.Preview?w=300&h=169&mode=crop" />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-8">
@@ -105,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-7 height" id="VideoWrapper">
             </div>
         </div>
     </div>

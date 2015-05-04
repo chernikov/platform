@@ -50,7 +50,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="Name">
+            <label class="control-label" for="TextAbove">
                 Text above
             </label>
             <div class="controls">
@@ -73,6 +73,16 @@
                 <div id="VideoCodeWrapper">
                     @Html.Raw(Model.VideoCode)
                 </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="Text">
+                Text
+            </label>
+            <div class="controls">
+                @Html.TextArea("Text", Model.Text, new { @class = "textarea" })
+                @Html.ValidationMessage("Text")
             </div>
         </div>
         <div class="form-actions">

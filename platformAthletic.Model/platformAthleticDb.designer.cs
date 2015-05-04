@@ -183,19 +183,19 @@ namespace platformAthletic.Model
     partial void InsertUserSeason(UserSeason instance);
     partial void UpdateUserSeason(UserSeason instance);
     partial void DeleteUserSeason(UserSeason instance);
-    partial void InsertVideo(Video instance);
-    partial void UpdateVideo(Video instance);
-    partial void DeleteVideo(Video instance);
     partial void InsertSBCValue(SBCValue instance);
     partial void UpdateSBCValue(SBCValue instance);
     partial void DeleteSBCValue(SBCValue instance);
     partial void InsertPillarType(PillarType instance);
     partial void UpdatePillarType(PillarType instance);
     partial void DeletePillarType(PillarType instance);
+    partial void InsertVideo(Video instance);
+    partial void UpdateVideo(Video instance);
+    partial void DeleteVideo(Video instance);
     #endregion
 		
 		public platformAthleticDbDataContext() : 
-				base(global::platformAthletic.Model.Properties.Settings.Default.platform_big_dataConnectionString, mappingSource)
+				base(global::platformAthletic.Model.Properties.Settings.Default.platform_big_dataConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -632,14 +632,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<Video> Videos
-		{
-			get
-			{
-				return this.GetTable<Video>();
-			}
-		}
-		
 		public System.Data.Linq.Table<SBCValue> SBCValues
 		{
 			get
@@ -653,6 +645,14 @@ namespace platformAthletic.Model
 			get
 			{
 				return this.GetTable<PillarType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Video> Videos
+		{
+			get
+			{
+				return this.GetTable<Video>();
 			}
 		}
 	}
@@ -12803,253 +12803,6 @@ namespace platformAthletic.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Video")]
-	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<int> _TrainingID;
-		
-		private string _Header;
-		
-		private string _Text;
-		
-		private string _VideoUrl;
-		
-		private string _VideoCode;
-		
-		private string _Preview;
-		
-		private EntityRef<Training> _Training;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnTrainingIDChanging(System.Nullable<int> value);
-    partial void OnTrainingIDChanged();
-    partial void OnHeaderChanging(string value);
-    partial void OnHeaderChanged();
-    partial void OnTextChanging(string value);
-    partial void OnTextChanged();
-    partial void OnVideoUrlChanging(string value);
-    partial void OnVideoUrlChanged();
-    partial void OnVideoCodeChanging(string value);
-    partial void OnVideoCodeChanged();
-    partial void OnPreviewChanging(string value);
-    partial void OnPreviewChanged();
-    #endregion
-		
-		public Video()
-		{
-			this._Training = default(EntityRef<Training>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrainingID", DbType="Int")]
-		public System.Nullable<int> TrainingID
-		{
-			get
-			{
-				return this._TrainingID;
-			}
-			set
-			{
-				if ((this._TrainingID != value))
-				{
-					if (this._Training.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTrainingIDChanging(value);
-					this.SendPropertyChanging();
-					this._TrainingID = value;
-					this.SendPropertyChanged("TrainingID");
-					this.OnTrainingIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Header", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string Header
-		{
-			get
-			{
-				return this._Header;
-			}
-			set
-			{
-				if ((this._Header != value))
-				{
-					this.OnHeaderChanging(value);
-					this.SendPropertyChanging();
-					this._Header = value;
-					this.SendPropertyChanged("Header");
-					this.OnHeaderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Text", DbType="NVarChar(MAX)")]
-		public string Text
-		{
-			get
-			{
-				return this._Text;
-			}
-			set
-			{
-				if ((this._Text != value))
-				{
-					this.OnTextChanging(value);
-					this.SendPropertyChanging();
-					this._Text = value;
-					this.SendPropertyChanged("Text");
-					this.OnTextChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoUrl", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string VideoUrl
-		{
-			get
-			{
-				return this._VideoUrl;
-			}
-			set
-			{
-				if ((this._VideoUrl != value))
-				{
-					this.OnVideoUrlChanging(value);
-					this.SendPropertyChanging();
-					this._VideoUrl = value;
-					this.SendPropertyChanged("VideoUrl");
-					this.OnVideoUrlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoCode", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string VideoCode
-		{
-			get
-			{
-				return this._VideoCode;
-			}
-			set
-			{
-				if ((this._VideoCode != value))
-				{
-					this.OnVideoCodeChanging(value);
-					this.SendPropertyChanging();
-					this._VideoCode = value;
-					this.SendPropertyChanged("VideoCode");
-					this.OnVideoCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preview", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
-		public string Preview
-		{
-			get
-			{
-				return this._Preview;
-			}
-			set
-			{
-				if ((this._Preview != value))
-				{
-					this.OnPreviewChanging(value);
-					this.SendPropertyChanging();
-					this._Preview = value;
-					this.SendPropertyChanged("Preview");
-					this.OnPreviewChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Training_Video", Storage="_Training", ThisKey="TrainingID", OtherKey="ID", IsForeignKey=true)]
-		public Training Training
-		{
-			get
-			{
-				return this._Training.Entity;
-			}
-			set
-			{
-				Training previousValue = this._Training.Entity;
-				if (((previousValue != value) 
-							|| (this._Training.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Training.Entity = null;
-						previousValue.Videos.Remove(this);
-					}
-					this._Training.Entity = value;
-					if ((value != null))
-					{
-						value.Videos.Add(this);
-						this._TrainingID = value.ID;
-					}
-					else
-					{
-						this._TrainingID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Training");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SBCValue")]
 	public partial class SBCValue : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -13358,6 +13111,8 @@ namespace platformAthletic.Model
 		
 		private string _Preview;
 		
+		private string _Text;
+		
 		private System.Nullable<int> _Type;
 		
 		private string _Placeholder;
@@ -13382,6 +13137,8 @@ namespace platformAthletic.Model
     partial void OnVideoCodeChanged();
     partial void OnPreviewChanging(string value);
     partial void OnPreviewChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
     partial void OnTypeChanging(System.Nullable<int> value);
     partial void OnTypeChanged();
     partial void OnPlaceholderChanging(string value);
@@ -13514,7 +13271,7 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preview", DbType="NVarChar(150)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preview", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
 		public string Preview
 		{
 			get
@@ -13530,6 +13287,26 @@ namespace platformAthletic.Model
 					this._Preview = value;
 					this.SendPropertyChanged("Preview");
 					this.OnPreviewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Text", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
 				}
 			}
 		}
@@ -13617,6 +13394,253 @@ namespace platformAthletic.Model
 		{
 			this.SendPropertyChanging();
 			entity.PillarType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Video")]
+	public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.Nullable<int> _TrainingID;
+		
+		private string _Header;
+		
+		private string _Text;
+		
+		private string _VideoUrl;
+		
+		private string _VideoCode;
+		
+		private string _Preview;
+		
+		private EntityRef<Training> _Training;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTrainingIDChanging(System.Nullable<int> value);
+    partial void OnTrainingIDChanged();
+    partial void OnHeaderChanging(string value);
+    partial void OnHeaderChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    partial void OnVideoUrlChanging(string value);
+    partial void OnVideoUrlChanged();
+    partial void OnVideoCodeChanging(string value);
+    partial void OnVideoCodeChanged();
+    partial void OnPreviewChanging(string value);
+    partial void OnPreviewChanged();
+    #endregion
+		
+		public Video()
+		{
+			this._Training = default(EntityRef<Training>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrainingID", DbType="Int")]
+		public System.Nullable<int> TrainingID
+		{
+			get
+			{
+				return this._TrainingID;
+			}
+			set
+			{
+				if ((this._TrainingID != value))
+				{
+					if (this._Training.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTrainingIDChanging(value);
+					this.SendPropertyChanging();
+					this._TrainingID = value;
+					this.SendPropertyChanged("TrainingID");
+					this.OnTrainingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Header", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Header
+		{
+			get
+			{
+				return this._Header;
+			}
+			set
+			{
+				if ((this._Header != value))
+				{
+					this.OnHeaderChanging(value);
+					this.SendPropertyChanging();
+					this._Header = value;
+					this.SendPropertyChanged("Header");
+					this.OnHeaderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Text", DbType="NVarChar(MAX)")]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoUrl", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string VideoUrl
+		{
+			get
+			{
+				return this._VideoUrl;
+			}
+			set
+			{
+				if ((this._VideoUrl != value))
+				{
+					this.OnVideoUrlChanging(value);
+					this.SendPropertyChanging();
+					this._VideoUrl = value;
+					this.SendPropertyChanged("VideoUrl");
+					this.OnVideoUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoCode", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string VideoCode
+		{
+			get
+			{
+				return this._VideoCode;
+			}
+			set
+			{
+				if ((this._VideoCode != value))
+				{
+					this.OnVideoCodeChanging(value);
+					this.SendPropertyChanging();
+					this._VideoCode = value;
+					this.SendPropertyChanged("VideoCode");
+					this.OnVideoCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Preview", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Preview
+		{
+			get
+			{
+				return this._Preview;
+			}
+			set
+			{
+				if ((this._Preview != value))
+				{
+					this.OnPreviewChanging(value);
+					this.SendPropertyChanging();
+					this._Preview = value;
+					this.SendPropertyChanged("Preview");
+					this.OnPreviewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Training_Video", Storage="_Training", ThisKey="TrainingID", OtherKey="ID", IsForeignKey=true)]
+		public Training Training
+		{
+			get
+			{
+				return this._Training.Entity;
+			}
+			set
+			{
+				Training previousValue = this._Training.Entity;
+				if (((previousValue != value) 
+							|| (this._Training.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Training.Entity = null;
+						previousValue.Videos.Remove(this);
+					}
+					this._Training.Entity = value;
+					if ((value != null))
+					{
+						value.Videos.Add(this);
+						this._TrainingID = value.ID;
+					}
+					else
+					{
+						this._TrainingID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Training");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
