@@ -104,6 +104,7 @@
     <Compile Include="Proxy\UserPillar.cs" />
     <Compile Include="Proxy\UserRole.cs" />
     <Compile Include="Proxy\UserSeason.cs" />
+    <Compile Include="Proxy\UserVideo.cs" />
     <Compile Include="Proxy\Video.cs" />
     <Compile Include="Proxy\Week.cs" />
     <Compile Include="SqlRepository\About.cs" />
@@ -164,6 +165,7 @@
       <DependentUpon>platformAthleticDb.dbml</DependentUpon>
     </Compile>
     <Compile Include="SqlRepository\UserSeason.cs" />
+    <Compile Include="SqlRepository\UserVideo.cs" />
     <Compile Include="SqlRepository\Video.cs" />
     <Compile Include="SqlRepository\Week.cs" />
     <Compile Include="SqlSingleton.cs" />

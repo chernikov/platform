@@ -579,5 +579,14 @@ namespace platformAthletic.Mappers
                 Mapper.CreateMap<SportView, Sport>();
             }
         }
+
+        public static class UserVideoMapper
+        {
+            public static void Init()
+            {
+                Mapper.CreateMap<UserVideo, UserVideoView>();
+                Mapper.CreateMap<UserVideoView, UserVideo>();
+            }
+        }
     }
 }

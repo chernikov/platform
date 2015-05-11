@@ -519,6 +519,7 @@
       <Association Name="User_Team" Member="Teams" ThisKey="ID" OtherKey="UserID" Type="Team" />
       <Association Name="User_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="UserID" Type="UserSeason" />
       <Association Name="User_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="UserID" Type="SBCValue" />
+      <Association Name="User_UserVideo" Member="UserVideos" ThisKey="ID" OtherKey="UserID" Type="UserVideo" />
       <Association Name="Group_User" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
       <Association Name="Level_User" Member="Level" ThisKey="LevelID" OtherKey="ID" Type="Level" IsForeignKey="true" />
       <Association Name="Team_User" Member="Team" ThisKey="PlayerOfTeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
@@ -618,6 +619,17 @@
       <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Association Name="Training_Video" Member="Training" ThisKey="TrainingID" OtherKey="ID" Type="Training" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserVideo" Member="UserVideos">
+    <Type Name="UserVideo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Header" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoUrl" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserVideo" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

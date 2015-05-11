@@ -61,6 +61,7 @@ namespace platformAthletic.Mappers
             MapperCollection.PeopleSayingMapper.Init();
             MapperCollection.LevelMapper.Init();
             MapperCollection.SportMapper.Init();
+            MapperCollection.UserVideoMapper.Init();
         }
 
         public object Map(object source, Type sourceType, Type destinationType)

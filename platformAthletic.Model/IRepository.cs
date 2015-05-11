@@ -717,5 +717,19 @@ namespace platformAthletic.Model
         bool RemoveSchool(int idSchool);
 
         #endregion 
+
+        
+        #region UserVideo
+
+        IQueryable<UserVideo> UserVideos { get; }
+
+        bool CreateUserVideo(UserVideo instance);
+
+        bool UpdateUserVideo(UserVideo instance);
+
+        bool RemoveUserVideo(int idUserVideo);
+
+        #endregion 
+        
     }
 }

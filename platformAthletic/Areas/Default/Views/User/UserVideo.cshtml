@@ -1,0 +1,63 @@
+﻿@model IList<UserVideo>
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var user = (User)ViewBag.User;
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body  no-padding-left no-padding-right">
+                <div class="row">
+                    <div class="col-lg-12 no-padding-right">
+                        <div class="row right-padding left-padding">
+                            @if (currentUser != null && user.CanEditOwnData(currentUser))
+                            {
+                                <div class="pull-right">
+                                    <button class="btn btn-success btn-large videoUpload"><span class="upload-icon"></span>UPLOAD</button>
+                                </div>
+                            }
+                            @if (currentUser != null && user == currentUser)
+                            {
+                                <h1>MY VIDEOS</h1>
+                            }
+                            else
+                            {
+                                <h1>USER VIDEOS</h1>
+                            }
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div id="UserVideoWrapper">
+                                @{
+                                    var gap = 0;
+                                    if (currentUser != null && user.CanEditOwnData(currentUser))
+                                    {
+                                        gap = 280;
+                                    }
+                                }
+                                <div style="width: @(Model.Count * 320 + 40 + gap)px" class="video-collection">
+                                    @foreach (var video in Model)
+                                    {
+                                        <div class="video-item">
+                                            <h6>@video.Header</h6>
+                                            <div class="video-code">
+                                                @Html.Raw(video.ThumbVideoCode)
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (currentUser != null && user.CanEditOwnData(currentUser))
+                                    {
+                                        <div class="video-upload videoUpload">
+                                            <div class="big-upload-icon"></div>
+                                            <div class="header">UPLOAD</div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -77,4 +77,9 @@ namespace ManageAttribute
     public class TextBoxFieldAttribute : Attribute
     {
     }
+
+    public class TempActionAttribute : Attribute
+    {
+
+    }
 }

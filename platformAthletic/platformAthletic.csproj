@@ -376,6 +376,7 @@
     <Compile Include="Models\ViewModels\User\TeamUserView.cs" />
     <Compile Include="Models\ViewModels\User\UserInfoView.cs" />
     <Compile Include="Models\ViewModels\User\UserView.cs" />
+    <Compile Include="Models\ViewModels\UserVideoView.cs" />
     <Compile Include="Models\ViewModels\VideoView.cs" />
     <Compile Include="Models\ViewModels\WeekView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1299,6 +1300,9 @@
     <Content Include="Areas\Default\Views\Setting\CurrentDate.cshtml" />
     <Content Include="Areas\Default\Views\Video\Video.cshtml" />
     <Content Include="Areas\Default\Views\Video\PillarVideo.cshtml" />
+    <Content Include="Areas\Default\Views\User\UserVideo.cshtml" />
+    <Content Include="Areas\Default\Views\User\UploadVideo.cshtml" />
+    <Content Include="Areas\Default\Views\User\UploadVideoBody.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1347,6 +1351,7 @@
     <Folder Include="Media\files\previews\" />
     <Folder Include="Media\files\uploads\" />
     <Folder Include="Media\files\upload\" />
+    <Folder Include="Media\files\uservideos\" />
     <Folder Include="Media\logs\" />
   </ItemGroup>
   <ItemGroup>

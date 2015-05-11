@@ -14,6 +14,14 @@ namespace platformAthletic.Areas.Default
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+
+            context.MapRoute(
+                "GenerateUserVideos",
+                "GenerateUserVideos",
+                new { controller = "User", action = "GenerateUserVideos" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+ 
             context.MapRoute(
                 "error",
                 "error",

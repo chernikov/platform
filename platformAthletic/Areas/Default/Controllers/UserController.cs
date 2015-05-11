@@ -12,16 +12,24 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using platformAthletic.Helpers;
+using ManageAttribute;
+using System.Net;
+using System.Text.RegularExpressions;
+using platformAthletic.Tools.Video;
+using platformAthletic.Models.ViewModels;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
     public class UserController : DefaultController
     {
         protected string DestinationDir = "Media/files/avatars/";
+
+        protected string DestinationDirVideo = "Media/files/uservideos/";
+
         public ActionResult Index(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-           
+
             return View(user);
         }
 
@@ -46,7 +54,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult EditUserInfo(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user == null) 
+            if (user == null)
             {
                 return null;
             }
@@ -64,7 +72,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 Repository.UpdateUserInfo(user);
 
                 var list = Repository.UserFieldPositions.Where(p => p.UserID == user.ID).ToList();
-                foreach(var item in list) 
+                foreach (var item in list)
                 {
                     Repository.RemoveUserFieldPosition(item.ID);
                 }
@@ -82,7 +90,7 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(userInfoView);
         }
 
-        public ActionResult SaveUserField(int id, User.FieldType prop, string value) 
+        public ActionResult SaveUserField(int id, User.FieldType prop, string value)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null)
@@ -115,10 +123,22 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(user);
         }
 
+        public ActionResult UserVideo(int id)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user == null)
+            {
+                return null;
+            }
+            var list = user.UserVideos.ToList();
+            ViewBag.User = user;
+            return View(list);
+        }
+
         public ActionResult ChangeSbc(int id, SBCValue.SbcType type, double value)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null &&  user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditTeamData(CurrentUser))
             {
                 Repository.ChangeSbcValue(id, type, value);
                 var newUser = Repository.Users.FirstOrDefault(p => p.ID == id);
@@ -249,6 +269,131 @@ namespace platformAthletic.Areas.Default.Controllers
                 return new FineUploaderResult(false, error: ex.Message);
             }
             return new FineUploaderResult(true, new { fileUrl = "/" + DestinationDir + uFile });
+        }
+
+        [HttpGet]
+        public ActionResult UploadVideo(int id)
+        {
+            return View(new UserVideoView()
+            {
+                UserID = id
+            });
+        }
+
+        [HttpPost]
+        public ActionResult UploadVideo(UserVideoView userVideoView)
+        {
+            if (ModelState.IsValid)
+            {
+                var userVideo = (UserVideo)ModelMapper.Map(userVideoView, typeof(UserVideoView), typeof(UserVideo));
+                userVideo.ID = 0;
+                /*userVideo.UserID = CurrentUser.ID;*/
+                userVideo.VideoCode = VideoHelper.GetVideoByUrl(userVideo.VideoUrl, 800, 600);
+                if (!string.IsNullOrWhiteSpace(userVideo.VideoUrl))
+                {
+                    var url = VideoHelper.GetVideoThumbByUrl(userVideo.VideoUrl);
+                    var webClient = new WebClient();
+                    var bytes = webClient.DownloadData(url);
+                    var stream = new MemoryStream(bytes);
+
+                    var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
+                    userVideo.Preview = "/" + Path.Combine(DestinationDirVideo, uFile);
+                    var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
+
+                    ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
+
+                    Repository.CreateUserVideo(userVideo);
+                    return View("_OK");
+                }
+                else
+                {
+                    ModelState.AddModelError("VideoUrl", "Can't parse this link");
+                }
+                
+            }
+            return View("UploadVideoBody", userVideoView);
+        }
+
+
+        [TempAction]
+        public ActionResult GenerateUserVideos()
+        {
+            var regexTemplate = ".*http://www\\.youtube\\.com/watch\\?v=(?<code>.*?)\" target=\"_blank\">";
+
+            var listOfCodes = new List<string>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                var client = new WebClient();
+
+                var httpPage = client.DownloadString("http://randomyoutube.net/");
+
+                var regex = new Regex(regexTemplate);
+                var matches = regex.Match(httpPage);
+                if (matches.Success)
+                {
+                    var code = matches.Groups["code"].Value;
+                    listOfCodes.Add(code);
+                }
+            }
+            var counter = 0;
+            var random = new Random((int)DateTime.Now.Ticks);
+            var listOfVideos = new List<UserVideo>();
+            foreach (var code in listOfCodes)
+            {
+                var videoUrl = "http://www.youtube.com/watch?v=" + code;
+
+
+                var videoCode = VideoHelper.GetVideoByUrl(videoUrl, 800, 600);
+                try
+                {
+                    var url = VideoHelper.GetVideoThumbByUrl(videoUrl);
+                    var webClient = new WebClient();
+                    var bytes = webClient.DownloadData(url);
+                    var stream = new MemoryStream(bytes);
+
+                    var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
+                    var preview = "/" + Path.Combine(DestinationDirVideo, uFile);
+                    var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
+
+                    ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
+                    var userVideo = new UserVideo()
+                    {
+                        UserID = 0,
+                        Preview = preview,
+                        VideoUrl = videoUrl,
+                        VideoCode = videoCode,
+                        Header = "",
+                    };
+
+                    listOfVideos.Add(userVideo);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+
+            foreach (var user in Repository.TeamPlayersUsers.Where(p => !p.UserVideos.Any()))
+            {
+                counter++;
+                var count = random.Next(5) + 1;
+                for (int i = 0; i < count; i++)
+                {
+                    var video = listOfVideos.OrderBy(p => Guid.NewGuid()).First();
+
+                    var userVideo = new UserVideo()
+                    {
+                        UserID = user.ID,
+                        Preview = video.Preview,
+                        VideoUrl = video.VideoUrl,
+                        VideoCode = video.VideoCode,
+                        Header = GenerateData.Name.GetRandom() + " " + GenerateData.Team.GetRandom()
+                    };
+                    Repository.CreateUserVideo(userVideo);
+                }
+            }
+
+            return Content("OK");
         }
     }
 }

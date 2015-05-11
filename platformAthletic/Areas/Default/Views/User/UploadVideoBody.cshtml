@@ -1,0 +1,22 @@
+﻿@model UserVideoView
+@using (Html.BeginForm("UploadVideo", "User", FormMethod.Post, new { id = "UploadVideoForm", @class = "form-horizontal" }))
+{
+    @Html.Hidden("ID", Model.ID)
+    @Html.Hidden("UserID", Model.UserID)
+    <div class="form-group">
+        <label for="Header" class="col-sm-2 control-label">Header</label>
+        <div class="col-sm-10">
+            @Html.TextBox("Header", Model.Header, new { @class = "form-control", placeholder = "Header" })
+
+            @Html.ValidationMessage("Header")
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="VideoUrl" class="col-sm-2 control-label">Video</label>
+        <div class="col-sm-10">
+            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "like: https://www.youtube.com/watch?v=xfU5UXCxU04" })
+
+            @Html.ValidationMessage("VideoUrl")
+        </div>
+    </div>
+}

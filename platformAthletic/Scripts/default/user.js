@@ -32,6 +32,16 @@
         $(document).on("click", "#SbcWrapper .plus,#SbcWrapper .minus", function () {
             _this.changeSbc($(this));
         });
+
+        $("#UserVideoWrapper").mCustomScrollbar({ theme: "minimal-dark", axis: "x", setWidth: "100%" });
+
+        $(".videoUpload").click(function () {
+            _this.showUploadVideo();
+        });
+
+        $(document).on("click", "#SubmitUploadVideo", function () {
+            _this.uploadVideo();
+        });
     }
 
     this.drawPerformance = function () {
@@ -203,6 +213,33 @@
                 $("#SchoolRankWrapper").html(data);
             }
         });
+    }
+
+    this.showUploadVideo = function ()
+    {
+        $.ajax({
+            type: "GET",
+            url: "/user/UploadVideo",
+            data : {id : $("#UserID").val()},
+            success: function (data)
+            {
+                $("#ModalWrapper").html(data);
+                $("#uploadVideoModal").modal();
+            }
+        })
+    }
+
+    this.uploadVideo = function () {
+
+        $.ajax({
+            type: "POST",
+            url: "/user/UploadVideo",
+            data: $("#UploadVideoForm").serialize(),
+            success: function (data)
+            {
+                $("#UploadVideoBodyWrapper").html(data);
+            }
+        })
     }
 }
 
