@@ -9,25 +9,26 @@ using platformAthletic.Model;
 
 
 namespace platformAthletic.Models.ViewModels
-{ 
-	public class PostView
+{
+    public class PostView
     {
-        [PrimaryField]
-        [HiddenField]
         public int ID { get; set; }
 
-        [ShowIndex]
-        [HiddenField]
-		public int UserID {get; set; }
+        public int UserID { get; set; }
 
-        [TextBoxField]
-        [Required]
-        [ShowIndex]
-		public string Header {get; set; }
+        public string TitleImagePath { get; set; }
 
-        [HtmlTextField]
         [Required]
-		public string Text {get; set; }
+        public string Header { get; set; }
+
+        [Required]
+        public string Text { get; set; }
+
+        public bool Promoted { get; set; }
+
+        public string VideoUrl { get; set; }
+
+        public string VideoCode { get; set; }
 
     }
 }

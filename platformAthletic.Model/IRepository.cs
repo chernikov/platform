@@ -570,6 +570,8 @@ namespace platformAthletic.Model
         bool CreatePost(Post instance);
         
         bool UpdatePost(Post instance);
+
+        bool ViewPost(int idPost);
         
         bool RemovePost(int idPost);
         

@@ -6,23 +6,84 @@
 }
 @section header
 {
-    <script src="/Media/scripts/default/post.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/Media/scripts/default/logged-index.js"></script>
+    <script src="~/Scripts/default/post-index.js"></script>
 }
-<div class="user-home-page-wrp clear">
-    @if (banner != null)
-    {
-        <div class="left">
-            @Html.Raw(banner.Show)
+<div class="container-fluid">
+    <div class="side-body">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-3 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                    </ol>
+                </div>
+            </div>
         </div>
-    }
-    <div class="right all-transparent-wrp">
-        <div class="scroll-pane">
-            <div class="scroll-content clear">
-                @foreach (var post in Model.List)
+        <div class="row posts-wrapper">
+            <div class="col-lg-8">
+                @foreach (var item in Model.List)
                 {
-                    @Html.Partial("PostItem", post)
+                    if (item.User.InRoles("admin"))
+                    {
+                        <div class="post admin-post">
+                            <div class="pull-left author-icon">
+                                <img src="~/Content/img/admin-icon.png" />
+                            </div>
+                            <div class="pull-right date">
+                                <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
+                            </div>
+                            <h1>@item.Header @item.Header @item.Header @item.Header</h1>
+                            @if (!string.IsNullOrWhiteSpace(item.TitleImagePath))
+                            {
+                                <img src="@item.TitleImagePath" class="title-image img-rounded" />
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.VideoCode))
+                            {
+                                <div class="video-wrapper">
+                                    @Html.Raw(item.VideoCode)
+                                </div>
+                            }
+                            <div class="text">
+                                @Html.Raw(item.Text.NlToBr())
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="post user-post">
+                            <div class="user-icon">
+                                <img src="@item.User.AvatarPath?w=39&h=40&mode=crop">
+                            </div>
+
+                            <h1>@item.Header @item.Header @item.Header @item.Header</h1>
+                            <div class="date">
+                                <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
+                            </div>
+                            <hr />
+                            @if (!string.IsNullOrWhiteSpace(item.TitleImagePath))
+                            {
+                                <img src="@item.TitleImagePath" class="title-image img-rounded" />
+                            }
+                            @if (!string.IsNullOrWhiteSpace(item.VideoCode))
+                            {
+                                <div class="video-wrapper">
+                                    @Html.Raw(item.VideoCode)
+                                </div>
+                            }
+                            <div class="text">
+                                @Html.Raw(item.Text.NlToBr())
+                            </div>
+                        </div>
+                    }
                 }
+            </div>
+            <div class="col-lg-4">
+                <div class="promoted-wrapper">
+                    @Html.Action("Promoted", "Home")
+                    <div class="post-list-wrapper" id="PostListWrapper">
+                        @Html.Action("List", "Post")
+                    </div>
+                </div>
             </div>
         </div>
     </div>

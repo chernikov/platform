@@ -1,0 +1,106 @@
+﻿@model Post
+@{
+    ViewBag.Title = Model.Header;
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["left side banner"];
+}
+@section styles {
+    <link href="~/Content/fineuploader.css" rel="stylesheet" />
+}
+@section header
+{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/jquery.fineuploader-3.0.js"></script>
+    <script src="~/Scripts/default/post-index.js"></script>
+}
+<div class="container-fluid">
+    <div class="side-body">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-3 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/dashboard">@Model.Header</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row posts-wrapper">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div id="AddPostWrapper"></div>
+                </div>
+                @if (currentUser.InRoles("coach"))
+                {
+                    <div class="row margin-top">
+                        <div class="pull-right">
+                            <button class="btn btn-primary" id="AddPostBtn">ADD POST</button>
+                        </div>
+                    </div>
+                }
+                @if (Model.User.InRoles("admin"))
+                {
+                    <div class="post admin-post">
+                        <div class="pull-left author-icon">
+                            <img src="~/Content/img/admin-icon.png" />
+                        </div>
+                        <div class="pull-right date">
+                            <span class="glyphicon glyphicon-calendar"></span> @Model.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
+                        </div>
+                        <h1>@Model.Header</h1>
+                        @if (!string.IsNullOrWhiteSpace(Model.TitleImagePath))
+                        {
+                            <img src="@Model.TitleImagePath" class="title-image img-rounded" />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.VideoCode))
+                        {
+                            <div class="video-wrapper">
+                                @Html.Raw(Model.VideoCode)
+                            </div>
+                        }
+                        <div class="text">
+                            @Html.Raw(Model.Text.NlToBr())
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="post user-post">
+                        <div class="user-icon">
+                            <img src="@Model.User.AvatarPath?w=39&h=40&mode=crop">
+                        </div>
+
+                        <h1>@Model.Header</h1>
+                        <div class="date">
+                            <span class="glyphicon glyphicon-calendar"></span> @Model.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
+                        </div>
+                        <hr />
+                        @if (!string.IsNullOrWhiteSpace(Model.TitleImagePath))
+                        {
+                            <img src="@Model.TitleImagePath" class="title-image img-rounded" />
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.VideoCode))
+                        {
+                            <div class="video-wrapper">
+                                @Html.Raw(Model.VideoCode)
+                            </div>
+                        }
+                        <div class="text">
+                            @Html.Raw(Model.Text.NlToBr())
+                        </div>
+                    </div>
+                }
+                }
+            </div>
+            <div class="col-lg-4">
+                <div class="promoted-wrapper">
+                    @Html.Action("Promoted", "Home")
+                    <div class="post-list-wrapper" id="PostListWrapper">
+                        @Html.Action("List", "Post")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -100,9 +100,17 @@
                 </table>
                 <div class="text-center">
                     <ul class="pagination">
+                        @if (Model.PageNo > 1)
+                        {
+                            <li class="@(Model.PageNo == 1 ? "disable" : "")"><a href="@Url.Action("Index", new { groupId, selectedDate = date, page = Model.PageNo - 1})" class="arrow-left"><span></span></a></li>
+                        }
                         @for (int i = 1; i <= Model.CountPage; i++)
                         {
                             <li class="@(i == Model.PageNo ? "active": "")"><a href="@Url.Action("Index", new { groupId, selectedDate = date, page = i})">@i</a></li>
+                        }
+                        @if (Model.PageNo < Model.CountPage)
+                        {
+                            <li class="@(Model.PageNo == Model.CountPage ? "disable" : "")"><a href="@Url.Action("Index", new { groupId, selectedDate = date, page = Model.PageNo + 1})" class="arrow-right"><span></span></a></li>
                         }
                     </ul>
                 </div>
@@ -111,4 +119,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> 

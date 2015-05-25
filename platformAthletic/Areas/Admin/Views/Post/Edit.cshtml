@@ -5,50 +5,49 @@
 }
 @section header
 {
-    <script type="text/javascript" src="/Media/scripts/admin/file-upload.js"></script>
+    <link href="~/Content/fineuploader.css" rel="stylesheet" />
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/jquery.fineuploader-3.0.js"></script>
+    <script src="~/Scripts/default/admin-post-index.js"></script>
 }
 <h2>@(Model.ID == 0 ? "Add Post" : "Edit Post")</h2>
 <p></p>
-@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { id = "EditPostForm" }))
 {
-	<fieldset>
-		@Html.Hidden("ID", Model.ID)
-		@Html.Hidden("UserID", Model.UserID)
-
-		<div class="control-group">
-            <label class="control-label" for="Header">
-                Header
-			</label>
+    @Html.Hidden("ID", Model.ID)
+    @Html.Hidden("TitleImagePath", Model.TitleImagePath)
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="Name">
+                Title
+            </label>
             <div class="controls">
-				@Html.TextBox("Header", Model.Header)
-				@Html.ValidationMessage("Header")
-            </div>
-        </div>
-		<div class="control-group">
-            <label class="control-label" for="Text">
-                Text
-			</label>
-            <div class="controls">
-				@Html.TextArea("Text", Model.Text, new {@class = "htmltext"})
-				@Html.ValidationMessage("Text")
+                @Html.TextBox("Header", Model.Header, new { @class = "form-control", placeholder = "Title" })
+                @Html.ValidationMessage("Header")
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="Text">
-                Images
-            </label>
-            <div id="UploadImage">
-                Upload 
-            </div>
+
+            <div class="btn btn-primary" id="AddImage">ADD TITLE IMAGE</div>
+
+            <div class="btn btn-primary" id="AddVideo">ADD VIDEO</div>
         </div>
-        <ul class="thumbnails">
-            @Html.Action("Index", "File", new { page = 1 })
-        </ul>
-	   <div class="form-actions">
-            <button type="submit" class="btn btn-primary">
-                Save
-			</button>
-            @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn" })
+        <div class="control-group">
+            <img src="@Model.TitleImagePath?w=400&h=300&mode=crop&scale=both" id="ImagePreview" style="display: @(!string.IsNullOrWhiteSpace(Model.TitleImagePath) ? "" : "none")" />
+            <br />
+            <div class="btn btn-default margin-top" style="display: @(!string.IsNullOrWhiteSpace(Model.TitleImagePath) ? "" : "none")" id="RemoveTitleImage">REMOVE TITLE IMAGE</div>
         </div>
-	</fieldset>
+
+        <div class="control-group" style="@(!string.IsNullOrWhiteSpace(Model.VideoCode) ? "" : "display:none;")" id="VideoCodeWrapper">
+            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Youtube url" })
+        </div>
+        <div class="control-group">
+
+            @Html.TextArea("Text", Model.Text, new { @class = "form-control" })
+        </div>
+        <div class="control-group">
+            <button type="submit" class="btn btn-primary">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>
+            <a href="@Url.Action("Index")" class="btn btn-default">CANCEL</a>
+        </div>
+    </fieldset>
 }

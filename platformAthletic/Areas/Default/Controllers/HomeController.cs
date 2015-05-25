@@ -35,7 +35,12 @@ namespace platformAthletic.Areas.Default.Controllers
 
                         var list = Repository.Posts.Where(p => p.UserID == coach.ID || admins.Contains(p.UserID)).OrderByDescending(p => p.ID);
                         var data = new PageableData<Post>();
-                        data.Init(list, page, "Index");
+                        data.Init(list, page, "Index", itemPerPage : 2);
+
+                        foreach (var item in data.List)
+                        {
+                            Repository.ViewPost(item.ID);
+                        }
                         return View("Team", data);
                     }
                 }
@@ -45,7 +50,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
                     var list = Repository.Posts.Where(p => admins.Contains(p.UserID)).OrderByDescending(p => p.ID);
                     var data = new PageableData<Post>();
-                    data.Init(list, page, "Index");
+                    data.Init(list, page, "Index", itemPerPage: 2);
+                    foreach (var item in data.List)
+                    {
+                        Repository.ViewPost(item.ID);
+                    }
                     return View("Individual", data);
                 }
             }
@@ -219,6 +228,12 @@ namespace platformAthletic.Areas.Default.Controllers
                 Repository.RemovePost(post.ID);
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Promoted()
+        {
+            var post = Repository.Posts.OrderByDescending(p => p.AddedDate).FirstOrDefault(p => p.Promoted);
+            return View(post);
         }
 
         public ActionResult Test()

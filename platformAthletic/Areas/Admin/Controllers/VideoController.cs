@@ -99,5 +99,7 @@ namespace platformAthletic.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
     }
 }

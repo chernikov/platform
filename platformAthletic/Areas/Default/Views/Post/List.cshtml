@@ -1,0 +1,30 @@
+﻿@model PageableData<Post>
+<ul class="list">
+    @foreach (var item in Model.List)
+    {
+        <li class="item">
+            <a href="@Url.Action("Index", "Post", new { id = item.ID})">
+                <div class="image">
+                    @if (!string.IsNullOrWhiteSpace(item.TitleImagePath))
+                    {
+                        <img src="@item.TitleImagePath?w=78&h=52&mode=crop" />
+                    }
+                    else if (!string.IsNullOrWhiteSpace(item.VideoPreview))
+                    {
+                        <div class="video-icon"></div>
+                        <img src="@item.VideoPreview?w=78&h=52&mode=crop" />
+                    }
+                </div>
+                <div class="content">
+                    <div class="date">@item.AddedDate.ToString("MMM dd")</div>
+                    <h1>@item.Header</h1>
+                </div>
+            </a>
+        </li>
+    }
+</ul>
+<div class="text-center">
+    <ul class="post-pagination" id="ListPostPagination">
+        @Html.PageLinkBootstrap(Model.PageNo, Model.CountPage, x => Url.Action("List", "Post", new { page = x }))
+    </ul>
+</div>

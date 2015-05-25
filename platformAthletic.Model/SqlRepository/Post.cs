@@ -22,6 +22,7 @@ namespace platformAthletic.Model
             if (instance.ID == 0)
             {
                 instance.AddedDate = CurrentDateTime;
+                instance.TitleImagePath = instance.TitleImagePath ?? "";
                 Db.Posts.InsertOnSubmit(instance);
                 Db.Posts.Context.SubmitChanges();
                 return true;
@@ -38,6 +39,25 @@ namespace platformAthletic.Model
 				cache.UserID = instance.UserID;
 				cache.Header = instance.Header;
 				cache.Text = instance.Text;
+                cache.TitleImagePath = instance.TitleImagePath;
+                cache.Promoted = instance.Promoted;
+                cache.IsVideo = instance.IsVideo;
+                cache.VideoUrl = instance.VideoUrl;
+                cache.VideoCode = instance.VideoCode;
+                cache.VideoPreview = instance.VideoPreview;
+                Db.Posts.Context.SubmitChanges();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ViewPost(int idPost)
+        {
+            var cache = Db.Posts.FirstOrDefault(p => p.ID == idPost);
+            if (cache != null)
+            {
+                cache.CountOfView++;
                 Db.Posts.Context.SubmitChanges();
                 return true;
             }

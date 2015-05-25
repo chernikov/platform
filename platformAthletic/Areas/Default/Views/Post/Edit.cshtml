@@ -1,0 +1,32 @@
+﻿@model PostView
+
+<div class="edit-post-wrapper">
+    @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { id = "EditPostForm" }))
+    {
+        @Html.Hidden("ID", Model.ID)
+        @Html.Hidden("TitleImagePath", Model.TitleImagePath)
+        <div class="form-group">
+            @Html.TextBox("Header", Model.Header, new { @class = "form-control", placeholder = "Title" })
+        </div>
+        <div class="form-group">
+            <div class="btn btn-primary" id="AddImage">ADD TITLE IMAGE</div>
+
+            <div class="btn btn-primary" id="AddVideo">ADD VIDEO</div>
+        </div>
+        <div class="form-group">
+            <img src="@Model.TitleImagePath?w=400&h=300&mode=crop&scale=both" id="ImagePreview" style="display: @(!string.IsNullOrWhiteSpace(Model.TitleImagePath) ? "" : "none")" />
+            <br />
+            <div class="btn btn-default margin-top" style="display: @(!string.IsNullOrWhiteSpace(Model.TitleImagePath) ? "" : "none")" id="RemoveTitleImage">REMOVE TITLE IMAGE</div>
+        </div>
+        <div class="form-group" style="@(!string.IsNullOrWhiteSpace(Model.VideoCode) ? "" : "display:none;")" id="VideoCodeWrapper">
+            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Youtube url" })
+        </div>
+        <div class="form-group">
+            @Html.TextArea("Text", Model.Text, new { @class = "form-control" })
+        </div>
+        <div class="form-group pull-right">
+            <button type="submit" class="btn btn-primary" id="SubmitEditPostBtn">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>
+            <button type="submit" class="btn btn-default" id="CancelEditPostBtn">CANCEL</button>
+        </div>
+    }
+</div>

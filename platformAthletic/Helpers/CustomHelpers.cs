@@ -139,6 +139,19 @@ namespace platformAthletic.Helpers
         {
             var builder = new StringBuilder();
             var liBuilder = new TagBuilder("li");
+
+            if (currentPage > 1)
+            {
+                var subLeftArrowBuilderA = new TagBuilder("a");
+                subLeftArrowBuilderA.InnerHtml = "<span></span>";
+                subLeftArrowBuilderA.AddCssClass("arrow-left");
+                if (currentPage - 1 > 0)
+                {
+                    subLeftArrowBuilderA.MergeAttribute("href", pageUrl.Invoke(currentPage - 1));
+                }
+                liBuilder.InnerHtml = subLeftArrowBuilderA.ToString();
+                builder.AppendLine(liBuilder.ToString());
+            }
             for (int i = 1; i <= totalPages; i++)
             {
                 if (((i <= 3) || (i > (totalPages - 3))) || ((i > (currentPage - 2)) && (i < (currentPage + 2))))
@@ -169,9 +182,19 @@ namespace platformAthletic.Helpers
                     builder.AppendLine(liBuilder.ToString());
                 }
             }
-            
-            ;
-
+            if (currentPage < totalPages)
+            {
+                liBuilder = new TagBuilder("li");
+                var subRightArrowBuilderA = new TagBuilder("a");
+                subRightArrowBuilderA.AddCssClass("arrow-right");
+                subRightArrowBuilderA.InnerHtml = "<span></span>";
+                if (currentPage < totalPages)
+                {
+                    subRightArrowBuilderA.MergeAttribute("href", pageUrl.Invoke(currentPage + 1));
+                }
+                liBuilder.InnerHtml = subRightArrowBuilderA.ToString();
+                builder.AppendLine(liBuilder.ToString());
+            }
             return new MvcHtmlString(builder.ToString());
         }
     }
