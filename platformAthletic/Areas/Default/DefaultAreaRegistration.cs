@@ -206,7 +206,7 @@ namespace platformAthletic.Areas.Default
             context.MapRoute(
                 null,
                 "equipment",
-                new { controller = "Account", action = "Equipment" },
+                new { controller = "Equipment", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

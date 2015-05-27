@@ -3085,3 +3085,38 @@ hr.video {
 .form-settings-wrapper .setting-control h3 {
     margin-top: 10px;
 }
+
+.equipment-wrapper {
+    background : #eee;
+}
+.equipment-wrapper h2 {
+      font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #495b6c;
+    font-size: 20px;
+}
+
+.equipment-wrapper hr {
+    border-top: 1px solid #dadcde;
+}
+
+
+.equipment-wrapper .item {
+    margin-bottom : 20px;
+}
+.equipment-wrapper .item label {
+    margin : 5px 0 5px 0;
+      font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #495b6c;
+}
+
+.equipment-wrapper .item label input {
+    margin-right : 10px;
+}
+
+.equipment-wrapper .equiment-panel {
+    height: -moz-calc(100% - 320px);
+    height: -webkit-calc(100% - 320px);
+    height: calc(100% - 320px);
+}

@@ -1,0 +1,66 @@
+﻿@model SelectedEquipmentList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+}
+
+@section styles {
+    <link href="~/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
+}
+
+@section header {
+    <script src="~/Scripts/jquery.mCustomScrollbar.js"></script>
+    <script src="~/Scripts/default/equipment.js"></script>
+}
+<div class="container-fluid fixed">
+    <div class="side-body height">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/settings">Settings</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row settings-wrapper height">
+            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+                @Html.Partial("SettingMenu")
+            </div>
+            <div class="col-lg-10 col-md-10 equipment-wrapper height">
+                <h2>Equipment Log</h2>
+                <hr />
+                @using (Html.BeginForm("Index", "Equipment", FormMethod.Post, new {@class="height" }))
+                {
+                    <div class="equiment-panel">
+                        <div class="row height" id="EquipmentWrapper">
+                            @foreach (var item in Model.List)
+                            {
+                                <div class="item col-lg-4 col-md-6 col-sm-12">
+                                    @{
+                                var guid = Guid.NewGuid();
+                                    }
+                                    @Html.Hidden("List.index", guid.ToString("N"))
+                                    @Html.Hidden("List[" + guid.ToString("N") + "].Equipment.ID", item.Equipment.ID)
+                                    @Html.Hidden("List[" + guid.ToString("N") + "].Equipment.Name", item.Equipment.Name)
+                                    @Html.Hidden("List[" + guid.ToString("N") + "].Equipment.ImagePath", item.Equipment.ImagePath)
+                                    <div class="image">
+                                        <img src="@item.Equipment.FullImagePath" alt="@item.Equipment.Name" class="img-thumbnail" />
+                                    </div>
+                                    <label>
+                                        @Html.CheckBox("List[" + guid.ToString("N") + "].Select", item.Select)@item.Equipment.Name
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center margin-top">
+                        <button class="btn btn-primary btn-lg">SUBMIT</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

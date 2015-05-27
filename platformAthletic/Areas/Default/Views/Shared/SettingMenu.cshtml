@@ -1,10 +1,16 @@
-﻿<h1>Settings </h1>
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var controllerName = ViewContext.RequestContext.RouteData.Values["controller"] as string;
+    var actionName = ViewContext.RequestContext.RouteData.Values["action"] as string;
+}
+
+<h1>Settings </h1>
 <ul class="nav">
-    <li class="open">
+    <li class="@(controllerName == "Setting" ? "open" : "")">
         <a href="/settings">Settings and Info</a>
     </li>
-    <li>
-        <a href="/settings">Equipment Log</a>
+    <li class="@(controllerName == "Equipment" ? "open" : "")">
+        <a href="/equipment">Equipment Log</a>
     </li>
     <li>
         <a href="/settings">Billing</a>
