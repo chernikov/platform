@@ -8,6 +8,7 @@
     [PrimaryColor]   NVARCHAR (10)  NOT NULL,
     [SecondaryColor] NVARCHAR (10)  NOT NULL,
     [SBCControl]     INT            NOT NULL,
+	[SBCAttendance]  INT            NOT NULL DEFAULT 0,
 	[MaxCount] INT DEFAULT 100 NOT NULL,
     CONSTRAINT [PK_Team] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_Team_State] FOREIGN KEY ([StateID]) REFERENCES [dbo].[State] ([ID]),

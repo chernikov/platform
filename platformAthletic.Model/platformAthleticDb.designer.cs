@@ -165,18 +165,12 @@ namespace platformAthletic.Model
     partial void InsertLevel(Level instance);
     partial void UpdateLevel(Level instance);
     partial void DeleteLevel(Level instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertUserFieldPosition(UserFieldPosition instance);
     partial void UpdateUserFieldPosition(UserFieldPosition instance);
     partial void DeleteUserFieldPosition(UserFieldPosition instance);
     partial void InsertSchool(School instance);
     partial void UpdateSchool(School instance);
     partial void DeleteSchool(School instance);
-    partial void InsertTeam(Team instance);
-    partial void UpdateTeam(Team instance);
-    partial void DeleteTeam(Team instance);
     partial void InsertUserSeason(UserSeason instance);
     partial void UpdateUserSeason(UserSeason instance);
     partial void DeleteUserSeason(UserSeason instance);
@@ -195,6 +189,12 @@ namespace platformAthletic.Model
     partial void InsertPost(Post instance);
     partial void UpdatePost(Post instance);
     partial void DeletePost(Post instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertTeam(Team instance);
+    partial void UpdateTeam(Team instance);
+    partial void DeleteTeam(Team instance);
     #endregion
 		
 		public platformAthleticDbDataContext() : 
@@ -587,14 +587,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<UserFieldPosition> UserFieldPositions
 		{
 			get
@@ -608,14 +600,6 @@ namespace platformAthletic.Model
 			get
 			{
 				return this.GetTable<School>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Team> Teams
-		{
-			get
-			{
-				return this.GetTable<Team>();
 			}
 		}
 		
@@ -664,6 +648,22 @@ namespace platformAthletic.Model
 			get
 			{
 				return this.GetTable<Post>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Team> Teams
+		{
+			get
+			{
+				return this.GetTable<Team>();
 			}
 		}
 	}
@@ -4421,9 +4421,9 @@ namespace platformAthletic.Model
 		
 		private System.DateTime _AddedDate;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<UserSeason> _UserSeason;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4441,8 +4441,8 @@ namespace platformAthletic.Model
 		
 		public UserAttendance()
 		{
-			this._User = default(EntityRef<User>);
 			this._UserSeason = default(EntityRef<UserSeason>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -4534,40 +4534,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAttendance", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.UserAttendances.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.UserAttendances.Add(this);
-						this._UserID = value.ID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserSeason_UserAttendance", Storage="_UserSeason", ThisKey="UserSeasonID", OtherKey="ID", IsForeignKey=true)]
 		public UserSeason UserSeason
 		{
@@ -4598,6 +4564,40 @@ namespace platformAthletic.Model
 						this._UserSeasonID = default(int);
 					}
 					this.SendPropertyChanged("UserSeason");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAttendance", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.UserAttendances.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.UserAttendances.Add(this);
+						this._UserID = value.ID;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -6403,9 +6403,9 @@ namespace platformAthletic.Model
 		
 		private int _Value;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<PillarType> _PillarType;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6427,8 +6427,8 @@ namespace platformAthletic.Model
 		
 		public UserPillar()
 		{
-			this._User = default(EntityRef<User>);
 			this._PillarType = default(EntityRef<PillarType>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -6560,40 +6560,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserPillar", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.UserPillars.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.UserPillars.Add(this);
-						this._UserID = value.ID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PillarType_UserPillar", Storage="_PillarType", ThisKey="PillarTypeID", OtherKey="ID", IsForeignKey=true)]
 		public PillarType PillarType
 		{
@@ -6624,6 +6590,40 @@ namespace platformAthletic.Model
 						this._PillarTypeID = default(int);
 					}
 					this.SendPropertyChanged("PillarType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserPillar", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.UserPillars.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.UserPillars.Add(this);
+						this._UserID = value.ID;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -7871,9 +7871,9 @@ namespace platformAthletic.Model
 		
 		private EntityRef<Macrocycle> _Macrocycle;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<UserSeason> _UserSeason;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -7894,8 +7894,8 @@ namespace platformAthletic.Model
 		public PersonalSchedule()
 		{
 			this._Macrocycle = default(EntityRef<Macrocycle>);
-			this._User = default(EntityRef<User>);
 			this._UserSeason = default(EntityRef<UserSeason>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -8045,40 +8045,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PersonalSchedule", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.PersonalSchedules.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.PersonalSchedules.Add(this);
-						this._UserID = value.ID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserSeason_PersonalSchedule", Storage="_UserSeason", ThisKey="UserSeasonID", OtherKey="ID", IsForeignKey=true)]
 		public UserSeason UserSeason
 		{
@@ -8109,6 +8075,40 @@ namespace platformAthletic.Model
 						this._UserSeasonID = default(int);
 					}
 					this.SendPropertyChanged("UserSeason");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PersonalSchedule", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.PersonalSchedules.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.PersonalSchedules.Add(this);
+						this._UserID = value.ID;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -8156,9 +8156,9 @@ namespace platformAthletic.Model
 		
 		private EntityRef<Group> _Group;
 		
-		private EntityRef<Team> _Team;
-		
 		private EntityRef<UserSeason> _UserSeason;
+		
+		private EntityRef<Team> _Team;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -8182,8 +8182,8 @@ namespace platformAthletic.Model
 		{
 			this._Macrocycle = default(EntityRef<Macrocycle>);
 			this._Group = default(EntityRef<Group>);
-			this._Team = default(EntityRef<Team>);
 			this._UserSeason = default(EntityRef<UserSeason>);
+			this._Team = default(EntityRef<Team>);
 			OnCreated();
 		}
 		
@@ -8391,40 +8391,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Schedule", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.Schedules.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.Schedules.Add(this);
-						this._TeamID = value.ID;
-					}
-					else
-					{
-						this._TeamID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserSeason_Schedule", Storage="_UserSeason", ThisKey="UserSeasonID", OtherKey="ID", IsForeignKey=true)]
 		public UserSeason UserSeason
 		{
@@ -8455,6 +8421,40 @@ namespace platformAthletic.Model
 						this._UserSeasonID = default(int);
 					}
 					this.SendPropertyChanged("UserSeason");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Schedule", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.Schedules.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.Schedules.Add(this);
+						this._TeamID = value.ID;
+					}
+					else
+					{
+						this._TeamID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Team");
 				}
 			}
 		}
@@ -9232,9 +9232,9 @@ namespace platformAthletic.Model
 		
 		private EntitySet<Schedule> _Schedules;
 		
-		private EntitySet<User> _Users;
-		
 		private EntitySet<UserSeason> _UserSeasons;
+		
+		private EntitySet<User> _Users;
 		
 		private EntityRef<Team> _Team;
 		
@@ -9253,8 +9253,8 @@ namespace platformAthletic.Model
 		public Group()
 		{
 			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._UserSeasons = new EntitySet<UserSeason>(new Action<UserSeason>(this.attach_UserSeasons), new Action<UserSeason>(this.detach_UserSeasons));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._Team = default(EntityRef<Team>);
 			OnCreated();
 		}
@@ -9336,19 +9336,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Users", ThisKey="ID", OtherKey="GroupID")]
-		public EntitySet<User> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_UserSeason", Storage="_UserSeasons", ThisKey="ID", OtherKey="GroupID")]
 		public EntitySet<UserSeason> UserSeasons
 		{
@@ -9359,6 +9346,19 @@ namespace platformAthletic.Model
 			set
 			{
 				this._UserSeasons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Users", ThisKey="ID", OtherKey="GroupID")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
 			}
 		}
 		
@@ -9428,18 +9428,6 @@ namespace platformAthletic.Model
 			entity.Group = null;
 		}
 		
-		private void attach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = this;
-		}
-		
-		private void detach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = null;
-		}
-		
 		private void attach_UserSeasons(UserSeason entity)
 		{
 			this.SendPropertyChanging();
@@ -9447,6 +9435,18 @@ namespace platformAthletic.Model
 		}
 		
 		private void detach_UserSeasons(UserSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = null;
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = this;
+		}
+		
+		private void detach_Users(User entity)
 		{
 			this.SendPropertyChanging();
 			entity.Group = null;
@@ -9912,1423 +9912,6 @@ namespace platformAthletic.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Email;
-		
-		private string _Password;
-		
-		private System.DateTime _AddedDate;
-		
-		private System.Nullable<System.DateTime> _ActivatedDate;
-		
-		private string _ActivatedLink;
-		
-		private System.DateTime _LastVisitDate;
-		
-		private string _AvatarPath;
-		
-		private string _FirstName;
-		
-		private string _LastName;
-		
-		private System.Nullable<System.DateTime> _PaidTill;
-		
-		private string _PhoneNumber;
-		
-		private System.Nullable<int> _PlayerOfTeamID;
-		
-		private System.Nullable<int> _GroupID;
-		
-		private System.Nullable<bool> _VisitGettingStartedPage;
-		
-		private System.Nullable<int> _Year;
-		
-		private double _Squat;
-		
-		private double _Bench;
-		
-		private double _Clean;
-		
-		private string _Height;
-		
-		private string _Weight;
-		
-		private string _BodyFat;
-		
-		private System.Nullable<double> @__40YardDash;
-		
-		private System.Nullable<double> _Vertical;
-		
-		private System.Nullable<double> @__3Cone;
-		
-		private System.Nullable<double> _TDrill;
-		
-		private string _PrimaryColor;
-		
-		private string _SecondaryColor;
-		
-		private System.Nullable<System.DateTime> _LoginInfoSent;
-		
-		private System.Nullable<System.DateTime> _AttendanceStartDate;
-		
-		private System.Nullable<System.DateTime> _ProgressStartDate;
-		
-		private System.Nullable<System.DateTime> _Birthday;
-		
-		private bool _Gender;
-		
-		private System.Nullable<int> _LevelID;
-		
-		private System.Nullable<int> _GradYear;
-		
-		private bool _IsDeleted;
-		
-		private EntitySet<UserEquipment> _UserEquipments;
-		
-		private EntitySet<UserRole> _UserRoles;
-		
-		private EntitySet<UserAttendance> _UserAttendances;
-		
-		private EntitySet<BillingInfo> _BillingInfos;
-		
-		private EntitySet<UserPillar> _UserPillars;
-		
-		private EntitySet<PaymentDetail> _PaymentDetails;
-		
-		private EntitySet<PersonalSchedule> _PersonalSchedules;
-		
-		private EntitySet<Invoice> _Invoices;
-		
-		private EntitySet<UserFieldPosition> _UserFieldPositions;
-		
-		private EntitySet<Team> _Teams;
-		
-		private EntitySet<UserSeason> _UserSeasons;
-		
-		private EntitySet<SBCValue> _SBCValues;
-		
-		private EntitySet<UserVideo> _UserVideos;
-		
-		private EntitySet<Post> _Posts;
-		
-		private EntityRef<Group> _Group;
-		
-		private EntityRef<Level> _Level;
-		
-		private EntityRef<Team> _Team;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnAddedDateChanging(System.DateTime value);
-    partial void OnAddedDateChanged();
-    partial void OnActivatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnActivatedDateChanged();
-    partial void OnActivatedLinkChanging(string value);
-    partial void OnActivatedLinkChanged();
-    partial void OnLastVisitDateChanging(System.DateTime value);
-    partial void OnLastVisitDateChanged();
-    partial void OnAvatarPathChanging(string value);
-    partial void OnAvatarPathChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnPaidTillChanging(System.Nullable<System.DateTime> value);
-    partial void OnPaidTillChanged();
-    partial void OnPhoneNumberChanging(string value);
-    partial void OnPhoneNumberChanged();
-    partial void OnPlayerOfTeamIDChanging(System.Nullable<int> value);
-    partial void OnPlayerOfTeamIDChanged();
-    partial void OnGroupIDChanging(System.Nullable<int> value);
-    partial void OnGroupIDChanged();
-    partial void OnVisitGettingStartedPageChanging(System.Nullable<bool> value);
-    partial void OnVisitGettingStartedPageChanged();
-    partial void OnYearChanging(System.Nullable<int> value);
-    partial void OnYearChanged();
-    partial void OnSquatChanging(double value);
-    partial void OnSquatChanged();
-    partial void OnBenchChanging(double value);
-    partial void OnBenchChanged();
-    partial void OnCleanChanging(double value);
-    partial void OnCleanChanged();
-    partial void OnHeightChanging(string value);
-    partial void OnHeightChanged();
-    partial void OnWeightChanging(string value);
-    partial void OnWeightChanged();
-    partial void OnBodyFatChanging(string value);
-    partial void OnBodyFatChanged();
-    partial void On_40YardDashChanging(System.Nullable<double> value);
-    partial void On_40YardDashChanged();
-    partial void OnVerticalChanging(System.Nullable<double> value);
-    partial void OnVerticalChanged();
-    partial void On_3ConeChanging(System.Nullable<double> value);
-    partial void On_3ConeChanged();
-    partial void OnTDrillChanging(System.Nullable<double> value);
-    partial void OnTDrillChanged();
-    partial void OnPrimaryColorChanging(string value);
-    partial void OnPrimaryColorChanged();
-    partial void OnSecondaryColorChanging(string value);
-    partial void OnSecondaryColorChanged();
-    partial void OnLoginInfoSentChanging(System.Nullable<System.DateTime> value);
-    partial void OnLoginInfoSentChanged();
-    partial void OnAttendanceStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnAttendanceStartDateChanged();
-    partial void OnProgressStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnProgressStartDateChanged();
-    partial void OnBirthdayChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthdayChanged();
-    partial void OnGenderChanging(bool value);
-    partial void OnGenderChanged();
-    partial void OnLevelIDChanging(System.Nullable<int> value);
-    partial void OnLevelIDChanged();
-    partial void OnGradYearChanging(System.Nullable<int> value);
-    partial void OnGradYearChanged();
-    partial void OnIsDeletedChanging(bool value);
-    partial void OnIsDeletedChanged();
-    #endregion
-		
-		public User()
-		{
-			this._UserEquipments = new EntitySet<UserEquipment>(new Action<UserEquipment>(this.attach_UserEquipments), new Action<UserEquipment>(this.detach_UserEquipments));
-			this._UserRoles = new EntitySet<UserRole>(new Action<UserRole>(this.attach_UserRoles), new Action<UserRole>(this.detach_UserRoles));
-			this._UserAttendances = new EntitySet<UserAttendance>(new Action<UserAttendance>(this.attach_UserAttendances), new Action<UserAttendance>(this.detach_UserAttendances));
-			this._BillingInfos = new EntitySet<BillingInfo>(new Action<BillingInfo>(this.attach_BillingInfos), new Action<BillingInfo>(this.detach_BillingInfos));
-			this._UserPillars = new EntitySet<UserPillar>(new Action<UserPillar>(this.attach_UserPillars), new Action<UserPillar>(this.detach_UserPillars));
-			this._PaymentDetails = new EntitySet<PaymentDetail>(new Action<PaymentDetail>(this.attach_PaymentDetails), new Action<PaymentDetail>(this.detach_PaymentDetails));
-			this._PersonalSchedules = new EntitySet<PersonalSchedule>(new Action<PersonalSchedule>(this.attach_PersonalSchedules), new Action<PersonalSchedule>(this.detach_PersonalSchedules));
-			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
-			this._UserFieldPositions = new EntitySet<UserFieldPosition>(new Action<UserFieldPosition>(this.attach_UserFieldPositions), new Action<UserFieldPosition>(this.detach_UserFieldPositions));
-			this._Teams = new EntitySet<Team>(new Action<Team>(this.attach_Teams), new Action<Team>(this.detach_Teams));
-			this._UserSeasons = new EntitySet<UserSeason>(new Action<UserSeason>(this.attach_UserSeasons), new Action<UserSeason>(this.detach_UserSeasons));
-			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
-			this._UserVideos = new EntitySet<UserVideo>(new Action<UserVideo>(this.attach_UserVideos), new Action<UserVideo>(this.detach_UserVideos));
-			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
-			this._Group = default(EntityRef<Group>);
-			this._Level = default(EntityRef<Level>);
-			this._Team = default(EntityRef<Team>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime AddedDate
-		{
-			get
-			{
-				return this._AddedDate;
-			}
-			set
-			{
-				if ((this._AddedDate != value))
-				{
-					this.OnAddedDateChanging(value);
-					this.SendPropertyChanging();
-					this._AddedDate = value;
-					this.SendPropertyChanged("AddedDate");
-					this.OnAddedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ActivatedDate
-		{
-			get
-			{
-				return this._ActivatedDate;
-			}
-			set
-			{
-				if ((this._ActivatedDate != value))
-				{
-					this.OnActivatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ActivatedDate = value;
-					this.SendPropertyChanged("ActivatedDate");
-					this.OnActivatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivatedLink", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ActivatedLink
-		{
-			get
-			{
-				return this._ActivatedLink;
-			}
-			set
-			{
-				if ((this._ActivatedLink != value))
-				{
-					this.OnActivatedLinkChanging(value);
-					this.SendPropertyChanging();
-					this._ActivatedLink = value;
-					this.SendPropertyChanged("ActivatedLink");
-					this.OnActivatedLinkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastVisitDate", DbType="DateTime NOT NULL")]
-		public System.DateTime LastVisitDate
-		{
-			get
-			{
-				return this._LastVisitDate;
-			}
-			set
-			{
-				if ((this._LastVisitDate != value))
-				{
-					this.OnLastVisitDateChanging(value);
-					this.SendPropertyChanging();
-					this._LastVisitDate = value;
-					this.SendPropertyChanged("LastVisitDate");
-					this.OnLastVisitDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvatarPath", DbType="NVarChar(150)")]
-		public string AvatarPath
-		{
-			get
-			{
-				return this._AvatarPath;
-			}
-			set
-			{
-				if ((this._AvatarPath != value))
-				{
-					this.OnAvatarPathChanging(value);
-					this.SendPropertyChanging();
-					this._AvatarPath = value;
-					this.SendPropertyChanged("AvatarPath");
-					this.OnAvatarPathChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(500)")]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(500)")]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidTill", DbType="DateTime")]
-		public System.Nullable<System.DateTime> PaidTill
-		{
-			get
-			{
-				return this._PaidTill;
-			}
-			set
-			{
-				if ((this._PaidTill != value))
-				{
-					this.OnPaidTillChanging(value);
-					this.SendPropertyChanging();
-					this._PaidTill = value;
-					this.SendPropertyChanged("PaidTill");
-					this.OnPaidTillChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(50)")]
-		public string PhoneNumber
-		{
-			get
-			{
-				return this._PhoneNumber;
-			}
-			set
-			{
-				if ((this._PhoneNumber != value))
-				{
-					this.OnPhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._PhoneNumber = value;
-					this.SendPropertyChanged("PhoneNumber");
-					this.OnPhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerOfTeamID", DbType="Int")]
-		public System.Nullable<int> PlayerOfTeamID
-		{
-			get
-			{
-				return this._PlayerOfTeamID;
-			}
-			set
-			{
-				if ((this._PlayerOfTeamID != value))
-				{
-					if (this._Team.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPlayerOfTeamIDChanging(value);
-					this.SendPropertyChanging();
-					this._PlayerOfTeamID = value;
-					this.SendPropertyChanged("PlayerOfTeamID");
-					this.OnPlayerOfTeamIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupID", DbType="Int")]
-		public System.Nullable<int> GroupID
-		{
-			get
-			{
-				return this._GroupID;
-			}
-			set
-			{
-				if ((this._GroupID != value))
-				{
-					if (this._Group.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGroupIDChanging(value);
-					this.SendPropertyChanging();
-					this._GroupID = value;
-					this.SendPropertyChanged("GroupID");
-					this.OnGroupIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VisitGettingStartedPage", DbType="Bit")]
-		public System.Nullable<bool> VisitGettingStartedPage
-		{
-			get
-			{
-				return this._VisitGettingStartedPage;
-			}
-			set
-			{
-				if ((this._VisitGettingStartedPage != value))
-				{
-					this.OnVisitGettingStartedPageChanging(value);
-					this.SendPropertyChanging();
-					this._VisitGettingStartedPage = value;
-					this.SendPropertyChanged("VisitGettingStartedPage");
-					this.OnVisitGettingStartedPageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
-		public System.Nullable<int> Year
-		{
-			get
-			{
-				return this._Year;
-			}
-			set
-			{
-				if ((this._Year != value))
-				{
-					this.OnYearChanging(value);
-					this.SendPropertyChanging();
-					this._Year = value;
-					this.SendPropertyChanged("Year");
-					this.OnYearChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Squat", DbType="Float NOT NULL")]
-		public double Squat
-		{
-			get
-			{
-				return this._Squat;
-			}
-			set
-			{
-				if ((this._Squat != value))
-				{
-					this.OnSquatChanging(value);
-					this.SendPropertyChanging();
-					this._Squat = value;
-					this.SendPropertyChanged("Squat");
-					this.OnSquatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bench", DbType="Float NOT NULL")]
-		public double Bench
-		{
-			get
-			{
-				return this._Bench;
-			}
-			set
-			{
-				if ((this._Bench != value))
-				{
-					this.OnBenchChanging(value);
-					this.SendPropertyChanging();
-					this._Bench = value;
-					this.SendPropertyChanged("Bench");
-					this.OnBenchChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clean", DbType="Float NOT NULL")]
-		public double Clean
-		{
-			get
-			{
-				return this._Clean;
-			}
-			set
-			{
-				if ((this._Clean != value))
-				{
-					this.OnCleanChanging(value);
-					this.SendPropertyChanging();
-					this._Clean = value;
-					this.SendPropertyChanged("Clean");
-					this.OnCleanChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="NVarChar(50)")]
-		public string Height
-		{
-			get
-			{
-				return this._Height;
-			}
-			set
-			{
-				if ((this._Height != value))
-				{
-					this.OnHeightChanging(value);
-					this.SendPropertyChanging();
-					this._Height = value;
-					this.SendPropertyChanged("Height");
-					this.OnHeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="NVarChar(50)")]
-		public string Weight
-		{
-			get
-			{
-				return this._Weight;
-			}
-			set
-			{
-				if ((this._Weight != value))
-				{
-					this.OnWeightChanging(value);
-					this.SendPropertyChanging();
-					this._Weight = value;
-					this.SendPropertyChanged("Weight");
-					this.OnWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BodyFat", DbType="NVarChar(50)")]
-		public string BodyFat
-		{
-			get
-			{
-				return this._BodyFat;
-			}
-			set
-			{
-				if ((this._BodyFat != value))
-				{
-					this.OnBodyFatChanging(value);
-					this.SendPropertyChanging();
-					this._BodyFat = value;
-					this.SendPropertyChanged("BodyFat");
-					this.OnBodyFatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_40YardDash]", Storage="__40YardDash", DbType="Float")]
-		public System.Nullable<double> _40YardDash
-		{
-			get
-			{
-				return this.@__40YardDash;
-			}
-			set
-			{
-				if ((this.@__40YardDash != value))
-				{
-					this.On_40YardDashChanging(value);
-					this.SendPropertyChanging();
-					this.@__40YardDash = value;
-					this.SendPropertyChanged("_40YardDash");
-					this.On_40YardDashChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vertical", DbType="Float")]
-		public System.Nullable<double> Vertical
-		{
-			get
-			{
-				return this._Vertical;
-			}
-			set
-			{
-				if ((this._Vertical != value))
-				{
-					this.OnVerticalChanging(value);
-					this.SendPropertyChanging();
-					this._Vertical = value;
-					this.SendPropertyChanged("Vertical");
-					this.OnVerticalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_3Cone]", Storage="__3Cone", DbType="Float")]
-		public System.Nullable<double> _3Cone
-		{
-			get
-			{
-				return this.@__3Cone;
-			}
-			set
-			{
-				if ((this.@__3Cone != value))
-				{
-					this.On_3ConeChanging(value);
-					this.SendPropertyChanging();
-					this.@__3Cone = value;
-					this.SendPropertyChanged("_3Cone");
-					this.On_3ConeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TDrill", DbType="Float")]
-		public System.Nullable<double> TDrill
-		{
-			get
-			{
-				return this._TDrill;
-			}
-			set
-			{
-				if ((this._TDrill != value))
-				{
-					this.OnTDrillChanging(value);
-					this.SendPropertyChanging();
-					this._TDrill = value;
-					this.SendPropertyChanged("TDrill");
-					this.OnTDrillChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryColor", DbType="NVarChar(50)")]
-		public string PrimaryColor
-		{
-			get
-			{
-				return this._PrimaryColor;
-			}
-			set
-			{
-				if ((this._PrimaryColor != value))
-				{
-					this.OnPrimaryColorChanging(value);
-					this.SendPropertyChanging();
-					this._PrimaryColor = value;
-					this.SendPropertyChanged("PrimaryColor");
-					this.OnPrimaryColorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondaryColor", DbType="NVarChar(50)")]
-		public string SecondaryColor
-		{
-			get
-			{
-				return this._SecondaryColor;
-			}
-			set
-			{
-				if ((this._SecondaryColor != value))
-				{
-					this.OnSecondaryColorChanging(value);
-					this.SendPropertyChanging();
-					this._SecondaryColor = value;
-					this.SendPropertyChanged("SecondaryColor");
-					this.OnSecondaryColorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginInfoSent", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LoginInfoSent
-		{
-			get
-			{
-				return this._LoginInfoSent;
-			}
-			set
-			{
-				if ((this._LoginInfoSent != value))
-				{
-					this.OnLoginInfoSentChanging(value);
-					this.SendPropertyChanging();
-					this._LoginInfoSent = value;
-					this.SendPropertyChanged("LoginInfoSent");
-					this.OnLoginInfoSentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttendanceStartDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AttendanceStartDate
-		{
-			get
-			{
-				return this._AttendanceStartDate;
-			}
-			set
-			{
-				if ((this._AttendanceStartDate != value))
-				{
-					this.OnAttendanceStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._AttendanceStartDate = value;
-					this.SendPropertyChanged("AttendanceStartDate");
-					this.OnAttendanceStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProgressStartDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ProgressStartDate
-		{
-			get
-			{
-				return this._ProgressStartDate;
-			}
-			set
-			{
-				if ((this._ProgressStartDate != value))
-				{
-					this.OnProgressStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._ProgressStartDate = value;
-					this.SendPropertyChanged("ProgressStartDate");
-					this.OnProgressStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthday", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Birthday
-		{
-			get
-			{
-				return this._Birthday;
-			}
-			set
-			{
-				if ((this._Birthday != value))
-				{
-					this.OnBirthdayChanging(value);
-					this.SendPropertyChanging();
-					this._Birthday = value;
-					this.SendPropertyChanged("Birthday");
-					this.OnBirthdayChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit NOT NULL")]
-		public bool Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this.OnGenderChanging(value);
-					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LevelID", DbType="Int")]
-		public System.Nullable<int> LevelID
-		{
-			get
-			{
-				return this._LevelID;
-			}
-			set
-			{
-				if ((this._LevelID != value))
-				{
-					if (this._Level.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLevelIDChanging(value);
-					this.SendPropertyChanging();
-					this._LevelID = value;
-					this.SendPropertyChanged("LevelID");
-					this.OnLevelIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GradYear", DbType="Int")]
-		public System.Nullable<int> GradYear
-		{
-			get
-			{
-				return this._GradYear;
-			}
-			set
-			{
-				if ((this._GradYear != value))
-				{
-					this.OnGradYearChanging(value);
-					this.SendPropertyChanging();
-					this._GradYear = value;
-					this.SendPropertyChanged("GradYear");
-					this.OnGradYearChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
-		public bool IsDeleted
-		{
-			get
-			{
-				return this._IsDeleted;
-			}
-			set
-			{
-				if ((this._IsDeleted != value))
-				{
-					this.OnIsDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._IsDeleted = value;
-					this.SendPropertyChanged("IsDeleted");
-					this.OnIsDeletedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserEquipment", Storage="_UserEquipments", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserEquipment> UserEquipments
-		{
-			get
-			{
-				return this._UserEquipments;
-			}
-			set
-			{
-				this._UserEquipments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserRole", Storage="_UserRoles", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserRole> UserRoles
-		{
-			get
-			{
-				return this._UserRoles;
-			}
-			set
-			{
-				this._UserRoles.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAttendance", Storage="_UserAttendances", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserAttendance> UserAttendances
-		{
-			get
-			{
-				return this._UserAttendances;
-			}
-			set
-			{
-				this._UserAttendances.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_BillingInfo", Storage="_BillingInfos", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<BillingInfo> BillingInfos
-		{
-			get
-			{
-				return this._BillingInfos;
-			}
-			set
-			{
-				this._BillingInfos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserPillar", Storage="_UserPillars", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserPillar> UserPillars
-		{
-			get
-			{
-				return this._UserPillars;
-			}
-			set
-			{
-				this._UserPillars.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PaymentDetail", Storage="_PaymentDetails", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<PaymentDetail> PaymentDetails
-		{
-			get
-			{
-				return this._PaymentDetails;
-			}
-			set
-			{
-				this._PaymentDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PersonalSchedule", Storage="_PersonalSchedules", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<PersonalSchedule> PersonalSchedules
-		{
-			get
-			{
-				return this._PersonalSchedules;
-			}
-			set
-			{
-				this._PersonalSchedules.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Invoice", Storage="_Invoices", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<Invoice> Invoices
-		{
-			get
-			{
-				return this._Invoices;
-			}
-			set
-			{
-				this._Invoices.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserFieldPosition", Storage="_UserFieldPositions", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserFieldPosition> UserFieldPositions
-		{
-			get
-			{
-				return this._UserFieldPositions;
-			}
-			set
-			{
-				this._UserFieldPositions.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Team", Storage="_Teams", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<Team> Teams
-		{
-			get
-			{
-				return this._Teams;
-			}
-			set
-			{
-				this._Teams.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserSeason", Storage="_UserSeasons", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserSeason> UserSeasons
-		{
-			get
-			{
-				return this._UserSeasons;
-			}
-			set
-			{
-				this._UserSeasons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<SBCValue> SBCValues
-		{
-			get
-			{
-				return this._SBCValues;
-			}
-			set
-			{
-				this._SBCValues.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserVideo", Storage="_UserVideos", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<UserVideo> UserVideos
-		{
-			get
-			{
-				return this._UserVideos;
-			}
-			set
-			{
-				this._UserVideos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post", Storage="_Posts", ThisKey="ID", OtherKey="UserID")]
-		public EntitySet<Post> Posts
-		{
-			get
-			{
-				return this._Posts;
-			}
-			set
-			{
-				this._Posts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Group", ThisKey="GroupID", OtherKey="ID", IsForeignKey=true)]
-		public Group Group
-		{
-			get
-			{
-				return this._Group.Entity;
-			}
-			set
-			{
-				Group previousValue = this._Group.Entity;
-				if (((previousValue != value) 
-							|| (this._Group.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Group.Entity = null;
-						previousValue.Users.Remove(this);
-					}
-					this._Group.Entity = value;
-					if ((value != null))
-					{
-						value.Users.Add(this);
-						this._GroupID = value.ID;
-					}
-					else
-					{
-						this._GroupID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Group");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Level_User", Storage="_Level", ThisKey="LevelID", OtherKey="ID", IsForeignKey=true)]
-		public Level Level
-		{
-			get
-			{
-				return this._Level.Entity;
-			}
-			set
-			{
-				Level previousValue = this._Level.Entity;
-				if (((previousValue != value) 
-							|| (this._Level.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Level.Entity = null;
-						previousValue.Users.Remove(this);
-					}
-					this._Level.Entity = value;
-					if ((value != null))
-					{
-						value.Users.Add(this);
-						this._LevelID = value.ID;
-					}
-					else
-					{
-						this._LevelID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Level");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_User", Storage="_Team", ThisKey="PlayerOfTeamID", OtherKey="ID", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.Users.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.Users.Add(this);
-						this._PlayerOfTeamID = value.ID;
-					}
-					else
-					{
-						this._PlayerOfTeamID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserEquipments(UserEquipment entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserEquipments(UserEquipment entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserRoles(UserRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserRoles(UserRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserAttendances(UserAttendance entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserAttendances(UserAttendance entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_BillingInfos(BillingInfo entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_BillingInfos(BillingInfo entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserPillars(UserPillar entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserPillars(UserPillar entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_PaymentDetails(PaymentDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_PaymentDetails(PaymentDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_PersonalSchedules(PersonalSchedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_PersonalSchedules(PersonalSchedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Invoices(Invoice entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Invoices(Invoice entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserFieldPositions(UserFieldPosition entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserFieldPositions(UserFieldPosition entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Teams(Team entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Teams(Team entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserSeasons(UserSeason entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserSeasons(UserSeason entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_SBCValues(SBCValue entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_SBCValues(SBCValue entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserVideos(UserVideo entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserVideos(UserVideo entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Posts(Post entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Posts(Post entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserFieldPosition")]
 	public partial class UserFieldPosition : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -11765,519 +10348,6 @@ namespace platformAthletic.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Team")]
-	public partial class Team : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private int _UserID;
-		
-		private string _Name;
-		
-		private string _LogoPath;
-		
-		private int _StateID;
-		
-		private System.Nullable<int> _SchoolID;
-		
-		private string _PrimaryColor;
-		
-		private string _SecondaryColor;
-		
-		private int _SBCControl;
-		
-		private int _MaxCount;
-		
-		private EntitySet<Schedule> _Schedules;
-		
-		private EntitySet<Group> _Groups;
-		
-		private EntitySet<User> _Users;
-		
-		private EntitySet<SBCValue> _SBCValues;
-		
-		private EntityRef<School> _School;
-		
-		private EntityRef<State> _State;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnUserIDChanging(int value);
-    partial void OnUserIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnLogoPathChanging(string value);
-    partial void OnLogoPathChanged();
-    partial void OnStateIDChanging(int value);
-    partial void OnStateIDChanged();
-    partial void OnSchoolIDChanging(System.Nullable<int> value);
-    partial void OnSchoolIDChanged();
-    partial void OnPrimaryColorChanging(string value);
-    partial void OnPrimaryColorChanged();
-    partial void OnSecondaryColorChanging(string value);
-    partial void OnSecondaryColorChanged();
-    partial void OnSBCControlChanging(int value);
-    partial void OnSBCControlChanged();
-    partial void OnMaxCountChanging(int value);
-    partial void OnMaxCountChanged();
-    #endregion
-		
-		public Team()
-		{
-			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
-			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
-			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
-			this._School = default(EntityRef<School>);
-			this._State = default(EntityRef<State>);
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
-		public int UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogoPath", DbType="NVarChar(150)")]
-		public string LogoPath
-		{
-			get
-			{
-				return this._LogoPath;
-			}
-			set
-			{
-				if ((this._LogoPath != value))
-				{
-					this.OnLogoPathChanging(value);
-					this.SendPropertyChanging();
-					this._LogoPath = value;
-					this.SendPropertyChanged("LogoPath");
-					this.OnLogoPathChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateID", DbType="Int NOT NULL")]
-		public int StateID
-		{
-			get
-			{
-				return this._StateID;
-			}
-			set
-			{
-				if ((this._StateID != value))
-				{
-					if (this._State.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStateIDChanging(value);
-					this.SendPropertyChanging();
-					this._StateID = value;
-					this.SendPropertyChanged("StateID");
-					this.OnStateIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolID", DbType="Int")]
-		public System.Nullable<int> SchoolID
-		{
-			get
-			{
-				return this._SchoolID;
-			}
-			set
-			{
-				if ((this._SchoolID != value))
-				{
-					if (this._School.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSchoolIDChanging(value);
-					this.SendPropertyChanging();
-					this._SchoolID = value;
-					this.SendPropertyChanged("SchoolID");
-					this.OnSchoolIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryColor", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string PrimaryColor
-		{
-			get
-			{
-				return this._PrimaryColor;
-			}
-			set
-			{
-				if ((this._PrimaryColor != value))
-				{
-					this.OnPrimaryColorChanging(value);
-					this.SendPropertyChanging();
-					this._PrimaryColor = value;
-					this.SendPropertyChanged("PrimaryColor");
-					this.OnPrimaryColorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondaryColor", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string SecondaryColor
-		{
-			get
-			{
-				return this._SecondaryColor;
-			}
-			set
-			{
-				if ((this._SecondaryColor != value))
-				{
-					this.OnSecondaryColorChanging(value);
-					this.SendPropertyChanging();
-					this._SecondaryColor = value;
-					this.SendPropertyChanged("SecondaryColor");
-					this.OnSecondaryColorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SBCControl", DbType="Int NOT NULL")]
-		public int SBCControl
-		{
-			get
-			{
-				return this._SBCControl;
-			}
-			set
-			{
-				if ((this._SBCControl != value))
-				{
-					this.OnSBCControlChanging(value);
-					this.SendPropertyChanging();
-					this._SBCControl = value;
-					this.SendPropertyChanged("SBCControl");
-					this.OnSBCControlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxCount", DbType="Int NOT NULL")]
-		public int MaxCount
-		{
-			get
-			{
-				return this._MaxCount;
-			}
-			set
-			{
-				if ((this._MaxCount != value))
-				{
-					this.OnMaxCountChanging(value);
-					this.SendPropertyChanging();
-					this._MaxCount = value;
-					this.SendPropertyChanged("MaxCount");
-					this.OnMaxCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Schedule", Storage="_Schedules", ThisKey="ID", OtherKey="TeamID")]
-		public EntitySet<Schedule> Schedules
-		{
-			get
-			{
-				return this._Schedules;
-			}
-			set
-			{
-				this._Schedules.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Group", Storage="_Groups", ThisKey="ID", OtherKey="TeamID")]
-		public EntitySet<Group> Groups
-		{
-			get
-			{
-				return this._Groups;
-			}
-			set
-			{
-				this._Groups.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_User", Storage="_Users", ThisKey="ID", OtherKey="PlayerOfTeamID")]
-		public EntitySet<User> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="TeamID")]
-		public EntitySet<SBCValue> SBCValues
-		{
-			get
-			{
-				return this._SBCValues;
-			}
-			set
-			{
-				this._SBCValues.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="School_Team", Storage="_School", ThisKey="SchoolID", OtherKey="ID", IsForeignKey=true)]
-		public School School
-		{
-			get
-			{
-				return this._School.Entity;
-			}
-			set
-			{
-				School previousValue = this._School.Entity;
-				if (((previousValue != value) 
-							|| (this._School.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._School.Entity = null;
-						previousValue.Teams.Remove(this);
-					}
-					this._School.Entity = value;
-					if ((value != null))
-					{
-						value.Teams.Add(this);
-						this._SchoolID = value.ID;
-					}
-					else
-					{
-						this._SchoolID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("School");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="State_Team", Storage="_State", ThisKey="StateID", OtherKey="ID", IsForeignKey=true)]
-		public State State
-		{
-			get
-			{
-				return this._State.Entity;
-			}
-			set
-			{
-				State previousValue = this._State.Entity;
-				if (((previousValue != value) 
-							|| (this._State.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._State.Entity = null;
-						previousValue.Teams.Remove(this);
-					}
-					this._State.Entity = value;
-					if ((value != null))
-					{
-						value.Teams.Add(this);
-						this._StateID = value.ID;
-					}
-					else
-					{
-						this._StateID = default(int);
-					}
-					this.SendPropertyChanged("State");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Team", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Teams.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Teams.Add(this);
-						this._UserID = value.ID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Schedules(Schedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Schedules(Schedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-		
-		private void attach_Groups(Group entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Groups(Group entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-		
-		private void attach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-		
-		private void attach_SBCValues(SBCValue entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_SBCValues(SBCValue entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserSeason")]
 	public partial class UserSeason : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -12663,9 +10733,9 @@ namespace platformAthletic.Model
 		
 		private double _Clean;
 		
-		private EntityRef<Team> _Team;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Team> _Team;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -12689,8 +10759,8 @@ namespace platformAthletic.Model
 		
 		public SBCValue()
 		{
-			this._Team = default(EntityRef<Team>);
 			this._User = default(EntityRef<User>);
+			this._Team = default(EntityRef<Team>);
 			OnCreated();
 		}
 		
@@ -12842,40 +10912,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.SBCValues.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.SBCValues.Add(this);
-						this._TeamID = value.ID;
-					}
-					else
-					{
-						this._TeamID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public User User
 		{
@@ -12906,6 +10942,40 @@ namespace platformAthletic.Model
 						this._UserID = default(int);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.SBCValues.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.SBCValues.Add(this);
+						this._TeamID = value.ID;
+					}
+					else
+					{
+						this._TeamID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Team");
 				}
 			}
 		}
@@ -14071,6 +12141,1984 @@ namespace platformAthletic.Model
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Email;
+		
+		private string _Password;
+		
+		private System.DateTime _AddedDate;
+		
+		private System.Nullable<System.DateTime> _ActivatedDate;
+		
+		private string _ActivatedLink;
+		
+		private System.DateTime _LastVisitDate;
+		
+		private string _AvatarPath;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private System.Nullable<System.DateTime> _PaidTill;
+		
+		private string _PhoneNumber;
+		
+		private System.Nullable<int> _PlayerOfTeamID;
+		
+		private System.Nullable<int> _GroupID;
+		
+		private System.Nullable<bool> _VisitGettingStartedPage;
+		
+		private System.Nullable<int> _Year;
+		
+		private double _Squat;
+		
+		private double _Bench;
+		
+		private double _Clean;
+		
+		private string _Height;
+		
+		private string _Weight;
+		
+		private string _BodyFat;
+		
+		private System.Nullable<double> @__40YardDash;
+		
+		private System.Nullable<double> _Vertical;
+		
+		private System.Nullable<double> @__3Cone;
+		
+		private System.Nullable<double> _TDrill;
+		
+		private string _PrimaryColor;
+		
+		private string _SecondaryColor;
+		
+		private System.Nullable<System.DateTime> _LoginInfoSent;
+		
+		private System.Nullable<System.DateTime> _AttendanceStartDate;
+		
+		private System.Nullable<System.DateTime> _ProgressStartDate;
+		
+		private System.Nullable<System.DateTime> _Birthday;
+		
+		private bool _Gender;
+		
+		private System.Nullable<int> _LevelID;
+		
+		private System.Nullable<int> _GradYear;
+		
+		private int _PublicLevel;
+		
+		private bool _IsDeleted;
+		
+		private EntitySet<UserEquipment> _UserEquipments;
+		
+		private EntitySet<UserRole> _UserRoles;
+		
+		private EntitySet<UserAttendance> _UserAttendances;
+		
+		private EntitySet<BillingInfo> _BillingInfos;
+		
+		private EntitySet<UserPillar> _UserPillars;
+		
+		private EntitySet<PaymentDetail> _PaymentDetails;
+		
+		private EntitySet<PersonalSchedule> _PersonalSchedules;
+		
+		private EntitySet<Invoice> _Invoices;
+		
+		private EntitySet<UserFieldPosition> _UserFieldPositions;
+		
+		private EntitySet<UserSeason> _UserSeasons;
+		
+		private EntitySet<SBCValue> _SBCValues;
+		
+		private EntitySet<UserVideo> _UserVideos;
+		
+		private EntitySet<Post> _Posts;
+		
+		private EntitySet<Team> _Teams;
+		
+		private EntityRef<Group> _Group;
+		
+		private EntityRef<Level> _Level;
+		
+		private EntityRef<Team> _Team;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnAddedDateChanging(System.DateTime value);
+    partial void OnAddedDateChanged();
+    partial void OnActivatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnActivatedDateChanged();
+    partial void OnActivatedLinkChanging(string value);
+    partial void OnActivatedLinkChanged();
+    partial void OnLastVisitDateChanging(System.DateTime value);
+    partial void OnLastVisitDateChanged();
+    partial void OnAvatarPathChanging(string value);
+    partial void OnAvatarPathChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnPaidTillChanging(System.Nullable<System.DateTime> value);
+    partial void OnPaidTillChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnPlayerOfTeamIDChanging(System.Nullable<int> value);
+    partial void OnPlayerOfTeamIDChanged();
+    partial void OnGroupIDChanging(System.Nullable<int> value);
+    partial void OnGroupIDChanged();
+    partial void OnVisitGettingStartedPageChanging(System.Nullable<bool> value);
+    partial void OnVisitGettingStartedPageChanged();
+    partial void OnYearChanging(System.Nullable<int> value);
+    partial void OnYearChanged();
+    partial void OnSquatChanging(double value);
+    partial void OnSquatChanged();
+    partial void OnBenchChanging(double value);
+    partial void OnBenchChanged();
+    partial void OnCleanChanging(double value);
+    partial void OnCleanChanged();
+    partial void OnHeightChanging(string value);
+    partial void OnHeightChanged();
+    partial void OnWeightChanging(string value);
+    partial void OnWeightChanged();
+    partial void OnBodyFatChanging(string value);
+    partial void OnBodyFatChanged();
+    partial void On_40YardDashChanging(System.Nullable<double> value);
+    partial void On_40YardDashChanged();
+    partial void OnVerticalChanging(System.Nullable<double> value);
+    partial void OnVerticalChanged();
+    partial void On_3ConeChanging(System.Nullable<double> value);
+    partial void On_3ConeChanged();
+    partial void OnTDrillChanging(System.Nullable<double> value);
+    partial void OnTDrillChanged();
+    partial void OnPrimaryColorChanging(string value);
+    partial void OnPrimaryColorChanged();
+    partial void OnSecondaryColorChanging(string value);
+    partial void OnSecondaryColorChanged();
+    partial void OnLoginInfoSentChanging(System.Nullable<System.DateTime> value);
+    partial void OnLoginInfoSentChanged();
+    partial void OnAttendanceStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnAttendanceStartDateChanged();
+    partial void OnProgressStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnProgressStartDateChanged();
+    partial void OnBirthdayChanging(System.Nullable<System.DateTime> value);
+    partial void OnBirthdayChanged();
+    partial void OnGenderChanging(bool value);
+    partial void OnGenderChanged();
+    partial void OnLevelIDChanging(System.Nullable<int> value);
+    partial void OnLevelIDChanged();
+    partial void OnGradYearChanging(System.Nullable<int> value);
+    partial void OnGradYearChanged();
+    partial void OnPublicLevelChanging(int value);
+    partial void OnPublicLevelChanged();
+    partial void OnIsDeletedChanging(bool value);
+    partial void OnIsDeletedChanged();
+    #endregion
+		
+		public User()
+		{
+			this._UserEquipments = new EntitySet<UserEquipment>(new Action<UserEquipment>(this.attach_UserEquipments), new Action<UserEquipment>(this.detach_UserEquipments));
+			this._UserRoles = new EntitySet<UserRole>(new Action<UserRole>(this.attach_UserRoles), new Action<UserRole>(this.detach_UserRoles));
+			this._UserAttendances = new EntitySet<UserAttendance>(new Action<UserAttendance>(this.attach_UserAttendances), new Action<UserAttendance>(this.detach_UserAttendances));
+			this._BillingInfos = new EntitySet<BillingInfo>(new Action<BillingInfo>(this.attach_BillingInfos), new Action<BillingInfo>(this.detach_BillingInfos));
+			this._UserPillars = new EntitySet<UserPillar>(new Action<UserPillar>(this.attach_UserPillars), new Action<UserPillar>(this.detach_UserPillars));
+			this._PaymentDetails = new EntitySet<PaymentDetail>(new Action<PaymentDetail>(this.attach_PaymentDetails), new Action<PaymentDetail>(this.detach_PaymentDetails));
+			this._PersonalSchedules = new EntitySet<PersonalSchedule>(new Action<PersonalSchedule>(this.attach_PersonalSchedules), new Action<PersonalSchedule>(this.detach_PersonalSchedules));
+			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
+			this._UserFieldPositions = new EntitySet<UserFieldPosition>(new Action<UserFieldPosition>(this.attach_UserFieldPositions), new Action<UserFieldPosition>(this.detach_UserFieldPositions));
+			this._UserSeasons = new EntitySet<UserSeason>(new Action<UserSeason>(this.attach_UserSeasons), new Action<UserSeason>(this.detach_UserSeasons));
+			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
+			this._UserVideos = new EntitySet<UserVideo>(new Action<UserVideo>(this.attach_UserVideos), new Action<UserVideo>(this.detach_UserVideos));
+			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
+			this._Teams = new EntitySet<Team>(new Action<Team>(this.attach_Teams), new Action<Team>(this.detach_Teams));
+			this._Group = default(EntityRef<Group>);
+			this._Level = default(EntityRef<Level>);
+			this._Team = default(EntityRef<Team>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(150) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AddedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime AddedDate
+		{
+			get
+			{
+				return this._AddedDate;
+			}
+			set
+			{
+				if ((this._AddedDate != value))
+				{
+					this.OnAddedDateChanging(value);
+					this.SendPropertyChanging();
+					this._AddedDate = value;
+					this.SendPropertyChanged("AddedDate");
+					this.OnAddedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ActivatedDate
+		{
+			get
+			{
+				return this._ActivatedDate;
+			}
+			set
+			{
+				if ((this._ActivatedDate != value))
+				{
+					this.OnActivatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ActivatedDate = value;
+					this.SendPropertyChanged("ActivatedDate");
+					this.OnActivatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivatedLink", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ActivatedLink
+		{
+			get
+			{
+				return this._ActivatedLink;
+			}
+			set
+			{
+				if ((this._ActivatedLink != value))
+				{
+					this.OnActivatedLinkChanging(value);
+					this.SendPropertyChanging();
+					this._ActivatedLink = value;
+					this.SendPropertyChanged("ActivatedLink");
+					this.OnActivatedLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastVisitDate", DbType="DateTime NOT NULL")]
+		public System.DateTime LastVisitDate
+		{
+			get
+			{
+				return this._LastVisitDate;
+			}
+			set
+			{
+				if ((this._LastVisitDate != value))
+				{
+					this.OnLastVisitDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastVisitDate = value;
+					this.SendPropertyChanged("LastVisitDate");
+					this.OnLastVisitDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvatarPath", DbType="NVarChar(150)")]
+		public string AvatarPath
+		{
+			get
+			{
+				return this._AvatarPath;
+			}
+			set
+			{
+				if ((this._AvatarPath != value))
+				{
+					this.OnAvatarPathChanging(value);
+					this.SendPropertyChanging();
+					this._AvatarPath = value;
+					this.SendPropertyChanged("AvatarPath");
+					this.OnAvatarPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(500)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(500)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaidTill", DbType="DateTime")]
+		public System.Nullable<System.DateTime> PaidTill
+		{
+			get
+			{
+				return this._PaidTill;
+			}
+			set
+			{
+				if ((this._PaidTill != value))
+				{
+					this.OnPaidTillChanging(value);
+					this.SendPropertyChanging();
+					this._PaidTill = value;
+					this.SendPropertyChanged("PaidTill");
+					this.OnPaidTillChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(50)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerOfTeamID", DbType="Int")]
+		public System.Nullable<int> PlayerOfTeamID
+		{
+			get
+			{
+				return this._PlayerOfTeamID;
+			}
+			set
+			{
+				if ((this._PlayerOfTeamID != value))
+				{
+					if (this._Team.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayerOfTeamIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlayerOfTeamID = value;
+					this.SendPropertyChanged("PlayerOfTeamID");
+					this.OnPlayerOfTeamIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupID", DbType="Int")]
+		public System.Nullable<int> GroupID
+		{
+			get
+			{
+				return this._GroupID;
+			}
+			set
+			{
+				if ((this._GroupID != value))
+				{
+					if (this._Group.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGroupIDChanging(value);
+					this.SendPropertyChanging();
+					this._GroupID = value;
+					this.SendPropertyChanged("GroupID");
+					this.OnGroupIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VisitGettingStartedPage", DbType="Bit")]
+		public System.Nullable<bool> VisitGettingStartedPage
+		{
+			get
+			{
+				return this._VisitGettingStartedPage;
+			}
+			set
+			{
+				if ((this._VisitGettingStartedPage != value))
+				{
+					this.OnVisitGettingStartedPageChanging(value);
+					this.SendPropertyChanging();
+					this._VisitGettingStartedPage = value;
+					this.SendPropertyChanged("VisitGettingStartedPage");
+					this.OnVisitGettingStartedPageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Squat", DbType="Float NOT NULL")]
+		public double Squat
+		{
+			get
+			{
+				return this._Squat;
+			}
+			set
+			{
+				if ((this._Squat != value))
+				{
+					this.OnSquatChanging(value);
+					this.SendPropertyChanging();
+					this._Squat = value;
+					this.SendPropertyChanged("Squat");
+					this.OnSquatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bench", DbType="Float NOT NULL")]
+		public double Bench
+		{
+			get
+			{
+				return this._Bench;
+			}
+			set
+			{
+				if ((this._Bench != value))
+				{
+					this.OnBenchChanging(value);
+					this.SendPropertyChanging();
+					this._Bench = value;
+					this.SendPropertyChanged("Bench");
+					this.OnBenchChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clean", DbType="Float NOT NULL")]
+		public double Clean
+		{
+			get
+			{
+				return this._Clean;
+			}
+			set
+			{
+				if ((this._Clean != value))
+				{
+					this.OnCleanChanging(value);
+					this.SendPropertyChanging();
+					this._Clean = value;
+					this.SendPropertyChanged("Clean");
+					this.OnCleanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="NVarChar(50)")]
+		public string Height
+		{
+			get
+			{
+				return this._Height;
+			}
+			set
+			{
+				if ((this._Height != value))
+				{
+					this.OnHeightChanging(value);
+					this.SendPropertyChanging();
+					this._Height = value;
+					this.SendPropertyChanged("Height");
+					this.OnHeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="NVarChar(50)")]
+		public string Weight
+		{
+			get
+			{
+				return this._Weight;
+			}
+			set
+			{
+				if ((this._Weight != value))
+				{
+					this.OnWeightChanging(value);
+					this.SendPropertyChanging();
+					this._Weight = value;
+					this.SendPropertyChanged("Weight");
+					this.OnWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BodyFat", DbType="NVarChar(50)")]
+		public string BodyFat
+		{
+			get
+			{
+				return this._BodyFat;
+			}
+			set
+			{
+				if ((this._BodyFat != value))
+				{
+					this.OnBodyFatChanging(value);
+					this.SendPropertyChanging();
+					this._BodyFat = value;
+					this.SendPropertyChanged("BodyFat");
+					this.OnBodyFatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_40YardDash]", Storage="__40YardDash", DbType="Float")]
+		public System.Nullable<double> _40YardDash
+		{
+			get
+			{
+				return this.@__40YardDash;
+			}
+			set
+			{
+				if ((this.@__40YardDash != value))
+				{
+					this.On_40YardDashChanging(value);
+					this.SendPropertyChanging();
+					this.@__40YardDash = value;
+					this.SendPropertyChanged("_40YardDash");
+					this.On_40YardDashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vertical", DbType="Float")]
+		public System.Nullable<double> Vertical
+		{
+			get
+			{
+				return this._Vertical;
+			}
+			set
+			{
+				if ((this._Vertical != value))
+				{
+					this.OnVerticalChanging(value);
+					this.SendPropertyChanging();
+					this._Vertical = value;
+					this.SendPropertyChanged("Vertical");
+					this.OnVerticalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_3Cone]", Storage="__3Cone", DbType="Float")]
+		public System.Nullable<double> _3Cone
+		{
+			get
+			{
+				return this.@__3Cone;
+			}
+			set
+			{
+				if ((this.@__3Cone != value))
+				{
+					this.On_3ConeChanging(value);
+					this.SendPropertyChanging();
+					this.@__3Cone = value;
+					this.SendPropertyChanged("_3Cone");
+					this.On_3ConeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TDrill", DbType="Float")]
+		public System.Nullable<double> TDrill
+		{
+			get
+			{
+				return this._TDrill;
+			}
+			set
+			{
+				if ((this._TDrill != value))
+				{
+					this.OnTDrillChanging(value);
+					this.SendPropertyChanging();
+					this._TDrill = value;
+					this.SendPropertyChanged("TDrill");
+					this.OnTDrillChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryColor", DbType="NVarChar(50)")]
+		public string PrimaryColor
+		{
+			get
+			{
+				return this._PrimaryColor;
+			}
+			set
+			{
+				if ((this._PrimaryColor != value))
+				{
+					this.OnPrimaryColorChanging(value);
+					this.SendPropertyChanging();
+					this._PrimaryColor = value;
+					this.SendPropertyChanged("PrimaryColor");
+					this.OnPrimaryColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondaryColor", DbType="NVarChar(50)")]
+		public string SecondaryColor
+		{
+			get
+			{
+				return this._SecondaryColor;
+			}
+			set
+			{
+				if ((this._SecondaryColor != value))
+				{
+					this.OnSecondaryColorChanging(value);
+					this.SendPropertyChanging();
+					this._SecondaryColor = value;
+					this.SendPropertyChanged("SecondaryColor");
+					this.OnSecondaryColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginInfoSent", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LoginInfoSent
+		{
+			get
+			{
+				return this._LoginInfoSent;
+			}
+			set
+			{
+				if ((this._LoginInfoSent != value))
+				{
+					this.OnLoginInfoSentChanging(value);
+					this.SendPropertyChanging();
+					this._LoginInfoSent = value;
+					this.SendPropertyChanged("LoginInfoSent");
+					this.OnLoginInfoSentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttendanceStartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AttendanceStartDate
+		{
+			get
+			{
+				return this._AttendanceStartDate;
+			}
+			set
+			{
+				if ((this._AttendanceStartDate != value))
+				{
+					this.OnAttendanceStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._AttendanceStartDate = value;
+					this.SendPropertyChanged("AttendanceStartDate");
+					this.OnAttendanceStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProgressStartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ProgressStartDate
+		{
+			get
+			{
+				return this._ProgressStartDate;
+			}
+			set
+			{
+				if ((this._ProgressStartDate != value))
+				{
+					this.OnProgressStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._ProgressStartDate = value;
+					this.SendPropertyChanged("ProgressStartDate");
+					this.OnProgressStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Birthday", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Birthday
+		{
+			get
+			{
+				return this._Birthday;
+			}
+			set
+			{
+				if ((this._Birthday != value))
+				{
+					this.OnBirthdayChanging(value);
+					this.SendPropertyChanging();
+					this._Birthday = value;
+					this.SendPropertyChanged("Birthday");
+					this.OnBirthdayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit NOT NULL")]
+		public bool Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this.OnGenderChanging(value);
+					this.SendPropertyChanging();
+					this._Gender = value;
+					this.SendPropertyChanged("Gender");
+					this.OnGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LevelID", DbType="Int")]
+		public System.Nullable<int> LevelID
+		{
+			get
+			{
+				return this._LevelID;
+			}
+			set
+			{
+				if ((this._LevelID != value))
+				{
+					if (this._Level.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLevelIDChanging(value);
+					this.SendPropertyChanging();
+					this._LevelID = value;
+					this.SendPropertyChanged("LevelID");
+					this.OnLevelIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GradYear", DbType="Int")]
+		public System.Nullable<int> GradYear
+		{
+			get
+			{
+				return this._GradYear;
+			}
+			set
+			{
+				if ((this._GradYear != value))
+				{
+					this.OnGradYearChanging(value);
+					this.SendPropertyChanging();
+					this._GradYear = value;
+					this.SendPropertyChanged("GradYear");
+					this.OnGradYearChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicLevel", DbType="Int NOT NULL")]
+		public int PublicLevel
+		{
+			get
+			{
+				return this._PublicLevel;
+			}
+			set
+			{
+				if ((this._PublicLevel != value))
+				{
+					this.OnPublicLevelChanging(value);
+					this.SendPropertyChanging();
+					this._PublicLevel = value;
+					this.SendPropertyChanged("PublicLevel");
+					this.OnPublicLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
+		public bool IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserEquipment", Storage="_UserEquipments", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserEquipment> UserEquipments
+		{
+			get
+			{
+				return this._UserEquipments;
+			}
+			set
+			{
+				this._UserEquipments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserRole", Storage="_UserRoles", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserRole> UserRoles
+		{
+			get
+			{
+				return this._UserRoles;
+			}
+			set
+			{
+				this._UserRoles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAttendance", Storage="_UserAttendances", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserAttendance> UserAttendances
+		{
+			get
+			{
+				return this._UserAttendances;
+			}
+			set
+			{
+				this._UserAttendances.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_BillingInfo", Storage="_BillingInfos", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<BillingInfo> BillingInfos
+		{
+			get
+			{
+				return this._BillingInfos;
+			}
+			set
+			{
+				this._BillingInfos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserPillar", Storage="_UserPillars", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserPillar> UserPillars
+		{
+			get
+			{
+				return this._UserPillars;
+			}
+			set
+			{
+				this._UserPillars.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PaymentDetail", Storage="_PaymentDetails", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<PaymentDetail> PaymentDetails
+		{
+			get
+			{
+				return this._PaymentDetails;
+			}
+			set
+			{
+				this._PaymentDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_PersonalSchedule", Storage="_PersonalSchedules", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<PersonalSchedule> PersonalSchedules
+		{
+			get
+			{
+				return this._PersonalSchedules;
+			}
+			set
+			{
+				this._PersonalSchedules.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Invoice", Storage="_Invoices", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<Invoice> Invoices
+		{
+			get
+			{
+				return this._Invoices;
+			}
+			set
+			{
+				this._Invoices.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserFieldPosition", Storage="_UserFieldPositions", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserFieldPosition> UserFieldPositions
+		{
+			get
+			{
+				return this._UserFieldPositions;
+			}
+			set
+			{
+				this._UserFieldPositions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserSeason", Storage="_UserSeasons", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserSeason> UserSeasons
+		{
+			get
+			{
+				return this._UserSeasons;
+			}
+			set
+			{
+				this._UserSeasons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<SBCValue> SBCValues
+		{
+			get
+			{
+				return this._SBCValues;
+			}
+			set
+			{
+				this._SBCValues.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserVideo", Storage="_UserVideos", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<UserVideo> UserVideos
+		{
+			get
+			{
+				return this._UserVideos;
+			}
+			set
+			{
+				this._UserVideos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Post", Storage="_Posts", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<Post> Posts
+		{
+			get
+			{
+				return this._Posts;
+			}
+			set
+			{
+				this._Posts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Team", Storage="_Teams", ThisKey="ID", OtherKey="UserID")]
+		public EntitySet<Team> Teams
+		{
+			get
+			{
+				return this._Teams;
+			}
+			set
+			{
+				this._Teams.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Group", ThisKey="GroupID", OtherKey="ID", IsForeignKey=true)]
+		public Group Group
+		{
+			get
+			{
+				return this._Group.Entity;
+			}
+			set
+			{
+				Group previousValue = this._Group.Entity;
+				if (((previousValue != value) 
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Group.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._Group.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._GroupID = value.ID;
+					}
+					else
+					{
+						this._GroupID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Group");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Level_User", Storage="_Level", ThisKey="LevelID", OtherKey="ID", IsForeignKey=true)]
+		public Level Level
+		{
+			get
+			{
+				return this._Level.Entity;
+			}
+			set
+			{
+				Level previousValue = this._Level.Entity;
+				if (((previousValue != value) 
+							|| (this._Level.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Level.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._Level.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._LevelID = value.ID;
+					}
+					else
+					{
+						this._LevelID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Level");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_User", Storage="_Team", ThisKey="PlayerOfTeamID", OtherKey="ID", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._PlayerOfTeamID = value.ID;
+					}
+					else
+					{
+						this._PlayerOfTeamID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserEquipments(UserEquipment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserEquipments(UserEquipment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserRoles(UserRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserRoles(UserRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserAttendances(UserAttendance entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserAttendances(UserAttendance entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_BillingInfos(BillingInfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_BillingInfos(BillingInfo entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserPillars(UserPillar entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserPillars(UserPillar entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_PaymentDetails(PaymentDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_PaymentDetails(PaymentDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_PersonalSchedules(PersonalSchedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_PersonalSchedules(PersonalSchedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserFieldPositions(UserFieldPosition entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserFieldPositions(UserFieldPosition entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserSeasons(UserSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserSeasons(UserSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_SBCValues(SBCValue entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_SBCValues(SBCValue entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserVideos(UserVideo entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserVideos(UserVideo entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Posts(Post entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Teams(Team entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Teams(Team entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Team")]
+	public partial class Team : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _UserID;
+		
+		private string _Name;
+		
+		private string _LogoPath;
+		
+		private int _StateID;
+		
+		private System.Nullable<int> _SchoolID;
+		
+		private string _PrimaryColor;
+		
+		private string _SecondaryColor;
+		
+		private int _SBCControl;
+		
+		private int _SBCAttendance;
+		
+		private int _MaxCount;
+		
+		private EntitySet<Schedule> _Schedules;
+		
+		private EntitySet<Group> _Groups;
+		
+		private EntitySet<SBCValue> _SBCValues;
+		
+		private EntitySet<User> _Users;
+		
+		private EntityRef<School> _School;
+		
+		private EntityRef<State> _State;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnLogoPathChanging(string value);
+    partial void OnLogoPathChanged();
+    partial void OnStateIDChanging(int value);
+    partial void OnStateIDChanged();
+    partial void OnSchoolIDChanging(System.Nullable<int> value);
+    partial void OnSchoolIDChanged();
+    partial void OnPrimaryColorChanging(string value);
+    partial void OnPrimaryColorChanged();
+    partial void OnSecondaryColorChanging(string value);
+    partial void OnSecondaryColorChanged();
+    partial void OnSBCControlChanging(int value);
+    partial void OnSBCControlChanged();
+    partial void OnSBCAttendanceChanging(int value);
+    partial void OnSBCAttendanceChanged();
+    partial void OnMaxCountChanging(int value);
+    partial void OnMaxCountChanged();
+    #endregion
+		
+		public Team()
+		{
+			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
+			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
+			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			this._School = default(EntityRef<School>);
+			this._State = default(EntityRef<State>);
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogoPath", DbType="NVarChar(150)")]
+		public string LogoPath
+		{
+			get
+			{
+				return this._LogoPath;
+			}
+			set
+			{
+				if ((this._LogoPath != value))
+				{
+					this.OnLogoPathChanging(value);
+					this.SendPropertyChanging();
+					this._LogoPath = value;
+					this.SendPropertyChanged("LogoPath");
+					this.OnLogoPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateID", DbType="Int NOT NULL")]
+		public int StateID
+		{
+			get
+			{
+				return this._StateID;
+			}
+			set
+			{
+				if ((this._StateID != value))
+				{
+					if (this._State.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStateIDChanging(value);
+					this.SendPropertyChanging();
+					this._StateID = value;
+					this.SendPropertyChanged("StateID");
+					this.OnStateIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SchoolID", DbType="Int")]
+		public System.Nullable<int> SchoolID
+		{
+			get
+			{
+				return this._SchoolID;
+			}
+			set
+			{
+				if ((this._SchoolID != value))
+				{
+					if (this._School.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSchoolIDChanging(value);
+					this.SendPropertyChanging();
+					this._SchoolID = value;
+					this.SendPropertyChanged("SchoolID");
+					this.OnSchoolIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryColor", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string PrimaryColor
+		{
+			get
+			{
+				return this._PrimaryColor;
+			}
+			set
+			{
+				if ((this._PrimaryColor != value))
+				{
+					this.OnPrimaryColorChanging(value);
+					this.SendPropertyChanging();
+					this._PrimaryColor = value;
+					this.SendPropertyChanged("PrimaryColor");
+					this.OnPrimaryColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondaryColor", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string SecondaryColor
+		{
+			get
+			{
+				return this._SecondaryColor;
+			}
+			set
+			{
+				if ((this._SecondaryColor != value))
+				{
+					this.OnSecondaryColorChanging(value);
+					this.SendPropertyChanging();
+					this._SecondaryColor = value;
+					this.SendPropertyChanged("SecondaryColor");
+					this.OnSecondaryColorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SBCControl", DbType="Int NOT NULL")]
+		public int SBCControl
+		{
+			get
+			{
+				return this._SBCControl;
+			}
+			set
+			{
+				if ((this._SBCControl != value))
+				{
+					this.OnSBCControlChanging(value);
+					this.SendPropertyChanging();
+					this._SBCControl = value;
+					this.SendPropertyChanged("SBCControl");
+					this.OnSBCControlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SBCAttendance", DbType="Int NOT NULL")]
+		public int SBCAttendance
+		{
+			get
+			{
+				return this._SBCAttendance;
+			}
+			set
+			{
+				if ((this._SBCAttendance != value))
+				{
+					this.OnSBCAttendanceChanging(value);
+					this.SendPropertyChanging();
+					this._SBCAttendance = value;
+					this.SendPropertyChanged("SBCAttendance");
+					this.OnSBCAttendanceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxCount", DbType="Int NOT NULL")]
+		public int MaxCount
+		{
+			get
+			{
+				return this._MaxCount;
+			}
+			set
+			{
+				if ((this._MaxCount != value))
+				{
+					this.OnMaxCountChanging(value);
+					this.SendPropertyChanging();
+					this._MaxCount = value;
+					this.SendPropertyChanged("MaxCount");
+					this.OnMaxCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Schedule", Storage="_Schedules", ThisKey="ID", OtherKey="TeamID")]
+		public EntitySet<Schedule> Schedules
+		{
+			get
+			{
+				return this._Schedules;
+			}
+			set
+			{
+				this._Schedules.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Group", Storage="_Groups", ThisKey="ID", OtherKey="TeamID")]
+		public EntitySet<Group> Groups
+		{
+			get
+			{
+				return this._Groups;
+			}
+			set
+			{
+				this._Groups.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="TeamID")]
+		public EntitySet<SBCValue> SBCValues
+		{
+			get
+			{
+				return this._SBCValues;
+			}
+			set
+			{
+				this._SBCValues.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_User", Storage="_Users", ThisKey="ID", OtherKey="PlayerOfTeamID")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="School_Team", Storage="_School", ThisKey="SchoolID", OtherKey="ID", IsForeignKey=true)]
+		public School School
+		{
+			get
+			{
+				return this._School.Entity;
+			}
+			set
+			{
+				School previousValue = this._School.Entity;
+				if (((previousValue != value) 
+							|| (this._School.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._School.Entity = null;
+						previousValue.Teams.Remove(this);
+					}
+					this._School.Entity = value;
+					if ((value != null))
+					{
+						value.Teams.Add(this);
+						this._SchoolID = value.ID;
+					}
+					else
+					{
+						this._SchoolID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("School");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="State_Team", Storage="_State", ThisKey="StateID", OtherKey="ID", IsForeignKey=true)]
+		public State State
+		{
+			get
+			{
+				return this._State.Entity;
+			}
+			set
+			{
+				State previousValue = this._State.Entity;
+				if (((previousValue != value) 
+							|| (this._State.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._State.Entity = null;
+						previousValue.Teams.Remove(this);
+					}
+					this._State.Entity = value;
+					if ((value != null))
+					{
+						value.Teams.Add(this);
+						this._StateID = value.ID;
+					}
+					else
+					{
+						this._StateID = default(int);
+					}
+					this.SendPropertyChanged("State");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Team", Storage="_User", ThisKey="UserID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Teams.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Teams.Add(this);
+						this._UserID = value.ID;
+					}
+					else
+					{
+						this._UserID = default(int);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Schedules(Schedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Schedules(Schedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
+		}
+		
+		private void attach_Groups(Group entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Groups(Group entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
+		}
+		
+		private void attach_SBCValues(SBCValue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_SBCValues(SBCValue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
 		}
 	}
 }

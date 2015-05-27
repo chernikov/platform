@@ -14,6 +14,13 @@ namespace platformAthletic.Model
             CoachAndPlayer = 0x01
         }
 
+        public enum SBCAttendanceType : int
+        {
+            Coach = 0x00,
+            CoachAndPlayer = 0x01
+        }
+
+
         public UserSeason GetCurrentSeason(int? groupID = null)
         {
             var coach = this.User;

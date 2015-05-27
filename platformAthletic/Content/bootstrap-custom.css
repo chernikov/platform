@@ -1929,9 +1929,9 @@ dl.sport-2 {
     margin-top: 0 !important;
 }
 
- .margin-top  {
-     margin-top: 20px !important;
- }
+.margin-top {
+    margin-top: 20px !important;
+}
 
 .user-page {
     background-color: #f5f5f5;
@@ -2904,14 +2904,14 @@ hr.video {
 
     .post-pagination > li {
         display: inline;
-        font-size : 10px;
-         font-family: 'Montserrat', sans-serif;
+        font-size: 10px;
+        font-family: 'Montserrat', sans-serif;
     }
-    
+
         .post-pagination > li > a,
         .post-pagination > li > span {
-            color : #fff;
-            font-weight : bold;
+            color: #fff;
+            font-weight: bold;
             position: relative;
             float: left;
             padding: 6px 6px;
@@ -2919,35 +2919,169 @@ hr.video {
             line-height: 1.428571429;
             text-decoration: none;
             background-color: transparent;
-            border:none;
-            color : #000;
+            border: none;
+            color: #000;
         }
 
-        .post-pagination > li > a.arrow-left span,
-        .post-pagination > li > span.arrow-left span
-        {
-            width : 7px;
-            height : 13px;
-            background : url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAJCAYAAAAPU20uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkREMTA3RjgwMTRBMTFFNTkzOTNGNThERDYxNjczMDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkREMTA3RjkwMTRBMTFFNTkzOTNGNThERDYxNjczMDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCREQxMDdGNjAxNEExMUU1OTM5M0Y1OERENjE2NzMwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCREQxMDdGNzAxNEExMUU1OTM5M0Y1OERENjE2NzMwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Psga56EAAABrSURBVHjaYjTX12ZAAixAnAnEXFD+FhY0yWVAHArlzwfiHhYkyeVAHIIkmQrEf5nwSYI4IAVBSJJvgLgQJglTsAqIm6B8EZDDgJgHWQEI1CMpsgHi7TBFTEi+wKoI2ZswRceAmA/KlwEIMAA+gxRtyYGnVwAAAABJRU5ErkJggg==") no-repeat center center;
-            display : block;
-        }
+            .post-pagination > li > a.arrow-left span,
+            .post-pagination > li > span.arrow-left span {
+                width: 7px;
+                height: 13px;
+                background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAJCAYAAAAPU20uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkREMTA3RjgwMTRBMTFFNTkzOTNGNThERDYxNjczMDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkREMTA3RjkwMTRBMTFFNTkzOTNGNThERDYxNjczMDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCREQxMDdGNjAxNEExMUU1OTM5M0Y1OERENjE2NzMwNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCREQxMDdGNzAxNEExMUU1OTM5M0Y1OERENjE2NzMwNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Psga56EAAABrSURBVHjaYjTX12ZAAixAnAnEXFD+FhY0yWVAHArlzwfiHhYkyeVAHIIkmQrEf5nwSYI4IAVBSJJvgLgQJglTsAqIm6B8EZDDgJgHWQEI1CMpsgHi7TBFTEi+wKoI2ZswRceAmA/KlwEIMAA+gxRtyYGnVwAAAABJRU5ErkJggg==") no-repeat center center;
+                display: block;
+            }
 
-        .post-pagination > li > a.arrow-right span,
-        .post-pagination > li > span.arrow-right span
-        {
-            width : 7px;
-            height : 13px;
-            background : url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAJCAYAAAAPU20uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0JGRDA0MDcwMTRBMTFFNTkyNzZGQTczNDVERjAwRjciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0JGRDA0MDgwMTRBMTFFNTkyNzZGQTczNDVERjAwRjciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDQkZEMDQwNTAxNEExMUU1OTI3NkZBNzM0NURGMDBGNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDQkZEMDQwNjAxNEExMUU1OTI3NkZBNzM0NURGMDBGNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtJPax8AAAB+SURBVHjaYjTX15ZhYGCIZoCAv0A8E4g/Q/kMLED8BIg5gLgBKhYAxJ4wRUxQwUYgroeyrYF4OxDzIisAgSZsiphlJMSQ1DAcAeIgIAYJygHxJ2QTmIF4GRDrQPkLgbibCU0yDEkyGeQrJnySMG9KA/EaKP4NxJthkiAAEGAA28oZRCPFDUUAAAAASUVORK5CYII=")  no-repeat center center;
-            display : block;
-        }
+            .post-pagination > li > a.arrow-right span,
+            .post-pagination > li > span.arrow-right span {
+                width: 7px;
+                height: 13px;
+                background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAJCAYAAAAPU20uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0JGRDA0MDcwMTRBMTFFNTkyNzZGQTczNDVERjAwRjciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0JGRDA0MDgwMTRBMTFFNTkyNzZGQTczNDVERjAwRjciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDQkZEMDQwNTAxNEExMUU1OTI3NkZBNzM0NURGMDBGNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDQkZEMDQwNjAxNEExMUU1OTI3NkZBNzM0NURGMDBGNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtJPax8AAAB+SURBVHjaYjTX15ZhYGCIZoCAv0A8E4g/Q/kMLED8BIg5gLgBKhYAxJ4wRUxQwUYgroeyrYF4OxDzIisAgSZsiphlJMSQ1DAcAeIgIAYJygHxJ2QTmIF4GRDrQPkLgbibCU0yDEkyGeQrJnySMG9KA/EaKP4NxJthkiAAEGAA28oZRCPFDUUAAAAASUVORK5CYII=") no-repeat center center;
+                display: block;
+            }
 
-       
+
         .post-pagination > li:first-child > a,
         .post-pagination > li:first-child > span {
             margin-left: 0;
-        }        
-
+        }
 
 .edit-post-wrapper {
-    margin : 20px 40px;
+    margin: 20px 40px;
+}
+
+.settings-wrapper {
+    background: #fff;
+}
+
+.form-settings-wrapper {
+    background: #eee;
+}
+
+.settings-wrapper .settings-menu {
+    background: #fff;
+}
+
+    .settings-wrapper .settings-menu h1 {
+        color: #fc8675;
+        font-size: 24px;
+        font-family: 'Montserrat', sans-serif;
+        padding-left: 30px;
+    }
+
+    .settings-wrapper .settings-menu ul.nav {
+    }
+
+        .settings-wrapper .settings-menu ul.nav li {
+            padding-left: 5px;
+        }
+
+            .settings-wrapper .settings-menu ul.nav li a {
+                background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkRBN0I1NTEwMzg2MTFFNUFFRkRBNjMzNDMzMUMxNDQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkRBN0I1NTIwMzg2MTFFNUFFRkRBNjMzNDMzMUMxNDQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyREE3QjU0RjAzODYxMUU1QUVGREE2MzM0MzMxQzE0NCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyREE3QjU1MDAzODYxMUU1QUVGREE2MzM0MzMxQzE0NCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlfR0BkAAAAxSURBVHjaYvSMzklgYGDoB+IPQBzIrKpnth/IEIBiCSaoDAx8YAEpA+J6qEQhQIABAEaDCNwiegkFAAAAAElFTkSuQmCC");
+                background-position: 20px center;
+                background-repeat: no-repeat;
+                padding-left: 40px;
+                font-size: 17px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: normal;
+                color: #5a6978;
+            }
+
+            .settings-wrapper .settings-menu ul.nav li::after {
+                display: block;
+                content: "";
+                border-bottom: 1px solid #dbdde0;
+                width: 90%;
+                margin-left: 10px;
+                height: 0;
+            }
+
+            .settings-wrapper .settings-menu ul.nav li:hover::after {
+                border-bottom: 1px solid #fff;
+            }
+
+            .settings-wrapper .settings-menu ul.nav li:last-child::after,
+            .settings-wrapper .settings-menu ul.nav li.open::after {
+                display: block;
+                content: "";
+                border-bottom: none;
+            }
+
+.form-settings-wrapper h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #495b6c;
+    font-size: 20px;
+}
+
+.form-settings-wrapper h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #495b6c;
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+.form-settings-wrapper .required {
+    color: #df0000;
+}
+
+.form-settings-wrapper .form-group label {
+    color: #101010;
+    font-weight: normal;
+}
+
+.form-settings-wrapper hr {
+    border-top: 1px solid #dadcde;
+}
+
+
+.form-settings-wrapper .setting-control {
+    background: #e3e3e3;
+    padding: 10px;
+}
+
+    .form-settings-wrapper .setting-control .form-group {
+        margin: 10px 0 0 0;
+    }
+
+    .form-settings-wrapper .setting-control .fixed-width {
+        width: 150px;
+    }
+
+.form-settings-wrapper .team-color-wrapper {
+    margin-bottom: 40px;
+}
+
+.form-settings-wrapper .color-wrapper {
+    width: 50%;
+    margin: 0px auto;
+}
+
+.form-settings-wrapper .message h2 {
+    color : #62cda5;
+}
+
+.form-settings-wrapper .color-wrapper .title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #495b6c;
+}
+
+.form-settings-wrapper .color-wrapper .color-picker {
+    height: 247px;
+}
+
+    .form-settings-wrapper .color-wrapper .color-picker:first-child {
+        float: left;
+    }
+
+    .form-settings-wrapper .color-wrapper .color-picker:last-child {
+        float: right;
+    }
+
+.form-settings-wrapper .setting-control h3 {
+    margin-top: 10px;
 }

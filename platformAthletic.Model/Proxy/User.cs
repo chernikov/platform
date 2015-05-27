@@ -22,6 +22,13 @@ namespace platformAthletic.Model
             TDrill = 0x0B
         }
 
+        public enum PublicLevelEnum
+        {
+            Private = 0x00,
+            Limited = 0x01,
+            Public = 0x02
+        }
+
         public bool InRoles(string roles)
         {
             if (string.IsNullOrWhiteSpace(roles))

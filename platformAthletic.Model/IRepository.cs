@@ -262,6 +262,8 @@ namespace platformAthletic.Model
         
         bool UpdateTeam(Team instance);
 
+        bool UpdateSettingTeam(Team instance);
+
         bool UpdateTeamCount(Team instance);
         bool RemoveTeam(int idTeam);
         

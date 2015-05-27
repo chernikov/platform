@@ -51,6 +51,23 @@ namespace platformAthletic.Model
             return false;
         }
 
+        public bool UpdateSettingTeam(Team instance)
+        {
+            var cache = Db.Teams.FirstOrDefault(p => p.ID == instance.ID);
+            if (cache != null)
+            {
+                cache.LogoPath = instance.LogoPath;
+                cache.SBCControl = instance.SBCControl;
+                cache.SBCAttendance = instance.SBCAttendance;
+                cache.PrimaryColor = instance.PrimaryColor ?? "#ffffff";
+                cache.SecondaryColor = instance.SecondaryColor ?? "#000000";
+                Db.Teams.Context.SubmitChanges();
+                return true;
+            }
+
+            return false;
+        }
+
         public bool UpdateTeamCount(Team instance)
         {
             var cache = Db.Teams.FirstOrDefault(p => p.ID == instance.ID);

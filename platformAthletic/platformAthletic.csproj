@@ -308,6 +308,7 @@
     <Compile Include="Models\Info\SearchSchoolLeaderboard.cs" />
     <Compile Include="Models\Info\SearchSchoolLeaderboardFilter.cs" />
     <Compile Include="Models\Info\SelectedEquipmentList.cs" />
+    <Compile Include="Models\Info\SettingInfoView.cs" />
     <Compile Include="Models\Info\TableInfo.cs" />
     <Compile Include="Models\Info\SchoolLeaderboard.cs" />
     <Compile Include="Models\Info\UserExportInfo.cs" />
@@ -1528,6 +1529,7 @@
     <Content Include="Scripts\default\leaderboard.js" />
     <Content Include="Scripts\default\modal-attendance.js" />
     <Content Include="Scripts\default\schedule.js" />
+    <Content Include="Scripts\default\setting-info.js" />
     <Content Include="Scripts\default\team.js" />
     <Content Include="Scripts\default\user.js" />
     <Content Include="Scripts\default\video-library.js" />
@@ -1588,6 +1590,10 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
+    <Content Include="Areas\Default\Views\Shared\UserMenu.cshtml" />
+    <Content Include="Areas\Default\Views\Setting\Index.cshtml" />
+    <Content Include="Areas\Default\Views\Shared\SettingMenu.cshtml" />
+    <Content Include="Areas\Default\Views\Setting\UpdatePassword.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1596,11 +1602,16 @@
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.9.2.custom.js" />
+    <Content Include="Scripts\jquery-ui-1.9.2.custom.min.js">
+      <DependentUpon>jquery-ui-1.9.2.custom.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.ba-bbq.js" />
     <Content Include="Scripts\jquery.fineuploader-3.0.js" />
     <Content Include="Scripts\jquery.fineuploader-3.0.min.js">
       <DependentUpon>jquery.fineuploader-3.0.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\jquery.ImageColorPicker.js" />
     <Content Include="Scripts\jquery.mask.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\jquery.mCustomScrollbar.js" />

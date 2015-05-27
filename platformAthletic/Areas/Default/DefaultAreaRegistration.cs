@@ -143,7 +143,7 @@ namespace platformAthletic.Areas.Default
             context.MapRoute(
                 null,
                 "settings",
-                new { controller = "Account", action = "Settings" },
+                new { controller = "Setting", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

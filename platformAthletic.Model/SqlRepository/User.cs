@@ -117,6 +117,7 @@ namespace platformAthletic.Model
                 cache.FirstName = instance.FirstName;
                 cache.LastName = instance.LastName;
                 cache.PhoneNumber = instance.PhoneNumber;
+                cache.PublicLevel = instance.PublicLevel;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }
