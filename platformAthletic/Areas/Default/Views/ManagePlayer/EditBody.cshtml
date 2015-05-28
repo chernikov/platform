@@ -1,0 +1,41 @@
+﻿@model PlayerUserView
+
+<div class="row">
+    @using (Html.BeginForm("Edit", "ManageAssistant", FormMethod.Post, new { id = "PlayerForm" }))
+    {
+        @Html.Hidden("ID", Model.ID)
+        @Html.Hidden("AvatarPath", Model.AvatarPath)
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>Email</label>
+            @Html.TextBox("Email", Model.Email, new { @class = "form-control" })
+            @Html.ValidationMessage("Email")
+        </div>
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>First name</label>
+            @Html.TextBox("FirstName", Model.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessage("FirstName")
+        </div>
+        <div class="form-group">
+            <label for="LastName"><span class="required">*</span>Last name</label>
+            @Html.TextBox("LastName", Model.LastName, new { @class = "form-control" })
+            @Html.ValidationMessage("LastName")
+        </div>
+        <div class="form-group">
+            <label>
+                Avatar
+            </label>
+            <div class="btn btn-success" id="UploadImage">
+                Upload
+            </div>
+        </div>
+        <div id="ImagePreviewWrapper" style="@(!string.IsNullOrWhiteSpace(Model.AvatarPath) ? "" : "display : none;")">
+            <img src="@Model.AvatarPath?w=200&h=200&mode=crop" alt="" id="ImagePreview" />
+        </div>
+    }
+</div>
+
+
+<div class="modal-footer text-center">
+    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+    <button type="button" class="btn btn-primary" id="SubmitEditPlayer">SAVE</button>
+</div>

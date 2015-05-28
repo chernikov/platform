@@ -76,7 +76,7 @@ namespace platformAthletic.IntegrationTest.Test
             switch (filter.SelectedType)
             {
                 case FilterCustomProgressReport.Type.Team:
-                    foreach (var user in team.Users.ToList())
+                    foreach (var user in team.Players.ToList())
                     {
                         var value = GetUserValue(user, filter.Weight, beginDate);
                         if (value.HasValue)
@@ -87,7 +87,7 @@ namespace platformAthletic.IntegrationTest.Test
                     }
                     break;
                 case FilterCustomProgressReport.Type.Group:
-                    foreach (var user in team.Users.Where(p => p.GroupID == filter.GroupID).ToList())
+                    foreach (var user in team.Players.Where(p => p.GroupID == filter.GroupID).ToList())
                     {
                         var value = GetUserValue(user, filter.Weight, beginDate);
                         if (value.HasValue)
@@ -98,7 +98,7 @@ namespace platformAthletic.IntegrationTest.Test
                     }
                     break;
                 case FilterCustomProgressReport.Type.Individual:
-                    foreach (var user in team.Users.Where(p => p.ID == filter.UserID).ToList())
+                    foreach (var user in team.Players.Where(p => p.ID == filter.UserID).ToList())
                     {
                         var value = GetUserValue(user, filter.Weight, beginDate);
                         if (value.HasValue)
@@ -109,7 +109,7 @@ namespace platformAthletic.IntegrationTest.Test
                     }
                     break;
                 case FilterCustomProgressReport.Type.Position:
-                    foreach (var user in team.Users.Where(p => p.FieldPositions.Any(r => r.ID == filter.FieldPositionID)).ToList())
+                    foreach (var user in team.Players.Where(p => p.FieldPositions.Any(r => r.ID == filter.FieldPositionID)).ToList())
                     {
                         var value = GetUserValue(user, filter.Weight, beginDate);
                         if (value.HasValue)

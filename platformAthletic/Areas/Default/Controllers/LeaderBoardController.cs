@@ -46,7 +46,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     rank = p.Position,
                     id = p.User.ID,
                     name = p.User.FirstName + " " + p.User.LastName,
-                    state = p.User.Team.State.Name,
+                    state = p.User.TeamOfPlay.State.Name,
                     avatar = p.User.FullAvatarPath
                 })
             }, JsonRequestBehavior.AllowGet);
@@ -64,7 +64,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult School(SearchSchoolLeaderboard search)
         {
-            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
             if (team == null)
             {
                 return RedirectToAction("Index");
@@ -79,7 +79,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult SchoolTop(SearchSchoolLeaderboard search)
         {
-            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
             if (team == null)
             {
                 return RedirectToAction("Index");
@@ -94,7 +94,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult JsonSchoolPlayers(SearchSchoolLeaderboard search)
         {
-            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
             if (team == null)
             {
                 return RedirectToAction("Index");
@@ -111,7 +111,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     rank = p.Position,
                     id = p.User.ID,
                     name = p.User.FirstName + " " + p.User.LastName,
-                    state = p.User.Team.State.Name,
+                    state = p.User.TeamOfPlay.State.Name,
                     avatar = p.User.FullAvatarPath
                 })
             }, JsonRequestBehavior.AllowGet);

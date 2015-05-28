@@ -1,0 +1,68 @@
+﻿@model TeamBillingUserView
+@{
+    ViewBag.Title = "Billing";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+}
+@section header {
+    <script src="~/Scripts/default/billing.js"></script>
+}
+<div class="container-fluid fixed">
+    <div class="side-body height">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/billing">Billing</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row settings-wrapper height">
+            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+                @Html.Partial("SettingMenu")
+            </div>
+            <div class="col-lg-10 col-md-10 billing-wrapper height">
+                <div class="row margin-top">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="pull-right paid-till">*Subscription paid up to @Model.PaidTill.ToString("d")</div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="pull-right">
+                            @if (Model.BillingInfo != null && Model.BillingInfo.AutoDebit)
+                            {
+                                <button class="btn btn-billing" id="CancelAutoDebit">Cancel Auto Debit</button>
+                            }
+                            <button class="btn btn-billing" id="PayForSubscription">Pay For Subscription</button>
+                        </div>
+                        <h2>Billing</h2>
+                        <hr />
+                    </div>
+                </div>
+                <div id="PaymentWrapper" style="display:none;">
+                    @using (Html.BeginForm("Index", "Billing", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1"><h3>Credit Card Information</h3></div>
+                        </div>
+                        @Html.Hidden("ModelTypeName", "TeamBillingUserView")
+                        @Html.Hidden("PaidTill", Model.PaidTill)
+                        @Html.Hidden("Target", Model.Target)
+                        @Html.Partial("CreditCardBillingPart", Model.BillingInfo)
+                    }
+                    <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <hr />
+                            <div class="pull-right amount-wrapper">
+                                Amount:
+                                <strong><span id="TotalPayment">@Model.TotalSum.ToString("C")</span></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

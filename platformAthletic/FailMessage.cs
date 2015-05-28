@@ -64,7 +64,7 @@ namespace platformAthletic
                     var user = repository.Users.FirstOrDefault(p => string.Compare(p.Email, email.FailEmail, true) == 0); 
                     if (user != null) 
                     {
-                        var team = user.Team;
+                        var team = user.TeamOfPlay;
                         if (team != null) 
                         {
                             var coach = team.User;

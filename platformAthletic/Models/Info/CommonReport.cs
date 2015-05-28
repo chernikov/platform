@@ -49,7 +49,7 @@ namespace platformAthletic.Models.Info
             if (user.InRoles("player"))
             {
                 User = user;
-                var coach = user.Team.User;
+                var coach = user.TeamOfPlay.User;
                 var startDate = coach.ProgressStartDate;
                 if (!user.ProgressStartDate.HasValue)
                 {
@@ -80,9 +80,9 @@ namespace platformAthletic.Models.Info
             Team = coach.OwnTeam;
             if (coach.CurrentSeason != null)
             {
-                GenerateProgress(Team.Users.ToList(), coach.CurrentSeason, coach.ProgressStartDate);
-                GenerateMonthAttendance(Team.Users.ToList(), coach.CurrentSeason, coach.AttendanceStartDate);
-                GenerateTotalAttendance(Team.Users.ToList(), coach.CurrentSeason, coach.AttendanceStartDate);
+                GenerateProgress(Team.Players.ToList(), coach.CurrentSeason, coach.ProgressStartDate);
+                GenerateMonthAttendance(Team.Players.ToList(), coach.CurrentSeason, coach.AttendanceStartDate);
+                GenerateTotalAttendance(Team.Players.ToList(), coach.CurrentSeason, coach.AttendanceStartDate);
             }
         }
 

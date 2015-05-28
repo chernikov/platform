@@ -9,10 +9,17 @@
     <li class="@(controllerName == "Setting" ? "open" : "")">
         <a href="/settings">Settings and Info</a>
     </li>
+    <li class="@(controllerName == "ManageAssistant" ? "open" : "")">
+        <a href="/manage-coaches">Manage Coaches</a>
+    </li>
+    <li class="@(controllerName == "ManagePlayer" ? "open" : "")">
+        <a href="/manage-players">Manage Players</a>
+    </li>
     <li class="@(controllerName == "Equipment" ? "open" : "")">
         <a href="/equipment">Equipment Log</a>
     </li>
-    <li>
-        <a href="/settings">Billing</a>
+    <li class="@(controllerName == "Billing" ? "open" : "")">
+        <a href="/billing">Billing</a>
     </li>
+   
 </ul>

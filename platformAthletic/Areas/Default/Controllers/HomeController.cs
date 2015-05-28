@@ -27,7 +27,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 if (CurrentUser.InRoles("coach,player"))
                 {
-                    var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+                    var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
                     if (team != null) 
                     {
                         var coach = team.User;
@@ -165,11 +165,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult Top5User()
         {
-            var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+            var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
 
             if (team != null)
             {
-                var list = team.Users.ToList().OrderByDescending(p => p.SbcSum).Take(5);
+                var list = team.Players.ToList().OrderByDescending(p => p.SbcSum).Take(5);
                 return View(list);
             }
             return null;

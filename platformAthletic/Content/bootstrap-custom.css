@@ -3058,7 +3058,7 @@ hr.video {
 }
 
 .form-settings-wrapper .message h2 {
-    color : #62cda5;
+    color: #62cda5;
 }
 
 .form-settings-wrapper .color-wrapper .title {
@@ -3087,36 +3087,152 @@ hr.video {
 }
 
 .equipment-wrapper {
-    background : #eee;
+    background: #eee;
 }
-.equipment-wrapper h2 {
-      font-family: 'Montserrat', sans-serif;
+
+    .equipment-wrapper h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #495b6c;
+        font-size: 20px;
+    }
+
+    .equipment-wrapper hr {
+        border-top: 1px solid #dadcde;
+    }
+
+
+    .equipment-wrapper .item {
+        margin-bottom: 20px;
+    }
+
+        .equipment-wrapper .item label {
+            margin: 5px 0 5px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: #495b6c;
+        }
+
+            .equipment-wrapper .item label input {
+                margin-right: 10px;
+            }
+
+    .equipment-wrapper .equiment-panel {
+        height: -moz-calc(100% - 320px);
+        height: -webkit-calc(100% - 320px);
+        height: calc(100% - 320px);
+    }
+
+.billing-wrapper {
+    background: #eee;
+}
+
+    .billing-wrapper .paid-till {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: normal;
+        color: #686868;
+    }
+
+
+    .billing-wrapper h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #495b6c;
+        font-size: 20px;
+    }
+
+    .billing-wrapper hr {
+        border-top: 1px solid #dadcde;
+    }
+
+
+    .billing-wrapper .form-group label {
+        color: #101010;
+        font-weight: normal;
+    }
+
+    .billing-wrapper .form-group .required {
+        color: #df0000;
+    }
+
+
+
+
+.billing-custom-style {
+    position: relative;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+    .billing-custom-style select {
+        background: #fff url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzlCRkJFMjcwNDc0MTFFNUIxNDdBQzVCMDM4NDRCMTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzlCRkJFMjgwNDc0MTFFNUIxNDdBQzVCMDM4NDRCMTYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3OUJGQkUyNTA0NzQxMUU1QjE0N0FDNUIwMzg0NEIxNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3OUJGQkUyNjA0NzQxMUU1QjE0N0FDNUIwMzg0NEIxNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgJ8nMsAAAAGUExURdDQ0P39/cf6kvIAAAAiSURBVAjXY2CgGMj/ARL8P4AE+wcgwfwASDAeAMk0UG44AKsqBT4t98jnAAAAAElFTkSuQmCC") no-repeat 100% center;
+        text-indent: 0.01px; /* Removes default arrow from firefox*/
+        text-overflow: ''; /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+        appearance: none;
+        -moz-appearance: none; /* Firefox */
+        -webkit-appearance: none; /* Safari and Chrome */
+        color: #555;
+    }
+
+
+.billing-wrapper .amount-wrapper {
+    font-family: 'Montserrat', sans-serif;
+    color: #495b6c;
+    font-size: 16px;
+}
+
+
+
+.manage-user-wrapper .table thead th {
+    background-color: #60b1c2;
+    color: #fff;
+    border: none;
+    padding-left: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 1315px) {
+    .manage-user-wrapper .table thead th {
+        max-width: 40px;
+    }
+}
+
+
+.manage-user-wrapper .table .header {
+    border-radius: 0;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: #495b6c;
-    font-size: 20px;
-}
-
-.equipment-wrapper hr {
-    border-top: 1px solid #dadcde;
+    text-align: center;
 }
 
 
-.equipment-wrapper .item {
-    margin-bottom : 20px;
-}
-.equipment-wrapper .item label {
-    margin : 5px 0 5px 0;
-      font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+.manage-user-wrapper .table .item {
     color: #495b6c;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.equipment-wrapper .item label input {
-    margin-right : 10px;
-}
+    .manage-user-wrapper .table .item td {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
 
-.equipment-wrapper .equiment-panel {
-    height: -moz-calc(100% - 320px);
-    height: -webkit-calc(100% - 320px);
-    height: calc(100% - 320px);
-}
+        .manage-user-wrapper .table .item td > span {
+            display: block;
+            height: 40px;
+            padding: 7px 10px;
+            margin: 0 0 0 20px;
+        }
+
+        .manage-user-wrapper .table .item td.name > span {
+            /* padding-left: 40px;*/
+            width: auto;
+            text-align: left;
+        }

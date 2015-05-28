@@ -20,6 +20,22 @@ namespace platformAthletic.Model
             CoachAndPlayer = 0x01
         }
 
+        public IList<User> Players
+        {
+            get
+            {
+                return Users;
+            }
+        }
+
+        public IList<User> Assistants
+        {
+            get
+            {
+                return Users1;
+            }
+        }
+
 
         public UserSeason GetCurrentSeason(int? groupID = null)
         {
@@ -48,7 +64,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Users.Count();
+                return Players.Count();
             }
         }
 
@@ -56,7 +72,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Users.Where(p => !p.GroupID.HasValue).OrderBy(p => p.LastName).AsEnumerable();
+                return Players.Where(p => !p.GroupID.HasValue).OrderBy(p => p.LastName).AsEnumerable();
             }
         }
 
@@ -64,7 +80,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Users.Where(p => !p.IsDeleted).AsQueryable();
+                return Players.Where(p => !p.IsDeleted).AsQueryable();
             }
         }
 
@@ -73,7 +89,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Users.OrderBy(p => p.LastName).AsEnumerable();
+                return Players.OrderBy(p => p.LastName).AsEnumerable();
             }
         }
 

@@ -94,7 +94,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     id = p.ID,
                     name = p.FirstName + " " + p.LastName,
-                    state = p.Team.State.Name,
+                    state = p.TeamOfPlay.State.Name,
                     avatar = p.FullAvatarPath
                 })
             }, JsonRequestBehavior.AllowGet);

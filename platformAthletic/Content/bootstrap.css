@@ -2752,6 +2752,50 @@ textarea.input-lg {
                 color: #999999;
                 text-decoration: none;
             }
+
+
+            
+.btn-billing {
+    color: #ffffff;
+    background-color: #495b6c;
+    border-color: #495b6c;
+}
+
+    .btn-billing:hover,
+    .btn-billing:focus,
+    .btn-billing:active,
+    .btn-billing.active,
+    .open .dropdown-toggle.btn-billing {
+        color: #ffffff;
+        background-color: #495b6c;
+        border-color: #495b6c;
+    }
+
+    .btn-billing:active,
+    .btn-billing.active,
+    .open .dropdown-toggle.btn-billing {
+        background-image: none;
+    }
+
+    .btn-billing.disabled,
+    .btn-billing[disabled],
+    fieldset[disabled] .btn-billing,
+    .btn-billing.disabled:hover,
+    .btn-billing[disabled]:hover,
+    fieldset[disabled] .btn-billing:hover,
+    .btn-billing.disabled:focus,
+    .btn-billing[disabled]:focus,
+    fieldset[disabled] .btn-billing:focus,
+    .btn-billing.disabled:active,
+    .btn-billing[disabled]:active,
+    fieldset[disabled] .btn-billing:active,
+    .btn-billing.disabled.active,
+    .btn-billing[disabled].active,
+    fieldset[disabled] .btn-billing.active {
+        background-color: #495b6c;
+        border-color: #495b6c;
+    }
+
 .btn-lg {
     padding: 10px 16px;
     font-size: 18px;

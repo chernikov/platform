@@ -12,6 +12,7 @@
     [PaidTill]                DATETIME       NULL,
     [PhoneNumber]             NVARCHAR (50)  NULL,
     [PlayerOfTeamID]          INT            NULL,
+	[AssistantOfTeamID]       INT            NULL,
     [GroupID]                 INT            NULL,
     [VisitGettingStartedPage] BIT            NULL,
     [Year]                    INT            NULL,
@@ -39,6 +40,7 @@
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_User_Group] FOREIGN KEY ([GroupID]) REFERENCES [dbo].[Group] ([ID]),
     CONSTRAINT [FK_User_Team] FOREIGN KEY ([PlayerOfTeamID]) REFERENCES [dbo].[Team] ([ID]),
+	CONSTRAINT [FK_User_Team2] FOREIGN KEY ([AssistantOfTeamID]) REFERENCES [dbo].[Team] ([ID]),
 	CONSTRAINT [FK_User_Level] FOREIGN KEY ([LevelID]) REFERENCES [dbo].[Level] ([ID])
 );
 

@@ -502,8 +502,8 @@
       <Column Name="Squat" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Bench" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Clean" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Team_SBCValue" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
+      <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.PillarType" Member="PillarTypes">
@@ -561,6 +561,29 @@
       <Association Name="User_Post" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Team" Member="Teams">
+    <Type Name="Team">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="LogoPath" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PrimaryColor" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SecondaryColor" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SBCControl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SBCAttendance" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaxCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Schedule" Member="Schedules" ThisKey="ID" OtherKey="TeamID" Type="Schedule" />
+      <Association Name="Team_Group" Member="Groups" ThisKey="ID" OtherKey="TeamID" Type="Group" />
+      <Association Name="Team_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="TeamID" Type="SBCValue" />
+      <Association Name="Team_User" Member="Users" ThisKey="ID" OtherKey="PlayerOfTeamID" Type="User" />
+      <Association Name="Team_User1" Member="Users1" ThisKey="ID" OtherKey="AssistantOfTeamID" Type="User" />
+      <Association Name="School_Team" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" />
+      <Association Name="State_Team" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
+      <Association Name="User_Team" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.[User]" Member="Users">
     <Type Name="User">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -576,6 +599,7 @@
       <Column Name="PaidTill" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="PhoneNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="PlayerOfTeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AssistantOfTeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="VisitGettingStartedPage" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -617,28 +641,7 @@
       <Association Name="Group_User" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
       <Association Name="Level_User" Member="Level" ThisKey="LevelID" OtherKey="ID" Type="Level" IsForeignKey="true" />
       <Association Name="Team_User" Member="Team" ThisKey="PlayerOfTeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Team" Member="Teams">
-    <Type Name="Team">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="LogoPath" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="StateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SchoolID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PrimaryColor" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="SecondaryColor" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="SBCControl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SBCAttendance" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MaxCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Team_Schedule" Member="Schedules" ThisKey="ID" OtherKey="TeamID" Type="Schedule" />
-      <Association Name="Team_Group" Member="Groups" ThisKey="ID" OtherKey="TeamID" Type="Group" />
-      <Association Name="Team_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="TeamID" Type="SBCValue" />
-      <Association Name="Team_User" Member="Users" ThisKey="ID" OtherKey="PlayerOfTeamID" Type="User" />
-      <Association Name="School_Team" Member="School" ThisKey="SchoolID" OtherKey="ID" Type="School" IsForeignKey="true" />
-      <Association Name="State_Team" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
-      <Association Name="User_Team" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Team_User1" Member="Team1" ThisKey="AssistantOfTeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

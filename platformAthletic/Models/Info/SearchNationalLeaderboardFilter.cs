@@ -95,6 +95,7 @@ namespace platformAthletic.Models.Info
                 //States
                 foreach (var state in Search.States.ToList())
                 {
+                    //TeamOfPlay
                     if (!users.Any(p => p.Team.StateID == state.ID))
                     {
                         Search.States.Remove(state);

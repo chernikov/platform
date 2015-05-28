@@ -338,6 +338,9 @@ namespace platformAthletic.Model
 
         bool UpdateManageUser(User instance);
 
+        bool UpdateAssistant(User instance);
+
+
         bool SetUserColors(User instance);
 
         bool UpdatePaidTillUser(User instance);

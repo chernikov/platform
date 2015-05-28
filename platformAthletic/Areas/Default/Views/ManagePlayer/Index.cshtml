@@ -1,94 +1,83 @@
-﻿@model IEnumerable<platformAthletic.Model.User>
+﻿@model IEnumerable<User>
 
 @{
     ViewBag.Title = "Manage players";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml"; 
+}
+@section styles {
+    <link href="~/Content/fineuploader.css" rel="stylesheet" />
 }
 @section header {
-    <script type="text/javascript" src="/Media/scripts/default/manage-player.js"></script>
+    <script src="~/Scripts/jquery.fineuploader-3.0.js"></script>
+    <script src="~/Scripts/default/manage-player.js"></script>
 }
-
-<div class="equipment-wrp account-wrp clear">
-    <div class="left">
-        <div class="menu all-content-wrp">
-            <div class="item"><a href="/account">Basic Information</a></div>
-            <div class="item"><a href="/settings">Settings</a></div>
-            <div class="item"><a href="/change-password">Change password</a></div>
-            <div class="item"><a href="/billing">Billing</a></div>
-            <div class="item "><a href="/equipment">Equipment Log</a></div>
-            <div class="item selected"><a href="/manage-players">Manage Players</a></div>
-        </div>
-    </div>
-    <div class="right">
-        <div class="top all-content-wrp">
-            <h1>MANAGE PLAYERS</h1>
-        </div>
-        <div class="bottom all-transparent-wrp manage-player">
-            <div class="top-content">
-                <div class="table-manage-players">
-                    <div class="header">
-                        <div class="name">
-                            Name
-                        </div>
-                        <div class="email">
-                            Email
-                        </div>
-                        <div class="position">
-                            Position
-                        </div>
-                        <div class="group">
-                            Group
-                        </div>
-                        <div class="edit">
-                            Edit
-                        </div>
-                        <div class="welcome">
-                            Login Info
-                        </div>
-                    </div>
-
-                    <div class="body">
-                        @foreach (var item in Model)
-                        {
-                            <div class="row">
-                                <div class="name">
-                                    @item.LastName, @item.FirstName
-                                </div>
-                                <div class="email">
-                                    <span title="@item.Email">@item.Email.Teaser(28)</span>
-                                </div>
-                                <div class="position">
-                                    @*@item.FieldPosition.Name*@
-                                </div>
-                                <div class="group">
-                                    @(item.GroupID.HasValue ? item.Group.Name : item.Team.Name)
-                                </div>
-                                <div class="edit">
-                                    <button class="btn btn-edit" data-id="@item.ID">Edit</button>
-                                </div>
-                                <div class="welcome">
-                                    @if (item.LoginInfoSent.HasValue)
-                                    {
-                                        if (item.LoginInfoSent.Value.AddDays(1) > DateTime.Now.Current())
-                                        {
-                                        <button class="btn btn-send disable" data-id="@item.ID" disabled="disabled">Sent</button>
-                                        }
-                                        else
-                                        {
-                                        <button class="btn btn-send active" data-id="@item.ID">Resend</button>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <button class="btn btn-send active" data-id="@item.ID">Send</button>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    </div>
+<div class="container-fluid">
+    <div class="side-body">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/manage-players">Manage Players</a></li>
+                    </ol>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row settings-wrapper">
+            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+                @Html.Partial("SettingMenu")
+            </div>
+            <div class="col-lg-10 col-md-10 manage-user-wrapper">
 
+                <h2>Manage Players</h2>
+                <hr />
+                <div class="btn btn-primary btn-lg" id="Create">Create</div>
+                <br /><br />
+                <table class="table table-coaches">
+                    <thead>
+                        <tr>
+                            <th>
+                                NAME
+                            </th>
+                            <th>
+                                EMAIL
+                            </th>
+                            <th>
+                                GROUP
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="name">
+                                    <img src="@item.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.FirstName @item.LastName</span>
+                                </td>
+                                <td>
+                                    @item.Email
+                                </td>
+                                <td>
+                                    @if (item.Group != null)
+                                    {
+                                        @item.Group.Name
+                                    }
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-success editUser" data-id="@item.ID">Edit</a>
+                                        <a href="#" class="btn btn-primary removeUser" data-id="@item.ID">Remove</a>
+
+                                        <a href="#" class="btn btn-success btn-sm sendActivation" data-id="@item.ID">Send activation</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

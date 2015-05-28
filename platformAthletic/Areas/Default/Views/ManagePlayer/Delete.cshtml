@@ -1,0 +1,26 @@
+﻿@model PlayerUserView
+<div class="modal fade" id="modalRemovePlayer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">REMOVE PlAYER</h4>
+            </div>
+            <div class="modal-body">
+                <div id="ModalEditAssistantWrapper">
+                    @using (Html.BeginForm("Delete", "ManagePlayer", FormMethod.Post, new { id = "PlayerForm" }))
+                    {
+                        @Html.Hidden("ID", Model.ID)
+                    }
+                    <div class="row">
+                        <p>Do you want to delete @Model.FirstName @Model.LastName?</p>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-primary" id="SubmitRemovePlayer">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

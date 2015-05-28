@@ -1,0 +1,114 @@
+﻿@model BillingInfoView
+
+@Html.Hidden("BillingInfo.ID", Model.ID)
+@Html.Hidden("BillingInfo.AutoDebit", Model.AutoDebit)
+@Html.Hidden("BillingInfo.UserID", Model.UserID)
+
+@Html.ValidationMessage("BillingInfo.Payment")
+
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-1">
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>Name On The Card</label>
+            @Html.TextBox("BillingInfo.NameOnCard", Model.NameOnCard, new { @class = "form-control" })
+            @Html.ValidationMessage("BillingInfo.NameOnCard")
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-1">
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>Billing Address</label>
+            @Html.TextBox("BillingInfo.BillingAddress", Model.BillingAddress, new { @class = "form-control" })
+            @Html.ValidationMessage("BillingInfo.BillingAddress")
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-lg-offset-1">
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>City</label>
+            @Html.TextBox("BillingInfo.City", Model.City, new { @class = "form-control" })
+            @Html.ValidationMessage("BillingInfo.City")
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="BillingInfo.StateID"><span class="required">*</span> State</label>
+            <div class="billing-custom-style">
+                @Html.DropDownList("BillingInfo.StateID", Model.SelectListStateID, new { @class = "form-control" })
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="BillingInfo.Zip"><span class="required">*</span>Zip</label>
+            @Html.TextBox("BillingInfo.ZipCode", Model.ZipCode, new { @class = "form-control" })
+            @Html.ValidationMessage("BillingInfo.ZipCode")
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3  col-lg-offset-1">
+        <div class="form-group">
+            <label for="BillingInfo.StateID"><span class="required">*</span> Credit Card Type</label>
+            <div class="billing-custom-style">
+                @Html.DropDownList("BillingInfo.CardType", Model.SelectListCardType, new { @class = "form-control" })
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-1">
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>Credit Card Number</label>
+            @Html.TextBox("BillingInfo.CreditCardNumber", Model.HiddenCreditCardNumber, new { @class = "form-control" })
+            @Html.ValidationMessage("BillingInfo.CreditCardNumber")
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2 col-lg-offset-1">
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>Exp. Date</label>
+            <div class="billing-custom-style">
+                @Html.DropDownList("BillingInfo.ExpirationMonth", Model.ExpirationMonthSelectList, new { @class = "form-control" })
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label for="FirstName"><span class="required">*</span>Credit Card Number</label>
+            <div class="billing-custom-style">
+                @Html.DropDownList("BillingInfo.ExpirationYear", Model.ExpirationYearSelectList, new { @class = "form-control" })
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-1">
+        <div class="form-group">
+            <label for="BillingInfo.ReferralCode"><span class="required">*</span>CVC</label>
+            <div class="row">
+                <div class="col-lg-6 no-padding-left">
+                    @Html.TextBox("BillingInfo.ReferralCode", Model.ReferralCode, new { @class = "form-control", id="ReferralCodeValue" })
+                </div>
+                <div class="col-lg-6">
+                    <button class="btn btn-billing" id="ApplyReferralCode">Apply</button>
+                </div>
+            </div>
+            <div class="field-validation-error" id="PromoCodeError" style="display :none;">
+                Referral code is invalid
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-lg-offset-4">
+        <div class=" pull-right">
+            <button class="btn btn-primary btn-lg">SUBMIT</button>
+        </div>
+    </div>
+</div>

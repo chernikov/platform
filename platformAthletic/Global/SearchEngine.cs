@@ -38,9 +38,9 @@ namespace platformAthletic.Global
                 {
                     rank += Regex.Matches(entry.PhoneNumber.ToLowerInvariant(), regex).Count;
                 }
-                if (entry.Team != null)
+                if (entry.TeamOfPlay != null)
                 {
-                    rank += Regex.Matches(entry.Team.Name.ToLowerInvariant(), regex).Count;
+                    rank += Regex.Matches(entry.TeamOfPlay.Name.ToLowerInvariant(), regex).Count;
                 }
                 if (entry.OwnTeam != null)
                 {

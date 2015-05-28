@@ -211,6 +211,8 @@
     <Compile Include="Areas\Cms\Controllers\HomeController.cs" />
     <Compile Include="Areas\Default\Controllers\AboutUsController.cs" />
     <Compile Include="Areas\Default\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Default\Controllers\BillingController.cs" />
+    <Compile Include="Areas\Default\Controllers\ManageAssistantController.cs" />
     <Compile Include="Areas\Default\Controllers\ContactController.cs" />
     <Compile Include="Areas\Default\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Default\Controllers\EquipmentController.cs" />
@@ -236,6 +238,7 @@
     <Compile Include="Areas\Default\Controllers\HomeController.cs" />
     <Compile Include="Areas\Default\Controllers\LoginController.cs" />
     <Compile Include="Areas\Default\DefaultAreaRegistration.cs" />
+    <Compile Include="Areas\Default\Views\CoachController.cs" />
     <Compile Include="Attributes\AutoMapAttribute.cs" />
     <Compile Include="Attributes\CompressFilter.cs" />
     <Compile Include="Attributes\SeasonCheckAttribute.cs" />
@@ -370,6 +373,7 @@
     <Compile Include="Models\ViewModels\User\IndividualBillingUserView.cs" />
     <Compile Include="Models\ViewModels\User\ForgotPasswordView.cs" />
     <Compile Include="Models\ViewModels\User\IndividualUserView.cs" />
+    <Compile Include="Models\ViewModels\User\AssistantUserView.cs" />
     <Compile Include="Models\ViewModels\User\PlayerUserView.cs" />
     <Compile Include="Models\ViewModels\User\PlayerView.cs" />
     <Compile Include="Models\ViewModels\User\RegisterIndividualView.cs" />
@@ -1519,9 +1523,12 @@
     <Content Include="Scripts\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\default\add-players.js" />
+    <Content Include="Scripts\default\billing.js" />
     <Content Include="Scripts\default\current-date.js" />
     <Content Include="Scripts\default\admin-post-index.js" />
     <Content Include="Scripts\default\equipment.js" />
+    <Content Include="Scripts\default\manage-player.js" />
+    <Content Include="Scripts\default\manage-assistant.js" />
     <Content Include="Scripts\default\post-index.js" />
     <Content Include="Scripts\default\progress-report.js" />
     <Content Include="Scripts\default\attendance-report.js" />
@@ -1597,6 +1604,17 @@
     <Content Include="Areas\Default\Views\Shared\SettingMenu.cshtml" />
     <Content Include="Areas\Default\Views\Setting\UpdatePassword.cshtml" />
     <Content Include="Areas\Default\Views\Equipment\Index.cshtml" />
+    <Content Include="Areas\Default\Views\Billing\TeamBilling.cshtml" />
+    <Content Include="Areas\Default\Views\Billing\CreditCardBillingPart.cshtml" />
+    <Content Include="Areas\Default\Views\Billing\CancelAutoDebit.cshtml" />
+    <Content Include="Areas\Default\Views\Billing\IndividualBilling.cshtml" />
+    <Content Include="Areas\Default\Views\ManageAssistant\Index.cshtml" />
+    <Content Include="Areas\Default\Views\ManageAssistant\Edit.cshtml" />
+    <Content Include="Areas\Default\Views\ManageAssistant\EditBody.cshtml" />
+    <Content Include="Areas\Default\Views\ManageAssistant\Delete.cshtml" />
+    <Content Include="Areas\Default\Views\ManagePlayer\Edit.cshtml" />
+    <Content Include="Areas\Default\Views\ManagePlayer\EditBody.cshtml" />
+    <Content Include="Areas\Default\Views\ManagePlayer\Delete.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

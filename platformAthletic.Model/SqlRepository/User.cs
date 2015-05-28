@@ -158,6 +158,23 @@ namespace platformAthletic.Model
             return false;
         }
 
+        public bool UpdateAssistant(User instance)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
+            if (cache != null)
+            {
+                cache.Password = instance.Password;
+                cache.FirstName = instance.FirstName;
+                cache.AvatarPath = instance.AvatarPath;
+                cache.LastName = instance.LastName;
+                cache.PhoneNumber = instance.PhoneNumber;
+                cache.Email = instance.Email;
+                Db.Users.Context.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
 
         public bool SetUserColors(User instance)
         {
@@ -430,9 +447,9 @@ namespace platformAthletic.Model
                     Db.SBCValues.Context.SubmitChanges();
                 }
 
-                if (instance.OwnTeam != null && instance.OwnTeam.Users.Any())
+                if (instance.OwnTeam != null && instance.OwnTeam.Players.Any())
                 {
-                    var players = instance.OwnTeam.Users;
+                    var players = instance.OwnTeam.Players;
                     Db.Users.DeleteAllOnSubmit(players);
                     Db.Users.Context.SubmitChanges();
                 }

@@ -88,12 +88,7 @@ namespace platformAthletic.Models.ViewModels.User
                         Selected = group.ID == GroupID
                     };
                 }
-               
             }
         }
-
-
-
     }
-
 }

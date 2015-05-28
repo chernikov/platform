@@ -28,7 +28,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
             if (team != null)
             {
-                var list = team.Users.OrderBy(p => p.LastName).ToList();
+                var list = team.Players.OrderBy(p => p.LastName).ToList();
                 if (groupId.HasValue)
                 {
                     list = list.Where(p => p.GroupID == groupId.Value).ToList();

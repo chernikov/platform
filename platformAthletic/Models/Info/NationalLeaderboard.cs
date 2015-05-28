@@ -174,6 +174,7 @@ namespace platformAthletic.Models.Info
             }
             if (Search.StateID != null)
             {
+                //TeamOfPlay
                 users = users.Where(p => p.Team.StateID == Search.StateID.Value);
             }
             if (Search.LevelID != null)

@@ -63,6 +63,7 @@ namespace platformAthletic.Models.Info
             }
             if (Search.StateID != null)
             {
+                //TeamOfPlay
                 sbcValues = sbcValues.Where(p => p.User.Team.StateID == Search.StateID.Value);
             }
             if (Search.LevelID != null)

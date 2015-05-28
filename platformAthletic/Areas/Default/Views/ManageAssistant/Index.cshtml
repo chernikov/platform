@@ -1,0 +1,78 @@
+﻿@model IList<User>
+
+@{
+    ViewBag.Title = "Manage Coaches";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+}
+@section styles {
+    <link href="~/Content/fineuploader.css" rel="stylesheet" />
+}
+@section header {
+    <script src="~/Scripts/jquery.fineuploader-3.0.js"></script>
+    <script src="~/Scripts/default/manage-assistant.js"></script>
+}
+<div class="container-fluid">
+    <div class="side-body">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/manage-coaches">Manage Coaches</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row settings-wrapper">
+            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+                @Html.Partial("SettingMenu")
+            </div>
+            <div class="col-lg-10 col-md-10 manage-user-wrapper">
+
+                <h2>Manage Coaches</h2>
+                <hr/>
+                <div class="btn btn-primary btn-lg" id="Create">Create</div>
+                <br/><br />
+                <table class="table table-coaches">
+                    <thead>
+                        <tr>
+                            <th>
+                              NAME
+                            </th>
+                            <th>
+                                EMAIL
+                            </th>
+                            <th>
+                                PHONE NUMBER
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="name">
+                                    <img src="@item.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.FirstName @item.LastName</span>
+                                </td>
+                                <td>
+                                    @item.Email
+                                </td>
+                                <td>
+                                   @item.PhoneNumber
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-success editUser" data-id="@item.ID">Edit</a>
+                                        <a href="#" class="btn btn-primary removeUser" data-id="@item.ID">Remove</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

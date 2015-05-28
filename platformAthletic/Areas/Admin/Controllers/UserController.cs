@@ -130,7 +130,7 @@ namespace platformAthletic.Areas.Admin.Controllers
                         Email = p.Email ?? "",
                         Role = p.Role ?? "",
                         Name = p.FirstName + "  " + p.LastName,
-                        Team = (p.Team ?? p.OwnTeam) != null ? (p.Team ?? p.OwnTeam).Name : "",
+                        Team = (p.TeamOfPlay ?? p.OwnTeam) != null ? (p.TeamOfPlay ?? p.OwnTeam).Name : "",
                         PhoneNumber = p.PhoneNumber ?? "",
                         Codes = string.Join(", ", p.PromoCodes.ToList()) ?? "",
                         PaidTill = p.PaidTill.HasValue ? p.PaidTill.Value.ToString("d") : ""

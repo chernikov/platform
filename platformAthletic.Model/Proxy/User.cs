@@ -29,6 +29,33 @@ namespace platformAthletic.Model
             Public = 0x02
         }
 
+        public Team TeamOfPlay
+        {
+            get
+            {
+                return Team;
+            }
+
+            set
+            {
+                Team = value;
+            }
+        }
+
+        public Team TeamOfAssistance
+        {
+            get
+            {
+                return Team1;
+            }
+
+            set
+            {
+                Team1 = value;
+            }
+        }
+
+
         public bool InRoles(string roles)
         {
             if (string.IsNullOrWhiteSpace(roles))
@@ -114,9 +141,9 @@ namespace platformAthletic.Model
                 {
                     return OwnTeam.PrimaryColor ?? string.Empty;
                 }
-                else if (Team != null)
+                else if (TeamOfPlay != null)
                 {
-                    return Team.PrimaryColor ?? string.Empty;
+                    return TeamOfPlay.PrimaryColor ?? string.Empty;
                 }
                 return string.Empty;
             }
@@ -134,9 +161,9 @@ namespace platformAthletic.Model
                 {
                     return OwnTeam.SecondaryColor ?? string.Empty;
                 }
-                else if (Team != null)
+                else if (TeamOfPlay != null)
                 {
-                    return Team.SecondaryColor ?? string.Empty;
+                    return TeamOfPlay.SecondaryColor ?? string.Empty;
                 }
                 return string.Empty;
             }
@@ -147,9 +174,9 @@ namespace platformAthletic.Model
             get
             {
                 //if player of team
-                if (Team != null && ID != Team.UserID)
+                if (TeamOfPlay != null && ID != TeamOfPlay.UserID)
                 {
-                    var coach = Team.User;
+                    var coach = TeamOfPlay.User;
                     if (GroupID != null)
                     {
                         var currentSeason = coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime, GroupID.Value);
@@ -191,9 +218,9 @@ namespace platformAthletic.Model
         {
             get
             {
-                if (Team != null && ID != Team.UserID)
+                if (TeamOfPlay != null && ID != TeamOfPlay.UserID)
                 {
-                    return Team.NextSeason;
+                    return TeamOfPlay.NextSeason;
                 }
                 else
                 {
@@ -217,9 +244,9 @@ namespace platformAthletic.Model
                 {
                     return OwnTeam.LogoPath;
                 }
-                if (Team != null)
+                if (TeamOfPlay != null)
                 {
-                    return Team.LogoPath;
+                    return TeamOfPlay.LogoPath;
                 }
                 return null;
             }
@@ -284,7 +311,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return OwnTeam.Users.Any();
+                return OwnTeam.Players.Any();
             }
         }
 
@@ -292,7 +319,7 @@ namespace platformAthletic.Model
         {
             if (user != null)
             {
-                if (user.OwnTeam != null && user.OwnTeam.ID == PlayerOfTeamID)
+                if (user.OwnTeam != null && (user.OwnTeam.ID == PlayerOfTeamID || user.OwnTeam.ID == AssistantOfTeamID))
                 {
                     return true;
                 }
@@ -300,7 +327,7 @@ namespace platformAthletic.Model
                 {
                     return true;
                 }
-                if (user.Team != null && user.Team.SBCControl == (int)Team.SBCControlType.CoachAndPlayer && user.ID == ID)
+                if (user.TeamOfPlay != null && user.TeamOfPlay.SBCControl == (int)Team.SBCControlType.CoachAndPlayer && user.ID == ID)
                 {
                     return true;
                 }
@@ -339,7 +366,7 @@ namespace platformAthletic.Model
             {
                 if (InRoles("player"))
                 {
-                    return Team.User.UserEquipments.Select(p => p.Equipment).ToList();
+                    return TeamOfPlay.User.UserEquipments.Select(p => p.Equipment).ToList();
                 }
                 else
                 {
@@ -374,7 +401,7 @@ namespace platformAthletic.Model
                 }
                 if (InRoles("player"))
                 {
-                    return Team.User.PaidTill;
+                    return TeamOfPlay.User.PaidTill;
                 }
                 return null;
             }

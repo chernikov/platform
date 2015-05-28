@@ -199,7 +199,7 @@ namespace platformAthletic.Areas.Default
             context.MapRoute(
                 null,
                 "billing",
-                new { controller = "Account", action = "Billing" },
+                new { controller = "Billing", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
@@ -212,15 +212,15 @@ namespace platformAthletic.Areas.Default
 
             context.MapRoute(
                 null,
-                "manage-players",
-                new { controller = "ManagePlayer", action = "Index" },
+                "manage-coaches/{action}",
+                new { controller = "ManageAssistant", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
             context.MapRoute(
                 null,
-                "manage-editplayer",
-                new { controller = "ManagePlayer", action = "EditPlayer" },
+                "manage-players/{action}",
+                new { controller = "ManagePlayer", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 

@@ -41,7 +41,7 @@ namespace platformAthletic.Areas.Default.Controllers
             IQueryable<Post> list = null;
             if (CurrentUser.InRoles("coach,player"))
             {
-                var team = CurrentUser.Team ?? CurrentUser.OwnTeam;
+                var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
                 if (team != null)
                 {
                     var coach = team.User;

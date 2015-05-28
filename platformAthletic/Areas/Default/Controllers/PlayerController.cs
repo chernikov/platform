@@ -36,7 +36,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 if (CurrentUser.OwnTeam != null)
                 {
-                    if (CurrentUser.OwnTeam.ID == user.Team.ID)
+                    if (CurrentUser.OwnTeam.ID == user.TeamOfPlay.ID)
                     {
                         return View("Index", user);
                     }
