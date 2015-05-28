@@ -7,12 +7,14 @@
         $("#primary_color").ImageColorPicker({
             afterColorSelected: function (event, color) {
                 $("#PrimaryColor").val(color);
+                _this.UpdateColors();
             }
         });
 
         $("#secondary_color").ImageColorPicker({
             afterColorSelected: function (event, color) {
                 $("#SecondaryColor").val(color);
+                _this.UpdateColors();
             }
         });
 
@@ -60,6 +62,18 @@
                 $("#UpdatePasswordWrapper").html(data);
             }
         });
+    }
+
+    this.UpdateColors = function () {
+
+        $(".primaryColor").css("color", $("#PrimaryColor").val());
+        $(".primaryColorBg").css("background-color", $("#PrimaryColor").val());
+        $(".primaryColorBg").css("background-image", "none");
+        $(".primaryColorBorder").css("border-color", $("#PrimaryColor").val());
+        $(".secondaryColor").css("color", $("#SecondaryColor").val());
+        $(".secondaryColorBg").css("background-color", $("#SecondaryColor").val());
+        $(".secondaryColorBg").css("background-image", "none");
+        $(".secondaryColorBorder").css("border-color", $("#SecondaryColor").val());
     }
 }
 

@@ -21,9 +21,11 @@
     {
             $(".primaryColor").css("color", _this.primaryColor);
             $(".primaryColorBg").css("background-color", _this.primaryColor);
+            $(".primaryColorBg").css("background-image", "none");
             $(".primaryColorBorder").css("border-color", _this.primaryColor);
             $(".secondaryColor").css("color", _this.secondaryColor);
             $(".secondaryColorBg").css("background-color", _this.secondaryColor);
+            $(".secondaryColorBg").css("background-image", "none");
             $(".secondaryColorBorder").css("border-color", _this.secondaryColor);
     }
 

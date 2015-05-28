@@ -469,6 +469,7 @@
     <Content Include="Content\img\year.png" />
     <Content Include="Content\jquery.mCustomScrollbar.css" />
     <Content Include="Content\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\img\side-phone.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1524,6 +1525,7 @@
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\default\add-players.js" />
     <Content Include="Scripts\default\billing.js" />
+    <Content Include="Scripts\default\colors.js" />
     <Content Include="Scripts\default\current-date.js" />
     <Content Include="Scripts\default\admin-post-index.js" />
     <Content Include="Scripts\default\equipment.js" />
