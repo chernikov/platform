@@ -210,12 +210,15 @@ namespace platformAthletic.Areas.Default
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
+
             context.MapRoute(
                 null,
                 "manage-coaches/{action}",
                 new { controller = "ManageAssistant", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
+
+         
 
             context.MapRoute(
                 null,
@@ -253,12 +256,14 @@ namespace platformAthletic.Areas.Default
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
 
+
             context.MapRoute(
                 null,
                 "getting-started",
-                new { controller = "GettingStarted", action = "Index" },
+                new { controller = "Help", action = "Index" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
+
 
             context.MapRoute(
                 null,

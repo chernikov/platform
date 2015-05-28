@@ -6,6 +6,11 @@ a:hover {
     text-decoration: none;
 }
 
+
+.required {
+    color: #df0000;
+}
+
 .fixed {
     position: fixed;
     height: 100%;
@@ -2989,14 +2994,14 @@ hr.video {
             .settings-wrapper .settings-menu ul.nav li::after {
                 display: block;
                 content: "";
-                border-bottom: 1px solid #dbdde0;
+                /*border-bottom: 1px solid #dbdde0;*/
                 width: 90%;
                 margin-left: 10px;
                 height: 0;
             }
 
             .settings-wrapper .settings-menu ul.nav li:hover::after {
-                border-bottom: 1px solid #fff;
+                /*border-bottom: 1px solid #fff;*/
             }
 
             .settings-wrapper .settings-menu ul.nav li:last-child::after,
@@ -3021,9 +3026,6 @@ hr.video {
     margin-top: 30px;
 }
 
-.form-settings-wrapper .required {
-    color: #df0000;
-}
 
 .form-settings-wrapper .form-group label {
     color: #101010;
@@ -3152,13 +3154,6 @@ hr.video {
         font-weight: normal;
     }
 
-    .billing-wrapper .form-group .required {
-        color: #df0000;
-    }
-
-
-
-
 .billing-custom-style {
     position: relative;
     background-position: right center;
@@ -3201,38 +3196,128 @@ hr.video {
     }
 }
 
-
-.manage-user-wrapper .table .header {
-    border-radius: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: #495b6c;
-    text-align: center;
+.manage-user-wrapper {
+    min-height: 850px;
+    background: #eee !important;
 }
 
-
-.manage-user-wrapper .table .item {
-    color: #495b6c;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-    .manage-user-wrapper .table .item td {
-        border: none;
-        padding: 0;
-        cursor: pointer;
+    .manage-user-wrapper h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #495b6c;
+        font-size: 20px;
     }
 
-        .manage-user-wrapper .table .item td > span {
-            display: block;
-            height: 40px;
-            padding: 7px 10px;
-            margin: 0 0 0 20px;
+    .manage-user-wrapper hr {
+        border-top: 1px solid #dadcde;
+    }
+
+    .manage-user-wrapper .table {
+        background: #fff;
+    }
+
+        .manage-user-wrapper .table .header {
+            border-radius: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color: #495b6c;
+            text-align: center;
         }
 
-        .manage-user-wrapper .table .item td.name > span {
-            /* padding-left: 40px;*/
-            width: auto;
-            text-align: left;
+
+        .manage-user-wrapper .table .item {
+            color: #495b6c;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
         }
+
+            .manage-user-wrapper .table .item td {
+                border: none;
+                padding: 0;
+                cursor: pointer;
+            }
+
+                .manage-user-wrapper .table .item td > span {
+                    display: block;
+                    height: 40px;
+                    padding: 7px 10px;
+                    margin: 0 0 0 20px;
+                }
+
+                .manage-user-wrapper .table .item td.name > span {
+                    /* padding-left: 40px;*/
+                    width: auto;
+                    text-align: left;
+                }
+
+.help-wrapper {
+    min-height: 850px;
+    background: #eee !important;
+}
+
+   .help-wrapper h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #495b6c;
+        font-size: 32px;
+    }
+
+    .help-wrapper h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #495b6c;
+        font-size: 20px;
+    }
+
+    .help-wrapper hr {
+        border-top: 1px solid #dadcde;
+    }
+
+
+    .help-wrapper .faq-height {
+        height: -moz-calc(100% - 250px);
+        height: -webkit-calc(100% - 250px);
+        height: calc(100% - 250px);
+    }
+
+
+    .help-wrapper .getting-started-height {
+        height: -moz-calc(100% - 250px);
+        height: -webkit-calc(100% - 250px);
+        height: calc(100% - 250px);
+    }
+
+
+.modal-body .form-group label {
+    font-weight: normal !important;
+}
+
+.help-wrapper textarea {
+    height: 200px;
+    min-height: 200px;
+}
+
+.contact-info-wrapper {
+    background: #495b6c;
+    border-radius: 30px;
+    color: #fff;
+    padding: 30px  30px 50px 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .contact-info-wrapper h1 {
+        font-weight: bold;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .contact-info-wrapper h3 {
+        font-weight: bold;
+        color: #fc8675;
+        font-size: 18px;
+    }
+
+    .contact-info-wrapper strong {
+        font-size: 18px;
+    }

@@ -1,60 +1,44 @@
-﻿@model IEnumerable<platformAthletic.Model.Faq>
+﻿@model IEnumerable<Faq>
 @{
     ViewBag.Title = "FAQ";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
-    var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["left side banner"];
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
 }
-@section header 
+@section styles {
+    <link href="~/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
+}
+@section header
 {
-    <script type="text/javascript" src="/Media/scripts/jquery.highlight-4.js"></script>
-    <script type="text/javascript" src="/Media/scripts/default/intext-search.js"></script>
-
+    <script src="~/Scripts/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="/Scripts/default/faq.js"></script>
 }
-<div class="help-wrp account-wrp clear">
-    <div class="left">
-        <div class="menu all-content-wrp">
-            <div class="item selected"><a href="/faq">FAQ</a></div>
-            <div class="item"><a href="/getting-started">Getting Started</a></div>
-            <div class="item"><a href="/contact-us">Contact Us</a></div>
-        </div>
-        @if (banner != null)
-        {
-            <div class="banner">
-                @Html.Raw(banner.Show)
+<div class="container-fluid fixed">
+    <div class="side-body height">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/getting-started">Getting started</a></li>
+                    </ol>
+                </div>
             </div>
-        }
-    </div>
-    <div class="right">
-        <div class="top all-content-wrp">
-            <h1>FAQ</h1>
         </div>
-        <div class="bottom all-transparent-wrp">
-            <div class="search-box clear">
-                <div class="search-wrp">
-                    <div class="label">Search help</div>
-                    <div class="input-light">
-                        <input type="text" id="SearchText" />
+        <div class="row settings-wrapper height">
+            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+                @Html.Partial("HelpMenu")
+            </div>
+            <div class="col-lg-10 col-md-10 help-wrapper height">
+                <h2>Frequently Asked Questions</h2>
+                <hr />
+                <div class="row height">
+                    <div class="col-lg-10 col-lg-offset-1 faq-height" id="FaqContent">
+                        @foreach (var item in Model)
+                        {
+                            <h3>@item.Header</h3>
+                            <div class="text">@Html.Raw(@item.Text)</div>
+                        }
                     </div>
-                    <div class="button"><a class="secondaryColor" href="#" id="FindWord">Find</a></div>
                 </div>
-            </div>
-            <div class="content-box">
-                <div class="title">
-                    <h3>Frequently Asked Questions</h3>
-                </div>
-                <div class="sub-title">Questions</div>
-                <div class="text">
-                    @foreach (var item in Model)
-                    {
-                        <a href="#faq_@item.ID">@item.Header</a><br />    
-                    }
-                </div>
-                @foreach (var item in Model)
-                {
-                    <a id="faq_@item.ID"></a>
-                    <div class="sub-title">@item.Header</div>
-                    <div class="text">@Html.Raw(@item.Text)</div>
-                }
             </div>
         </div>
     </div>

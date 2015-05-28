@@ -212,12 +212,12 @@
     <Compile Include="Areas\Default\Controllers\AboutUsController.cs" />
     <Compile Include="Areas\Default\Controllers\AccountController.cs" />
     <Compile Include="Areas\Default\Controllers\BillingController.cs" />
+    <Compile Include="Areas\Default\Controllers\HelpController.cs" />
     <Compile Include="Areas\Default\Controllers\ManageAssistantController.cs" />
     <Compile Include="Areas\Default\Controllers\ContactController.cs" />
     <Compile Include="Areas\Default\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Default\Controllers\EquipmentController.cs" />
     <Compile Include="Areas\Default\Controllers\FaqController.cs" />
-    <Compile Include="Areas\Default\Controllers\GettingStartedController.cs" />
     <Compile Include="Areas\Default\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Default\Controllers\LeaderboardController.cs" />
     <Compile Include="Areas\Default\Controllers\ManagePlayerController.cs" />
@@ -1527,6 +1527,8 @@
     <Content Include="Scripts\default\current-date.js" />
     <Content Include="Scripts\default\admin-post-index.js" />
     <Content Include="Scripts\default\equipment.js" />
+    <Content Include="Scripts\default\getting-started.js" />
+    <Content Include="Scripts\default\faq.js" />
     <Content Include="Scripts\default\manage-player.js" />
     <Content Include="Scripts\default\manage-assistant.js" />
     <Content Include="Scripts\default\post-index.js" />
@@ -1615,6 +1617,8 @@
     <Content Include="Areas\Default\Views\ManagePlayer\Edit.cshtml" />
     <Content Include="Areas\Default\Views\ManagePlayer\EditBody.cshtml" />
     <Content Include="Areas\Default\Views\ManagePlayer\Delete.cshtml" />
+    <Content Include="Areas\Default\Views\Shared\HelpMenu.cshtml" />
+    <Content Include="Areas\Default\Views\Help\Index.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1632,6 +1636,7 @@
     <Content Include="Scripts\jquery.fineuploader-3.0.min.js">
       <DependentUpon>jquery.fineuploader-3.0.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\jquery.highlight-4.js" />
     <Content Include="Scripts\jquery.ImageColorPicker.js" />
     <Content Include="Scripts\jquery.mask.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
@@ -1789,8 +1794,6 @@
     <Content Include="Areas\Default\Views\Contact\Index.cshtml" />
     <Content Include="Areas\Default\Views\Contact\Thanks.cshtml" />
     <Content Include="Areas\Admin\Views\Feedback\Count.cshtml" />
-    <Content Include="Areas\Default\Views\Contact\Help.cshtml" />
-    <Content Include="Areas\Default\Views\GettingStarted\Index.cshtml" />
     <Content Include="Areas\Default\Views\Faq\Index.cshtml" />
     <Content Include="Areas\Default\Views\AboutUs\Index.cshtml" />
     <Content Include="Areas\Default\Views\Feature\Index.cshtml" />

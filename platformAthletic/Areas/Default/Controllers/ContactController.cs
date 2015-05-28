@@ -16,11 +16,6 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Index()
         {
             var feedbackView = new FeedbackView();
-
-            if (CurrentUser != null)
-            {
-                return View("Help", feedbackView);
-            }
             return View(feedbackView);
         }
 
@@ -34,11 +29,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 Repository.CreateFeedback(feedback);
                 return View("Thanks");
             }
-            if (CurrentUser != null)
-            {
-                return View("Help", feedbackView);
-            }
-            
             return View(feedbackView);
         }
 

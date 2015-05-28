@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Getting started";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    var page = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Pages["getting_started"];
+}
+@section styles {
+    <link href="~/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
+}
+@section header
+{
+    <script src="~/Scripts/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="/Scripts/default/getting-started.js"></script>
+}
+
+<div class="container-fluid fixed">
+    <div class="side-body height">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/getting-started">Getting started</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row settings-wrapper height">
+            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+                @Html.Partial("HelpMenu")
+            </div>
+            <div class="col-lg-10 col-md-10 help-wrapper height">
+                <h2>Getting started</h2>
+                <hr />
+                <div class="row height">
+                    <div class="col-lg-10 col-lg-offset-1 getting-started-height" id="GettingStartedContent">
+                        @Html.Raw(page)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

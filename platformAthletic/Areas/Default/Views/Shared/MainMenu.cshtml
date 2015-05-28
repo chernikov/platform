@@ -15,6 +15,6 @@
         <li class="@(controllerName == "Report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
         <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
+        <li class="@((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
     </ul>
 </div><!-- /.navbar-collapse -->

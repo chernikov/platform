@@ -1,0 +1,19 @@
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var controllerName = ViewContext.RequestContext.RouteData.Values["controller"] as string;
+    var actionName = ViewContext.RequestContext.RouteData.Values["action"] as string;
+}
+
+<h1>Help</h1>
+<ul class="nav">
+    <li class="@(controllerName == "Help" ? "open" : "")">
+        <a href="/getting-started">Getting started</a>
+    </li>
+   
+    <li class="@(controllerName == "Faq" ? "open" : "")">
+        <a href="/faq">FAQ</a>
+    </li>
+    <li class="@(controllerName.ToLower() == "contact" ? "open" : "")">
+        <a href="/contact-us">Contact Us</a>
+    </li>
+</ul>
