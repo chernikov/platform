@@ -64,8 +64,8 @@
         });
     }
 
-    this.UpdateColors = function () {
-
+    this.UpdateColors = function ()
+    {
         $(".primaryColor").css("color", $("#PrimaryColor").val());
         $(".primaryColorBg").css("background-color", $("#PrimaryColor").val());
         $(".primaryColorBg").css("background-image", "none");

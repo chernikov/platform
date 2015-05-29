@@ -26,6 +26,12 @@ a:hover {
     height: 100%;
 }
 
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+}
+
 @media(max-width:1280px) {
 
     .fixed {
@@ -227,9 +233,10 @@ a:hover {
             border-bottom: 1px solid #3c4c5d;
         }
 
+
     .platform .navbar-default .navbar-nav > li > a {
         color: #fff;
-        text-shadow : 1px 1px 3px #000;
+        text-shadow: 1px 1px 3px #000;
         padding-top: 20px;
     }
 
@@ -240,7 +247,15 @@ a:hover {
 
         .platform .navbar-default .navbar-nav > li > a:hover {
             color: #fff;
-            text-shadow : 1px 0px 3px #000;
+            text-shadow: 1px 0px 3px #000;
+        }
+
+    .platform .side-menu .navbar-default .navbar-nav > li > a {
+        text-shadow: none;
+    }
+
+        .platform .side-menu.navbar-default .navbar-nav > li > a:hover {
+            text-shadow: none;
         }
 
     .platform .side-menu .navbar-nav .active a {
@@ -522,22 +537,22 @@ a:hover {
     .platform .side-menu-container .in-touch .title {
         font-family: 'Montserrat', sans-serif;
         color: #fff;
-        text-align : center;
+        text-align: center;
     }
 
     .platform .side-menu-container .in-touch .phone {
         font-family: 'Montserrat', sans-serif;
-        font-weight : bold;
-        font-size : 18px;
+        font-weight: bold;
+        font-size: 18px;
         color: #fc8675;
-        text-align : center;
+        text-align: center;
     }
 
-    .platform .side-menu-container .copyright {
-        font-family: 'Montserrat', sans-serif;
-        font-size : 12px;
-        color: #fff;
-    }
+.platform .side-menu-container .copyright {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: #fff;
+}
 
 .custom-style {
     position: relative;
@@ -2279,6 +2294,7 @@ dl.sport-2 {
             text-align: center;
         }
 
+
         .user-page .leaderboard-table td.header {
             height: 133px;
         }
@@ -2302,6 +2318,27 @@ dl.sport-2 {
         .user-page .leaderboard-table .header.clean {
             background: #60b1c2 url("/Content/img/clean-icon.png") no-repeat center center;
         }
+
+        .user-page .leaderboard-table.personal .center {
+            height: 133px;
+        }
+        .user-page .leaderboard-table.personal td {
+            border-left : none;
+            border-right : none;
+
+        }
+            .user-page .leaderboard-table.personal .center h2 {
+                text-align: center;
+                vertical-align: central;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 14px;
+                margin-top : 50px;
+            }
+
+        .user-page .leaderboard-table.personal .header {
+            padding-top : 100px;
+        }
+
 
         .user-page .leaderboard-table .value {
             color: #60b1c2;

@@ -30,6 +30,11 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(CurrentUser.OwnTeam);
         }
 
+        public ActionResult PersonalScheduling()
+        {
+            return View(CurrentUser.OwnTeam);
+        }
+
         public ActionResult CreateGroup()
         {
             var groupView = new GroupView();

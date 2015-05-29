@@ -21,6 +21,21 @@ namespace platformAthletic.Model
                 return Db.Users.Where(p => !p.IsDeleted && p.UserRoles.Any(r => r.RoleID == 3));
             }
         }
+        public IQueryable<User> PlayersTeamPlayersUsers
+        {
+            get
+            {
+                return Db.Users.Where(p => !p.IsDeleted && (p.UserRoles.Any(r => r.RoleID == 3 || r.RoleID == 4)));
+            }
+        }
+
+        public IQueryable<User> PlayersUsers
+        {
+            get
+            {
+                return Db.Users.Where(p => !p.IsDeleted && p.UserRoles.Any(r => r.RoleID == 4));
+            }
+        }
 
         public IQueryable<User> AllUsers
         {
@@ -113,11 +128,11 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
-                cache.AvatarPath = instance.AvatarPath;
                 cache.FirstName = instance.FirstName;
                 cache.LastName = instance.LastName;
                 cache.PhoneNumber = instance.PhoneNumber;
                 cache.PublicLevel = instance.PublicLevel;
+                cache.IndividualStateID = instance.IndividualStateID;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }

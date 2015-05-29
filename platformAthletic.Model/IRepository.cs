@@ -323,11 +323,16 @@ namespace platformAthletic.Model
 
         IQueryable<User> TeamPlayersUsers { get; }
 
+        IQueryable<User> PlayersTeamPlayersUsers { get; }
+
+        IQueryable<User> PlayersUsers { get; }
+
         IQueryable<User> AllUsers { get; }
         
         bool CreateUser(User instance);
         
         bool UpdateUser(User instance);
+
         bool UpdateUserInfo(User instance);
 
         bool CreateAdminUser(User instance);

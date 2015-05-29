@@ -208,7 +208,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult DeletePlayer(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.PlayerOfTeamID == CurrentUser.OwnTeam.ID)
+            if (user != null && user.CanBeDeleted(CurrentUser))
             {
                 Repository.RemoveUser(user.ID);
                 return Json(new { result = "ok", data = id }, JsonRequestBehavior.AllowGet);
@@ -234,7 +234,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult SetAttendance(int id, DateTime date, bool attendance)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.PlayerOfTeamID == CurrentUser.OwnTeam.ID)
+            if (user != null && user.CanEditAttendance(CurrentUser))
             {
                 Repository.SetAttendance(id, attendance, user.CurrentSeason.ID, date);
                 return Json(new { result = "ok" });

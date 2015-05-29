@@ -1,7 +1,7 @@
 ﻿@model platformAthletic.Model.PageableData<platformAthletic.Model.Post>
 @{
     ViewBag.Title = "Platform Athletics";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var banner = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).Banners["left side big banner"];
 }
 @section header
@@ -32,7 +32,7 @@
                             <div class="pull-right date">
                                 <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
                             </div>
-                            <h1>@item.Header @item.Header @item.Header @item.Header</h1>
+                            <h1>@item.Header</h1>
                             @if (!string.IsNullOrWhiteSpace(item.TitleImagePath))
                             {
                                 <img src="@item.TitleImagePath" class="title-image img-rounded" />
@@ -55,7 +55,7 @@
                                 <img src="@item.User.AvatarPath?w=39&h=40&mode=crop">
                             </div>
 
-                            <h1>@item.Header @item.Header @item.Header @item.Header</h1>
+                            <h1>@item.Header</h1>
                             <div class="date">
                                 <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
                             </div>

@@ -55,10 +55,17 @@
                                 <label for="LastName"><span class="required">*</span>Phone number</label>
                                 @Html.TextBox("PhoneNumber", Model.PhoneNumber, new { @class = "form-control" })
                             </div>
-                            <h3>Settings</h3>
-                            <hr />
+                            @if (currentUser != null && currentUser.InRoles("individual"))
+                            {
+                                <div class="form-group">
+                                    <label for="LastName"><span class="required">*</span>State</label>
+                                    @Html.DropDownList("IndividualStateID", Model.SelectListStateID, new { @class = "form-control" })
+                                </div>
+                            }
                             @if (currentUser != null && currentUser.InRoles("coach"))
                             {
+                            <h3>Settings</h3>
+                            <hr />
                                 <div class="setting-control">
                                     <div class="form-group">
                                         <label class="fixed-width">Control of Maxes:</label>

@@ -8,7 +8,7 @@ using platformAthletic.Attributes;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
-    [Authorize(Roles="coach,player")]
+    [Authorize(Roles="coach,player,assistant,individual")]
     public class LeaderboardController : DefaultController
     {
         [SeasonCheck]
@@ -41,12 +41,12 @@ namespace platformAthletic.Areas.Default.Controllers
             var jsonNationalLeaderboard = new JsonNationalLeaderboard(search);
             return Json(new
             {
-                users = jsonNationalLeaderboard.List.Where(p => p.User.PlayerOfTeamID != null).ToList().Select(p => new
+                users = jsonNationalLeaderboard.List.Where(p => p.User.PlayerOfTeamID != null || p.User.IndividualStateID != null).ToList().Select(p => new
                 {
                     rank = p.Position,
                     id = p.User.ID,
                     name = p.User.FirstName + " " + p.User.LastName,
-                    state = p.User.TeamOfPlay.State.Name,
+                    state = p.User.TeamOfPlay != null ? p.User.TeamOfPlay.State.Name : (p.User.State != null ? p.User.State.Name : ""),
                     avatar = p.User.FullAvatarPath
                 })
             }, JsonRequestBehavior.AllowGet);

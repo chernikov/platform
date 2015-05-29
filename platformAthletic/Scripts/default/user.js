@@ -42,6 +42,23 @@
         $(document).on("click", "#SubmitUploadVideo", function () {
             _this.uploadVideo();
         });
+
+
+        $("#ViewHistory").click(function () {
+            _this.showAttendanceCalendar();
+        });
+        $(document).on("click", ".attendanceModalMonth", function () {
+
+            _this.changeAttendanceCalendar($(this).data("id"), $(this).data("date"));
+        });
+
+        $(document).on("click", ".attendanceChange", function () {
+            _this.changeAttendance($(this));
+        });
+        
+        $("#ToggleAttendance").click(function () {
+            _this.changeTodayAttendance($(this));
+        })
     }
 
     this.drawPerformance = function () {
@@ -63,8 +80,6 @@
             animation: false,
             bezierCurve: false,
         });
-
-       
     }
 
     this.stopEdit = function ()
@@ -238,6 +253,79 @@
             success: function (data)
             {
                 $("#UploadVideoBodyWrapper").html(data);
+            }
+        })
+    }
+
+    this.showAttendanceCalendar = function () {
+        $.ajax({
+            type: "GET",
+            url: "/user/AttendanceCalendar",
+            data: { id: $("#UserID").val() },
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#modalCalendar").modal();
+            }
+        })
+    }
+
+    this.changeAttendanceCalendar = function (id, date) {
+        $.ajax({
+            type: "GET",
+            url: "/user/AttendanceCalendarBody",
+            data: {
+                id: id,
+                date : date
+            },
+            success: function (data) {
+                $("#ModalCalendarBodyWrapper").html(data);
+            }
+        })
+    }
+
+    this.changeAttendance = function (item) {
+        var id = item.data("id");
+        var date = item.data("date");
+        var attendance = !$("span", item).hasClass("attendance");
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/SetAttendance",
+            data: {
+                id: id,
+                date: date,
+                attendance : attendance
+            },
+            success: function (data) {
+                if (data.result == "ok") 
+                {
+                    $("span", item).toggleClass("attendance");
+                }
+            }
+        })
+    }
+
+    this.changeTodayAttendance = function (item) {
+        var id = item.data("id");
+        var date = item.data("date");
+        var attendance = $("span", item).length == 0;
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/SetAttendance",
+            data: {
+                id: id,
+                date: date,
+                attendance: attendance
+            },
+            success: function (data)
+            {
+                if (data.result == "ok") {
+                    if (attendance) {
+                        item.html("<span class=\"glyphicon glyphicon-ok\"></span> ATTENDANCE LOGGED");
+                    } else {
+
+                        item.html("LOG ATTENDANCE");
+                    }
+                }
             }
         })
     }

@@ -322,7 +322,7 @@ namespace platformAthletic.Models.Info
 
             FieldPositions = repository.FieldPositions.ToList();
 
-            States =  repository.States.ToList();
+            States = repository.States.ToList();
         }
     }
 }

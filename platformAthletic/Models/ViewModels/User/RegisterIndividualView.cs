@@ -21,6 +21,31 @@ namespace platformAthletic.Models.ViewModels.User
         [ValidPhone(ErrorMessage = "Enter Correct Phone Number")]
         public string PhoneNumber { get; set; }
 
+
+        public int IndividualStateID { get; set; }
+
+        private IEnumerable<State> States
+        {
+            get
+            {
+                var repository = DependencyResolver.Current.GetService<IRepository>();
+                return repository.States.ToList();
+            }
+        }
+
+        public IEnumerable<SelectListItem> SelectListStateID
+        {
+            get
+            {
+                return States.Select(p => new SelectListItem
+                {
+                    Value = p.ID.ToString(),
+                    Text = p.Name,
+                    Selected = p.ID == IndividualStateID
+                });
+            }
+        }
+
         public BillingInfoView BillingInfo { get; set; }
 
         public RegisterIndividualView()

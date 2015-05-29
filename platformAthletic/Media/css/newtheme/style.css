@@ -267,15 +267,16 @@ header.inner {
         background: url("/Media/images/new/trainer.png") no-repeat left bottom;
         width: 1240px;
     }
-    .middle-text .contlayer .start-free {
-        display : block;
-        width : 400px;
-        height : 64px;
-        position : absolute;
-        bottom: 20px;
-        cursor :pointer;
-        z-index : 3;
-    }
+
+        .middle-text .contlayer .start-free {
+            display: block;
+            width: 400px;
+            height: 64px;
+            position: absolute;
+            bottom: 20px;
+            cursor: pointer;
+            z-index: 3;
+        }
 
 
 .header-text {
@@ -655,9 +656,11 @@ footer {
     background: rgba(255,255,255,0.9);
     position: relative;
 }
+
     .biographics .block-wrapper {
-        overflow : hidden;
+        overflow: hidden;
     }
+
     .biographics .shadow {
         height: 127px;
         background: url(/Media/images/new/wwdshadow.png);
@@ -667,14 +670,14 @@ footer {
 
     .biographics .item {
         width: 465px;
-        float : left;
+        float: left;
         margin-top: 80px;
         margin-left: 130px;
     }
 
-    .biographics .item:nth-child(2n+1) {
-        clear : both;
-    }
+        .biographics .item:nth-child(2n+1) {
+            clear: both;
+        }
 
         .biographics .item .picture {
             float: left;
@@ -1304,10 +1307,10 @@ footer {
                 bottom: 31px;
             }
 
-             .join-us-wrapper .team-select .start-today-wrapper a span.price .year {
-                 font-size: 30px;
-                 color: #fff;
-            }
+                .join-us-wrapper .team-select .start-today-wrapper a span.price .year {
+                    font-size: 30px;
+                    color: #fff;
+                }
 
 @media all and (-ms-high-contrast:none) {
     .join-us-wrapper .team-select .start-today-wrapper a span.price {
@@ -1425,10 +1428,11 @@ footer {
                 padding: 10px 0px 0px 0px !important;
                 bottom: 31px;
             }
-            .join-us-wrapper .individual-select .start-today-wrapper a span.price .year {
-                 font-size: 30px;
-                 color: #fff;
-            }
+
+                .join-us-wrapper .individual-select .start-today-wrapper a span.price .year {
+                    font-size: 30px;
+                    color: #fff;
+                }
 
 @media all and (-ms-high-contrast:none) {
     .join-us-wrapper .individual-select .start-today-wrapper a span.price {
@@ -1484,15 +1488,14 @@ footer {
         padding: 20px 0 20px 0;
     }
 
-    .team-register-wrapper .form .white-wrapper .error-message
-    {
-        color : #c00000;
-        text-align : center;
-    }
+        .team-register-wrapper .form .white-wrapper .error-message {
+            color: #c00000;
+            text-align: center;
+        }
 
-    .team-register-wrapper .form .white-wrapper .error-message span {
-        display : block;
-    }
+            .team-register-wrapper .form .white-wrapper .error-message span {
+                display: block;
+            }
 
         .team-register-wrapper .form .white-wrapper .left {
             width: 300px;
@@ -1706,15 +1709,14 @@ footer {
         padding: 20px 0 20px 0;
     }
 
-    .individual-register-wrapper .form .white-wrapper .error-message
-    {
-        color : #c00000;
-        text-align : center;
-    }
+        .individual-register-wrapper .form .white-wrapper .error-message {
+            color: #c00000;
+            text-align: center;
+        }
 
-    .individual-register-wrapper .form .white-wrapper .error-message span {
-        display : block;
-    }
+            .individual-register-wrapper .form .white-wrapper .error-message span {
+                display: block;
+            }
 
         .individual-register-wrapper .form .white-wrapper .left {
             width: 300px;
@@ -1765,6 +1767,13 @@ footer {
         position: relative;
     }
 
+    .individual-register-wrapper .form .form-group .state .customSelect {
+        width: 558px !important;
+    }
+
+    .individual-register-wrapper .form .form-group .state .customSelectInner {
+        width: 558px !important;
+    }
 
 .individual-register-wrapper .gray-wrapper {
     background: rgba(255, 255, 255, 0.7);

@@ -113,13 +113,17 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult Rank(int id)
         {
-            var user = Repository.TeamPlayersUsers.FirstOrDefault(p => p.ID == id);
+            var user = Repository.PlayersTeamPlayersUsers.FirstOrDefault(p => p.ID == id);
             if (user == null)
             {
                 return null;
             }
             var rankInfo = new RankInfo(user);
             ViewBag.RankInfo = rankInfo;
+            if (user.InRoles("individual"))
+            {
+                return View("PersonalRank", user);
+            } 
             return View(user);
         }
 
@@ -138,7 +142,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult ChangeSbc(int id, SBCValue.SbcType type, double value)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditSBC(CurrentUser))
             {
                 Repository.ChangeSbcValue(id, type, value);
                 var newUser = Repository.Users.FirstOrDefault(p => p.ID == id);
@@ -394,6 +398,43 @@ namespace platformAthletic.Areas.Default.Controllers
             }
 
             return Content("OK");
+        }
+
+        public ActionResult AttendanceCalendar(int id, DateTime? date)
+        {
+            var currentDate = date ?? DateTime.Now.Current();
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null)
+            {
+                var attendanceInfo = new AttendanceInfo()
+                {
+                    User = user,
+                    Date = currentDate,
+                };
+                var firstDate = new DateTime(currentDate.Year, currentDate.Month, 1);
+                var lastDate = firstDate.AddMonths(1);
+                attendanceInfo.Attendances = user.UserAttendances.Where(p => p.AddedDate >= firstDate && p.AddedDate < lastDate).Select(p => p.AddedDate.Date).ToList();
+                return View(attendanceInfo);
+            }
+            return null;
+        }
+
+        public ActionResult AttendanceCalendarBody(int id, DateTime date)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null)
+            {
+                var attendanceInfo = new AttendanceInfo()
+                {
+                    User = user,
+                    Date = date,
+                };
+                var firstDate = new DateTime(date.Year, date.Month, 1);
+                var lastDate = firstDate.AddMonths(1);
+                attendanceInfo.Attendances = user.UserAttendances.Where(p => p.AddedDate >= firstDate && p.AddedDate < lastDate).Select(p => p.AddedDate.Date).ToList();
+                return View(attendanceInfo);
+            }
+            return null;
         }
     }
 }

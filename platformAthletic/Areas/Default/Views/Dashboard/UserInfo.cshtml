@@ -1,130 +1,137 @@
 ﻿@model User
-    <div class="row">
-        <div class="col-sm-12 col-xs-12 no-padding-left">
-            <div class="pull-right">
-                <span class="glyphicon glyphicon-print"></span>
+<div class="row">
+    <div class="col-sm-12 col-xs-12 no-padding-left">
+        <div class="pull-right">
+            <span class="glyphicon glyphicon-print"></span>
+        </div>
+        <div class="pull-right right-padding">
+            <a href="@Url.Action("Index", "User", new {id =Model.ID })" class="btn btn-primary">VIEW PROFILE</a>
+        </div>
+        <h3>PLAYER INFORMATION</h3>
+        <div class="row user">
+            <div class="col-sm-6 col-md-6 col-xs-12 no-padding-left">
+                <div class="platform-icon">
+                    @if (Model.AvatarPath != null)
+                    {
+                        <img src="@Model.AvatarPath?w=205&h=205&mode=max" />
+                    }
+
+                </div>
             </div>
-            <h3>PLAYER INFORMATION</h3>
-            <div class="row user">
-                <div class="col-sm-6 col-md-6 col-xs-12 no-padding-left">
-                    <div class="platform-icon">
-                        @if (Model.AvatarPath != null)
-                        {
-                            <img src="@Model.AvatarPath?w=205&h=205&mode=max" />
-                        }
-                    </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <h1>@Model.FirstName @Model.LastName</h1>
+                <dl class="dl-horizontal">
+                    <dt>HEIGHT</dt>
+                    <dd>@Model.Height</dd>
+                    <dt>WEIGHT (lbs)</dt>
+                    <dd>@Model.Weight</dd>
+                </dl>
+
+                <dl class="power dl-horizontal">
+                    <dt>SQUAT</dt>
+                    <dd>
+                        <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="-5">-</button>
+                        <div class="value">@Model.Squat</div>
+                        <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="5">+</button>
+                    </dd>
+                    <dt>BENCH</dt>
+                    <dd>
+                        <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="-5">-</button>
+                        <div class="value">@Model.Bench</div>
+                        <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="5">+</button>
+                    </dd>
+                    <dt>CLEAN</dt>
+                    <dd>
+                        <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="-5">-</button>
+                        <div class="value">@Model.Clean</div>
+                        <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="5">+</button>
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.SubPositions)
+            {
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <dl class="dl-horizontal sport">
+                        <dt>SPORT:</dt>
+                        <dd>@item.Sport.Name</dd>
+                    </dl>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
-                    <h1>@Model.FirstName @Model.LastName</h1>
-                    <dl class="dl-horizontal">
-                        <dt>HEIGHT</dt>
-                        <dd>@Model.Height</dd>
-                        <dt>WEIGHT (lbs)</dt>
-                        <dd>@Model.Weight</dd>
-                    </dl>
-
-                    <dl class="power dl-horizontal">
-                        <dt>SQUAT</dt>
-                        <dd>
-                            <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="-5">-</button>
-                            <div class="value">@Model.Squat</div>
-                            <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="5">+</button>
-                        </dd>
-                        <dt>BENCH</dt>
-                        <dd>
-                            <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="-5">-</button>
-                            <div class="value">@Model.Bench</div>
-                            <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="5">+</button>
-                        </dd>
-                        <dt>CLEAN</dt>
-                        <dd>
-                            <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="-5">-</button>
-                            <div class="value">@Model.Clean</div>
-                            <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="5">+</button>
-                        </dd>
-                     
+                    <dl class="dl-horizontal sport-2">
+                        <dt>POSITION:</dt>
+                        <dd>@item.FieldPosition.Name</dd>
                     </dl>
                 </div>
-            </div>
-            <div class="row">
-                @foreach (var item in Model.SubPositions)
-                {
-                    <div class="col-sm-6 col-md-6 col-xs-12">
-                        <dl class="dl-horizontal sport">
-                            <dt>SPORT:</dt>
-                            <dd>@item.Sport.Name</dd>
-                        </dl>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-xs-12">
-                        <dl class="dl-horizontal sport-2">
-                            <dt>POSITION:</dt>
-                            <dd>@item.FieldPosition.Name</dd>
-                        </dl>
-                    </div>
-                }
-            </div>
+            }
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12" id="AttendanceMonthWrapper">
-            @Html.Action("AttendanceCalendar", "Dashboard", new { id = Model.ID, date = DateTime.Now.Current() })
-            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div id="playerTabWrapper">
-                <ul id="playerTabs" class="nav nav-tabs" data-tabs="tabs">
-                    <li class="active">
-                        <a href="#performance" data-toggle="tab">PERFORMANCE</a>
-                    </li>
-                    <li>
-                        <a href="#attendance" data-toggle="tab">ATTENDANCE</a>
-                    </li>
-                </ul>
+</div>
+<div class="row">
+    <div class="col-sm-12" id="AttendanceMonthWrapper">
+        @Html.Action("AttendanceCalendar", "Dashboard", new { id = Model.ID, date = DateTime.Now.Current() })
 
-             
-                <div id="playerTabs-content" class="tab-content">
-                    <div class="tab-pane active performance" id="performance">
-                        <div class="row">
-                            <div class="col-lg-12 no-padding-right">
-                                <h1 class="performance">LAST 12 WEEKS</h1>
-                                <canvas id="PerformanceChart" class="performance-chart"></canvas>
-                                <div class="pull-right perfomance-change">
-                                    <div class="badge badge-performance squat">
-                                        <h2 class="text-center">
-                                            SQUAT
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var squat = Model.DiffSquat12Week;
-                                            }
-                                            @if (squat > 0)
-                                            {
-                                                <text>+</text>@squat
-                                            }
-                                            else
-                                            {
-                                                @squat
-                                            }
-                                        </h1>
-                                    </div>
-                                    <div class="badge badge-performance bench">
-                                        <h2 class="text-center">
-                                            BENCH
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var bench = Model.DiffBench12Week;
-                                            }
-                                            @if (squat > 0)
-                                            {
-                                                <text>+</text>@bench
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="playerTabWrapper">
+            <ul id="playerTabs" class="nav nav-tabs" data-tabs="tabs">
+                <li class="active">
+                    <a href="#performance" data-toggle="tab">PERFORMANCE</a>
+                </li>
+                <li>
+                    <a href="#attendance" data-toggle="tab">ATTENDANCE</a>
+                </li>
+            </ul>
+
+
+            <div id="playerTabs-content" class="tab-content">
+                <div class="tab-pane active performance" id="performance">
+                    <div class="row">
+                        <div class="col-lg-12 no-padding-right">
+                            <h1 class="performance">LAST 12 WEEKS</h1>
+                            <canvas id="PerformanceChart" class="performance-chart"></canvas>
+                            <div class="pull-right perfomance-change">
+                                <div class="badge badge-performance squat">
+                                    <h2 class="text-center">
+                                        SQUAT
+                                    </h2>
+                                    <h1 class="text-center">
+                                        @{
+                                            var squat = Model.DiffSquat12Week;
+                                        }
+                                        @if (squat > 0)
+                                        {
+                                            <text>+</text>@squat
+                                        }
+                                        else
+                                        {
+                                            @squat
+                                        }
+                                    </h1>
+                                </div>
+                                <div class="badge badge-performance bench">
+                                    <h2 class="text-center">
+                                        BENCH
+                                    </h2>
+                                    <h1 class="text-center">
+                                        @{
+                                            var bench = Model.DiffBench12Week;
+                                        }
+                                        @if (squat > 0)
+                                        {
+                                            <text>+</text>@bench
+
                                             }
                                             else
                                             {
                                                 @bench
+
                                             }
+                                            <
                                         </h1>
                                     </div>
                                     <div class="badge badge-performance clean">
@@ -156,61 +163,64 @@
                                             @if (total > 0)
                                             {
                                                 <text>+</text>@total
+
                                             }
                                             else
                                             {
                                                 @total
+
                                             }
-                                        </h1>
+                                                <
+                                            </h1>
+                                        </div>
                                     </div>
                                 </div>
-                        </div>
-                        
-                        </div>
-                       
-                    </div>
-                    <div class="tab-pane attendance" id="attendance">
-                        <div class="no-padding-left text-center">
-                            <div class="badge badge-attendance">
-                                <h2 class="text-center">
-                                    ALL-TIME
-                                </h2>
-                                <h1 class="text-center">
-                                    @Model.AllAttendanceCount
-                                </h1>
-                            </div>
-                            <div class="badge  badge-attendance">
-                                <h2>
-                                    YEAR
-                                </h2>
-                                <h1 class="text-center">
-                                    @Model.YearAttendanceCount
-                                </h1>
+
                             </div>
 
-                            <div class="badge badge-attendance">
-                                <h2>
-                                    MONTH
-                                </h2>
-                                <h1 class="text-center">
-                                    @Model.MonthAttendanceCount
-                                </h1>
-                            </div>
-
-                            <div class="badge badge-attendance">
-                                <h2>
-                                    WEEK
-                                </h2>
-                                <h1 class="text-center">
-                                    @Model.WeekAttendanceCount
-                                </h1>
-                            </div>
                         </div>
-                        <div class="text-center">
-                            <a href="#" class="btn btn-primary">FULL DETAIL</a>
+                        <div class="tab-pane attendance" id="attendance">
+                            <div class="no-padding-left text-center">
+                                <div class="badge badge-attendance">
+                                    <h2 class="text-center">
+                                        ALL-TIME
+                                    </h2>
+                                    <h1 class="text-center">
+                                        @Model.AllAttendanceCount
+                                    </h1>
+                                </div>
+                                <div class="badge  badge-attendance">
+                                    <h2>
+                                        YEAR
+                                    </h2>
+                                    <h1 class="text-center">
+                                        @Model.YearAttendanceCount
+                                    </h1>
+                                </div>
+
+                                <div class="badge badge-attendance">
+                                    <h2>
+                                        MONTH
+                                    </h2>
+                                    <h1 class="text-center">
+                                        @Model.MonthAttendanceCount
+                                    </h1>
+                                </div>
+
+                                <div class="badge badge-attendance">
+                                    <h2>
+                                        WEEK
+                                    </h2>
+                                    <h1 class="text-center">
+                                        @Model.WeekAttendanceCount
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="#" class="btn btn-primary">FULL DETAIL</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

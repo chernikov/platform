@@ -29,7 +29,7 @@
             <td class="team value">
                 @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
                 {
-                    <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                    <img src="@Model.Team.LogoPath?w=200&h=100&mode=crop" class="team-bg" />
                 }
                 <div class="value-text">
                     @rank.School.Squat<span>@rank.School.Squat.Ordinal()</span>
@@ -47,7 +47,7 @@
             <td class="team value">
                 @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
                 {
-                    <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                    <img src="@Model.Team.LogoPath?w=200&h=100&mode=crop" class="team-bg" />
                 }
                 <div class="value-text">
                     @rank.School.Bench<span>@rank.School.Bench.Ordinal()</span>
@@ -63,7 +63,7 @@
             <td class="team value">
                 @if (!string.IsNullOrWhiteSpace(Model.Team.LogoPath))
                 {
-                    <img src="@Model.Team.LogoPath?w=200" class="team-bg" />
+                    <img src="@Model.Team.LogoPath?w=200&h=100&mode=crop" class="team-bg" />
                 }
                 <div class="value-text">
                     @rank.School.Clean<span>@rank.School.Clean.Ordinal()</span>

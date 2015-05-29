@@ -10,9 +10,19 @@
                 <span class="glyphicon glyphicon-home"></span> HOME
             </a>
         </li>
-        <li class="@(controllerName == "dashboard" ? "active" : "")"><a href="/dashboard"><span class="glyphicon glyphicon-user"></span> DASHBOARD</a></li>
+        @if (currentUser.InRoles("coach,player,assistant"))
+        {
+            <li class="@(controllerName == "dashboard" ? "active" : "")"><a href="/dashboard"><span class="glyphicon glyphicon-user"></span> DASHBOARD</a></li>
+        }
+        @if (currentUser.InRoles("player,individual"))
+        {
+            <li class="@(controllerName == "user" ? "active" : "")"><a href="/user/@currentUser.ID"><span class="glyphicon glyphicon-user"></span> MY PAGE</a></li>
+        }
         <li class="@(controllerName == "Schedule" ? "active" : "")"><a href="/scheduling"><span class="glyphicon glyphicon-calendar"></span> SCHEDULING</a></li>
-        <li class="@(controllerName == "Report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
+        @if (currentUser.InRoles("coach,player,assistant"))
+        {
+            <li class="@(controllerName == "Report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
+        }
         <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
         <li class="@((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
@@ -27,8 +37,8 @@
     </div>
 
     <div class="copyright text-center">
-        COPYRIGHT 2015<br/>
-        PLATFORM ATHLETICS, LLC.<br/>
+        COPYRIGHT 2015<br />
+        PLATFORM ATHLETICS, LLC.<br />
         ALL RIGHTS RESERVED.
     </div>
 </div><!-- /.navbar-collapse -->

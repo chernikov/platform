@@ -218,6 +218,22 @@
         });
     }
 
+
+    this.loadCalendarPersonal = function (month, teamID, groupID) {
+        var ajaxData = {
+            month: month,
+            teamId: teamID,
+            groupId: groupID
+        };
+        $.ajax({
+            type: "GET",
+            url: "/Schedule/PersonalCalendar",
+            data: ajaxData,
+            success: function (data) {
+                $("#CalendarWrapper").html(data);
+            }
+        });
+    }
     this.setSelected = function (number, id, date) {
         var ajaxData = {
             number: number,

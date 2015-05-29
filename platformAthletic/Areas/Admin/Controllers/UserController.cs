@@ -146,24 +146,5 @@ namespace platformAthletic.Areas.Admin.Controllers
 
             return this.Excel(list, "users.xls", headers);
         }
-
-
-        /*public ActionResult Schedulers()
-        {
-            foreach (var schedule in Repository.Schedules)
-            {
-                schedule.UserSeasonID = schedule.Team.GetCurrentSeason().ID;
-                Repository.UpdateSchedule(schedule);
-
-            }
-
-            foreach (var schedule in Repository.PersonalSchedules)
-            {
-                schedule.UserSeasonID = schedule.User.CurrentSeason.ID;
-                Repository.UpdatePersonalSchedule(schedule);
-            }
-
-            return Content("OK");
-        }*/
     }
 }

@@ -31,7 +31,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Edit(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditSBC(CurrentUser))
             {
                 var assistantUserView = (AssistantUserView)ModelMapper.Map(user, typeof(User), typeof(AssistantUserView));
                 return View(assistantUserView);
@@ -72,7 +72,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Delete(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditSBC(CurrentUser))
             {
                 var assistantUserView = (AssistantUserView)ModelMapper.Map(user, typeof(User), typeof(AssistantUserView));
                 return View(assistantUserView);

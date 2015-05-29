@@ -222,7 +222,6 @@
     <Compile Include="Areas\Default\Controllers\LeaderboardController.cs" />
     <Compile Include="Areas\Default\Controllers\ManagePlayerController.cs" />
     <Compile Include="Areas\Default\Controllers\PageController.cs" />
-    <Compile Include="Areas\Default\Controllers\PlayerController.cs" />
     <Compile Include="Areas\Default\Controllers\PostController.cs" />
     <Compile Include="Areas\Default\Controllers\ReportController.cs" />
     <Compile Include="Areas\Default\Controllers\ScheduleController.cs" />
@@ -230,6 +229,7 @@
     <Compile Include="Areas\Default\Controllers\TableController.cs" />
     <Compile Include="Areas\Default\Controllers\TeamController.cs" />
     <Compile Include="Areas\Default\Controllers\TestController.cs" />
+    <Compile Include="Areas\Default\Controllers\TutorialController.cs" />
     <Compile Include="Areas\Default\Controllers\UserController.cs" />
     <Compile Include="Areas\Default\Controllers\VideoController.cs" />
     <Compile Include="Areas\Default\Controllers\FeatureController.cs" />
@@ -465,6 +465,7 @@
     <Content Include="Content\img\states\wv.png" />
     <Content Include="Content\img\states\wy.png" />
     <Content Include="Content\img\total-icon.png" />
+    <Content Include="Content\img\tutorial\tutorial_01.png" />
     <Content Include="Content\img\week.png" />
     <Content Include="Content\img\year.png" />
     <Content Include="Content\jquery.mCustomScrollbar.css" />
@@ -1544,6 +1545,7 @@
     <Content Include="Scripts\default\schedule.js" />
     <Content Include="Scripts\default\setting-info.js" />
     <Content Include="Scripts\default\team.js" />
+    <Content Include="Scripts\default\tutorial.js" />
     <Content Include="Scripts\default\user.js" />
     <Content Include="Scripts\default\video-library.js" />
     <Content Include="Scripts\hogan.js" />
@@ -1621,6 +1623,10 @@
     <Content Include="Areas\Default\Views\ManagePlayer\Delete.cshtml" />
     <Content Include="Areas\Default\Views\Shared\HelpMenu.cshtml" />
     <Content Include="Areas\Default\Views\Help\Index.cshtml" />
+    <Content Include="Areas\Default\Views\User\AttendanceCalendar.cshtml" />
+    <Content Include="Areas\Default\Views\User\AttendanceCalendarBody.cshtml" />
+    <Content Include="Areas\Default\Views\User\PersonalRank.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Index.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1807,7 +1813,6 @@
     <Content Include="Areas\Default\Views\Shared\_OK.cshtml" />
     <Content Include="Areas\Default\Views\Home\Individual.cshtml" />
     <Content Include="Areas\Default\Views\Home\Team.cshtml" />
-    <Content Include="Areas\Default\Views\Player\Index.cshtml" />
     <Content Include="Areas\Default\Views\Leaderboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Gallery\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Gallery\Edit.cshtml" />
@@ -1819,11 +1824,8 @@
     <Content Include="Areas\Admin\Views\Post\Edit.cshtml" />
     <Content Include="Areas\Default\Views\Home\EditPost.cshtml" />
     <Content Include="Areas\Default\Views\Home\PostItem.cshtml" />
-    <Content Include="Areas\Default\Views\Player\Pillar.cshtml" />
     <Content Include="Areas\Admin\Views\PillarType\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PillarType\Edit.cshtml" />
-    <Content Include="Areas\Default\Views\Player\PillarsData.cshtml" />
-    <Content Include="Areas\Default\Views\Player\SelectPosition.cshtml" />
     <Content Include="Areas\Default\Views\Account\PlayerAccount.cshtml" />
     <Content Include="Areas\Default\Views\Table\Index.cshtml" />
     <Content Include="Areas\Default\Views\Table\Team.cshtml" />

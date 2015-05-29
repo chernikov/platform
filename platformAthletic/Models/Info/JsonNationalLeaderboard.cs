@@ -16,7 +16,7 @@ namespace platformAthletic.Models.Info
 
         protected override void Process()
         {
-            var users = Repository.TeamPlayersUsers;
+            var users = Repository.PlayersTeamPlayersUsers;
             if (!string.IsNullOrWhiteSpace(Search.SearchString))
             {
                 var lowerString = Search.SearchString.ToLower();

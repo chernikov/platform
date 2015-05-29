@@ -109,6 +109,10 @@ namespace platformAthletic.Model
         {
             get
             {
+                if (InRoles("assistant"))
+                {
+                    return TeamOfAssistance;
+                }
                 return Teams.FirstOrDefault();
             }
         }
@@ -315,7 +319,7 @@ namespace platformAthletic.Model
             }
         }
 
-        public bool CanEditTeamData(User user)
+        public bool CanEditSBC(User user)
         {
             if (user != null)
             {
@@ -328,6 +332,42 @@ namespace platformAthletic.Model
                     return true;
                 }
                 if (user.TeamOfPlay != null && user.TeamOfPlay.SBCControl == (int)Team.SBCControlType.CoachAndPlayer && user.ID == ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CanBeDeleted(User user)
+        {
+            if (user != null)
+            {
+                if (user.OwnTeam != null && (user.OwnTeam.ID == PlayerOfTeamID || user.OwnTeam.ID == AssistantOfTeamID))
+                {
+                    return true;
+                }
+                if (InRoles("individual") && user.ID == ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CanEditAttendance(User user)
+        {
+            if (user != null)
+            {
+                if (user.OwnTeam != null && (user.OwnTeam.ID == PlayerOfTeamID || user.OwnTeam.ID == AssistantOfTeamID))
+                {
+                    return true;
+                }
+                if (InRoles("individual") && user.ID == ID)
+                {
+                    return true;
+                }
+                if (user.TeamOfPlay != null && user.TeamOfPlay.SBCAttendance == (int)Team.SBCControlType.CoachAndPlayer && user.ID == ID)
                 {
                     return true;
                 }
@@ -594,7 +634,7 @@ namespace platformAthletic.Model
                     diff += 7;
                 }
                 var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-1 * diff).Date;
-                return UserAttendances.Count(p => p.AddedDate > startWeek);
+                return UserAttendances.Count(p => p.AddedDate >= startWeek);
             }
         }
 
@@ -603,7 +643,7 @@ namespace platformAthletic.Model
             get
             {
                 var startMonth = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, SqlSingleton.sqlRepository.CurrentDateTime.Month, 1);
-                return UserAttendances.Count(p => p.AddedDate > startMonth);
+                return UserAttendances.Count(p => p.AddedDate >= startMonth);
             }
         }
 
@@ -612,7 +652,7 @@ namespace platformAthletic.Model
             get
             {
                 var startYear = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, 1, 1);
-                return UserAttendances.Count(p => p.AddedDate > startYear);
+                return UserAttendances.Count(p => p.AddedDate >= startYear);
             }
         }
 

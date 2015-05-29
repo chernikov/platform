@@ -1497,6 +1497,8 @@ namespace platformAthletic.Model
 		
 		private EntitySet<Team> _Teams;
 		
+		private EntitySet<User> _Users;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1516,6 +1518,7 @@ namespace platformAthletic.Model
 			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
 			this._Schools = new EntitySet<School>(new Action<School>(this.attach_Schools), new Action<School>(this.detach_Schools));
 			this._Teams = new EntitySet<Team>(new Action<Team>(this.attach_Teams), new Action<Team>(this.detach_Teams));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			OnCreated();
 		}
 		
@@ -1644,6 +1647,19 @@ namespace platformAthletic.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="State_User", Storage="_Users", ThisKey="ID", OtherKey="IndividualStateID")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1719,6 +1735,18 @@ namespace platformAthletic.Model
 		}
 		
 		private void detach_Teams(Team entity)
+		{
+			this.SendPropertyChanging();
+			entity.State = null;
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.State = this;
+		}
+		
+		private void detach_Users(User entity)
 		{
 			this.SendPropertyChanging();
 			entity.State = null;
@@ -12717,6 +12745,8 @@ namespace platformAthletic.Model
 		
 		private int _ID;
 		
+		private System.Nullable<int> _IndividualStateID;
+		
 		private string _Email;
 		
 		private string _Password;
@@ -12821,6 +12851,8 @@ namespace platformAthletic.Model
 		
 		private EntityRef<Group> _Group;
 		
+		private EntityRef<State> _State;
+		
 		private EntityRef<Level> _Level;
 		
 		private EntityRef<Team> _Team;
@@ -12833,6 +12865,8 @@ namespace platformAthletic.Model
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
+    partial void OnIndividualStateIDChanging(System.Nullable<int> value);
+    partial void OnIndividualStateIDChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
     partial void OnPasswordChanging(string value);
@@ -12926,6 +12960,7 @@ namespace platformAthletic.Model
 			this._Posts = new EntitySet<Post>(new Action<Post>(this.attach_Posts), new Action<Post>(this.detach_Posts));
 			this._Teams = new EntitySet<Team>(new Action<Team>(this.attach_Teams), new Action<Team>(this.detach_Teams));
 			this._Group = default(EntityRef<Group>);
+			this._State = default(EntityRef<State>);
 			this._Level = default(EntityRef<Level>);
 			this._Team = default(EntityRef<Team>);
 			this._Team1 = default(EntityRef<Team>);
@@ -12948,6 +12983,30 @@ namespace platformAthletic.Model
 					this._ID = value;
 					this.SendPropertyChanged("ID");
 					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IndividualStateID", DbType="Int")]
+		public System.Nullable<int> IndividualStateID
+		{
+			get
+			{
+				return this._IndividualStateID;
+			}
+			set
+			{
+				if ((this._IndividualStateID != value))
+				{
+					if (this._State.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIndividualStateIDChanging(value);
+					this.SendPropertyChanging();
+					this._IndividualStateID = value;
+					this.SendPropertyChanged("IndividualStateID");
+					this.OnIndividualStateIDChanged();
 				}
 			}
 		}
@@ -13920,6 +13979,40 @@ namespace platformAthletic.Model
 						this._GroupID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Group");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="State_User", Storage="_State", ThisKey="IndividualStateID", OtherKey="ID", IsForeignKey=true)]
+		public State State
+		{
+			get
+			{
+				return this._State.Entity;
+			}
+			set
+			{
+				State previousValue = this._State.Entity;
+				if (((previousValue != value) 
+							|| (this._State.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._State.Entity = null;
+						previousValue.Users.Remove(this);
+					}
+					this._State.Entity = value;
+					if ((value != null))
+					{
+						value.Users.Add(this);
+						this._IndividualStateID = value.ID;
+					}
+					else
+					{
+						this._IndividualStateID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("State");
 				}
 			}
 		}

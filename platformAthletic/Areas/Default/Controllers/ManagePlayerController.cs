@@ -29,7 +29,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Edit(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditSBC(CurrentUser))
             {
                 var playerUserView = (PlayerUserView)ModelMapper.Map(user, typeof(User), typeof(PlayerUserView));
                 return View(playerUserView);
@@ -79,7 +79,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Delete(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditSBC(CurrentUser))
             {
                 var playerUserView = (PlayerUserView)ModelMapper.Map(user, typeof(User), typeof(PlayerUserView));
                 return View(playerUserView);
@@ -99,7 +99,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult SendActivation(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditTeamData(CurrentUser))
+            if (user != null && user.CanEditSBC(CurrentUser))
             {
                 NotifyMail.SendNotify(Config, "RegisterPlayer", user.Email,
                             (u, format) => string.Format(format, HostName),

@@ -54,7 +54,7 @@ namespace platformAthletic.Models.Info
 
         protected virtual void Process()
         {
-            var users = Repository.TeamPlayersUsers;
+            var users = Repository.PlayersTeamPlayersUsers;
             SearchNationalLeaderboardFilter.CutSearchCriteria(Search, users, preFilter : true);
             Filter(ref users);
             var orderUsers= Order(users);
@@ -175,7 +175,7 @@ namespace platformAthletic.Models.Info
             if (Search.StateID != null)
             {
                 //TeamOfPlay
-                users = users.Where(p => p.Team.StateID == Search.StateID.Value);
+                users = users.Where(p => (p.Team != null && p.Team.StateID == Search.StateID.Value) || p.IndividualStateID == Search.StateID.Value);
             }
             if (Search.LevelID != null)
             {

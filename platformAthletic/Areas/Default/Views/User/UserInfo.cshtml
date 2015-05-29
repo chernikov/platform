@@ -32,14 +32,17 @@
             <td class="header">LEVEL</td>
             <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
         </tr>
-        <tr>
-            <td class="header">SCHOOL</td>
-            <td class="value" colspan="3">@Model.Team.School.Name</td>
-        </tr>
-        <tr>
-            <td class="header">STATE</td>
-            <td class="value" colspan="3">@Model.Team.State.Name</td>
-        </tr>
+        @if (Model.InRoles("player")) 
+        { 
+            <tr>
+                <td class="header">SCHOOL</td>
+                <td class="value" colspan="3">@Model.Team.School.Name</td>
+            </tr>
+            <tr>
+                <td class="header">STATE</td>
+                <td class="value" colspan="3">@Model.Team.State.Name</td>
+            </tr>
+        }
     </table>
 </div>
 <div class="col-lg-4">

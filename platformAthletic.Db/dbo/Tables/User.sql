@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[User] (
     [ID]                      INT            IDENTITY (1, 1) NOT NULL,
+	[IndividualStateID]       INT            NULL, 
     [Email]                   NVARCHAR (150) NOT NULL,
     [Password]                NVARCHAR (50)  NOT NULL,
     [AddedDate]               DATETIME       NOT NULL,
@@ -36,11 +37,13 @@
     [LevelID]				  INT			 NULL, 
     [GradYear]				  INT		     NULL, 
 	[PublicLevel]             INT            NOT NULL DEFAULT 2, 
+	
     [IsDeleted]               BIT            NOT NULL DEFAULT 0, 
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_User_Group] FOREIGN KEY ([GroupID]) REFERENCES [dbo].[Group] ([ID]),
     CONSTRAINT [FK_User_Team] FOREIGN KEY ([PlayerOfTeamID]) REFERENCES [dbo].[Team] ([ID]),
 	CONSTRAINT [FK_User_Team2] FOREIGN KEY ([AssistantOfTeamID]) REFERENCES [dbo].[Team] ([ID]),
-	CONSTRAINT [FK_User_Level] FOREIGN KEY ([LevelID]) REFERENCES [dbo].[Level] ([ID])
+	CONSTRAINT [FK_User_Level] FOREIGN KEY ([LevelID]) REFERENCES [dbo].[Level] ([ID]),
+	CONSTRAINT [FK_User_IndividualState] FOREIGN KEY ([IndividualStateID]) REFERENCES [dbo].[State] ([ID])
 );
 
