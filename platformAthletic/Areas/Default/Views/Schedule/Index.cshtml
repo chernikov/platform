@@ -11,7 +11,7 @@
     <div class="side-body">
 
         <div class="row row-same-height">
-            @if (currentUser.InRoles("coach"))
+            @if (currentUser.InRoles("coach,assistant"))
             {
                 @Html.Action("Group", "Schedule")
             }

@@ -84,16 +84,12 @@
             var ajaxData = {
                 id : $(this).data("id"),
                 date : $("#CurrentDate").data("date"),
-                value : $(this).prop('checked')
+                attendance: $(this).prop('checked')
             };
             $.ajax({
                 type: "POST",
                 url: "/dashboard/SetAttendance",
-                data: {
-                    id: id,
-                    date: date,
-                    attendance: value,
-                },
+                data: ajaxData,
                 success: function (data) {
                 }
             });

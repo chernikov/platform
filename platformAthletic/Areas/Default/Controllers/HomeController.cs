@@ -25,7 +25,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     return Redirect("/register-success");
                 }
-                if (CurrentUser.InRoles("coach,player"))
+                if (CurrentUser.InRoles("coach,player,assistant"))
                 {
                     var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
                     if (team != null) 

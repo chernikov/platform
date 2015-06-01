@@ -37,7 +37,6 @@
     [LevelID]				  INT			 NULL, 
     [GradYear]				  INT		     NULL, 
 	[PublicLevel]             INT            NOT NULL DEFAULT 2, 
-	
     [IsDeleted]               BIT            NOT NULL DEFAULT 0, 
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_User_Group] FOREIGN KEY ([GroupID]) REFERENCES [dbo].[Group] ([ID]),

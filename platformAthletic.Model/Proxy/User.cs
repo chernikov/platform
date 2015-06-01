@@ -178,9 +178,9 @@ namespace platformAthletic.Model
             get
             {
                 //if player of team
-                if (TeamOfPlay != null && ID != TeamOfPlay.UserID)
+                if ((TeamOfPlay != null && ID != TeamOfPlay.UserID) || (TeamOfAssistance != null && ID != TeamOfAssistance.UserID))
                 {
-                    var coach = TeamOfPlay.User;
+                    var coach = TeamOfPlay != null ? TeamOfPlay.User : TeamOfAssistance.User;
                     if (GroupID != null)
                     {
                         var currentSeason = coach.SeasonByDateAndGroup(SqlSingleton.sqlRepository.CurrentDateTime, GroupID.Value);
@@ -442,6 +442,10 @@ namespace platformAthletic.Model
                 if (InRoles("player"))
                 {
                     return TeamOfPlay.User.PaidTill;
+                }
+                if (InRoles("assistant"))
+                {
+                    return OwnTeam.User.PaidTill;
                 }
                 return null;
             }

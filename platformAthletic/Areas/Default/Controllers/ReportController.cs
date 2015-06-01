@@ -9,10 +9,10 @@ using platformAthletic.Helpers;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
-    [Authorize(Roles = "coach,individual,player")]
+    [Authorize(Roles = "coach,individual,player,assistant")]
     public class ReportController : DefaultController
     {
-        [Authorize(Roles = "coach,individual")]
+        [Authorize(Roles = "coach,individual,assistant")]
         public ActionResult Index(SearchAttendanceReport search)
         {
             if (search == null)

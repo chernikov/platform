@@ -11,7 +11,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Users.OrderBy(p => p.LastName).AsEnumerable();
+                return Users.Where(p => !p.IsDeleted).OrderBy(p => p.LastName).AsEnumerable();
             }
         }
 	}

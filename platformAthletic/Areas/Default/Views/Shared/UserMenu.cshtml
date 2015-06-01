@@ -12,6 +12,9 @@
         <li><a href="/Settings">Settings</a></li>
         <li><a href="/Billing">Billing</a></li>
     }
-    <li><a href="/Privacy-policy">Privacy Policy</a></li>
+    @if (currentUser.InRoles("assistant"))
+    {
+        <li><a href="/Settings">Settings</a></li>
+    }
     <li><a href="/logout">Logout</a></li>
 </ul>
