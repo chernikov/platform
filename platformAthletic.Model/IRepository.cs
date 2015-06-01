@@ -345,7 +345,6 @@ namespace platformAthletic.Model
 
         bool UpdateAssistant(User instance);
 
-
         bool SetUserColors(User instance);
 
         bool UpdatePaidTillUser(User instance);
@@ -385,6 +384,19 @@ namespace platformAthletic.Model
         bool ResetProgress(User instance);
 
         bool SetProgressDate(User instance);
+
+        bool StartTutorial(int idUser);
+
+        bool StepTutorial(int idUser, int step);
+
+        bool SetTodo(int idUser, User.TodoEnum todo);
+
+        bool StartTestMode(int idUser);
+
+        bool StartTodoMode(int idUser);
+
+        bool StartNormalMode(int idUser);
+
         #endregion 
 
         #region UserAttendance

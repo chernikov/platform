@@ -21,10 +21,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     return Redirect("~/billing");
                 }
-                if (CurrentUser.InRoles("coach,individual") && CurrentUser.CurrentSeason == null)
-                {
-                    return Redirect("/register-success");
-                }
                 if (CurrentUser.InRoles("coach,player,assistant"))
                 {
                     var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
@@ -32,11 +28,9 @@ namespace platformAthletic.Areas.Default.Controllers
                     {
                         var coach = team.User;
                         var admins = Repository.Users.Where(p => p.UserRoles.Any(r => string.Compare(r.Role.Code, "admin", true) == 0)).Select(p => p.ID);
-
                         var list = Repository.Posts.Where(p => p.UserID == coach.ID || admins.Contains(p.UserID)).OrderByDescending(p => p.ID);
                         var data = new PageableData<Post>();
                         data.Init(list, page, "Index", itemPerPage : 2);
-
                         foreach (var item in data.List)
                         {
                             Repository.ViewPost(item.ID);

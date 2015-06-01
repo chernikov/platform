@@ -153,9 +153,6 @@ namespace platformAthletic.Model
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
-    partial void InsertGroup(Group instance);
-    partial void UpdateGroup(Group instance);
-    partial void DeleteGroup(Group instance);
     partial void InsertSport(Sport instance);
     partial void UpdateSport(Sport instance);
     partial void DeleteSport(Sport instance);
@@ -192,6 +189,9 @@ namespace platformAthletic.Model
     partial void InsertTeam(Team instance);
     partial void UpdateTeam(Team instance);
     partial void DeleteTeam(Team instance);
+    partial void InsertGroup(Group instance);
+    partial void UpdateGroup(Group instance);
+    partial void DeleteGroup(Group instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -555,14 +555,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		public System.Data.Linq.Table<Group> Groups
-		{
-			get
-			{
-				return this.GetTable<Group>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Sport> Sports
 		{
 			get
@@ -656,6 +648,14 @@ namespace platformAthletic.Model
 			get
 			{
 				return this.GetTable<Team>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Group> Groups
+		{
+			get
+			{
+				return this.GetTable<Group>();
 			}
 		}
 		
@@ -8182,11 +8182,11 @@ namespace platformAthletic.Model
 		
 		private EntityRef<Macrocycle> _Macrocycle;
 		
-		private EntityRef<Group> _Group;
-		
 		private EntityRef<UserSeason> _UserSeason;
 		
 		private EntityRef<Team> _Team;
+		
+		private EntityRef<Group> _Group;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -8209,9 +8209,9 @@ namespace platformAthletic.Model
 		public Schedule()
 		{
 			this._Macrocycle = default(EntityRef<Macrocycle>);
-			this._Group = default(EntityRef<Group>);
 			this._UserSeason = default(EntityRef<UserSeason>);
 			this._Team = default(EntityRef<Team>);
+			this._Group = default(EntityRef<Group>);
 			OnCreated();
 		}
 		
@@ -8385,40 +8385,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_Schedule", Storage="_Group", ThisKey="GroupID", OtherKey="ID", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Group Group
-		{
-			get
-			{
-				return this._Group.Entity;
-			}
-			set
-			{
-				Group previousValue = this._Group.Entity;
-				if (((previousValue != value) 
-							|| (this._Group.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Group.Entity = null;
-						previousValue.Schedules.Remove(this);
-					}
-					this._Group.Entity = value;
-					if ((value != null))
-					{
-						value.Schedules.Add(this);
-						this._GroupID = value.ID;
-					}
-					else
-					{
-						this._GroupID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Group");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserSeason_Schedule", Storage="_UserSeason", ThisKey="UserSeasonID", OtherKey="ID", IsForeignKey=true)]
 		public UserSeason UserSeason
 		{
@@ -8483,6 +8449,40 @@ namespace platformAthletic.Model
 						this._TeamID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_Schedule", Storage="_Group", ThisKey="GroupID", OtherKey="ID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Group Group
+		{
+			get
+			{
+				return this._Group.Entity;
+			}
+			set
+			{
+				Group previousValue = this._Group.Entity;
+				if (((previousValue != value) 
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Group.Entity = null;
+						previousValue.Schedules.Remove(this);
+					}
+					this._Group.Entity = value;
+					if ((value != null))
+					{
+						value.Schedules.Add(this);
+						this._GroupID = value.ID;
+					}
+					else
+					{
+						this._GroupID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Group");
 				}
 			}
 		}
@@ -9243,241 +9243,6 @@ namespace platformAthletic.Model
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Group]")]
-	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private int _TeamID;
-		
-		private string _Name;
-		
-		private EntitySet<Schedule> _Schedules;
-		
-		private EntitySet<UserSeason> _UserSeasons;
-		
-		private EntitySet<User> _Users;
-		
-		private EntityRef<Team> _Team;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnTeamIDChanging(int value);
-    partial void OnTeamIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    #endregion
-		
-		public Group()
-		{
-			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
-			this._UserSeasons = new EntitySet<UserSeason>(new Action<UserSeason>(this.attach_UserSeasons), new Action<UserSeason>(this.detach_UserSeasons));
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
-			this._Team = default(EntityRef<Team>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="Int NOT NULL")]
-		public int TeamID
-		{
-			get
-			{
-				return this._TeamID;
-			}
-			set
-			{
-				if ((this._TeamID != value))
-				{
-					if (this._Team.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTeamIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamID = value;
-					this.SendPropertyChanged("TeamID");
-					this.OnTeamIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_Schedule", Storage="_Schedules", ThisKey="ID", OtherKey="GroupID")]
-		public EntitySet<Schedule> Schedules
-		{
-			get
-			{
-				return this._Schedules;
-			}
-			set
-			{
-				this._Schedules.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_UserSeason", Storage="_UserSeasons", ThisKey="ID", OtherKey="GroupID")]
-		public EntitySet<UserSeason> UserSeasons
-		{
-			get
-			{
-				return this._UserSeasons;
-			}
-			set
-			{
-				this._UserSeasons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Users", ThisKey="ID", OtherKey="GroupID")]
-		public EntitySet<User> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Group", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.Groups.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.Groups.Add(this);
-						this._TeamID = value.ID;
-					}
-					else
-					{
-						this._TeamID = default(int);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Schedules(Schedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = this;
-		}
-		
-		private void detach_Schedules(Schedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = null;
-		}
-		
-		private void attach_UserSeasons(UserSeason entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = this;
-		}
-		
-		private void detach_UserSeasons(UserSeason entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = null;
-		}
-		
-		private void attach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = this;
-		}
-		
-		private void detach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Group = null;
 		}
 	}
 	
@@ -10398,9 +10163,9 @@ namespace platformAthletic.Model
 		
 		private EntitySet<Schedule> _Schedules;
 		
-		private EntityRef<Group> _Group;
-		
 		private EntityRef<Season> _Season;
+		
+		private EntityRef<Group> _Group;
 		
 		private EntityRef<User> _User;
 		
@@ -10425,8 +10190,8 @@ namespace platformAthletic.Model
 			this._UserAttendances = new EntitySet<UserAttendance>(new Action<UserAttendance>(this.attach_UserAttendances), new Action<UserAttendance>(this.detach_UserAttendances));
 			this._PersonalSchedules = new EntitySet<PersonalSchedule>(new Action<PersonalSchedule>(this.attach_PersonalSchedules), new Action<PersonalSchedule>(this.detach_PersonalSchedules));
 			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
-			this._Group = default(EntityRef<Group>);
 			this._Season = default(EntityRef<Season>);
+			this._Group = default(EntityRef<Group>);
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -10582,40 +10347,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_UserSeason", Storage="_Group", ThisKey="GroupID", OtherKey="ID", IsForeignKey=true)]
-		public Group Group
-		{
-			get
-			{
-				return this._Group.Entity;
-			}
-			set
-			{
-				Group previousValue = this._Group.Entity;
-				if (((previousValue != value) 
-							|| (this._Group.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Group.Entity = null;
-						previousValue.UserSeasons.Remove(this);
-					}
-					this._Group.Entity = value;
-					if ((value != null))
-					{
-						value.UserSeasons.Add(this);
-						this._GroupID = value.ID;
-					}
-					else
-					{
-						this._GroupID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Group");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Season_UserSeason", Storage="_Season", ThisKey="SeasonID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Season Season
 		{
@@ -10646,6 +10377,40 @@ namespace platformAthletic.Model
 						this._SeasonID = default(int);
 					}
 					this.SendPropertyChanged("Season");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_UserSeason", Storage="_Group", ThisKey="GroupID", OtherKey="ID", IsForeignKey=true)]
+		public Group Group
+		{
+			get
+			{
+				return this._Group.Entity;
+			}
+			set
+			{
+				Group previousValue = this._Group.Entity;
+				if (((previousValue != value) 
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Group.Entity = null;
+						previousValue.UserSeasons.Remove(this);
+					}
+					this._Group.Entity = value;
+					if ((value != null))
+					{
+						value.UserSeasons.Add(this);
+						this._GroupID = value.ID;
+					}
+					else
+					{
+						this._GroupID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Group");
 				}
 			}
 		}
@@ -12202,9 +11967,9 @@ namespace platformAthletic.Model
 		
 		private EntitySet<Schedule> _Schedules;
 		
-		private EntitySet<Group> _Groups;
-		
 		private EntitySet<SBCValue> _SBCValues;
+		
+		private EntitySet<Group> _Groups;
 		
 		private EntitySet<User> _Users;
 		
@@ -12247,8 +12012,8 @@ namespace platformAthletic.Model
 		public Team()
 		{
 			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
-			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
 			this._SBCValues = new EntitySet<SBCValue>(new Action<SBCValue>(this.attach_SBCValues), new Action<SBCValue>(this.detach_SBCValues));
+			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
 			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
 			this._Users1 = new EntitySet<User>(new Action<User>(this.attach_Users1), new Action<User>(this.detach_Users1));
 			this._School = default(EntityRef<School>);
@@ -12502,19 +12267,6 @@ namespace platformAthletic.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Group", Storage="_Groups", ThisKey="ID", OtherKey="TeamID")]
-		public EntitySet<Group> Groups
-		{
-			get
-			{
-				return this._Groups;
-			}
-			set
-			{
-				this._Groups.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_SBCValue", Storage="_SBCValues", ThisKey="ID", OtherKey="TeamID")]
 		public EntitySet<SBCValue> SBCValues
 		{
@@ -12525,6 +12277,19 @@ namespace platformAthletic.Model
 			set
 			{
 				this._SBCValues.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Group", Storage="_Groups", ThisKey="ID", OtherKey="TeamID")]
+		public EntitySet<Group> Groups
+		{
+			get
+			{
+				return this._Groups;
+			}
+			set
+			{
+				this._Groups.Assign(value);
 			}
 		}
 		
@@ -12688,18 +12453,6 @@ namespace platformAthletic.Model
 			entity.Team = null;
 		}
 		
-		private void attach_Groups(Group entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Groups(Group entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-		
 		private void attach_SBCValues(SBCValue entity)
 		{
 			this.SendPropertyChanging();
@@ -12707,6 +12460,18 @@ namespace platformAthletic.Model
 		}
 		
 		private void detach_SBCValues(SBCValue entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
+		}
+		
+		private void attach_Groups(Group entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Groups(Group entity)
 		{
 			this.SendPropertyChanging();
 			entity.Team = null;
@@ -12734,6 +12499,265 @@ namespace platformAthletic.Model
 		{
 			this.SendPropertyChanging();
 			entity.Team1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Group]")]
+	public partial class Group : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _TeamID;
+		
+		private string _Name;
+		
+		private bool _IsPhantom;
+		
+		private EntitySet<Schedule> _Schedules;
+		
+		private EntitySet<UserSeason> _UserSeasons;
+		
+		private EntitySet<User> _Users;
+		
+		private EntityRef<Team> _Team;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTeamIDChanging(int value);
+    partial void OnTeamIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnIsPhantomChanging(bool value);
+    partial void OnIsPhantomChanged();
+    #endregion
+		
+		public Group()
+		{
+			this._Schedules = new EntitySet<Schedule>(new Action<Schedule>(this.attach_Schedules), new Action<Schedule>(this.detach_Schedules));
+			this._UserSeasons = new EntitySet<UserSeason>(new Action<UserSeason>(this.attach_UserSeasons), new Action<UserSeason>(this.detach_UserSeasons));
+			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
+			this._Team = default(EntityRef<Team>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="Int NOT NULL")]
+		public int TeamID
+		{
+			get
+			{
+				return this._TeamID;
+			}
+			set
+			{
+				if ((this._TeamID != value))
+				{
+					if (this._Team.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTeamIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamID = value;
+					this.SendPropertyChanged("TeamID");
+					this.OnTeamIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPhantom", DbType="Bit NOT NULL")]
+		public bool IsPhantom
+		{
+			get
+			{
+				return this._IsPhantom;
+			}
+			set
+			{
+				if ((this._IsPhantom != value))
+				{
+					this.OnIsPhantomChanging(value);
+					this.SendPropertyChanging();
+					this._IsPhantom = value;
+					this.SendPropertyChanged("IsPhantom");
+					this.OnIsPhantomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_Schedule", Storage="_Schedules", ThisKey="ID", OtherKey="GroupID")]
+		public EntitySet<Schedule> Schedules
+		{
+			get
+			{
+				return this._Schedules;
+			}
+			set
+			{
+				this._Schedules.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_UserSeason", Storage="_UserSeasons", ThisKey="ID", OtherKey="GroupID")]
+		public EntitySet<UserSeason> UserSeasons
+		{
+			get
+			{
+				return this._UserSeasons;
+			}
+			set
+			{
+				this._UserSeasons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Group_User", Storage="_Users", ThisKey="ID", OtherKey="GroupID")]
+		public EntitySet<User> Users
+		{
+			get
+			{
+				return this._Users;
+			}
+			set
+			{
+				this._Users.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Group", Storage="_Team", ThisKey="TeamID", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.Groups.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.Groups.Add(this);
+						this._TeamID = value.ID;
+					}
+					else
+					{
+						this._TeamID = default(int);
+					}
+					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Schedules(Schedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = this;
+		}
+		
+		private void detach_Schedules(Schedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = null;
+		}
+		
+		private void attach_UserSeasons(UserSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = this;
+		}
+		
+		private void detach_UserSeasons(UserSeason entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = null;
+		}
+		
+		private void attach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = this;
+		}
+		
+		private void detach_Users(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Group = null;
 		}
 	}
 	
@@ -12819,7 +12843,15 @@ namespace platformAthletic.Model
 		
 		private int _PublicLevel;
 		
+		private int _Mode;
+		
 		private bool _IsDeleted;
+		
+		private bool _IsPhantom;
+		
+		private int _Todo;
+		
+		private int _TutorialStep;
 		
 		private EntitySet<UserEquipment> _UserEquipments;
 		
@@ -12939,8 +12971,16 @@ namespace platformAthletic.Model
     partial void OnGradYearChanged();
     partial void OnPublicLevelChanging(int value);
     partial void OnPublicLevelChanged();
+    partial void OnModeChanging(int value);
+    partial void OnModeChanged();
     partial void OnIsDeletedChanging(bool value);
     partial void OnIsDeletedChanged();
+    partial void OnIsPhantomChanging(bool value);
+    partial void OnIsPhantomChanged();
+    partial void OnTodoChanging(int value);
+    partial void OnTodoChanged();
+    partial void OnTutorialStepChanging(int value);
+    partial void OnTutorialStepChanged();
     #endregion
 		
 		public User()
@@ -13747,6 +13787,26 @@ namespace platformAthletic.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mode", DbType="Int NOT NULL")]
+		public int Mode
+		{
+			get
+			{
+				return this._Mode;
+			}
+			set
+			{
+				if ((this._Mode != value))
+				{
+					this.OnModeChanging(value);
+					this.SendPropertyChanging();
+					this._Mode = value;
+					this.SendPropertyChanged("Mode");
+					this.OnModeChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDeleted", DbType="Bit NOT NULL")]
 		public bool IsDeleted
 		{
@@ -13763,6 +13823,66 @@ namespace platformAthletic.Model
 					this._IsDeleted = value;
 					this.SendPropertyChanged("IsDeleted");
 					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPhantom", DbType="Bit NOT NULL")]
+		public bool IsPhantom
+		{
+			get
+			{
+				return this._IsPhantom;
+			}
+			set
+			{
+				if ((this._IsPhantom != value))
+				{
+					this.OnIsPhantomChanging(value);
+					this.SendPropertyChanging();
+					this._IsPhantom = value;
+					this.SendPropertyChanged("IsPhantom");
+					this.OnIsPhantomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Todo", DbType="Int NOT NULL")]
+		public int Todo
+		{
+			get
+			{
+				return this._Todo;
+			}
+			set
+			{
+				if ((this._Todo != value))
+				{
+					this.OnTodoChanging(value);
+					this.SendPropertyChanging();
+					this._Todo = value;
+					this.SendPropertyChanged("Todo");
+					this.OnTodoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TutorialStep", DbType="Int NOT NULL")]
+		public int TutorialStep
+		{
+			get
+			{
+				return this._TutorialStep;
+			}
+			set
+			{
+				if ((this._TutorialStep != value))
+				{
+					this.OnTutorialStepChanging(value);
+					this.SendPropertyChanging();
+					this._TutorialStep = value;
+					this.SendPropertyChanged("TutorialStep");
+					this.OnTutorialStepChanged();
 				}
 			}
 		}

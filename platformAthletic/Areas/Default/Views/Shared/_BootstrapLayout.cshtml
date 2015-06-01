@@ -1,5 +1,6 @@
 ﻿@{
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var mode = currentUser != null ? (platformAthletic.Model.User.ModeEnum)currentUser.Mode : platformAthletic.Model.User.ModeEnum.Normal;
 }
 <!DOCTYPE html>
 <html>
@@ -11,6 +12,7 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-custom.css" rel="stylesheet" />
     <link href="~/Content/datepicker/bootstrap-datepicker3.css" rel="stylesheet" />
+
     @RenderSection("styles", false)
 </head>
 
@@ -24,50 +26,58 @@
                     <img src="~/Content/img/logo.png" />
                 </a>
             </div>
+            <div class="navbar-header pull-left">
+                @if (currentUser != null && mode == platformAthletic.Model.User.ModeEnum.Phantom)
+                {
+                    <div class="navbar-brand">You are currently in test mode [i]. To exit test mode, <a href="/Tutorial/StopTestMode" class="btn btn-primary">​Click Here</a></div>
+                }
+            </div>
             <div class="navbar-header pull-right">
                 <ul class="nav navbar-nav navbar-right top-menu">
-                    @*<li>
-                            <a href="#" class="btn">
-                                <i class="glyphicon glyphicon-envelope"></i>
-                                <span class="label label-danger">1</span>
-                            </a>
-
+                    @if (currentUser != null)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle secondaryColor text-shadow" data-toggle="dropdown" role="button" aria-expanded="false">Hello, @currentUser.FirstName @currentUser.LastName <span class="caret"></span></a>
+                            @Html.Partial("UserMenu")
                         </li>
+                        @*<li>
+                                <a>@mode</a>
+                            </li>*@
+                    }
+                    else
+                    {
                         <li>
-                            <a href="#" class="btn">
-                                <i class="glyphicon glyphicon-bell"></i>
-                                <span class="label label-danger">21</span>
+                            <a href="/login" class="btn">
+                                Login
                             </a>
-
-                        </li>*@
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle secondaryColor text-shadow" data-toggle="dropdown" role="button" aria-expanded="false">Hello, @currentUser.FirstName @currentUser.LastName <span class="caret"></span></a>
-                        @Html.Partial("UserMenu")
-
-                    </li>
+                        </li>
+                    }
                 </ul>
             </div>
         </div><!-- /.container-fluid -->
     </nav>
     <div class="row content">
-        <div class="side-menu">
-            <nav class="navbar navbar-default" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header navbar-fixed-top">
-                    <div class="brand-wrapper">
-                        <!-- Hamburger -->
-                        <button type="button" class="navbar-toggle" id="SideMenuToggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+        @if (currentUser != null)
+        {
+            <div class="side-menu">
+                <nav class="navbar navbar-default" role="navigation">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header navbar-fixed-top">
+                        <div class="brand-wrapper">
+                            <!-- Hamburger -->
+                            <button type="button" class="navbar-toggle" id="SideMenuToggle">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <!-- Main Menu -->
-              @Html.Partial("MainMenu")
-            </nav>
-        </div>
+                    <!-- Main Menu -->
+                    @Html.Partial("MainMenu")
+                </nav>
+            </div>
+        }
         <!-- Main Content -->
         @RenderBody()
     </div>
@@ -82,5 +92,9 @@
     <script src="~/Scripts/default/current-date.js"></script>
     @RenderSection("header", false)
     @Html.Action("UserColors", "Home")
+    @if (mode == platformAthletic.Model.User.ModeEnum.Tutorial)
+    {
+        <script src="~/Scripts/default/tutorial.js"></script>
+    }
 </body>
 </html>

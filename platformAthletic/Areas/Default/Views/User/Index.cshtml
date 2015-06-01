@@ -47,7 +47,7 @@
                                         }
                                         @if (currentUser != null && currentUser.CanViewWorkOut(Model))
                                         {
-                                            <button class="btn btn-success btn-lg">VIEW WORKOUT</button>
+                                            <a href="@Url.Action("Index", "Table")" class="btn btn-success btn-lg">VIEW WORKOUT</a>
                                         }
                                         @if (Model.HasAttendanceToday && Model.CanEditAttendance(currentUser))
                                         {

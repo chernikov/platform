@@ -3,6 +3,10 @@
 
     this.init = function ()
     {
+        $('#CalendarButton').tooltipster({
+            content: $('<span><span class="glyphicon glyphicon-info-sign"></span> Editing past dates!</span>')
+        });
+
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {

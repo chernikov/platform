@@ -33,7 +33,7 @@
                 {
                     if (currentDate.Month == month)
                     {
-                        <td>
+                        <td class="@(Model.Date.Date == currentDate.Date ? "selected": "")">
                             <span data-value="@currentDate" class="selectDate clickable">@currentDate.Day</span>
                         </td>
                     }

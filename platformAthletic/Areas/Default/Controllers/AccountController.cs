@@ -139,6 +139,8 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var user = (User)ModelMapper.Map(registerIndividualView, typeof(RegisterIndividualView), typeof(User));
                 user.ActivatedDate = DateTime.Now.Current();
+
+                user.Mode = (int)Model.User.ModeEnum.Tutorial;
                 Repository.CreateUser(user);
 
                 /* process payment */
@@ -150,7 +152,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     Repository.CreateBillingInfo(billingInfo);
                     if (!ProcessPayment(billingInfo, registerIndividualView.TotalSum, registerIndividualView.ReferralCode, registerIndividualView.Target))
                     {
-                        Repository.RemoveUser(user.ID);
+                        Repository.PurgeUser(user.ID);
                         if (ModelState.IsValid)
                         {
                             ModelState.AddModelError("Payment", "The credit card information you entered is invalid. Please re-enter payment information.");
@@ -164,12 +166,24 @@ namespace platformAthletic.Areas.Default.Controllers
                     RoleID = 4 //individual
                 };
                 Repository.CreateUserRole(userRole);
+
+                var date = DateTime.Now.Current();
+                var dayOfWeek = date.DayOfWeek;
+                var userSeason = new UserSeason()
+                {
+                    UserID = user.ID,
+                    SeasonID = 1, //Off-season
+                    StartDay = date.AddDays(-(int)dayOfWeek)
+                };
+                Repository.CreateUserSeason(userSeason);
+
                 NotifyMail.SendNotify(Config, "RegisterIndividual", user.Email,
                           (u, format) => format,
                           (u, format) => string.Format(format, u.Email, u.Password),
                           user);
                 Auth.Login(user.Email);
-                return Redirect("http://" + HostName + "/register-success");
+                Repository.StartTutorial(user.ID);
+                return Redirect("/");
             }
             return View(registerIndividualView);
         }
@@ -206,8 +220,10 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var user = (User)ModelMapper.Map(registerTeamView, typeof(RegisterTeamView), typeof(User));
                 user.ActivatedDate = DateTime.Now.Current();
+                user.Mode = (int)Model.User.ModeEnum.Tutorial;
                 Repository.CreateUser(user);
 
+                
                 var invoice = new Invoice()
                 {
                     NameOfOrganization = registerTeamView.Team.Name,
@@ -230,13 +246,24 @@ namespace platformAthletic.Areas.Default.Controllers
                 var team = (Team)ModelMapper.Map(registerTeamView.Team, typeof(TeamView), typeof(Team));
                 team.UserID = user.ID;
                 Repository.CreateTeam(team);
+
+                var date = DateTime.Now.Current();
+                var dayOfWeek = date.DayOfWeek;
+                var userSeason = new UserSeason()
+                {
+                    UserID = user.ID,
+                    SeasonID = 1, //Off-season
+                    StartDay = date.AddDays(-(int)dayOfWeek)
+                };
+                Repository.CreateUserSeason(userSeason);
+
                 NotifyMail.SendNotify(Config, "Register", user.Email,
                           (u, format) => format,
                           (u, format) => string.Format(format, u.Email, u.Password),
                           user);
-
                 Auth.Login(user.Email);
-                return Redirect("http://" + HostName + "/register-success");
+                Repository.StartTutorial(user.ID);
+                return Redirect("/");
             }
             return View(registerTeamView);
         }

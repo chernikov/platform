@@ -39,6 +39,7 @@
                     @Html.Hidden("PrimaryColor", Model.PrimaryColor)
                     @Html.Hidden("SecondaryColor", Model.SecondaryColor)
                     @Html.Hidden("LogoPath", Model.LogoPath)
+                    @Html.Hidden("AvatarPath", Model.AvatarPath)
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -62,10 +63,30 @@
                                     @Html.DropDownList("IndividualStateID", Model.SelectListStateID, new { @class = "form-control" })
                                 </div>
                             }
+                            
+                            <div class="setting-control">
+                                <h3 class="text-center">Current Avatar</h3>
+                                <hr />
+
+                                <div class="pull-right">
+                                    <div class="btn btn-success btn-lg" id="UploadAvatarBtn">Upload Avatar</div>
+                                </div>
+                                <div class="pull-left">
+                                    <div class="thumbnail">
+                                        <img id="AvatarPathImage" src="@Model.AvatarPath?w=200&h=200&mode=crop" />
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="hint">
+                                    Recommended file Type<br />
+                                    For best result please use .png, .gif, .jpg with the size of 400 X 400.
+                                </div>
+                            </div>
+
                             @if (currentUser != null && currentUser.InRoles("coach"))
                             {
-                            <h3>Settings</h3>
-                            <hr />
+                                <h3>Settings</h3>
+                                <hr />
                                 <div class="setting-control">
                                     <div class="form-group">
                                         <label class="fixed-width">Control of Maxes:</label>
@@ -142,6 +163,8 @@
                             </div>
                         </div>
                     }
+                   
+                    
                     <div class="form-group text-center margin-top">
                         <button class="btn btn-primary btn-lg">SAVE</button>
                     </div>

@@ -8,10 +8,14 @@
     var date = (DateTime)ViewBag.SelectedDate;
 
 }
+@section styles {
+<link href="~/Content/tooltipster.css" rel="stylesheet" />
+}
 @section header {
     <script src="~/Scripts/Chart.js"></script>
     <script src="~/Scripts/hogan.js"></script>
     <script src="~/Scripts/typeahead.jquery.js"></script>
+    <script src="~/Scripts/jquery.tooltipster.js"></script>
     <script src="~/Scripts/default/dashboard.js"></script>
     <script src="~/Scripts/default/team-player-info.js"></script>
     <script src="~/Scripts/default/modal-attendance.js"></script>

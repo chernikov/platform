@@ -27,9 +27,9 @@ a:hover {
 }
 
 @media (min-width: 992px) {
-  .modal-lg {
-    width: 900px;
-  }
+    .modal-lg {
+        width: 900px;
+    }
 }
 
 @media(max-width:1280px) {
@@ -239,6 +239,13 @@ a:hover {
         text-shadow: 1px 1px 3px #000;
         padding-top: 20px;
     }
+
+    .platform .navbar-default .navbar-brand {
+        color: #fc8675;
+        padding-top: 20px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
 
         .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
             margin-right: 10px;
@@ -994,6 +1001,11 @@ dl.sport-2 {
         color: #fff;
         background-color: #63cda6;
     }
+
+.table-calendar .selected span {
+    color: #fff;
+    background-color: #63cda6;
+}
 
 .platform .tab-content {
     margin: -1px 0 0 0;
@@ -2322,21 +2334,22 @@ dl.sport-2 {
         .user-page .leaderboard-table.personal .center {
             height: 133px;
         }
-        .user-page .leaderboard-table.personal td {
-            border-left : none;
-            border-right : none;
 
+        .user-page .leaderboard-table.personal td {
+            border-left: none;
+            border-right: none;
         }
-            .user-page .leaderboard-table.personal .center h2 {
-                text-align: center;
-                vertical-align: central;
-                font-family: 'Montserrat', sans-serif;
-                font-size: 14px;
-                margin-top : 50px;
-            }
+
+        .user-page .leaderboard-table.personal .center h2 {
+            text-align: center;
+            vertical-align: central;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            margin-top: 50px;
+        }
 
         .user-page .leaderboard-table.personal .header {
-            padding-top : 100px;
+            padding-top: 100px;
         }
 
 
@@ -3388,4 +3401,58 @@ hr.video {
 
     .contact-info-wrapper strong {
         font-size: 18px;
+    }
+
+.page-wrapper h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #495b6c;
+    text-align: center;
+}
+
+.page-wrapper h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #495b6c;
+    text-align: center;
+}
+
+
+.page-wrapper h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #495b6c;
+    text-align: center;
+}
+
+.form-register-wrapper {
+}
+
+    .form-register-wrapper h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size: 32px;
+        color: #495b6c;
+    }
+
+    .form-register-wrapper .btn-apply {
+        width: 100%;
+    }
+
+
+.tutorial-wrapper {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    color: #495b6c;
+    text-align : center;
+}
+
+    .tutorial-wrapper h1 {
+        font-weight: bold;
+        color: #fc8675;
+        text-align : center;
     }

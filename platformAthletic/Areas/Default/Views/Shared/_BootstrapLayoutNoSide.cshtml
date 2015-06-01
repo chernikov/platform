@@ -1,0 +1,54 @@
+﻿@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-custom.css" rel="stylesheet" />
+    <link href="~/Content/datepicker/bootstrap-datepicker3.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+
+<body class="platform">
+    @Html.Action("CurrentDate", "Setting")
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top primaryColorBg primaryColorBorder">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand" href="/">
+                    <img src="~/Content/img/logo.png" />
+                </a>
+            </div>
+            <div class="navbar-header pull-right">
+                <ul class="nav navbar-nav navbar-right top-menu">
+                    <li>
+                        <a href="/login" class="btn">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row content">
+        <!-- Main Content -->
+        @RenderBody()
+    </div>
+    <div id="ModalWrapper">
+    </div>
+    @MiniProfiler.RenderIncludes()
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.ba-bbq.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/default/common.js"></script>
+    <script src="~/Scripts/default/current-date.js"></script>
+    @RenderSection("header", false)
+</body>
+</html>

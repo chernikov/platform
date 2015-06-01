@@ -132,6 +132,7 @@ namespace platformAthletic.Model
                 cache.LastName = instance.LastName;
                 cache.PhoneNumber = instance.PhoneNumber;
                 cache.PublicLevel = instance.PublicLevel;
+                cache.AvatarPath = instance.AvatarPath;
                 cache.IndividualStateID = instance.IndividualStateID;
                 Db.Users.Context.SubmitChanges();
                 return true;
@@ -582,6 +583,72 @@ namespace platformAthletic.Model
                 return true;
             }
             return false;
+        }
+
+        public bool StartTutorial(int idUser)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Mode = (int)User.ModeEnum.Tutorial;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+
+        public bool StepTutorial(int idUser, int step)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.TutorialStep = step;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+
+        public bool SetTodo(int idUser, User.TodoEnum todo)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Todo = cache.Todo + (int)todo;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+
+        public bool StartTestMode(int idUser)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Mode = (int)User.ModeEnum.Phantom;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+
+        public bool StartTodoMode(int idUser)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Mode = (int)User.ModeEnum.Todo;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+
+        public bool StartNormalMode(int idUser)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Mode = (int)User.ModeEnum.Normal;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
         }
     }
 }

@@ -29,6 +29,26 @@ namespace platformAthletic.Model
             Public = 0x02
         }
 
+        public enum ModeEnum
+        {
+            Normal = 0x00,
+            Tutorial = 0x01,
+            Phantom = 0x02,
+            Todo = 0x03
+        }
+
+        [Flags]
+        public enum TodoEnum
+        {
+            AddEquipment = 0x01,
+            ViewWorkOut = 0x02,
+            ConfirmTrainingStartDate = 0x04,
+            AddPlayers = 0x08,
+            EnterMaxes = 0x10,
+            VisitAnotherAthlete = 0x20,
+            UploadVideo = 0x40,
+        }
+
         public Team TeamOfPlay
         {
             get
@@ -465,7 +485,7 @@ namespace platformAthletic.Model
             {
                 if (CurrentSeason != null)
                 {
-                    int numberOfWeek = (int)(((int)((SqlSingleton.sqlRepository.CurrentDateTime  - CurrentSeason.StartDay).TotalDays) / 7));
+                    int numberOfWeek = (int)(((int)((SqlSingleton.sqlRepository.CurrentDateTime - CurrentSeason.StartDay).TotalDays) / 7));
                     int totalWeeks = CurrentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
                     numberOfWeek = numberOfWeek % totalWeeks + 1;
                     return CurrentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Any(p => p.Number == numberOfWeek);
@@ -523,7 +543,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                var startWeek = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek).Date;
+                var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
                 var date12WeekAgo = startWeek.AddDays(-7 * 12);
                 var sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
                 return sbc;

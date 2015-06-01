@@ -9,10 +9,10 @@
         _this.primaryColor = primaryColor;
         _this.secondaryColor = secondaryColor;
         if (_this.primaryColor == "") {
-            _this.primaryColor = "#4E1305";
+            _this.primaryColor = "#2b333c";
         }
         if (_this.secondaryColor == "") {
-            _this.secondaryColor = "#000";
+            _this.secondaryColor = "#fff";
         }
         _this.update();
     };

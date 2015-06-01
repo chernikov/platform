@@ -44,6 +44,28 @@
                 allowedExtensions: ["jpeg", "png", "jpg"]
             }
         });
+
+        var obj2 = new qq.FineUploader({
+            element: $("#UploadAvatarBtn")[0],
+            multiple: false,
+            request: {
+                endpoint: "/User/UploadFile",
+            },
+            text: {
+                uploadButton: "UPLOAD AVATAR"
+            },
+            callbacks: {
+                onComplete: function (id, fileName, responseJSON) {
+                    if (responseJSON.success) {
+                        $("#AvatarPath").val(responseJSON.fileUrl);
+                        $("#AvatarPathImage").attr("src", responseJSON.fileUrl + "?w=200&h=200&mode=crop&scale=both");
+                    }
+                }
+            },
+            validation: {
+                allowedExtensions: ["jpeg", "png", "jpg"]
+            }
+        });
     }
 
     this.updatePassword = function ()

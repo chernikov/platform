@@ -57,5 +57,6 @@ namespace platformAthletic.Models.Info
 
         public string LogoPath { get; set; }
 
+        public string AvatarPath { get; set; }
     }
 }

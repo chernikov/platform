@@ -21,8 +21,8 @@ namespace platformAthletic.Model
         {
             if (instance.ID == 0)
             {
-                instance.PrimaryColor = "#4E1305";
-                instance.SecondaryColor = "#000000";
+                instance.PrimaryColor = "#2b333c";
+                instance.SecondaryColor = "#ffffff";
                 instance.MaxCount = 100;
                 Db.Teams.InsertOnSubmit(instance);
                 Db.Teams.Context.SubmitChanges();
