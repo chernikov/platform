@@ -141,7 +141,7 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
             
-/*
+
         [TempAction]
         public ActionResult GeneratePosts()
         {
@@ -214,8 +214,8 @@ Pellentesque eget imperdiet felis. Nulla hendrerit magna vel felis pharetra, non
                         var stream = new MemoryStream(bytes);
 
                         var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
-                        var preview = "/" + Path.Combine(DestinationDirVideo, uFile);
-                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
+                        var preview = "/" + Path.Combine(DestinationDir, uFile);
+                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
 
                         ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
                         post.VideoCode = videoCode;
@@ -230,8 +230,8 @@ Pellentesque eget imperdiet felis. Nulla hendrerit magna vel felis pharetra, non
                         var fs = new FileStream(file, FileMode.Open);
 
                         var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(file);
-                        var preview = "/" + Path.Combine(DestinationDirVideo, uFile);
-                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
+                        var preview = "/" + Path.Combine(DestinationDir, uFile);
+                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
                         ImageBuilder.Current.Build(fs, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
                         post.TitleImagePath = preview;
                     }
@@ -246,7 +246,7 @@ Pellentesque eget imperdiet felis. Nulla hendrerit magna vel felis pharetra, non
                 }
             }
             return Content(logger.ToString());
-        }*/
+        }
 
     }
 }

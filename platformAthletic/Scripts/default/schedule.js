@@ -249,6 +249,7 @@
             data: ajaxData,
             success: function (data) {
                 _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+                _this.onSetSelect();
             }
         });
     }
@@ -268,6 +269,7 @@
             data: ajaxData,
             success: function (data) {
                 _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+                _this.onSetSelect();
             }
         });
     }
@@ -286,6 +288,7 @@
             data: ajaxData,
             success: function (data) {
                 _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+                _this.onSetSelect();
             }
         });
     }
@@ -303,6 +306,7 @@
             data: ajaxData,
             success: function (data) {
                 _this.loadCalendarPersonal($("#Month").val());
+                _this.onSetSelect();
             }
         });
     }
@@ -321,6 +325,7 @@
             data: ajaxData,
             success: function (data) {
                 _this.loadCalendarPersonal($("#Month").val());
+                _this.onSetSelect();
             }
         });
     }
@@ -336,9 +341,14 @@
             url: "/Schedule/StartPersonalSeason",
             data: ajaxData,
             success: function (data) {
-                _this.loadCalendar($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+                _this.loadCalendarPersonal($("#Month").val(), $("#TeamID").val(), $("#GroupID").val());
+                _this.onSetSelect();
             }
         });
+    }
+
+    this.onSetSelect = function () {
+
     }
 
 }

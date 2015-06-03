@@ -190,6 +190,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult SetSchedule(int number, int macrocycleId, int teamId, int? groupId, DateTime date)
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
+
             var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
 
             var currentSeason = team.User.SeasonByDateAndGroup(date, groupId, true);
@@ -208,6 +213,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartCycle(int number, int cycleId, int teamId, int? groupId, DateTime date)
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
+
             var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
 
             var currentSeason = team.User.SeasonByDateAndGroup(date, groupId, true);
@@ -234,6 +244,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartSeason(int seasonId, DateTime date, int teamId, int? groupId)
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
+
             var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
             var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == team.UserID && p.StartDay > date);
             if (groupId != null)
@@ -261,6 +276,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult SetPersonalSchedule(int number, int macrocycleId, DateTime date)
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
+
             var currentSeason = CurrentUser.SeasonByDateAndGroup(date);
             var personalSchedule = new PersonalSchedule()
             {
@@ -277,7 +297,12 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartPersonalCycle(int number, int cycleId,  DateTime date)
         {
-          
+
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
+
             var currentSeason = CurrentUser.SeasonByDateAndGroup(date);
             var cycle = Repository.Cycles.FirstOrDefault(p => p.ID == cycleId);
 
@@ -297,6 +322,10 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartPersonalSeason(int seasonId, DateTime date)
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
             
             var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == CurrentUser.ID && p.StartDay > date);
             foreach (var season in futureSeasons.ToList())

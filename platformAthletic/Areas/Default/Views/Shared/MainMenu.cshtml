@@ -28,6 +28,11 @@
         <li class="@((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
     </ul>
 
+    @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
+    {
+        @Html.Action("Todo", "Tutorial");
+    }
+    else { 
     <div class="in-touch">
         <div class="title">GET IN TOUCH</div>
         <div class="phone">
@@ -35,7 +40,7 @@
         </div>
 
     </div>
-
+    }
     <div class="copyright text-center">
         COPYRIGHT 2015<br />
         PLATFORM ATHLETICS, LLC.<br />

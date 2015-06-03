@@ -98,7 +98,7 @@
                 }
             });
         });
-        this.showUserInfo( $(".user-name").first().data("id"));
+        this.showUserInfo($(".playerItem").first().data("id"));
     }
 
     this.substringMatcher = function (strs) {
@@ -134,8 +134,12 @@
             {
                 $("#UserInfoWrapper").html(data);
                 teamPlayerInfo.init(id);
+                _this.onCompleteUserInfo();
             }
         });
+    }
+    this.onCompleteUserInfo = function () {
+
     }
 }
 

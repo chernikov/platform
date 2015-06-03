@@ -2,8 +2,11 @@
     var _this = this;
 
     this.init = function () {
-        $("#Create").click(function () {
-            _this.showCreatePopup();
+        $("#Create").click(function ()
+        {
+            if (typeof (todo) == "undefinded") {
+                _this.showCreatePopup();
+            }
         });
 
 

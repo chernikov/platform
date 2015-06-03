@@ -20,7 +20,10 @@
             url: "/Tutorial",
             success: function (data) {
                 $("#ModalWrapper").html(data);
-                $("#modalTutorial").modal();
+                $("#modalTutorial").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
             }
         })
     }
@@ -28,6 +31,8 @@
     this.stepOn = function (id) {
         $("#modalTutorial").modal('hide');
         $(".modal-backdrop").remove();
+        $(".tutorial-highlight > *").unwrap();
+        $(".tutorial-manipulate").removeClass("tutorial-manipulate");
         $.ajax({
             type: "GET",
             url: "/Tutorial/Step",

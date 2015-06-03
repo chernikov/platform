@@ -3,7 +3,9 @@
 
     this.init = function () {
         $("#CancelAutoDebit").click(function () {
-            _this.showCancelDebit();
+            if (typeof (todo) == "undefinded") {
+                _this.showCancelDebit();
+            }
         });
 
         $(document).on("click", "#SubmitConfirmAutoDebit", function () {
@@ -24,9 +26,11 @@
         });
 
         $("#PayForSubscription").click(function () {
-            $("#PaymentWrapper").show();
-            $('.left .menu').css('height', $('.account-billing-wrp').height());
-            return false;
+            if (typeof (todo) == "undefinded") {
+                $("#PaymentWrapper").show();
+                $('.left .menu').css('height', $('.account-billing-wrp').height());
+                return false;
+            }
         });
 
         $("#ViewInvoice").click(function () {

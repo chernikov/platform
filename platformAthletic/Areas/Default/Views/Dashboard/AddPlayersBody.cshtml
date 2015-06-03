@@ -1,4 +1,7 @@
 ﻿@model platformAthletic.Models.ViewModels.User.BatchPlayersView
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
 <div class="modal-body add-players">
     <div id="ListOfFields">
         @using (Html.BeginForm("AddPlayers", "Dashboard", FormMethod.Post, new {id = "AddPlayersForm"}))
@@ -12,11 +15,16 @@
             }
         }
     </div>
+   
     <div class="row">
         <div class="pull-right">
             <div class="btn btn-empty" id="AddMoreRow">ADD MORE <span class="glyphicon glyphicon-plus-sign"></span></div>
         </div>
     </div>
+    @if (currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
+    {
+        <strong class="todo-hint">* Enter as many players as desired and hit submit.</strong>
+    }
 </div>
 <div class="modal-footer text-center">
     <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>

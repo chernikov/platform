@@ -18,14 +18,14 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Db.Users.Where(p => !p.IsDeleted && p.UserRoles.Any(r => r.RoleID == 3));
+                return Db.Users.Where(p => !p.IsDeleted && !p.IsPhantom && p.UserRoles.Any(r => r.RoleID == 3));
             }
         }
         public IQueryable<User> PlayersTeamPlayersUsers
         {
             get
             {
-                return Db.Users.Where(p => !p.IsDeleted && (p.UserRoles.Any(r => r.RoleID == 3 || r.RoleID == 4)));
+                return Db.Users.Where(p => !p.IsDeleted && !p.IsPhantom && (p.UserRoles.Any(r => r.RoleID == 3 || r.RoleID == 4)));
             }
         }
 
@@ -591,6 +591,7 @@ namespace platformAthletic.Model
             if (cache != null)
             {
                 cache.Mode = (int)User.ModeEnum.Tutorial;
+                cache.TutorialStep = 1;
                 Db.Users.Context.SubmitChanges();
             }
             return true;
@@ -607,27 +608,6 @@ namespace platformAthletic.Model
             return true;
         }
 
-        public bool SetTodo(int idUser, User.TodoEnum todo)
-        {
-            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
-            if (cache != null)
-            {
-                cache.Todo = cache.Todo + (int)todo;
-                Db.Users.Context.SubmitChanges();
-            }
-            return true;
-        }
-
-        public bool StartTestMode(int idUser)
-        {
-            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
-            if (cache != null)
-            {
-                cache.Mode = (int)User.ModeEnum.Phantom;
-                Db.Users.Context.SubmitChanges();
-            }
-            return true;
-        }
 
         public bool StartTodoMode(int idUser)
         {
@@ -635,6 +615,18 @@ namespace platformAthletic.Model
             if (cache != null)
             {
                 cache.Mode = (int)User.ModeEnum.Todo;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+
+
+        public bool SetTodo(int idUser, User.TodoEnum todo)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Todo = cache.Todo + (int)todo;
                 Db.Users.Context.SubmitChanges();
             }
             return true;
@@ -650,5 +642,50 @@ namespace platformAthletic.Model
             }
             return true;
         }
+
+        public bool RemovePhantoms(int idUser)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                var team = cache.OwnTeam;
+
+                var players = Db.Users.Where(p => p.PlayerOfTeamID == team.ID && p.IsPhantom).ToList();
+                Db.Users.DeleteAllOnSubmit(players);
+                Db.Users.Context.SubmitChanges();
+
+                var users = Db.Users.Where(p => p.PlayerOfTeamID == team.ID && p.IsPhantom && p.GroupID != null);
+                foreach (var user in users)
+                {
+                    user.GroupID = null;
+                }
+                Db.Users.Context.SubmitChanges();
+
+                var groups = Db.Groups.Where(p => p.TeamID == team.ID && p.IsPhantom).ToList();
+                Db.Groups.DeleteAllOnSubmit(groups);
+                Db.Users.Context.SubmitChanges();
+
+                var schedules = Db.Schedules.Where(p => p.TeamID == team.ID).ToList();
+                Db.Schedules.DeleteAllOnSubmit(schedules);
+                Db.Schedules.Context.SubmitChanges();
+
+                var personalSchedules = Db.PersonalSchedules.Where(p => p.UserID == idUser).ToList();
+                Db.PersonalSchedules.DeleteAllOnSubmit(personalSchedules);
+                Db.PersonalSchedules.Context.SubmitChanges();
+
+                var userSeasons = Db.UserSeasons.Where(p => p.UserID == idUser).OrderBy(p => p.ID).Skip(1).ToList();
+                Db.UserSeasons.DeleteAllOnSubmit(userSeasons);
+                Db.UserSeasons.Context.SubmitChanges();
+
+                var userEquipments = Db.UserEquipments.Where(p => p.UserID == idUser).ToList();
+                Db.UserEquipments.DeleteAllOnSubmit(userEquipments);
+                Db.UserEquipments.Context.SubmitChanges();
+
+                cache.Mode = (int)User.ModeEnum.Normal;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
+        
     }
 }

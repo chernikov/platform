@@ -21,9 +21,10 @@
     <script src="~/Scripts/default/modal-attendance.js"></script>
     <script src="~/Scripts/default/team.js"></script>
     <script src="~/Scripts/default/add-players.js"></script>
+    <script src="~/Scripts/default/tutorial.js"></script>
 }
 <div class="container-fluid">
-    <div class="side-body">
+    <div class="side-body" id="Content">
         <div class="breadcrumb">
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-3 overflow">
@@ -58,10 +59,10 @@
                 }
             </div>
         </div>
-        <div class="row  row-same-height">
+        <div class="row  row-same-height" >
             <div class="col-lg-6 col-sm-12 col-md-12 top-padding" id="TablePart">
                 <div class="pull-right">
-                    <a href="/dashboard/extended"> <span class="glyphicon glyphicon-fullscreen"></span></a>
+                    <a href="/dashboard/extended" id="ExtendButton"> <span class="glyphicon glyphicon-fullscreen"></span></a>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-sm-6">
@@ -80,7 +81,7 @@
                                 <p class="attendance-header"><span class="title">ATTENDANCE</span> <span class="glyphicon glyphicon-calendar calendar" id="CalendarButton"></span></p>
                                 <p><span class="date" id="CurrentDate" data-date="@date">@date.ToString("MM/dd/yyyy")</span></p>
                             </td>
-                            <td>
+                            <td class="user-name">
                                 PLAYER NAME
                             </td>
                         </tr>

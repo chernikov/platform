@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using platformAthletic.Helpers;
 
 
 namespace platformAthletic.Areas.Default.Controllers
@@ -174,6 +173,10 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo && batchPlayersView.Players.Count > 0)
+                {
+                    Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.AddPlayers);
+                }
                 foreach (var playerView in batchPlayersView.Players.Values)
                 {
                     var user = (User)ModelMapper.Map(playerView, typeof(PlayerView), typeof(User));

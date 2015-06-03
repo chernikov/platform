@@ -22,6 +22,11 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 return null;
             }
+            if (idUsers.Count() > 0 && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+            }
+
             var list = Repository.Users.Where(p => idUsers.Contains(p.ID));
 
             var currentSeason = CurrentUser.CurrentSeason;
@@ -70,7 +75,12 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult Index()
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+            }
             var currentSeason = CurrentUser.CurrentSeason;
+
             if (DateTime.Now.Current() < currentSeason.StartDay)
             {
                 ViewBag.StartDate = currentSeason.StartDay;

@@ -5,7 +5,6 @@
     this.init = function (userID)
     {
         $("#playerTabs").tab();
-
         var ctx = $("#PerformanceChart").get(0).getContext("2d");
         // This will get the first returned node in the jQuery collection.
         var data = null;

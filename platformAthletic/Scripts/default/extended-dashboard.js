@@ -60,6 +60,8 @@
                 },
                 success: function (data) {
                     valueWrapper.text(data.value);
+
+                    _this.onSbcChange();
                 }
             });
         });
@@ -108,6 +110,11 @@
             cb(matches);
         };
     };
+
+    this.onSbcChange = function ()
+    {
+
+    }
 }
 
 var extendedDashboard = null;

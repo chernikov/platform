@@ -23,6 +23,10 @@ namespace platformAthletic.Areas.Default.Controllers
         [Authorize(Roles = "individual,coach")]
         public ActionResult Index(SelectedEquipmentList selectedEquipmentList)
         {
+            if (selectedEquipmentList.List.Any(p => p.Select) && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.AddEquipment);
+            }
             ViewBag.Message = "Saved";
             foreach (var item in selectedEquipmentList.List)
             {

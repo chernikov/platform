@@ -75,21 +75,21 @@
 
     </div>
 </div>
-<div class="row">
+<div class="row" id="PerformanceWrapper">
     <div class="col-sm-12">
         <div id="playerTabWrapper">
             <ul id="playerTabs" class="nav nav-tabs" data-tabs="tabs">
-                <li class="active">
+                <li >
                     <a href="#performance" data-toggle="tab">PERFORMANCE</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#attendance" data-toggle="tab">ATTENDANCE</a>
                 </li>
             </ul>
 
 
             <div id="playerTabs-content" class="tab-content">
-                <div class="tab-pane active performance" id="performance">
+                <div class="tab-pane  performance" id="performance">
                     <div class="row">
                         <div class="col-lg-12 no-padding-right">
                             <h1 class="performance">LAST 12 WEEKS</h1>
@@ -177,47 +177,47 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane attendance" id="attendance">
-                            <div class="no-padding-left text-center">
-                                <div class="badge badge-attendance">
-                                    <h2 class="text-center">
-                                        ALL-TIME
-                                    </h2>
-                                    <h1 class="text-center">
-                                        @Model.AllAttendanceCount
-                                    </h1>
-                                </div>
-                                <div class="badge  badge-attendance">
-                                    <h2>
-                                        YEAR
-                                    </h2>
-                                    <h1 class="text-center">
-                                        @Model.YearAttendanceCount
-                                    </h1>
-                                </div>
-
-                                <div class="badge badge-attendance">
-                                    <h2>
-                                        MONTH
-                                    </h2>
-                                    <h1 class="text-center">
-                                        @Model.MonthAttendanceCount
-                                    </h1>
-                                </div>
-
-                                <div class="badge badge-attendance">
-                                    <h2>
-                                        WEEK
-                                    </h2>
-                                    <h1 class="text-center">
-                                        @Model.WeekAttendanceCount
-                                    </h1>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <a href="#" class="btn btn-primary">FULL DETAIL</a>
-                            </div>
+                <div class="tab-pane active attendance" id="attendance">
+                    <div class="no-padding-left text-center">
+                        <div class="badge badge-attendance">
+                            <h2 class="text-center">
+                                ALL-TIME
+                            </h2>
+                            <h1 class="text-center">
+                                @Model.AllAttendanceCount
+                            </h1>
                         </div>
+                        <div class="badge  badge-attendance">
+                            <h2>
+                                YEAR
+                            </h2>
+                            <h1 class="text-center">
+                                @Model.YearAttendanceCount
+                            </h1>
+                        </div>
+
+                        <div class="badge badge-attendance">
+                            <h2>
+                                MONTH
+                            </h2>
+                            <h1 class="text-center">
+                                @Model.MonthAttendanceCount
+                            </h1>
+                        </div>
+
+                        <div class="badge badge-attendance">
+                            <h2>
+                                WEEK
+                            </h2>
+                            <h1 class="text-center">
+                                @Model.WeekAttendanceCount
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">FULL DETAIL</a>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,6 @@
             });
             data = data.substring(0, data.length - 1);
             window.open("/team-table" + data, "_blank");
-            return false;
         });
 
         $("#PrintSelected").click(function () {

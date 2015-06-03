@@ -27,9 +27,9 @@
                 </a>
             </div>
             <div class="navbar-header pull-left">
-                @if (currentUser != null && mode == platformAthletic.Model.User.ModeEnum.Phantom)
+                @if (currentUser != null && mode == platformAthletic.Model.User.ModeEnum.Todo)
                 {
-                    <div class="navbar-brand">You are currently in test mode [i]. To exit test mode, <a href="/Tutorial/StopTestMode" class="btn btn-primary">​Click Here</a></div>
+                    <div class="navbar-brand test-mode">You are currently in test mode <span class="glyphicon glyphicon-info-sign clickable" id="ShowTestModeInfo"></span>. To exit test mode, <a href="/Tutorial/StopTestMode" class="btn-link">​Click Here</a></div>
                 }
             </div>
             <div class="navbar-header pull-right">
@@ -90,11 +90,13 @@
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/default/common.js"></script>
     <script src="~/Scripts/default/current-date.js"></script>
+    @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
+    {
+        <script src="~/Scripts/default/todo.js"></script>
+    }
     @RenderSection("header", false)
     @Html.Action("UserColors", "Home")
-    @if (mode == platformAthletic.Model.User.ModeEnum.Tutorial)
-    {
-        <script src="~/Scripts/default/tutorial.js"></script>
-    }
+
+   
 </body>
 </html>

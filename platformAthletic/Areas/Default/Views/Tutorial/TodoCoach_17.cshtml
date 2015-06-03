@@ -1,0 +1,21 @@
+﻿<script>
+    $(function ()
+    {
+        $(".user-item:nth-child(1) td:nth-child(4) > *").wrap("<div class='tutorial-highlight'></div>");
+    });
+</script>
+
+<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="position: fixed; top: 200px; left : 10%">
+        <div class="modal-content tutorial-wrapper">
+            <div class="modal-body">
+                <strong>Enter Maxes</strong>
+                <p></p>
+                <p>Click "-" or "+" sign</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok.</button>
+            </div>
+        </div>
+    </div>
+</div>

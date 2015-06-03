@@ -1,20 +1,21 @@
-﻿<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content tutorial-wrapper">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">TUTORIAL</h4>
-            </div>
-            <div class="modal-body">
-                <h1>Print workouts</h1>
-                <img src="~/Content/img/tutorial/coach_tutorial_04.png" />
-                <p>
-                    Personalized training every week, for every athlete – with a click.
-                </p>
-            </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn btn-primary nextBtn" data-step="5">EVEN BETTER</button>
-            </div>
+﻿<script>
+    $(function () {
+        $("#PrintAll").wrap("<div class='tutorial-highlight left'></div>");
+    });
+</script>
+<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="position: fixed; left: 60%; top: 100px;">
+        <div class=" modal-content tutorial-wrapper">
+        <div class="modal-body">
+            <div class="breadcrumb"><strong> Welcome / Dashboard</strong> / Training</div>
+            <h1>Print workouts</h1>
+            <p>
+                Personalized training every week, for every athlete – with a click.
+            </p>
+        </div>
+        <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary nextBtn" data-step="5">EVEN BETTER</button>
         </div>
     </div>
-</div>
+    </div>
 </div>

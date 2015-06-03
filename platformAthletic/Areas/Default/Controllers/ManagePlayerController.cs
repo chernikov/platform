@@ -42,6 +42,11 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+                {
+                    Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.AddPlayers);
+                }
+
                 var user = (User)ModelMapper.Map(playerUserView, typeof(PlayerUserView), typeof(User));
                 if (user.ID == 0)
                 {

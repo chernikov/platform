@@ -1,67 +1,30 @@
 ﻿@model platformAthletic.Model.User
 @{
     ViewBag.Title = "Thank you!";
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
 }
 @section header {
-    <script type="text/javascript" src="/Media/scripts/default/thanks.js"></script>
+    <script type="text/javascript" src="/Scripts/default/thanks.js"></script>
 }
-@if (Model.InRoles("coach"))
-{
-    <div class="all-content-wrp individual-thank-wrp">
-        <div class="title">
-            <h1>Thank you!</h1>
-        </div>
-        <div class="all-content">
-            <div class="top-blur-shape"></div>
-            <div class="all-inner-content individual-inner-thank clear">
-                <div class="individual-thank-text">
-                    <h3>Welcome to The Platform. We are excited to start training with you!</h3>
-                    Your username and password have both been emailed to you for your records, along
-                    with directions on how to use the site. For future reference, when signing into
-                    the site, go to platformathletics.com and enter your log-in info in the top right
-                    corner.
-                </div>
-                <div class="individual-thank-important">
-                    <span>IMPORTANT: </span>Weekly workouts are made available for printing every Sunday at 12:01am. It is important to enter your players on the MY TEAM page upon logging into your site.
+<div class="container-fluid">
+    <div class="side-body">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/thanks">Thank you</a></li>
+                    </ol>
                 </div>
             </div>
-            <div class="bottom-blur-shape"></div>
         </div>
-        <div class="all-content-button clear">
-            <button class="btn-all btn-back-home" id="buttonBackHome">Go To Home Page</button>
-            <button class="btn-all btn-enter-player" id="buttonEnterPlayer">Enter Players Now</button>
-        </div>
-    </div>
-}
-@if (Model.InRoles("individual"))
-{
-    
-    <div class="all-content-wrp individual-thank-wrp">
-        <div class="title">
-            <h1>Thank you!</h1>
-        </div>
-        <div class="all-content">
-            <div class="top-blur-shape"></div>
-            <div class="all-inner-content individual-inner-thank clear">
-                <div class="individual-thank-text">
-                    <h2>Welcome to The Platform. We are excited to start training with you!</h2>
-                    Your username and password have both been emailed to you for your records, along
-                    with directions on how to use the site. For future reference, when signing into
-                    the site, go to platformathletics.com and enter your log-in info in the top right
-                    corner.
-                </div>
-                <div class="individual-thank-important">
-                    <span>IMPORTANT: </span>
-                    Weekly workouts are made available for printing every Sunday at 12:01am.
-
+        <div class="page-wrapper">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-12">
+                        <h1>Thank you!</h1>
+                        <h2>We are preparing test team for you</h2>
                 </div>
             </div>
-            <div class="bottom-blur-shape"></div>
-        </div>
-        <div class="all-content-button clear">
-            <button class="btn-all btn-personal-page" id="buttonPersonalPage">
-                Go To Your Personal Page</button>
         </div>
     </div>
-}
+</div>

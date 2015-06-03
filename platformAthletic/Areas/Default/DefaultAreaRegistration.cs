@@ -21,6 +21,8 @@ namespace platformAthletic.Areas.Default
                 new { controller = "User", action = "GenerateUserVideos" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
+
+          
  
             context.MapRoute(
                 "error",
@@ -70,6 +72,15 @@ namespace platformAthletic.Areas.Default
                 new { controller = "Account", action = "RegisterIndividual" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
+
+             context.MapRoute(
+                null,
+                "generate-team",
+                new { controller = "Account", action = "GenerateTeam" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
+              
             context.MapRoute(
                 null,
                 "join",
@@ -565,7 +576,12 @@ namespace platformAthletic.Areas.Default
                 new { controller = "Home", action = "Online" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
-
+            context.MapRoute(
+               null,
+               "tutorial/{action}",
+               new { controller = "Tutorial", action = "Index"},
+               new[] { "platformAthletic.Areas.Default.Controllers" }
+           );
 
             context.MapRoute(
                 null,

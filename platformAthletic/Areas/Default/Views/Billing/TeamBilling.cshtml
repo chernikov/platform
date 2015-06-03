@@ -33,9 +33,9 @@
                         <div class="pull-right">
                             @*@if (Model.BillingInfo != null && Model.BillingInfo.AutoDebit)
                                 {*@
-                            <button class="btn btn-billing" id="CancelAutoDebit">Cancel Auto Debit</button>
+                            <button class="btn btn-billing forbitBtn" data-message="Billing is not available in test mode" id="CancelAutoDebit">Cancel Auto Debit</button>
                             @*}*@
-                            <button class="btn btn-billing" id="PayForSubscription">Pay For Subscription</button>
+                            <button class="btn btn-billing forbitBtn" data-message="Billing is not available in test mode" id="PayForSubscription">Pay For Subscription</button>
                             @if (Model.Invoice != null)
                             {
                                 <button class="btn btn-billing" id="ViewInvoice">View Invoice</button>

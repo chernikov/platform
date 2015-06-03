@@ -25,7 +25,7 @@ namespace platformAthletic.Tools.GenerateTools
 
         public static string GetRandomSourceImage()
         {
-            return GetRandomSourceFile("D:\\test\\sandbox\\images\\", "*.jpg");
+            return GetRandomSourceFile("E:\\test\\sandbox\\images\\", "*.jpg");
         }
 
         public static string SaveRandomImage(string folder)

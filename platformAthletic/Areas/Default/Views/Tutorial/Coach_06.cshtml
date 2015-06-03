@@ -1,12 +1,20 @@
-﻿<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+﻿<script>
+    $(function () {
+        
+        dashboard.onCompleteUserInfo = function () {
+            $("#Content").addClass("tutorial-manipulate");
+            $("#PerformanceWrapper").wrap("<div class='tutorial-highlight'></div>");
+        }
+        
+    });
+</script>
+<div class="modal fade" id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="position: fixed; left: 20%; top: 100px;">
         <div class="modal-content tutorial-wrapper">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">TUTORIAL</h4>
-            </div>
             <div class="modal-body">
+                <div class="breadcrumb"><strong> Welcome / Dashboard</strong> / Training</div>
                 <h1>Player Snapshot</h1>
-                <img src="~/Content/img/tutorial/coach_tutorial_06.png" />
+
                 <p>
                     A quick look at what your athletes have been up to in their training.
                 </p>
@@ -16,5 +24,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>
