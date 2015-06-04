@@ -607,6 +607,16 @@ namespace platformAthletic.Model
             }
             return true;
         }
+        public bool StartTestMode(int idUser)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
+            if (cache != null)
+            {
+                cache.Mode = (int)User.ModeEnum.Test;
+                Db.Users.Context.SubmitChanges();
+            }
+            return true;
+        }
 
 
         public bool StartTodoMode(int idUser)
@@ -626,7 +636,15 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == idUser);
             if (cache != null)
             {
-                cache.Todo = cache.Todo + (int)todo;
+                if (((User.TodoEnum)cache.Todo & todo) != todo)
+                {
+                    cache.Todo = cache.Todo + (int)todo;
+
+                    if (cache.UserRoles.Any(p => p.RoleID == 2) && cache.Todo == 31)
+                    {
+                        cache.Mode = (int)User.ModeEnum.Normal;
+                    }
+                }
                 Db.Users.Context.SubmitChanges();
             }
             return true;
@@ -681,7 +699,7 @@ namespace platformAthletic.Model
                 Db.UserEquipments.DeleteAllOnSubmit(userEquipments);
                 Db.UserEquipments.Context.SubmitChanges();
 
-                cache.Mode = (int)User.ModeEnum.Normal;
+                cache.Mode = (int)User.ModeEnum.Todo;
                 Db.Users.Context.SubmitChanges();
             }
             return true;

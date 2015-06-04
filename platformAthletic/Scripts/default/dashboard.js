@@ -1,42 +1,43 @@
-﻿function Dashboard() {
+﻿'use strict';
+function Dashboard() {
     var _this = this;
 
+    this.locals = null;
     this.init = function ()
     {
         $('#CalendarButton').tooltipster({
             content: $('<span><span class="glyphicon glyphicon-info-sign"></span> Editing past dates!</span>')
         });
-
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {
-                locals = result.team;
-            },
-            async: false
+                _this.locals = result.team;
+                $('#SearchAthlete').typeahead({
+                    hint: true,
+                    highlight: function () {
+                        return true;
+                    },
+                    minLength: 1
+                },
+               {
+                   name: 'searchString',
+                   displayKey: function (data) {
+                       return data.value.name;
+                   },
+                   source: _this.substringMatcher(_this.locals),
+                   templates: {
+                       suggestion: function (data) {
+                           return '<li class="search-suggestion"><img src="' + data.value.avatar + '?w=38&h=38&mode=max"><div>' + data.value.name + '</div><div class="state">' + data.value.state + '</div></li>';
+                       }
+                   },
+                   engine: Hogan
+               }).bind('typeahead:selected', function (obj, selected, name) {
+                   window.location = "/dashboard?searchString=" + selected.value.name;
+               });
+            }
         });
 
-        $('#SearchAthlete').typeahead({
-            hint: true,
-            highlight: function () {
-                return true;
-            },
-            minLength: 1
-        },
-        {
-            name: 'searchString',
-            displayKey: function (data) {
-                return data.value.name;
-            },
-            source: _this.substringMatcher(locals),
-            templates: {
-                suggestion: function (data) {
-                    return '<li class="search-suggestion"><img src="' + data.value.avatar + '?w=38&h=38&mode=max"><div>' + data.value.name + '</div><div class="state">' + data.value.state + '</div></li>';
-                }
-            },
-            engine: Hogan
-        }).bind('typeahead:selected', function(obj, selected, name) {
-            window.location = "/dashboard?searchString=" + selected.value.name;
-        });
+       
 
         $("#SearchBtn").click(function () {
             window.location = "/dashboard?searchString=" + $("#SearchAthlete").val();
@@ -98,7 +99,9 @@
                 }
             });
         });
-        this.showUserInfo($(".playerItem").first().data("id"));
+        if ($(".playerItem").length > 0) {
+            this.showUserInfo($(".playerItem").first().data("id"));
+        }
     }
 
     this.substringMatcher = function (strs) {
@@ -126,6 +129,9 @@
     };
 
     this.showUserInfo = function (id) {
+        if (typeof (id) == "undefined") {
+            return;
+        }
         $.ajax({
             url: "/dashboard/UserInfo",
             type: "GET",
@@ -138,14 +144,13 @@
             }
         });
     }
+
     this.onCompleteUserInfo = function () {
 
     }
 }
 
-var dashboard = null;
-
+var dashboard = new Dashboard();
 $(function () {
-    dashboard = new Dashboard();
     dashboard.init();
 });

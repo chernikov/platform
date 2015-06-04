@@ -31,9 +31,9 @@ namespace platformAthletic.Models.Info
             });
             List.Add(new TodoItem()
             {
-                Solved = (todoEnum & Model.User.TodoEnum.ViewWorkOut) == Model.User.TodoEnum.ViewWorkOut,
-                Name = "View a Workout",
-                Url = "/dashboard#todo-2"
+                Solved = (todoEnum & Model.User.TodoEnum.AddPlayers) == Model.User.TodoEnum.AddPlayers,
+                Name = "Add Player(s)",
+                Url = "/dashboard#todo-8"
             });
             List.Add(new TodoItem()
             {
@@ -43,15 +43,15 @@ namespace platformAthletic.Models.Info
             });
             List.Add(new TodoItem()
             {
-                Solved = (todoEnum & Model.User.TodoEnum.AddPlayers) == Model.User.TodoEnum.AddPlayers,
-                Name = "Add Player(s)",
-                Url = "/dashboard#todo-8"
-            });
-            List.Add(new TodoItem()
-            {
                 Solved = (todoEnum & Model.User.TodoEnum.EnterMaxes) == Model.User.TodoEnum.EnterMaxes,
                 Name = "Enter Maxes",
                 Url = "/dashboard#todo-16"
+            });
+            List.Add(new TodoItem()
+            {
+                Solved = (todoEnum & Model.User.TodoEnum.ViewWorkOut) == Model.User.TodoEnum.ViewWorkOut,
+                Name = "View a Workout",
+                Url = "/dashboard#todo-2"
             });
         }
     }

@@ -51,13 +51,21 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult EndTutorial()
         {
-           // if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial)
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial)
+            {
+                Repository.StartTestMode(CurrentUser.ID);
+            }
+            return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EndTest()
+        {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial)
             {
                 Repository.StartTodoMode(CurrentUser.ID);
             }
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
-
 
         public ActionResult Todo()
         {

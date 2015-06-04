@@ -1,4 +1,5 @@
-﻿function Todo() {
+﻿'use strict';
+function Todo() {
     var _this = this;
 
     this.init = function () {
@@ -46,7 +47,15 @@
 
         $("#ShowTestModeInfo").click(function () {
             _this.showInfo("Test mode means the site is populated with sample players and data. Nothing you do or change while in test mode will be saved. When you are ready to begin using the site for your school, exit test mode and follow the To-Do list items on the left hand side.");
-        })
+        });
+
+        $(".todo-list a").click(function () {
+            var href = $(this).attr("href");
+            window.location = href;
+            window.location.reload();
+        });
+
+
     }
 
     this.showTodo = function (id)

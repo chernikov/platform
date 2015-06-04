@@ -1,4 +1,5 @@
-﻿function AddPlayers() {
+﻿'use strict';
+function AddPlayers() {
     var _this = this;
 
     this.init = function ()

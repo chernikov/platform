@@ -353,9 +353,8 @@
 
 }
 
-var schedule = null;
+var schedule = new Schedule();
 
 $(function () {
-    schedule = new Schedule();
     schedule.init();
 })

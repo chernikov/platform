@@ -117,9 +117,7 @@
     }
 }
 
-var extendedDashboard = null;
-
+var extendedDashboard = new ExtendedDashboard();
 $(function () {
-    extendedDashboard = new ExtendedDashboard();
     extendedDashboard.init();
 });

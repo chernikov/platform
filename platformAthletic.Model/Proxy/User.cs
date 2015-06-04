@@ -33,7 +33,8 @@ namespace platformAthletic.Model
         {
             Normal = 0x00,
             Tutorial = 0x01,
-            Todo = 0x02
+            Test = 0x02,
+            Todo = 0x03
         }
 
         [Flags]

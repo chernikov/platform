@@ -43,11 +43,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 var data = new PageableData<User>();
                 data.Init(list.AsQueryable(), page, "Index", itemPerPage: pageSize);
-
-                if (list.Count == 0)
-                {
-                    return RedirectToAction("Extended");
-                }
                 return View(data);
             }
             return RedirectToLoginPage;

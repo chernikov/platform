@@ -391,6 +391,8 @@ namespace platformAthletic.Model
 
         bool SetTodo(int idUser, User.TodoEnum todo);
 
+        bool StartTestMode(int idUser); 
+
         bool StartTodoMode(int idUser);
 
         bool StartNormalMode(int idUser);

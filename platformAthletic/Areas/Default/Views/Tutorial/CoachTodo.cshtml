@@ -1,7 +1,14 @@
 ﻿@model CoachTodoListInfo
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var noPlayers = currentUser.OwnTeam.CountPlayers == 0;
+}
 <div class="todo">
     <h1>TO DO:</h1>
     <ul class="todo-list">
+        @{
+            var i = 1;
+        }
         @foreach (var item in Model.List)
         {
             <li>
@@ -11,10 +18,17 @@
                 }
                 else
                 {
-                    <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
+                    if (i > 3 && noPlayers)
+                    {
+                        <span class="clickable forbitBtn" data-message="You must add at least one player before you can enter maxes"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></span>
+                    }
+                    else
+                    {
+                        <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
+                    }
                 }
-
             </li>
+            i++;
         }
     </ul>
-</div>
+</div> 
