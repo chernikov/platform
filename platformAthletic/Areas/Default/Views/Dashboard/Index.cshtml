@@ -21,7 +21,10 @@
     <script src="~/Scripts/default/modal-attendance.js"></script>
     <script src="~/Scripts/default/team.js"></script>
     <script src="~/Scripts/default/add-players.js"></script>
-    <script src="~/Scripts/default/tutorial.js"></script>
+    @if (currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Tutorial)
+    {
+        <script src="~/Scripts/default/tutorial.js"></script>
+    }
 }
 <div class="container-fluid">
     <div class="side-body" id="Content">

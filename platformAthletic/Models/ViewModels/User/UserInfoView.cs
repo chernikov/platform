@@ -9,8 +9,6 @@ namespace platformAthletic.Models.ViewModels.User
 {
     public class UserInfoView
     {
-       
-
         public class SportInfo
         {
             private IRepository repository = DependencyResolver.Current.GetService<IRepository>();

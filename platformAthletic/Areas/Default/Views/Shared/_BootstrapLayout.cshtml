@@ -90,13 +90,17 @@
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/default/common.js"></script>
     <script src="~/Scripts/default/current-date.js"></script>
-    @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
+    @if (currentUser != null)
     {
-        <script src="~/Scripts/default/todo.js"></script>
+      
+        if (currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
+        {
+            <script src="~/Scripts/default/todo.js"></script>
+        }
     }
     @RenderSection("header", false)
     @Html.Action("UserColors", "Home")
 
-   
+
 </body>
 </html>

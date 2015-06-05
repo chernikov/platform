@@ -11,10 +11,6 @@ namespace platformAthletic.Areas.Default.Controllers
     [Authorize(Roles="coach,individual,player")]
     public class TutorialController : DefaultController
     {
-
-        //
-        // GET: /Default/Tutorial/
-
         public ActionResult Index()
         {
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial) 

@@ -128,6 +128,14 @@ namespace platformAthletic.Mappers
                     .ForMember(p => p.LogoPath, opt => opt.MapFrom(r => r.OwnTeam != null ? r.OwnTeam.LogoPath : ""));
                 Mapper.CreateMap<SettingInfoView, User>();
                 Mapper.CreateMap<SettingInfoView, Team>();
+
+                Mapper.CreateMap<User, IndividualUserInfoView>()
+                   .ForMember(dest => dest.BirthdayDay, opt => opt.MapFrom(src => (src.Birthday ?? DateTime.Now).Day))
+                   .ForMember(dest => dest.BirthdayMonth, opt => opt.MapFrom(src => (src.Birthday ?? DateTime.Now).Month))
+                   .ForMember(dest => dest.BirthdayYear, opt => opt.MapFrom(src => (src.Birthday ?? DateTime.Now).Year));
+                Mapper.CreateMap<IndividualUserInfoView, User>()
+                   .ForMember(dest => dest.Birthday, opt => opt.MapFrom(src => new DateTime(src.BirthdayYear, src.BirthdayMonth, src.BirthdayDay)));
+
             }
         }
 

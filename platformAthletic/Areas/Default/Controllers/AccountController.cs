@@ -102,7 +102,7 @@ namespace platformAthletic.Areas.Default.Controllers
                           user);
                 Auth.Login(user.Email);
                 Repository.StartTutorial(user.ID);
-                return Redirect("/thanks");
+                return Redirect("/");
             }
             return View(registerIndividualView);
         }

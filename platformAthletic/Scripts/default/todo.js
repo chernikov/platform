@@ -18,6 +18,7 @@ function Todo() {
             $(".tutorial-manipulate").removeClass("tutorial-manipulate");
         });
 
+
         if (typeof (schedule) != "undefined")
         {
             schedule.onSetSelect = function () {
@@ -92,6 +93,7 @@ function Todo() {
         var href = location.protocol + '//' + location.host + location.pathname;
         window.location = href;
     }
+
 }
 
 var todo;

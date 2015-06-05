@@ -15,6 +15,7 @@ using System.Web.Mvc;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
+    [Authorize(Roles="coach,assistant")]
     public class DashboardController : DefaultController
     {
         private int pageSize = 20;

@@ -10,7 +10,7 @@
                 <span class="glyphicon glyphicon-home"></span> HOME
             </a>
         </li>
-        @if (currentUser.InRoles("coach,player,assistant"))
+        @if (currentUser.InRoles("coach,assistant"))
         {
             <li class="@(controllerName == "dashboard" ? "active" : "")"><a href="/dashboard"><span class="glyphicon glyphicon-user"></span> DASHBOARD</a></li>
         }
@@ -18,8 +18,11 @@
         {
             <li class="@(controllerName == "user" ? "active" : "")"><a href="/user/@currentUser.ID"><span class="glyphicon glyphicon-user"></span> MY PAGE</a></li>
         }
+        @if (currentUser.InRoles("coach,assistant,individual"))
+        {
         <li class="@(controllerName == "Schedule" ? "active" : "")"><a href="/scheduling"><span class="glyphicon glyphicon-calendar"></span> SCHEDULING</a></li>
-        @if (currentUser.InRoles("coach,player,assistant"))
+        }
+        @if (currentUser.InRoles("coach,assistant"))
         {
             <li class="@(controllerName == "Report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
         }

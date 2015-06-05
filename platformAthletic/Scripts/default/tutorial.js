@@ -11,6 +11,11 @@
                 _this.stepOn(id);
             }
         });
+
+
+        $(document).on("click", "#SubmitAddInfoBtn", function () {
+            _this.addInfo();
+        });
     }
 
     this.showTutorial = function ()
@@ -54,6 +59,30 @@
                 window.location.reload();
             }
         })
+    }
+
+    this.updateAddInfo = function () {
+        var data = $("#AddUserInfoForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/User/UpdateFormUserInfo",
+            data: data,
+            success: function (data) {
+                $("#AddInfoWrapper").html(data);
+            }
+        });
+    }
+
+    this.addInfo = function () {
+        var data = $("#AddUserInfoForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/User/AddUserInfo",
+            data: data,
+            success: function (data) {
+                $("#AddInfoWrapper").html(data);
+            }
+        });
     }
 }
 

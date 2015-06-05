@@ -17,6 +17,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using platformAthletic.Tools.Video;
 using platformAthletic.Models.ViewModels;
+using AutoMapper;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -439,6 +440,53 @@ namespace platformAthletic.Areas.Default.Controllers
                 return View(attendanceInfo);
             }
             return null;
+        }
+
+        [HttpGet]
+        public ActionResult AddUserInfo()
+        {
+            var individualUserInfoView = (IndividualUserInfoView)ModelMapper.Map(CurrentUser, typeof(User), typeof(IndividualUserInfoView));
+            if (CurrentUser.FirstFieldPosition != null)
+            {
+                individualUserInfoView.SportID = CurrentUser.FirstFieldPosition.SportID;
+                individualUserInfoView.FieldPositionID = CurrentUser.FirstFieldPosition.FieldPositionID;
+            }
+            return View(individualUserInfoView);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateFormUserInfo(IndividualUserInfoView individualUserInfoView)
+        {
+            return View("AddUserInfo", individualUserInfoView);
+        }
+
+        [HttpPost]
+        public ActionResult AddUserInfo(IndividualUserInfoView individualUserInfoView)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = (User)ModelMapper.Map(individualUserInfoView, typeof(IndividualUserInfoView), typeof(User));
+
+                Repository.AddUserInfo(user);
+
+                var list = Repository.UserFieldPositions.Where(p => p.UserID == user.ID).ToList();
+                foreach (var item in list)
+                {
+                    Repository.RemoveUserFieldPosition(item.ID);
+                }
+                if (individualUserInfoView.SportID.HasValue)
+                {
+                    Repository.CreateUserFieldPosition(new UserFieldPosition()
+                    {
+                        UserID = user.ID,
+                        SportID = individualUserInfoView.SportID.Value,
+                        FieldPositionID = individualUserInfoView.FieldPositionID
+                    });
+                }
+                Repository.StepTutorial(CurrentUser.ID, 3);
+                return View("_OK");
+            }
+            return View(individualUserInfoView);
         }
     }
 }
