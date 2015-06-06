@@ -1,0 +1,22 @@
+﻿@model IndividualTodoListInfo
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+<div class="todo">
+    <h1>TO DO:</h1>
+    <ul class="todo-list">
+        @foreach (var item in Model.List)
+        {
+            <li>
+                @if (item.Solved)
+                {
+                    <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
+                }
+                else
+                {
+                    <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
+                }
+            </li>
+        }
+    </ul>
+</div> 

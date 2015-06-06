@@ -1477,12 +1477,14 @@ dl.sport-2 {
                 font-size: 11px;
             }
 
-            .calendar-wrapper .calendar-drop-down-list .list .season-item {
+            .calendar-wrapper .calendar-drop-down-list .list .season-item,
+            .calendar-wrapper .calendar-drop-down-list .list .personal-season-item {
                 background-color: #ebeaea;
                 font-weight: bold;
             }
 
-            .calendar-wrapper .calendar-drop-down-list .list .cycle-item {
+            .calendar-wrapper .calendar-drop-down-list .list .cycle-item,
+            .calendar-wrapper .calendar-drop-down-list .list .personal-cycle-item {
                 font-style: italic;
             }
 
@@ -3473,7 +3475,11 @@ hr.video {
 }
 
 .tutorial-highlight.left {
-    float : left;
+    display : inline-block;
+}
+
+.tutorial-highlight.little-top {
+    top : -10px;
 }
 
 .tutorial-highlight.user-off .user-name {
@@ -3485,7 +3491,14 @@ hr.video {
     top : -250px;
     position : relative;
 }
-
+.tutorial-manipulate.big {
+    top : -550px;
+    position : relative;
+}
+.tutorial-manipulate-2.big {
+    top : -950px;
+    position : relative;
+}
 .todo {
     float : left;
 }

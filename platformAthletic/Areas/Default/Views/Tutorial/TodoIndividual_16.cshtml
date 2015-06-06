@@ -1,0 +1,22 @@
+﻿<script>
+    $("#SbcWrapper").wrap("<div class='tutorial-highlight'></div>");
+    $("#SbcWrapper .plus,#SbcWrapper .minus").click(function () {
+        todo.clear();
+    });
+</script>
+<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="position: fixed; top: 200px; left : 20%">
+        <div class="modal-content tutorial-wrapper">
+            <div class="modal-body">
+                <h1>Enter Maxes</h1>
+                <p>
+                    Not sure what they are? That’s ok! For now, just guesstimate and err on the side of too low. You will adjust and update these each week throughout training and hone in on your true max in no time.
+                </p>
+                <p><strong>    Remember: Proper form trumps weight</strong></p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">I'm ready</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -51,12 +51,22 @@
         @foreach (var season in Model.Seasons)
         {
             <div class="season-data" data-id="@season.ID" style="display: @(season.ID == Model.Season.ID ? "block" : "none");">
+
                 <div class="list">
-                    @foreach (var item in season.Macrocycles)
+                    <div class="item personal-season-item" data-id="@season.ID">
+                        Start @season.Name
+                    </div>
+                    @foreach (var cycle in season.SubCycles)
                     {
-                        <div class="item personal-item" data-id="@item.ID">
-                            @item.Name
+                        <div class="item personal-cycle-item" data-id="@cycle.ID">
+                            Start @cycle.Name
                         </div>
+                        foreach (var item in cycle.Macrocycles)
+                        {
+                            <div class="item personal-item" data-id="@item.ID">
+                                @item.Name
+                            </div>
+                        }
                     }
                 </div>
             </div>

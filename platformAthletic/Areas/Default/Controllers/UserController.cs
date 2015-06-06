@@ -292,6 +292,11 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult UploadVideo(UserVideoView userVideoView)
         {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.UploadVideo);
+            }
+
             if (ModelState.IsValid)
             {
                 var userVideo = (UserVideo)ModelMapper.Map(userVideoView, typeof(UserVideoView), typeof(UserVideo));

@@ -661,6 +661,10 @@ namespace platformAthletic.Model
                     {
                         cache.Mode = (int)User.ModeEnum.Normal;
                     }
+                    if (cache.UserRoles.Any(p => p.RoleID == 4) && cache.Todo == 87)
+                    {
+                        cache.Mode = (int)User.ModeEnum.Normal;
+                    }
                 }
                 Db.Users.Context.SubmitChanges();
             }

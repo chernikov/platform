@@ -285,6 +285,8 @@
     <Compile Include="Mappers\MapperCollection.cs" />
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
+    <Compile Include="Models\Info\TodoListInfo.cs" />
+    <Compile Include="Models\Info\IndividualTodoListInfo.cs" />
     <Compile Include="Models\Info\CoachTodoListInfo.cs" />
     <Compile Include="Models\Info\ProgressGraphInfo.cs" />
     <Compile Include="Models\Info\ProgressReport.cs" />
@@ -1669,6 +1671,16 @@
     <Content Include="Areas\Default\Views\User\AddUserInfo.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_03.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_04.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_05.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_06.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_07.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_08.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\IndividualTodo.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_01.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_02.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_04.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_16.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_32.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

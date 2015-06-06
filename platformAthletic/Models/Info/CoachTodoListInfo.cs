@@ -5,23 +5,12 @@ using System.Web;
 
 namespace platformAthletic.Models.Info
 {
-    public class CoachTodoListInfo
+    public class CoachTodoListInfo : TodoListInfo
     {
-        public class TodoItem
-        {
-            public bool Solved { get; set; }
-
-            public string Url { get; set; }
-
-            public string Name { get; set; }
-        }
-
-        public List<TodoItem> List { get; set; }
-        public CoachTodoListInfo(int todo)
+    
+        public CoachTodoListInfo(int todo) : base()
         {
             var todoEnum = (Model.User.TodoEnum)todo;
-
-            List = new List<TodoItem>();
 
             List.Add(new TodoItem()
             {

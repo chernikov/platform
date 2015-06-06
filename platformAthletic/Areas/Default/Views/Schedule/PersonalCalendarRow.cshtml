@@ -50,14 +50,13 @@ else
 {
     <tr class="edit-wrapper">
         <td>
-            <button class="edit-week-empty"></button>
+            &nbsp;
         </td>
         <td colspan="6">
-            <div class="week-name">
-            </div>
+            &nbsp;
         </td>
     </tr>
-    <tr>
+    <tr class="numbers">
         <td>
             @Model.CurrentSunday.Day
         </td>
@@ -80,19 +79,4 @@ else
             @Model.CurrentSunday.AddDays(6).Day
         </td>
     </tr>
-
-    <div class="row">
-        <button class="edit-week-empty"></button>
-        <div class="week-name">
-        </div>
-        <div class="row-days">
-            <div class="day sunday">@Model.CurrentSunday.Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(1).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(2).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(3).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(4).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(5).Day</div>
-            <div class="day">@Model.CurrentSunday.AddDays(6).Day</div>
-        </div>
-    </div>
 }

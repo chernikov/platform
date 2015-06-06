@@ -16,15 +16,9 @@ function Todo() {
             $(".modal-backdrop").remove();
             $(".tutorial-highlight > *").unwrap();
             $(".tutorial-manipulate").removeClass("tutorial-manipulate");
+            $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
         });
 
-
-        if (typeof (schedule) != "undefined")
-        {
-            schedule.onSetSelect = function () {
-                _this.clear();
-            }
-        }
 
         if (typeof (schedule) != "undefined") {
             schedule.onSetSelect = function () {
@@ -61,16 +55,19 @@ function Todo() {
 
     this.showTodo = function (id)
     {
+
         $.ajax({
             type: "GET",
             data : { id : id},
             url: "/Tutorial/TodoSnippet",
             success: function (data) {
+                _this.unwrap();
                 $("#ModalWrapper").html(data);
                 $("#modalTutorial").modal();
                 $('#modalTutorial').on('hidden.bs.modal', function () {
                     $(".tutorial-highlight > *").unwrap();
                     $(".tutorial-manipulate").removeClass("tutorial-manipulate");
+                    $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
                 });
             }
         })
@@ -94,6 +91,11 @@ function Todo() {
         window.location = href;
     }
 
+    this.unwrap = function () {
+        $(".tutorial-highlight > *").unwrap();
+        $(".tutorial-manipulate").removeClass("tutorial-manipulate");
+        $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
+    }
 }
 
 var todo;

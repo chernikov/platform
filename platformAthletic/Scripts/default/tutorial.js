@@ -38,6 +38,7 @@
         $(".modal-backdrop").remove();
         $(".tutorial-highlight > *").unwrap();
         $(".tutorial-manipulate").removeClass("tutorial-manipulate");
+        $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
         $.ajax({
             type: "GET",
             url: "/Tutorial/Step",

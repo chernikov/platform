@@ -49,14 +49,21 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial)
             {
-                Repository.StartTestMode(CurrentUser.ID);
+                if (CurrentUser.InRoles("coach"))
+                {
+                    Repository.StartTestMode(CurrentUser.ID);
+                }
+                else
+                {
+                    Repository.StartTodoMode(CurrentUser.ID);
+                }
             }
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EndTest()
         {
-            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial)
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Test)
             {
                 Repository.StartTodoMode(CurrentUser.ID);
             }
@@ -71,6 +78,11 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     var todo = new CoachTodoListInfo(CurrentUser.Todo);
                     return View("CoachTodo", todo);
+                }
+                if (CurrentUser.InRoles("individual"))
+                {
+                    var todo = new IndividualTodoListInfo(CurrentUser.Todo);
+                    return View("IndividualTodo", todo);
                 }
             }
             return null;

@@ -101,6 +101,14 @@
         $(document).on('click', '.calendar-drop-down-list .personal-item', function () {
             _this.setSelectedPersonal(_this.number, $(this).data("id"), _this.date);
         });
+        $(document).on('click', '.calendar-drop-down-list .personal-season-item', function () {
+            _this.startSeasonPersonal($(this).data("id"), _this.date);
+        });
+
+        $(document).on('click', '.calendar-drop-down-list .personal-cycle-item', function () {
+            _this.startCyclePersonal(_this.number, $(this).data("id"), _this.date);
+        });
+
        
         $(document).on("click", ".season", function () {
             var id = $(this).data("id");
