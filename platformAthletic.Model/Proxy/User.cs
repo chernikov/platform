@@ -45,7 +45,7 @@ namespace platformAthletic.Model
             ConfirmTrainingStartDate = 0x04,
             AddPlayers = 0x08,
             EnterMaxes = 0x10,
-            VisitAnotherAthlete = 0x20,
+            Leaderboard = 0x20,
             UploadVideo = 0x40,
         }
 

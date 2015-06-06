@@ -31,7 +31,7 @@
 
                 </tr>
                 <tr>
-                    <td class="header">LEVEL</td>
+                    <td class="header">LEVEL@(Model.IsGradYear ? "/GRAD YEAR" : "")</td>
                     <td class="value" colspan="3">
                         <div class="@(Model.IsGradYear ? "half" : "full")">
                             <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
@@ -49,6 +49,11 @@
         if (typeof (tutorial) != "undefined")
         {
             tutorial.updateAddInfo();
+        }
+    })
+    $("#LevelID").change(function () {
+        if (typeof (tutorial) != "undefined") {
+            tutorial.updateAddPlayerInfo();
         }
     })
 </script>

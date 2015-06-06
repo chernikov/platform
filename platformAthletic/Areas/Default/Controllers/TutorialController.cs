@@ -84,6 +84,11 @@ namespace platformAthletic.Areas.Default.Controllers
                     var todo = new IndividualTodoListInfo(CurrentUser.Todo);
                     return View("IndividualTodo", todo);
                 }
+                if (CurrentUser.InRoles("player"))
+                {
+                    var todo = new PlayerTodoListInfo(CurrentUser.Todo);
+                    return View("PlayerTodo", todo);
+                }
             }
             return null;
         }

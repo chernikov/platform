@@ -16,6 +16,10 @@
         $(document).on("click", "#SubmitAddInfoBtn", function () {
             _this.addInfo();
         });
+
+        $(document).on("click", "#SubmitAddPlayerInfoBtn", function () {
+            _this.addPlayerInfo();
+        });
     }
 
     this.showTutorial = function ()
@@ -82,6 +86,30 @@
             data: data,
             success: function (data) {
                 $("#AddInfoWrapper").html(data);
+            }
+        });
+    }
+
+    this.updateAddPlayerInfo = function () {
+        var data = $("#AddPlayerUserInfoForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/User/UpdatePlayerFormUserInfo",
+            data: data,
+            success: function (data) {
+                $("#AddPlayerInfoWrapper").html(data);
+            }
+        });
+    }
+
+    this.addPlayerInfo = function () {
+        var data = $("#AddPlayerUserInfoForm").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/User/AddPlayerUserInfo",
+            data: data,
+            success: function (data) {
+                $("#AddPlayerInfoWrapper").html(data);
             }
         });
     }

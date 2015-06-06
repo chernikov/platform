@@ -285,6 +285,7 @@
     <Compile Include="Mappers\MapperCollection.cs" />
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
+    <Compile Include="Models\Info\PlayerTodoListInfo.cs" />
     <Compile Include="Models\Info\TodoListInfo.cs" />
     <Compile Include="Models\Info\IndividualTodoListInfo.cs" />
     <Compile Include="Models\Info\CoachTodoListInfo.cs" />
@@ -375,6 +376,7 @@
     <Compile Include="Models\ViewModels\User\ChangePasswordView.cs" />
     <Compile Include="Models\ViewModels\User\IndividualBillingUserView.cs" />
     <Compile Include="Models\ViewModels\User\ForgotPasswordView.cs" />
+    <Compile Include="Models\ViewModels\User\PlayerUserInfoView.cs" />
     <Compile Include="Models\ViewModels\User\IndividualUserView.cs" />
     <Compile Include="Models\ViewModels\User\AssistantUserView.cs" />
     <Compile Include="Models\ViewModels\User\PlayerUserView.cs" />
@@ -1681,6 +1683,19 @@
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_04.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_16.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_32.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_01.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_02.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_03.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_04.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_05.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_06.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_07.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_08.cshtml" />
+    <Content Include="Areas\Default\Views\User\AddPlayerUserInfo.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\PlayerTodo.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoPlayer_02.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoPlayer_32.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\TodoPlayer_20.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

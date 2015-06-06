@@ -52,6 +52,8 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
                     user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
+                    user.TutorialStep = 1;
+                    user.Mode = (int)Model.User.ModeEnum.Tutorial;
                     Repository.CreateUser(user);
                     var userRole = new UserRole()
                     {

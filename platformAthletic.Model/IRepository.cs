@@ -337,6 +337,8 @@ namespace platformAthletic.Model
 
         bool AddUserInfo(User instance);
 
+        bool AddPlayerUserInfo(User instance);
+
         bool CreateAdminUser(User instance);
 
         bool UpdateAdminUser(User instance);

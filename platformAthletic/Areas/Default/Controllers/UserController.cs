@@ -29,6 +29,10 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult Index(int id)
         {
+            if (CurrentUser != null && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo && CurrentUser.ID != id)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.Leaderboard);
+            }
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
 
             return View(user);
@@ -492,6 +496,53 @@ namespace platformAthletic.Areas.Default.Controllers
                 return View("_OK");
             }
             return View(individualUserInfoView);
+        }
+
+        [HttpGet]
+        public ActionResult AddPlayerUserInfo()
+        {
+            var playerUserInfoView = (PlayerUserInfoView)ModelMapper.Map(CurrentUser, typeof(User), typeof(PlayerUserInfoView));
+            if (CurrentUser.FirstFieldPosition != null)
+            {
+                playerUserInfoView.SportID = CurrentUser.FirstFieldPosition.SportID;
+                playerUserInfoView.FieldPositionID = CurrentUser.FirstFieldPosition.FieldPositionID;
+            }
+            return View(playerUserInfoView);
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePlayerFormUserInfo(PlayerUserInfoView playerUserInfoView)
+        {
+            return View("AddPlayerUserInfo", playerUserInfoView);
+        }
+
+        [HttpPost]
+        public ActionResult AddPlayerUserInfo(PlayerUserInfoView playerUserInfoView)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = (User)ModelMapper.Map(playerUserInfoView, typeof(PlayerUserInfoView), typeof(User));
+
+                Repository.AddPlayerUserInfo(user);
+
+                var list = Repository.UserFieldPositions.Where(p => p.UserID == user.ID).ToList();
+                foreach (var item in list)
+                {
+                    Repository.RemoveUserFieldPosition(item.ID);
+                }
+                if (playerUserInfoView.SportID.HasValue)
+                {
+                    Repository.CreateUserFieldPosition(new UserFieldPosition()
+                    {
+                        UserID = user.ID,
+                        SportID = playerUserInfoView.SportID.Value,
+                        FieldPositionID = playerUserInfoView.FieldPositionID
+                    });
+                }
+                Repository.StepTutorial(CurrentUser.ID, 3);
+                return View("_OK");
+            }
+            return View(playerUserInfoView);
         }
     }
 }

@@ -175,6 +175,23 @@ namespace platformAthletic.Model
             return false;
         }
 
+        public bool AddPlayerUserInfo(User instance)
+        {
+            var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
+            if (cache != null)
+            {
+                cache.FirstName = instance.FirstName;
+                cache.LastName = instance.LastName;
+                cache.Birthday = instance.Birthday;
+                cache.LevelID = instance.LevelID;
+                cache.GradYear = instance.GradYear;
+                cache.Gender = instance.Gender;
+                Db.Users.Context.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
         public bool UpdateManageUser(User instance)
         {
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
@@ -656,12 +673,30 @@ namespace platformAthletic.Model
                 if (((User.TodoEnum)cache.Todo & todo) != todo)
                 {
                     cache.Todo = cache.Todo + (int)todo;
+                    var todoEnum = (User.TodoEnum)cache.Todo;
 
-                    if (cache.UserRoles.Any(p => p.RoleID == 2) && cache.Todo == 31)
+                    if (cache.UserRoles.Any(p => p.RoleID == 2)
+                        && todoEnum.HasFlag(User.TodoEnum.AddEquipment)
+                        && todoEnum.HasFlag(User.TodoEnum.ViewWorkOut)
+                        && todoEnum.HasFlag(User.TodoEnum.ConfirmTrainingStartDate)
+                        && todoEnum.HasFlag(User.TodoEnum.AddPlayers)
+                        && todoEnum.HasFlag(User.TodoEnum.EnterMaxes))
                     {
                         cache.Mode = (int)User.ModeEnum.Normal;
                     }
-                    if (cache.UserRoles.Any(p => p.RoleID == 4) && cache.Todo == 87)
+                    if (cache.UserRoles.Any(p => p.RoleID == 4)
+                        && todoEnum.HasFlag(User.TodoEnum.AddEquipment)
+                        && todoEnum.HasFlag(User.TodoEnum.ViewWorkOut)
+                        && todoEnum.HasFlag(User.TodoEnum.ConfirmTrainingStartDate)
+                        && todoEnum.HasFlag(User.TodoEnum.EnterMaxes)
+                        && todoEnum.HasFlag(User.TodoEnum.UploadVideo))
+                    {
+                        cache.Mode = (int)User.ModeEnum.Normal;
+                    }
+                    if (cache.UserRoles.Any(p => p.RoleID == 3)
+                       && todoEnum.HasFlag(User.TodoEnum.ViewWorkOut)
+                       && todoEnum.HasFlag(User.TodoEnum.UploadVideo)
+                       && todoEnum.HasFlag(User.TodoEnum.Leaderboard))
                     {
                         cache.Mode = (int)User.ModeEnum.Normal;
                     }

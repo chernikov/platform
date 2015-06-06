@@ -1,0 +1,59 @@
+﻿@model PlayerUserInfoView
+
+<div class="user-page">
+    <div class="edit-profile-wrapper">
+        @using (Html.BeginForm("AddUserInfo", "User", FormMethod.Post, new { id = "AddPlayerUserInfoForm" }))
+        {
+            @Html.Hidden("ID", Model.ID)
+            <table class="table info-table">
+                <tr>
+                    <td class="header">NAME</td>
+                    <td class="value name" colspan="3">@Html.TextBox("FirstName", Model.FirstName) @Html.TextBox("LastName", Model.LastName)</td>
+                </tr>
+
+                <tr>
+                    <td class="header">GENDER</td>
+                    <td class="value" colspan="3"><div class="dropdown-wrapper gender">@Html.DropDownList("Gender", Model.SelectListGender)</div> </td>
+                </tr>
+                <tr>
+                    <td class="header">AGE</td>
+                    <td class="value select-sport"><div class="dropdown-wrapper">@Html.DropDownList("BirthdayDay", Model.BirthdayDaySelectList, new { @class = "full-dropdown" })</div></td>
+                    <td class="value select-sport"><div class="dropdown-wrapper">@Html.DropDownList("BirthdayMonth", Model.BirthdayMonthSelectList, new { @class = "full-dropdown" })</div></td>
+                    <td class="value select-sport"><div class="dropdown-wrapper">@Html.DropDownList("BirthdayYear", Model.BirthdayYearSelectList, new { @class = "full-dropdown" })</div></td>
+                </tr>
+                <tr>
+                    <td class="header">SPORT</td>
+                    <td class="value select-sport" colspan="3"><div class="dropdown-wrapper">@Html.DropDownList("SportID", Model.SelectListSports, new { @class = "full-dropdown" })</div></td>
+                </tr>
+                <tr>
+                    <td class="header">POSITION</td>
+                    <td class="value select-position" colspan="3"><div class="dropdown-wrapper">@Html.DropDownList("FieldPositionID", Model.SelectListFieldPositionID, new { @class = "full-dropdown" })</div></td>
+
+                </tr>
+                <tr>
+                    <td class="header">LEVEL@(Model.IsGradYear ? "/GRAD YEAR":"")</td>
+                    <td class="value" colspan="3">
+                        <div class="@(Model.IsGradYear ? "half" : "full")">
+                            <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
+                        </div>
+                        <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">@Html.TextBox("GradYear", Model.GradYear)</div>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#SportID").change(function () {
+        if (typeof (tutorial) != "undefined")
+        {
+            tutorial.updateAddPlayerInfo();
+        }
+    })
+    $("#LevelID").change(function () {
+        if (typeof (tutorial) != "undefined") {
+            tutorial.updateAddPlayerInfo();
+        }
+    })
+</script>
