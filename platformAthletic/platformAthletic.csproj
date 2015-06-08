@@ -1676,7 +1676,6 @@
     <Content Include="Areas\Default\Views\Tutorial\Individual_05.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_06.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_07.cshtml" />
-    <Content Include="Areas\Default\Views\Tutorial\Individual_08.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\IndividualTodo.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_01.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_02.cshtml" />

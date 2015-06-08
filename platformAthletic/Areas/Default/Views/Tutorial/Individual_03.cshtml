@@ -1,18 +1,15 @@
-﻿<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿
+<div class="modal fade " id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content tutorial-wrapper">
             <div class="modal-body">
-                <div class="breadcrumb"><strong> Welcome / Info / My Page </strong>  / Wrap-Up</div>
+                <div class="breadcrumb"><strong> Welcome / Info </strong> / My Page  / Wrap-Up</div>
 
-                <h1>Tell us about yourself!</h1>
-                <p>Fill in all the fields that apply. We use this information to make sure you get on the right leaderboards.</p>
-                <div id="AddInfoWrapper">
-
-                    @Html.Action("AddUserInfo", "User")
-                </div>
+                <h1>My Page</h1>
+                <p>This is your training hub. Everything you need is always just a click away!</p>
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-primary" id="SubmitAddInfoBtn">Submit</button>
+                <button type="button" class="btn btn-primary nextBtn" data-step="4">Next >></button>
             </div>
         </div>
     </div>

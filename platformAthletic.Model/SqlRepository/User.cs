@@ -54,6 +54,7 @@ namespace platformAthletic.Model
                 instance.LastVisitDate = CurrentDateTime;
                 instance.PaidTill = CurrentDateTime.AddDays(1);
                 instance.ActivatedLink = StringExtension.GenerateNewFile();
+                instance.Gender = true;
                 Db.Users.InsertOnSubmit(instance);
                 Db.Users.Context.SubmitChanges();
                 return true;
