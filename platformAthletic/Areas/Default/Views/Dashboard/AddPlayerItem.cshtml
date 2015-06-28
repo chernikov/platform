@@ -6,6 +6,7 @@
 <div class="row add-player-item">
     @Html.Hidden("Players.index", id)
     @Html.Hidden("Players[" + id + "].Key", id)
+    @Html.Hidden("Players[" + id + "].Value.ID", Model.Value.ID)
     <div class="col-sm-4">
         @Html.TextBox("Players["+id+"].Value.FirstName", Model.Value.FirstName, new {@class="form-control", placeholder="FIRST NAME *"})
         @Html.ValidationMessage("Players[" + id + "].Value.FirstName")

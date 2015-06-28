@@ -1,6 +1,7 @@
 ﻿using platformAthletic.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,8 +26,10 @@ namespace platformAthletic.Models.ViewModels.User
 
         public int ID { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
         public bool Gender { get; set; }

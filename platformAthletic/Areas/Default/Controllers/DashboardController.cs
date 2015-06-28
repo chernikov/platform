@@ -180,6 +180,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
                     user.TutorialStep = 1;
                     user.Mode = (int)Model.User.ModeEnum.Tutorial;
+                    user.IsPhantom = (User.ModeEnum)CurrentUser.Mode == Model.User.ModeEnum.Test;
                     Repository.CreateUser(user);
 
                     var userRole = new UserRole()

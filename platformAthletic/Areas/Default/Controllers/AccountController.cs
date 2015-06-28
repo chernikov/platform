@@ -43,10 +43,6 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult RegisterIndividual(RegisterIndividualView registerIndividualView)
         {
-            if (!registerIndividualView.AgreementPrivacyPolicy || !registerIndividualView.AgreementTermCondition)
-            {
-                ModelState.AddModelError("Agreement", "You need to accept Privacy Policy and Terms and Conditions to continue.");
-            }
             ValidateCreditCardExpirationDate(registerIndividualView.BillingInfo);
             int? promoCode = null;
             ValidatePromoCode(registerIndividualView.Target, registerIndividualView.ReferralCode, out promoCode);

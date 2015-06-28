@@ -1208,7 +1208,7 @@ dl.sport-2 {
     }
 
 .input-validation-error {
-    background: #fedad5;
+    background: #fedad5 !important;
 }
 
 .field-validation-error {
@@ -3422,6 +3422,7 @@ hr.video {
 }
 
 
+
 .page-wrapper h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
@@ -3430,6 +3431,12 @@ hr.video {
     text-align: center;
 }
 
+.page-wrapper .big-text {
+    font-size : 18px;
+}
+.page-wrapper .shifted {
+    margin-left : 20px;
+}
 .form-register-wrapper {
 }
 

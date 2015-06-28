@@ -15,25 +15,6 @@ namespace platformAthletic.Models.ViewModels.User
         [ValidEmail(ErrorMessage = "Enter correct Email")]
         [UserEmailValidation(ErrorMessage = "Email already registered")]
         public string Email { get; set; }
-
-        public int CurrentSeasonSeasonType { get; set; }
-
-        public DateTime CurrentSeasonStartDay { get; set; }
-
-        public DateTime MinNextSelectDay
-        {
-            get
-            {
-                var repository = DependencyResolver.Current.GetService<SqlRepository>();
-                var currentDate = DateTime.Now.Current();
-                if (CurrentSeasonStartDay < currentDate)
-                {
-                    return currentDate;
-                }
-                return CurrentSeasonStartDay;
-            }
-        }
-        
-        public DateTime? NextSeasonStartDay { get; set; }
+     
     }
 }

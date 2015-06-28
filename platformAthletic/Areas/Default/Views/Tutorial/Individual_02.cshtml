@@ -2,17 +2,15 @@
     <div class="modal-dialog">
         <div class="modal-content tutorial-wrapper">
             <div class="modal-body">
-                <div class="breadcrumb"><strong> Welcome / Info / My Page </strong>  / Wrap-Up</div>
-
-                <h1>Tell us about yourself!</h1>
-                <p>Fill in all the fields that apply. We use this information to make sure you get on the right leaderboards.</p>
-                <div id="AddInfoWrapper">
-
-                    @Html.Action("AddUserInfo", "User")
-                </div>
+                <div class="breadcrumb"><strong> Welcome </strong>/ Info  / My Page  / Wrap-Up</div>
+                <p></p>
+                <p>
+                    @Html.CheckBox("TermAndConditionChk", false) Agree to <a href="/term-and-condition" target="_blank">TC</a> and <a href="/privacy" target="_blank">Privacy Policy</a>
+                </p>
+                <p></p>
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-primary" id="SubmitAddInfoBtn">Submit</button>
+                <button type="button" class="btn btn-primary nextBtn" data-step="3">Next</button>
             </div>
         </div>
     </div>

@@ -472,6 +472,18 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddUserInfo(IndividualUserInfoView individualUserInfoView)
         {
+            if (individualUserInfoView.IsGradYear && individualUserInfoView.GradYear == 0)
+            {
+                ModelState.AddModelError("GradYear", "");
+            }
+            if (!individualUserInfoView.SportID.HasValue)
+            {
+                ModelState.AddModelError("SportID", "");
+            }
+            if (individualUserInfoView.SelectListSports.Any() && !individualUserInfoView.FieldPositionID.HasValue)
+            {
+                ModelState.AddModelError("FieldPositionID", "");
+            }
             if (ModelState.IsValid)
             {
                 var user = (User)ModelMapper.Map(individualUserInfoView, typeof(IndividualUserInfoView), typeof(User));
@@ -492,7 +504,7 @@ namespace platformAthletic.Areas.Default.Controllers
                         FieldPositionID = individualUserInfoView.FieldPositionID
                     });
                 }
-                Repository.StepTutorial(CurrentUser.ID, 3);
+                Repository.StepTutorial(CurrentUser.ID, 4);
                 return View("_OK");
             }
             return View(individualUserInfoView);
@@ -516,9 +528,29 @@ namespace platformAthletic.Areas.Default.Controllers
             return View("AddPlayerUserInfo", playerUserInfoView);
         }
 
+        [HttpGet]
+        public ActionResult TermAndCondition()
+        {
+            return View();
+        }
+
+
+
         [HttpPost]
         public ActionResult AddPlayerUserInfo(PlayerUserInfoView playerUserInfoView)
         {
+            if (playerUserInfoView.IsGradYear && playerUserInfoView.GradYear == 0)
+            {
+                ModelState.AddModelError("GradYear", "");
+            }
+            if (!playerUserInfoView.SportID.HasValue)
+            {
+                ModelState.AddModelError("SportID", "");
+            }
+            if (playerUserInfoView.SelectListSports.Any() && !playerUserInfoView.FieldPositionID.HasValue)
+            {
+                ModelState.AddModelError("FieldPositionID", "");
+            }
             if (ModelState.IsValid)
             {
                 var user = (User)ModelMapper.Map(playerUserInfoView, typeof(PlayerUserInfoView), typeof(User));
@@ -539,7 +571,7 @@ namespace platformAthletic.Areas.Default.Controllers
                         FieldPositionID = playerUserInfoView.FieldPositionID
                     });
                 }
-                Repository.StepTutorial(CurrentUser.ID, 3);
+                Repository.StepTutorial(CurrentUser.ID, 4);
                 return View("_OK");
             }
             return View(playerUserInfoView);

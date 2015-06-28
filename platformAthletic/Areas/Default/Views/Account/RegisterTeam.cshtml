@@ -64,7 +64,7 @@
                             @Html.ValidationMessage("ConfirmPassword")
                         </div>
                         <div class="form-group">
-                            <label for="ReferralCode"><span class="required">*</span>Referral code</label>
+                            <label for="ReferralCode">Referral code</label>
                             <div class="row">
                                 <div class="col-lg-6 no-padding-left">
                                     @Html.TextBox("ReferralCode", Model.ReferralCode, new { @class = "form-control", id = "ReferralCodeValue" })
@@ -81,7 +81,6 @@
                             <label>Total</label>
                             @Html.TextBox("TotalSum", Model.TotalSum.ToString("C"), new { @class = "form-control", @readonly = "readonly" })
                         </div>
-
                         <div class="form-group">
                             <label>
                                 @Html.CheckBox("AgreementTermCondition", Model.AgreementTermCondition) <a href="/term-and-condition" target="_blank">Terms and Conditions</a>
@@ -92,7 +91,6 @@
                                 @Html.CheckBox("AgreementPrivacyPolicy", Model.AgreementPrivacyPolicy) <a href="/privacy" target="_blank">Privacy Policy</a>
                             </label>
                         </div>
-
                         <div class="form-group text-center margin-top">
                             <button class="btn btn-primary btn-lg">START FREE TRIAL!</button>
                         </div>

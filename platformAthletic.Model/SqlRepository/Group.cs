@@ -57,6 +57,12 @@ namespace platformAthletic.Model
                         Db.Users.Context.SubmitChanges();
                     }
                 }
+                var schedules = Db.Schedules.Where(p => p.GroupID == instance.ID);
+                Db.Schedules.DeleteAllOnSubmit(schedules);
+                Db.Schedules.Context.SubmitChanges();
+                var userSeasons = Db.UserSeasons.Where(p => p.GroupID == instance.ID);
+                Db.UserSeasons.DeleteAllOnSubmit(userSeasons);
+                Db.UserSeasons.Context.SubmitChanges();
                 Db.Groups.DeleteOnSubmit(instance);
                 Db.Groups.Context.SubmitChanges();
                 return true;

@@ -250,7 +250,7 @@ namespace platformAthletic.Areas.Default.Controllers
             }
 
             var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
-            var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == team.UserID && p.StartDay > date);
+            var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == team.UserID && p.StartDay >= date);
             if (groupId != null)
             {
                 futureSeasons = futureSeasons.Where(p => p.GroupID == groupId);

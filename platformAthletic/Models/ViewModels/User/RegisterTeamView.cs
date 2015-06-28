@@ -11,6 +11,10 @@ namespace platformAthletic.Models.ViewModels.User
 {
     public class RegisterTeamView : RegisterUserView
     {
+        public bool AgreementTermCondition { get; set; }
+
+        public bool AgreementPrivacyPolicy { get; set; }
+
         public int PaymentType { get; set; }
 
 

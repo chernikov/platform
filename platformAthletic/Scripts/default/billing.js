@@ -3,7 +3,7 @@
 
     this.init = function () {
         $("#CancelAutoDebit").click(function () {
-            if (typeof (todo) == "undefinded") {
+            if (typeof (testmode) == "undefined") {
                 _this.showCancelDebit();
             }
         });
@@ -26,7 +26,7 @@
         });
 
         $("#PayForSubscription").click(function () {
-            if (typeof (todo) == "undefinded") {
+            if (typeof (testmode) == "undefined") {
                 $("#PaymentWrapper").show();
                 $('.left .menu').css('height', $('.account-billing-wrp').height());
                 return false;

@@ -2,12 +2,17 @@
     <div class="modal-dialog">
         <div class="modal-content tutorial-wrapper">
             <div class="modal-body">
-                <div class="breadcrumb"><strong> Welcome / Info / My Page </strong> / Wrap-Up</div>
-                <h1>My Page</h1>
-                <p>This is your training hub. Everything you need is always just a click away!</p>
+                <div class="breadcrumb"><strong> Welcome / Info </strong> / My Page  / Wrap-Up</div>
+
+                <h1>Tell us about yourself!</h1>
+                <p>Fill in all the fields that apply. We use this information to make sure you get on the right leaderboards.</p>
+                <div id="AddPlayerInfoWrapper">
+
+                    @Html.Action("AddPlayerUserInfo", "User")
+                </div>
             </div>
             <div class="modal-footer text-center">
-                <button type="button" class="btn btn-primary nextBtn" data-step="4">Next >></button>
+                <button type="button" class="btn btn-primary" id="SubmitAddPlayerInfoBtn">Submit</button>
             </div>
         </div>
     </div>

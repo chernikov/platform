@@ -4,8 +4,10 @@ function Todo() {
 
     this.init = function () {
         var item = window.location.hash;
-        var id = item.substr("#todo-".length);
-        _this.showTodo(id);
+        if (item.length > 0) {
+            var id = item.substr("#todo-".length);
+            _this.showTodo(id);
+        }
 
         $(document).on("click", "#PrintAll", function () {
             _this.clear();
@@ -19,7 +21,6 @@ function Todo() {
             $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
         });
 
-
         if (typeof (schedule) != "undefined") {
             schedule.onSetSelect = function () {
                 _this.clear();
@@ -32,17 +33,6 @@ function Todo() {
             }
         }
 
-        $(document).on("click", ".forbitBtn", function (e) {
-            var message = $(this).data("message");
-            _this.showInfo(message);
-            e.stopPropagation();
-            return false;
-
-        });
-
-        $("#ShowTestModeInfo").click(function () {
-            _this.showInfo("Test mode means the site is populated with sample players and data. Nothing you do or change while in test mode will be saved. When you are ready to begin using the site for your school, exit test mode and follow the To-Do list items on the left hand side.");
-        });
 
         $(".todo-list a").click(function () {
             var href = $(this).attr("href");

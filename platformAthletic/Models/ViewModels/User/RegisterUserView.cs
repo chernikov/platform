@@ -30,9 +30,7 @@ namespace platformAthletic.Models.ViewModels.User
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
 
-        public bool AgreementTermCondition { get; set; }
-
-        public bool AgreementPrivacyPolicy { get; set; }
+      
 
         public abstract string ReferralCode { get; set;  }
 

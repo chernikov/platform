@@ -37,30 +37,39 @@ namespace platformAthletic.Models.Info
             var stateUsers =  Repository.PlayersTeamPlayersUsers.Where(p => 
                 (p.Team != null && p.Team.StateID == userStateID) || p.IndividualStateID == userStateID);
             var schoolUsers = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == user.PlayerOfTeamID);
-
-            Nation = new Rank()
+            Nation = new Rank();
+            State = new Rank();
+            School = new Rank();
+            try
             {
-                Squat = users.Count(p => p.Squat > user.Squat) + 1,
-                Bench = users.Count(p => p.Bench > user.Bench) + 1,
-                Clean = users.Count(p => p.Clean > user.Clean) + 1,
-                Total = users.Count(p => p.Squat + p.Bench + p.Clean > user.Total) + 1
-            };
+                Nation = new Rank()
+                {
+                    Squat = users.Count(p => p.Squat > user.Squat) + 1,
+                    Bench = users.Count(p => p.Bench > user.Bench) + 1,
+                    Clean = users.Count(p => p.Clean > user.Clean) + 1,
+                    Total = users.Count(p => p.Squat + p.Bench + p.Clean > user.Total) + 1
+                };
 
-            State = new Rank()
-            {
-                Squat = stateUsers.Count(p => p.Squat > user.Squat) + 1,
-                Bench = stateUsers.Count(p => p.Bench > user.Bench) + 1,
-                Clean = stateUsers.Count(p => p.Clean > user.Clean) + 1,
-                Total = stateUsers.Count(p => p.Squat + p.Bench + p.Clean > user.Total) + 1
-            };
+                State = new Rank()
+                {
+                    Squat = stateUsers.Count(p => p.Squat > user.Squat) + 1,
+                    Bench = stateUsers.Count(p => p.Bench > user.Bench) + 1,
+                    Clean = stateUsers.Count(p => p.Clean > user.Clean) + 1,
+                    Total = stateUsers.Count(p => p.Squat + p.Bench + p.Clean > user.Total) + 1
+                };
 
-            School = new Rank()
+                School = new Rank()
+                {
+                    Squat = schoolUsers.Count(p => p.Squat > user.Squat) + 1,
+                    Bench = schoolUsers.Count(p => p.Bench > user.Bench) + 1,
+                    Clean = schoolUsers.Count(p => p.Clean > user.Clean) + 1,
+                    Total = schoolUsers.Count(p => p.Squat + p.Bench + p.Clean > user.Total) + 1
+                };
+            }
+            catch (Exception ex)
             {
-                Squat = schoolUsers.Count(p => p.Squat > user.Squat) + 1,
-                Bench = schoolUsers.Count(p => p.Bench > user.Bench) + 1,
-                Clean = schoolUsers.Count(p => p.Clean > user.Clean) + 1,
-                Total = schoolUsers.Count(p => p.Squat + p.Bench + p.Clean > user.Total) + 1
-            };
+
+            }
         }
     }
 }

@@ -1569,6 +1569,7 @@
     <Content Include="Scripts\default\setting-info.js" />
     <Content Include="Scripts\default\register.js" />
     <Content Include="Scripts\default\team.js" />
+    <Content Include="Scripts\default\testmode.js" />
     <Content Include="Scripts\default\thanks.js" />
     <Content Include="Scripts\default\todo.js" />
     <Content Include="Scripts\default\tutorial.js" />
@@ -1669,13 +1670,13 @@
     <Content Include="Areas\Default\Views\Tutorial\TodoCoach_17.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Info.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_01.cshtml" />
-    <Content Include="Areas\Default\Views\Tutorial\Individual_02.cshtml" />
-    <Content Include="Areas\Default\Views\User\AddUserInfo.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_03.cshtml" />
+    <Content Include="Areas\Default\Views\User\AddUserInfo.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_04.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_05.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_06.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_07.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_08.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\IndividualTodo.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_01.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_02.cshtml" />
@@ -1683,7 +1684,6 @@
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_16.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoIndividual_32.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Player_01.cshtml" />
-    <Content Include="Areas\Default\Views\Tutorial\Player_02.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Player_03.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Player_04.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Player_05.cshtml" />
@@ -1695,6 +1695,9 @@
     <Content Include="Areas\Default\Views\Tutorial\TodoPlayer_02.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoPlayer_32.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\TodoPlayer_20.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Player_02.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_02.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\Individual_09.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

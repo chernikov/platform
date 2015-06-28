@@ -20,6 +20,15 @@
         $(document).on("click", "#SubmitAddPlayerInfoBtn", function () {
             _this.addPlayerInfo();
         });
+       
+        $(document).on("click", "#TermAndConditionChk", function () {
+            if ($("#TermAndConditionChk:checked").length > 0)
+            {
+                $(".nextBtn").removeAttr("disabled");
+            } else {
+                $(".nextBtn").attr("disabled", "disabled");
+            }
+        });
     }
 
     this.showTutorial = function ()
@@ -33,6 +42,9 @@
                     backdrop: 'static',
                     keyboard: false
                 });
+                if ($("#TermAndConditionChk").length > 0) {
+                    $(".nextBtn").attr("disabled", "disabled");
+                }
             }
         })
     }

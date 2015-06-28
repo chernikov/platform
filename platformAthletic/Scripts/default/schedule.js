@@ -29,7 +29,7 @@
 
         $(".assign-list .item").click(function () {
             _this.assignPlayers($(this).data("id"));
-            window.location.reload();
+
         });
 
         $('#CreateGroupBtn').click(function () {

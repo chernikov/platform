@@ -4,7 +4,7 @@
     this.init = function () {
         $("#Create").click(function ()
         {
-            if (typeof (todo) == "undefinded") {
+            if (typeof (testmode) == "undefined") {
                 _this.showCreatePopup();
             }
         });

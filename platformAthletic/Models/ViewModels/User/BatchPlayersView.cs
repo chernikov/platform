@@ -12,11 +12,7 @@ namespace platformAthletic.Models.ViewModels.User
 
         public void Init()
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Players.Add(Guid.NewGuid().ToString("N"), new PlayerView());
-                break;
-            }
+            Players.Add(Guid.NewGuid().ToString("N"), new PlayerView());
         }
         public BatchPlayersView()
         {

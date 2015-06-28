@@ -97,6 +97,10 @@
         {
             <script src="~/Scripts/default/todo.js"></script>
         }
+        if (currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Test)
+        {
+            <script src="~/Scripts/default/testmode.js"></script>
+        }
     }
     @RenderSection("header", false)
     @Html.Action("UserColors", "Home")
