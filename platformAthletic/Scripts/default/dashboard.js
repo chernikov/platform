@@ -5,9 +5,13 @@ function Dashboard() {
     this.locals = null;
     this.init = function ()
     {
-        $('#CalendarButton').tooltipster({
-            content: $('<span><span class="glyphicon glyphicon-info-sign"></span> Editing past dates!</span>')
-        });
+        if ($("#DateHidden").val() != $("#CurrentDateHidden").val()) {
+            $('#CalendarButton').tooltipster({
+                content: $('<span><span class="glyphicon glyphicon-info-sign"></span> Editing past dates!</span>'),
+                trigger : "custom"
+            });
+            $('#CalendarButton').tooltipster("show");
+        } 
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {

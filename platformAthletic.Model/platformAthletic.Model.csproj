@@ -87,7 +87,6 @@
     <Compile Include="Proxy\Role.cs" />
     <Compile Include="Proxy\SBCValue.cs" />
     <Compile Include="Proxy\Schedule.cs" />
-    <Compile Include="Proxy\School.cs" />
     <Compile Include="Proxy\Season.cs" />
     <Compile Include="Proxy\Setting.cs" />
     <Compile Include="Proxy\Sport.cs" />
@@ -141,7 +140,6 @@
     <Compile Include="SqlRepository\Role.cs" />
     <Compile Include="SqlRepository\SBCValue.cs" />
     <Compile Include="SqlRepository\Schedule.cs" />
-    <Compile Include="SqlRepository\School.cs" />
     <Compile Include="SqlRepository\Season.cs" />
     <Compile Include="SqlRepository\Setting.cs" />
     <Compile Include="SqlRepository\Sport.cs" />

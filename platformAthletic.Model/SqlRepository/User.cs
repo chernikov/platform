@@ -98,7 +98,7 @@ namespace platformAthletic.Model
 
         public User GetUser(string email)
         {
-            var user = Db.Users.FirstOrDefault(p => string.Compare(p.Email, email, true) == 0);
+            var user = Db.Users.FirstOrDefault(p => !p.IsDeleted && string.Compare(p.Email, email, true) == 0);
             /*  if (user != null)
               {
                   user.LastVisitDate = CurrentDateTime;
@@ -294,6 +294,10 @@ namespace platformAthletic.Model
 
         public bool SetSbcValue(int idUser, SBCValue.SbcType type, double value, DateTime? addedDate = null)
         {
+            if (value < 0)
+            {
+                return false;
+            }
             var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
             if (instance != null)
             {
@@ -325,12 +329,24 @@ namespace platformAthletic.Model
                 {
                     case SBCValue.SbcType.Squat:
                         instance.Squat += difference;
+                        if (instance.Squat < 0)
+                        {
+                            instance.Squat = 0;
+                        }
                         break;
                     case SBCValue.SbcType.Bench:
-                        instance.Bench +=difference;
+                        instance.Bench += difference;
+                        if (instance.Bench < 0)
+                        {
+                            instance.Bench = 0;
+                        }
                         break;
                     case SBCValue.SbcType.Clean:
-                        instance.Clean +=difference;
+                        instance.Clean += difference;
+                        if (instance.Clean < 0)
+                        {
+                            instance.Clean = 0;
+                        }
                         break;
                 }
                 SaveSBCValue(idUser, instance.Squat, instance.Bench, instance.Clean);

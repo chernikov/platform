@@ -46,6 +46,15 @@ namespace platformAthletic.Models.Info
         public AttendanceReport(SearchAttendanceReport search, Team team)
         {
             var profiler = MiniProfiler.Current; // it's ok if this is null
+            var zeroDay = new DateTime(1970, 1, 1);
+            if (search.StartPeriod.HasValue && search.StartPeriod.Value < zeroDay)
+            {
+                search.StartPeriod = zeroDay;
+            }
+            if (search.EndPeriod.HasValue && search.EndPeriod.Value < zeroDay)
+            {
+                search.EndPeriod = zeroDay;
+            }
             using (profiler.Step("Calc Attendance Report"))
             {
                 List = new List<Record>();
@@ -85,21 +94,21 @@ namespace platformAthletic.Models.Info
                         if (Search.StartPeriod.HasValue || Search.EndPeriod.HasValue)
                         {
                             var selectedAttendances = attendances;
-                            if (Search.StartPeriod.HasValue) 
+                            if (Search.StartPeriod.HasValue)
                             {
                                 selectedAttendances = selectedAttendances.Where(p => p.AddedDate >= Search.StartPeriod.Value);
-                            } 
-                            if (Search.EndPeriod.HasValue) 
+                            }
+                            if (Search.EndPeriod.HasValue)
                             {
                                 selectedAttendances = selectedAttendances.Where(p => p.AddedDate < Search.EndPeriod.Value);
-                            } 
+                            }
                             allTime = selectedAttendances.Count();
                         }
                         else
                         {
-                          allTime =  attendances.Count();
+                            allTime = attendances.Count();
                         }
-                        
+
                         var year = attendances.Count(p => p.AddedDate >= startYear);
                         var month = attendances.Count(p => p.AddedDate >= startMonth);
                         var week = attendances.Count(p => p.AddedDate >= startWeek);
@@ -214,7 +223,7 @@ namespace platformAthletic.Models.Info
                 record.Position = rank;
                 i++;
             }
-           
+
         }
 
         protected int GetRankValue(Record record, SearchAttendanceReport.SortEnum sort)

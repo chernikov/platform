@@ -996,6 +996,9 @@ dl.sport-2 {
     width: 27px;
     text-align: center;
 }
+.table-calendar span.grayed {
+    color : #ddd;
+}
 
     .table-calendar span.attendance {
         color: #fff;

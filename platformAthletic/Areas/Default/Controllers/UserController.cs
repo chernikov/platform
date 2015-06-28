@@ -146,6 +146,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult ChangeSbc(int id, SBCValue.SbcType type, double value)
         {
+            
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
                 Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.EnterMaxes);
@@ -200,9 +201,18 @@ namespace platformAthletic.Areas.Default.Controllers
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
                         tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
-                        currentSunday = currentSunday.AddDays(7);
                     }
+                    else
+                    {
+                        labels.Add(currentSunday.ToString("MMM/dd"));
+                        sData.Add(0);
+                        bData.Add(0);
+                        cData.Add(0);
+                        tData.Add(0);
+                    }
+                    currentSunday = currentSunday.AddDays(7);
                 };
+
                 var datasets = new List<PerformanceGraphInfo>();
                 datasets.Add(new PerformanceGraphInfo()
                 {

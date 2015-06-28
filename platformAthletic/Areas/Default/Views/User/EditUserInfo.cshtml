@@ -1,5 +1,7 @@
 ﻿@model UserInfoView
-
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
 @using (Html.BeginForm("EditUserInfo", "User", FormMethod.Post, new { id = "EditUserInfoForm" }))
 {
     @Html.Hidden("ID", Model.ID)
@@ -44,14 +46,18 @@
                     <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">@Html.TextBox("GradYear", Model.GradYear)</div>
                 </td>
             </tr>
-            <tr>
-                <td class="header">SCHOOL</td>
-                <td class="value" colspan="3">@Model.TeamSchoolName</td>
-            </tr>
-            <tr>
-                <td class="header">STATE</td>
-                <td class="value" colspan="3">@Model.TeamStateName</td>
-            </tr>
+            @if (!currentUser.InRoles("individual"))
+            {
+                <tr>
+                    <td class="header">SCHOOL</td>
+                    <td class="value" colspan="3">@Model.TeamSchoolName</td>
+                </tr>
+                <tr>
+                    <td class="header">STATE</td>
+                    <td class="value" colspan="3">@Model.TeamStateName</td>
+                </tr>
+            }
+            
         </table>
     </div>
     <div class="col-lg-4">

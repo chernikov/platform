@@ -2,7 +2,9 @@
 <div class="row">
     <div class="col-sm-12 col-xs-12 no-padding-left">
         <div class="pull-right">
-            <span class="glyphicon glyphicon-print"></span>
+            <a href="@Url.Action("Team", "Table", new { idUsers= Model.ID})" target="_blank">
+                <span class="glyphicon glyphicon-print"></span>
+            </a>
         </div>
         <div class="pull-right right-padding">
             <a href="@Url.Action("Index", "User", new {id =Model.ID })" class="btn btn-primary">VIEW PROFILE</a>
@@ -80,16 +82,14 @@
         <div id="playerTabWrapper">
             <ul id="playerTabs" class="nav nav-tabs" data-tabs="tabs">
                 <li >
-                    <a href="#performance" data-toggle="tab">PERFORMANCE</a>
+                    <a href="#performance" data-toggle="tab" id="Performance">PERFORMANCE</a>
                 </li>
                 <li class="active">
                     <a href="#attendance" data-toggle="tab">ATTENDANCE</a>
                 </li>
             </ul>
-
-
             <div id="playerTabs-content" class="tab-content">
-                <div class="tab-pane  performance" id="performance">
+                <div class="tab-pane performance" id="performance">
                     <div class="row">
                         <div class="col-lg-12 no-padding-right">
                             <h1 class="performance">LAST 12 WEEKS</h1>
@@ -106,77 +106,80 @@
                                         @if (squat > 0)
                                         {
                                             <text>+</text>@squat
+
                                         }
                                         else
                                         {
                                             @squat
+
                                         }
-                                    </h1>
-                                </div>
-                                <div class="badge badge-performance bench">
-                                    <h2 class="text-center">
-                                        BENCH
-                                    </h2>
-                                    <h1 class="text-center">
-                                        @{
-                                            var bench = Model.DiffBench12Week;
-                                        }
-                                        @if (squat > 0)
-                                        {
-                                            <text>+</text>@bench
+                                           
+                                        </h1>
+                                    </div>
+                                    <div class="badge badge-performance bench">
+                                        <h2 class="text-center">
+                                            BENCH
+                                        </h2>
+                                        <h1 class="text-center">
+                                            @{
+                                                var bench = Model.DiffBench12Week;
+                                            }
+                                            @if (squat > 0)
+                                            {
+                                                <text>+</text>@bench
+
 
                                             }
                                             else
                                             {
                                                 @bench
-
-                                            }
-                                        </h1>
-                                    </div>
-                                    <div class="badge badge-performance clean">
-                                        <h2 class="text-center">
-                                            CLEAN
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var clean = Model.DiffClean12Week;
-                                            }
-                                            @if (clean > 0)
-                                            {
-                                                <text>+</text>@clean
-                                            }
-                                            else
-                                            {
-                                                @clean
-                                            }
-                                        </h1>
-                                    </div>
-                                    <div class="badge badge-performance total">
-                                        <h2 class="text-center">
-                                            TOTAL
-                                        </h2>
-                                        <h1 class="text-center">
-                                            @{
-                                                var total = clean + squat + bench;
-                                            }
-                                            @if (total > 0)
-                                            {
-                                                <text>+</text>@total
-
-                                            }
-                                            else
-                                            {
-                                                @total
-
                                             }
                                             </h1>
                                         </div>
+                                        <div class="badge badge-performance clean">
+                                            <h2 class="text-center">
+                                                CLEAN
+                                            </h2>
+                                            <h1 class="text-center">
+                                                @{
+                                                    var clean = Model.DiffClean12Week;
+                                                }
+                                                @if (clean > 0)
+                                                {
+                                                    <text>+</text>@clean
+                                                }
+                                                else
+                                                {
+                                                    @clean
+                                                }
+                                                </h1>
+                                            </div>
+                                            <div class="badge badge-performance total">
+                                                <h2 class="text-center">
+                                                    TOTAL
+                                                </h2>
+                                                <h1 class="text-center">
+                                                    @{
+                                                        var total = clean + squat + bench;
+                                                    }
+                                                    @if (total > 0)
+                                                    {
+                                                        <text>+</text>@total
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @total
+
+                                                    }
+                                                </h1>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
 
                             </div>
-
-                        </div>
                 <div class="tab-pane active attendance" id="attendance">
                     <div class="no-padding-left text-center">
                         <div class="badge badge-attendance">

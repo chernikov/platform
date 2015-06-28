@@ -736,19 +736,6 @@ namespace platformAthletic.Model
 
         #endregion 
 
-        #region School
-
-        IQueryable<School> Schools { get; }
-
-        bool CreateSchool(School instance);
-
-        bool UpdateSchool(School instance);
-
-        bool RemoveSchool(int idSchool);
-
-        #endregion 
-
-        
         #region UserVideo
 
         IQueryable<UserVideo> UserVideos { get; }

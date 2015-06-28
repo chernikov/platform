@@ -81,12 +81,7 @@ namespace platformAthletic.IntegrationTest.Test
 
 
                 var state = Repository.States.ToList().OrderBy(p => Guid.NewGuid()).FirstOrDefault();
-                var school = new School()
-                {
-                    Name = GenerateData.Team.GetRandom(),
-                    StateID = state.ID
-                };
-                Repository.CreateSchool(school);
+                
                 var fileTeam = Imaginarium.GetRandomSourceImage();
                 using (var fst = new FileStream(fileTeam, FileMode.Open))
                 {
@@ -95,7 +90,6 @@ namespace platformAthletic.IntegrationTest.Test
                     {
                         UserID = user.ID,
                         StateID = state.ID,
-                        SchoolID = school.ID,
                         Name = GenerateData.Team.GetRandom(),
                         LogoPath = imaginarium.MakePreview(fs, "/Media/files/logo/", "TeamLogoSize"),
                     };

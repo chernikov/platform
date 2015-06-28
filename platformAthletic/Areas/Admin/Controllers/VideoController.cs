@@ -75,6 +75,8 @@ namespace platformAthletic.Areas.Admin.Controllers
             var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
             var urlFile = "/" + Path.Combine(DestinationDir, uFile);
             var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
+            var fileStream = System.IO.File.Create(filePath);
+            stream.CopyTo(fileStream);
             return urlFile;
         }
 

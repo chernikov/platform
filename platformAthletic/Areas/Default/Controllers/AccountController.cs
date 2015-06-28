@@ -165,7 +165,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     UserID = user.ID,
                     SeasonID = 1, //Off-season
-                    StartDay = date.AddDays(-(int)dayOfWeek)
+                    StartDay = date.AddDays(-(int)dayOfWeek).Date
                 };
                 Repository.CreateUserSeason(userSeason);
 

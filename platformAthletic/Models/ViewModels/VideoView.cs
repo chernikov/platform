@@ -26,6 +26,8 @@ namespace platformAthletic.Models.ViewModels
         [Required(ErrorMessage = "Enter youtube link")]
         public string VideoUrl { get; set; }
 
+        
+
         public string VideoCode { get; set; }
 
         private IEnumerable<Training> Trainings

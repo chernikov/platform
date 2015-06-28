@@ -55,6 +55,7 @@
                             <div class="form-group">
                                 <label for="LastName"><span class="required">*</span>Phone number</label>
                                 @Html.TextBox("PhoneNumber", Model.PhoneNumber, new { @class = "form-control" })
+                                @Html.ValidationMessage("PhoneNumber")
                             </div>
                             @if (currentUser != null && currentUser.InRoles("individual"))
                             {
@@ -73,7 +74,7 @@
                                 </div>
                                 <div class="pull-left">
                                     <div class="thumbnail">
-                                        <img id="AvatarPathImage" src="@Model.AvatarPath?w=200&h=200&mode=crop" />
+                                        <img id="AvatarPathImage" src="@Model.FullAvatarPath?w=200&h=200&mode=crop" />
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -153,7 +154,7 @@
                             </div>
                             <div class="pull-left">
                                 <div class="thumbnail">
-                                    <img id="LogoPathImage" src="@Model.LogoPath?w=250&h=166&mode=crop" />
+                                    <img id="LogoPathImage" src="@Model.FullLogoPath?w=250&h=166&mode=crop" />
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -166,7 +167,7 @@
                    
                     
                     <div class="form-group text-center margin-top">
-                        <button class="btn btn-primary btn-lg forbitBtn" data-message="Settings cannot be adjusted in test mode">SAVE</button>
+                        <button class="btn btn-primary btn-lg forbitBtn" data-message="Settings cannot be adjusted in test mode" id="Save">SAVE</button>
                     </div>
                 }
             </div>

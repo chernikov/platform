@@ -3,6 +3,14 @@
 
     this.init = function ()
     {
+        if (typeof (testmode) != "undefined") {
+            $("#Save").click(function ()
+            {
+                var message = $(this).data("message");
+                testmode.showInfo(message);
+                return false;
+            });
+        }
 
         $("#primary_color").ImageColorPicker({
             afterColorSelected: function (event, color) {

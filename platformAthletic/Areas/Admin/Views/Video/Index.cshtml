@@ -17,6 +17,8 @@
 			<th>
 				Header
 			</th>
+            <th>
+            </th>
 			<th>
 			</th>
 		</tr>
@@ -30,7 +32,10 @@
 		</td>
 		<td> 
 			@item.Header
-		</td>		
+		</td>	
+        <td>
+            <img src="@item.Preview?w=100&h=100&mode=crop" />
+        </td>	
 		<td>
 			@Html.ActionLink("Edit", "Edit", "Video", new { id = item.ID }, new { @class = "btn" })
             @Html.ActionLink("Remove", "Delete", "Video", new { id = item.ID }, new { @class = "btn" })

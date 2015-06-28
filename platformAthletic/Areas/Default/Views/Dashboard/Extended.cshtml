@@ -91,7 +91,7 @@
                     <tbody>
                         @foreach (var item in Model.List)
                         {
-                            <tr class="user-item">
+                            <tr class="user-item playerItem" data-id="@item.ID">
                                 <td>
                                     <div class="styled-checkbox">
                                         <input type="checkbox" class="forPrint" id="Select_@item.ID" data-id="@item.ID" />

@@ -1,23 +1,29 @@
-﻿using platformAthletic.Model;
+﻿using platformAthletic.Attributes.Validation;
+using platformAthletic.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace platformAthletic.Models.Info
 {
-    
+
     public class SettingInfoView
     {
 
         public int ID { get; set; }
 
+        [Required(ErrorMessage = "Enter first name")]
         public string FirstName { get; set; }
 
+        [Required(ErrorMessage = "Enter last name")]
         public string LastName { get; set; }
 
-        public string  PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Enter phone")]
+        [ValidPhone(ErrorMessage = "Enter valid phone")]
+        public string PhoneNumber { get; set; }
 
         public int? IndividualStateID { get; set; }
 
@@ -57,6 +63,30 @@ namespace platformAthletic.Models.Info
 
         public string LogoPath { get; set; }
 
+        public string FullLogoPath
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(LogoPath))
+                {
+                    return "/Media/images/no-userpic.png";
+                }
+                return LogoPath;
+            }
+        }
+
         public string AvatarPath { get; set; }
+
+        public string FullAvatarPath
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(AvatarPath))
+                {
+                    return "/Media/images/no-userpic.png";
+                }
+                return AvatarPath;
+            }
+        }
     }
 }

@@ -51,6 +51,16 @@ namespace platformAthletic.Models.Info
         public ProgressReport(SearchProgressReport search, Team team)
         {
             var profiler = MiniProfiler.Current; // it's ok if this is null
+            var zeroDay = new DateTime(1970, 1, 1);
+            if (search.StartPeriod.HasValue && search.StartPeriod.Value < zeroDay)
+            {
+                search.StartPeriod = zeroDay;
+            }
+            if (search.EndPeriod.HasValue && search.EndPeriod.Value < zeroDay)
+            {
+                search.EndPeriod = zeroDay;
+            }
+
             using (profiler.Step("Calc Progress Report"))
             {
                 List = new List<Record>();

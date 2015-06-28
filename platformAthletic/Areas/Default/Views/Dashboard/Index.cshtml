@@ -26,6 +26,8 @@
         <script src="~/Scripts/default/tutorial.js"></script>
     }
 }
+@Html.Hidden("DateHidden", date.ToString("dd.MM.yyyy"))
+@Html.Hidden("CurrentDateHidden", DateTime.Now.Current().ToString("dd.MM.yyyy"))
 <div class="container-fluid">
     <div class="side-body" id="Content">
         <div class="breadcrumb">
@@ -81,7 +83,8 @@
                     <thead>
                         <tr>
                             <td>
-                                <p class="attendance-header"><span class="title">ATTENDANCE</span> <span class="glyphicon glyphicon-calendar calendar" id="CalendarButton"></span></p>
+                                <p class="attendance-header"><span class="title">ATTENDANCE</span> 
+                                <span class="glyphicon glyphicon-calendar calendar" id="CalendarButton"></span></p>
                                 <p><span class="date" id="CurrentDate" data-date="@date">@date.ToString("MM/dd/yyyy")</span></p>
                             </td>
                             <td class="user-name">

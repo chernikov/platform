@@ -34,7 +34,7 @@
                     if (currentDate.Month == month)
                     {
                         <td class="@(Model.Date.Date == currentDate.Date ? "selected": "")">
-                            <span data-value="@currentDate" class="selectDate clickable">@currentDate.Day</span>
+                            <span data-value="@currentDate" class="@(currentDate <= DateTime.Now.Current() ? "selectDate clickable" : "grayed")">@currentDate.Day</span>
                         </td>
                     }
                     else

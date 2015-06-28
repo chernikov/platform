@@ -44,11 +44,11 @@
                                <td class="name">Gender@(Model.Age.HasValue ?"/Age" : "")</td>
                                <td class="value">@Model.GenderStr@(Model.Age.HasValue ? "/" : "")@Model.Age</td>
                            </tr>
-                           @if (Model.Team != null && Model.Team.School != null)
+                           @if (Model.Team != null)
                            { 
                            <tr>
                                <td class="name">School/State</td>
-                               <td class="value">@Model.Team.School.Name/@Model.Team.State.Name</td>
+                               <td class="value">@Model.Team.Name/@Model.Team.State.Name</td>
                            </tr>
                            }
                        </table>
