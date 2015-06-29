@@ -90,9 +90,12 @@
                     <div class="panel panel-default">
                         <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
                             <div class="left-padding right-padding">
+                                @if (Model.InRoles("player")) 
+                                { 
                                 <div class="pull-right">
-                                    <button class="btn btn-success btn-large">REPORTS</button>
+                                    <a href="@Url.Action("Progress", "Report")" class="btn btn-success btn-large">REPORTS</a>
                                 </div>
+                                }
                                 <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
                             </div>
                             @* performance *@

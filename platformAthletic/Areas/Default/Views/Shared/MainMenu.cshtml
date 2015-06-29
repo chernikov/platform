@@ -22,7 +22,7 @@
         {
         <li class="@(controllerName == "Schedule" ? "active" : "")"><a href="/scheduling"><span class="glyphicon glyphicon-calendar"></span> SCHEDULING</a></li>
         }
-        @if (currentUser.InRoles("coach,assistant"))
+        @if (currentUser.InRoles("coach,assistant,player"))
         {
             <li class="@(controllerName == "Report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
         }

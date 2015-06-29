@@ -3721,8 +3721,8 @@ input[type="button"].btn-block {
     margin: 2px 0 0;
     font-size: 14px;
     list-style: none;
-    background-color: #eeeeee;
-    border: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 0;
 }
 

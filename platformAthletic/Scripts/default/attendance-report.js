@@ -71,6 +71,16 @@
         $(document).on("click", ".attendanceModalMonth", function () {
             _this.changeMonth($(this));
         });
+
+        $("#StartPeriod,#EndPeriod").datepicker({
+            autoclose: true,
+            endDate: '+1d'
+        });
+
+        $(document).on("click", ".user-name", function () {
+            var id = $(this).data("id");
+            _this.showPlayerInfo(id);
+        });
     }
 
 
@@ -160,7 +170,17 @@
         };
     };
 
-
+    this.showPlayerInfo = function (id) {
+        $.ajax({
+            type: "GET",
+            url: "/Leaderboard/PlayerInfo",
+            data: { id: id },
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#modalPlayerInfo").modal();
+            }
+        });
+    }
 
 }
 

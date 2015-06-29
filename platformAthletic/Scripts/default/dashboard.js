@@ -11,7 +11,8 @@ function Dashboard() {
                 trigger : "custom"
             });
             $('#CalendarButton').tooltipster("show");
-        } 
+        }
+
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {
@@ -40,8 +41,6 @@ function Dashboard() {
                });
             }
         });
-
-       
 
         $("#SearchBtn").click(function () {
             window.location = "/dashboard?searchString=" + $("#SearchAthlete").val();

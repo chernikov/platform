@@ -380,9 +380,7 @@ namespace platformAthletic.Model
         bool VisitGettingStarted(int idUser);
 
         bool SetUserField(int idUser, User.FieldType fieldType, string value);
-
-        bool SetFieldPosition(int idUser, int fieldPositionID);
-
+    
         bool ResetAttendance(User instance);
 
         bool ResetProgress(User instance);

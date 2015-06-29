@@ -5,6 +5,7 @@ using platformAthletic.Model;
 using platformAthletic.Models.Info;
 using platformAthletic.Models.ViewModels.User;
 using platformAthletic.Tools;
+using platformAthletic.Tools.Mail;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,8 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (ModelState.IsValid)
             {
+                var existingUser = Repository.Users.FirstOrDefault(p => p.ID == settingInfoView.ID);
+                var resend = existingUser.Email != settingInfoView.Email;
                 var user = (User)Mapper.Map(settingInfoView, typeof(SettingInfoView), typeof(User));
                 Repository.UpdateUser(user);
                 if (CurrentUser.OwnTeam != null)
@@ -37,6 +40,13 @@ namespace platformAthletic.Areas.Default.Controllers
                     var team = (Team)Mapper.Map(settingInfoView, typeof(SettingInfoView), typeof(Team));
                     team.ID = CurrentUser.OwnTeam.ID;
                     Repository.UpdateSettingTeam(team);
+                }
+                if (resend)
+                {
+                    NotifyMail.SendNotify(Config, "Resend", user.Email,
+                                                (u, format) => string.Format(format, HostName),
+                                                (u, format) => string.Format(format, u.Email, u.Password, HostName),
+                                                user);
                 }
             }
             return View(settingInfoView);

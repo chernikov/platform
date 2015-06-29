@@ -1,5 +1,6 @@
 ﻿using platformAthletic.Attributes.Validation;
 using platformAthletic.Model;
+using platformAthletic.Models.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,8 @@ using System.Web.Mvc;
 namespace platformAthletic.Models.Info
 {
 
-    public class SettingInfoView
+    public class SettingInfoView : BaseUserView
     {
-
-        public int ID { get; set; }
-
         [Required(ErrorMessage = "Enter first name")]
         public string FirstName { get; set; }
 

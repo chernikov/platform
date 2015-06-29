@@ -35,7 +35,15 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
 
-            return View(user);
+            if (user != null)
+            {
+                if (user.CanViewProfile(CurrentUser))
+                {
+                    return View(user);
+                }
+                return RedirectToLoginPage;
+            }
+            return RedirectToNotFoundPage;
         }
 
         public ActionResult MyPage()

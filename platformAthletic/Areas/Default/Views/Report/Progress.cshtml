@@ -4,7 +4,11 @@
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
+@section styles {
+    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+}
 @section header {
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/Chart.js"></script>
     <script src="~/Scripts/jquery.mask.js"></script>
     <script src="~/Scripts/hogan.js"></script>

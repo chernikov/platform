@@ -42,6 +42,20 @@
                     @Html.Hidden("AvatarPath", Model.AvatarPath)
                     <div class="row">
                         <div class="col-lg-6">
+                            @if (currentUser.InRoles("coach"))
+                            {
+                                <div class="form-group">
+                                    <label for="Email"><span class="required">*</span>Email</label>
+
+                                    @Html.TextBox("Email", Model.Email, new { @class = "form-control" })
+
+                                    @Html.ValidationMessage("Email")
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.Hidden("Email", Model.Email)
+                            }
                             <div class="form-group">
                                 <label for="FirstName"><span class="required">*</span>First name</label>
                                 @Html.TextBox("FirstName", Model.FirstName, new { @class = "form-control" })
@@ -52,11 +66,18 @@
                                 @Html.TextBox("LastName", Model.LastName, new { @class = "form-control" })
                                 @Html.ValidationMessage("LastName")
                             </div>
-                            <div class="form-group">
-                                <label for="LastName"><span class="required">*</span>Phone number</label>
-                                @Html.TextBox("PhoneNumber", Model.PhoneNumber, new { @class = "form-control" })
-                                @Html.ValidationMessage("PhoneNumber")
-                            </div>
+                            @if (currentUser != null && currentUser.InRoles("coach,individual"))
+                            {
+                                <div class="form-group">
+                                    <label for="LastName"><span class="required">*</span>Phone number</label>
+                                    @Html.TextBox("PhoneNumber", Model.PhoneNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessage("PhoneNumber")
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.Hidden("PhoneNumber", "0000")
+                            }
                             @if (currentUser != null && currentUser.InRoles("individual"))
                             {
                                 <div class="form-group">
@@ -64,7 +85,7 @@
                                     @Html.DropDownList("IndividualStateID", Model.SelectListStateID, new { @class = "form-control" })
                                 </div>
                             }
-                            
+
                             <div class="setting-control">
                                 <h3 class="text-center">Current Avatar</h3>
                                 <hr />
@@ -106,17 +127,20 @@
                     <div id="UpdatePasswordWrapper">
                         @Html.Partial("UpdatePassword", new platformAthletic.Models.ViewModels.User.ChangePasswordView() { ID = Model.ID })
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h3>Privacy</h3>
-                            <hr />
-                            <div class="form-group">
-                                <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Private, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Private) <strong>Private: </strong> No one can see your profile except you and your coach.</label>
-                                <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Limited, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Limited) <strong>Limited: </strong> Only members of Platform Athletics can see your profile.</label>
-                                <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Public, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Public) <strong>Public: </strong> Profile can be viewed by anyone (makes sharing on social media easy)</label>
+                    if (currentUser != null && currentUser.InRoles("individual,player"))
+                    {
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>Privacy</h3>
+                                <hr />
+                                <div class="form-group">
+                                    <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Private, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Private) <strong>Private: </strong> No one can see your profile except you and your coach.</label>
+                                    <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Limited, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Limited) <strong>Limited: </strong> Only members of Platform Athletics can see your profile.</label>
+                                    <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Public, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Public) <strong>Public: </strong> Profile can be viewed by anyone (makes sharing on social media easy)</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                     if (currentUser != null && currentUser.InRoles("coach"))
                     {
                         <h3 class="text-center">Team Colors</h3>
@@ -164,8 +188,8 @@
                             </div>
                         </div>
                     }
-                   
-                    
+
+
                     <div class="form-group text-center margin-top">
                         <button class="btn btn-primary btn-lg forbitBtn" data-message="Settings cannot be adjusted in test mode" id="Save">SAVE</button>
                     </div>

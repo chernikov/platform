@@ -4,11 +4,16 @@
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
+@section styles {
+    <link href="~/Content/bootstrap-datepicker3.css" rel="stylesheet" />
+}
 @section header {
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/jquery.mask.js"></script>
     <script src="~/Scripts/hogan.js"></script>
     <script src="~/Scripts/typeahead.jquery.js"></script>
     <script src="~/Scripts/default/attendance-report.js"></script>
+
 }
 <div class="container-fluid">
     <div class="side-body">
@@ -98,7 +103,7 @@
                                             <td class="name">
                                                 <span class="clickable calendar" data-id="@item.User.ID"></span>
                                                 <span>
-                                                    <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
+                                                    <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name" data-id="@item.User.ID">@item.User.FirstName @item.User.LastName</span>
                                                 </span>
                                             </td>
                                             <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc) ? "selected" : "")">@item.Week</span></td>

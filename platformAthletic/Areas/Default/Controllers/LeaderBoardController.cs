@@ -8,10 +8,8 @@ using platformAthletic.Attributes;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
-    [Authorize(Roles="coach,player,assistant,individual")]
     public class LeaderboardController : DefaultController
     {
-        [SeasonCheck]
         public ActionResult Index(SearchNationalLeaderboard search)
         {
             if (search == null) 

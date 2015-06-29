@@ -9,10 +9,10 @@ using platformAthletic.Helpers;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
-    [Authorize(Roles = "coach,individual,player,assistant")]
+    [Authorize(Roles = "coach,player,assistant")]
     public class ReportController : DefaultController
     {
-        [Authorize(Roles = "coach,individual,assistant")]
+        [Authorize(Roles = "coach,player,assistant")]
         public ActionResult Index(SearchAttendanceReport search)
         {
             if (search == null)
@@ -20,13 +20,13 @@ namespace platformAthletic.Areas.Default.Controllers
                 search = new SearchAttendanceReport();
             }
 
-            var attendanceReport = new AttendanceReport(search, CurrentUser.OwnTeam);
+            var attendanceReport = new AttendanceReport(search, CurrentUser.OwnTeam ?? CurrentUser.Team);
             return View(attendanceReport);
         }
 
         public ActionResult JsonPlayers()
         {
-            var team = CurrentUser.OwnTeam;
+            var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
 
             return Json(new
             {
@@ -53,7 +53,9 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult AttendanceCalendar(int id)
         {
-            var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
+            var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
+
+            var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
                 var attendanceInfo = new AttendanceInfo()
@@ -68,7 +70,8 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult AttendanceCalendarBody(int id, DateTime date)
         {
-            var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
+            var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
+            var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
                 var attendanceInfo = new AttendanceInfo()
@@ -91,13 +94,14 @@ namespace platformAthletic.Areas.Default.Controllers
                 search = new SearchProgressReport();
             }
 
-            var progressReport = new ProgressReport(search, CurrentUser.OwnTeam);
+            var progressReport = new ProgressReport(search, CurrentUser.OwnTeam ?? CurrentUser.Team);
             return View(progressReport);
         }
 
         public ActionResult ProgressSummary(int id, DateTime startDate, DateTime endDate)
         {
-            var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
+            var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
+            var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
                 var progressInfo = new ProgressInfo(user, startDate, endDate);
@@ -109,7 +113,8 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult ProgressGraph(int id, DateTime startDate, DateTime endDate)
         {
-            var user = CurrentUser.OwnTeam.ActiveUsers.FirstOrDefault(p => p.ID == id);
+            var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
+            var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
                 var progressInfo = new ProgressGraphInfo()
@@ -145,6 +150,14 @@ namespace platformAthletic.Areas.Default.Controllers
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
                         tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
+                    }
+                    else
+                    {
+                        labels.Add(currentSunday.ToString("MMM/dd"));
+                        sData.Add(0);
+                        bData.Add(0);
+                        cData.Add(0);
+                        tData.Add(0);
                     }
                     currentSunday = currentSunday.AddDays(7);
                 }
@@ -210,33 +223,99 @@ namespace platformAthletic.Areas.Default.Controllers
             return null;
         }
 
+        public ActionResult Performance30(int id, DateTime startDate, DateTime endDate)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null)
+            {
+                var month = endDate.AddDays(-(int)endDate.Day).AddMonths(1);
+                var currentMonth = startDate.AddDays(-(int)startDate.Day).AddDays(1).AddMonths(-1);
+                var labels = new List<string>();
+                var sData = new List<int>();
+                var bData = new List<int>();
+                var cData = new List<int>();
+                var tData = new List<int>();
+                while (currentMonth <= month)
+                {
+                    var sbc = user.SBCHistory(currentMonth);
+                    if (sbc != null)
+                    {
+                        labels.Add(currentMonth.ToString("MMM/dd"));
+                        sData.Add((int)sbc.Squat);
+                        bData.Add((int)sbc.Bench);
+                        cData.Add((int)sbc.Clean);
+                        tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
+                    }
+                    else
+                    {
+                        labels.Add(currentMonth.ToString("MMM/dd"));
+                        sData.Add(0);
+                        bData.Add(0);
+                        cData.Add(0);
+                        tData.Add(0);
+                    }
+                    currentMonth = currentMonth.AddMonths(1);
+                }
+                var datasets = new List<PerformanceGraphInfo>();
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Squat",
+                    fillColor = "transparent",
+                    strokeColor = "#ed4848",
+                    pointColor = "#ed4848",
+                    pointStrokeColor = "#ed4848",
+                    pointHighlightFill = "#ed4848",
+                    pointHighlightStroke = "#ed4848",
+                    datasetFill = false,
+                    data = sData
+                });
 
-        //public ActionResult FillWeekAttendance()
-        //{
-        //    var users = Repository.TeamPlayersUsers.ToList();
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Bench",
+                    fillColor = "transparent",
+                    strokeColor = "#3bcb67",
+                    pointColor = "#3bcb67",
+                    pointStrokeColor = "#3bcb67",
+                    pointHighlightFill = "#3bcb67",
+                    pointHighlightStroke = "#3bcb67",
+                    datasetFill = false,
+                    data = bData
+                });
 
-        //    var rand = new Random((int)DateTime.Now.Current().Ticks);
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Clean",
+                    fillColor = "transparent",
+                    strokeColor = "#60b1c2",
+                    pointColor = "#60b1c2",
+                    pointStrokeColor = "#60b1c2",
+                    pointHighlightFill = "#60b1c2",
+                    pointHighlightStroke = "#60b1c2",
+                    datasetFill = false,
+                    data = cData
+                });
 
-        //    var j = 0;
-        //    foreach (var user in users)
-        //    {
-        //        j++;
-        //        var value = rand.Next(16);
-        //        for (int i = 0; i < 4; i++)
-        //        {
-        //            if (value % 2 == 1)
-        //            {
-        //                Repository.CreateUserAttendance(new UserAttendance()
-        //                {
-        //                    UserID = user.ID,
-        //                    UserSeasonID = user.CurrentSeason.ID,
-        //                    AddedDate = DateTime.Now.Current().AddDays(-(int)DateTime.Now.DayOfWeek + i)
-        //                });
-        //            }
-        //            value = value >> 1;
-        //        }
-        //    }
-        //    return null;
-        //}
+                datasets.Add(new PerformanceGraphInfo()
+                {
+                    label = "Total",
+                    fillColor = "transparent",
+                    strokeColor = "#495b6c",
+                    pointColor = "#495b6c",
+                    pointStrokeColor = "#495b6c",
+                    pointHighlightFill = "#495b6c",
+                    pointHighlightStroke = "#495b6c",
+                    datasetFill = false,
+                    data = tData
+                });
+                var data = new
+                {
+                    labels,
+                    datasets
+                };
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+            return null;
+        }
     }
 }

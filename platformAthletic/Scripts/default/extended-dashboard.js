@@ -3,6 +3,14 @@
 
     this.init = function ()
     {
+        if ($("#DateHidden").val() != $("#CurrentDateHidden").val()) {
+            $('#CalendarButton').tooltipster({
+                content: $('<span><span class="glyphicon glyphicon-info-sign"></span> Editing past dates!</span>'),
+                trigger: "custom"
+            });
+            $('#CalendarButton').tooltipster("show");
+        }
+
         $.ajax({
             url: "/Dashboard/JsonPlayers",
             success: function (result) {
@@ -70,20 +78,17 @@
             var ajaxData = {
                 id: $(this).data("id"),
                 date: $("#CurrentDate").data("date"),
-                value: $(this).prop('checked')
+                attendance: $(this).prop('checked')
             };
             $.ajax({
                 type: "POST",
                 url: "/dashboard/SetAttendance",
-                data: {
-                    id: id,
-                    date: date,
-                    attendance: value,
-                },
+                data: ajaxData,
                 success: function (data) {
                 }
             });
         });
+
     }
 
     this.substringMatcher = function (strs)

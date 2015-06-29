@@ -55,6 +55,7 @@ namespace platformAthletic.Model
                 instance.PaidTill = CurrentDateTime.AddDays(1);
                 instance.ActivatedLink = StringExtension.GenerateNewFile();
                 instance.Gender = true;
+                instance.PublicLevel = (int)User.PublicLevelEnum.Public;
                 Db.Users.InsertOnSubmit(instance);
                 Db.Users.Context.SubmitChanges();
                 return true;
@@ -129,6 +130,7 @@ namespace platformAthletic.Model
             var cache = Db.Users.FirstOrDefault(p => p.ID == instance.ID);
             if (cache != null)
             {
+                cache.Email = instance.Email;
                 cache.FirstName = instance.FirstName;
                 cache.LastName = instance.LastName;
                 cache.PhoneNumber = instance.PhoneNumber;
@@ -422,20 +424,6 @@ namespace platformAthletic.Model
                 }
                 Db.Users.Context.SubmitChanges();
             }
-            return false;
-        }
-
-        //TODO SetFieldPosition 
-        public bool SetFieldPosition(int idUser, int fieldPositionID)
-        {
-            var instance = Db.Users.FirstOrDefault(p => p.ID == idUser);
-            if (instance != null)
-            {
-                //instance.FieldPositionID = fieldPositionID;
-                Db.Users.Context.SubmitChanges();
-                return true;
-            }
-
             return false;
         }
 

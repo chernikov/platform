@@ -31,49 +31,54 @@
             return false;
         });
 
-        var obj = new qq.FineUploader({
-            element: $("#UploadLogoBtn")[0],
-            multiple: false,
-            request: {
-                endpoint: "/Setting/UploadFile",
-            },
-            text: {
-                uploadButton: "UPLOAD LOGO"
-            },
-            callbacks: {
-                onComplete: function (id, fileName, responseJSON) {
-                    if (responseJSON.success) {
-                        $("#LogoPath").val(responseJSON.fileUrl);
-                        $("#LogoPathImage").attr("src", responseJSON.fileUrl + "?w=250&h=166&mode=crop&scale=both");
+        if ($("#UploadLogoBtn").length > 0)
+        {
+            var obj = new qq.FineUploader({
+                element: $("#UploadLogoBtn")[0],
+                multiple: false,
+                request: {
+                    endpoint: "/Setting/UploadFile",
+                },
+                text: {
+                    uploadButton: "UPLOAD LOGO"
+                },
+                callbacks: {
+                    onComplete: function (id, fileName, responseJSON) {
+                        if (responseJSON.success) {
+                            $("#LogoPath").val(responseJSON.fileUrl);
+                            $("#LogoPathImage").attr("src", responseJSON.fileUrl + "?w=250&h=166&mode=crop&scale=both");
+                        }
                     }
+                },
+                validation: {
+                    allowedExtensions: ["jpeg", "png", "jpg"]
                 }
-            },
-            validation: {
-                allowedExtensions: ["jpeg", "png", "jpg"]
-            }
-        });
-
-        var obj2 = new qq.FineUploader({
-            element: $("#UploadAvatarBtn")[0],
-            multiple: false,
-            request: {
-                endpoint: "/User/UploadFile",
-            },
-            text: {
-                uploadButton: "UPLOAD AVATAR"
-            },
-            callbacks: {
-                onComplete: function (id, fileName, responseJSON) {
-                    if (responseJSON.success) {
-                        $("#AvatarPath").val(responseJSON.fileUrl);
-                        $("#AvatarPathImage").attr("src", responseJSON.fileUrl + "?w=200&h=200&mode=crop&scale=both");
+            });
+        }
+        if ($("#UploadAvatarBtn").length > 0)
+        {
+            var obj2 = new qq.FineUploader({
+                element: $("#UploadAvatarBtn")[0],
+                multiple: false,
+                request: {
+                    endpoint: "/User/UploadFile",
+                },
+                text: {
+                    uploadButton: "UPLOAD AVATAR"
+                },
+                callbacks: {
+                    onComplete: function (id, fileName, responseJSON) {
+                        if (responseJSON.success) {
+                            $("#AvatarPath").val(responseJSON.fileUrl);
+                            $("#AvatarPathImage").attr("src", responseJSON.fileUrl + "?w=200&h=200&mode=crop&scale=both");
+                        }
                     }
+                },
+                validation: {
+                    allowedExtensions: ["jpeg", "png", "jpg"]
                 }
-            },
-            validation: {
-                allowedExtensions: ["jpeg", "png", "jpg"]
-            }
-        });
+            });
+        }
     }
 
     this.updatePassword = function ()

@@ -688,5 +688,24 @@ namespace platformAthletic.Model
             }
         }
         #endregion
+
+        public bool CanViewProfile(User user)
+        {
+            if (user != null)
+            {
+                //private
+                if ((user.OwnTeam != null && user.OwnTeam.ID == PlayerOfTeamID) || user.AssistantOfTeamID == PlayerOfTeamID)
+                {
+                    return true;
+                }
+                //limited
+                if (user != null && PublicLevel == (int)User.PublicLevelEnum.Limited) 
+                {
+                    return true;
+                }
+            }
+            //public
+            return PublicLevel == (int)User.PublicLevelEnum.Public;
+        }
     }
 }

@@ -7,7 +7,7 @@
     { 
         <li><a href="/User/@currentUser.ID">My Account</a></li>
     }
-    @if (currentUser.InRoles("coach,individual"))
+    @if (currentUser.InRoles("coach,individual,player"))
     {
         <li><a href="/Settings">Settings</a></li>
         <li><a href="/Billing">Billing</a></li>
@@ -16,5 +16,6 @@
     {
         <li><a href="/Settings">Settings</a></li>
     }
+    
     <li><a href="/logout">Logout</a></li>
 </ul>

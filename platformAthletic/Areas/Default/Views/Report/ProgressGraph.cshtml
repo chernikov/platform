@@ -10,10 +10,29 @@
                 <p>Progress graph for:</p>
                 <h2>@Model.User.LastName, @Model.User.FirstName</h2>
                 <p>Date period: @Model.StartDate.ToString("MM/dd/yyyy") to @Model.EndDate.ToString("MM/dd/yyyy")</p>
-                <div class="performance-chart-wrapper">
-                    <canvas id="PerformanceChart" class="performance-chart">
-                    </canvas>
+                <ul id="progressTabs" class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active">
+                        <a href="#7-day" data-toggle="tab">7-day</a>
+                    </li>
+                    <li >
+                        <a href="#30-day" data-toggle="tab">30-day</a>
+                    </li>
+                </ul>
+                <div id="playerTabs-content" class="tab-content">
+                    <div class="tab-pane active performance" id="7-day">
+
+                        <div class="performance-chart-wrapper">
+                            <canvas id="PerformanceChart" class="performance-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="tab-pane attendance" id="30-day">
+                        <div class="performance-chart-wrapper">
+                            <canvas id="PerformanceChart30" class="performance-chart"></canvas>
+                        </div>
+                    </div>
                 </div>
+
+               
             </div>
         </div>
     </div>

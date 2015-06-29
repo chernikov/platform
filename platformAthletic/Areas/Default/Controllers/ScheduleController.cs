@@ -12,7 +12,6 @@ namespace platformAthletic.Areas.Default.Controllers
     [Authorize(Roles = "coach,individual,assistant")]
     public class ScheduleController : DefaultController
     {
-        [SeasonCheck]
         public ActionResult Index()
         {
             return View();

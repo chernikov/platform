@@ -1,5 +1,7 @@
 ﻿@model platformAthletic.Model.User
-
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
 <div class="modal fade player-info" id="modalPlayerInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -55,9 +57,13 @@
                    </div>
                </div>
             </div>
+            @if (Model.CanViewProfile(currentUser)) 
+            { 
             <div class="modal-footer text-center">
+                
                 <a  href="/User/@Model.ID" class="btn btn-primary" id="RemoveGroupBtn">VISIT PROFILE</a>
             </div>
+            }
         </div>
     </div>
 </div>

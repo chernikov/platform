@@ -20,7 +20,6 @@ namespace platformAthletic.Areas.Default.Controllers
     {
         private int pageSize = 20;
 
-        [SeasonCheck]
         public ActionResult Index(string searchString = null, int? groupId = null, int page = 1, DateTime? selectedDate = null)
         {
             var team = CurrentUser.OwnTeam;
@@ -49,7 +48,6 @@ namespace platformAthletic.Areas.Default.Controllers
             return RedirectToLoginPage;
         }
 
-        [SeasonCheck]
         public ActionResult Extended(string searchString = null, int? groupId = null, int page = 1, DateTime? selectedDate = null)
         {
             var team = CurrentUser.OwnTeam;

@@ -16,7 +16,6 @@ namespace platformAthletic.Areas.Default.Controllers
     [Authorize(Roles="coach")]
     public class TeamController : DefaultController
     {
-        [SeasonCheck]
         public ActionResult Index(string searchString = null, int? groupId = null)
         {
             var team = CurrentUser.OwnTeam;

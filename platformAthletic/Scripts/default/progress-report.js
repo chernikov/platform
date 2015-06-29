@@ -71,6 +71,16 @@
         $(".sidetable .graph").click(function () {
             _this.showGraph($(this).data("id"));
         });
+
+        $("#StartPeriod,#EndPeriod").datepicker({
+            autoclose: true,
+            endDate: '+1d'
+        });
+
+        $(document).on("click", ".user-name", function () {
+            var id = $(this).data("id");
+            _this.showPlayerInfo(id);
+        });
     }
 
 
@@ -128,6 +138,12 @@
                 $("#modalProgressGraph").on("shown.bs.modal", function () {
                     _this.drawGraph(id);
                 });
+
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    if (e.currentTarget.hash == "#30-day") {
+                        _this.drawGraph30(id);
+                    };
+                });
                 
             }
         })
@@ -145,7 +161,28 @@
             },
             success: function (result) {
                 data = result;
-                var ctx = $(".performance-chart").get(0).getContext("2d");
+                var ctx = $("#PerformanceChart")[0].getContext("2d");
+                var myLineChart = new Chart(ctx).Line(data, {
+                    animation: false,
+                    bezierCurve: false,
+                });
+            },
+        });
+    }
+
+    this.drawGraph30 = function (id) {
+        // This will get the first returned node in the jQuery collection.
+        var data = null;
+        $.ajax({
+            url: "/Report/Performance30",
+            data: {
+                id: id,
+                startDate: $("#StartDate").val(),
+                endDate: $("#EndDate").val()
+            },
+            success: function (result) {
+                data = result;
+                var ctx = $("#PerformanceChart30").get(0).getContext("2d");
                 var myLineChart = new Chart(ctx).Line(data, {
                     animation: false,
                     bezierCurve: false,
@@ -177,6 +214,18 @@
             cb(matches);
         };
     };
+
+    this.showPlayerInfo = function (id) {
+        $.ajax({
+            type: "GET",
+            url: "/Leaderboard/PlayerInfo",
+            data: { id: id },
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#modalPlayerInfo").modal();
+            }
+        });
+    }
 
 }
 
