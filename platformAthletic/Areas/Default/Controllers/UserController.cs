@@ -586,5 +586,16 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             return View(playerUserInfoView);
         }
+
+        public ActionResult SetAttendance(int id, DateTime date, bool attendance)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null && user.CanEditAttendance(CurrentUser))
+            {
+                Repository.SetAttendance(id, attendance, user.CurrentSeason.ID, date);
+                return Json(new { result = "ok" });
+            }
+            return Json(new { result = "error" });
+        }
     }
 }

@@ -28,7 +28,6 @@
         $("#PayForSubscription").click(function () {
             if (typeof (testmode) == "undefined") {
                 $("#PaymentWrapper").show();
-                $('.left .menu').css('height', $('.account-billing-wrp').height());
                 return false;
             }
         });

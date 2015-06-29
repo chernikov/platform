@@ -289,7 +289,7 @@
         var attendance = !$("span", item).hasClass("attendance");
         $.ajax({
             type: "POST",
-            url: "/Dashboard/SetAttendance",
+            url: "/User/SetAttendance",
             data: {
                 id: id,
                 date: date,
@@ -310,7 +310,7 @@
         var attendance = $("span", item).length == 0;
         $.ajax({
             type: "POST",
-            url: "/Dashboard/SetAttendance",
+            url: "/User/SetAttendance",
             data: {
                 id: id,
                 date: date,

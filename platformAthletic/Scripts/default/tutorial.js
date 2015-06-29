@@ -1,8 +1,9 @@
 ﻿function Tutorial() {
     var _this = this;
 
-    this.init = function () {
-        _this.showTutorial();
+    this.init = function ()
+    {
+        _this.showTutorial(0);
         $(document).on("click", ".nextBtn", function () {
             var id = $(this).data("step");
             if (id == "end") {
@@ -35,6 +36,7 @@
     {
         $.ajax({
             type: "GET",
+            cache: false,
             url: "/Tutorial",
             success: function (data) {
                 $("#ModalWrapper").html(data);
@@ -50,6 +52,7 @@
     }
 
     this.stepOn = function (id) {
+        
         $("#modalTutorial").modal('hide');
         $(".modal-backdrop").remove();
         $(".tutorial-highlight > *").unwrap();
@@ -57,12 +60,14 @@
         $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
         $.ajax({
             type: "GET",
+            cache: false,
             url: "/Tutorial/Step",
             data: { id: id },
             success: function (data)
             {
                 _this.showTutorial();
-            }
+            },
+            async : false
         })
     }
 

@@ -47,7 +47,7 @@ namespace platformAthletic.Models.Info
        
         protected IQueryable<SBCValue> FilterHistory()
         {
-            var sbcValues = Repository.SBCValues;
+            var sbcValues = Repository.SBCValues.Where(p => !p.User.IsPhantom);
 
             if (Search.SportID != null)
             {

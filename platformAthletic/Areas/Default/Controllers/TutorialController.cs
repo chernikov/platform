@@ -28,7 +28,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     name = "Player_";
                 }
-
                 var step = CurrentUser.TutorialStep;
                 return View(name + step.ToString("D2"));
             }
@@ -42,7 +41,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 Repository.StepTutorial(CurrentUser.ID, id);
             }
-            return Json(new {result = "ok"}, JsonRequestBehavior.AllowGet);
+            return Json(new {result = "ok", id }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult EndTutorial()

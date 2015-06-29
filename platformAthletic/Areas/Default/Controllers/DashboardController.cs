@@ -243,6 +243,5 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             return Json(new { result = "error" });
         }
-
     }
 }

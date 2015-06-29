@@ -1172,7 +1172,9 @@ dl.sport-2 {
     cursor: pointer;
 }
 
-
+.noclickable {
+    cursor : default;
+}
 .add-player-item {
     position: relative;
     margin-bottom: 15px;
