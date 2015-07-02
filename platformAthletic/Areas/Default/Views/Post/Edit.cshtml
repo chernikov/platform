@@ -1,7 +1,7 @@
 ﻿@model PostView
 
 <div class="edit-post-wrapper">
-    @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { id = "EditPostForm" }))
+    @using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { id = "EditPostForm" }))
     {
         @Html.Hidden("ID", Model.ID)
         @Html.Hidden("TitleImagePath", Model.TitleImagePath)
@@ -22,7 +22,7 @@
             @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Youtube url" })
         </div>
         <div class="form-group">
-            @Html.TextArea("Text", Model.Text, new { @class = "form-control" })
+            @Html.TextArea("Text", Model.Text, new { @class = "form-control", style="height:205px;" })
         </div>
         <div class="form-group pull-right">
             <button type="submit" class="btn btn-primary" id="SubmitEditPostBtn">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>

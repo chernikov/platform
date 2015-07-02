@@ -3,6 +3,12 @@
     var _this = this;
     this.init = function ()
     {
+        if (common.isMobile()) {
+            $(".video-wrapper").each(function () {
+                $("iframe").attr("width", "100%");
+                $("iframe").attr("height", 320);
+            });
+        }
         $(document).on("click", "#ListPostPagination a", function () {
             var href = $(this).attr("href");
             _this.ChangeListPost(href);
@@ -52,9 +58,12 @@
         $.ajax({
             type: "GET",
             url: "/Post/Create",
-            success: function (data) {
+            success: function (data)
+            {
                 $("#AddPostWrapper").html(data);
-                CKEDITOR.replace('Text');
+                if (!common.isMobile()) {
+                    CKEDITOR.replace('Text');
+                }
                 $("#AddPostBtn").hide();
                 _this.onEdit();
             }
@@ -62,44 +71,53 @@
     }
 
     this.SubmitPost = function () {
-        $("#Text").val(CKEDITOR.instances.Text.getData());
+        if (!common.isMobile()) {
+            $("#Text").val(CKEDITOR.instances.Text.getData());
+        }
         $.ajax({
             type: "POST",
             data : $("#EditPostForm").serialize(),
-            url: "/Post/Edit",
+            url: "/Post/EditPost",
             success: function (data) {
                 $("#AddPostWrapper").html(data);
-                CKEDITOR.replace('Text');
+                if (!common.isMobile()) {
+                    CKEDITOR.replace('Text');
+                }
                 $("#AddPostBtn").hide();
                 _this.onEdit();
             }
         });
     }
 
-    this.onEdit = function () {
-        var obj = new qq.FineUploader({
-            element: $("#AddImage")[0],
-            multiple: false,
-            request: {
-                endpoint: "/Post/UploadFile",
-            },
-            text: {
-                uploadButton: "ADD TITLE IMAGE"
-            },
-            callbacks: {
-                onComplete: function (id, fileName, responseJSON) {
-                    if (responseJSON.success) {
-                        $("#TitleImagePath").val(responseJSON.fileUrl);
-                        $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=400&h=300&mode=crop&scale=both");
-                        $("#ImagePreview").show();
-                        $("#RemoveTitleImage").show();
+    this.onEdit = function ()
+    {
+        if (!common.isMobile()) {
+            var obj = new qq.FineUploader({
+                element: $("#AddImage")[0],
+                multiple: false,
+                request: {
+                    endpoint: "/Post/UploadFile",
+                },
+                text: {
+                    uploadButton: "ADD TITLE IMAGE"
+                },
+                callbacks: {
+                    onComplete: function (id, fileName, responseJSON) {
+                        if (responseJSON.success) {
+                            $("#TitleImagePath").val(responseJSON.fileUrl);
+                            $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=400&h=300&mode=crop&scale=both");
+                            $("#ImagePreview").show();
+                            $("#RemoveTitleImage").show();
+                        }
                     }
+                },
+                validation: {
+                    allowedExtensions: ["jpeg", "png", "jpg"]
                 }
-            },
-            validation: {
-                allowedExtensions: ["jpeg", "png", "jpg"]
-            }
-        });
+            });
+        } else {
+            $("#AddImage").hide();
+        }
     }
 }
 

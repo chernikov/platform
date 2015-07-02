@@ -77,7 +77,7 @@
             endDate: '+1d'
         });
 
-        $(document).on("click", ".user-name", function () {
+        $(document).on("click", ".userName", function () {
             var id = $(this).data("id");
             _this.showPlayerInfo(id);
         });

@@ -20,6 +20,11 @@ function Common() {
     {
 
     };
+
+    this.isMobile = function () {
+        var ua = navigator.userAgent.toLowerCase();
+        return ua.indexOf("mobile") > -1; //&& ;
+    }
 }
 var common = null;
 

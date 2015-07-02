@@ -82,8 +82,7 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [ValidateInput(false)]
-        [HttpPost]
-        public ActionResult Edit(PostView postView)
+        public ActionResult EditPost(PostView postView)
         {
             var existPost = Repository.Posts.FirstOrDefault(p => p.ID == postView.ID);
             if (existPost == null || (existPost.UserID == CurrentUser.ID || CurrentUser.InRoles("admin")))
@@ -119,7 +118,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     return View("_OK");
                 }
             }
-            return View(postView);
+            return View("Edit",postView);
         }
 
         [ValidateInput(false)]

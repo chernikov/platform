@@ -121,7 +121,7 @@ namespace platformAthletic.Model
 
         public User Login(string email, string password)
         {
-            return Db.Users.FirstOrDefault(p => string.Compare(p.Email, email, true) == 0 && p.Password == password);
+            return Db.Users.FirstOrDefault(p => !p.IsDeleted && !p.IsPhantom && string.Compare(p.Email, email, true) == 0 && p.Password == password);
         }
 
 
