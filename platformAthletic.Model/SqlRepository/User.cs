@@ -680,7 +680,8 @@ namespace platformAthletic.Model
                     cache.Todo = cache.Todo + (int)todo;
                     var todoEnum = (User.TodoEnum)cache.Todo;
 
-                    if (cache.UserRoles.Any(p => p.RoleID == 2)
+                    if ((cache.UserRoles.Any(p => p.RoleID == 2)
+                        || cache.UserRoles.Any(p => p.RoleID == 5))
                         && todoEnum.HasFlag(User.TodoEnum.AddEquipment)
                         && todoEnum.HasFlag(User.TodoEnum.ViewWorkOut)
                         && todoEnum.HasFlag(User.TodoEnum.ConfirmTrainingStartDate)

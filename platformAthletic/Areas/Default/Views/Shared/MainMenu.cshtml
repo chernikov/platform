@@ -45,11 +45,14 @@
                 <a href="/manage-players">MANAGE PLAYERS</a>
             </li>
         }
-        @if (currentUser != null && currentUser.InRoles("coach,individual"))
+        @if (currentUser != null && currentUser.InRoles("coach,individual,assistant"))
         {
             <li class="@(controllerName == "Equipment" ? "open" : "")  hidden-lg hidden-md">
                 <a href="/equipment">EQUIPMENT LOG</a>
             </li>
+        }
+        @if (currentUser != null && currentUser.InRoles("coach,individual"))
+        {
             <li class="@(controllerName == "Billing" ? "open" : "")  hidden-lg hidden-md">
                 <a href="/billing">BILLING</a>
             </li>

@@ -11,7 +11,7 @@ namespace platformAthletic.Areas.Default.Controllers
     public class EquipmentController : DefaultController
     {
         [HttpGet]
-        [Authorize(Roles = "individual,coach")]
+        [Authorize(Roles = "individual,coach,assistant")]
         public ActionResult Index()
         {
             var equipmentList = Repository.Equipments.OrderBy(p => p.Name).ToList();
@@ -20,7 +20,7 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "individual,coach")]
+        [Authorize(Roles = "individual,coach,assistant")]
         public ActionResult Index(SelectedEquipmentList selectedEquipmentList)
         {
             if (selectedEquipmentList.List.Any(p => p.Select) && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)

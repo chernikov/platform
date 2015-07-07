@@ -8,7 +8,7 @@ using platformAthletic.Helpers;
 using platformAthletic.Models.Info;
 namespace platformAthletic.Areas.Default.Controllers
 {
-    [Authorize(Roles="coach,individual,player")]
+    [Authorize(Roles="coach,assistant,individual,player")]
     public class TutorialController : DefaultController
     {
         public ActionResult Index()
@@ -16,7 +16,7 @@ namespace platformAthletic.Areas.Default.Controllers
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial) 
             {
                 var name = string.Empty;
-                if (CurrentUser.InRoles("coach"))
+                if (CurrentUser.InRoles("coach,assistant"))
                 {
                     name = "Coach_";
                 }
@@ -48,7 +48,7 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Tutorial)
             {
-                if (CurrentUser.InRoles("coach"))
+                if (CurrentUser.InRoles("coach,assistant"))
                 {
                     Repository.StartTestMode(CurrentUser.ID);
                 }
@@ -73,7 +73,7 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
-                if (CurrentUser.InRoles("coach"))
+                if (CurrentUser.InRoles("coach,assistant"))
                 {
                     var todo = new CoachTodoListInfo(CurrentUser.Todo);
                     return View("CoachTodo", todo);
@@ -97,7 +97,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var name = "";
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
-                if (CurrentUser.InRoles("coach"))
+                if (CurrentUser.InRoles("coach,assistant"))
                 {
                     name = "TodoCoach_";
                 }

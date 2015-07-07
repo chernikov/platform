@@ -1,6 +1,7 @@
 ﻿using platformAthletic.Model;
 using platformAthletic.Models.ViewModels.User;
 using platformAthletic.Tools;
+using platformAthletic.Tools.Mail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,12 @@ namespace platformAthletic.Areas.Default.Controllers
                         RoleID = 5 //assistant
                     };
                     Repository.CreateUserRole(userRole);
+
+                    NotifyMail.SendNotify(Config, "Register", user.Email,
+                        (u, format) => format,
+                        (u, format) => string.Format(format, u.Email, u.Password),
+                        user);
+                    Repository.StartTutorial(user.ID);
                 }
                 else
                 {
@@ -64,7 +71,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 return View("_OK");
 
             }
-            return View(assistantUserView);
+            return View("EditBody", assistantUserView);
         }
 
 

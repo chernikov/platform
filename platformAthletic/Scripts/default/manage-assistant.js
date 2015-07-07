@@ -17,6 +17,7 @@
         $(".removeUser").click(function () {
             _this.showRemovePopup($(this).data("id"));
         });
+
         $(document).on("click", "#SubmitEditAssistant", function () {
             $.ajax({
                 type: "POST",
@@ -24,6 +25,7 @@
                 data: $("#AssistantForm").serialize(),
                 success: function (data) {
                     $("#ModalEditAssistantWrapper").html(data);
+                    _this.onEdit();
                 }
             })
         });

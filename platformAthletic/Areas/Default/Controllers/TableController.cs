@@ -13,7 +13,7 @@ namespace platformAthletic.Areas.Default.Controllers
     public class TableController : DefaultController
     {
 
-        [Authorize(Roles = "coach")]
+        [Authorize(Roles = "coach,assistant")]
         public ActionResult Team(int[] idUsers)
         {
             if (idUsers == null)
