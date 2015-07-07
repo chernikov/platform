@@ -27,6 +27,25 @@
         })
     }
 
+    this.showInfoExtended = function (message, button, callback) {
+         $.ajax({
+             type: "GET",
+             data: {
+                 message: message,
+                 button: button
+             },
+             url: "/Tutorial/Info",
+             success: function (data) {
+                 $("#ModalWrapper").html(data);
+                 $("#modalTutorial").modal();
+                 if (callback) {
+                     $('#modalTutorial').on('hidden.bs.modal', function () {
+                         callback();
+                     })
+                 }
+             }
+         })
+    }
 }
 
 var testmode;

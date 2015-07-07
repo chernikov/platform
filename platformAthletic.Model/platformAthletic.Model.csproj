@@ -170,16 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CodeTemplates\Scaffolders\IRepository\IRepositoryItemTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\IRepository\IRepository.ps1" />
-    <None Include="CodeTemplates\Scaffolders\IRepository\IRepositoryTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\ProviderRepository\ProviderRepository.ps1" />
-    <None Include="CodeTemplates\Scaffolders\Proxy\ProxyLangTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\Proxy\Proxy.ps1" />
-    <None Include="CodeTemplates\Scaffolders\Proxy\ProxyTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\SqlRepository\SqlRepositoryLangTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\SqlRepository\SqlRepository.ps1" />
-    <None Include="CodeTemplates\Scaffolders\SqlRepository\SqlRepositoryTemplate.cs.t4" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -200,10 +190,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ManageAttribute\ManageAttribute.csproj">
-      <Project>{05960685-9A37-4B71-A94E-D009358ABA71}</Project>
-      <Name>ManageAttribute</Name>
-    </ProjectReference>
     <ProjectReference Include="..\platformAthletic.Tools\platformAthletic.Tools.csproj">
       <Project>{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}</Project>
       <Name>platformAthletic.Tools</Name>

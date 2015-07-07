@@ -1,23 +1,19 @@
 ﻿using ImageResizer;
 using platformAthletic.Global;
+using platformAthletic.Helpers;
 using platformAthletic.Model;
 using platformAthletic.Models.Info;
+using platformAthletic.Models.ViewModels;
 using platformAthletic.Models.ViewModels.User;
 using platformAthletic.Tools;
+using platformAthletic.Tools.Video;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
-using platformAthletic.Helpers;
-using ManageAttribute;
 using System.Net;
 using System.Text.RegularExpressions;
-using platformAthletic.Tools.Video;
-using platformAthletic.Models.ViewModels;
-using AutoMapper;
+using System.Web.Mvc;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -351,7 +347,6 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
 
-        [TempAction]
         public ActionResult GenerateUserVideos()
         {
             var regexTemplate = ".*http://www\\.youtube\\.com/watch\\?v=(?<code>.*?)\" target=\"_blank\">";

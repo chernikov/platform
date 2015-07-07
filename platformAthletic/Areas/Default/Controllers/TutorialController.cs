@@ -114,9 +114,10 @@ namespace platformAthletic.Areas.Default.Controllers
             return null;
         }
 
-        public ActionResult Info(string message)
+        public ActionResult Info(string message, string button = "Ok")
         {
             ViewBag.Message = message;
+            ViewBag.Button = button;
             return View();
         }
 

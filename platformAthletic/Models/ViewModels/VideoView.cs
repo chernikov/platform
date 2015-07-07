@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ManageAttribute;
 using platformAthletic.Model;
 
 
@@ -12,10 +11,8 @@ namespace platformAthletic.Models.ViewModels
 {
     public class VideoView
     {
-        [PrimaryField]
         public int ID { get; set; }
 
-        [DropDownField]
         public int? TrainingID { get; set; }
 
         [Required(ErrorMessage="Enter Header")]
@@ -25,8 +22,6 @@ namespace platformAthletic.Models.ViewModels
 
         [Required(ErrorMessage = "Enter youtube link")]
         public string VideoUrl { get; set; }
-
-        
 
         public string VideoCode { get; set; }
 

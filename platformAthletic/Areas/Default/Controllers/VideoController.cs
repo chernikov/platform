@@ -11,7 +11,6 @@ using System.Net;
 using System.IO;
 using platformAthletic.Tools;
 using ImageResizer;
-using ManageAttribute;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -77,7 +76,7 @@ namespace platformAthletic.Areas.Default.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        [TempAction]
+        //TODO:TempAction
         public ActionResult SetCode()
         {
             var videos = Repository.Videos.ToList();
@@ -97,7 +96,8 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             return null;
         }
-        [TempAction]
+
+        //TODO:TempAction
         public ActionResult SetPreview()
         {
             var videos = Repository.Videos.ToList();
@@ -137,7 +137,7 @@ namespace platformAthletic.Areas.Default.Controllers
             return null;
         }
 
-        [TempAction]
+        //TODO:TempAction
         public ActionResult SetLorem()
         {
             var videos = Repository.Videos.ToList();

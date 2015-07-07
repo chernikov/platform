@@ -20,7 +20,7 @@
         }
         @if (currentUser.InRoles("coach,assistant,individual"))
         {
-        <li class="@(controllerName == "Schedule" ? "active" : "")"><a href="/scheduling"><span class="glyphicon glyphicon-calendar"></span> SCHEDULING</a></li>
+            <li class="@(controllerName == "Schedule" ? "active" : "")"><a href="/scheduling"><span class="glyphicon glyphicon-calendar"></span> SCHEDULING</a></li>
         }
         @if (currentUser.InRoles("coach,assistant,player"))
         {
@@ -29,8 +29,33 @@
         <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
         <li class="@((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
-    </ul>
 
+        <li class=" hidden-lg hidden-md">
+            <h1>SETTINGS</h1>
+        </li>
+        <li class="@(controllerName == "Setting" ? "open" : "") hidden-lg hidden-md">
+            <a href="/settings">SETTINGS AND INFO</a>
+        </li>
+        @if (currentUser != null && currentUser.InRoles("coach"))
+        {
+            <li class="@(controllerName == "ManageAssistant" ? "open" : "")  hidden-lg hidden-md">
+                <a href="/manage-coaches">MANAGE COACHES</a>
+            </li>
+            <li class="@(controllerName == "ManagePlayer" ? "open" : "")  hidden-lg hidden-md">
+                <a href="/manage-players">MANAGE PLAYERS</a>
+            </li>
+        }
+        @if (currentUser != null && currentUser.InRoles("coach,individual"))
+        {
+            <li class="@(controllerName == "Equipment" ? "open" : "")  hidden-lg hidden-md">
+                <a href="/equipment">EQUIPMENT LOG</a>
+            </li>
+            <li class="@(controllerName == "Billing" ? "open" : "")  hidden-lg hidden-md">
+                <a href="/billing">BILLING</a>
+            </li>
+        }
+
+    </ul>
     @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
     {
         @Html.Action("Todo", "Tutorial");

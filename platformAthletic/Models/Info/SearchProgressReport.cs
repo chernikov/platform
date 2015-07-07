@@ -17,7 +17,7 @@ namespace platformAthletic.Models.Info
             BenchAsc,
             BenchDesc,
             CleanAsc,
-             CleanDesc,
+            CleanDesc,
             TotalAsc,
             TotalDesc,
         }

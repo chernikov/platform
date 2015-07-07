@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ImageResizer;
-using ManageAttribute;
 using platformAthletic.Global;
 using platformAthletic.Model;
 using platformAthletic.Models.ViewModels;
@@ -139,9 +138,9 @@ namespace platformAthletic.Areas.Default.Controllers
             return new FineUploaderResult(true, new { fileUrl = "/" + DestinationDir + uFile });
         }
 
-            
 
-        [TempAction]
+
+        //TODO:TempAction
         public ActionResult GeneratePosts()
         {
             var logger = new StringBuilder();

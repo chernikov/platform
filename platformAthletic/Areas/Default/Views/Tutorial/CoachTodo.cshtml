@@ -3,7 +3,7 @@
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
     var noPlayers = currentUser.OwnTeam.CountPlayers == 0;
 }
-<div class="todo">
+<div class="todo hidden-xs">
     <h1>TO DO:</h1>
     <ul class="todo-list">
         @{
@@ -28,7 +28,7 @@
                     }
                 }
             </li>
-            i++;
+                i++;
         }
     </ul>
 </div> 

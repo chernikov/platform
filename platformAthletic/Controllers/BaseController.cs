@@ -21,8 +21,6 @@ namespace platformAthletic.Controllers
 
         protected static string LoginPage = "~/Login";
 
-
-
         [Inject]
         public IRepository Repository { get; set; }
 

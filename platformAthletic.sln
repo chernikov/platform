@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D5E9A25A-AA2E-46B7-A4F7-4095B20FA012}"
 EndProject
@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{FDF7B81A-EF61-
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\platformback.bak = ..\..\..\..\platformback.bak
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManageAttribute", "ManageAttribute\ManageAttribute.csproj", "{05960685-9A37-4B71-A94E-D009358ABA71}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "platformAthletic.Tools", "platformAthletic.Tools\platformAthletic.Tools.csproj", "{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}"
 EndProject
@@ -34,10 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{05960685-9A37-4B71-A94E-D009358ABA71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05960685-9A37-4B71-A94E-D009358ABA71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05960685-9A37-4B71-A94E-D009358ABA71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05960685-9A37-4B71-A94E-D009358ABA71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACACA979-4B2B-4EC8-8E4A-825C2A5377B1}.Release|Any CPU.ActiveCfg = Release|Any CPU

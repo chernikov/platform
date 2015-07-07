@@ -29,7 +29,9 @@
         </div>
         <hr class="video" />
         <div class="row video-wrapper height">
-            <div class="col-lg-5 height">
+            <div class="col-lg-7 height pull-right" id="VideoWrapper">
+            </div>
+            <div class="col-lg-5 height pull-left">
                 <br />
                 <div class="panel panel-default height">
                     <div class="panel-body no-padding-left no-padding-right height">
@@ -68,12 +70,12 @@
                                         {
                                             <div class="item @(video.ID == Model.StartID? "selected": "")" data-id="@video.ID" data-url="video-code">
                                                 <div class="row">
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-4 col-xs-4">
                                                         <div class="thumbnail">
                                                             <img src="@video.Preview?w=300&h=169&mode=crop" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-8 col-xs-8">
                                                         <span class="name">@video.Header</span>
                                                     </div>
                                                 </div>
@@ -91,12 +93,12 @@
                                         {
                                             <div class="item @(video.ID == Model.StartID ? "selected": "")" data-id="@video.ID" data-url="video-pillar-code">
                                                 <div class="row">
-                                                    <div class="col-sm-4">
+                                                    <div class="col-sm-4 col-xs-4">
                                                         <div class="thumbnail">
                                                             <img src="@video.Preview?w=300&h=169&mode=crop" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-8 col-xs-8">
                                                         <span class="name">@video.Header</span>
                                                     </div>
                                                 </div>
@@ -108,8 +110,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-7 height" id="VideoWrapper">
             </div>
         </div>
     </div>

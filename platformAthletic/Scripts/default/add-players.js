@@ -5,14 +5,13 @@ function AddPlayers() {
     this.init = function ()
     {
         $("#AddPlayersButton").click(function () {
-            $.ajax({
-                url: "/dashboard/AddPlayers",
-                type: "GET",
-                success: function (data) {
-                    $("#ModalWrapper").html(data);
-                    $("#modalAddPlayers").modal();
-                }
-            });
+            if (typeof (testmode) != "undefined") {
+                testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
+                    _this.showAddPlayers();
+                });
+            } else {
+                _this.showAddPlayers();
+            }
         });
 
         $(document).on("click", "#AddMoreRow", function () {
@@ -48,6 +47,18 @@ function AddPlayers() {
             })
         });
     }
+
+    this.showAddPlayers = function () {
+        $.ajax({
+            url: "/dashboard/AddPlayers",
+            type: "GET",
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#modalAddPlayers").modal();
+            }
+        });
+    }
+
 }
 
 var addPlayers = null;

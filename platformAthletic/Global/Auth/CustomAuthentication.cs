@@ -86,11 +86,9 @@ namespace platformAthletic.Global.Auth
                     try
                     {
                         HttpCookie authCookie = AuthCookieProvider.GetCookie(cookieName);
-                        
                         if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                         {
                             var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-
                             _currentUser = new UserProvider(ticket.Name, Repository);
                         }
                         else

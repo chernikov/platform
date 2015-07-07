@@ -247,18 +247,25 @@ a:hover {
     }
 
 
-        .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
-            margin-right: 10px;
-            margin-left: 5px;
-        }
+    .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
+        margin-right: 10px;
+        margin-left: 5px;
+    }
 
-        .platform .navbar-default .navbar-nav > li > a:hover {
-            color: #fff;
-            text-shadow: 1px 0px 3px #000;
-        }
+    .platform .navbar-default .navbar-nav > li > a:hover {
+        color: #fff;
+        text-shadow: 1px 0px 3px #000;
+    }
 
     .platform .side-menu .navbar-default .navbar-nav > li > a {
         text-shadow: none;
+    }
+
+    .platform .side-menu .navbar-default .navbar-nav > li > h1{ 
+        color : #fff;
+        font-family : 'Montserrat', sans-serif;
+        font-size : 20px;
+        padding-left: 20px;
     }
 
         .platform .side-menu.navbar-default .navbar-nav > li > a:hover {
@@ -308,6 +315,12 @@ a:hover {
 /* Main body section */
 .side-body {
     margin-left: 200px;
+}
+
+@media(max-width:960px) {
+    .side-body {
+        background-color: #495b6c;
+    }
 }
 
 
@@ -996,9 +1009,10 @@ dl.sport-2 {
     width: 27px;
     text-align: center;
 }
-.table-calendar span.grayed {
-    color : #ddd;
-}
+
+    .table-calendar span.grayed {
+        color: #ddd;
+    }
 
     .table-calendar span.attendance {
         color: #fff;
@@ -1173,8 +1187,9 @@ dl.sport-2 {
 }
 
 .noclickable {
-    cursor : default;
+    cursor: default;
 }
+
 .add-player-item {
     position: relative;
     margin-bottom: 15px;
@@ -2669,84 +2684,98 @@ hr.video {
     background: #f5f5f5;
 }
 
+@media(max-width:960px) {
+    .video-wrapper {
+        background: #495b6c;
+    }
+}
 
-    .video-wrapper .panel {
-        border-radius: 0;
-        box-shadow: none;
+
+.video-wrapper .panel {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.video-wrapper h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.video-wrapper .nav-pills > li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+    .video-wrapper .nav-pills > li > a {
+        color: #000;
+        border: 1px solid #e8e7e7;
+        background-color: #fff;
+        margin-right: 10px;
     }
 
-    .video-wrapper h5 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 14px;
-        font-weight: bold;
+
+    .video-wrapper .nav-pills > li.active > a, .video-wrapper .nav-pills > li.active > a:hover, .video-wrapper .nav-pills > li.active > a:focus {
+        background-color: #60b1c2;
+        color: #fff;
+        border: none;
     }
 
-    .video-wrapper .nav-pills > li {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 13px;
-        font-weight: bold;
-    }
+.video-wrapper .panel {
+    height: -moz-calc(100% - 150px);
+    height: -webkit-calc(100% - 150px);
+    height: calc(100% - 150px);
+}
 
-        .video-wrapper .nav-pills > li > a {
-            color: #000;
-            border: 1px solid #e8e7e7;
-            background-color: #fff;
-            margin-right: 10px;
-        }
+.video-wrapper .video-content {
+    height: -moz-calc(100% - 120px);
+    height: -webkit-calc(100% - 120px);
+    height: calc(100% - 120px);
+    overflow: hidden;
+    margin: 0 10px 0 10px;
+}
 
-
-        .video-wrapper .nav-pills > li.active > a, .video-wrapper .nav-pills > li.active > a:hover, .video-wrapper .nav-pills > li.active > a:focus {
-            background-color: #60b1c2;
-            color: #fff;
-            border: none;
-        }
-
-    .video-wrapper .panel {
-        height: -moz-calc(100% - 150px);
-        height: -webkit-calc(100% - 150px);
-        height: calc(100% - 150px);
-    }
-
+@media (max-width:960px) {
     .video-wrapper .video-content {
-        height: -moz-calc(100% - 120px);
-        height: -webkit-calc(100% - 120px);
-        height: calc(100% - 120px);
-        overflow: hidden;
-        margin: 0 10px 0 10px;
+        height: 400px;
+    }
+}
+
+.video-wrapper .video-content .inside {
+    margin: 0 15px;
+}
+
+    .video-wrapper .video-content .inside h4 {
+        color: #495b6c;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size: 16px;
     }
 
-        .video-wrapper .video-content .inside {
-            margin: 0 15px;
-        }
 
-            .video-wrapper .video-content .inside h4 {
-                color: #495b6c;
-                font-family: 'Montserrat', sans-serif;
-                font-weight: bold;
-                font-size: 16px;
-            }
 
-    .video-wrapper .item {
-        cursor: pointer;
-        padding: 15px 0 0 0;
-        height: 112px;
-        overflow: hidden;
+.video-wrapper .item {
+    cursor: pointer;
+    padding: 15px 0 0 0;
+    height: 112px;
+    overflow: hidden;
+}
+
+    .video-wrapper .item.selected {
+        background: #fff7c7;
     }
 
-        .video-wrapper .item.selected {
-            background: #fff7c7;
-        }
+    .video-wrapper .item .thumbnail {
+        border: none;
+    }
 
-        .video-wrapper .item .thumbnail {
-            border: none;
-        }
-
-        .video-wrapper .item .name {
-            color: #2b2c2d;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-        }
+    .video-wrapper .item .name {
+        color: #2b2c2d;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+    }
 
 .video-code-wrapper h1 {
     font-family: 'Montserrat', sans-serif;
@@ -2782,6 +2811,12 @@ hr.video {
         padding: 0 20px;
     }
 
+
+@media (max-width:960px) {
+    .video-code-wrapper .coach .coach-comment {
+        height: 200px;
+    }
+}
 
 .posts-wrapper {
     background: #f5f5f5;
@@ -3046,6 +3081,12 @@ hr.video {
     background: #fff;
 }
 
+@media(max-width:960px) {
+    .settings-wrapper {
+        background: #495b6c;
+    }
+}
+
 .form-settings-wrapper {
     background: #eee;
 }
@@ -3178,6 +3219,7 @@ hr.video {
 
 .equipment-wrapper {
     background: #eee;
+    padding : 10px;
 }
 
     .equipment-wrapper h2 {
@@ -3211,6 +3253,17 @@ hr.video {
         height: -moz-calc(100% - 320px);
         height: -webkit-calc(100% - 320px);
         height: calc(100% - 320px);
+    }
+
+    @media (max-width:602px) {
+         .equipment-wrapper .equiment-panel > div {
+             height : 630px;
+         }
+    }
+     @media (max-width:960px) {
+         .equipment-wrapper .equiment-panel > div {
+             height : 320px;
+         }
     }
 
 .billing-wrapper {
@@ -3437,11 +3490,13 @@ hr.video {
 }
 
 .page-wrapper .big-text {
-    font-size : 18px;
+    font-size: 18px;
 }
+
 .page-wrapper .shifted {
-    margin-left : 20px;
+    margin-left: 20px;
 }
+
 .form-register-wrapper {
 }
 
@@ -3462,103 +3517,107 @@ hr.video {
     font-weight: normal;
     font-size: 14px;
     color: #495b6c;
-    text-align : center;
+    text-align: center;
 }
 
     .tutorial-wrapper h1 {
         font-weight: bold;
         color: #fc8675;
-        text-align : center;
+        text-align: center;
     }
 
 
-.tutorial-wrapper .breadcrumb {
-    background : transparent;
-    border-bottom : none;
-}
+    .tutorial-wrapper .breadcrumb {
+        background: transparent;
+        border-bottom: none;
+    }
 
 .tutorial-highlight {
-    position : relative;
-    z-index : 2000;
-    background-color : #fff;
-    border : 5px solid #fa0000;
+    position: relative;
+    z-index: 2000;
+    background-color: #fff;
+    border: 5px solid #fa0000;
     border-radius: 10px;
-    padding : 5px;
+    padding: 5px;
 }
 
-.tutorial-highlight.left {
-    display : inline-block;
-}
+    .tutorial-highlight.left {
+        display: inline-block;
+    }
 
-.tutorial-highlight.little-top {
-    top : -10px;
-}
+    .tutorial-highlight.little-top {
+        top: -10px;
+    }
 
-.tutorial-highlight.user-off .user-name {
-    background : #fff !important;
-    color : #fff;   
-}
+    .tutorial-highlight.user-off .user-name {
+        background: #fff !important;
+        color: #fff;
+    }
 
 .tutorial-manipulate {
-    top : -250px;
-    position : relative;
+    top: -250px;
+    position: relative;
 }
-.tutorial-manipulate.big {
-    top : -550px;
-    position : relative;
-}
+
+    .tutorial-manipulate.big {
+        top: -550px;
+        position: relative;
+    }
+
 .tutorial-manipulate-2.big {
-    top : -950px;
-    position : relative;
+    top: -950px;
+    position: relative;
 }
+
 .todo {
-    float : left;
+    float: left;
 }
-.todo h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: normal;
-    font-size: 12px;
-    color : #fff;
-    padding : 10px;
-    background : #778491;
-}
+
+    .todo h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: normal;
+        font-size: 12px;
+        color: #fff;
+        padding: 10px;
+        background: #778491;
+    }
 
 .todo-list {
-    list-style : none;
-    padding : 0px 10px 100px 10px;
+    list-style: none;
+    padding: 0px 10px 100px 10px;
 }
 
-.todo-list li {
-    line-height : 23px;
-    padding-top : 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    text-transform : uppercase;
-    color : #fff;
-}
+    .todo-list li {
+        line-height: 23px;
+        padding-top: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #fff;
+    }
 
-.todo-list li span {
-    margin-right : 10px;
-}
+        .todo-list li span {
+            margin-right: 10px;
+        }
 
-.todo-list li a {
-    color : #fff;
-}
+        .todo-list li a {
+            color: #fff;
+        }
 
 
 .todo-hint {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    color : #495b6c;
+    color: #495b6c;
 }
 
 
 .test-mode {
-    color : #fff !important;
-    font-size : 14px;
-    font-weight : normal;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: normal;
 }
 
-.test-mode a {
-     color : #fff !important;
-}
+    .test-mode a {
+        color: #fff !important;
+    }

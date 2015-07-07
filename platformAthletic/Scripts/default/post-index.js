@@ -91,7 +91,7 @@
 
     this.onEdit = function ()
     {
-        if (!common.isMobile()) {
+        //if (!common.isMobile()) {
             var obj = new qq.FineUploader({
                 element: $("#AddImage")[0],
                 multiple: false,
@@ -115,9 +115,9 @@
                     allowedExtensions: ["jpeg", "png", "jpg"]
                 }
             });
-        } else {
-            $("#AddImage").hide();
-        }
+        //} else {
+        //    $("#AddImage").hide();
+        //}
     }
 }
 

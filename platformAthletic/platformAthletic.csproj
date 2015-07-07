@@ -239,9 +239,6 @@
     <Compile Include="Areas\Default\Controllers\LoginController.cs" />
     <Compile Include="Areas\Default\DefaultAreaRegistration.cs" />
     <Compile Include="Areas\Default\Views\CoachController.cs" />
-    <Compile Include="Attributes\AutoMapAttribute.cs" />
-    <Compile Include="Attributes\CompressFilter.cs" />
-    <Compile Include="Attributes\SeasonCheckAttribute.cs" />
     <Compile Include="Attributes\Validation\IsUserPassword.cs" />
     <Compile Include="Attributes\Validation\UniqueValidationAttribute.cs" />
     <Compile Include="Attributes\Validation\UserEmail.cs" />
@@ -1785,10 +1782,6 @@
       <Project>{6b127020-1bcc-4d06-a290-9e30726fb10b}</Project>
       <Name>GenerateData</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ManageAttribute\ManageAttribute.csproj">
-      <Project>{05960685-9A37-4B71-A94E-D009358ABA71}</Project>
-      <Name>ManageAttribute</Name>
-    </ProjectReference>
     <ProjectReference Include="..\platformAthletic.Model\platformAthletic.Model.csproj">
       <Project>{54305171-f603-4070-9e75-1f7173681e8a}</Project>
       <Name>platformAthletic.Model</Name>
@@ -1985,21 +1978,6 @@
     <Content Include="Areas\Default\Views\Dashboard\AddPlayers.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\MaxPlayers.cshtml" />
-    <None Include="CodeTemplates\Scaffolders\Controller\Controller.ps1" />
-    <None Include="CodeTemplates\Scaffolders\Controller\ControllerTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\EditView\EditView.ps1" />
-    <None Include="CodeTemplates\Scaffolders\EditView\EditViewTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\IndexView\IndexView.ps1" />
-    <None Include="CodeTemplates\Scaffolders\IndexView\IndexViewTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\Model\CommonMapper.ps1" />
-    <None Include="CodeTemplates\Scaffolders\Model\CommonMapper.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\Model\MapperCollectionItemTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\Model\MapperCollectionTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\Model\MapperCollection.ps1" />
-    <None Include="CodeTemplates\Scaffolders\Model\Model.ps1" />
-    <None Include="CodeTemplates\Scaffolders\Model\ModelTemplate.cs.t4" />
-    <None Include="CodeTemplates\Scaffolders\SelectReference\SelectReference.ps1" />
-    <None Include="CodeTemplates\Scaffolders\SelectReference\SelectReferenceTemplate.cs.t4" />
     <Compile Include="Models\Info\CommonReport.cs" />
     <Content Include="Media\css\newtheme\main.css" />
     <Content Include="Media\fonts\bebas___-webfont.eot" />

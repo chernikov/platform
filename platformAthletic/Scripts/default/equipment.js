@@ -4,6 +4,11 @@
     this.init = function ()
     {
         $("#EquipmentWrapper").mCustomScrollbar({ theme: "minimal-dark" });
+
+        $(".equipmentItem").click(function () {
+            var checkbox = $("input", $(this));
+            checkbox.prop("checked", !checkbox.prop("checked"));
+        })
     }
 }
 

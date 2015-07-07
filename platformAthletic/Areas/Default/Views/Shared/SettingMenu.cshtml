@@ -9,8 +9,8 @@
     <li class="@(controllerName == "Setting" ? "open" : "")">
         <a href="/settings">Settings and Info</a>
     </li>
-    @if (currentUser != null && currentUser.InRoles("coach")) 
-    { 
+    @if (currentUser != null && currentUser.InRoles("coach"))
+    {
         <li class="@(controllerName == "ManageAssistant" ? "open" : "")">
             <a href="/manage-coaches">Manage Coaches</a>
         </li>
@@ -27,5 +27,4 @@
             <a href="/billing">Billing</a>
         </li>
     }
-   
 </ul>

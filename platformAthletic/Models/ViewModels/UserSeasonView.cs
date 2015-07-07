@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ManageAttribute;
 using platformAthletic.Model;
 using platformAthletic.Helpers;
 
@@ -11,7 +10,6 @@ namespace platformAthletic.Models.ViewModels
 {
     public class UserSeasonView
     {
-        [PrimaryField]
         public int ID { get; set; }
         /// <summary>
         /// 1 - off season
@@ -24,7 +22,6 @@ namespace platformAthletic.Models.ViewModels
 
         public int UserID { get; set; }
 
-        [TextBoxField]
         public DateTime StartDay { get; set; }
 
         private IEnumerable<Season> Seasons
