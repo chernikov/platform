@@ -119,6 +119,9 @@
             $(".season-data[data-id='" + id + "']").show();
         });
 
+        $(".styled-checkbox input").removeAttr("checked");
+
+
     }
     this.enableAssignBtn = function () {
         if ($(".styled-checkbox input:checked").length > 0) {

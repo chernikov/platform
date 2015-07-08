@@ -1,0 +1,29 @@
+﻿@model User
+@{
+    ViewBag.Title = "Sorry";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayoutNoSide.cshtml";
+}
+
+<div class="fluid-container">
+    <div class="col-lg-12">
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-12">
+                    <div class="text-center">
+                        <h1 class="error">Sorry</h1>
+                        <div class="error message error-message">You Cann't See the Profile Because the User Has Set @(Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Private ? "Private" : "Limited") Privacy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 ﻿function AttendanceReport() {
     var _this = this;
 
-    this.init = function () {
-
+    this.init = function ()
+    {
         $('.datetime').mask("00/00/0000", { placeholder: "__/__/____" });
 
         $.ajax({
@@ -13,7 +13,8 @@
             async: false
         });
 
-        $(".report-table .sortable").click(function () {
+        $(".report-table .sortable").click(function ()
+        {
             var value = $(".sort", $(this)).data("type");
             if ($(".sort", $(this)).hasClass("desc")) {
                 value = value + "Asc";
@@ -23,7 +24,8 @@
             window.location = $.param.querystring(window.location.href, 'Sort=' + value);
         });
 
-        $(document).on("click", ".report-table .item", function () {
+        $(document).on("click", ".report-table .item", function ()
+        {
             var id = $(this).data("id");
             $(".report-table .item").removeClass("selected");
             $(this).addClass("selected");
@@ -36,8 +38,7 @@
                 return true;
             },
             minLength: 1
-        },
-       {
+        }, {
            name: 'searchString',
            displayKey: function (data) {
                return data.value.name;
@@ -81,10 +82,15 @@
             var id = $(this).data("id");
             _this.showPlayerInfo(id);
         });
+
+        $(document).on("click", ".restrictAccess", function () {
+            $(".privacyMessage").show();
+        });
     }
 
 
-    this.showWorkouts = function (id) {
+    this.showWorkouts = function (id)
+    {
         $.ajax({
             type: "GET",
             url: "/report/Workouts",

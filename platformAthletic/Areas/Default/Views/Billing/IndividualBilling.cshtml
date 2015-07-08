@@ -6,8 +6,8 @@
 @section header {
     <script src="~/Scripts/default/billing.js"></script>
 }
-<div class="container-fluid fixed">
-    <div class="side-body height">
+<div class="container-fluid">
+    <div class="side-body">
         <div class="breadcrumb">
             <div class="row">
                 <div class="col-lg-12 overflow">
@@ -18,11 +18,11 @@
                 </div>
             </div>
         </div>
-        <div class="row settings-wrapper height">
-            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left hidden-xs hidden-sm">
+        <div class="row settings-wrapper">
+            <div class="col-lg-2 col-md-2 settings-menu no-padding-right no-padding-left hidden-xs hidden-sm">
                 @Html.Partial("SettingMenu")
             </div>
-            <div class="col-lg-10 col-md-10 billing-wrapper height">
+            <div class="col-lg-10 col-md-10 billing-wrapper">
                 <div class="row margin-top">
                     <div class="col-lg-10 col-lg-offset-1">
                         <div class="pull-right paid-till">*Subscription paid up to @Model.PaidTill.ToString("d")</div>

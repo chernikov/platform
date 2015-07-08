@@ -86,6 +86,10 @@
             var id = $(this).data("id");
             _this.showPlayerInfo(id);
         })
+
+        $(document).on("click", ".restrictAccess", function () {
+            $(".privacyMessage").show();
+        });
     }
 
     this.filterAll = function ()

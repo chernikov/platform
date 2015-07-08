@@ -254,6 +254,10 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 futureSeasons = futureSeasons.Where(p => p.GroupID == groupId);
             }
+            else
+            {
+                futureSeasons = futureSeasons.Where(p => p.GroupID == null);
+            }
             foreach (var season in futureSeasons.ToList())
             {
                 foreach (var schedule in season.Schedules.ToList())

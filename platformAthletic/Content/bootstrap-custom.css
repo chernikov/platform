@@ -1237,6 +1237,10 @@ dl.sport-2 {
     font-family: 'Montserrat', sans-serif;
 }
 
+.error {
+    color: #fc8675;
+}
+
 /*Scheduling */
 .schedule-group-wrapper {
     border-right: 1px solid #ebeaea;
@@ -3268,6 +3272,8 @@ hr.video {
 
 .billing-wrapper {
     background: #eee;
+    min-height : 750px;
+    padding-bottom : 30px;
 }
 
     .billing-wrapper .paid-till {

@@ -37,7 +37,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     return View(user);
                 }
-                return RedirectToLoginPage;
+                return View("RestrictedUser", user);
             }
             return RedirectToNotFoundPage;
         }
