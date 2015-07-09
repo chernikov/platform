@@ -1207,6 +1207,11 @@ dl.sport-2 {
         margin-bottom: 5px;
     }
 
+#ListOfFields .add-player-item:first-child .remove {
+    display: none;
+}
+
+
 .modal.modal-wide .modal-dialog {
     width: 800px;
 }

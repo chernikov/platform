@@ -9,7 +9,16 @@
 }
 <div class="container-fluid">
     <div class="side-body">
-
+        <div class="breadcrumb">
+            <div class="row">
+                <div class="col-lg-12 overflow">
+                    <ol>
+                        <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
+                        <li class="active"><a href="/scheduling">Scheduling </a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
         <div class="row row-same-height">
             @if (currentUser.InRoles("coach,assistant"))
             {
