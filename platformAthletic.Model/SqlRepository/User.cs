@@ -55,7 +55,7 @@ namespace platformAthletic.Model
                 instance.PaidTill = CurrentDateTime.AddDays(1);
                 instance.ActivatedLink = StringExtension.GenerateNewFile();
                 instance.Gender = true;
-                instance.PublicLevel = (int)User.PublicLevelEnum.Public;
+                instance.PublicLevel = (int)User.PublicLevelEnum.Private;
                 Db.Users.InsertOnSubmit(instance);
                 Db.Users.Context.SubmitChanges();
                 return true;
