@@ -20,7 +20,7 @@
 
         <div class="breadcrumb">
             <div class="row">
-                <div class="col-lg-12 overflow">
+                <div class="col-lg-12 col-xs-12 overflow">
                     <ol>
                         <li><a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp; Home</a></li>
                         <li class="active"><a href="/report">Attendance Report</a></li>
@@ -30,7 +30,7 @@
         </div>
         <div class="report-wrapper">
             <div class="row">
-                <div class="col-lg-9 col-md-12">
+                <div class="col-lg-9 col-md-12 col-xs-12">
                     <div class="pull-right search-wrapper">
                         <div class="input-group">
                             @*search*@
@@ -40,7 +40,6 @@
                             </span>
                         </div>
                     </div>
-
                     @*panel*@
                     <div class="tabpanel">
                         <!-- Nav tabs -->
@@ -53,47 +52,50 @@
                             <div role="tabpanel" class="tab-pane active">
                                 <form class="form-inline search-wrapper">
                                     @*filter*@
-                                    <div class="form-group">
-                                        <div class="select-style">
-                                            @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
-                                            <div></div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-6 col-sm-4">
+                                            <div class="select-style">
+                                                @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
+                                                <div></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="select-style">
-                                            @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
-                                            <div></div>
+                                        <div class="form-group col-xs-6 col-sm-4">
+                                            <div class="select-style">
+                                                @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
+                                                <div></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="select-style">
-                                            @Html.DropDownList("GroupID", Model.Search.SelectListGroupID, new { @class = "form-control filter" })
-                                            <div></div>
+                                        <div class="form-group col-xs-6 col-sm-4">
+                                            <div class="select-style">
+                                                @Html.DropDownList("GroupID", Model.Search.SelectListGroupID, new { @class = "form-control filter" })
+                                                <div></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="select-style">
-                                            @Html.DropDownList("GradYear", Model.Search.SelectListGradYear, new { @class = "form-control filter" })
-                                            <div></div>
+                                        <div class="form-group col-xs-6 col-sm-4">
+                                            <div class="select-style">
+                                                @Html.DropDownList("GradYear", Model.Search.SelectListGradYear, new { @class = "form-control filter" })
+                                                <div></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBox("StartPeriod", Model.Search.StartPeriod.HasValue ? Model.Search.StartPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime start-date", placeholder = "Start date" })
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.TextBox("EndPeriod", Model.Search.EndPeriod.HasValue ? Model.Search.EndPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime end-date", placeholder = "End date" })
+                                        <div class="form-group col-xs-6 col-sm-4">
+                                            @Html.TextBox("StartPeriod", Model.Search.StartPeriod.HasValue ? Model.Search.StartPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime start-date", placeholder = "Start date" })
+                                        </div>
+                                        <div class="form-group col-xs-6 col-sm-4">
+                                            @Html.TextBox("EndPeriod", Model.Search.EndPeriod.HasValue ? Model.Search.EndPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime end-date", placeholder = "End date" })
+                                        </div>
                                     </div>
                                 </form>
                                 @*table*@
                                 <table class="table report-table">
                                     <thead>
                                         <tr class="report-header">
-                                            <th>RANK</th>
+                                            <th class="">RANK</th>
                                             <th class="reverse-sortable">NAME</th>
                                             <th class="sortable"><span data-type="Week" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc ? "desc" : "")"></span>WEEK</th>
                                             <th class="sortable"><span data-type="Month" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc ? "desc" : "")"></span>MONTH</th>
                                             <th class="sortable"><span data-type="Year" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc ? "desc" : "")"></span>YEAR</th>
                                             <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>@(Model.Search.IsDateFilter ? "SELECTED" : "ALL TIME")</th>
+
                                         </tr>
                                     </thead>
                                     @foreach (var item in Model.List)
@@ -122,9 +124,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-lg-3 hidden-md hidden-sm hidden-xs" id="WorkoutsWrapper">
+                <div class="col-lg-3 col-xs-12" id="WorkoutsWrapper">
                     @*sidetable*@
                     @if (Model.List.Count > 0)
                     {

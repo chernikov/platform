@@ -48,6 +48,10 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 return null;
             }
+            if (Request.Browser.IsMobileDevice)
+            {
+                return View("WorkoutsMobile", user);
+            }
             return View(user);
         }
 

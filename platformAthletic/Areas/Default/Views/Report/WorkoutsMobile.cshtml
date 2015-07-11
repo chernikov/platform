@@ -1,0 +1,30 @@
+﻿@model User
+<div class="panel panel-default sidetable">
+    <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
+        <h1>WORKOUTS COMPLETED</h1>
+        <table class="table attendance-table">
+            <tr>
+                <td class="header week">
+                    <h2>Week</h2>
+                </td>
+                <td class="value">
+                    @Model.WeekAttendanceCount
+                </td>
+                <td class="header month"><h2>Month</h2></td>
+                <td class="value">
+                    @Model.MonthAttendanceCount
+                </td>
+            </tr>
+            <tr>
+                <td class="header year"><h2>Year</h2></td>
+                <td class="value">
+                    @Model.YearAttendanceCount
+                </td>
+                <td class="header all-time"><h2>All Time</h2></td>
+                <td class="value">
+                    @Model.AllAttendanceCount
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
