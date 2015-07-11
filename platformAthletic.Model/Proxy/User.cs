@@ -692,6 +692,10 @@ namespace platformAthletic.Model
         {
             if (user != null)
             {
+                if (user.ID == ID)
+                {
+                    return true;
+                }
                 //private
                 if ((user.OwnTeam != null && user.OwnTeam.ID == PlayerOfTeamID) || (user.AssistantOfTeamID != null && user.AssistantOfTeamID == PlayerOfTeamID))
                 {

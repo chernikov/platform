@@ -68,6 +68,10 @@ namespace platformAthletic.Areas.Default.Controllers
                 return null;
             }
             var userInfoView = (UserInfoView)ModelMapper.Map(user, typeof(User), typeof(UserInfoView));
+            if (Request.Browser.IsMobileDevice)
+            {
+                return View("EditUserInfoMobile", userInfoView);
+            }
             return View(userInfoView);
         }
 
@@ -95,7 +99,10 @@ namespace platformAthletic.Areas.Default.Controllers
                     });
                 }
             }
-
+            if (Request.Browser.IsMobileDevice)
+            {
+                return View("EditUserInfoMobile", userInfoView);
+            }
             return View(userInfoView);
         }
 

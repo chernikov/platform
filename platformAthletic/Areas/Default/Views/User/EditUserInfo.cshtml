@@ -42,7 +42,7 @@
                 <td class="value" colspan="3">
                     <div class="@(Model.IsGradYear ? "half" : "full")">
                         <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
-                    </div> 
+                    </div>
                     <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">@Html.TextBox("GradYear", Model.GradYear)</div>
                 </td>
             </tr>
@@ -57,7 +57,7 @@
                     <td class="value" colspan="3">@Model.TeamStateName</td>
                 </tr>
             }
-            
+
         </table>
     </div>
     <div class="col-lg-4">

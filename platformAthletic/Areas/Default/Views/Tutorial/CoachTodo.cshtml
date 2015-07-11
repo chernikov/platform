@@ -3,32 +3,29 @@
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
     var noPlayers = currentUser.OwnTeam.CountPlayers == 0;
 }
-<div class="todo hidden-xs">
-    <h1>TO DO:</h1>
-    <ul class="todo-list">
-        @{
-            var i = 1;
-        }
-        @foreach (var item in Model.List)
+@{
+    var i = 1;
+}
+<li><h1 class="todo">TO DO:</h1></li>
+@foreach (var item in Model.List)
+{
+
+    <li class="todo-list-item">
+        @if (item.Solved)
         {
-            <li>
-                @if (item.Solved)
-                {
-                    <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
-                }
-                else
-                {
-                    if (i > 3 && noPlayers)
-                    {
-                        <span class="clickable forbitBtn" data-message="You must add at least one player before you can enter maxes"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></span>
-                    }
-                    else
-                    {
-                        <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
-                    }
-                }
-            </li>
-                i++;
+            <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
         }
-    </ul>
-</div> 
+        else
+        {
+            if (i > 3 && noPlayers)
+            {
+                <span class="clickable forbitBtn" data-message="You must add at least one player before you can enter maxes"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></span>
+            }
+            else
+            {
+                <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
+            }
+        }
+    </li>
+        i++;
+}

@@ -16,7 +16,7 @@
         }
         @if (currentUser.InRoles("player,individual"))
         {
-            <li class="@(controllerName == "user" ? "active" : "")"><a href="/user/@currentUser.ID"><span class="glyphicon glyphicon-user"></span> MY PAGE</a></li>
+            <li class="@(controllerName == "user" ? "active" : "")"><a href="/my-page"><span class="glyphicon glyphicon-user"></span> MY PAGE</a></li>
         }
         @if (currentUser.InRoles("coach,assistant,individual"))
         {
@@ -30,49 +30,17 @@
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
         <li class="@((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
 
-        <li class=" hidden-lg hidden-md">
-            <h1>SETTINGS</h1>
-        </li>
-        <li class="@(controllerName == "Setting" ? "open" : "") hidden-lg hidden-md">
-            <a href="/settings">SETTINGS AND INFO</a>
-        </li>
-        @if (currentUser != null && currentUser.InRoles("coach"))
+        @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
         {
-            <li class="@(controllerName == "ManageAssistant" ? "open" : "")  hidden-lg hidden-md">
-                <a href="/manage-coaches">MANAGE COACHES</a>
-            </li>
-            <li class="@(controllerName == "ManagePlayer" ? "open" : "")  hidden-lg hidden-md">
-                <a href="/manage-players">MANAGE PLAYERS</a>
-            </li>
+            @Html.Action("Todo", "Tutorial");
         }
-        @if (currentUser != null && currentUser.InRoles("coach,individual,assistant"))
-        {
-            <li class="@(controllerName == "Equipment" ? "open" : "")  hidden-lg hidden-md">
-                <a href="/equipment">EQUIPMENT LOG</a>
-            </li>
-        }
-        @if (currentUser != null && currentUser.InRoles("coach,individual"))
-        {
-            <li class="@(controllerName == "Billing" ? "open" : "")  hidden-lg hidden-md">
-                <a href="/billing">BILLING</a>
-            </li>
-        }
-
     </ul>
-    @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
-    {
-        @Html.Action("Todo", "Tutorial");
-    }
-    else
-    {
-        <div class="in-touch hidden-xs">
-            <div class="title">GET IN TOUCH</div>
-            <div class="phone">
-                (855) 862-5502
-            </div>
-
+    <div class="in-touch hidden-xs">
+        <div class="title">GET IN TOUCH</div>
+        <div class="phone">
+            (855) 862-5502
         </div>
-    }
+    </div>
     <div class="copyright text-center hidden-xs">
         COPYRIGHT 2015<br />
         PLATFORM ATHLETICS, LLC.<br />

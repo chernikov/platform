@@ -1698,6 +1698,7 @@
     <Content Include="Areas\Default\Views\Tutorial\Individual_02.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\Individual_09.cshtml" />
     <Content Include="Areas\Default\Views\User\RestrictedUser.cshtml" />
+    <Content Include="Areas\Default\Views\User\EditUserInfoMobile.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1830,7 +1831,6 @@
     <Content Include="Areas\Admin\Views\TrainingDay\EditCellValue.cshtml" />
     <Content Include="Areas\Admin\Views\TrainingDay\EditBatch.cshtml" />
     <Content Include="Areas\Default\Views\Home\Join.cshtml" />
-    <Content Include="Areas\Default\Views\Shared\Menu.cshtml" />
     <Content Include="Areas\Admin\Views\State\Index.cshtml" />
     <Content Include="Areas\Admin\Views\State\Edit.cshtml" />
     <Content Include="Areas\Default\Views\Account\RegisterTeam.cshtml" />
@@ -1903,7 +1903,6 @@
     <Content Include="Areas\Admin\Views\Aphorism\Edit.cshtml" />
     <Content Include="Areas\Default\Views\Page\Privacy.cshtml" />
     <Content Include="Areas\Default\Views\Page\TermAndCondition.cshtml" />
-    <Content Include="Areas\Default\Views\Shared\BottomMenu.cshtml" />
     <Content Include="Areas\Admin\Views\SBCValue\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SBCValue\Edit.cshtml" />
     <Content Include="Areas\Default\Views\Invoice\Index.cshtml" />

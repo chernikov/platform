@@ -33,7 +33,7 @@
             _this.changeSbc($(this));
         });
 
-        $("#UserVideoWrapper").mCustomScrollbar({ theme: "minimal-dark", axis: "x", setWidth: "100%" });
+        $("#UserVideoContent").mCustomScrollbar({ theme: "minimal-dark", axis: "x", setWidth: "100%" });
 
         $(".videoUpload").click(function () {
             _this.showUploadVideo();

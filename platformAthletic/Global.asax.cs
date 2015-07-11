@@ -106,7 +106,7 @@ namespace platformAthletic
         {
             if (Request.IsLocal) //or any number of other checks, up to you 
             { 
-                MiniProfiler.Start(); 
+            //    MiniProfiler.Start(); 
             } 
             var ajaxRequestHeader = Request.Headers.Get("X-Requested-With");
             var enableHttps = bool.Parse(ConfigurationManager.AppSettings["EnableHttps"]);

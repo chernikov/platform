@@ -2,21 +2,18 @@
 @{
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
-<div class="todo">
-    <h1>TO DO:</h1>
-    <ul class="todo-list">
-        @foreach (var item in Model.List)
+<li><h1 class="todo">TO DO:</h1></li>
+@foreach (var item in Model.List)
+{
+   
+    <li class="todo-list-item">
+        @if (item.Solved)
         {
-            <li>
-                @if (item.Solved)
-                {
-                    <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
-                }
-                else
-                {
-                    <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
-                }
-            </li>
+            <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
         }
-    </ul>
-</div> 
+        else
+        {
+            <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
+        }
+    </li>
+    }

@@ -1,10 +1,10 @@
-﻿@model User 
+﻿@model User
 @{
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
-<div class="col-lg-8 no-padding-left">
+<div class="col-lg-8 no-padding-left col-xs-12">
     <table class="table info-table">
-        <tr>
+        <tr class="hidden-xs">
             @* image *@
             <td rowspan="7" class="image">
                 <img src="@(Model.FullAvatarPath)?w=200&h=200&mode=crop&scale=both" />
@@ -12,44 +12,88 @@
             <td class="header">NAME</td>
             <td class="value name" colspan="3">@Model.FirstName @Model.LastName</td>
         </tr>
-        <tr>
+        <tr class="hidden-xs">
             <td class="header">GENDER/AGE</td>
             <td class="value" colspan="3">@Model.GenderStr/@Model.Age</td>
         </tr>
-        <tr>
+        <tr class="hidden-xs">
             <td class="header">SPORT</td>
             <td class="value">@(Model.FirstFieldPosition != null ? Model.FirstFieldPosition.Sport.Name : "")</td>
             <td class="value">@(Model.SecondFieldPosition != null ? Model.SecondFieldPosition.Sport.Name : "")</td>
             <td class="value">@(Model.ThirdFieldPosition != null ? Model.ThirdFieldPosition.Sport.Name : "")</td>
         </tr>
-        <tr>
+        <tr class="hidden-xs">
             <td class="header">POSITION</td>
             <td class="value">@(Model.FirstFieldPosition != null && Model.FirstFieldPosition.FieldPosition != null ? Model.FirstFieldPosition.FieldPosition.Name : "")</td>
             <td class="value">@(Model.SecondFieldPosition != null && Model.SecondFieldPosition.FieldPosition != null ? Model.SecondFieldPosition.FieldPosition.Name : "")</td>
             <td class="value">@(Model.ThirdFieldPosition != null && Model.ThirdFieldPosition.FieldPosition != null ? Model.ThirdFieldPosition.FieldPosition.Name : "")</td>
         </tr>
-        <tr>
+        <tr class="hidden-xs">
             <td class="header">LEVEL</td>
             <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
         </tr>
-        @if (Model.InRoles("player")) 
-        { 
-            <tr>
+        @if (Model.InRoles("player"))
+        {
+            <tr class="hidden-xs">
                 <td class="header">SCHOOL</td>
                 <td class="value" colspan="3">@Model.Team.Name</td>
             </tr>
-            <tr>
+            <tr class="hidden-xs">
                 <td class="header">STATE</td>
                 <td class="value" colspan="3">@Model.Team.State.Name</td>
             </tr>
         }
+        <tr class="hidden-lg hidden-md hidden-sm">
+            @* image *@
+            <td rowspan="9" class="image">
+                <img src="@(Model.FullAvatarPath)?w=200&h=200&mode=crop&scale=both" />
+            </td>
+            <td class="value name">@Model.FirstName @Model.LastName</td>
+        </tr>
+        <tr class="hidden-lg hidden-md hidden-sm">
+            <td class="value"><strong>@Model.GenderStr/@Model.Age</strong></td>
+        </tr>
+        @if (Model.FirstFieldPosition != null)
+        {
+            <tr class="hidden-lg hidden-md hidden-sm">
+                <td class="value"><strong>@Model.FirstFieldPosition.Sport.Name: </strong> @(Model.FirstFieldPosition != null && Model.FirstFieldPosition.FieldPosition != null ? Model.FirstFieldPosition.FieldPosition.Name : "")</td>
+            </tr>
+        }
+        @if (Model.SecondFieldPosition != null)
+        {
+            <tr class="hidden-lg hidden-md hidden-sm">
+                <td class="value"><strong>@Model.SecondFieldPosition.Sport.Name: </strong> @(Model.SecondFieldPosition != null && Model.SecondFieldPosition.FieldPosition != null ? Model.SecondFieldPosition.FieldPosition.Name : "")</td>
+            </tr>
+        }
+        @if (Model.ThirdFieldPosition != null)
+        {
+            <tr class="hidden-lg hidden-md hidden-sm">
+                <td class="value"><strong>@Model.ThirdFieldPosition.Sport.Name: </strong> @(Model.ThirdFieldPosition != null && Model.ThirdFieldPosition.FieldPosition != null ? Model.ThirdFieldPosition.FieldPosition.Name : "")</td>
+            </tr>
+        }
+        @if (Model.LevelID != null)
+        {
+            <tr class="hidden-lg hidden-md hidden-sm">
+                <td class="value"><strong>Level:</strong> @Model.Level.Name</td>
+            </tr>
+        }
+        
+        @if (Model.InRoles("player"))
+        {
+            <tr class="hidden-lg hidden-md hidden-sm">
+                <td class="value"><strong>School:</strong> @Model.Team.Name</td>
+            </tr>
+            <tr class="hidden-lg  hidden-md hidden-sm">
+                <td class="value"><strong>State:</strong> @Model.Team.State.Name</td>
+            </tr>
+        }
     </table>
 </div>
-<div class="col-lg-4">
+<div class="col-lg-4 col-xs-12">
     <div class="row">
         <div class="col-sm-12" id="SbcWrapper">
             @* sbc-data-table *@
-            @Html.Action("SbcData", "User", new {id = Model.ID })
+            @Html.Action("SbcData", "User", new { id = Model.ID })
         </div>
         <div class="col-sm-12">
             @* value-data-table *@
