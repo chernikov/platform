@@ -68,7 +68,7 @@
             _this.showGraph($(this).data("id"));
         });
 
-        $(".sidetable .graph").click(function () {
+        $(document).on("click", ".sidetable .graph", function () {
             _this.showGraph($(this).data("id"));
         });
 

@@ -1,0 +1,82 @@
+﻿@model platformAthletic.Models.Info.ProgressInfo
+
+<div class="panel panel-default sidetable">
+    <div class="panel-body no-padding-top no-padding-left no-padding-right no-padding-bottom">
+        <div class="pull-right">
+            <div class="clickable graph" data-id="@Model.User.ID"></div>
+        </div>
+        <h1>Progress summary</h1>
+        <table class="table progress-table">
+            <tr>
+                <td class="header squat">
+                    <h2>Squat</h2>
+                </td>
+                <td class="value">
+                    @{
+                        var squat = Model.Squat;
+                    }
+                    @if (squat > 0)
+                    {
+                        <span class="sign plus">+</span>
+                    }
+                    else if(squat < 0)
+                    {
+                        <span class="sign minus">-</span>
+                    }
+                    <span class="value @(squat > 0 ? "plus" : "") @(squat < 0 ? "minus" : "")">@Model.Squat</span>
+                    <span class="lbs">lbs</span>
+                   
+                </td>
+                <td class="header bench"><h2>Bench</h2></td>
+                <td class="value">
+                    @{
+                        var bench = Model.Bench;
+                    }
+                    @if (bench > 0)
+                    {
+                        <span class="sign plus">+</span>
+                    }
+                    else if (bench < 0)
+                    {
+                        <span class="sign minus">-</span>
+                    }
+                    <span class="value @(bench > 0 ? "plus" : "") @(bench < 0 ? "minus" : "")">@Model.Bench</span>
+                    <span class="lbs">lbs</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="header clean"><h2>Clean</h2></td>
+                <td class="value">
+                    @{
+                        var clean = Model.Clean;
+                    }
+                    @if (clean > 0)
+                    {
+                        <span class="sign plus">+</span>
+                    }
+                    else if (clean < 0)
+                    {
+                        <span class="sign minus">-</span>
+                    }<span class="value @(clean > 0 ? "plus" : "") @(clean < 0 ? "minus" : "")">@Model.Clean</span>
+                    <span class="lbs">lbs</span>
+                </td>
+                <td class="header total"><h2>Total</h2></td>
+                <td class="value">
+                    @{
+                        var total = Model.Total;
+                    }
+                    @if (total > 0)
+                    {
+                        <span class="sign plus">+</span>
+                    }
+                    else if (total < 0)
+                    {
+                        <span class="sign minus">-</span>
+                    }
+                    <span class="value @(total > 0 ? "plus" : "") @(total < 0 ? "minus" : "")">@Model.Total</span>
+                    <span class="lbs">lbs</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

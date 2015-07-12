@@ -109,7 +109,10 @@ namespace platformAthletic.Areas.Default.Controllers
             if (user != null)
             {
                 var progressInfo = new ProgressInfo(user, startDate, endDate);
-                
+                if (Request.Browser.IsMobileDevice)
+                {
+                    return View("ProgressSummaryMobile", progressInfo);
+                }
                 return View(progressInfo);
             }
             return null;

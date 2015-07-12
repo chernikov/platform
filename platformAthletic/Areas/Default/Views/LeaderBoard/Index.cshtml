@@ -47,49 +47,51 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active">
                         <form class="form-inline search-wrapper">
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("Gender", Model.Search.SelectListGender, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("Age", Model.Search.SelectListAge, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("LevelID", Model.Search.SelectListLevelID, new { @class = "form-control filter" })
-                                    <div></div>
-                                </div>
-                            </div>
-                            @if (Model.Search.ShowGradYear)
-                            {
-                                <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-xs-6 col-sm-4">
                                     <div class="select-style">
-                                        @Html.DropDownList("GradYear", Model.Search.SelectListGradYears, new { @class = "form-control filter" })
+                                        @Html.DropDownList("SportID", Model.Search.SelectListSportID, new { @class = "form-control filter" })
                                         <div></div>
                                     </div>
                                 </div>
-                            }
-                            <div class="form-group">
-                                <div class="select-style">
-                                    @Html.DropDownList("StateID", Model.Search.SelectListStateID, new { @class = "form-control filter" })
-                                    <div></div>
+                                <div class="form-group col-xs-6 col-sm-4">
+                                    <div class="select-style">
+                                        @Html.DropDownList("FieldPositionID", Model.Search.SelectListFieldPositionID, new { @class = "form-control filter" })
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-6 col-sm-4">
+                                    <div class="select-style">
+                                        @Html.DropDownList("Gender", Model.Search.SelectListGender, new { @class = "form-control filter" })
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-6 col-sm-4">
+                                    <div class="select-style">
+                                        @Html.DropDownList("Age", Model.Search.SelectListAge, new { @class = "form-control filter" })
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-6 col-sm-4">
+                                    <div class="select-style">
+                                        @Html.DropDownList("LevelID", Model.Search.SelectListLevelID, new { @class = "form-control filter" })
+                                        <div></div>
+                                    </div>
+                                </div>
+                                @if (Model.Search.ShowGradYear)
+                                {
+                                    <div class="form-group col-xs-6 col-sm-4">
+                                        <div class="select-style">
+                                            @Html.DropDownList("GradYear", Model.Search.SelectListGradYears, new { @class = "form-control filter" })
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="form-group col-xs-6 col-sm-4">
+                                    <div class="select-style">
+                                        @Html.DropDownList("StateID", Model.Search.SelectListStateID, new { @class = "form-control filter" })
+                                        <div></div>
+                                    </div>
                                 </div>
                             </div>
                         </form>

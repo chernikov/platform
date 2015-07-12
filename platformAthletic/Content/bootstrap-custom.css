@@ -1674,6 +1674,7 @@ h1, h2, h3 {
 }
 
     .report-wrapper .search-wrapper {
+        height: 41px;
     }
 
 @media(max-width: 1000px) {
@@ -1695,8 +1696,8 @@ h1, h2, h3 {
 }
 
 .report-wrapper .search-wrapper .form-group {
-    margin-right: 20px;
     margin-bottom: 10px;
+    padding: 0 5px 0 5px;
 }
 
 @media(max-width:767px) {
@@ -1986,6 +1987,39 @@ h1, h2, h3 {
     }
 }
 
+@media(max-width:767px) {
+
+
+    .report-wrapper.leaderboard .search-wrapper .input-group {
+        width: 100%;
+    }
+
+        .report-wrapper.leaderboard .search-wrapper .input-group .form-control {
+            width: 100%;
+        }
+        
+    .report-wrapper .table .top-list-item td > span {
+        width: auto;
+        text-align: center;
+        padding : 7px 2px;
+        margin : 0;
+    }
+    .report-wrapper .table .name span  {
+        max-width :none;
+    }
+    .pagination > li {
+        font-size : 10px;
+    }
+    .pagination > li > a, .pagination > li > span {
+        padding : 4px 3px;
+        margin-left : 2px;
+    }
+     .pagination > li > a.arrow-left span, .pagination > li > span.arrow-left span,
+    .pagination > li > a.arrow-right span, .pagination > li > span.arrow-right span {
+        height : 14px;
+    }
+}
+
 .report-wrapper .sidetable {
     margin-top: 40px;
 }
@@ -2052,21 +2086,24 @@ h1, h2, h3 {
         color: #495b6c;
     }
 
-@media(max-width:767px) 
-{
+@media(max-width:767px) {
     .report-wrapper .attendance-table td.header {
-        height : 56px;
+        height: 56px;
     }
+
     .report-wrapper .attendance-table td.value {
-        font-size : 24px;
+        font-size: 24px;
     }
+
     .report-wrapper .attendance-table td {
-        width : 25%;
+        width: 25%;
     }
-    .report-wrapper .attendance-table td.header h2 {
-        margin-top : 66px;
-    }
+
+        .report-wrapper .attendance-table td.header h2 {
+            margin-top: 66px;
+        }
 }
+
 .report-wrapper .progress-table {
     margin-bottom: 0px;
 }
@@ -2089,21 +2126,27 @@ h1, h2, h3 {
                 text-transform: uppercase;
             }
 
-    .report-wrapper .progress-table .header.squat {
-        background: #60b1c2 url("/Content/img/squat-icon.png") no-repeat center center;
+    .report-wrapper .progress-table .header {
+        background-color: #60b1c2;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 
-    .report-wrapper .progress-table .header.bench {
-        background: #60b1c2 url("/Content/img/bench-icon.png") no-repeat center center;
-    }
+        .report-wrapper .progress-table .header.squat {
+            background-image: url("/Content/img/squat-icon.png");
+        }
 
-    .report-wrapper .progress-table .header.clean {
-        background: #60b1c2 url("/Content/img/clean-icon.png") no-repeat center center;
-    }
+        .report-wrapper .progress-table .header.bench {
+            background-image: url("/Content/img/bench-icon.png");
+        }
 
-    .report-wrapper .progress-table .header.total {
-        background: #60b1c2 url("/Content/img/total-icon.png") no-repeat center center;
-    }
+        .report-wrapper .progress-table .header.clean {
+            background-image: url("/Content/img/clean-icon.png");
+        }
+
+        .report-wrapper .progress-table .header.total {
+            background-image: url("/Content/img/total-icon.png");
+        }
 
     .report-wrapper .progress-table tr:nth-child(2n+1) td.value {
         background-color: #ebebeb;
@@ -2140,6 +2183,21 @@ h1, h2, h3 {
         border-right: none;
         color: #495b6c;
     }
+
+@media(max-width:767px) {
+    .report-wrapper .progress-table td {
+        width: 25%;
+    }
+
+        .report-wrapper .progress-table td.header {
+            height: 52px;
+            background-size: 30px;
+        }
+
+            .report-wrapper .progress-table td.header h2 {
+                margin-top: 30px;
+            }
+}
 
 .report-attendance h2,
 .report-progress h2 {
