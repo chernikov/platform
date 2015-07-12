@@ -64,8 +64,8 @@ h1, h2, h3 {
         border-radius: 3px;
     }
 
-    .btn {
-        margin: 5px 0;
+    .btn-margin {
+        margin: 5px 5px;
     }
     .no-margin {
           margin: 0 !important;
@@ -87,6 +87,18 @@ h1, h2, h3 {
             .pagination > li > a.arrow-right span, .pagination > li > span.arrow-right span {
                 height: 14px;
             }
+
+    .no-background 
+    {
+        background : transparent;
+    }
+
+    .modal-body {
+        padding : 5px 20px;
+    }
+    .modal-footer {
+        padding : 5px 20px;
+    }
 }
 
 .calendar-arrow-left {
@@ -3077,7 +3089,7 @@ h1, h2, h3 {
     }
 
     .performance .performance-chart {
-        width: 75%;
+        width: 70%;
         height: 200px;
     }
 
@@ -3124,12 +3136,14 @@ h1, h2, h3 {
     .user-page .leaderboard-table .header.bench,
     .user-page .leaderboard-table .header.clean {
         background-size: 50px;
+
     }
 
         .user-page .leaderboard-table .header.squat h2,
         .user-page .leaderboard-table .header.bench h2,
         .user-page .leaderboard-table .header.clean h2 {
             font-size: 14px;
+            margin-top: 75px;
         }
 
     .user-page .leaderboard-table .nation {
@@ -4195,6 +4209,7 @@ hr.video {
         font-weight: bold;
         color: #fc8675;
         text-align: center;
+        padding : 0;
     }
 
 
@@ -4203,6 +4218,11 @@ hr.video {
         border-bottom: none;
     }
 
+@media(max-width:767px) {
+        .tutorial-wrapper h1 {
+            font-size : 18px;
+        }
+}
 .tutorial-highlight {
     position: relative;
     z-index: 2000;
@@ -4230,6 +4250,8 @@ hr.video {
     position: relative;
 }
 
+
+
     .tutorial-manipulate.big {
         top: -550px;
         position: relative;
@@ -4238,6 +4260,30 @@ hr.video {
 .tutorial-manipulate-2.big {
     top: -950px;
     position: relative;
+}
+
+
+@media(max-width:767px) 
+{
+    .modal-backdrop.in {
+        opacity : 0;
+    }
+    .tutorial-manipulate.big {
+        top: -1360px;
+        position: relative;
+    }
+
+    .tutorial-manipulate-7 {
+         top: -860px;
+        position: relative;
+    }
+
+    
+.tutorial-manipulate-2.big {
+    top: -1750px;
+    position: relative;
+}
+
 }
 
 
