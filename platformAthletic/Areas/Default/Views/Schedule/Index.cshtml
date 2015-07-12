@@ -25,7 +25,7 @@
                 @Html.Action("Group", "Schedule")
             }
 
-            <div class="@(currentUser.InRoles("coach,assistant") ? "col-lg-8" : "col-lg-12") col-sm-12 col-md-12 top-padding schedule-table-wrapper col-lg-height" id="TablePart">
+            <div class="@(currentUser.InRoles("coach,assistant") ? "col-lg-8" : "col-lg-12") col-sm-12 col-md-12 col-xs-12 top-padding schedule-table-wrapper col-lg-height" id="TablePart">
                 @if (currentUser.OwnTeam != null)
                 {
                     @Html.Action("Scheduling", "Schedule")

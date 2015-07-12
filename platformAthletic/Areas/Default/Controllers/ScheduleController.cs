@@ -151,6 +151,13 @@ namespace platformAthletic.Areas.Default.Controllers
                 var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
                 if (week == null)
                 {
+                    if (Request.Browser.IsMobileDevice)
+                    {
+                        return View("CalendarRowMobile", new CalendarRowInfo()
+                        {
+                            CurrentSunday = date
+                        });
+                    }
                     return View(new CalendarRowInfo()
                     {
                         CurrentSunday = date
@@ -181,6 +188,10 @@ namespace platformAthletic.Areas.Default.Controllers
                         calendarRowInfo.Macrocycle = schedule.Macrocycle;
                         calendarRowInfo.IsDefault = false;
                     }
+                }
+                if (Request.Browser.IsMobileDevice)
+                {
+                    return View("CalendarRowMobile", calendarRowInfo);
                 }
                 return View(calendarRowInfo);
             }
@@ -388,6 +399,13 @@ namespace platformAthletic.Areas.Default.Controllers
             var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
             if (week == null)
             {
+                if (Request.Browser.IsMobileDevice)
+                {
+                    return View("PersonalCalendarRowMobile", new CalendarRowInfo()
+                    {
+                        CurrentSunday = date
+                    });
+                }
                 return View(new CalendarRowInfo()
                 {
                     CurrentSunday = date
@@ -404,6 +422,10 @@ namespace platformAthletic.Areas.Default.Controllers
             if (schedule != null)
             {
                 calendarRowInfo.Macrocycle = schedule.Macrocycle;
+            }
+            if (Request.Browser.IsMobileDevice)
+            {
+                return View("PersonalCalendarRowMobile", calendarRowInfo);
             }
             return View(calendarRowInfo);
         }

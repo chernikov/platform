@@ -17,10 +17,10 @@
     </h1>
     <div class="panel attendance-panel">
         <div class="pull-left">
-            <a class="btn scheduleMonth" data-month="@Model.Month.AddMonths(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
+            <a class="btn scheduleMonth" data-month="@Model.Month.AddMonths(-1)"><span class="calendar-arrow-left"></span></a>
         </div>
         <div class="pull-right">
-            <a class="btn scheduleMonth" data-month="@Model.Month.AddMonths(1)"><span class="glyphicon glyphicon-arrow-right"></span></a>
+            <a class="btn scheduleMonth" data-month="@Model.Month.AddMonths(1)"><span class="calendar-arrow-right"></span></a>
         </div>
         <h1 class="text-center">@Model.Month.ToString("MMMM yyyy").ToUpper()</h1>
     </div>

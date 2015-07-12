@@ -5,8 +5,8 @@
     this.init = function () {
         $("#toggleSlideButton").click(function () {
             $("#GroupPart").toggleClass("collapsed");
-            $("#toggleSlideButton .glyphicon").toggleClass("glyphicon-menu-left");
-            $("#toggleSlideButton .glyphicon").toggleClass("glyphicon-menu-right");
+            $("#toggleSlideButton .switch-button").toggleClass("menu-left");
+            $("#toggleSlideButton .switch-button").toggleClass("menu-right");
             $("#TablePart").toggleClass("col-lg-12");
             $("#TablePart").toggleClass("col-lg-8");
         });

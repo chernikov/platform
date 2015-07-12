@@ -5,13 +5,13 @@
 @if (Model.Macrocycle != null)
 {
     <tr class="edit-wrapper">
-        <td >
+        <td colspan="2">
             <button class="edit-week" data-id="@Model.NumberOfWeek" data-date="@Model.CurrentSunday" data-macrocycle="@Model.Macrocycle.ID">
                 Edit Week
                 <div class="drop-down"></div>
             </button>
         </td>
-        <td colspan="6">
+        <td colspan="5">
             <div class="week-name">
                 @Model.Macrocycle.Name
                

@@ -1701,6 +1701,8 @@
     <Content Include="Areas\Default\Views\User\EditUserInfoMobile.cshtml" />
     <Content Include="Areas\Default\Views\Report\WorkoutsMobile.cshtml" />
     <Content Include="Areas\Default\Views\Report\ProgressSummaryMobile.cshtml" />
+    <Content Include="Areas\Default\Views\Schedule\CalendarRowMobile.cshtml" />
+    <Content Include="Areas\Default\Views\Schedule\PersonalCalendarRowMobile.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
