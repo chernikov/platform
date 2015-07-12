@@ -36,13 +36,16 @@
                 <table class="table table-coaches">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="hidden-xs">
                                 NAME
                             </th>
-                            <th>
-                                EMAIL
+                            <th class="hidden-lg hidden-md hidden-sm">
+                                Name
                             </th>
                             <th>
+                                Email
+                            </th>
+                            <th class="hidden-xs">
                                 GROUP
                             </th>
                             <th>
@@ -53,13 +56,16 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td class="name">
+                                <td class="name hidden-xs">
                                     <img src="@item.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.FirstName @item.LastName</span>
                                 </td>
-                                <td>
-                                    @item.Email
+                                <td class="hidden-lg hidden-md hidden-sm">
+                                    @item.FirstName @item.LastName
                                 </td>
-                                <td>
+                                <td >
+                                    <span class="value">@item.Email</span>
+                                </td>
+                                <td class="hidden-xs">
                                     @if (item.Group != null)
                                     {
                                         @item.Group.Name
@@ -69,7 +75,6 @@
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-success editUser" data-id="@item.ID">Edit</a>
                                         <a href="#" class="btn btn-primary removeUser" data-id="@item.ID">Remove</a>
-
                                         <a href="#" class="btn btn-success btn-sm sendActivation" data-id="@item.ID">Send activation</a>
                                     </div>
                                 </td>

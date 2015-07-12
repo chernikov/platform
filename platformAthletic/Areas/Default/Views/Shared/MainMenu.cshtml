@@ -28,7 +28,13 @@
         }
         <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
-        <li class="@((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
+        
+
+        <li class="hidden-xs @((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
+
+        <li class="hidden-lg hidden-md hidden-sm @(controllerName == "Help"  ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
+        <li class="hidden-lg hidden-md hidden-sm @(controllerName == "Faq" ? "active" : "")"><a href="/faq"><span class="glyphicon glyphicon-question-sign"></span> FAQ</a></li>
+        <li class="hidden-lg hidden-md hidden-sm @(controllerName.ToLower() == "active" ? "open" : "")"><a href="/contact-us"><span class="glyphicon glyphicon-question-sign"></span> CONTACT US</a></li>
 
         @if (currentUser != null && currentUser.Mode == (int)platformAthletic.Model.User.ModeEnum.Todo)
         {

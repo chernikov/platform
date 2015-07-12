@@ -22,10 +22,10 @@
             <div class="col-lg-2 col-md-2 settings-menu no-padding-right no-padding-left hidden-xs hidden-sm">
                 @Html.Partial("SettingMenu")
             </div>
-            <div class="col-lg-10 col-md-10 billing-wrapper">
-                <div class="row margin-top">
+            <div class="col-lg-10 col-md-10 col-xs-12 billing-wrapper">
+                <div class="row padding-top">
                     <div class="col-lg-10 col-lg-offset-1">
-                        <div class="pull-right paid-till">*Subscription paid up to @Model.PaidTill.ToString("d")</div>
+                        <div class="pull-right paid-till margin-top">*Subscription paid up to @Model.PaidTill.ToString("d")</div>
                     </div>
                 </div>
                 <div class="row ">

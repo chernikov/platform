@@ -112,13 +112,13 @@
                                 <div class="setting-control">
                                     <div class="form-group">
                                         <label class="fixed-width">Control of Maxes:</label>
-                                        <label>@Html.RadioButton("SBCControl", (int)Team.SBCControlType.Coach, Model.SBCControl == (int)Team.SBCControlType.Coach) Coach </label>
-                                        <label>@Html.RadioButton("SBCControl", (int)Team.SBCControlType.CoachAndPlayer, Model.SBCControl == (int)Team.SBCControlType.CoachAndPlayer) Coach And Player</label>
+                                        <label class="select">@Html.RadioButton("SBCControl", (int)Team.SBCControlType.Coach, Model.SBCControl == (int)Team.SBCControlType.Coach) Coach </label>
+                                        <label class="select">@Html.RadioButton("SBCControl", (int)Team.SBCControlType.CoachAndPlayer, Model.SBCControl == (int)Team.SBCControlType.CoachAndPlayer) Coach And Player</label>
                                     </div>
                                     <div class="form-group">
                                         <label class="fixed-width">Control of Attendance:</label>
-                                        <label>@Html.RadioButton("SBCAttendance", (int)Team.SBCAttendanceType.Coach, Model.SBCAttendance == (int)Team.SBCAttendanceType.Coach) Coach</label>
-                                        <label>@Html.RadioButton("SBCAttendance", (int)Team.SBCAttendanceType.CoachAndPlayer, Model.SBCAttendance == (int)Team.SBCAttendanceType.CoachAndPlayer) Coach And Player</label>
+                                        <label class="select">@Html.RadioButton("SBCAttendance", (int)Team.SBCAttendanceType.Coach, Model.SBCAttendance == (int)Team.SBCAttendanceType.Coach) Coach</label>
+                                        <label class="select">@Html.RadioButton("SBCAttendance", (int)Team.SBCAttendanceType.CoachAndPlayer, Model.SBCAttendance == (int)Team.SBCAttendanceType.CoachAndPlayer) Coach And Player</label>
                                     </div>
                                 </div>
                             }

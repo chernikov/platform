@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
-                            <div class="col-lg-6 no-padding-left">
+                            <div class="col-lg-6 col-xs-6 no-padding-left">
                                 <div class="form-group">
                                     <label for="BillingInfo.ExpirationMonth"><span class="required">*</span>Expiration date</label>
                                     <div class="billing-custom-style">
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 no-padding-right">
+                            <div class="col-lg-6 col-xs-6 no-padding-right">
                                 <div class="form-group">
                                     <label for="BillingInfo.ExpirationYear">&nbsp;</label>
                                     <div class="billing-custom-style">
@@ -157,17 +157,17 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
-                            <div class="col-lg-6 no-padding-left">
+                            <div class="col-lg-6 col-xs-8 no-padding-left">
                                 <div class="form-group">
                                     <label for="BillingInfo.ExpirationMonth">Referral code</label>
                                     @Html.TextBox("BillingInfo.ReferralCode", Model.BillingInfo.ReferralCode, new { @class = "form-control" })
                                     @Html.ValidationMessage("BillingInfo.ReferralCode")
                                 </div>
                             </div>
-                            <div class="col-lg-6 no-padding-right">
+                            <div class="col-lg-6 col-xs-4 no-padding-right">
                                 <div class="form-group">
-                                    <label>&nbsp;</label>
-                                    <button class="btn btn-primary btn-apply" id="ApplyReferralCode">Apply</button>
+                                    <label >&nbsp;</label>
+                                    <button class="btn btn-primary btn-apply no-margin" id="ApplyReferralCode">Apply</button>
                                 </div>
                             </div>
                         </div>

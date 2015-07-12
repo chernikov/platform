@@ -7,7 +7,7 @@
 @Html.ValidationMessage("BillingInfo.Payment")
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-1">
+    <div class="col-lg-6 col-lg-offset-1 col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.NameOnCard"><span class="required">*</span>Name On The Card</label>
             @Html.TextBox("BillingInfo.NameOnCard", Model.NameOnCard, new { @class = "form-control" })
@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-1">
+    <div class="col-lg-6 col-lg-offset-1 col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.BillingAddress"><span class="required">*</span>Billing Address</label>
             @Html.TextBox("BillingInfo.BillingAddress", Model.BillingAddress, new { @class = "form-control" })
@@ -25,14 +25,14 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3 col-lg-offset-1">
+    <div class="col-lg-3 col-lg-offset-1 col-xs-12">
         <div class="form-group">
             <label for="FirstName"><span class="required">*</span>City</label>
             @Html.TextBox("BillingInfo.City", Model.City, new { @class = "form-control" })
             @Html.ValidationMessage("BillingInfo.City")
         </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3  col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.StateID"><span class="required">*</span> State</label>
             <div class="billing-custom-style">
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3  col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.ZipCode"><span class="required">*</span>Zip</label>
             @Html.TextBox("BillingInfo.ZipCode", Model.ZipCode, new { @class = "form-control" })
@@ -50,7 +50,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3  col-lg-offset-1">
+    <div class="col-lg-3  col-lg-offset-1  col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.CardType"><span class="required">*</span> Credit Card Type</label>
             <div class="billing-custom-style">
@@ -61,7 +61,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-1">
+    <div class="col-lg-6 col-lg-offset-1  col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.CreditCardNumber"><span class="required">*</span>Credit Card Number</label>
             @Html.TextBox("BillingInfo.CreditCardNumber", Model.HiddenCreditCardNumber, new { @class = "form-control" })
@@ -70,7 +70,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-2 col-lg-offset-1">
+    <div class="col-lg-2 col-lg-offset-1  col-xs-6">
         <div class="form-group">
             <label for="BillingInfo.ExpirationMonth"><span class="required">*</span>Exp. Date</label>
             <div class="billing-custom-style">
@@ -79,7 +79,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2  col-xs-6">
         <div class="form-group">
             <label for="BillingInfo.ExpirationYear">&nbsp;</label>
             <div class="billing-custom-style">
@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2  col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.CVC"><span class="required">*</span>CVC</label>
             @Html.TextBox("BillingInfo.CVC", Model.CVC, new { @class = "form-control" })
@@ -97,14 +97,14 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-4 col-lg-offset-1">
+    <div class="col-lg-4 col-lg-offset-1 col-xs-12">
         <div class="form-group">
             <label for="BillingInfo.ReferralCode"><span class="required">*</span>Referral Code</label>
             <div class="row">
-                <div class="col-lg-6 no-padding-left">
+                <div class="col-lg-6 no-padding-left col-xs-8">
                     @Html.TextBox("BillingInfo.ReferralCode", Model.ReferralCode, new { @class = "form-control", id = "ReferralCodeValue" })
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-xs-4">
                     <button class="btn btn-billing" id="ApplyReferralCode">Apply</button>
                 </div>
             </div>
@@ -113,7 +113,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-2 col-lg-offset-4">
+    <div class="col-lg-2 col-lg-offset-4  col-xs-12 submit">
         <div class=" pull-right">
             <button class="btn btn-primary btn-lg">SUBMIT</button>
         </div>

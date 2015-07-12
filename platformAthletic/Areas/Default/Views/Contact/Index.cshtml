@@ -21,14 +21,14 @@
             </div>
         </div>
         <div class="row settings-wrapper">
-            <div class="col-lg-2 col-md-2 settings-menu height no-padding-right no-padding-left">
+            <div class="col-lg-2 col-md-2 col-sm-4 settings-menu height no-padding-right no-padding-left hidden-xs">
                 @Html.Partial("HelpMenu")
             </div>
-            <div class="col-lg-10 col-md-10 help-wrapper">
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 help-wrapper">
                 <h2>Contact Us</h2>
                 <hr />
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-8 col-md-7">
                         @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
                         {
                             @Html.Hidden("ID", Model.ID)
@@ -92,7 +92,7 @@
                             </div>
                         }
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4 col-md-5">
                         <div class="contact-info-wrapper">
                             <h1>Phone & Email</h1>
                             <h3>(855) 862-5502</h3>
