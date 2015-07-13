@@ -16,7 +16,8 @@
                 @Model.Macrocycle.Name
 
             </div>
-            @if (diffWeeks > -13 && diffWeeks < 12)
+            @*@if (diffWeeks > -13 && diffWeeks < 12)*@
+            @if (diffWeeks > -13)
             {
                 <a class="preview-workout" target="_blank" href="@Url.Action("Preview", "Table", new {macrocycleId = Model.Macrocycle.ID})">View Workout</a>
             }

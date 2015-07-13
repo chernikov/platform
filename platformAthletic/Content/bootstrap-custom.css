@@ -20,6 +20,9 @@ h1, h2, h3 {
     padding-top: 20px;
     padding-bottom: 10px;
 }
+th {
+    font-weight:normal;
+}
 
 .required {
     color: #df0000;
@@ -39,6 +42,12 @@ h1, h2, h3 {
 .frame-height {
     height: 100%;
 }
+
+
+.tcenter {
+    text-align: center;
+}
+
 
 @media (min-width: 992px) {
     .modal-lg {
@@ -1833,7 +1842,7 @@ h1, h2, h3 {
 }
 
 .report-wrapper .table thead th {
-    background-color: #60b1c2;
+    background-color: #495B6C;
     color: #fff;
     border: none;
     padding-left: 30px;
@@ -1843,11 +1852,15 @@ h1, h2, h3 {
     white-space: nowrap;
 }
 
+
+
 @media (max-width: 1012px) {
     .report-wrapper .table thead th {
         max-width: 40px;
     }
 }
+
+
 
 @media (max-width: 767px) {
     .report-wrapper .table {
@@ -1903,7 +1916,7 @@ h1, h2, h3 {
 
         .report-wrapper .table .top-list-item td.rank > span {
             width: auto;
-            text-align: right;
+            text-align: center;
         }
 
         .report-wrapper .table .top-list-item td.name > span {
@@ -1937,7 +1950,7 @@ h1, h2, h3 {
     color: #495b6c;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: normal;
 }
 
     .report-wrapper .table .item td {
@@ -1964,7 +1977,8 @@ h1, h2, h3 {
 
     .report-wrapper .table .item td.rank > span {
         width: auto;
-        text-align: right;
+        text-align: center;
+        margin-left: 0px;
     }
 
     .report-wrapper .table .item td.name > span {
@@ -2010,6 +2024,11 @@ h1, h2, h3 {
         padding: 7px 2px;
         margin: 0 0 0 0px;
     }
+}
+
+
+.report-header th:first-child {
+    padding-left: 15px!important;
 }
 
 
@@ -2319,8 +2338,6 @@ h1, h2, h3 {
     width: 100%;
     height: 400px;
 }
-
-
 
 .select-style {
     position: relative;
