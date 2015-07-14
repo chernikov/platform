@@ -216,17 +216,23 @@ namespace platformAthletic.Areas.Default.Controllers
             return Json(new { result = "error" }, JsonRequestBehavior.AllowGet);
         }
 
-      
-        public ActionResult Calendar(DateTime date)
-        {
-            return View(date);
-        }
 
-        public ActionResult CalendarBody(DateTime date)
+        public ActionResult Calendar(DateTime date, DateTime selectedDate)
         {
             var attendanceDateInfo = new AttendanceDateInfo()
             {
-                Date = date
+                Date = date,
+                SelectedDate = selectedDate
+            };
+            return View(attendanceDateInfo);
+        }
+
+        public ActionResult CalendarBody(DateTime date, DateTime selectedDate)
+        {
+            var attendanceDateInfo = new AttendanceDateInfo()
+            {
+                Date = date,
+                SelectedDate = selectedDate
             };
             return View(attendanceDateInfo);
         }

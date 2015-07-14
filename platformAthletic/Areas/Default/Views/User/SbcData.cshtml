@@ -1,4 +1,4 @@
-﻿@model User 
+﻿@model User
 @{
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
@@ -17,11 +17,12 @@
                 @if (Model.CanEditSBC(currentUser))
                 {
                     <span class="glyphicon-minus glyphicon minus clickable" data-value="-5" data-type="Squat"></span>
-                }
-                <span class="value">@Model.Squat</span>
-                @if (Model.CanEditSBC(currentUser))
-                {
+                    <span class="value clickable sbcChange" data-id="@Model.ID">@Model.Squat</span>
                     <span class="glyphicon-plus glyphicon plus clickable" data-value="5" data-type="Squat"></span>
+                }
+                else
+                {
+                    <span class="value">@Model.Squat</span>
                 }
             </td>
             <td>
@@ -29,25 +30,26 @@
                 {
 
                     <span class="glyphicon-minus glyphicon minus clickable" data-value="-5" data-type="Bench"></span>
-                }
-                <span class="value">@Model.Bench</span>
-                @if (Model.CanEditSBC(currentUser))
-                {
-
+                    <span class="value clickable sbcChange" data-id="@Model.ID">@Model.Bench</span>
                     <span class="glyphicon-plus glyphicon plus clickable" data-value="5" data-type="Bench"></span>
                 }
+                else
+                {
+                    <span class="value">@Model.Bench</span>
+                }
+
             </td>
             <td>
                 @if (Model.CanEditSBC(currentUser))
                 {
 
                     <span class="glyphicon-minus glyphicon minus clickable" data-value="-5" data-type="Clean"></span>
-                }
-                <span class="value">@Model.Clean</span>
-                @if (Model.CanEditSBC(currentUser))
-                {
-
+                    <span class="value clickable sbcChange" data-id="@Model.ID">@Model.Clean</span>
                     <span class="glyphicon-plus glyphicon plus clickable" data-value="5" data-type="Clean"></span>
+                }
+                else
+                {
+                    <span class="value">@Model.Clean</span>
                 }
             </td>
             <td>

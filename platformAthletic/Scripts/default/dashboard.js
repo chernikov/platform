@@ -68,7 +68,7 @@ function Dashboard() {
         });
 
         $(document).on("click", ".sbc-player-change", function () {
-            var parent = $(this).closest("dd");
+            var parent = $(this).closest(".item");
             var valueWrapper = $(".value", parent);
             var id = $(this).data("id");
             var type = $(this).data("type");
@@ -94,17 +94,26 @@ function Dashboard() {
                 date : $("#CurrentDate").data("date"),
                 attendance: $(this).prop('checked')
             };
+            var id = $(this).data("id");
             $.ajax({
                 type: "POST",
                 url: "/dashboard/SetAttendance",
                 data: ajaxData,
                 success: function (data) {
+                    _this.showUserInfo(id);
                 }
             });
         });
         if ($(".playerItem").length > 0) {
             this.showUserInfo($(".playerItem").first().data("id"));
         }
+
+        $(document).on("click", ".sbcChange", function () {
+            var id = $(this).data("id");
+            userSbc.showModal(id, function () {
+                _this.showUserInfo(id);
+            });
+        });
     }
 
     this.substringMatcher = function (strs) {

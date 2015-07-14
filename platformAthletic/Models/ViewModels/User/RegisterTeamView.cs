@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using platformAthletic.Attributes.Validation;
 using platformAthletic.Model;
+using System.ComponentModel;
 
 namespace platformAthletic.Models.ViewModels.User
 {
@@ -30,9 +31,11 @@ namespace platformAthletic.Models.ViewModels.User
         }
 
         [Required]
+        [DisplayName("First name")]
         public string FirstName { get; set; }
 
         [Required]
+        [DisplayName("Last name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Enter Phone Number")]

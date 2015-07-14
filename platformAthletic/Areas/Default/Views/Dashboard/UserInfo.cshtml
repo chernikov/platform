@@ -36,7 +36,7 @@
                         <div class="header-wrp">SQUAT</div>
                         <div class="value-wrp">
                             <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="-5">-</button>
-                            <div class="value">@Model.Squat</div>
+                            <div class="value sbcChange clickable" data-id="@Model.ID">@Model.Squat</div>
                             <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="squat" data-value="5">+</button>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <div class="header-wrp">BENCH</div>
                         <div class="value-wrp">
                             <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="-5">-</button>
-                            <div class="value">@Model.Bench</div>
+                            <div class="value sbcChange clickable" data-id="@Model.ID">@Model.Bench</div>
                             <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="bench" data-value="5">+</button>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                         <div class="header-wrp">CLEAN</div>
                         <div class="value-wrp">
                             <button class="btn btn-danger btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="-5">-</button>
-                            <div class="value">@Model.Clean</div>
+                            <div class="value sbcChange clickable" data-id="@Model.ID">@Model.Clean</div>
                             <button class="btn btn-green btn-xs sbc-player-change" data-id="@Model.ID" data-type="clean" data-value="5">+</button>
                         </div>
                     </div>
@@ -78,7 +78,9 @@
                         </div>
                     }
                 </div>
-                <div class="col-sm-12 col-md-12 col-xs-12 text-center">
+                </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 text-center view-profile-wrp">
                     <a href="@Url.Action("Index", "User", new {id =Model.ID })" class="btn btn-primary">VIEW PROFILE</a>
                 </div>
             </div>
@@ -186,7 +188,9 @@
 
                             </div>
                             <h1 class="performance">LAST 12 WEEKS</h1>
-                            <canvas id="PerformanceChart" class="performance-chart"></canvas>
+                            <div class="performance-chart">
+                                <canvas id="PerformanceChart"></canvas>
+                            </div>
                         </div>
                         
                     </div>

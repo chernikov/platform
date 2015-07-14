@@ -201,7 +201,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 var sData = new List<int>();
                 var bData = new List<int>();
                 var cData = new List<int>();
-                var tData = new List<int>();
                 for (int i = 0; i < 12; i++)
                 {
                     var sbc = user.SBCHistory(currentSunday);
@@ -211,7 +210,6 @@ namespace platformAthletic.Areas.Default.Controllers
                         sData.Add((int)sbc.Squat);
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
-                        tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
                     }
                     else
                     {
@@ -219,7 +217,6 @@ namespace platformAthletic.Areas.Default.Controllers
                         sData.Add(0);
                         bData.Add(0);
                         cData.Add(0);
-                        tData.Add(0);
                     }
                     currentSunday = currentSunday.AddDays(7);
                 };
@@ -262,19 +259,6 @@ namespace platformAthletic.Areas.Default.Controllers
                     pointHighlightStroke = "#60b1c2",
                     datasetFill = false,
                     data = cData
-                });
-
-                datasets.Add(new PerformanceGraphInfo()
-                {
-                    label = "Total",
-                    fillColor = "transparent",
-                    strokeColor = "#495b6c",
-                    pointColor = "#495b6c",
-                    pointStrokeColor = "#495b6c",
-                    pointHighlightFill = "#495b6c",
-                    pointHighlightStroke = "#495b6c",
-                    datasetFill = false,
-                    data = tData
                 });
                 var data = new
                 {
@@ -606,6 +590,60 @@ namespace platformAthletic.Areas.Default.Controllers
                 return Json(new { result = "ok" });
             }
             return Json(new { result = "error" });
+        }
+
+        [HttpGet]
+        public ActionResult UserSbc(int id)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null && user.CanEditSBC(CurrentUser))
+            {
+                return View(user);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult UserSbc(int id, int squat, int bench, int clean)
+        {
+            var errors = new List<string>();
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null && user.CanEditSBC(CurrentUser))
+            {
+                if (squat % 5 == 0 && squat >= 0)
+                {
+                    Repository.SetSbcValue(id, SBCValue.SbcType.Squat, (double)squat);
+                }
+                else
+                {
+                    errors.Add("squat");
+                }
+                if (bench % 5 == 0 && bench >= 0)
+                {
+                    Repository.SetSbcValue(id, SBCValue.SbcType.Bench, (double)bench);
+                }
+                else
+                {
+                    errors.Add("bench");
+                }
+                if (clean % 5 == 0 && clean >= 0)
+                {
+                    Repository.SetSbcValue(id, SBCValue.SbcType.Clean, (double)clean);
+                }
+                else
+                {
+                    errors.Add("clean");
+                }
+                if (errors.Count == 0)
+                {
+                    return Json(new { result = "ok" });
+                }
+                else
+                {
+                    return Json(new { result = "errors", errors });
+                }
+            }
+            return null;
         }
     }
 }

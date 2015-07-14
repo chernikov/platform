@@ -59,6 +59,16 @@
         $("#ToggleAttendance").click(function () {
             _this.changeTodayAttendance($(this));
         })
+
+
+        $(document).on("click", ".sbcChange", function () {
+            var id = $(this).data("id");
+            userSbc.showModal(id, function () {
+                _this.updateSbc();
+                _this.updateSchoolRank();
+                _this.updateRank();
+            });
+        });
     }
 
     this.drawPerformance = function () {
@@ -76,10 +86,22 @@
             },
             async: false
         });
-        var myLineChart = new Chart(ctx).Line(data, {
-            animation: false,
-            bezierCurve: false,
-        });
+        if (common.isMobile()) {
+            var myLineChart = new Chart(ctx).Line(data, {
+                animation: false,
+                bezierCurve: false,
+                scaleShowVerticalLines: false,
+                responsive: true,
+                maintainAspectRatio: false,
+            });
+        } else {
+            var myLineChart = new Chart(ctx).Line(data, {
+                animation: false,
+                bezierCurve: false,
+                scaleShowVerticalLines: false,
+                responsive : true
+            });
+        }
     }
 
     this.stopEdit = function ()

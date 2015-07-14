@@ -22,7 +22,6 @@ namespace platformAthletic.Model
             if (instance.ID == 0)
             {
                 PersonalSchedule exist = null;
-
                 exist = Db.PersonalSchedules.FirstOrDefault(p => p.Number == instance.Number 
                     && p.UserSeasonID == instance.UserSeasonID 
                     && p.UserID == instance.UserID);

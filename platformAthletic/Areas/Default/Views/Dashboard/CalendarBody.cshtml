@@ -1,10 +1,10 @@
-﻿@model platformAthletic.Models.Info.AttendanceDateInfo
+﻿@model AttendanceDateInfo
 <div class="panel attendance-panel">
     <div class="pull-left">
-        <a class="btn attendanceModalMonth" data-date="@Model.Date.AddMonths(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        <a class="btn attendanceModalMonth" data-date="@Model.Date.AddMonths(-1)" data-selected="@Model.SelectedDate"><span class="glyphicon glyphicon-arrow-left"></span></a>
     </div>
     <div class="pull-right">
-        <a class="btn attendanceModalMonth" data-date="@Model.Date.AddMonths(1)"><span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a class="btn attendanceModalMonth" data-date="@Model.Date.AddMonths(1)" data-selected="@Model.SelectedDate"><span class="glyphicon glyphicon-arrow-right"></span></a>
     </div>
     <h1 class="text-center">@Model.Date.ToString("MMMM yyyy").ToUpper()</h1>
 </div>
@@ -33,7 +33,8 @@
                 {
                     if (currentDate.Month == month)
                     {
-                        <td class="@(Model.Date.Date == currentDate.Date ? "selected": "")">
+                        <td class="@(currentDate.Date == Model.SelectedDate.Date ? "selected" : "")">
+
                             <span data-value="@currentDate" class="@(currentDate <= DateTime.Now.Current() ? "selectDate clickable" : "grayed")">@currentDate.Day</span>
                         </td>
                     }

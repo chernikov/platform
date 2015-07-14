@@ -4,6 +4,7 @@
     var actionName = ViewContext.RequestContext.RouteData.Values["action"] as string;
 }
 <div class="side-menu-container">
+
     <ul class="nav navbar-nav">
         <li class="@((controllerName == "Home" && actionName == "Index") ? "active" : "")">
             <a href="/">
@@ -28,7 +29,7 @@
         }
         <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
-        
+
 
         <li class="hidden-xs @((controllerName == "Help" ||controllerName == "Contact" || controllerName == "Faq") ? "active" : "")"><a href="/getting-started"><span class="glyphicon glyphicon-question-sign"></span> HELP</a></li>
 

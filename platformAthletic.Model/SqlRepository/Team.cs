@@ -23,6 +23,8 @@ namespace platformAthletic.Model
             {
                 instance.PrimaryColor = "#2b333c";
                 instance.SecondaryColor = "#ffffff";
+                instance.SBCControl = (int)Team.SBCControlType.CoachAndPlayer;
+                instance.SBCAttendance = (int)Team.SBCAttendanceType.CoachAndPlayer;
                 instance.MaxCount = 100;
                 Db.Teams.InsertOnSubmit(instance);
                 Db.Teams.Context.SubmitChanges();

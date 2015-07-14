@@ -50,7 +50,18 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 if (CurrentUser.InRoles("coach,assistant"))
                 {
-                    Repository.StartTestMode(CurrentUser.ID);
+                    if (CurrentUser.OwnTeam != null && CurrentUser.OwnTeam.Players.Any(p => !p.IsPhantom && !p.IsDeleted))
+                    {
+                        Repository.StartTodoMode(CurrentUser.ID);
+                        if (CurrentUser.OwnTeam != null && CurrentUser.OwnTeam.Players.Any(p => p.IsPhantom))
+                        {
+                            Repository.RemovePhantoms(CurrentUser.ID);
+                        }
+                    }
+                    else
+                    {
+                        Repository.StartTestMode(CurrentUser.ID);
+                    }
                 }
                 else
                 {

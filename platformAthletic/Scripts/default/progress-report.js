@@ -60,7 +60,7 @@
         $(".filter").change(function () {
             _this.filterAll();
         });
-        $(".datetime").blur(function () {
+        $(".datetime").change(function () {
             _this.filterAll();
         });
 
@@ -169,7 +169,11 @@
                 var myLineChart = new Chart(ctx).Line(data, {
                     animation: false,
                     bezierCurve: false,
+                    scaleShowVerticalLines: false,
+                    maintainAspectRatio: false,
+                    responsive : true
                 });
+
             },
         });
     }
@@ -190,6 +194,9 @@
                 var myLineChart = new Chart(ctx).Line(data, {
                     animation: false,
                     bezierCurve: false,
+                    scaleShowVerticalLines: false,
+                    maintainAspectRatio: false,
+                    responsive: true
                 });
             },
         });

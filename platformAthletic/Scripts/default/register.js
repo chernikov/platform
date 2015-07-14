@@ -16,15 +16,16 @@
             url: "/Account/ApplyReferrerCode",
             data: {
                 target: $("#Target").val(),
-                code: $("#ReferralCode").val()
+                code: $("#ReferralCodeValue").val()
             },
             beforeSend: function () {
             },
             success: function (data) {
                 $("#TotalSum").val(data.sum);
-                if (data.result == "error") {
+                if (data.result == "error")
+                {
                     $("#PromoCodeID").val("");
-
+                    $("#PromoCodeError").show();
                 } else {
                     $("#PromoCodeID").val(data.promoCode);
                 }

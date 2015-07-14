@@ -10,7 +10,8 @@
                 type: "GET",
                 url: "/dashboard/Calendar",
                 data: {
-                    date: date
+                    date: date,
+                    selectedDate: date
                 },
                 success: function (data) {
                     $("#ModalWrapper").html(data);
@@ -22,12 +23,16 @@
         $(document).on("click", ".attendanceModalMonth", function ()
         {
             var date = $(this).data("date");
+            var selectedDate = $(this).data("selected");
             if (typeof (date) != "undefined")
             {
                 $.ajax({
                     type: "GET",
                     url: "/dashboard/CalendarBody",
-                    data: { date: date },
+                    data: {
+                        date: date,
+                        selectedDate: selectedDate
+                    },
                     success: function (data)
                     {
                         $("#ModalCalendarBodyWrapper").html(data);
