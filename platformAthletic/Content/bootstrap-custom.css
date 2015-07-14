@@ -327,7 +327,6 @@ th {
 
         .platform .side-menu .navbar-nav {
             padding-bottom: 120px;
-            overflow: scroll;
         }
 
         .platform .side-menu .navbar-fixed-top {
@@ -519,6 +518,7 @@ th {
         animation: slidein 300ms forwards;
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
+        overflow: scroll;
     }
 
     .platform .side-menu-container > .navbar-nav {
@@ -3606,7 +3606,15 @@ hr.video {
                 margin: 0 5px;
             }
 
+@media(max-width:767px) {
+    .promoted-wrapper .promoted {
+        width: auto;
+    }
 
+    .promoted-wrapper .promoted .img-link img {
+        max-width : 90%;
+    }
+}
 .post-list-wrapper {
 }
 
