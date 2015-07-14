@@ -294,7 +294,6 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
             }
-
             var currentSeason = CurrentUser.SeasonByDateAndGroup(date);
             var personalSchedule = new PersonalSchedule()
             {

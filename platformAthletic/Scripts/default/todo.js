@@ -16,9 +16,7 @@ function Todo() {
         $(document).on("click", "#AddPlayersButton", function () {
             $("#ModalWrapper").empty();
             $(".modal-backdrop").remove();
-            $(".tutorial-highlight > *").unwrap();
-            $(".tutorial-manipulate").removeClass("tutorial-manipulate");
-            $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
+            common.clearOnBoarding();
         });
 
         if (typeof (schedule) != "undefined") {
@@ -34,7 +32,7 @@ function Todo() {
         }
 
 
-        $(".todo-list a").click(function () {
+        $(".todo-list-item a").click(function () {
             var href = $(this).attr("href");
             window.location = href;
             window.location.reload();
@@ -55,9 +53,7 @@ function Todo() {
                 $("#ModalWrapper").html(data);
                 $("#modalTutorial").modal();
                 $('#modalTutorial').on('hidden.bs.modal', function () {
-                    $(".tutorial-highlight > *").unwrap();
-                    $(".tutorial-manipulate").removeClass("tutorial-manipulate");
-                    $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
+                    common.clearOnBoarding();
                 });
             }
         })
@@ -82,9 +78,7 @@ function Todo() {
     }
 
     this.unwrap = function () {
-        $(".tutorial-highlight > *").unwrap();
-        $(".tutorial-manipulate").removeClass("tutorial-manipulate");
-        $(".tutorial-manipulate-2").removeClass("tutorial-manipulate-2");
+        common.clearOnBoarding();
     }
 }
 
