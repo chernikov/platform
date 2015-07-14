@@ -77,6 +77,8 @@
                                                 <div></div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group col-xs-6 col-sm-4">
                                             @Html.TextBox("StartPeriod", Model.Search.StartPeriod.HasValue ? Model.Search.StartPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime start-date", placeholder = "Start date" })
                                         </div>
@@ -89,7 +91,7 @@
                                 <table class="table report-table">
                                     <thead>
                                         <tr class="report-header">
-                                            <th class="">RANK</th>
+                                            <th>RANK</th>
                                             <th class="reverse-sortable">NAME</th>
                                             <th class="sortable"><span data-type="Week" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc ? "desc" : "")"></span>WEEK</th>
                                             <th class="sortable"><span data-type="Month" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc ? "desc" : "")"></span>MONTH</th>
