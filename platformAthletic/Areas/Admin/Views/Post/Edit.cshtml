@@ -14,6 +14,9 @@
 <p></p>
 @using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { id = "EditPostForm" }))
 {
+    <div class="error">
+        @Html.ValidationSummary(true)
+    </div>
     @Html.Hidden("ID", Model.ID)
     @Html.Hidden("TitleImagePath", Model.TitleImagePath)
     <fieldset>
@@ -40,11 +43,13 @@
 
         <div class="control-group" style="@(!string.IsNullOrWhiteSpace(Model.VideoCode) ? "" : "display:none;")" id="VideoCodeWrapper">
             @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Youtube url" })
+            @Html.ValidationMessage("VideoUrl")
         </div>
         <div class="control-group">
 
             @Html.TextArea("Text", Model.Text, new { @class = "form-control" })
         </div>
+        <div class="error pull-left" id="url-error-message">Enter the correct link from youtube.</div>
         <div class="control-group">
             <button type="submit" class="btn btn-primary">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>
             <a href="@Url.Action("Index")" class="btn btn-default">CANCEL</a>
