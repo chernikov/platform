@@ -17,7 +17,8 @@ namespace platformAthletic.Models.ViewModels
 
         public string TitleImagePath { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The Title field is required")]
+        [StringLength(50, ErrorMessage = "The length of the Title should not exceed 50 characters")]
         public string Header { get; set; }
 
         [Required]

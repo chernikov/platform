@@ -70,9 +70,29 @@
         });
     }
 
+    this.checkYoutubeURL = function (url) {
+        var parser = document.createElement("a");
+        parser.href = url;
+        if (parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com")
+            return true;
+        else
+            return false;
+
+    }
     this.SubmitPost = function () {
         if (!common.isMobile()) {
             $("#Text").val(CKEDITOR.instances.Text.getData());
+        }
+        var youtubeURL = $("#VideoUrl").val().trim();
+        if(youtubeURL.length > 0) {
+            if (_this.checkYoutubeURL(youtubeURL)) {
+                $("#url-error-message").hide();
+            }
+            else {
+                $("#url-error-message").show();
+                return false;
+            }
+            
         }
         $.ajax({
             type: "POST",

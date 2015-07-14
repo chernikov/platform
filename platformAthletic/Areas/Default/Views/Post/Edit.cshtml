@@ -3,10 +3,14 @@
 <div class="edit-post-wrapper">
     @using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { id = "EditPostForm" }))
     {
+        <div class="error">
+            @Html.ValidationSummary(true)
+        </div>
         @Html.Hidden("ID", Model.ID)
         @Html.Hidden("TitleImagePath", Model.TitleImagePath)
         <div class="form-group">
             @Html.TextBox("Header", Model.Header, new { @class = "form-control", placeholder = "Title" })
+            @Html.ValidationMessage("Header")
         </div>
         <div class="form-group">
             <div class="btn btn-primary" id="AddImage">ADD TITLE IMAGE</div>
@@ -20,10 +24,12 @@
         </div>
         <div class="form-group" style="@(!string.IsNullOrWhiteSpace(Model.VideoCode) ? "" : "display:none;")" id="VideoCodeWrapper">
             @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Youtube url" })
+            @Html.ValidationMessage("VideoUrl")
         </div>
         <div class="form-group">
             @Html.TextArea("Text", Model.Text, new { @class = "form-control", style="height:205px;" })
         </div>
+        <div class="error pull-left" id="url-error-message">Enter the correct link from youtube.</div>
         <div class="form-group pull-right">
             <button type="submit" class="btn btn-primary" id="SubmitEditPostBtn">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>
             <button type="submit" class="btn btn-default" id="CancelEditPostBtn">CANCEL</button>
