@@ -201,7 +201,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 var sData = new List<int>();
                 var bData = new List<int>();
                 var cData = new List<int>();
-                var tData = new List<int>();
                 for (int i = 0; i < 12; i++)
                 {
                     var sbc = user.SBCHistory(currentSunday);
@@ -211,7 +210,6 @@ namespace platformAthletic.Areas.Default.Controllers
                         sData.Add((int)sbc.Squat);
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
-                        tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
                     }
                     else
                     {
@@ -219,7 +217,6 @@ namespace platformAthletic.Areas.Default.Controllers
                         sData.Add(0);
                         bData.Add(0);
                         cData.Add(0);
-                        tData.Add(0);
                     }
                     currentSunday = currentSunday.AddDays(7);
                 };
@@ -262,19 +259,6 @@ namespace platformAthletic.Areas.Default.Controllers
                     pointHighlightStroke = "#60b1c2",
                     datasetFill = false,
                     data = cData
-                });
-
-                datasets.Add(new PerformanceGraphInfo()
-                {
-                    label = "Total",
-                    fillColor = "transparent",
-                    strokeColor = "#495b6c",
-                    pointColor = "#495b6c",
-                    pointStrokeColor = "#495b6c",
-                    pointHighlightFill = "#495b6c",
-                    pointHighlightStroke = "#495b6c",
-                    datasetFill = false,
-                    data = tData
                 });
                 var data = new
                 {

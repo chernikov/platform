@@ -78,7 +78,9 @@
                         </div>
                     }
                 </div>
-                <div class="col-sm-12 col-md-12 col-xs-12 text-center">
+                </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 text-center view-profile-wrp">
                     <a href="@Url.Action("Index", "User", new {id =Model.ID })" class="btn btn-primary">VIEW PROFILE</a>
                 </div>
             </div>
@@ -186,7 +188,9 @@
 
                             </div>
                             <h1 class="performance">LAST 12 WEEKS</h1>
-                            <canvas id="PerformanceChart" class="performance-chart"></canvas>
+                            <div class="performance-chart">
+                                <canvas id="PerformanceChart"></canvas>
+                            </div>
                         </div>
                         
                     </div>

@@ -61,7 +61,7 @@
         {
             _this.filterAll();
         });
-        $(".datetime").blur(function () {
+        $(".datetime").change(function () {
             _this.filterAll();
         });
 

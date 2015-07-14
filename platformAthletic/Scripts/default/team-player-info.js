@@ -25,6 +25,8 @@
                 var myLineChart = new Chart(ctx).Line(data, {
                     animation: false,
                     bezierCurve: false,
+                    scaleShowVerticalLines: false,
+                    responsive: true
                 });
                 return true;
             };

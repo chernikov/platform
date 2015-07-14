@@ -31,6 +31,17 @@ namespace platformAthletic.Areas.Default.Controllers
                     {
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
                     }
+                    if (user.Mode == (int)platformAthletic.Model.User.ModeEnum.Tutorial) {
+                        if (user.InRoles("coach,assistant"))
+                        {
+                            return RedirectToAction("Index", "Dashboard");
+                        }
+                        if (user.InRoles("player,individual"))
+                        {
+                            return RedirectToAction("MyPage", "User");
+                        }
+                    }
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState["Password"].Errors.Add(new ModelError("Wrong user id/password"));

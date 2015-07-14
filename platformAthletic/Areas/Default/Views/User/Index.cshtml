@@ -20,7 +20,7 @@
     }
 }
 <div class="container-fluid big" id="Content">
-    <div class="side-body">
+    <div class="@(currentUser != null? "side-body": "")">
         @Html.Hidden("UserID", Model.ID)
         <div class="user-page">
             <div class="breadcrumb">
@@ -45,34 +45,37 @@
                                 <div class="col-lg-12">
                                     <div class="pull-right">
                                         @* buttons*@
-                                        @if (Model.CanEditOwnData(currentUser))
+                                        @if (currentUser != null)
                                         {
-                                            <button class="btn btn-success btn-margin btn-lg edit-profile" data-mode="no-edit">EDIT PROFILE</button>
-                                        }
-                                        @if (currentUser != null && currentUser.CanViewWorkOut(Model))
-                                        {
-                                            <a href="@Url.Action("Index", "Table")" target="_blank" class="btn btn-success btn-margin btn-lg" id="ViewWorkout">VIEW WORKOUT</a>
-                                        }
-                                        @if (Model.CanEditAttendance(currentUser))
-                                        {
-                                            if (Model.HasAttendanceToday)
+                                            if (Model.CanEditOwnData(currentUser))
                                             {
-                                                <button class="btn btn-success btn-margin btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
+                                                <button class="btn btn-success btn-margin btn-lg edit-profile" data-mode="no-edit">EDIT PROFILE</button>
+                                            }
+                                            if (currentUser != null && currentUser.CanViewWorkOut(Model))
+                                            {
+                                                <a href="@Url.Action("Index", "Table")" target="_blank" class="btn btn-success btn-margin btn-lg" id="ViewWorkout">VIEW WORKOUT</a>
+                                            }
+                                            if (Model.CanEditAttendance(currentUser))
+                                            {
+                                                if (Model.HasAttendanceToday)
+                                                {
+                                                    <button class="btn btn-success btn-margin btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
+                                                        <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="btn btn-success btn-margin btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
+                                                        LOG ATTENDANCE
+                                                    </button>
+                                                }
+                                            }
+                                            else if (Model.HasAttendanceToday)
+                                            {
+                                                <button class="btn btn-margin btn-success btn-lg noclickable">
                                                     <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
                                                 </button>
                                             }
-                                            else
-                                            {
-                                                <button class="btn btn-success btn-margin btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
-                                                    LOG ATTENDANCE
-                                                </button>
-                                            }
-                                        }
-                                        else if (Model.HasAttendanceToday)
-                                        {
-                                            <button class="btn btn-margin btn-success btn-lg noclickable">
-                                                <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
-                                            </button>
                                         }
                                     </div>
                                     <h1 class="player-info">PLAYER INFORMATION</h1>
@@ -91,11 +94,11 @@
                     <div class="panel panel-default">
                         <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
                             <div class="left-padding right-padding">
-                                @if (Model.InRoles("player")) 
-                                { 
-                                <div class="pull-right">
-                                    <a href="@Url.Action("Progress", "Report")" class="btn btn-success btn-large">REPORTS</a>
-                                </div>
+                                @if (currentUser != null && Model.InRoles("player"))
+                                {
+                                    <div class="pull-right">
+                                        <a href="@Url.Action("Progress", "Report")" class="btn btn-success btn-large">REPORTS</a>
+                                    </div>
                                 }
                                 <h1>PERFORMANCE <span>Last 12 weeks</span></h1>
                             </div>
@@ -104,7 +107,9 @@
                                 <div class="row">
                                     <div class="col-lg-12 no-padding-right">
                                         @* chart *@
-                                        <canvas id="PerformanceChart" class="performance-chart" width="590" height="256"></canvas>
+                                        <div class="performance-chart">
+                                            <canvas id="PerformanceChart"></canvas>
+                                        </div>
                                         @* changes *@
                                         <div class="pull-right perfomance-change">
                                             <div class="badge badge-performance squat">
@@ -117,11 +122,11 @@
                                                     }
                                                     @if (squat > 0)
                                                     {
-                                                        <text>+</text>@squat
+                                                        <text>+@squat</text>
                                                     }
                                                     else
                                                     {
-                                                        @squat
+                                                        <text>@squat</text>
                                                     }
                                                 </h1>
                                             </div>
@@ -135,11 +140,12 @@
                                                     }
                                                     @if (bench > 0)
                                                     {
-                                                        <text>+</text>@bench
+                                                        <text>+@bench</text>
+
                                                     }
                                                     else
                                                     {
-                                                        @bench
+                                                        <text>@bench</text>
                                                     }
                                                 </h1>
                                             </div>
@@ -153,13 +159,12 @@
                                                     }
                                                     @if (clean > 0)
                                                     {
-                                                        <text>+</text>@clean
+                                                        <text>+@clean</text>
 
                                                     }
                                                     else
                                                     {
-                                                        @clean
-
+                                                        <text>@clean</text>
                                                     }
                                                 </h1>
                                             </div>
@@ -173,11 +178,11 @@
                                                     }
                                                     @if (total > 0)
                                                     {
-                                                        <text>+</text>@total
+                                                        <text>+@total</text>
                                                     }
                                                     else
                                                     {
-                                                        @total
+                                                        <text>@total</text>
                                                     }
                                                 </h1>
                                             </div>
@@ -219,8 +224,11 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <div class="text-center hidden-xs">
-                                        <div class="btn btn-warning" id="ViewHistory"><span class="glyphicon glyphicon-calendar"></span> VIEW HISTORY</div>
+                                    <div class="text-center">
+                                        @if (currentUser != null)
+                                        {
+                                            <div class="btn btn-warning" id="ViewHistory"><span class="glyphicon glyphicon-calendar"></span> VIEW HISTORY</div>
+                                        }
                                     </div>
                                 </div>
                             </div>

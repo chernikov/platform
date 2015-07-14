@@ -62,7 +62,7 @@ namespace platformAthletic.Areas.Default.Controllers
                         (u, format) => format,
                         (u, format) => string.Format(format, u.Email, u.Password),
                         user);
-                    Repository.StartNormalMode(user.ID);
+                    Repository.StartTutorial(user.ID);
                 }
                 else
                 {

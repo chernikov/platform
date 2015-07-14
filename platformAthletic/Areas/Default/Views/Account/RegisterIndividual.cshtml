@@ -160,8 +160,10 @@
                             <div class="col-lg-6 col-xs-8 no-padding-left">
                                 <div class="form-group">
                                     <label for="BillingInfo.ExpirationMonth">Referral code</label>
-                                    @Html.TextBox("BillingInfo.ReferralCode", Model.BillingInfo.ReferralCode, new { @class = "form-control" })
-                                    @Html.ValidationMessage("BillingInfo.ReferralCode")
+                                    @Html.TextBox("BillingInfo.ReferralCode", Model.BillingInfo.ReferralCode, new { @class = "form-control", id = "ReferralCodeValue" })
+                                    <div class="field-validation-error" id="PromoCodeError" style="display :none;">
+                                        Referral code is invalid
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-xs-4 no-padding-right">

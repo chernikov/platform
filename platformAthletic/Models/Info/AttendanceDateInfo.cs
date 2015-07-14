@@ -9,6 +9,8 @@ namespace platformAthletic.Models.Info
     {
         public DateTime Date { get; set; }
 
+        public DateTime SelectedDate { get; set; }
+
         public DateTime StartMonthSunday
         {
             get

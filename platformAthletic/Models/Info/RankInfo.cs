@@ -32,10 +32,10 @@ namespace platformAthletic.Models.Info
         {
             var users = Repository.PlayersTeamPlayersUsers;
             //TeamOfPlay
-            var userStateID = user.IndividualStateID ?? user.Team.ID;
+            var userStateID = user.IndividualStateID ?? user.Team.StateID;
 
             var stateUsers =  Repository.PlayersTeamPlayersUsers.Where(p => 
-                (p.Team != null && p.Team.StateID == userStateID) || p.IndividualStateID == userStateID);
+                (p.PlayerOfTeamID != null && p.Team.StateID == userStateID) || p.IndividualStateID == userStateID);
             var schoolUsers = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == user.PlayerOfTeamID);
             Nation = new Rank();
             State = new Rank();

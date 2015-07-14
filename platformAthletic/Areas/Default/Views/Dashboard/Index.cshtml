@@ -41,7 +41,7 @@
                 <div class="col-sm-12 col-md-6 col-lg-3">
                     <button class="btn btn-primary btn-margin" id="PrintAll"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col-sm-12 col-md-6 col-lg-3 btn-margin">
                     @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
                     {
                         <div class="input-group">
@@ -55,7 +55,7 @@
                 @if (ViewBag.SelectedListGroups != null)
                 {
 
-                    <div class="col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-sm-12 col-md-6 col-lg-3 btn-margin">
                         <div class="custom-style">
                             @Html.DropDownList("GroupId", ViewBag.SelectedListGroups as IEnumerable<SelectListItem>, new { @class = "form-control" })
                             <div></div>

@@ -18,7 +18,7 @@ function Common() {
     var _this = this;
     this.init = function ()
     {
-
+        $.ajaxSetup({ cache: false });
     };
 
     this.isMobile = function () {

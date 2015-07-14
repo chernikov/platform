@@ -76,10 +76,22 @@
             },
             async: false
         });
-        var myLineChart = new Chart(ctx).Line(data, {
-            animation: false,
-            bezierCurve: false,
-        });
+        if (common.isMobile()) {
+            var myLineChart = new Chart(ctx).Line(data, {
+                animation: false,
+                bezierCurve: false,
+                scaleShowVerticalLines: false,
+                responsive: true,
+                maintainAspectRatio: false,
+            });
+        } else {
+            var myLineChart = new Chart(ctx).Line(data, {
+                animation: false,
+                bezierCurve: false,
+                scaleShowVerticalLines: false,
+                responsive : true
+            });
+        }
     }
 
     this.stopEdit = function ()
