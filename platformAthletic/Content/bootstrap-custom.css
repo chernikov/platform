@@ -20,8 +20,9 @@ h1, h2, h3 {
     padding-top: 20px;
     padding-bottom: 10px;
 }
+
 th {
-    font-weight:normal;
+    font-weight: normal;
 }
 
 .required {
@@ -1747,9 +1748,9 @@ th {
         font-size: 10px;
     }
 
-    .schedule-calendar .table-calendar thead tr th:first-child {
-        width : 42px;
-    }
+        .schedule-calendar .table-calendar thead tr th:first-child {
+            width: 42px;
+        }
 
 
         .schedule-calendar .table-calendar .edit-wrapper td {
@@ -2086,7 +2087,7 @@ th {
 
 
 .report-header th:first-child {
-    padding-left: 15px!important;
+    padding-left: 15px !important;
 }
 
 
@@ -4415,3 +4416,8 @@ h1.todo {
     .test-mode a {
         color: #fff !important;
     }
+
+
+.user-sbc .modal-dialog{
+    width : 400px;
+}

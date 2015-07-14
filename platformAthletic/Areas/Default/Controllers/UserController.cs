@@ -591,5 +591,59 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             return Json(new { result = "error" });
         }
+
+        [HttpGet]
+        public ActionResult UserSbc(int id)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null && user.CanEditSBC(CurrentUser))
+            {
+                return View(user);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult UserSbc(int id, int squat, int bench, int clean)
+        {
+            var errors = new List<string>();
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null && user.CanEditSBC(CurrentUser))
+            {
+                if (squat % 5 == 0 && squat >= 0)
+                {
+                    Repository.SetSbcValue(id, SBCValue.SbcType.Squat, (double)squat);
+                }
+                else
+                {
+                    errors.Add("squat");
+                }
+                if (bench % 5 == 0 && bench >= 0)
+                {
+                    Repository.SetSbcValue(id, SBCValue.SbcType.Bench, (double)bench);
+                }
+                else
+                {
+                    errors.Add("bench");
+                }
+                if (clean % 5 == 0 && clean >= 0)
+                {
+                    Repository.SetSbcValue(id, SBCValue.SbcType.Clean, (double)clean);
+                }
+                else
+                {
+                    errors.Add("clean");
+                }
+                if (errors.Count == 0)
+                {
+                    return Json(new { result = "ok" });
+                }
+                else
+                {
+                    return Json(new { result = "errors", errors });
+                }
+            }
+            return null;
+        }
     }
 }

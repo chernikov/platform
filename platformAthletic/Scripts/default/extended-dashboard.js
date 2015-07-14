@@ -1,8 +1,7 @@
 ﻿function ExtendedDashboard() {
     var _this = this;
 
-    this.init = function ()
-    {
+    this.init = function () {
         if ($("#DateHidden").val() != $("#CurrentDateHidden").val()) {
             $('#CalendarButton').tooltipster({
                 content: $('<span><span class="glyphicon glyphicon-info-sign"></span> Editing past dates!</span>'),
@@ -38,17 +37,15 @@
                 }
             },
             engine: Hogan
-        }).bind('typeahead:selected', function(obj, selected, name) {
+        }).bind('typeahead:selected', function (obj, selected, name) {
             window.location = "/dashboard/extended?searchString=" + selected.value.name;
         });
 
-        $("#SearchBtn").click(function ()
-        {
+        $("#SearchBtn").click(function () {
             window.location = "/dashboard/extended?searchString=" + $("#SearchAthlete").val();
         });
 
-        $("#GroupId").change(function ()
-        {
+        $("#GroupId").change(function () {
             window.location = "/dashboard/extended?groupId=" + $("#GroupId").val();
         });
 
@@ -89,10 +86,13 @@
             });
         });
 
+        $(document).on("click", ".sbcChange", function () {
+            var id = $(this).closest(".value-wrapper").data("id");
+            userSbc.showModal(id);
+        });
     }
 
-    this.substringMatcher = function (strs)
-    {
+    this.substringMatcher = function (strs) {
         return function findMatches(q, cb) {
             var matches, substrRegex;
 
@@ -116,8 +116,7 @@
         };
     };
 
-    this.onSbcChange = function ()
-    {
+    this.onSbcChange = function () {
 
     }
 }

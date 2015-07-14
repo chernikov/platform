@@ -107,6 +107,13 @@ function Dashboard() {
         if ($(".playerItem").length > 0) {
             this.showUserInfo($(".playerItem").first().data("id"));
         }
+
+        $(document).on("click", ".sbcChange", function () {
+            var id = $(this).data("id");
+            userSbc.showModal(id, function () {
+                _this.showUserInfo(id);
+            });
+        });
     }
 
     this.substringMatcher = function (strs) {

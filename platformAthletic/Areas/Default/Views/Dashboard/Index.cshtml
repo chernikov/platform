@@ -9,13 +9,15 @@
 
 }
 @section styles {
-<link href="~/Content/tooltipster.css" rel="stylesheet" />
+    <link href="~/Content/tooltipster.css" rel="stylesheet" />
 }
 @section header {
     <script src="~/Scripts/Chart.js"></script>
     <script src="~/Scripts/hogan.js"></script>
     <script src="~/Scripts/typeahead.jquery.js"></script>
     <script src="~/Scripts/jquery.tooltipster.js"></script>
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script src="~/Scripts/default/user-sbc.js"></script>
     <script src="~/Scripts/default/dashboard.js"></script>
     <script src="~/Scripts/default/team-player-info.js"></script>
     <script src="~/Scripts/default/modal-attendance.js"></script>
@@ -64,7 +66,7 @@
                 }
             </div>
         </div>
-        <div class="row  row-same-height" >
+        <div class="row  row-same-height">
             <div class="col-lg-6 col-sm-12 col-md-12 top-padding" id="TablePart">
                 <div class="pull-right hidden-xs">
                     <a href="/dashboard/extended" id="ExtendButton"> <span class="z-index2 glyphicon glyphicon-fullscreen"></span></a>
@@ -83,8 +85,10 @@
                     <thead>
                         <tr>
                             <td>
-                                <p class="attendance-header"><span class="title">ATTENDANCE</span> 
-                                <span class="glyphicon glyphicon-calendar calendar" id="CalendarButton"></span></p>
+                                <p class="attendance-header">
+                                    <span class="title">ATTENDANCE</span>
+                                    <span class="glyphicon glyphicon-calendar calendar" id="CalendarButton"></span>
+                                </p>
                                 <p><span class="date" id="CurrentDate" data-date="@date">@date.ToString("MM/dd/yyyy")</span></p>
                             </td>
                             <td class="user-name">

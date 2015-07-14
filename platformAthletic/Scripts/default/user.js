@@ -59,6 +59,16 @@
         $("#ToggleAttendance").click(function () {
             _this.changeTodayAttendance($(this));
         })
+
+
+        $(document).on("click", ".sbcChange", function () {
+            var id = $(this).data("id");
+            userSbc.showModal(id, function () {
+                _this.updateSbc();
+                _this.updateSchoolRank();
+                _this.updateRank();
+            });
+        });
     }
 
     this.drawPerformance = function () {
