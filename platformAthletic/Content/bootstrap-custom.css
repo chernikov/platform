@@ -121,6 +121,12 @@ iframe {
     }
 }
 
+@media(max-width:1024px) {
+    .btn-margin-md {
+        margin: 5px 5px;
+    }
+}
+
 .calendar-arrow-left {
     width: 23px;
     height: 22px;
@@ -3867,6 +3873,7 @@ hr.video {
 
 .form-settings-wrapper .color-wrapper .color-picker {
     height: 247px;
+    text-align : center;
 }
 
     .form-settings-wrapper .color-wrapper .color-picker:first-child {
@@ -3876,6 +3883,29 @@ hr.video {
     .form-settings-wrapper .color-wrapper .color-picker:last-child {
         float: right;
     }
+    .form-settings-wrapper .color-wrapper .color-picker .color-image {
+        width : 200px;
+        margin : 0 auto;
+    }
+
+@media(max-width:1024px) {
+    .form-settings-wrapper .color-wrapper {
+        width: 80%;
+    }
+
+        .form-settings-wrapper .color-wrapper .color-picker:first-child {
+            float: left;
+        }
+
+        .form-settings-wrapper .color-wrapper .color-picker:last-child {
+            float: right;
+        }
+
+        .form-settings-wrapper .color-wrapper .color-picker {
+            margin-bottom: 10px;
+        }
+}
+
 
 
 @media(max-width:767px) {
@@ -3896,23 +3926,6 @@ hr.video {
         }
 }
 
-@media(max-width:1024px) {
-    .form-settings-wrapper .color-wrapper {
-        width: 80%;
-    }
-
-        .form-settings-wrapper .color-wrapper .color-picker:first-child {
-            float: left;
-        }
-
-        .form-settings-wrapper .color-wrapper .color-picker:last-child {
-            float: right;
-        }
-
-        .form-settings-wrapper .color-wrapper .color-picker {
-            margin-bottom: 10px;
-        }
-}
 
 .form-settings-wrapper .setting-control h3 {
     margin-top: 10px;
@@ -4046,6 +4059,7 @@ hr.video {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align : center;
 }
 
 @media (max-width: 1315px) {
@@ -4147,12 +4161,6 @@ hr.video {
             white-space: nowrap;
             display: block;
         }
-}
-
-@media (max-width: 400px) {
-    .table-coaches td .value {
-        width: 120px;
-    }
 }
 
 .help-wrapper {

@@ -147,6 +147,7 @@
     <None Include="Migrations\MigrationScript_019.sql" />
     <None Include="Migrations\MigrationScript_021.sql" />
     <None Include="Migrations\MigrationScript_022.sql" />
+    <None Include="Migrations\MigrationScript_023.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="platformAthletic.Db.refactorlog" />
