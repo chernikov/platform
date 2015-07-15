@@ -75,7 +75,7 @@
             {
                 $("#VideoWrapper").html(data);
                 youtubeResizer.init();
-                $("#CoachComment").mCustomScrollbar({ theme: "minimal-dark" });
+                $("#VideoScroll").mCustomScrollbar({ theme: "minimal-dark" });
                 if (callback != null) {
                     callback();
                 }

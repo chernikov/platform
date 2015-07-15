@@ -22,7 +22,7 @@ namespace platformAthletic.Model
             if (instance.ID == 0)
             {
                 instance.PrimaryColor = "#2b333c";
-                instance.SecondaryColor = "#ffffff";
+                instance.SecondaryColor = "#2b333c";
                 instance.SBCControl = (int)Team.SBCControlType.CoachAndPlayer;
                 instance.SBCAttendance = (int)Team.SBCAttendanceType.CoachAndPlayer;
                 instance.MaxCount = 100;
