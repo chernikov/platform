@@ -1546,7 +1546,7 @@ iframe {
     }
 
 .schedule-group-wrapper.collapsed .slide-button {
-    right: -27px;
+    right: -57px;
 }
 
     .schedule-group-wrapper.collapsed .slide-button .schedule-table-wrapper {
@@ -1794,8 +1794,9 @@ iframe {
         position: absolute;
         left: 0;
         padding: 0;
-        box-shadow: #222 3px 3px 5px;
+        box-shadow: #222 0px 0px 5px -1px;
         background-color: #fff;
+        border: 1px solid #e3e3e3;
     }
 
         .calendar-wrapper .calendar-drop-down-list .list-title {
@@ -1808,10 +1809,12 @@ iframe {
                 cursor: pointer;
                 padding: 6px 12px;
                 background-color: #f5f5f5;
+                color:#c6c8ca;
             }
 
                 .calendar-wrapper .calendar-drop-down-list .list-title .season.selected {
                     background-color: #fff;
+                    color: #939da8;
                 }
 
         .calendar-wrapper .calendar-drop-down-list .list {
@@ -1825,6 +1828,7 @@ iframe {
                 border-bottom: 1px solid #ebeaea;
                 font-family: Arial;
                 font-size: 11px;
+                text-align: center;
             }
 
             .calendar-wrapper .calendar-drop-down-list .list .season-item,
@@ -3434,14 +3438,18 @@ hr.video {
 }
 
 .video-code-wrapper .code {
-    height: 40%;
+   height: 420px;
     margin-bottom: 4px;
 }
-
+#VideoScroll {
+    height: -moz-calc(100% - 176px);
+    height: -webkit-calc(100% - 176px);
+    height: calc(100% - 176px);   
+}
 .video-code-wrapper .coach {
-    height: -moz-calc(60% - 180px);
-    height: -webkit-calc(60% - 180px);
-    height: calc(60% - 180px);
+    /*height: -moz-calc(100% - 180px);
+    height: -webkit-calc(100% - 180px);
+    height: calc(100% - 180px);*/
 }
 
     .video-code-wrapper .coach h2 {
@@ -3453,10 +3461,10 @@ hr.video {
     }
 
     .video-code-wrapper .coach .coach-comment {
-        overflow: hidden;
+        /*overflow: hidden;
         height: -moz-calc(100% - 80px);
         height: -webkit-calc(100% - 80px);
-        height: calc(100% - 80px);
+        height: calc(100% - 80px);*/
         padding: 0 20px;
     }
 

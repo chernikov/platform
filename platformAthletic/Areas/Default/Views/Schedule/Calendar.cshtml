@@ -53,7 +53,7 @@
             @foreach (var season in Model.Seasons)
             {
                 <div class="season @(season.ID == Model.Season.ID ? "selected" : "")" data-id="@season.ID">
-                    @season.Name.ToUpper()
+                    @season.Name
                 </div>
             }
         </div>

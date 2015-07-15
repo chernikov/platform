@@ -79,7 +79,7 @@
             var selected = $(this).data("macrocycle");
             $(".calendar-drop-down-list").toggle();
 
-            var offset = $(this).offset().top - 55;
+            var offset = $(this).offset().top - 110;
             $(".calendar-drop-down-list").css({ top: offset + "px" });
 
             $(".calendar-drop-down-list .item").removeClass("selected");
