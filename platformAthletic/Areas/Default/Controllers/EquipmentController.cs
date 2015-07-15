@@ -15,7 +15,12 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Index()
         {
             var equipmentList = Repository.Equipments.OrderBy(p => p.Name).ToList();
-            var selectedEquipmentList = new SelectedEquipmentList(equipmentList, CurrentUser);
+            var user = CurrentUser;
+            if (CurrentUser.InRoles("assistant"))
+            {
+                user = CurrentUser.TeamOfAssistance.User;
+            }
+            var selectedEquipmentList = new SelectedEquipmentList(equipmentList, user);
             return View(selectedEquipmentList);
         }
 
@@ -28,20 +33,26 @@ namespace platformAthletic.Areas.Default.Controllers
                 Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.AddEquipment);
             }
             ViewBag.Message = "Saved";
+            var user = CurrentUser;
+            if (CurrentUser.InRoles("assistant"))
+            {
+                user = CurrentUser.TeamOfAssistance.User;
+            }
+
             foreach (var item in selectedEquipmentList.List)
             {
-                if (item.Select && !CurrentUser.UserEquipments.Any(p => p.EquipmentID == item.Equipment.ID))
+                if (item.Select && !user.UserEquipments.Any(p => p.EquipmentID == item.Equipment.ID))
                 {
                     var userEquipment = new UserEquipment
                     {
                         EquipmentID = item.Equipment.ID,
-                        UserID = CurrentUser.ID
+                        UserID = user.ID
                     };
                     Repository.CreateUserEquipment(userEquipment);
                 }
-                if (!item.Select && CurrentUser.UserEquipments.Any(p => p.EquipmentID == item.Equipment.ID))
+                if (!item.Select && user.UserEquipments.Any(p => p.EquipmentID == item.Equipment.ID))
                 {
-                    var userEquipment = CurrentUser.UserEquipments.First(p => p.EquipmentID == item.Equipment.ID);
+                    var userEquipment = user.UserEquipments.First(p => p.EquipmentID == item.Equipment.ID);
                     Repository.RemoveUserEquipment(userEquipment.ID);
                 }
             }
