@@ -5,6 +5,7 @@
     this.secondaryColor = "";
 
     this.init = function (primaryColor, secondaryColor) {
+        console.log(primaryColor + " " + secondaryColor);
         
         _this.primaryColor = primaryColor;
         _this.secondaryColor = secondaryColor;

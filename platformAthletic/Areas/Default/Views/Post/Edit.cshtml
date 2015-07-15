@@ -28,8 +28,8 @@
         </div>
         <div class="form-group">
             @Html.TextArea("Text", Model.Text, new { @class = "form-control", style="height:205px;" })
+            @Html.ValidationMessageFor(m => m.Text)
         </div>
-        <div class="error pull-left" id="url-error-message">Enter the correct link from youtube.</div>
         <div class="form-group pull-right">
             <button type="submit" class="btn btn-primary" id="SubmitEditPostBtn">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>
             <button type="submit" class="btn btn-default" id="CancelEditPostBtn">CANCEL</button>

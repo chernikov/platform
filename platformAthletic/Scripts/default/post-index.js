@@ -40,6 +40,14 @@
             $("#ImagePreview").attr("src", "");
             $("#ImagePreview").hide();
         });
+
+        $(document).on("blur", "#VideoUrl", function () {
+            _this.ToggleUrlYoutubeError()
+        });
+
+        $(document).on("input", "#Header", function () {
+            _this.CheckHeader();
+        });
     }
 
     this.ChangeListPost = function (href) {
@@ -70,7 +78,22 @@
         });
     }
 
-    this.checkYoutubeURL = function (url) {
+    this.CheckHeader = function () {
+        var value = $("#Header").val();
+        var error = "The length of the Title should not exceed 50 characters";
+        $("#header-error-message").remove();
+        if (value.length > 50) {
+            $("#Header").parent().addClass("has-error");
+            $("#Header").after('<div id="header-error-message" class="error">' + error + '</div>');
+            return false;
+        }
+        else {
+            $("#Header").parent().removeClass("has-error");
+            return true;
+        }
+    }
+
+    this.CheckYoutubeURL = function (url) {
         var parser = document.createElement("a");
         parser.href = url;
         if (parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com")
@@ -79,21 +102,31 @@
             return false;
 
     }
+
+    this.ToggleUrlYoutubeError = function() {
+        var youtubeURL = $("#VideoUrl").val().trim();
+        $("#VideoUrl").parent().removeClass('has-error');
+        if (youtubeURL.length > 0) {
+            if (_this.CheckYoutubeURL(youtubeURL)) {
+                $("#url-error-message").remove();
+            }
+            else {
+                $("#url-error-message").remove();
+                $("#VideoUrl").after('<div id="url-error-message" class="error">Enter the correct link from youtube.</div>');
+                $("#VideoUrl").parent().addClass('has-error');
+                return false;
+            }
+        }
+        return true;
+    }
+
     this.SubmitPost = function () {
         if (!common.isMobile()) {
             $("#Text").val(CKEDITOR.instances.Text.getData());
         }
-        var youtubeURL = $("#VideoUrl").val().trim();
-        if(youtubeURL.length > 0) {
-            if (_this.checkYoutubeURL(youtubeURL)) {
-                $("#url-error-message").hide();
-            }
-            else {
-                $("#url-error-message").show();
-                return false;
-            }
-            
-        }
+        if (_this.ToggleUrlYoutubeError() === false || _this.CheckHeader() === false)
+            return false
+
         $.ajax({
             type: "POST",
             data : $("#EditPostForm").serialize(),

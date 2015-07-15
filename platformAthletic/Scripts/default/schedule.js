@@ -79,7 +79,7 @@
             var selected = $(this).data("macrocycle");
             $(".calendar-drop-down-list").toggle();
 
-            var offset = $(this).offset().top - 55;
+            var offset = $(this).offset().top - 110;
             $(".calendar-drop-down-list").css({ top: offset + "px" });
 
             $(".calendar-drop-down-list .item").removeClass("selected");
@@ -108,6 +108,10 @@
         $(document).on('click', '.calendar-drop-down-list .personal-cycle-item', function () {
             _this.startCyclePersonal(_this.number, $(this).data("id"), _this.date);
         });
+
+        $(document).on('input', "#Name", function () {
+            _this.checkNameGroup();
+        })
 
        
         $(document).on("click", ".season", function () {
@@ -187,8 +191,33 @@
         });
     }
 
+    this.checkNameGroup = function () {
+        var name = $("#Name").val();
+        var error = "";
+
+        if (name.length === 0) 
+            error = "Enter name";
+        else if (name.length > 500) 
+            error = "The length of the name should not exceed 500 characters";
+
+        $("#name-error-message").remove();
+        if (error.length > 0) {
+            $("#Name").parent().addClass("has-error");
+            $("#Name").after('<div id="name-error-message" class="error">' + error + '</div>');
+            return false;
+        }
+        $("#Name").parent().removeClass("has-error");
+        return true;
+    }
+
     this.submitEditGroupForm = function () {
+        if (_this.checkNameGroup() === false)
+            return false;
+
         var ajaxData = $("#EditGroupForm").serialize();
+        $('#ModalWrapper').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
         $.ajax({
             type: "POST",
             url: "/edit-group",
