@@ -189,6 +189,9 @@
 
     this.submitEditGroupForm = function () {
         var ajaxData = $("#EditGroupForm").serialize();
+        $('#ModalWrapper').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
         $.ajax({
             type: "POST",
             url: "/edit-group",
