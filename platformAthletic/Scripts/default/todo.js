@@ -3,9 +3,9 @@ function Todo() {
     var _this = this;
 
     this.init = function () {
-        var item = window.location.hash;
-        if (item.length > 0) {
-            var id = item.substr("#todo-".length);
+        var hash = window.location.hash;
+        if (hash.length > 0) {
+            var id = hash.substr("#todo-".length);
             _this.showTodo(id);
         }
 
@@ -19,18 +19,17 @@ function Todo() {
             common.clearOnBoarding();
         });
 
-        if (typeof (schedule) != "undefined") {
+        if (typeof (schedule) != "undefined" && hash.length > 0) {
             schedule.onSetSelect = function () {
                 _this.clear();
             }
         }
 
-        if (typeof (extendedDashboard) != "undefined") {
+        if (typeof (extendedDashboard) != "undefined" && hash.length > 0) {
             extendedDashboard.onSbcChange = function () {
                 _this.clear();
             }
         }
-
 
         $(".todo-list-item a").click(function () {
             var href = $(this).attr("href");
@@ -43,7 +42,6 @@ function Todo() {
 
     this.showTodo = function (id)
     {
-
         $.ajax({
             type: "GET",
             data : { id : id},
