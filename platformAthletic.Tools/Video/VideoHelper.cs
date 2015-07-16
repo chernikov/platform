@@ -63,11 +63,38 @@ namespace platformAthletic.Tools.Video
             return string.Empty;
         }
 
+        public static string CheckVideoUrl(string url)
+        {
+            Uri urlVideo;
+            if (Uri.TryCreate(url, UriKind.Absolute, out urlVideo))
+            {
+                if (!String.IsNullOrEmpty(urlVideo.Host) &&
+                    urlVideo.Host != "youtu.be" &&
+                    urlVideo.Host != "www.youtube.com" &&
+                    urlVideo.Host != "youtube.com" &&
+                    urlVideo.Host != "vimeo.com" &&
+                    urlVideo.Host != "www.vimeo.com")
+                {
+                    return "This source is not supported";
+                }
+            }
+            else
+            {
+                return "Please, enter the correct link";
+            }
+            return String.Empty;
+        }
+
         public static string GetVideoThumbByUrl(string url)
         {
             Uri uriResult;
             if (Uri.TryCreate(url, UriKind.Absolute, out uriResult))
             {
+                if (uriResult.Host == "youtu.be")
+                {
+                    string newUrl = uriResult.Scheme + "://www.youtube.com/watch?v=" + uriResult.AbsolutePath.Replace("/", "");
+                    Uri.TryCreate(newUrl, UriKind.Absolute, out uriResult);
+                }
                 string resultCode = string.Empty;
                 WebClient webClient;
                 switch (uriResult.Host)

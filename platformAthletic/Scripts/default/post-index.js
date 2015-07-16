@@ -42,7 +42,7 @@
         });
 
         $(document).on("blur", "#VideoUrl", function () {
-            _this.ToggleUrlYoutubeError()
+            _this.ToggleUrlVideoError()
         });
 
         $(document).on("input", "#Header", function () {
@@ -93,26 +93,27 @@
         }
     }
 
-    this.CheckYoutubeURL = function (url) {
+    this.CheckVideoURL = function (url) {
         var parser = document.createElement("a");
         parser.href = url;
-        if (parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com")
+        if (parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com" ||
+            parser.hostname === "vimeo.com" || parser.hostname === "www.vimeo.com")
             return true;
         else
             return false;
 
     }
 
-    this.ToggleUrlYoutubeError = function() {
+    this.ToggleUrlVideoError = function () {
         var youtubeURL = $("#VideoUrl").val().trim();
         $("#VideoUrl").parent().removeClass('has-error');
         if (youtubeURL.length > 0) {
-            if (_this.CheckYoutubeURL(youtubeURL)) {
+            if (_this.CheckVideoURL(youtubeURL)) {
                 $("#url-error-message").remove();
             }
             else {
                 $("#url-error-message").remove();
-                $("#VideoUrl").after('<div id="url-error-message" class="error">Enter the correct link from youtube.</div>');
+                $("#VideoUrl").after('<div id="url-error-message" class="error">This source is not supported</div>');
                 $("#VideoUrl").parent().addClass('has-error');
                 return false;
             }
@@ -124,7 +125,7 @@
         if (!common.isMobile()) {
             $("#Text").val(CKEDITOR.instances.Text.getData());
         }
-        if (_this.ToggleUrlYoutubeError() === false || _this.CheckHeader() === false)
+        if (_this.ToggleUrlVideoError() === false || _this.CheckHeader() === false)
             return false
 
         $.ajax({

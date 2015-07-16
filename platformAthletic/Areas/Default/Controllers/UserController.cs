@@ -310,6 +310,14 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult UploadVideo(UserVideoView userVideoView)
         {
+
+            string error = VideoHelper.CheckVideoUrl(userVideoView.VideoUrl);
+            if (!String.IsNullOrEmpty(error))
+            {
+                ModelState.AddModelError("VideoUrl", error);
+            }
+
+
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
                 Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.UploadVideo);
@@ -552,6 +560,15 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddPlayerUserInfo(PlayerUserInfoView playerUserInfoView)
         {
+            string inputDateAge = playerUserInfoView.BirthdayYear.ToString() + "-" + 
+                                playerUserInfoView.BirthdayMonth.ToString() + "-" +
+                                playerUserInfoView.BirthdayDay.ToString();
+            DateTime dateAge;
+            if (!DateTime.TryParse(inputDateAge, out dateAge))
+            {
+                ModelState.AddModelError("Birthday", "Please enter the existing age date");
+            }
+               
             if (playerUserInfoView.IsGradYear && playerUserInfoView.GradYear == 0)
             {
                 ModelState.AddModelError("GradYear", "");

@@ -230,7 +230,7 @@ namespace platformAthletic.Models.Info
                     yield return new SelectListItem
                     {
                         Value = "0",
-                        Text = "above 15",
+                        Text = "under 15",
                         Selected = Age == 0
                     };
                 }
