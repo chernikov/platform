@@ -2117,6 +2117,7 @@ th {
 
 .report-header th:first-child {
     padding-left: 0px !important;
+    padding-right: 0px;
     width: 7%;
 }
 
@@ -2182,11 +2183,6 @@ th {
     .report-wrapper .table .name span {
         max-width: 185px;
     }
-}
-
-.report-wrapper .table .rank {
-
-    padding-right: 1px;
 }
 
 .report-wrapper .search-wrapper .input-group {
@@ -4621,4 +4617,8 @@ h1.todo {
 }
 
 table.table report-table thead tr.report-header th {
+}
+
+#age-message-error {
+    display:none;
 }

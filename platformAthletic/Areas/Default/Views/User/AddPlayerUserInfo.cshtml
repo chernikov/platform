@@ -42,7 +42,11 @@
             </table>
         }
     </div>
+
 </div>
+@Html.ValidationMessage("Birthday")
+<div class="error" id="age-message-error">Please enter the existing age date.</div>
+
 
 <script type="text/javascript">
     $("#SportID").change(function () {

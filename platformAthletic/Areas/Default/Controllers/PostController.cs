@@ -86,28 +86,14 @@ namespace platformAthletic.Areas.Default.Controllers
             var existPost = Repository.Posts.FirstOrDefault(p => p.ID == postView.ID);
             if (existPost == null || (existPost.UserID == CurrentUser.ID || CurrentUser.InRoles("admin")))
             {
-                //check url
-                if (!String.IsNullOrEmpty(postView.VideoUrl) &&
-                    !postView.VideoUrl.Contains("youtu.be") &&
-                    !postView.VideoUrl.Contains("www.youtube.com") &&
-                    !postView.VideoUrl.Contains("youtube.com"))
+
+                string error = VideoHelper.CheckVideoUrl(postView.VideoUrl);
+                if (!String.IsNullOrEmpty(error))
                 {
-                    ModelState.AddModelError("VideoUrl", "Enter the correct link from youtube.");
-                    ModelState.AddModelError("", "Enter the correct link from youtube.");
+                    ModelState.AddModelError("VideoUrl", error);
+                    ModelState.AddModelError("", error);
                 }
                 
-                //checking for errors
-                foreach (ModelState modelState in ViewData.ModelState.Values)
-                {
-                    foreach (ModelError error in modelState.Errors)
-                    {
-                        if (!String.IsNullOrEmpty(error.ErrorMessage))
-                        {
-                            return View("Edit", postView);
-                        }
-                    }
-                }
-
 
                 if (ModelState.IsValid)
                 {
