@@ -96,7 +96,9 @@
                             </div>
                         </form>
                         <br />
-                        <table class="table">
+                        @if (Model.List.Count() > 0)
+                        {
+                        <table class="table leader-table">
                             <thead>
                                 <tr class="leaderboard-header">
                                     <th class="tcenter">RANK</th>
@@ -125,6 +127,10 @@
                                 </tr>
                             }
                         </table>
+                        } else
+                        {
+                            <div class="field-validation-error filter-error">Error: For a given filter results found</div>
+                        }
                         <div class="text-center">
                             <ul class="pagination">
                                 @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Index", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, StateID = Model.Search.StateID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age }))

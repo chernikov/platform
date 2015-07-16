@@ -69,8 +69,16 @@
                     else
                     {
                         <div class="post user-post">
+                            @item.User.AvatarPath
                             <div class="user-icon">
-                                <img src="@item.User.AvatarPath?w=39&h=40&mode=crop">
+                                @if (item.User.AvatarPath == null)
+                                {
+                                    <img src="~/Content/img/admin-icon.png?w=39&h=40&mode=crop" />
+                                }
+                                else
+                                {
+                                    <img src="@item.User.AvatarPath?w=39&h=40&mode=crop">
+                                }
                             </div>
 
                             <h1>@item.Header</h1>

@@ -12,7 +12,7 @@
             _this.primaryColor = "#2b333c";
         }
         if (_this.secondaryColor == "") {
-            _this.secondaryColor = "#fff";
+            _this.secondaryColor = "#2b333c";
         }
         _this.update();
     };
