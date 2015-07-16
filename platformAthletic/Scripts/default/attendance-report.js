@@ -62,6 +62,8 @@
             _this.filterAll();
         });
         $(".datetime").change(function () {
+            $("#StartPeriodError").hide();
+            $("#EndPeriodError").hide();
             _this.filterAll();
         });
 
@@ -102,6 +104,8 @@
     }
 
     this.getCurrentFilter = function () {
+        
+        
         var href = "";
         href = $.param.querystring(href, 'SportID=' + $("#SportID").val());
         if ($("#SportID").val() != "") {
@@ -121,6 +125,14 @@
 
     this.filterAll = function () {
         var currentFilter = _this.getCurrentFilter();
+        if ($("#StartPeriod").val() == "") {
+            $("#StartPeriodError").show();
+            return;
+        }
+        if ($("#EndPeriod").val() == "") {
+            $("#EndPeriodError").show();
+            return;
+        }
         window.location = $.param.querystring(window.location.href, currentFilter);
     }
 

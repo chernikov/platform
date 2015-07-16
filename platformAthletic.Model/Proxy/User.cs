@@ -402,6 +402,10 @@ namespace platformAthletic.Model
                 {
                     return true;
                 }
+                if (InRoles("player") && user.OwnTeam != null && user.OwnTeam.ID == PlayerOfTeamID)
+                {
+                    return true;
+                }
             }
             return false;
         }

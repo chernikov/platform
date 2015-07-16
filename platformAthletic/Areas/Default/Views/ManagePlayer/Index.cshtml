@@ -60,17 +60,17 @@
                                     <img src="@item.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.FirstName @item.LastName</span>
                                 </td>
                                 <td class="hidden-lg hidden-md hidden-sm">
-                                   <strong>Name:</strong> @item.FirstName @item.LastName <br/>
-                                    <strong>Email:</strong> @item.Email <br/>
+                                    <strong>Name:</strong> @item.FirstName @item.LastName <br />
+                                    <strong>Email:</strong> @item.Email <br />
                                     @if (item.Group != null)
                                     {
-                                        
+
                                         <strong>Group:</strong> @item.Group.Name
-                                        
+
                                     }
                                 </td>
                                 <td class="hidden-xs">
-                                        @item.Email
+                                    @item.Email
                                 </td>
                                 <td class="hidden-xs">
                                     @if (item.Group != null)
@@ -82,9 +82,9 @@
                                 </td>
                                 <td>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-success btn-margin btn-margin-md editUser" data-id="@item.ID">Edit</a>
-                                        <a href="#" class="btn btn-primary btn-margin btn-margin-md removeUser" data-id="@item.ID">Remove</a>
-                                        <a href="#" class="btn btn-success btn-margin btn-margin-md sendActivation" data-id="@item.ID">Send activation</a>
+                                        <button class="btn btn-success btn-margin btn-margin-md editUser" data-id="@item.ID">Edit</button>
+                                        <button class="btn btn-primary btn-margin btn-margin-md removeUser" data-id="@item.ID">Remove</button>
+                                        <button class="btn btn-success btn-margin btn-margin-md sendActivation" data-id="@item.ID">Send activation</button>
                                     </div>
                                 </td>
                             </tr>

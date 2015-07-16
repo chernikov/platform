@@ -88,7 +88,7 @@
             data: { id: id },
             success: function (data) {
                 $("#ModalWrapper").html(data);
-                $("#modalActivationPlayer").modal();
+                $("#modalSendActivation").modal();
             }
         });
     }

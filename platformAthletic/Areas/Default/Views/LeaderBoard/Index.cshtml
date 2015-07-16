@@ -127,7 +127,7 @@
                         </table>
                         <div class="text-center">
                             <ul class="pagination">
-                                @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Index", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, StateID = Model.Search.StateID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age }))
+                                @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Index", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, StateID = Model.Search.StateID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age, LevelID = Model.Search.LevelID, GradYear = Model.Search.GradYear }))
                             </ul>
                         </div>
                     </div>

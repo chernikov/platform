@@ -1,17 +1,18 @@
 ﻿@model platformAthletic.Model.User
 
-<div class="popup-roster-wrp notify">
-    <div class="inner-wrp">
-        <div class="popup-title">Send Activation</div>
-        <div class="form">
-            <div class="bg-blur-top"></div>
-            <div class="item-input">
-                Message with activation sent successfully to @Model.Email
+<div class="modal fade" id="modalSendActivation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">SEND ACTIVATION</h4>
             </div>
-
-        </div>
-        <div class="button-wrp">
-            <button class="btn-gray">Close</button>
+            <div class="modal-body">
+                <p>Message with activation sent successfully to @Model.Email</p>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
