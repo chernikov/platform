@@ -176,7 +176,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                if (InRoles("individual") || InRoles("admin"))
+                if (InRoles("individual") || InRoles("admin") || InRoles("coach"))
                 {
                     return SecondaryColor ?? string.Empty;
                 }
@@ -399,6 +399,10 @@ namespace platformAthletic.Model
             if (user != null)
             {
                 if (user.ID == ID)
+                {
+                    return true;
+                }
+                if (InRoles("player") && user.OwnTeam != null && user.OwnTeam.ID == PlayerOfTeamID)
                 {
                     return true;
                 }

@@ -241,12 +241,17 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult GenerateTeam()
         {
+            
             GeneratePhantoms();
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
         private void GeneratePhantoms()
         {
+            if (CurrentUser.OwnTeam.Players.Any(p => p.IsPhantom))
+            {
+                return;
+            }
             var rand = new Random((int)DateTime.Now.Current().Ticks);
             var group = new Group()
             {

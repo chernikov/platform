@@ -117,13 +117,15 @@ namespace platformAthletic.Models.Info
                         }
                     }
                 }
-                using (profiler.Step("Order"))
-                {
-                    Order();
-                }
+                List = List.OrderByDescending(p => p.Total).ToList();
+
                 using (profiler.Step("SetRanks"))
                 {
                     SetRanks();
+                }
+                using (profiler.Step("Order"))
+                {
+                    Order();
                 }
                 if (Search.StartID.HasValue)
                 {
@@ -243,23 +245,24 @@ namespace platformAthletic.Models.Info
 
         protected int GetRankValue(Record record, SearchProgressReport.SortEnum sort)
         {
-            switch (Search.Sort)
-            {
-                case SearchProgressReport.SortEnum.TotalAsc:
-                case SearchProgressReport.SortEnum.TotalDesc:
-                    return record.Total;
-                case SearchProgressReport.SortEnum.SquatAsc:
-                case SearchProgressReport.SortEnum.SquatDesc:
-                    return record.Squat;
-                case SearchProgressReport.SortEnum.BenchAsc:
-                case SearchProgressReport.SortEnum.BenchDesc:
-                    return record.Bench;
-                case SearchProgressReport.SortEnum.CleanAsc:
-                case SearchProgressReport.SortEnum.CleanDesc:
-                    return record.Clean;
-                default:
-                    return record.Total;
-            }
+            return record.Total;
+            //switch (Search.Sort)
+            //{
+            //    case SearchProgressReport.SortEnum.TotalAsc:
+            //    case SearchProgressReport.SortEnum.TotalDesc:
+            //        return record.Total;
+            //    case SearchProgressReport.SortEnum.SquatAsc:
+            //    case SearchProgressReport.SortEnum.SquatDesc:
+            //        return record.Squat;
+            //    case SearchProgressReport.SortEnum.BenchAsc:
+            //    case SearchProgressReport.SortEnum.BenchDesc:
+            //        return record.Bench;
+            //    case SearchProgressReport.SortEnum.CleanAsc:
+            //    case SearchProgressReport.SortEnum.CleanDesc:
+            //        return record.Clean;
+            //    default:
+            //        return record.Total;
+            //}
         }
 
         protected virtual void GetPage()

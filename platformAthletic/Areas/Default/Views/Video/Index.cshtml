@@ -15,8 +15,8 @@
 }
 
 @Html.Hidden("SortType", Model.SortType)
-<div class="container-fluid fixed">
-    <div class="side-body height">
+<div class="container-fluid fixed-lg">
+    <div class="side-body height-lg">
         <div class="breadcrumb">
             <div class="row">
                 <div class="col-lg-12 overflow">
@@ -29,11 +29,11 @@
         </div>
         <hr class="video" />
         <div class="row video-wrapper height">
-            <div class="col-lg-7 height pull-right" id="VideoWrapper"></div>
-            <div class="col-lg-5 height pull-left">
+            <div class="col-lg-7 col-md-12 height-lg pull-right" id="VideoWrapper"></div>
+            <div class="col-lg-5 col-md-12 height-lg pull-left">
                 <br />
-                <div class="panel panel-default height">
-                    <div class="panel-body no-padding-left no-padding-right height">
+                <div class="panel panel-default height-lg">
+                    <div class="panel-body no-padding-left no-padding-right height-lg">
                         <div class="row">
                             <div class="pull-right right-padding bottom-padding">
                                 @using (Html.BeginForm("Index", "Video", FormMethod.Post))
@@ -58,7 +58,7 @@
                             </ul>
                         </div>
                         <hr />
-                        <div class="video-content height" id="VideoContent">
+                        <div class="video-content height-lg" id="VideoContent">
                             <div class="inside">
                                 @if (Model.SortType == VideoCollection.SortTypeEnum.Training)
                                 {

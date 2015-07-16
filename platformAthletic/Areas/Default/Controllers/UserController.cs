@@ -80,8 +80,12 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (ModelState.IsValid)
             {
+              
                 var user = (User)ModelMapper.Map(userInfoView, typeof(UserInfoView), typeof(User));
-
+                if (!userInfoView.IsGradYear)
+                {
+                    user.GradYear = null;
+                }
                 Repository.UpdateUserInfo(user);
 
                 var list = Repository.UserFieldPositions.Where(p => p.UserID == user.ID).ToList();

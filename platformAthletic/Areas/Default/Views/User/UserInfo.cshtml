@@ -42,7 +42,14 @@
                 <td class="header">STATE</td>
                 <td class="value" colspan="3">@Model.Team.State.Name</td>
             </tr>
-        }
+        } 
+        @if (Model.InRoles("individual"))
+        {
+            <tr class="hidden-xs">
+                <td class="header">STATE</td>
+                <td class="value" colspan="3">@Model.State.Name</td>
+            </tr>
+        } 
         <tr class="hidden-lg hidden-md hidden-sm">
             @* image *@
             <td rowspan="9" class="image">
@@ -87,6 +94,12 @@
                 <td class="value"><strong>State:</strong> @Model.Team.State.Name</td>
             </tr>
         }
+        @if (Model.InRoles("individual"))
+        {
+            <tr class="hidden-lg  hidden-md hidden-sm">
+                <td class="value"><strong>State:</strong> @Model.State.Name</td>
+            </tr>
+        } 
     </table>
 </div>
 <div class="col-lg-4 col-xs-12">
