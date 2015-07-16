@@ -150,7 +150,7 @@ namespace platformAthletic.Models.Info
                 }
 
                 var allAttendances = Repository.UserAttendances.Where(p => p.User.PlayerOfTeamID == Search.TeamID).OrderBy(p => p.AddedDate);
-                if (allAttendances != null)
+                if (allAttendances != null && allAttendances.Any())
                 {
                     Search.StartPeriod = allAttendances.First().AddedDate;
                     Search.EndPeriod = allAttendances.OrderByDescending(p => p.AddedDate).First().AddedDate;

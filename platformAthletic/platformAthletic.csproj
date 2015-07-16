@@ -1705,6 +1705,7 @@
     <Content Include="Areas\Default\Views\Schedule\CalendarRowMobile.cshtml" />
     <Content Include="Areas\Default\Views\Schedule\PersonalCalendarRowMobile.cshtml" />
     <Content Include="Areas\Default\Views\User\UserSbc.cshtml" />
+    <Content Include="Areas\Default\Views\User\RemoveVideo.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

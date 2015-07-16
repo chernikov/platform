@@ -5,7 +5,6 @@
 <li><h1 class="todo">TO DO:</h1></li>
 @foreach (var item in Model.List)
 {
-   
     <li class="todo-list-item">
         @if (item.Solved)
         {
@@ -13,7 +12,7 @@
         }
         else
         {
-            <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
+            <span class="clickable todoItem" data-href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></span>
         }
     </li>
-    }
+}

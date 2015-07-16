@@ -39,10 +39,21 @@
             _this.showUploadVideo();
         });
 
+       
         $(document).on("click", "#SubmitUploadVideo", function () {
             _this.uploadVideo();
         });
 
+        $(".RemoveVideo").click(function () {
+            var id = $(this).data("id");
+            _this.showRemoveVideo(id);
+        });
+
+        $(document).on("click", "#SubmitRemoveVideo", function () {
+            var id = $(this).data("id");
+            _this.removeVideo(id);
+        });
+        
 
         $("#ViewHistory").click(function () {
             _this.showAttendanceCalendar();
@@ -266,6 +277,9 @@
         })
     }
 
+
+    
+
     this.uploadVideo = function () {
 
         $.ajax({
@@ -278,6 +292,33 @@
             }
         })
     }
+
+
+    this.showRemoveVideo = function (id)
+    {
+        $.ajax({
+            type: "GET",
+            url: "/user/RemoveVideo",
+            data: { id: id },
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#removeVideoModal").modal();
+            }
+        })
+    }
+
+    this.removeVideo = function (id) {
+        $.ajax({
+            type: "POST",
+            url: "/user/RemoveVideo",
+            data: { ID: id },
+            success: function (data) {
+                window.location.reload();
+
+            }
+        })
+    }
+
 
     this.showAttendanceCalendar = function () {
         $.ajax({

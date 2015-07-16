@@ -200,7 +200,7 @@ namespace platformAthletic.Areas.Default.Controllers
             if (user != null)
             {
                 var sunday = DateTime.Now.Current().AddDays(-(int)DateTime.Now.DayOfWeek);
-                var currentSunday = sunday.AddDays(-7 * 12);
+                var currentSunday = sunday.AddDays(-7 * 11);
                 var labels = new List<string>();
                 var sData = new List<int>();
                 var bData = new List<int>();
@@ -224,6 +224,11 @@ namespace platformAthletic.Areas.Default.Controllers
                     }
                     currentSunday = currentSunday.AddDays(7);
                 };
+
+                labels.Add(currentSunday.ToString("MMM/dd"));
+                sData.Add((int)user.Squat);
+                bData.Add((int)user.Bench);
+                cData.Add((int)user.Clean);
 
                 var datasets = new List<PerformanceGraphInfo>();
                 datasets.Add(new PerformanceGraphInfo()
@@ -646,6 +651,28 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     return Json(new { result = "errors", errors });
                 }
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult RemoveVideo(int id)
+        {
+            var video = CurrentUser.UserVideos.FirstOrDefault(p => p.ID == id);
+            if (video != null)
+            {
+                return View(video);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult RemoveVideo(UserVideo userVideo )
+        {
+            var video = CurrentUser.UserVideos.FirstOrDefault(p => p.ID == userVideo.ID);
+            if (video != null)
+            {
+                Repository.RemoveUserVideo(video.ID);
             }
             return null;
         }

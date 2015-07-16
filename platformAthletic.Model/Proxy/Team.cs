@@ -24,7 +24,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                return Users;
+                return Users.Where(p => !p.IsDeleted).ToList();
             }
         }
 

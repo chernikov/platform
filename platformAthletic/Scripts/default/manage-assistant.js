@@ -84,29 +84,31 @@
 
     this.onEdit = function ()
     {
-        var obj = new qq.FineUploader({
-            element: $("#UploadImage")[0],
-            multiple: false,
-            request: {
-                endpoint: "/User/UploadFile",
-            },
-            text: {
-                uploadButton: "Upload"
-            },
-            callbacks: {
-                onComplete: function (id, fileName, responseJSON) {
-                    if (responseJSON.success) {
-                        $("#AvatarPath").val(responseJSON.fileUrl);
-                        $("#ImagePreviewWrapper").show();
-                        $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=200&h=200&mode=crop&scale=both");
-                        _this.updateEdit();
+        if ($("#UploadImage").length > 0) {
+            var obj = new qq.FineUploader({
+                element: $("#UploadImage")[0],
+                multiple: false,
+                request: {
+                    endpoint: "/User/UploadFile",
+                },
+                text: {
+                    uploadButton: "Upload"
+                },
+                callbacks: {
+                    onComplete: function (id, fileName, responseJSON) {
+                        if (responseJSON.success) {
+                            $("#AvatarPath").val(responseJSON.fileUrl);
+                            $("#ImagePreviewWrapper").show();
+                            $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=200&h=200&mode=crop&scale=both");
+                            _this.updateEdit();
+                        }
                     }
+                },
+                validation: {
+                    allowedExtensions: ["jpeg", "png", "jpg"]
                 }
-            },
-            validation: {
-                allowedExtensions: ["jpeg", "png", "jpg"]
-            }
-        });
+            });
+        }
     }
 }
 
