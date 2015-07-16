@@ -101,7 +101,7 @@
                         <table class="table leader-table">
                             <thead>
                                 <tr class="leaderboard-header">
-                                    <th class="tcenter">RANK</th>
+                                    <th class="tcenter rank">RANK</th>
                                     <th class="reverse-sortable"><span data-type="Name" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.NameDesc ? "desc" : "")"></span>NAME</th>
                                     <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.SquatDesc ? "desc" : "")"></span>SQUAT</th>
                                     <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchNationalLeaderboard.SortEnum.BenchDesc ? "desc" : "")"></span>BENCH</th>
@@ -133,7 +133,7 @@
                         }
                         <div class="text-center">
                             <ul class="pagination">
-                                @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Index", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, StateID = Model.Search.StateID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age }))
+                                @Html.PageLinkBootstrap(Model.Search.Page, Model.CountPage, i => @Url.Action("Index", new { Page = i, Sort = Model.Search.Sort, SportID = Model.Search.SportID, StateID = Model.Search.StateID, FieldPositionID = Model.Search.FieldPositionID, Gender = Model.Search.Gender, Age = Model.Search.Age, LevelID = Model.Search.LevelID, GradYear = Model.Search.GradYear }))
                             </ul>
                         </div>
                     </div>

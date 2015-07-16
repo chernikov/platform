@@ -122,15 +122,15 @@ namespace platformAthletic.Models.Info
                         });
                     }
                 }
-                using (profiler.Step("Order"))
-                {
-                    Order();
-                }
+                List = List.OrderByDescending(p => p.AllTime).ToList();
                 using (profiler.Step("SetRanks"))
                 {
                     SetRanks();
                 }
-
+                using (profiler.Step("Order"))
+                {
+                    Order();
+                }
                 if (Search.StartID.HasValue)
                 {
                     var item = List.FirstOrDefault(p => p.User.ID == Search.StartID.Value);
@@ -147,6 +147,13 @@ namespace platformAthletic.Models.Info
                 if (!Search.StartID.HasValue && List.Count > 0)
                 {
                     Search.StartID = List[0].User.ID;
+                }
+
+                var allAttendances = Repository.UserAttendances.Where(p => p.User.PlayerOfTeamID == Search.TeamID).OrderBy(p => p.AddedDate);
+                if (allAttendances != null)
+                {
+                    Search.StartPeriod = allAttendances.First().AddedDate;
+                    Search.EndPeriod = allAttendances.OrderByDescending(p => p.AddedDate).First().AddedDate;
                 }
             }
         }
@@ -228,23 +235,25 @@ namespace platformAthletic.Models.Info
 
         protected int GetRankValue(Record record, SearchAttendanceReport.SortEnum sort)
         {
-            switch (Search.Sort)
-            {
-                case SearchAttendanceReport.SortEnum.AllTimeAsc:
-                case SearchAttendanceReport.SortEnum.AllTimeDesc:
-                    return record.AllTime;
-                case SearchAttendanceReport.SortEnum.YearAsc:
-                case SearchAttendanceReport.SortEnum.YearDesc:
-                    return record.Year;
-                case SearchAttendanceReport.SortEnum.MonthAsc:
-                case SearchAttendanceReport.SortEnum.MonthDesc:
-                    return record.Month;
-                case SearchAttendanceReport.SortEnum.WeekAsc:
-                case SearchAttendanceReport.SortEnum.WeekDesc:
-                    return record.Week;
-                default:
-                    return record.AllTime;
-            }
+            return record.AllTime;
+            //switch (Search.Sort)
+            //{
+                    
+            //    case SearchAttendanceReport.SortEnum.AllTimeAsc:
+            //    case SearchAttendanceReport.SortEnum.AllTimeDesc:
+            //        return record.AllTime;
+            //    case SearchAttendanceReport.SortEnum.YearAsc:
+            //    case SearchAttendanceReport.SortEnum.YearDesc:
+            //        return record.Year;
+            //    case SearchAttendanceReport.SortEnum.MonthAsc:
+            //    case SearchAttendanceReport.SortEnum.MonthDesc:
+            //        return record.Month;
+            //    case SearchAttendanceReport.SortEnum.WeekAsc:
+            //    case SearchAttendanceReport.SortEnum.WeekDesc:
+            //        return record.Week;
+            //    default:
+            //        return record.AllTime;
+            //}
         }
 
         protected virtual void GetPage()

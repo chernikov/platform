@@ -72,7 +72,8 @@
                                                     </button>
                                                 }
                                             }
-                                            else if (Model.HasAttendanceToday)
+                                            else if
+                                            (Model.HasAttendanceToday && (Model.TeamOfPlay != null && (Model.ID == currentUser.ID || Model.TeamOfPlay.UserID == currentUser.ID || Model.TeamOfPlay.ID == currentUser.AssistantOfTeamID)))
                                             {
                                                 <button class="btn btn-margin btn-success btn-lg noclickable">
                                                     <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
@@ -96,7 +97,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
                             <div class="left-padding right-padding">
-                                @if (currentUser != null && Model.InRoles("player"))
+                                @if (currentUser != null)
                                 {
                                     <div class="pull-right">
                                         <a href="@Url.Action("Progress", "Report")" class="btn btn-success btn-large">REPORTS</a>

@@ -117,7 +117,7 @@ namespace platformAthletic.Models.ViewModels.User
 
         public bool Gender { get; set; }
 
-        public int GradYear { get; set; }
+        public int? GradYear { get; set; }
 
         public bool IsGradYear
         {
@@ -174,6 +174,33 @@ namespace platformAthletic.Models.ViewModels.User
                 }
             }
         }
+
+        public int? IndividualStateID { get; set; }
+
+        private List<State> States
+        {
+            get
+            {
+                return repository.States.ToList();
+            }
+        }
+
+        public IEnumerable<SelectListItem> SelectListState
+        {
+            get
+            {
+                foreach (var state in States)
+                {
+                    yield return new SelectListItem()
+                    {
+                        Value = state.ID.ToString(),
+                        Text = state.Name,
+                        Selected = LevelID == state.ID
+                    };
+                }
+            }
+        }
+
 
         public int Squat { get; set; }
 

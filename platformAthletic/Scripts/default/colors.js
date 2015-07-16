@@ -5,7 +5,6 @@
     this.secondaryColor = "";
 
     this.init = function (primaryColor, secondaryColor) {
-
         _this.primaryColor = primaryColor;
         _this.secondaryColor = secondaryColor;
         if (_this.primaryColor == "") {

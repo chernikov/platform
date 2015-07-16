@@ -25,6 +25,7 @@
         $("#secondary_color").ImageColorPicker({
             afterColorSelected: function (event, color) {
                 $("#SecondaryColor").val(color);
+                alert();
                 _this.UpdateColors();
             }
         });

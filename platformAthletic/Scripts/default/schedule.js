@@ -109,6 +109,10 @@
             _this.startCyclePersonal(_this.number, $(this).data("id"), _this.date);
         });
 
+        $(document).on('input', "#Name", function () {
+            _this.checkNameGroup();
+        })
+
        
         $(document).on("click", ".season", function () {
             var id = $(this).data("id");
@@ -187,7 +191,29 @@
         });
     }
 
+    this.checkNameGroup = function () {
+        var name = $("#Name").val();
+        var error = "";
+
+        if (name.length === 0) 
+            error = "Enter name";
+        else if (name.length > 500) 
+            error = "The length of the name should not exceed 500 characters";
+
+        $("#name-error-message").remove();
+        if (error.length > 0) {
+            $("#Name").parent().addClass("has-error");
+            $("#Name").after('<div id="name-error-message" class="error">' + error + '</div>');
+            return false;
+        }
+        $("#Name").parent().removeClass("has-error");
+        return true;
+    }
+
     this.submitEditGroupForm = function () {
+        if (_this.checkNameGroup() === false)
+            return false;
+
         var ajaxData = $("#EditGroupForm").serialize();
         $('#ModalWrapper').modal('hide');
         $('body').removeClass('modal-open');

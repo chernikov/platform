@@ -65,7 +65,6 @@
                 },
                 success: function (data) {
                     valueWrapper.text(data.value);
-
                     _this.onSbcChange();
                 }
             });

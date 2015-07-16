@@ -155,6 +155,7 @@ namespace platformAthletic.Model
                 cache.LevelID = instance.LevelID;
                 cache.GradYear = instance.GradYear;
                 cache.Gender = instance.Gender;
+                cache.IndividualStateID = instance.IndividualStateID;
                 Db.Users.Context.SubmitChanges();
                 return true;
             }

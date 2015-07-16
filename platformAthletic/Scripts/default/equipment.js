@@ -3,6 +3,7 @@
 
     this.init = function ()
     {
+        
         $("#EquipmentWrapper").mCustomScrollbar({ theme: "minimal-dark" });
 
         $(".equipmentItem").click(function () {
