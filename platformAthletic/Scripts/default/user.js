@@ -325,8 +325,8 @@
     }
 
     this.uploadVideo = function () {
-        _this.checkVideoUrl();
-        if (_this.checkHeader() === false)
+
+        if (_this.checkHeader() === false | _this.checkVideoUrl() === false)
             return false;
 
         $.ajax({

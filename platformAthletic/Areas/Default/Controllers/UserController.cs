@@ -312,12 +312,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 ModelState.AddModelError("VideoUrl", error);
             }
 
-
-            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
-            {
-                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.UploadVideo);
-            }
-
             if (ModelState.IsValid)
             {
                 var userVideo = (UserVideo)ModelMapper.Map(userVideoView, typeof(UserVideoView), typeof(UserVideo));
@@ -326,19 +320,32 @@ namespace platformAthletic.Areas.Default.Controllers
                 userVideo.VideoCode = VideoHelper.GetVideoByUrl(userVideo.VideoUrl, 800, 600);
                 if (!string.IsNullOrWhiteSpace(userVideo.VideoUrl))
                 {
-                    var url = VideoHelper.GetVideoThumbByUrl(userVideo.VideoUrl);
-                    var webClient = new WebClient();
-                    var bytes = webClient.DownloadData(url);
-                    var stream = new MemoryStream(bytes);
+                    try
+                    {
+                        var url = VideoHelper.GetVideoThumbByUrl(userVideo.VideoUrl);
+                        var webClient = new WebClient();
+                        var bytes = webClient.DownloadData(url);
+                        var stream = new MemoryStream(bytes);
 
-                    var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
-                    userVideo.Preview = "/" + Path.Combine(DestinationDirVideo, uFile);
-                    var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
+                        var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
+                        userVideo.Preview = "/" + Path.Combine(DestinationDirVideo, uFile);
+                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
 
-                    ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
+                        ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
 
-                    Repository.CreateUserVideo(userVideo);
-                    return View("_OK");
+                        Repository.CreateUserVideo(userVideo);
+
+                        if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+                        {
+                            Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.UploadVideo);
+                        }
+
+                        return View("_OK");
+                    }
+                    catch (WebException)
+                    {
+                        ModelState.AddModelError("VideoUrl", "Video can not be upload from this link");
+                    }
                 }
                 else
                 {

@@ -17,7 +17,7 @@
         }
         @if (currentUser.InRoles("player,individual"))
         {
-            <li class="@(controllerName == "user" ? "active" : "")"><a href="/my-page"><span class="glyphicon glyphicon-user"></span> MY PAGE</a></li>
+            <li class="@(controllerName.ToLower() == "user" ? "active" : "")"><a href="/my-page"><span class="glyphicon glyphicon-user"></span> MY PAGE</a></li>
         }
         @if (currentUser.InRoles("coach,assistant,individual"))
         {
@@ -25,9 +25,9 @@
         }
         @if (currentUser.InRoles("coach,assistant,player"))
         {
-            <li class="@(controllerName == "Report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
+            <li class="@(controllerName.ToLower() == "report" ? "active" : "")"><a href="/report"><span class="glyphicon glyphicon-list-alt"></span> REPORT</a></li>
         }
-        <li class="@(controllerName == "LeaderBoard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
+        <li class="@(controllerName.ToLower() == "leaderboard" ? "active" : "")"><a href="/leaderboard"><span class="glyphicon glyphicon-signal"></span> LEADERBOARD</a></li>
         <li class="@(controllerName == "Video" ? "active" : "")"><a href="/video"><span class="glyphicon glyphicon-play-circle"></span> VIDEO LIBRARY</a></li>
 
 
