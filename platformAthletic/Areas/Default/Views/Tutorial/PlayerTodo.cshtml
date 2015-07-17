@@ -6,13 +6,13 @@
 @foreach (var item in Model.List)
 {
     <li class="todo-list-item">
-    @if (item.Solved)
-            {
-        <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
-            }
-            else
-            {
-        <a href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></a>
-            }
+        @if (item.Solved)
+        {
+            <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name
+        }
+        else
+        {
+            <span class="clickable todoItem" data-href="@item.Url"><span class="glyphicon glyphicon-info-sign"></span><span>@item.Name</span></span>
+        }
     </li>
 }

@@ -48,6 +48,7 @@ namespace platformAthletic.Areas.Default.Controllers
                                                 (u, format) => string.Format(format, u.Email, u.Password, HostName),
                                                 user);
                 }
+                ViewBag.Message = "Settings updated";
             }
             return View(settingInfoView);
         }

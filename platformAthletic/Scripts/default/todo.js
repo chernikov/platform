@@ -31,10 +31,25 @@ function Todo() {
             }
         }
 
-        $(".todo-list-item a").click(function () {
-            var href = $(this).attr("href");
-            window.location = href;
-            window.location.reload();
+        $(".todoItem").click(function () {
+            var href = $(this).data("href");
+            var current = window.location.pathname;
+            var hash = window.location.hash;
+            if (href.indexOf(current) != -1) {
+                if (href == current+hash) {
+                    window.location.reload();
+                } else {
+                    window.location = href;
+                }
+            } else {
+                window.open(href, "_self");
+            }
+        });
+
+        $(document).on("click", ".forbitBtn", function () {
+            var message = $(this).data("message");
+            _this.showInfo(message);
+            return false;
         });
 
 
@@ -84,4 +99,5 @@ var todo;
 $(function () {
     todo = new Todo();
     todo.init();
+    
 })

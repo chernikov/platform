@@ -4,6 +4,7 @@
     this.init = function () {
         Chart.defaults.global.responsive = true;
 
+        //$(".side-menu-container .nav.navbar-nav li:nth-of-type(3)").addClass("active");
         $('.datetime').mask("00/00/0000", { placeholder: "__/__/____" });
 
         $.ajax({
@@ -28,7 +29,6 @@
             var id = $(this).data("id");
             $(".report-table .item").removeClass("selected");
             $(this).addClass("selected");
-            _this.showProgressSummary(id);
         });
 
         $('#SearchAthlete').typeahead({
@@ -70,10 +70,6 @@
             _this.showGraph($(this).data("id"));
         });
 
-        $(document).on("click", ".sidetable .graph", function () {
-            _this.showGraph($(this).data("id"));
-        });
-
         $("#StartPeriod,#EndPeriod").datepicker({
             autoclose: true,
             endDate: '+1d'
@@ -86,22 +82,6 @@
 
         $(document).on("click", ".restrictAccess", function () {
             $(".privacyMessage").show();
-        });
-    }
-
-
-    this.showProgressSummary = function (id) {
-        $.ajax({
-            type: "GET",
-            url: "/report/ProgressSummary",
-            data: {
-                id: id,
-                startDate: $("#StartDate").val(),
-                endDate: $("#EndDate").val(),
-            },
-            success: function (data) {
-                $("#ProgressSummaryWrapper").html(data);
-            }
         });
     }
 
@@ -162,7 +142,6 @@
             }
         })
     }
-
     this.drawGraph = function (id) {
         // This will get the first returned node in the jQuery collection.
         var data = null;
@@ -188,6 +167,7 @@
         });
     }
 
+    
     this.drawGraph30 = function (id) {
         // This will get the first returned node in the jQuery collection.
         var data = null;

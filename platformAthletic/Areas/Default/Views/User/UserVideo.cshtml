@@ -38,7 +38,11 @@
                                 <div style="width: @(Model.Count * 320 + 40 + gap)px" class="video-collection">
                                     @foreach (var video in Model)
                                     {
-                                        <div class="video-item">
+                                        <div class="video-item videoItem" data-id="@video.ID">
+                                            @if (currentUser != null && user.CanEditOwnData(currentUser))
+                                            {
+                                                <div class="glyphicon-remove glyphicon remove-video RemoveVideo" data-id="@video.ID" ></div>
+                                            }
                                             <h6>@video.Header</h6>
                                             <div class="video-code">
                                                 @Html.Raw(video.ThumbVideoCode)

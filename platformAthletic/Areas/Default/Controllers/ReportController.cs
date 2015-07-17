@@ -40,21 +40,6 @@ namespace platformAthletic.Areas.Default.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult Workouts(int id)
-        {
-            var user = Repository.TeamPlayersUsers.FirstOrDefault(p => p.ID == id);
-            if (user == null)
-            {
-                return null;
-            }
-            if (Request.Browser.IsMobileDevice)
-            {
-                return View("WorkoutsMobile", user);
-            }
-            return View(user);
-        }
-
         public ActionResult AttendanceCalendar(int id)
         {
             var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
@@ -102,22 +87,6 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(progressReport);
         }
 
-        public ActionResult ProgressSummary(int id, DateTime startDate, DateTime endDate)
-        {
-            var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
-            var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
-            if (user != null)
-            {
-                var progressInfo = new ProgressInfo(user, startDate, endDate);
-                if (Request.Browser.IsMobileDevice)
-                {
-                    return View("ProgressSummaryMobile", progressInfo);
-                }
-                return View(progressInfo);
-            }
-            return null;
-        }
-
         public ActionResult ProgressGraph(int id, DateTime startDate, DateTime endDate)
         {
             var team = CurrentUser.OwnTeam ?? CurrentUser.Team;
@@ -135,7 +104,13 @@ namespace platformAthletic.Areas.Default.Controllers
             return null;
         }
 
-        public ActionResult Performance(int id,DateTime startDate, DateTime endDate)
+        public ActionResult ProgressTeamGraph(SearchProgressReport search)
+        {
+            search.TeamID = (CurrentUser.OwnTeam ?? CurrentUser.Team).ID;
+            return View(search);
+        }
+
+        public ActionResult Performance(int id, DateTime startDate, DateTime endDate)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null)

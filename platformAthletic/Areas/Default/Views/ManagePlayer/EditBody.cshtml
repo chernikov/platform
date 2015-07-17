@@ -20,14 +20,14 @@
             @Html.TextBox("LastName", Model.LastName, new { @class = "form-control" })
             @Html.ValidationMessage("LastName")
         </div>
-        <div class="form-group">
+        @*<div class="form-group">
             <label>
                 Avatar
             </label>
             <div class="btn btn-success" id="UploadImage">
                 Upload
             </div>
-        </div>
+        </div>*@
         <div id="ImagePreviewWrapper" style="@(!string.IsNullOrWhiteSpace(Model.AvatarPath) ? "" : "display : none;")">
             <img src="@Model.AvatarPath?w=200&h=200&mode=crop" alt="" id="ImagePreview" />
         </div>

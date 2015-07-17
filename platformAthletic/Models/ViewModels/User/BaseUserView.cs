@@ -14,6 +14,7 @@ namespace platformAthletic.Models.ViewModels.User
         [Required(ErrorMessage = "Enter Email")]
         [ValidEmail(ErrorMessage = "Enter correct Email")]
         [UserEmailValidation(ErrorMessage = "Email already registered")]
+        [StringLength(500, ErrorMessage = "The email can not exceed 150 characters")]
         public string Email { get; set; }
      
     }

@@ -117,8 +117,29 @@
         });
     }
 
+    this.checkDateValid = function () {
+        //Since JavaScripts counts months starting from 0 (January is 0), 
+        //subtract 1 from the month integer submitted by the user
+
+        var day = $("#BirthdayDay").val();
+        var month = $("#BirthdayMonth").val() - 1;
+        var year = $("#BirthdayYear").val();
+        var testDate = new Date(year, month, day, 0, 0, 0, 0);
+        if (day != testDate.getDate() || month != testDate.getMonth() || year != testDate.getFullYear()) {
+            $("#age-message-error").show();
+            return false
+        }
+        $("#age-message-error").hide();
+        return true;
+
+    }
+
     this.addPlayerInfo = function () {
         var data = $("#AddPlayerUserInfoForm").serialize();
+        if(_this.checkDateValid() === false)
+        	return false;
+        
+
         $.ajax({
             type: "POST",
             url: "/User/AddPlayerUserInfo",

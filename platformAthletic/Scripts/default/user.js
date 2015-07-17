@@ -39,10 +39,21 @@
             _this.showUploadVideo();
         });
 
+       
         $(document).on("click", "#SubmitUploadVideo", function () {
             _this.uploadVideo();
         });
 
+        $(".RemoveVideo").click(function () {
+            var id = $(this).data("id");
+            _this.showRemoveVideo(id);
+        });
+
+        $(document).on("click", "#SubmitRemoveVideo", function () {
+            var id = $(this).data("id");
+            _this.removeVideo(id);
+        });
+        
 
         $("#ViewHistory").click(function () {
             _this.showAttendanceCalendar();
@@ -68,6 +79,14 @@
                 _this.updateSchoolRank();
                 _this.updateRank();
             });
+        });
+
+        $(document).on("input", "#Header", function () {
+            _this.checkHeader();
+        });
+
+        $(document).on("blur", "#VideoUrl", function () {
+            _this.checkVideoUrl();
         });
     }
 
@@ -252,8 +271,11 @@
         });
     }
 
+ 
+
     this.showUploadVideo = function ()
     {
+
         $.ajax({
             type: "GET",
             url: "/user/UploadVideo",
@@ -266,7 +288,57 @@
         })
     }
 
+    this.checkHeader = function () {
+        var val = $("#Header").val();
+        var error_msg = "";
+
+        if (val.length === 0)
+            error_msg = "Enter Header";
+
+        if (val.length > 500)
+            error_msg = "Header should not exceed 500 characters";
+
+        $("#head-error-message").remove();
+        $("#Header").parent().removeClass("has-error");
+
+        if (error_msg.length !== 0) {
+            var element_msg = '<div class="error" id="head-error-message">' + error_msg + '</div>';
+            $("#Header").after(element_msg);
+            $("#Header").parent().addClass("has-error");
+            return false
+        }
+        return true;
+    }
+
+    this.checkVideoUrl = function () {
+        var error_msg = "";
+        var parser = document.createElement("a");
+        parser.href = $("#VideoUrl").val();
+        if (!(parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com" ||
+            parser.hostname === "vimeo.com" || parser.hostname === "www.vimeo.com")) {
+            error_msg = "This source is not supported";
+        }
+        if ($("#VideoUrl").val().length === 0)
+            error_msg = "Enter link video";
+        if ($("#VideoUrl").val().length > 500)
+            error_msg = "Video link should not exceed 500 characters";
+
+        $("#videourl-error-message").remove();
+        $("#VideoUrl").parent().removeClass("has-error");
+
+        if (error_msg.length !== 0) {
+            var element_msg = '<div class="error" id="videourl-error-message">' + error_msg + '</div>';
+            $("#VideoUrl").after(element_msg);
+            $("#VideoUrl").parent().addClass("has-error");
+            return false
+        }
+        return true;
+    }
+
     this.uploadVideo = function () {
+
+        if (_this.checkHeader() === false | _this.checkVideoUrl() === false)
+            return false;
 
         $.ajax({
             type: "POST",
@@ -278,6 +350,33 @@
             }
         })
     }
+
+
+    this.showRemoveVideo = function (id)
+    {
+        $.ajax({
+            type: "GET",
+            url: "/user/RemoveVideo",
+            data: { id: id },
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#removeVideoModal").modal();
+            }
+        })
+    }
+
+    this.removeVideo = function (id) {
+        $.ajax({
+            type: "POST",
+            url: "/user/RemoveVideo",
+            data: { ID: id },
+            success: function (data) {
+                window.location.reload();
+
+            }
+        })
+    }
+
 
     this.showAttendanceCalendar = function () {
         $.ajax({

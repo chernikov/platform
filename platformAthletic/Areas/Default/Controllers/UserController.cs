@@ -200,7 +200,7 @@ namespace platformAthletic.Areas.Default.Controllers
             if (user != null)
             {
                 var sunday = DateTime.Now.Current().AddDays(-(int)DateTime.Now.DayOfWeek);
-                var currentSunday = sunday.AddDays(-7 * 12);
+                var currentSunday = sunday.AddDays(-7 * 11);
                 var labels = new List<string>();
                 var sData = new List<int>();
                 var bData = new List<int>();
@@ -224,6 +224,11 @@ namespace platformAthletic.Areas.Default.Controllers
                     }
                     currentSunday = currentSunday.AddDays(7);
                 };
+
+                labels.Add(currentSunday.ToString("MMM/dd"));
+                sData.Add((int)user.Squat);
+                bData.Add((int)user.Bench);
+                cData.Add((int)user.Clean);
 
                 var datasets = new List<PerformanceGraphInfo>();
                 datasets.Add(new PerformanceGraphInfo()
@@ -305,9 +310,11 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult UploadVideo(UserVideoView userVideoView)
         {
-            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+
+            string error = VideoHelper.CheckVideoUrl(userVideoView.VideoUrl);
+            if (!String.IsNullOrEmpty(error))
             {
-                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.UploadVideo);
+                ModelState.AddModelError("VideoUrl", error);
             }
 
             if (ModelState.IsValid)
@@ -318,19 +325,32 @@ namespace platformAthletic.Areas.Default.Controllers
                 userVideo.VideoCode = VideoHelper.GetVideoByUrl(userVideo.VideoUrl, 800, 600);
                 if (!string.IsNullOrWhiteSpace(userVideo.VideoUrl))
                 {
-                    var url = VideoHelper.GetVideoThumbByUrl(userVideo.VideoUrl);
-                    var webClient = new WebClient();
-                    var bytes = webClient.DownloadData(url);
-                    var stream = new MemoryStream(bytes);
+                    try
+                    {
+                        var url = VideoHelper.GetVideoThumbByUrl(userVideo.VideoUrl);
+                        var webClient = new WebClient();
+                        var bytes = webClient.DownloadData(url);
+                        var stream = new MemoryStream(bytes);
 
-                    var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
-                    userVideo.Preview = "/" + Path.Combine(DestinationDirVideo, uFile);
-                    var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
+                        var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
+                        userVideo.Preview = "/" + Path.Combine(DestinationDirVideo, uFile);
+                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDirVideo), uFile);
 
-                    ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
+                        ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
 
-                    Repository.CreateUserVideo(userVideo);
-                    return View("_OK");
+                        Repository.CreateUserVideo(userVideo);
+
+                        if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+                        {
+                            Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.UploadVideo);
+                        }
+
+                        return View("_OK");
+                    }
+                    catch (WebException)
+                    {
+                        ModelState.AddModelError("VideoUrl", "Video can not be upload from this link");
+                    }
                 }
                 else
                 {
@@ -547,6 +567,15 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddPlayerUserInfo(PlayerUserInfoView playerUserInfoView)
         {
+            string inputDateAge = playerUserInfoView.BirthdayYear.ToString() + "-" + 
+                                playerUserInfoView.BirthdayMonth.ToString() + "-" +
+                                playerUserInfoView.BirthdayDay.ToString();
+            DateTime dateAge;
+            if (!DateTime.TryParse(inputDateAge, out dateAge))
+            {
+                ModelState.AddModelError("Birthday", "Please enter the existing age date");
+            }
+               
             if (playerUserInfoView.IsGradYear && playerUserInfoView.GradYear == 0)
             {
                 ModelState.AddModelError("GradYear", "");
@@ -646,6 +675,28 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     return Json(new { result = "errors", errors });
                 }
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult RemoveVideo(int id)
+        {
+            var video = CurrentUser.UserVideos.FirstOrDefault(p => p.ID == id);
+            if (video != null)
+            {
+                return View(video);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult RemoveVideo(UserVideo userVideo )
+        {
+            var video = CurrentUser.UserVideos.FirstOrDefault(p => p.ID == userVideo.ID);
+            if (video != null)
+            {
+                Repository.RemoveUserVideo(video.ID);
             }
             return null;
         }

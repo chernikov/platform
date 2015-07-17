@@ -29,7 +29,6 @@
             var id = $(this).data("id");
             $(".report-table .item").removeClass("selected");
             $(this).addClass("selected");
-            _this.showWorkouts(id);
         });
 
         $('#SearchAthlete').typeahead({
@@ -91,21 +90,7 @@
     }
 
 
-    this.showWorkouts = function (id)
-    {
-        $.ajax({
-            type: "GET",
-            url: "/report/Workouts",
-            data: { id: id },
-            success: function (data) {
-                $("#WorkoutsWrapper").html(data);
-            }
-        });
-    }
-
     this.getCurrentFilter = function () {
-        
-        
         var href = "";
         href = $.param.querystring(href, 'SportID=' + $("#SportID").val());
         if ($("#SportID").val() != "") {

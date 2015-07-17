@@ -33,9 +33,11 @@ namespace platformAthletic.Models.ViewModels.User
         }
 
         [Required]
+        [StringLength(500, ErrorMessage = "The first name  can not exceed 500 characters")]
         public string FirstName { get; set; }
 
         [Required]
+        [StringLength(500, ErrorMessage = "The last name can not exceed 500 characters")]
         public string LastName { get; set; }
 
         private IEnumerable<FieldPosition> FieldPositions

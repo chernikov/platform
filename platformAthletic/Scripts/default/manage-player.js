@@ -20,12 +20,18 @@
             _this.showRemovePopup($(this).data("id"));
         });
         $(document).on("click", "#SubmitEditPlayer", function () {
+            if (_this.checkEmail() === false | _this.checkFirstName() === false | _this.checkLastName() === false)
+                return false;
+
+            $("#modalEditPlayer").modal('hide');
+            $(".modal-backdrop").remove();
             $.ajax({
                 type: "POST",
                 url: "/ManagePlayer/Edit",
                 data: $("#PlayerForm").serialize(),
                 success: function (data) {
-                    $("#ModalEditPlayerWrapper").html(data);
+                    $("#ModalWrapper").html(data);
+                    $("#modalEditPlayer").modal();
                 }
             })
         });
@@ -41,6 +47,73 @@
                 }
             })
         });
+    }
+
+    $(document).on("input", "#Email", function () {
+        _this.checkEmail();
+    })
+    .on("input", "#FirstName", function () {
+        _this.checkFirstName();
+    })
+    .on("input", "#LastName", function () {
+        _this.checkLastName();
+    });
+
+    this.checkEmail = function () {
+        var val = $("#Email").val();
+        var error = "";
+
+        if (val.length === 0)
+            error = "Enter Email";
+        if (val.length > 150)
+            error = "The email can not exceed 150 characters"
+
+        $("#emai-error-message").remove();
+        $("#Email").parent().removeClass("has-error");
+        if (error.length !== 0) {
+            $("#Email").after('<div class="error" id="emai-error-message">' + error + '</div>');
+            $("#Email").parent().addClass("has-error");
+            return false;
+        }
+        return true;
+    }
+
+    this.checkFirstName = function () {
+        var val = $("#FirstName").val();
+        var error = "";
+
+        if (val.length === 0)
+            error = "The first name field is required";
+        if (val.length > 500)
+            error = "The first name can not exceed 500 characters"
+
+        $("#firstname-error-message").remove();
+        $("#FirstName").parent().removeClass("has-error");
+        if (error.length !== 0) {
+            $("#FirstName").after('<div class="error" id="firstname-error-message">' + error + '</div>');
+            $("#FirstName").parent().addClass("has-error");
+            return false;
+        }
+        return true;
+    }
+
+    this.checkLastName = function () {
+        var val = $("#LastName").val();
+        var error = "";
+
+        if (val.length === 0)
+            error = "The last name field is required";
+        if (val.length > 500)
+            error = "The last name can not exceed 500 characters"
+
+        $("#lastname-error-message").remove();
+        $("#LastName").parent().removeClass("has-error");
+        if (error.length !== 0) {
+            $("#LastName").after('<div class="error" id="lastname-error-message">' + error + '</div>');
+            $("#LastName").parent().addClass("has-error");
+            return false;
+        }
+        return true;
     }
 
     this.showCreatePopup = function ()

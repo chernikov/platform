@@ -9,26 +9,25 @@
     @Html.Hidden("AvatarPath", Model.AvatarPath)
     @Html.Hidden("TeamSchoolName", Model.TeamSchoolName)
     @Html.Hidden("TeamStateName", Model.TeamStateName)
-
     <div class="col-lg-8 col-xs-12 no-padding-left edit-profile-wrapper">
         <table class="table info-table">
-            <tr class="hidden-lg hidden-md hidden-sm">
+            <tr>
                 @* image *@
                 <td rowspan="10" class="image">
                     <img src="@(Model.FullAvatarPath)?w=200&h=200&mode=crop&scale=both" />
                 </td>
                 <td class="value"><strong>First name:</strong>@Html.TextBox("FirstName", Model.FirstName)</td>
             </tr>
-            <tr class="hidden-lg hidden-md hidden-sm">
+            <tr>
                 <td class="value"><strong>Last name:</strong> @Html.TextBox("LastName", Model.LastName)</td>
             </tr>
-            <tr class="hidden-lg hidden-md hidden-sm">
+            <tr>
                 <td class="value"><strong>Gender:</strong> <div class="dropdown-wrapper"> @Html.DropDownList("Gender", Model.SelectListGender)</div></td>
             </tr>
-            <tr class="hidden-lg hidden-md hidden-sm">
+            <tr>
                 <td class="value"><strong>Birthday:</strong>@Html.TextBox("Birthday", Model.Birthday.ToString("MM/dd/yyyy"))</td>
             </tr>
-            <tr class="hidden-lg hidden-md hidden-sm">
+            <tr>
                 <td class="value select-sport select-position" data-id="0">
                     <div class="dropdown-wrapper">
                         @Html.DropDownList("Sports[0].SportID", Model.Sports[0].SelectListSports, new { @class = "full-dropdown" })
@@ -39,8 +38,7 @@
                 </td>
 
             </tr>
-            <tr class="hidden-lg hidden-md hidden-sm">
-
+            <tr>
                 <td class="value select-sport select-position" data-id="1">
                     <div class="dropdown-wrapper">
                         @Html.DropDownList("Sports[1].SportID", Model.Sports[1].SelectListSports, new { @class = "full-dropdown" })
@@ -49,9 +47,8 @@
                         @Html.DropDownList("Sports[1].FieldPositionID", Model.Sports[1].SelectListFieldPositionID, new { @class = "full-dropdown" })
                     </div>
                 </td>
-
             </tr>
-            <tr class="hidden-lg hidden-md hidden-sm">
+            <tr>
                 <td class="value select-sport select-position" data-id="2">
                     <div class="dropdown-wrapper">
                         @Html.DropDownList("Sports[2].SportID", Model.Sports[2].SelectListSports, new { @class = "full-dropdown" })
@@ -59,11 +56,11 @@
                     <div class="dropdown-wrapper">
                         @Html.DropDownList("Sports[2].FieldPositionID", Model.Sports[2].SelectListFieldPositionID, new { @class = "full-dropdown" })
                         </div>
-</td>
+                </td>
             </tr>
             @if (Model.LevelID != null)
             {
-                <tr class="hidden-lg hidden-md hidden-sm">
+                <tr>
                     <td class="value">
                         <div class="@(Model.IsGradYear ? "half" : "full")">
                             <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
@@ -74,7 +71,7 @@
             }
             @if (!currentUser.InRoles("individual"))
             {
-                <tr class="hidden-lg hidden-md hidden-sm">
+                <tr>
                     <td class="value"><strong>School:</strong> @Model.TeamSchoolName</td>
                 </tr>
                 <tr class="hidden-lg  hidden-md hidden-sm">

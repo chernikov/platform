@@ -43,6 +43,10 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult Edit(AssistantUserView assistantUserView)
         {
+            if (assistantUserView.Password == "" && assistantUserView.ID != 0)
+            {
+                ModelState.AddModelError("Password", "Enter Password");
+            }
             if (ModelState.IsValid)
             {
                 
@@ -50,6 +54,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 if (user.ID == 0)
                 {
                     user.AssistantOfTeamID = CurrentUser.OwnTeam.ID;
+                    user.Password = StringExtension.CreateRandomPassword(6, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
                     Repository.CreateUser(user);
                     var userRole = new UserRole()
                     {
