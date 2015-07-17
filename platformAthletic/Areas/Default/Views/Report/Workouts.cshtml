@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model AttendanceReport.Record
 <div class="panel panel-default sidetable">
     <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
         <h1>Workouts Completed</h1>
@@ -8,25 +8,25 @@
                     <h2>Week</h2>
                 </td>
                 <td class="value">
-                    @Model.WeekAttendanceCount
+                    @Model.Week
                 </td>
             </tr>
             <tr>
                 <td class="header month"><h2>Month</h2></td>
                 <td class="value">
-                    @Model.MonthAttendanceCount
+                    @Model.Month
                 </td>
             </tr>
             <tr>
                 <td class="header year"><h2>Year</h2></td>
                 <td class="value">
-                    @Model.YearAttendanceCount
+                    @Model.Year
                 </td>
             </tr>
             <tr>
                 <td class="header all-time"><h2>All Time</h2></td>
                 <td class="value">
-                    @Model.AllAttendanceCount
+                    @Model.AllTime
                 </td>
             </tr>
         </table>

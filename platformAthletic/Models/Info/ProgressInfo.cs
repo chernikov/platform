@@ -14,17 +14,13 @@ namespace platformAthletic.Models.Info
 
         public DateTime EndDate { get; set; }
 
-
         private SBCValue StartValue { get; set; }
-
 
         private SBCValue EndValue { get; set; }
 
         public int Squat { get; private set; }
 
-
         public int Bench { get; private set; }
-
 
         public int Clean { get; private set; }
 

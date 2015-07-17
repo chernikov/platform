@@ -173,8 +173,8 @@ namespace platformAthletic.Models.Info
             FieldPositions = Repository.FieldPositions.ToList();
             Groups = Repository.Groups.Where(p => p.TeamID == TeamID).ToList();
             GradYears = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == TeamID && p.GradYear.HasValue).Select(p => p.GradYear.Value).Distinct().ToList();
-            
-            
+
+
         }
     }
 }

@@ -69,7 +69,6 @@
                     else
                     {
                         <div class="post user-post">
-                            @item.User.AvatarPath
                             <div class="user-icon">
                                 @if (item.User.AvatarPath == null)
                                 {
@@ -80,7 +79,6 @@
                                     <img src="@item.User.AvatarPath?w=39&h=40&mode=crop">
                                 }
                             </div>
-
                             <h1>@item.Header</h1>
                             <div class="date">
                                 <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()

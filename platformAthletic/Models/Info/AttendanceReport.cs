@@ -43,6 +43,8 @@ namespace platformAthletic.Models.Info
             }
         }
 
+        public Record WorkoutComplete { get; set; }
+
         public AttendanceReport(SearchAttendanceReport search, Team team)
         {
             var profiler = MiniProfiler.Current; // it's ok if this is null
@@ -140,6 +142,14 @@ namespace platformAthletic.Models.Info
                         Search.Page = index / 20 + 1;
                     }
                 }
+
+                WorkoutComplete = new Record()
+                {
+                    AllTime = List.Sum(p => p.AllTime),
+                    Year = List.Sum(p => p.Year),
+                    Month = List.Sum(p => p.Month),
+                    Week = List.Sum(p => p.Week)
+                };
                 using (profiler.Step("GetPage"))
                 {
                     GetPage();
@@ -150,7 +160,7 @@ namespace platformAthletic.Models.Info
                 }
 
                 var allAttendances = Repository.UserAttendances.Where(p => p.User.PlayerOfTeamID == Search.TeamID).OrderBy(p => p.AddedDate);
-                if (allAttendances != null)
+                if (allAttendances != null && allAttendances.Any())
                 {
                     Search.StartPeriod = allAttendances.First().AddedDate;
                     Search.EndPeriod = allAttendances.OrderByDescending(p => p.AddedDate).First().AddedDate;

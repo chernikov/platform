@@ -51,23 +51,23 @@
                                         {
                                             if (Model.CanEditOwnData(currentUser))
                                             {
-                                                <button class="btn btn-success btn-margin btn-lg edit-profile" data-mode="no-edit">EDIT PROFILE</button>
+                                                <button class="btn btn-success btn-margin btn-margin-md btn-lg edit-profile" data-mode="no-edit">EDIT PROFILE</button>
                                             }
                                             if (currentUser != null && currentUser.CanViewWorkOut(Model))
                                             {
-                                                <a href="@Url.Action("Index", "Table")" target="_blank" class="btn btn-success btn-margin btn-lg" id="ViewWorkout">VIEW WORKOUT</a>
+                                                <a href="@Url.Action("Index", "Table")" target="_blank" class="btn btn-success btn-margin btn-margin-md btn-lg" id="ViewWorkout">VIEW WORKOUT</a>
                                             }
                                             if (Model.CanEditAttendance(currentUser))
                                             {
                                                 if (Model.HasAttendanceToday)
                                                 {
-                                                    <button class="btn btn-success btn-margin btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
+                                                    <button class="btn btn-success btn-margin btn-margin-md btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
                                                         <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
                                                     </button>
                                                 }
                                                 else
                                                 {
-                                                    <button class="btn btn-success btn-margin btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
+                                                    <button class="btn btn-success btn-margin btn-margin-md btn-lg" id="ToggleAttendance" data-id="@Model.ID" data-date="@DateTime.Now.Current().ToString("MM/dd/yyyy")">
                                                         LOG ATTENDANCE
                                                     </button>
                                                 }
@@ -75,7 +75,7 @@
                                             else if
                                             (Model.HasAttendanceToday && (Model.TeamOfPlay != null && (Model.ID == currentUser.ID || Model.TeamOfPlay.UserID == currentUser.ID || Model.TeamOfPlay.ID == currentUser.AssistantOfTeamID)))
                                             {
-                                                <button class="btn btn-margin btn-success btn-lg noclickable">
+                                                <button class="btn btn-margin btn-margin-md btn-success btn-lg noclickable">
                                                     <span class="glyphicon glyphicon-ok"></span> ATTENDANCE LOGGED
                                                 </button>
                                             }
@@ -97,7 +97,7 @@
                     <div class="panel panel-default">
                         <div class="panel-body no-padding-left no-padding-right no-padding-bottom">
                             <div class="left-padding right-padding">
-                                @if (currentUser != null)
+                                @if (currentUser != null && Model.InRoles("player"))
                                 {
                                     <div class="pull-right">
                                         <a href="@Url.Action("Progress", "Report")" class="btn btn-success btn-large">REPORTS</a>

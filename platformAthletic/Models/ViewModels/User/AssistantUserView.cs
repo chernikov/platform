@@ -29,16 +29,14 @@ namespace platformAthletic.Models.ViewModels.User
             }
         }
 
-        [Required]
+        [Required(ErrorMessage="Enter first name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter last name")]
         public string LastName { get; set; }
 
-        [Required]
         public string PhoneNumber { get; set; }
 
-        [Required]
         public string Password {get; set;}
     }
 }
