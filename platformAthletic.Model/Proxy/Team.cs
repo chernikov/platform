@@ -100,5 +100,5 @@ namespace platformAthletic.Model
                 return Groups.AsEnumerable();
             }
         }
-	}
+    }
 }

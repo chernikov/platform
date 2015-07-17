@@ -385,71 +385,80 @@ th {
         font-family: 'Montserrat', sans-serif;
     }
 
+@media(max-width:767px) {
+    .platform .navbar-default .navbar-brand.test-mode {
+        width: 80%;
+        position: absolute;
+        top: 42px;
+        left: 63px;
+    }
+}
 
-    .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
-        margin-right: 10px;
-        margin-left: 5px;
+
+.platform .navbar-default .navbar-nav > li > a > span.glyphicon {
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+.platform .navbar-default .navbar-nav > li > a:hover {
+    color: #fff;
+    text-shadow: 1px 0px 3px #000;
+}
+
+.platform .side-menu .navbar-default .navbar-nav > li > a {
+    text-shadow: none;
+}
+
+.platform .side-menu .navbar-default .navbar-nav > li > h1 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.platform .side-menu.navbar-default .navbar-nav > li > a:hover {
+    text-shadow: none;
+}
+
+.platform .side-menu .navbar-nav .active a {
+    color: #fc8675;
+    background-color: #ffffff;
+}
+
+.platform .navbar-default .navbar-nav > .active > a:hover {
+    color: #fc8675;
+}
+
+.platform .side-menu .navbar-nav .active a > span.glyphicon {
+    color: #495b6c;
+}
+
+
+.platform .side-menu .navbar-nav li a {
+    padding: 15px;
+}
+
+    .platform .side-menu .navbar-nav li a .glyphicon {
+        padding-right: 10px;
     }
 
-    .platform .navbar-default .navbar-nav > li > a:hover {
-        color: #fff;
-        text-shadow: 1px 0px 3px #000;
+.platform .side-menu #dropdown {
+    border: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+
+.platform .side-menu .brand-name-wrapper {
+    min-height: 50px;
+}
+
+    .platform .side-menu .brand-name-wrapper .navbar-brand {
+        display: block;
     }
-
-    .platform .side-menu .navbar-default .navbar-nav > li > a {
-        text-shadow: none;
-    }
-
-    .platform .side-menu .navbar-default .navbar-nav > li > h1 {
-        color: #fff;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 20px;
-        padding-left: 20px;
-    }
-
-    .platform .side-menu.navbar-default .navbar-nav > li > a:hover {
-        text-shadow: none;
-    }
-
-    .platform .side-menu .navbar-nav .active a {
-        color: #fc8675;
-        background-color: #ffffff;
-    }
-
-    .platform .navbar-default .navbar-nav > .active > a:hover {
-        color: #fc8675;
-    }
-
-    .platform .side-menu .navbar-nav .active a > span.glyphicon {
-        color: #495b6c;
-    }
-
-
-    .platform .side-menu .navbar-nav li a {
-        padding: 15px;
-    }
-
-        .platform .side-menu .navbar-nav li a .glyphicon {
-            padding-right: 10px;
-        }
-
-    .platform .side-menu #dropdown {
-        border: 0;
-        margin-bottom: 0;
-        border-radius: 0;
-        background-color: transparent;
-        box-shadow: none;
-    }
-
-
-
-    .platform .side-menu .brand-name-wrapper {
-        min-height: 50px;
-    }
-
-        .platform .side-menu .brand-name-wrapper .navbar-brand {
-            display: block;
-        }
 
 /* Main body section */
 .side-body {
@@ -470,6 +479,7 @@ th {
         height: 0;
         border-right: 0;
         border-bottom: 1px solid #495b6c;
+        z-index : 3;
     }
 
         .platform .side-menu .brand-name-wrapper .navbar-brand {
@@ -563,6 +573,8 @@ th {
         animation: slideout 300ms forwards;
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
+        padding-bottom : 150px;
+        z-index: 1031;
     }
 
     /* Uncomment for scrollable menu -> see top comment */
@@ -685,7 +697,6 @@ th {
     background: url("/Content/img/side-phone.png") no-repeat top center;
     height: 350px;
     float: left;
-    margin-top: 100px;
     padding-top: 80px;
     margin-left: 30px;
 }
@@ -943,12 +954,12 @@ th {
 
         .platform .table-extended-players tbody td:last-child {
             border-left: 1px solid #eeeeee;
-            padding: 10px 0 10px 30px;
         }
 
 .platform .table-extended-players .value-wrapper {
     margin: 0 auto;
     text-align: center;
+            min-width: 72px;
 }
 
     .platform .table-extended-players .value-wrapper .glyphicon-minus {
@@ -959,6 +970,7 @@ th {
         font-weight: bold;
         width: 30px;
         display: inline-block;
+
     }
 
     .platform .table-extended-players .value-wrapper .glyphicon-plus {
@@ -992,6 +1004,7 @@ th {
             padding: 5px 0;
         }
 }
+
 
 .styled-checkbox {
     width: 16px;
@@ -2281,9 +2294,9 @@ th {
     width: 100%;
 }
 
-.report-wrapper .search-wrapper .input-group .form-control {
-    width: 100%;
-}
+    .report-wrapper .search-wrapper .input-group .form-control {
+        width: 100%;
+    }
 
 .report-wrapper.leaderboard .search-wrapper .input-group {
     width: 400px;
@@ -4097,7 +4110,7 @@ hr.video {
 
     .equipment-wrapper.form-group.text-center {
         position: fixed;
-        z-index: 1040;
+        z-index: 2;
         padding: 10px 20px;
         background: #f5f5f5;
         bottom: -20px;
@@ -4499,6 +4512,12 @@ hr.video {
     }
 }
 
+@media(max-height:440px) {
+    .tm-coach-3 {
+        top: -200px;
+        position: relative;
+    }
+}
 .tm-coach-6 {
     top: -350px;
     position: relative;

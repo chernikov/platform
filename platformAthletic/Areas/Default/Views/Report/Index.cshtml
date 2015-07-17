@@ -140,11 +140,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-xs-12" id="WorkoutsWrapper">
-                    @*sidetable*@
-                    @if (Model.List.Count > 0)
+                <div class="col-lg-3 col-xs-12">
+                    @if (Request.Browser.IsMobileDevice)
                     {
-                        @Html.Action("Workouts", "Report", new { id = Model.Search.StartID })
+                        @Html.Partial("WorkoutsMobile", Model.WorkoutComplete)
+                    }
+                    else
+                    {
+                        @Html.Partial("Workouts", Model.WorkoutComplete)
                     }
                 </div>
             </div>

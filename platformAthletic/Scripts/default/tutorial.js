@@ -136,8 +136,8 @@
 
     this.addPlayerInfo = function () {
         var data = $("#AddPlayerUserInfoForm").serialize();
-        if (_this.checkDateValid() === false)
-            alert("figu!");
+        //if (_this.checkDateValid() === false)
+        //    alert("figu!");
 
         $.ajax({
             type: "POST",

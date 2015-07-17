@@ -13,6 +13,8 @@ namespace platformAthletic.Models.Info
     {
         public class Record
         {
+            public int? TeamID { get; set; }
+
             public int Position { get; set; }
 
             public User User { get; set; }
@@ -47,6 +49,8 @@ namespace platformAthletic.Models.Info
                 return (int)decimal.Remainder(TotalCount, SearchNationalLeaderboard.PageSize) == 0 ? TotalCount / SearchNationalLeaderboard.PageSize : TotalCount / SearchNationalLeaderboard.PageSize + 1;
             }
         }
+
+        public Record WorkoutComplete { get; set; }
 
         public ProgressReport(SearchProgressReport search, Team team)
         {
@@ -136,6 +140,14 @@ namespace platformAthletic.Models.Info
                         Search.Page = index / 20 + 1;
                     }
                 }
+
+                WorkoutComplete = new Record()
+                {
+                    Bench = List.Sum(p => p.Bench),
+                    Clean = List.Sum(p => p.Clean),
+                    Squat = List.Sum(p => p.Squat),
+                    TeamID = Search.TeamID
+                };
                 using (profiler.Step("GetPage"))
                 {
                     GetPage();
