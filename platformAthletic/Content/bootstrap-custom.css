@@ -2090,7 +2090,7 @@ th {
     font-weight: normal;
 }
 
-    .report-wrapper .table .item td {
+    .report-wrapper .table .item td , .all-item{
         border: none;
         padding: 0;
         cursor: pointer;
@@ -2799,8 +2799,9 @@ th {
         .user-page .sbc-table td {
             font-family: 'Montserrat', sans-serif;
             text-align: center;
-            font-size: 12px;
+            font-size: 11px;
             border: 1px solid #e7e6e6;
+            padding: 8px 0;
         }
 
             .user-page .sbc-table td .minus, .user-page .sbc-table td .plus {
@@ -2819,7 +2820,7 @@ th {
             }
 
             .user-page .sbc-table td .value {
-                width: 40px;
+                width: 38px;
                 display: inline-block;
             }
 
@@ -3504,7 +3505,8 @@ hr.video {
 
 .video-code-wrapper .code {
    height: 420px;
-    margin-bottom: 4px;
+   margin-bottom: 4px;
+   padding: 0 17px;
 }
 #VideoScroll {
     height: -moz-calc(100% - 176px);
