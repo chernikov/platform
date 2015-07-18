@@ -41,3 +41,4 @@ packages
 *.suo
 platformAthletic/Media/files/
 platformAthletic/Media/logs/
+/.vs/config

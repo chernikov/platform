@@ -4,6 +4,7 @@
     this.init = function () {
         Chart.defaults.global.responsive = true;
 
+        //$(".side-menu-container .nav.navbar-nav li:nth-of-type(3)").addClass("active");
         $('.datetime').mask("00/00/0000", { placeholder: "__/__/____" });
 
         $.ajax({
