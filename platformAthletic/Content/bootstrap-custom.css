@@ -4492,6 +4492,16 @@ hr.video {
     padding: 5px;
 }
 
+.tutorial-highlight::after {
+    position : absolute;
+    width : 100%;
+    height : 100%;
+    background : transparent;
+    content : "";
+    top : 0;
+    left : 0;
+}
+
     .tutorial-highlight.left {
         display: inline-block;
     }
@@ -4572,7 +4582,7 @@ hr.video {
 
 
 .tm-player-5 {
-    top: -250px;
+    top: -550px;
     position: relative;
 }
 

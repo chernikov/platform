@@ -132,11 +132,18 @@ namespace platformAthletic.Areas.Default.Controllers
             return View();
         }
 
+        public ActionResult ShowStopTestMode()
+        {
+            return View();
+        }
+
         public ActionResult StopTestMode()
         {
             Repository.RemovePhantoms(CurrentUser.ID);
             return Redirect("/dashboard");
         }
+
+
        
     }
 }

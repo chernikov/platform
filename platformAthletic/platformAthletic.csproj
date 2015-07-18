@@ -283,7 +283,6 @@
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
     <Compile Include="Models\Info\PlayerTodoListInfo.cs" />
-    <Compile Include="Models\Info\ProgressGraphTeamInfo.cs" />
     <Compile Include="Models\Info\TodoListInfo.cs" />
     <Compile Include="Models\Info\IndividualTodoListInfo.cs" />
     <Compile Include="Models\Info\CoachTodoListInfo.cs" />
@@ -1707,6 +1706,7 @@
     <Content Include="Areas\Default\Views\Schedule\PersonalCalendarRowMobile.cshtml" />
     <Content Include="Areas\Default\Views\User\UserSbc.cshtml" />
     <Content Include="Areas\Default\Views\User\RemoveVideo.cshtml" />
+    <Content Include="Areas\Default\Views\Tutorial\ShowStopTestMode.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
