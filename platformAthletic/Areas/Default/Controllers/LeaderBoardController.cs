@@ -52,7 +52,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult PlayerInfo(int id)
         {
-            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            var user = Repository.Users.Where(p => p.ID == id).FirstOrDefault();
             if (user != null) 
             {
                 return View(user);

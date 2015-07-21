@@ -82,7 +82,7 @@
             }, 1000);
         }
 
-        $(".item, .all-item").click(function () {
+        $(document).on('click', '.item, .all-item', function () {
             var id = $(this).data("id");
             _this.showPlayerInfo(id);
         })

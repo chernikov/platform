@@ -74,7 +74,7 @@
             }, 1000);
         }
 
-        $(".item").click(function () {
+        $(".item, .all-item").click(function () {
             var id = $(this).data("id");
             _this.showPlayerInfo(id);
         })
