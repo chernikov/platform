@@ -66,21 +66,24 @@ namespace platformAthletic.Tools.Video
         public static string CheckVideoUrl(string url)
         {
             Uri urlVideo;
-            if (Uri.TryCreate(url, UriKind.Absolute, out urlVideo))
+            if (!String.IsNullOrEmpty(url))
             {
-                if (!String.IsNullOrEmpty(urlVideo.Host) &&
-                    urlVideo.Host != "youtu.be" &&
-                    urlVideo.Host != "www.youtube.com" &&
-                    urlVideo.Host != "youtube.com" &&
-                    urlVideo.Host != "vimeo.com" &&
-                    urlVideo.Host != "www.vimeo.com")
+                if (Uri.TryCreate(url, UriKind.Absolute, out urlVideo))
                 {
-                    return "This source is not supported";
+                    if (!String.IsNullOrEmpty(urlVideo.Host) &&
+                        urlVideo.Host != "youtu.be" &&
+                        urlVideo.Host != "www.youtube.com" &&
+                        urlVideo.Host != "youtube.com" &&
+                        urlVideo.Host != "vimeo.com" &&
+                        urlVideo.Host != "www.vimeo.com")
+                    {
+                        return "This source is not supported";
+                    }
                 }
-            }
-            else
-            {
-                return "Please, enter the correct link";
+                else
+                {
+                    return "Please, enter the correct link";
+                }
             }
             return String.Empty;
         }

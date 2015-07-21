@@ -19,6 +19,7 @@ function Common() {
     this.init = function ()
     {
         $.ajaxSetup({ cache: false });
+
     };
 
     this.isMobile = function () {
@@ -48,6 +49,14 @@ $(function () {
     $('#SideMenuToggle').click(function () {
         $('.side-menu-container .navbar-nav').toggleClass('slide-in');
         $('.side-body').toggleClass('body-slide-in');
+    });
+
+    $(document).on("click", "#clear-search", function (e) {
+        e.preventDefault();
+        var parts = document.location.href.split(/\?/i);
+        //alert(parts[0]);
+        document.location.href = parts[0];
+        //$('#SearchAthlete').typeahead('val', '');
     });
     
 });
