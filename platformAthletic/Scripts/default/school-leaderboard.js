@@ -74,10 +74,12 @@
             }, 1000);
         }
 
+        
         $(document).on("click", ".item, .top-list-item.all-item", function () {
             var id = $(this).data("id");
             _this.showPlayerInfo(id);
         });
+        
 
         //$(".item").click(function () {
         //    var id = $(this).data("id");

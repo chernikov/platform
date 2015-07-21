@@ -1,4 +1,7 @@
-﻿:focus {
+﻿select::-ms-expand {
+    display: none;
+}
+:focus {
     outline: none;
 }
 
@@ -1777,7 +1780,7 @@ th {
             border: none;
             width: 100%;
             position: relative;
-            text-align: left;
+            text-align: center;
         }
 
             .schedule-calendar .table-calendar .edit-wrapper td .edit-week .drop-down {
@@ -2221,8 +2224,11 @@ th {
     padding-right: 0px;
     width: 7%;
 }
-
-
+@media(min-width: 1200px) and (max-width: 1310px) {
+    .user-page .sbc-table td .value {
+        width: 25px !important;
+    }
+}
 @media(max-width:767px) {
 
     .report-wrapper .form-control {
@@ -2240,6 +2246,11 @@ th {
     .report-wrapper .table .item td > span {
         padding: 7px 3px;
         margin: 0 0 0 4px;
+    }
+}
+@media(max-width: 420px) {
+    .report-wrapper .table thead th, .report-wrapper .table .item {
+        font-size: 9px;
     }
 }
 
@@ -4774,4 +4785,9 @@ table.table report-table thead tr.report-header th {
 
 #age-message-error {
     display: none;
+}
+.coach-text {
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 600;
 }
