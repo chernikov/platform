@@ -102,18 +102,27 @@ namespace platformAthletic.Areas.Default.Controllers
 
                     if (!string.IsNullOrWhiteSpace(postView.VideoUrl))
                     {
-                        var videoCode = VideoHelper.GetVideoByUrl(postView.VideoUrl, 800, 600);
-                        var url = VideoHelper.GetVideoThumbByUrl(postView.VideoUrl);
-                        var webClient = new WebClient();
-                        var bytes = webClient.DownloadData(url);
-                        var stream = new MemoryStream(bytes);
-                        var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
-                        var preview = "/" + Path.Combine(DestinationDir, uFile);
-                        var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
+                        try
+                        {
+                            var videoCode = VideoHelper.GetVideoByUrl(postView.VideoUrl, 800, 600);
+                            var url = VideoHelper.GetVideoThumbByUrl(postView.VideoUrl);
+                            var webClient = new WebClient();
+                            var bytes = webClient.DownloadData(url);
+                            var stream = new MemoryStream(bytes);
+                            var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
+                            var preview = "/" + Path.Combine(DestinationDir, uFile);
+                            var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
 
-                        ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
-                        post.VideoCode = videoCode;
-                        post.VideoPreview = preview;
+                            ImageBuilder.Current.Build(stream, filePath, new ResizeSettings("maxwidth=1600&crop=auto"));
+                            post.VideoCode = videoCode;
+                            post.VideoPreview = preview;
+                        }
+                        catch (Exception)
+                        {
+                            ModelState.AddModelError("VideoUrl", "Video can not be upload from this link");
+                            ModelState.AddModelError("", "Video can not be upload from this link");
+                            return View("Edit", postView);
+                        }
                     }
                     if (post.ID == 0)
                     {
