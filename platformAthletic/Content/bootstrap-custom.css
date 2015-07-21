@@ -1416,6 +1416,14 @@ th {
         color: #495b6c;
     }
 
+
+@media(max-width:1024px) 
+{
+    .badge.badge-performance h1 {
+        font-size: 26px !important;
+    }
+}
+
 .tt-cursor .search-suggestion {
     background-color: #B0D8E0;
 }
