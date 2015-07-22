@@ -79,11 +79,29 @@
             var selected = $(this).data("macrocycle");
             $(".calendar-drop-down-list").toggle();
 
-            var offset = $(this).offset().top - 110;
-            $(".calendar-drop-down-list").css({ top: offset + "px" });
+            //var offset = $(this).offset().top - 110;
+            //$(".calendar-drop-down-list").css({ top: offset + "px" });
+
+            var offset = $(this).offset().top + 30;
+
+
+            if ($(".calendar-drop-down-list").css("display") === 'none') {
+                $("#selected-week").removeAttr("id");
+            }
+            else {
+                $(this).attr("id", "selected-week")
+            }
+
+            $(".calendar-drop-down-list").offset({ top: offset });
 
             $(".calendar-drop-down-list .item").removeClass("selected");
             $(".calendar-drop-down-list .item[data-id='" + selected + "']").addClass("selected");
+        });
+
+        $(window).on("resize", function () {
+            if ($(".calendar-drop-down-list").css("display") !== 'none') {
+                $(".calendar-drop-down-list").offset({ top: $('#selected-week').offset().top + 30 });
+            }
         });
 
         $(document).on('click', '.calendar-drop-down-list .team-item', function () {

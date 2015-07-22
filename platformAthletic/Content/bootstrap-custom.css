@@ -4791,3 +4791,10 @@ table.table report-table thead tr.report-header th {
     line-height: 24px;
     font-weight: 600;
 }
+.positive-progress {
+    color: #65cea7; 
+}
+
+.negative-progress {
+    color: #fc8675;
+}
