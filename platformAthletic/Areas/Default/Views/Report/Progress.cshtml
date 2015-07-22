@@ -126,10 +126,10 @@
                                                     <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
                                                 </span>
                                             </td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc || Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc) ? "selected" : "")">@item.Squat</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc || Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc) ? "selected" : "")">@item.Bench</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc || Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc) ? "selected" : "")">@item.Clean</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc || Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc) ? "selected" : "")">@item.Total</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc || Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc) ? "selected " : "")@((item.Squat >= 0) ? "positive-progress" : "negative-progress")" >@((item.Squat >= 0) ? "+" : "")@item.Squat</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc || Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc) ? "selected " : "")@((item.Bench >= 0) ? "positive-progress" : "negative-progress")">@((item.Bench >= 0) ? "+" : "")@item.Bench</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc || Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc) ? "selected " : "")@((item.Clean >= 0) ? "positive-progress" : "negative-progress")">@((item.Clean >= 0) ? "+" : "")@item.Clean</span></td>
+                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc || Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc) ? "selected " : "")@((item.Total >= 0) ? "positive-progress" : "negative-progress")">@((item.Total >= 0) ? "+" : "")@item.Total</span></td>
                                         </tr>
                                     }
                                 </table>
