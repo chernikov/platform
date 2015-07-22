@@ -45,7 +45,7 @@ namespace platformAthletic.Tools.Video
                         if (resYu["v"] != null)
                         {
                             var id = resYu["v"];
-                            resultCode = "<iframe width='" + widthStr + "' height='"+heightStr+"' src='http://www.youtube.com/embed/" + id + "' frameborder='0' allowfullscreen></iframe>";
+                            resultCode = "<iframe width='" + widthStr + "' height='"+heightStr+"' src='https://www.youtube.com/embed/" + id + "' frameborder='0' allowfullscreen></iframe>";
                         }
                         break;
                     case "www.youtu.be":
@@ -54,7 +54,7 @@ namespace platformAthletic.Tools.Video
                         if (uriResult.Segments.Count() == 2)
                         {
                             var id = uriResult.Segments[1];
-                            resultCode = "<iframe width='" + widthStr + "' height='"+heightStr+"' src='http://www.youtube.com/embed/" + id + "' frameborder='0' allowfullscreen></iframe>";
+                            resultCode = "<iframe width='" + widthStr + "' height='"+heightStr+"' src='https://www.youtube.com/embed/" + id + "' frameborder='0' allowfullscreen></iframe>";
                         }
                         break;
                 }
