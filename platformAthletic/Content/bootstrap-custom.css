@@ -4786,6 +4786,15 @@ table.table report-table thead tr.report-header th {
 #age-message-error {
     display: none;
 }
+#sportid-message-error {
+    display: none;
+}
+
+#positionid-message-error {
+    display: none;
+}
+
+
 .coach-text {
     font-size: 12px;
     line-height: 24px;
@@ -4797,4 +4806,16 @@ table.table report-table thead tr.report-header th {
 
 .negative-progress {
     color: #fc8675;
+}
+
+.validation-summary-errors {
+    text-align:left;
+    color: #fc8675;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#summary-message-errors {
+    display: none;
+    text-align:left;
 }

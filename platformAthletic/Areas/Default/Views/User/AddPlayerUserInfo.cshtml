@@ -44,20 +44,25 @@
     </div>
 
 </div>
-@Html.ValidationMessage("Birthday")
-<div class="error" id="age-message-error">Please enter the existing age date.</div>
 
+@Html.ValidationSummary(false)
+<div id="summary-message-errors" class="error">
+    <ul>
+        <li id="age-message-error">Please, enter the existing age date.</li>
+        <li id="sportid-message-error">Please, select your sport.</li>
+        <li id="positionid-message-error">Please, select your position</li>
+    </ul>
+</div>
 
-<script type="text/javascript">
-    $("#SportID").change(function () {
-        if (typeof (tutorial) != "undefined")
-        {
-            tutorial.updateAddPlayerInfo();
-        }
-    })
-    $("#LevelID").change(function () {
-        if (typeof (tutorial) != "undefined") {
-            tutorial.updateAddPlayerInfo();
-        }
-    })
-</script>
+    <script type="text/javascript">
+        $("#SportID").change(function () {
+            if (typeof (tutorial) != "undefined") {
+                tutorial.updateAddPlayerInfo();
+            }
+        })
+        $("#LevelID").change(function () {
+            if (typeof (tutorial) != "undefined") {
+                tutorial.updateAddPlayerInfo();
+            }
+        })
+    </script>

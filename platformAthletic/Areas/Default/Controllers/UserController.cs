@@ -582,11 +582,11 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             if (!playerUserInfoView.SportID.HasValue)
             {
-                ModelState.AddModelError("SportID", "");
+                ModelState.AddModelError("SportID", "Please, select your sport");
             }
             if (playerUserInfoView.SelectListSports.Any() && !playerUserInfoView.FieldPositionID.HasValue)
             {
-                ModelState.AddModelError("FieldPositionID", "");
+                ModelState.AddModelError("FieldPositionID", "Please, select your position");
             }
             if (ModelState.IsValid)
             {
