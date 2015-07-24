@@ -500,17 +500,26 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddUserInfo(IndividualUserInfoView individualUserInfoView)
         {
+            string inputDateAge = individualUserInfoView.BirthdayYear.ToString() + "-" +
+                               individualUserInfoView.BirthdayMonth.ToString() + "-" +
+                               individualUserInfoView.BirthdayDay.ToString();
+            DateTime dateAge;
+            if (!DateTime.TryParse(inputDateAge, out dateAge))
+            {
+                ModelState.AddModelError("Birthday", "Please enter the existing age date");
+            }
+
             if (individualUserInfoView.IsGradYear && individualUserInfoView.GradYear == 0)
             {
                 ModelState.AddModelError("GradYear", "");
             }
             if (!individualUserInfoView.SportID.HasValue)
             {
-                ModelState.AddModelError("SportID", "");
+                ModelState.AddModelError("SportID", "Please, select your sport");
             }
             if (individualUserInfoView.SelectListSports.Any() && !individualUserInfoView.FieldPositionID.HasValue)
             {
-                ModelState.AddModelError("FieldPositionID", "");
+                ModelState.AddModelError("FieldPositionID", "Please, select your position");
             }
             if (ModelState.IsValid)
             {

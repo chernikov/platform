@@ -105,34 +105,42 @@
                                     </div>
                                 </form>
                                 @*table*@
-                                <table class="table report-table">
-                                    <thead>
-                                        <tr class="report-header">
-                                            <th>RANK</th>
-                                            <th class="reverse-sortable">NAME</th>
-                                            <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc ? "desc" : "")"></span>SQUAT</th>
-                                            <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc ? "desc" : "")"></span>BENCH</th>
-                                            <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc ? "desc" : "")"></span>CLEAN</th>
-                                            <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
-                                        </tr>
-                                    </thead>
-                                    @foreach (var item in Model.List)
-                                    {
-                                        <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
-                                            <td class="rank"><span>@item.Position</span></td>
-                                            <td class="name">
-                                                <span class="clickable graph" data-id="@item.User.ID"></span>
-                                                <span class="userName" data-id="@item.User.ID">
-                                                    <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
-                                                </span>
-                                            </td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc || Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc) ? "selected " : "")@((item.Squat >= 0) ? "positive-progress" : "negative-progress")" >@((item.Squat >= 0) ? "+" : "")@item.Squat</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc || Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc) ? "selected " : "")@((item.Bench >= 0) ? "positive-progress" : "negative-progress")">@((item.Bench >= 0) ? "+" : "")@item.Bench</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc || Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc) ? "selected " : "")@((item.Clean >= 0) ? "positive-progress" : "negative-progress")">@((item.Clean >= 0) ? "+" : "")@item.Clean</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc || Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc) ? "selected " : "")@((item.Total >= 0) ? "positive-progress" : "negative-progress")">@((item.Total >= 0) ? "+" : "")@item.Total</span></td>
-                                        </tr>
-                                    }
-                                </table>
+                                @if (Model.List.Count > 0)
+                                {
+                                    <table class="table report-table">
+                                        <thead>
+                                            <tr class="report-header">
+                                                <th>RANK</th>
+                                                <th class="reverse-sortable">NAME</th>
+                                                <th class="sortable"><span data-type="Squat" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc ? "desc" : "")"></span>SQUAT</th>
+                                                <th class="sortable"><span data-type="Bench" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc ? "desc" : "")"></span>BENCH</th>
+                                                <th class="sortable"><span data-type="Clean" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc ? "desc" : "")"></span>CLEAN</th>
+                                                <th class="sortable"><span data-type="Total" class="sort @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc ? "asc" : "") @(Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc ? "desc" : "")"></span>TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model.List)
+                                        {
+                                            <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
+                                                <td class="rank"><span>@item.Position</span></td>
+                                                <td class="name">
+                                                    <span class="clickable graph" data-id="@item.User.ID"></span>
+                                                    <span class="userName" data-id="@item.User.ID">
+                                                        <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.User.FirstName @item.User.LastName</span>
+                                                    </span>
+                                                </td>
+                                                <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.SquatAsc || Model.Search.Sort == SearchProgressReport.SortEnum.SquatDesc) ? "selected " : "")@((item.Squat >= 0) ? "positive-progress" : "negative-progress")" >@((item.Squat >= 0) ? "+" : "")@item.Squat</span></td>
+                                                <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.BenchAsc || Model.Search.Sort == SearchProgressReport.SortEnum.BenchDesc) ? "selected " : "")@((item.Bench >= 0) ? "positive-progress" : "negative-progress")">@((item.Bench >= 0) ? "+" : "")@item.Bench</span></td>
+                                                <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.CleanAsc || Model.Search.Sort == SearchProgressReport.SortEnum.CleanDesc) ? "selected " : "")@((item.Clean >= 0) ? "positive-progress" : "negative-progress")">@((item.Clean >= 0) ? "+" : "")@item.Clean</span></td>
+                                                <td><span class="@((Model.Search.Sort == SearchProgressReport.SortEnum.TotalAsc || Model.Search.Sort == SearchProgressReport.SortEnum.TotalDesc) ? "selected " : "")@((item.Total >= 0) ? "positive-progress" : "negative-progress")">@((item.Total >= 0) ? "+" : "")@item.Total</span></td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                else
+                                {
+                                    <div class="clearfix"></div>
+                                    <div class="field-validation-error filter-error">We couldn’t find any results that matched your search criteria. Please modify your search.</div>
+                                }
                                 <div class="text-center">
                                     @*paging*@
                                     <ul class="pagination">

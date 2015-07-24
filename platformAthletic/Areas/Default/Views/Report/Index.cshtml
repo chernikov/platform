@@ -105,35 +105,42 @@
                                     </div>
                                 </form>
                                 @*table*@
-                                <table class="table report-table">
-                                    <thead>
-                                        <tr class="report-header">
-                                            <th class="rank">RANK</th>
-                                            <th class="reverse-sortable">NAME</th>
-                                            <th class="sortable"><span data-type="Week" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc ? "desc" : "")"></span>WEEK</th>
-                                            <th class="sortable"><span data-type="Month" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc ? "desc" : "")"></span>MONTH</th>
-                                            <th class="sortable"><span data-type="Year" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc ? "desc" : "")"></span>YEAR</th>
-                                            <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>@(Model.Search.IsDateFilter ? "SELECTED" : "ALL TIME")</th>
+                                @if (Model.List.Count > 0) 
+                                {
+                                    <table class="table report-table">
+                                        <thead>
+                                            <tr class="report-header">
+                                                <th class="rank">RANK</th>
+                                                <th class="reverse-sortable">NAME</th>
+                                                <th class="sortable"><span data-type="Week" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc ? "desc" : "")"></span>WEEK</th>
+                                                <th class="sortable"><span data-type="Month" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc ? "desc" : "")"></span>MONTH</th>
+                                                <th class="sortable"><span data-type="Year" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc ? "desc" : "")"></span>YEAR</th>
+                                                <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>@(Model.Search.IsDateFilter ? "SELECTED" : "ALL TIME")</th>
 
-                                        </tr>
-                                    </thead>
-                                    @foreach (var item in Model.List)
-                                    {
-                                        <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
-                                            <td class="rank"><span>@item.Position</span></td>
-                                            <td class="name">
-                                                <span class="clickable calendar" data-id="@item.User.ID"></span>
-                                                <span class="userName" data-id="@item.User.ID">
-                                                    <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name" data-id="@item.User.ID">@item.User.FirstName @item.User.LastName</span>
-                                                </span>
-                                            </td>
-                                            <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc) ? "selected" : "")">@item.Week</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc) ? "selected" : "")">@item.Month</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc) ? "selected" : "")">@item.Year</span></td>
-                                            <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc) ? "selected" : "")">@item.AllTime</span></td>
-                                        </tr>
-                                    }
-                                </table>
+                                            </tr>
+                                        </thead>
+                                        @foreach (var item in Model.List)
+                                        {
+                                            <tr class="item @(item.User.ID == Model.Search.StartID ? "selected" : "")" data-id="@item.User.ID">
+                                                <td class="rank"><span>@item.Position</span></td>
+                                                <td class="name">
+                                                    <span class="clickable calendar" data-id="@item.User.ID"></span>
+                                                    <span class="userName" data-id="@item.User.ID">
+                                                        <img src="@item.User.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name" data-id="@item.User.ID">@item.User.FirstName @item.User.LastName</span>
+                                                    </span>
+                                                </td>
+                                                <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc) ? "selected" : "")">@item.Week</span></td>
+                                                <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc) ? "selected" : "")">@item.Month</span></td>
+                                                <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc) ? "selected" : "")">@item.Year</span></td>
+                                                <td><span class="@((Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc || Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc) ? "selected" : "")">@item.AllTime</span></td>
+                                            </tr>
+                                        }
+                                    </table>
+                                } else
+                                {
+                                    <div class="clearfix"></div>
+                                    <div class="field-validation-error filter-error">We couldn’t find any results that matched your search criteria. Please modify your search.</div>
+                                }
                                 <div class="text-center">
                                     @*paging*@
                                     <ul class="pagination">

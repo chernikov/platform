@@ -92,9 +92,16 @@
             }
         });
     }
+    
 
     this.addInfo = function () {
         var data = $("#AddUserInfoForm").serialize();
+        $('#summary-message-errors').hide();
+        if (_this.checkDateValid() === false | _this.checkSportId() === false | _this.checkPositionId() === false) {
+            $('#summary-message-errors').show();
+            return false
+        }
+
         $.ajax({
             type: "POST",
             url: "/User/AddUserInfo",
@@ -165,8 +172,6 @@
             $('#summary-message-errors').show();
             return false
         }
-
-
 
             $.ajax({
                 type: "POST",
