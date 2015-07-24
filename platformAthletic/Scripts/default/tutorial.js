@@ -117,6 +117,30 @@
         });
     }
 
+    this.checkSportId = function () {
+        var val = $("#SportID").val();
+        if (val.length === 0) {
+            $("#sportid-message-error").show();
+            return false;
+        }
+        else {
+            $('#sportid-message-error').hide();
+            return true;
+        }
+    }
+
+    this.checkPositionId = function () {
+        var val = $("#FieldPositionID").val();
+        if (val.length === 0) {
+            $("#positionid-message-error").show();
+            return false;
+        }
+        else {
+            $('#positionid-message-error').hide();
+            return true;
+        }
+    }
+
     this.checkDateValid = function () {
         //Since JavaScripts counts months starting from 0 (January is 0), 
         //subtract 1 from the month integer submitted by the user
@@ -136,18 +160,22 @@
 
     this.addPlayerInfo = function () {
         var data = $("#AddPlayerUserInfoForm").serialize();
-        if(_this.checkDateValid() === false)
-        	return false;
-        
+        $('#summary-message-errors').hide();
+        if (_this.checkDateValid() === false | _this.checkSportId() === false | _this.checkPositionId() === false) {
+            $('#summary-message-errors').show();
+            return false
+        }
 
-        $.ajax({
-            type: "POST",
-            url: "/User/AddPlayerUserInfo",
-            data: data,
-            success: function (data) {
-                $("#AddPlayerInfoWrapper").html(data);
-            }
-        });
+
+
+            $.ajax({
+                type: "POST",
+                url: "/User/AddPlayerUserInfo",
+                data: data,
+                success: function (data) {
+                    $("#AddPlayerInfoWrapper").html(data);
+                }
+            });
     }
 }
 
