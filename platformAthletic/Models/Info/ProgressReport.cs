@@ -81,7 +81,7 @@ namespace platformAthletic.Models.Info
             var profiler = MiniProfiler.Current; // it's ok if this is null
             using (profiler.Step("Process"))
             {
-                var users = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == Search.TeamID);
+                var users = Repository.TeamPlayersAndPhantomUsers.Where(p => p.PlayerOfTeamID == Search.TeamID);
                 using (profiler.Step("Filter"))
                 {
                     Filter(ref users);

@@ -42,12 +42,24 @@
                 <div class="col-sm-12 col-md-6 col-lg-2 btn-margin  btn-margin-md">
                     @using (Html.BeginForm("Extended", "Dashboard", FormMethod.Get))
                     {
-                        <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
+                            <span class="input-group-btn">
+                                @if (ViewBag.SearchString == null)
+                                {
+                                    <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-aslink" type="button" id="ClearBtn"><span class="glyphicon glyphicon-remove"></span></button>
+                                }
+                            </span>
+                        </div>
                     }
                 </div>
                 @if (ViewBag.SelectedListGroups != null)
                 {
-                    <div class="col-sm-12 col-md-6 col-lg-2 btn-margin">
+                    <div class="col-sm-12 col-md-6 col-lg-2 btn-margin btn-margin-md">
                         <div class="custom-style">
                             @Html.DropDownList("GroupId", ViewBag.SelectedListGroups as IEnumerable<SelectListItem>, new { @class = "form-control" })
                             <div></div>

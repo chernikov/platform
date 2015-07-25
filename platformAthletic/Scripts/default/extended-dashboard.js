@@ -45,6 +45,11 @@
             window.location = "/dashboard/extended?searchString=" + $("#SearchAthlete").val();
         });
 
+
+        $("#ClearBtn").click(function () {
+            window.location = "/dashboard/extended";
+        });
+
         $("#GroupId").change(function () {
             window.location = "/dashboard/extended?groupId=" + $("#GroupId").val();
         });

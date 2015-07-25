@@ -547,7 +547,7 @@ namespace platformAthletic.Model
             get
             {
                 var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
-                var date12WeekAgo = startWeek.AddDays(-7 * 12);
+                var date12WeekAgo = startWeek.AddDays(-7 * 11);
                 var sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
                 return sbc;
             }

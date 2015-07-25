@@ -1196,6 +1196,9 @@ th {
 .view-profile-wrp {
     padding-top: 15px;
 }
+.platform  .user-info-attendance {
+    margin : 20px 0;
+}
 
 .platform .panel.attendance-panel {
     background-color: #eee;
@@ -1498,7 +1501,8 @@ th {
     width: 800px;
 }
 
-@media(max-width:767px) {
+
+@media(max-width:1023px) {
     .modal.modal-wide .modal-dialog {
         width: 90%;
     }

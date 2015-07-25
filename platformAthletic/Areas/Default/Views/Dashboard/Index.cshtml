@@ -41,15 +41,22 @@
                     </ol>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-3">
-                    <button class="btn btn-primary btn-margin" id="PrintAll"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
+                    <button class="btn btn-primary btn-margin btn-margin-md" id="PrintAll"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 btn-margin">
+                <div class="col-sm-12 col-md-6 col-lg-3 btn-margin btn-margin-md">
                     @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
                     {
                         <div class="input-group">
                             <input type="text" class="form-control" id="SearchAthlete" name="searchString" placeholder="SEARCH ATHLETE" value="@ViewBag.SearchString">
                             <span class="input-group-btn">
-                                <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
+                                @if (ViewBag.SearchString == null)
+                                {
+                                    <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
+                                }
+                                else
+                                {
+                                <button class="btn btn-aslink" type="button" id="ClearBtn"><span class="glyphicon glyphicon-remove"></span></button>
+                                }
                             </span>
                         </div>
                     }

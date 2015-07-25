@@ -323,6 +323,9 @@ namespace platformAthletic.Model
 
         IQueryable<User> TeamPlayersUsers { get; }
 
+
+        IQueryable<User> TeamPlayersAndPhantomUsers { get; }
+
         IQueryable<User> PlayersTeamPlayersUsers { get; }
 
         IQueryable<User> PlayersUsers { get; }
