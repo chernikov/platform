@@ -122,6 +122,16 @@ namespace platformAthletic.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { area = "Default" });
         }
 
+        public ActionResult StartTutorial(int id)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null)
+            {
+                Repository.StartTutorial(id);
+            }
+            return Json(new { result = "OK" }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Excel()
         {
             var list = Repository.Users.ToList().Select(p =>

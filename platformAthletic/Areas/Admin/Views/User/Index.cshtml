@@ -35,7 +35,9 @@
                 </th>
                 <th>Payed till
                 </th>
+                <th>Mode</th>
                 <th>Used codes</th>
+               
                 <th>Current season</th>
                 <th></th>
             </tr>
@@ -91,10 +93,13 @@
                     }&nbsp;
                 </td>
                 <td>
-                @if(item.PromoCodes.Any()) {
+                @(((platformAthletic.Model.User.ModeEnum)item.Mode).ToString())
+                </td>
+                <td>
+                    @if(item.PromoCodes.Any()) {
                      foreach(var promocode in item.PromoCodes)
                      {
-                            <span class="label label-info">@promocode</span>
+                        <span class="label label-info">@promocode</span>
                      }
                 }
                 </td>
@@ -106,6 +111,7 @@
                         }
                     }
                 </td>
+
                 <td>
                     @if(item.InRoles("admin")) {
                         <a title="Edit admin" href="@Url.Action("EditAdmin", "User", new { id = item.ID })"><i class="icon-pencil"></i></a>
@@ -114,6 +120,8 @@
                     }
                     <a title="Remove" href="#confirmDeleteModal" role="button" data-toggle="modal" data-id="@item.ID" class="confirm-delete"><i class="icon-remove"></i></a>
                     <span title="Login as" data-id="@item.ID" class="loginAs"><i class="icon-user"></i></span>
+
+                    <span title="Start Tutorial" data-id="@item.ID" class="startTutorial"><i class="icon-tint"></i></span>
                 </td>
             </tr>
         }

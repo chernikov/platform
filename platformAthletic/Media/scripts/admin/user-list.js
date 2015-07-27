@@ -23,6 +23,19 @@
             var id = $(this).data('id');
             window.location = "/admin/User/Login/" + id;
         });
+
+        $(".startTutorial").click(function (e) {
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: "/admin/User/StartTutorial/" + id,
+                success: function (data) {
+                    alert("User start tutorial");
+                }
+            })
+            e.stopPropagation();
+        });
+        
     }
 }
 
