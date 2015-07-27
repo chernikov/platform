@@ -4819,3 +4819,18 @@ table.table report-table thead tr.report-header th {
     display: none;
     text-align:left;
 }
+
+a#clear-search {
+    color: grey;
+    position: absolute;
+    top: 0px;
+    right: -13px;
+    text-decoration: none;
+}
+    a#clear-search:hover {
+        text-decoration: none;  
+    }
+
+    a#clear-search:focus {
+        text-decoration: none; 
+    }
