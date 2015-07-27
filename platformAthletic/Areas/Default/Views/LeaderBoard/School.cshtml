@@ -31,6 +31,7 @@
                     <span class="input-group-btn">
                         <button class="btn btn-aslink" type="button" id="SearchBtn"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
+                    <a href="#" class="glyphicon glyphicon-remove" id="ClearSearchBtn"></a>
                 </div>
             </div>
             <div class="tabpanel">
@@ -97,7 +98,7 @@
                                         </div>
                                     </div>
                                 }
-                                <button class="btn btn-primary pull-right" id="clear-search">Clear</button>
+                                <button class="btn btn-primary pull-right" id="clear-filters">Clear All</button>
                             </div>
                         </form>
                         <br />
@@ -136,7 +137,7 @@
                         else
                         {
                             <div class="clearfix"></div>
-                            <div class="field-validation-error filter-error" style="margin-top: 5px;">Error: applied filters have led to no results</div>
+                            <div class="field-validation-error filter-error" style="margin-top: 5px;">We couldn’t find any results that matched your search criteria. Please modify your search.</div>
                         }
                         <div class="text-center">
                             <ul class="pagination">

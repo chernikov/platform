@@ -46,6 +46,17 @@ function Dashboard() {
             window.location = "/dashboard?searchString=" + $("#SearchAthlete").val();
         });
 
+        $("#ClearBtn").click(function () {
+            window.location = "/dashboard";
+        });
+
+        $("#SearchAthlete").keyup(function (e) {
+            var code = e.which; 
+            if (code == 13) {
+                window.location = "/dashboard?searchString=" + $("#SearchAthlete").val();
+            }
+        });
+
         $("#GroupId").change(function () {
             window.location = "/dashboard?groupId=" + $("#GroupId").val();
         });

@@ -142,7 +142,17 @@ namespace platformAthletic.Areas.Default.Controllers
             Repository.RemovePhantoms(CurrentUser.ID);
             return Redirect("/dashboard");
         }
-
+    
+        public ActionResult StartTrainingDate() 
+        {
+            if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            {
+                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+            }
+            return Json(new { result = "OK" }, JsonRequestBehavior.AllowGet);
+        }
+          
+            
 
        
     }

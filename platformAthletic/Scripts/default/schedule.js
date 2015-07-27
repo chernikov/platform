@@ -48,12 +48,12 @@
             _this.submitEditGroupForm();
             return false;
         });
-        $(document).on("keypress",".form-control", function(e) {
-            if (e.which == 13) {
-                e.preventDefault();
-                _this.submitEditGroupForm();
-            }
+
+        $(document).on("submit", "#EditGroupForm", function () {
+            _this.submitEditGroupForm();
+            return false;
         });
+
         $(document).on("click", "#RemoveGroupBtn", function () {
             _this.submitRemoveGroupForm();
             return false;

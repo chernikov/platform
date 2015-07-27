@@ -30,7 +30,11 @@
         </tr>
         <tr class="hidden-xs">
             <td class="header">LEVEL</td>
-            <td class="value" colspan="3">@(Model.LevelID != null ? Model.Level.Name : "")</td>
+            <td class="value" colspan="@(Model.IsGradYear ? "2" : "3")">@(Model.LevelID != null ? Model.Level.Name : "")</td>
+            @if (Model.IsGradYear)
+            {
+                <td class="value">@Model.GradYear</td>
+            }
         </tr>
         @if (Model.InRoles("player"))
         {
@@ -81,7 +85,7 @@
         @if (Model.LevelID != null)
         {
             <tr class="hidden-lg hidden-md hidden-sm">
-                <td class="value"><strong>Level:</strong> @Model.Level.Name</td>
+                <td class="value"><strong>Level:</strong> @Model.Level.Name @(Model.IsGradYear ? ("("+Model.GradYear+")") : "")</td>
             </tr>
         }
         

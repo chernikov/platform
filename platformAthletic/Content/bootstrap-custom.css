@@ -1,6 +1,7 @@
 ﻿select::-ms-expand {
     display: none;
 }
+
 :focus {
     outline: none;
 }
@@ -482,7 +483,7 @@ th {
         height: 0;
         border-right: 0;
         border-bottom: 1px solid #495b6c;
-        z-index : 3;
+        z-index: 3;
     }
 
         .platform .side-menu .brand-name-wrapper .navbar-brand {
@@ -576,7 +577,7 @@ th {
         animation: slideout 300ms forwards;
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
-        padding-bottom : 150px;
+        padding-bottom: 150px;
         z-index: 1031;
     }
 
@@ -962,7 +963,7 @@ th {
 .platform .table-extended-players .value-wrapper {
     margin: 0 auto;
     text-align: center;
-            min-width: 72px;
+    min-width: 72px;
 }
 
     .platform .table-extended-players .value-wrapper .glyphicon-minus {
@@ -973,7 +974,6 @@ th {
         font-weight: bold;
         width: 30px;
         display: inline-block;
-
     }
 
     .platform .table-extended-players .value-wrapper .glyphicon-plus {
@@ -1195,6 +1195,10 @@ th {
 
 .view-profile-wrp {
     padding-top: 15px;
+}
+
+.platform .user-info-attendance {
+    margin: 20px 0;
 }
 
 .platform .panel.attendance-panel {
@@ -1420,8 +1424,7 @@ th {
     }
 
 
-@media(max-width:1024px) 
-{
+@media(max-width:1024px) {
     .badge.badge-performance h1 {
         font-size: 26px !important;
     }
@@ -1506,7 +1509,8 @@ th {
     width: 800px;
 }
 
-@media(max-width:767px) {
+
+@media(max-width:1023px) {
     .modal.modal-wide .modal-dialog {
         width: 90%;
     }
@@ -2150,7 +2154,7 @@ th {
     font-weight: normal;
 }
 
-    .report-wrapper .table .item td , .all-item{
+    .report-wrapper .table .item td, .all-item {
         border: none;
         padding: 0;
         cursor: pointer;
@@ -2232,11 +2236,13 @@ th {
     padding-right: 0px;
     width: 7%;
 }
+
 @media(min-width: 1200px) and (max-width: 1310px) {
     .user-page .sbc-table td .value {
         width: 25px !important;
     }
 }
+
 @media(max-width:767px) {
 
     .report-wrapper .form-control {
@@ -2256,6 +2262,7 @@ th {
         margin: 0 0 0 4px;
     }
 }
+
 @media(max-width: 420px) {
     .report-wrapper .table thead th, .report-wrapper .table .item {
         font-size: 9px;
@@ -2275,6 +2282,7 @@ th {
 .report-wrapper .table .item td .selected {
     /*background: rgba(96,177,194, 0.3);*/
 }
+
 .table.leader-table .item td .selected {
     background: rgba(96,177,194, 0.3);
 }
@@ -3583,8 +3591,8 @@ hr.video {
 
 .video-code-wrapper .code {
     height: 420px;
-   margin-bottom: 4px;
-   padding: 0 17px;
+    margin-bottom: 4px;
+    padding: 0 17px;
 }
 
 #VideoScroll {
@@ -3686,9 +3694,12 @@ hr.video {
                 margin: 0 0 10px 0;
             }
 
+        .posts-wrapper .post .image-wrapper {
+            text-align: center;
+        }
+
         .posts-wrapper .post .title-image {
-            width: 100%;
-            margin: 10px 0 30px;
+            margin: 10px auto 30px auto;
         }
 
         .posts-wrapper .post .video-wrapper {
@@ -3897,6 +3908,7 @@ hr.video {
 
 .edit-post-wrapper {
     margin: 20px 40px;
+    overflow: hidden;
 }
 
 .settings-wrapper {
@@ -4516,15 +4528,15 @@ hr.video {
     padding: 5px;
 }
 
-.tutorial-highlight::after {
-    position : absolute;
-    width : 100%;
-    height : 100%;
-    background : transparent;
-    content : "";
-    top : 0;
-    left : 0;
-}
+    .tutorial-highlight::after {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        content: "";
+        top: 0;
+        left: 0;
+    }
 
     .tutorial-highlight.left {
         display: inline-block;
@@ -4552,6 +4564,7 @@ hr.video {
         position: relative;
     }
 }
+
 .tm-coach-6 {
     top: -350px;
     position: relative;
@@ -4794,6 +4807,7 @@ table.table report-table thead tr.report-header th {
 #age-message-error {
     display: none;
 }
+
 #sportid-message-error {
     display: none;
 }
@@ -4808,8 +4822,9 @@ table.table report-table thead tr.report-header th {
     line-height: 24px;
     font-weight: 600;
 }
+
 .positive-progress {
-    color: #65cea7; 
+    color: #65cea7;
 }
 
 .negative-progress {
@@ -4817,7 +4832,7 @@ table.table report-table thead tr.report-header th {
 }
 
 .validation-summary-errors {
-    text-align:left;
+    text-align: left;
     color: #fc8675;
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
@@ -4825,5 +4840,21 @@ table.table report-table thead tr.report-header th {
 
 #summary-message-errors {
     display: none;
-    text-align:left;
+    text-align: left;
 }
+
+a.clear-search {
+    color: grey;
+    position: absolute;
+    top: 0px;
+    right: -13px;
+    text-decoration: none;
+}
+
+    a.clear-search:hover {
+        text-decoration: none;
+    }
+
+    a.clear-search:focus {
+        text-decoration: none;
+    }

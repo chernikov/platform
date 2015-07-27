@@ -205,7 +205,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var sData = new List<int>();
                 var bData = new List<int>();
                 var cData = new List<int>();
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     var sbc = user.SBCHistory(currentSunday);
                     if (sbc != null)
@@ -500,17 +500,26 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddUserInfo(IndividualUserInfoView individualUserInfoView)
         {
+            string inputDateAge = individualUserInfoView.BirthdayYear.ToString() + "-" +
+                               individualUserInfoView.BirthdayMonth.ToString() + "-" +
+                               individualUserInfoView.BirthdayDay.ToString();
+            DateTime dateAge;
+            if (!DateTime.TryParse(inputDateAge, out dateAge))
+            {
+                ModelState.AddModelError("Birthday", "Please enter the existing age date");
+            }
+
             if (individualUserInfoView.IsGradYear && individualUserInfoView.GradYear == 0)
             {
                 ModelState.AddModelError("GradYear", "");
             }
             if (!individualUserInfoView.SportID.HasValue)
             {
-                ModelState.AddModelError("SportID", "");
+                ModelState.AddModelError("SportID", "Please, select your sport");
             }
             if (individualUserInfoView.SelectListSports.Any() && !individualUserInfoView.FieldPositionID.HasValue)
             {
-                ModelState.AddModelError("FieldPositionID", "");
+                ModelState.AddModelError("FieldPositionID", "Please, select your position");
             }
             if (ModelState.IsValid)
             {
