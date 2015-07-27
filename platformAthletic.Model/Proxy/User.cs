@@ -48,6 +48,19 @@ namespace platformAthletic.Model
             UploadVideo = 0x40,
         }
 
+
+        public static List<Level> GradYearLevels = new List<Level>{
+            new Level() {
+                ID = 2, 
+                Name = "High School"
+            },
+            new Level() {
+                ID = 3, 
+                Name = "College"
+            },
+        };
+
+
         public Team TeamOfPlay
         {
             get
@@ -713,6 +726,30 @@ namespace platformAthletic.Model
             }
             //public
             return PublicLevel == (int)User.PublicLevelEnum.Public;
+        }
+
+        public bool IsGradYear
+        {
+            get
+            {
+                return GradYearLevels.Any(p => p.ID == LevelID);
+            }
+        }
+
+        public string PostAvatarPath
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(AvatarPath))
+                {
+                    return AvatarPath;
+                }
+                if (!string.IsNullOrWhiteSpace(OwnTeam.LogoPath))
+                {
+                    return OwnTeam.LogoPath;
+                }
+                return "/Content/img/post_platform_logo.png";
+            }
         }
     }
 }
