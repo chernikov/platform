@@ -54,7 +54,6 @@
             return false;
         });
 
-
         $(document).on("click", "#RemoveGroupBtn", function () {
             _this.submitRemoveGroupForm();
             return false;

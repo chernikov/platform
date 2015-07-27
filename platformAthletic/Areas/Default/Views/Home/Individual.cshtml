@@ -23,58 +23,7 @@
             <div class="col-lg-8">
                 @foreach (var item in Model.List)
                 {
-                    if (item.User.InRoles("admin"))
-                    {
-                        <div class="post admin-post">
-                            <div class="pull-left author-icon">
-                                <img src="~/Content/img/admin-icon.png" />
-                            </div>
-                            <div class="pull-right date">
-                                <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
-                            </div>
-                            <h1>@item.Header</h1>
-                            @if (!string.IsNullOrWhiteSpace(item.TitleImagePath))
-                            {
-                                <img src="@item.TitleImagePath" class="title-image img-rounded" />
-                            }
-                            @if (!string.IsNullOrWhiteSpace(item.VideoCode))
-                            {
-                                <div class="video-wrapper">
-                                    @Html.Raw(item.VideoCode)
-                                </div>
-                            }
-                            <div class="text">
-                                @Html.Raw(item.Text.NlToBr())
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="post user-post">
-                            <div class="user-icon">
-                                <img src="@item.User.AvatarPath?w=39&h=40&mode=crop">
-                            </div>
-
-                            <h1>@item.Header</h1>
-                            <div class="date">
-                                <span class="glyphicon glyphicon-calendar"></span> @item.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
-                            </div>
-                            <hr />
-                            @if (!string.IsNullOrWhiteSpace(item.TitleImagePath))
-                            {
-                                <img src="@item.TitleImagePath" class="title-image img-rounded" />
-                            }
-                            @if (!string.IsNullOrWhiteSpace(item.VideoCode))
-                            {
-                                <div class="video-wrapper">
-                                    @Html.Raw(item.VideoCode)
-                                </div>
-                            }
-                            <div class="text">
-                                @Html.Raw(item.Text.NlToBr())
-                            </div>
-                        </div>
-                    }
+                    @Html.Partial("../Post/Get", item)
                 }
             </div>
             <div class="col-lg-4">

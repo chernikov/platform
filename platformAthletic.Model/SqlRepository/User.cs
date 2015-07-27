@@ -640,6 +640,7 @@ namespace platformAthletic.Model
             {
                 cache.Mode = (int)User.ModeEnum.Tutorial;
                 cache.TutorialStep = 1;
+                cache.Todo = 0;
                 Db.Users.Context.SubmitChanges();
             }
             return true;

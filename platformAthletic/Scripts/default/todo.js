@@ -36,7 +36,7 @@ function Todo() {
             var current = window.location.pathname;
             var hash = window.location.hash;
             if (href.indexOf(current) != -1) {
-                if (href == current+hash) {
+                if (href == current + hash) {
                     window.location.reload();
                 } else {
                     window.location = href;
@@ -52,14 +52,22 @@ function Todo() {
             return false;
         });
 
+        $(document).on("click", "#DoneDealBtn", function () {
+            $.ajax({
+                type: "GET",
+                url: "/Tutorial/StartTrainingDate",
+                success: function (data) {
+                    _this.clear();
+                }
+            });
+        })
 
     }
 
-    this.showTodo = function (id)
-    {
+    this.showTodo = function (id) {
         $.ajax({
             type: "GET",
-            data : { id : id},
+            data: { id: id },
             url: "/Tutorial/TodoSnippet",
             success: function (data) {
                 _this.unwrap();
@@ -84,8 +92,7 @@ function Todo() {
         })
     }
 
-    this.clear = function ()
-    {
+    this.clear = function () {
         var href = location.protocol + '//' + location.host + location.pathname;
         window.location = href;
     }
@@ -99,5 +106,5 @@ var todo;
 $(function () {
     todo = new Todo();
     todo.init();
-    
+
 })

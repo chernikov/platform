@@ -12,13 +12,13 @@ namespace platformAthletic.Areas.Admin.Controllers
     public class TestController : AdminController
     {
 
-        public ActionResult Index()
+        public ActionResult Index(string email = "chernikov@gmail.com")
         {
             var mailAddress = new MailAddress(Config.MailSettings.SmtpReply, Config.MailSettings.SmtpUser);
 
             MailMessage message = new MailMessage(
                        mailAddress,
-                       new MailAddress("chernikov@gmail.com"))
+                       new MailAddress(email))
             {
                 Subject = "Test subject",
                 BodyEncoding = Encoding.UTF8,

@@ -1,8 +1,7 @@
 ﻿function User() {
     var _this = this;
 
-    this.init = function ()
-    {
+    this.init = function () {
         _this.drawPerformance();
 
         $(".edit-profile").click(function () {
@@ -28,7 +27,7 @@
         $("#UserInfoWrapper").on("blur", ".info-table input", function () {
             _this.updateEdit();
         });
-        
+
         $(document).on("click", "#SbcWrapper .plus,#SbcWrapper .minus", function () {
             _this.changeSbc($(this));
         });
@@ -39,7 +38,7 @@
             _this.showUploadVideo();
         });
 
-       
+
         $(document).on("click", "#SubmitUploadVideo", function () {
             _this.uploadVideo();
         });
@@ -53,7 +52,7 @@
             var id = $(this).data("id");
             _this.removeVideo(id);
         });
-        
+
 
         $("#ViewHistory").click(function () {
             _this.showAttendanceCalendar();
@@ -66,7 +65,7 @@
         $(document).on("click", ".attendanceChange", function () {
             _this.changeAttendance($(this));
         });
-        
+
         $("#ToggleAttendance").click(function () {
             _this.changeTodayAttendance($(this));
         })
@@ -91,7 +90,7 @@
     }
 
     this.drawPerformance = function () {
-        
+
         var ctx = $("#PerformanceChart").get(0).getContext("2d");
         // This will get the first returned node in the jQuery collection.
         var data = null;
@@ -105,26 +104,15 @@
             },
             async: false
         });
-        if (common.isMobile()) {
-            var myLineChart = new Chart(ctx).Line(data, {
-                animation: false,
-                bezierCurve: false,
-                scaleShowVerticalLines: false,
-                responsive: true,
-                maintainAspectRatio: false,
-            });
-        } else {
-            var myLineChart = new Chart(ctx).Line(data, {
-                animation: false,
-                bezierCurve: false,
-                scaleShowVerticalLines: false,
-                responsive : true
-            });
-        }
+        var myLineChart = new Chart(ctx).Line(data, {
+            animation: false,
+            bezierCurve: false,
+            scaleShowVerticalLines: false,
+            responsive: true
+        });
     }
 
-    this.stopEdit = function ()
-    {
+    this.stopEdit = function () {
         console.log("Stop edit");
         $.ajax({
             type: "GET",
@@ -142,16 +130,14 @@
             type: "GET",
             url: "/User/EditUserInfo",
             data: { id: $("#UserID").val() },
-            success: function (data)
-            {
+            success: function (data) {
                 $("#UserInfoWrapper").html(data);
                 _this.onEdit();
             }
         });
     }
 
-    this.updateEdit = function ()
-    {
+    this.updateEdit = function () {
         var data = $("#EditUserInfoForm").serialize();
         $.ajax({
             type: "POST",
@@ -177,10 +163,8 @@
                 uploadButton: ""
             },
             callbacks: {
-                onComplete: function (id, fileName, responseJSON)
-                {
-                    if (responseJSON.success)
-                    {
+                onComplete: function (id, fileName, responseJSON) {
+                    if (responseJSON.success) {
                         $("#FullAvatarPath").val(responseJSON.fileUrl);
                         $("#AvatarPath").val(responseJSON.fileUrl);
                         $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=200&h=200&mode=crop&scale=both");
@@ -194,8 +178,7 @@
         });
     }
 
-    this.save = function (item)
-    {
+    this.save = function (item) {
         console.log("Save " + item.attr("name") + " " + item.val());
         $.ajax({
             type: "POST",
@@ -211,8 +194,7 @@
         });
     }
 
-    this.changeSbc = function (item)
-    {
+    this.changeSbc = function (item) {
         var id = $("#UserID").val();
         var type = item.data("type");
         var value = item.data("value");
@@ -271,17 +253,15 @@
         });
     }
 
- 
 
-    this.showUploadVideo = function ()
-    {
+
+    this.showUploadVideo = function () {
 
         $.ajax({
             type: "GET",
             url: "/user/UploadVideo",
-            data : {id : $("#UserID").val()},
-            success: function (data)
-            {
+            data: { id: $("#UserID").val() },
+            success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#uploadVideoModal").modal();
             }
@@ -344,16 +324,14 @@
             type: "POST",
             url: "/user/UploadVideo",
             data: $("#UploadVideoForm").serialize(),
-            success: function (data)
-            {
+            success: function (data) {
                 $("#UploadVideoBodyWrapper").html(data);
             }
         })
     }
 
 
-    this.showRemoveVideo = function (id)
-    {
+    this.showRemoveVideo = function (id) {
         $.ajax({
             type: "GET",
             url: "/user/RemoveVideo",
@@ -396,7 +374,7 @@
             url: "/user/AttendanceCalendarBody",
             data: {
                 id: id,
-                date : date
+                date: date
             },
             success: function (data) {
                 $("#ModalCalendarBodyWrapper").html(data);
@@ -414,11 +392,10 @@
             data: {
                 id: id,
                 date: date,
-                attendance : attendance
+                attendance: attendance
             },
             success: function (data) {
-                if (data.result == "ok") 
-                {
+                if (data.result == "ok") {
                     $("span", item).toggleClass("attendance");
                 }
             }
@@ -437,8 +414,7 @@
                 date: date,
                 attendance: attendance
             },
-            success: function (data)
-            {
+            success: function (data) {
                 if (data.result == "ok") {
                     if (attendance) {
                         item.html("<span class=\"glyphicon glyphicon-ok\"></span> ATTENDANCE LOGGED");
@@ -453,8 +429,7 @@
 }
 
 var user = null;
-$(function ()
-{
+$(function () {
     var user = new User();
     user.init();
 });

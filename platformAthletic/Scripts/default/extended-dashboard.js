@@ -52,7 +52,7 @@
         $("#SearchAthlete").keyup(function (e) {
             var code = e.which;
             if (code == 13) {
-                window.location = "/dashboard?searchString=" + $("#SearchAthlete").val();
+                window.location = "/dashboard/extended?searchString=" + $("#SearchAthlete").val();
             }
         });
 
