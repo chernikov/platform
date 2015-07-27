@@ -96,9 +96,9 @@
 
     this.addInfo = function () {
         var data = $("#AddUserInfoForm").serialize();
-        $('#summary-message-errors').hide();
+        $('.summary-message-errors').hide();
         if (_this.checkDateValid() === false | _this.checkSportId() === false | _this.checkPositionId() === false) {
-            $('#summary-message-errors').show();
+            $('.summary-message-errors').show();
             return false
         }
 
@@ -127,11 +127,11 @@
     this.checkSportId = function () {
         var val = $("#SportID").val();
         if (val.length === 0) {
-            $("#sportid-message-error").show();
+            $(".sportid-message-error").show();
             return false;
         }
         else {
-            $('#sportid-message-error').hide();
+            $('.sportid-message-error').hide();
             return true;
         }
     }
@@ -139,11 +139,11 @@
     this.checkPositionId = function () {
         var val = $("#FieldPositionID").val();
         if (val.length === 0) {
-            $("#positionid-message-error").show();
+            $(".positionid-message-error").show();
             return false;
         }
         else {
-            $('#positionid-message-error').hide();
+            $('.positionid-message-error').hide();
             return true;
         }
     }
@@ -157,19 +157,19 @@
         var year = $("#BirthdayYear").val();
         var testDate = new Date(year, month, day, 0, 0, 0, 0);
         if (day != testDate.getDate() || month != testDate.getMonth() || year != testDate.getFullYear()) {
-            $("#age-message-error").show();
+            $(".age-message-error").show();
             return false
         }
-        $("#age-message-error").hide();
+        $(".age-message-error").hide();
         return true;
 
     }
 
     this.addPlayerInfo = function () {
         var data = $("#AddPlayerUserInfoForm").serialize();
-        $('#summary-message-errors').hide();
+        $('.summary-message-errors').hide();
         if (_this.checkDateValid() === false | _this.checkSportId() === false | _this.checkPositionId() === false) {
-            $('#summary-message-errors').show();
+            $('.summary-message-errors').show();
             return false
         }
 

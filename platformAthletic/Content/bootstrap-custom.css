@@ -4804,15 +4804,15 @@ h1.todo {
 table.table report-table thead tr.report-header th {
 }
 
-#age-message-error {
+.age-message-error {
     display: none;
 }
 
-#sportid-message-error {
+.sportid-message-error {
     display: none;
 }
 
-#positionid-message-error {
+.positionid-message-error {
     display: none;
 }
 
@@ -4838,7 +4838,7 @@ table.table report-table thead tr.report-header th {
     font-family: 'Montserrat', sans-serif;
 }
 
-#summary-message-errors {
+.summary-message-errors {
     display: none;
     text-align: left;
 }
@@ -4850,11 +4850,10 @@ a.clear-search {
     right: -13px;
     text-decoration: none;
 }
-
     a.clear-search:hover {
-        text-decoration: none;
+        text-decoration: none;  
     }
 
     a.clear-search:focus {
-        text-decoration: none;
+        text-decoration: none; 
     }

@@ -95,6 +95,40 @@
         $(document).on("click", ".restrictAccess", function () {
             $(".privacyMessage").show();
         });
+
+        $(document).on("click", ".clear-filters", function (e) {
+            e.preventDefault();
+            var parts = document.location.href.split(/\?/i);
+            document.location.href = parts[0];
+        })
+       .on("click", ".clear-search", function (e) {
+           e.preventDefault();
+
+           if (document.location.search.length !== 0) {
+               var loc = document.location;
+               var oldPath = loc.href;
+               var newPath = new Array();
+               oldPath = oldPath.split("&");
+
+               for (var i in oldPath) {
+                   if (oldPath[i].indexOf("StartID") === -1 && oldPath[i].indexOf("SearchString") === -1) {
+                       newPath.push(oldPath[i]);
+                   }
+               }
+               newPath = newPath.join("&");
+               oldPath = oldPath.join("&");
+
+               if (newPath !== oldPath) {
+                   loc.href = newPath;
+               }
+               else {
+                   $("#SearchAthlete").val("");
+               }
+           }
+           else {
+               $("#SearchAthlete").val("");
+           }
+       });
     }
 
     this.filterAll = function ()
