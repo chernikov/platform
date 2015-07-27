@@ -18,6 +18,11 @@
             _this.showRemovePopup($(this).data("id"));
         });
 
+        $(".sendActivation").click(function () {
+            var id = $(this).data("id");
+            _this.sendActivation(id);
+        });
+
         $(document).on("click", "#SubmitEditAssistant", function () {
             $.ajax({
                 type: "POST",
@@ -81,6 +86,18 @@
         });
     }
 
+
+    this.sendActivation = function (id) {
+        $.ajax({
+            type: "GET",
+            url: "/ManageAssistant/SendActivation",
+            data: { id: id },
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#modalSendActivation").modal();
+            }
+        });
+    }
 
     this.onEdit = function ()
     {
