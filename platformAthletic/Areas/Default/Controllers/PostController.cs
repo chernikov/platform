@@ -157,6 +157,37 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
 
+        public ActionResult Get(int id)
+        {
+            var post = Repository.Posts.FirstOrDefault(p => p.ID == id);
+            if (post != null)
+            {
+                return View(post);
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public ActionResult Remove(int id)
+        {
+            var post = Repository.Posts.FirstOrDefault(p => p.ID == id);
+            if (post != null && (post.UserID == CurrentUser.ID || CurrentUser.InRoles("admin")))
+            {
+                return View(post);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult Remove(PostView postView)
+        {
+            var post = Repository.Posts.FirstOrDefault(p => p.ID == postView.ID);
+            if (post != null && (post.UserID == CurrentUser.ID || CurrentUser.InRoles("admin")))
+            {
+                Repository.RemovePost(post.ID);
+            }
+            return null;
+        }
 
         //TODO:TempAction
         public ActionResult GeneratePosts()

@@ -1,0 +1,70 @@
+﻿@model Post
+@{
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+}
+@if (Model.User.InRoles("admin"))
+{
+    <div class="post admin-post">
+        <div class="pull-left author-icon">
+            <img src="~/Content/img/admin-icon.png" />
+        </div>
+
+        <div class="pull-right date">
+            <span class="glyphicon glyphicon-calendar"></span> @Model.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
+        </div>
+        <h1>@Model.Header</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.TitleImagePath))
+        {
+            <div class="image-wrapper">
+                <img src="@Model.TitleImagePath" class="title-image img-rounded" />
+            </div>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.VideoCode))
+        {
+            <div class="video-wrapper">
+                @Html.Raw(Model.VideoCode)
+            </div>
+        }
+        <div class="text">
+            @Html.Raw(Model.Text.NlToBr())
+        </div>
+    </div>
+}
+else
+{
+    <div class="post user-post">
+
+        <div class="user-icon">
+            <img src="@Model.User.PostAvatarPath?w=39&h=40&mode=crop">
+       
+        </div>
+        <h1>@Model.Header</h1>
+        <div class="date">
+            <span class="glyphicon glyphicon-calendar"></span> @Model.AddedDate.ToString("MMMM dd, yyyy").ToUpper()
+        </div>
+        <hr />
+        @if (!string.IsNullOrWhiteSpace(Model.TitleImagePath))
+        {
+            <div class="image-wrapper">
+                <img src="@Model.TitleImagePath" class="title-image img-rounded" />
+            </div>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.VideoCode))
+        {
+            <div class="video-wrapper">
+                @Html.Raw(Model.VideoCode)
+            </div>
+        }
+        <div class="text">
+            @Html.Raw(Model.Text.NlToBr())
+        </div>
+
+        @if (Model.UserID == currentUser.ID)
+        {
+            <div class="pull-right">
+                <div class="glyphicon glyphicon-edit clickable editPost" data-id="@Model.ID"></div>
+                <div class="glyphicon glyphicon-remove clickable removePost" data-id="@Model.ID"></div>
+            </div>
+        }
+    </div>
+}

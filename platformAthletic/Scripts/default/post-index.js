@@ -25,6 +25,8 @@
             return false;
         });
 
+       
+
         $(document).on("click", "#SubmitEditPostBtn", function () {
             _this.SubmitPost();
             return false;
@@ -47,6 +49,60 @@
 
         $(document).on("input", "#Header", function () {
             _this.CheckHeader();
+        });
+
+        $(document).on("click", ".editPost", function () {
+            var wrapper = $(this).closest(".user-post");
+            $.ajax({
+                type: "GET",
+                url: "/Post/Edit",
+                data : {id : $(this).data("id")},
+                success: function (data) {
+                    wrapper.html(data);
+                    if (!common.isMobile()) {
+                        CKEDITOR.replace('Text');
+                    }
+                    _this.onEdit();
+                }
+            });
+        });
+
+        $(document).on("click", ".removePost", function () {
+            var wrapper = $(this).closest(".user-post");
+            $.ajax({
+                type: "GET",
+                url: "/Post/Remove",
+                data: { id: $(this).data("id") },
+                success: function (data) {
+                    $("#ModalWrapper").html(data);
+                    $("#modalRemove").modal();
+                }
+            });
+        });
+
+        $(document).on("click", ".removePostBtn", function () {
+            $.ajax({
+                type: "POST",
+                url: "/Post/Remove",
+                data: { ID: $(this).data("id") },
+                success: function (data) {
+                    window.location.reload();
+                }
+            });
+        });
+
+
+        $(document).on("click", "#BackEditPostBtn", function () {
+            var wrapper = $(this).closest(".user-post");
+            $.ajax({
+                type: "GET",
+                url: "/Post/Get",
+                data: { id: $(this).data("id") },
+                success: function (data) {
+                    wrapper.replaceWith(data);
+                }
+            });
+            return false;
         });
     }
 

@@ -49,6 +49,12 @@
             return false;
         });
 
+        $(document).on("submit", "#EditGroupForm", function () {
+            _this.submitEditGroupForm();
+            return false;
+        });
+
+
         $(document).on("click", "#RemoveGroupBtn", function () {
             _this.submitRemoveGroupForm();
             return false;

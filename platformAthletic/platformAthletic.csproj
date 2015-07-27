@@ -1709,6 +1709,8 @@
     <Content Include="Areas\Default\Views\User\UserSbc.cshtml" />
     <Content Include="Areas\Default\Views\User\RemoveVideo.cshtml" />
     <Content Include="Areas\Default\Views\Tutorial\ShowStopTestMode.cshtml" />
+    <Content Include="Areas\Default\Views\Post\Get.cshtml" />
+    <Content Include="Areas\Default\Views\Post\Remove.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

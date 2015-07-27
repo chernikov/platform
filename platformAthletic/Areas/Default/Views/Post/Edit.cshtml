@@ -32,7 +32,14 @@
         </div>
         <div class="form-group pull-right">
             <button type="submit" class="btn btn-primary" id="SubmitEditPostBtn">@(Model.ID == 0 ? "ADD POST" : "EDIT POST")</button>
-            <button type="submit" class="btn btn-default" id="CancelEditPostBtn">CANCEL</button>
+            @if (Model.ID == 0) 
+            { 
+                <button class="btn btn-default" id="CancelEditPostBtn">CANCEL</button>
+            }
+            else
+            {
+                <button class="btn btn-default" id="BackEditPostBtn" data-id="@Model.ID">CANCEL</button>
+            }
         </div>
     }
 </div>

@@ -56,7 +56,7 @@ namespace platformAthletic.Models.Info
 
         protected virtual void Process()
         {
-            var users = Repository.TeamPlayersUsers.Where(p => p.PlayerOfTeamID == Team.ID);
+            var users = Repository.TeamPlayersAndPhantomUsers.Where(p => p.PlayerOfTeamID == Team.ID);
             SearchSchoolLeaderboardFilter.CutSearchCriteria(Search, users, preFilter : true);
             Filter(ref users);
             var orderUsers= Order(users);

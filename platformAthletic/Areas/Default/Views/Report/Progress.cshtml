@@ -102,7 +102,7 @@
                                             @Html.TextBox("EndPeriod", Model.Search.EndPeriod.HasValue ? Model.Search.EndPeriod.Value.ToString("MM/dd/yyyy") : "", new { @class = "form-control filter datetime end-date", placeholder = "End date" })
                                             <div class="error" style="display:none;" id="EndPeriodError">Please, Select End Date</div>
                                         </div>
-
+                                        <button class="btn btn-primary pull-right" id="clear-search">Clear</button>
                                     </div>
                                 </form>
                                 @*table*@

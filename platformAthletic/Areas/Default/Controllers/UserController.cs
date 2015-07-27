@@ -205,7 +205,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var sData = new List<int>();
                 var bData = new List<int>();
                 var cData = new List<int>();
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     var sbc = user.SBCHistory(currentSunday);
                     if (sbc != null)
