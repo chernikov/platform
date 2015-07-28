@@ -125,6 +125,34 @@ function Dashboard() {
                 _this.showUserInfo(id);
             });
         });
+
+        $(document).on("click", ".clear-search", function (e) {
+            e.preventDefault();
+
+            if (document.location.search.length !== 0) {
+                var loc = document.location;
+                var oldPath = loc.search;
+                var newPath = new Array();
+                oldPath = oldPath.split("&");
+                for (var i in oldPath) {
+                    if (oldPath[i].indexOf("searchString") === -1) {
+                        newPath.push(oldPath[i]);
+                    }
+                }
+                newPath = newPath.join("&");
+                oldPath = oldPath.join("&");
+
+                if (newPath !== oldPath) {
+                    loc.href = loc.origin + loc.pathname + newPath;
+                }
+                else {
+                    $("#SearchAthlete").val("");
+                }
+            }
+            else {
+                $("#SearchAthlete").val("");
+            }
+        });
     }
 
     this.substringMatcher = function (strs) {
