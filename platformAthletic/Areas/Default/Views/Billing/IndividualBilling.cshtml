@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Billing";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
 @section header {
     <script src="~/Scripts/default/billing.js"></script>
@@ -33,9 +34,13 @@
                         <div class="pull-right">
                             @if (Model.BillingInfo != null && Model.BillingInfo.AutoDebit)
                             {
-                                <button class="btn btn-billing btn-margin forbitBtn" data-message="Billing is not available in test mode" id="CancelAutoDebit">Cancel Auto Debit</button>
+                                <button class="btn btn-billing btn-margin @(currentUser != null && currentUser.InTestMode ? "forbitBtn" :"")" 
+                                        data-message="Billing is not available in test mode" 
+                                        id="@(currentUser != null && !currentUser.InTestMode ? "CancelAutoDebit" : "")">Cancel Auto Debit</button>
                             }
-                            <button class="btn btn-billing btn-margin  forbitBtn" data-message="Billing is not available in test mode" id="PayForSubscription">Pay For Subscription</button>
+                            <button class="btn btn-billing btn-margin  @(currentUser != null && currentUser.InTestMode ? "forbitBtn" :"")"
+                                     data-message="Billing is not available in test mode"
+                                     id="@(currentUser != null && !currentUser.InTestMode ? "PayForSubscription" : "")">Pay For Subscription</button>
                         </div>
                         <h2>Billing</h2>
                         <hr />

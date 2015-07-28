@@ -46,9 +46,10 @@ function Todo() {
             }
         });
 
-        $(document).on("click", ".forbitBtn", function () {
+        $(document).on("click", ".forbitBtn", function (e) {
             var message = $(this).data("message");
             _this.showInfo(message);
+            e.stopPropagation();
             return false;
         });
 

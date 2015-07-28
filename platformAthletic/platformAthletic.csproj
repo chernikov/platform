@@ -1712,6 +1712,7 @@
     <Content Include="Areas\Default\Views\Tutorial\ShowStopTestMode.cshtml" />
     <Content Include="Areas\Default\Views\Post\Get.cshtml" />
     <Content Include="Areas\Default\Views\Post\Remove.cshtml" />
+    <Content Include="Areas\Default\Views\ManageAssistant\SendActivation.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

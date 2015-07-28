@@ -107,7 +107,7 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult SendActivation(int id)
         {
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
-            if (user != null && user.CanEditSBC(CurrentUser))
+            if (user != null)
             {
                 NotifyMail.SendNotify(Config, "RegisterPlayer", user.Email,
                             (u, format) => string.Format(format, HostName),

@@ -202,7 +202,7 @@
 
 
                     <div class="form-group text-center margin-top">
-                        <button class="btn btn-primary btn-lg forbitBtn" data-message="Settings cannot be adjusted in test mode" id="Save">SAVE</button>
+                        <button class="btn btn-primary btn-lg  @(currentUser != null && currentUser.InTestMode ? "forbitBtn" :"")" data-message="Settings cannot be adjusted in test mode" id="@(currentUser != null && !currentUser.InTestMode ? "Save" : "")">SAVE</button>
                     </div>
                 }
             </div>

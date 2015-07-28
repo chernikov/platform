@@ -751,5 +751,13 @@ namespace platformAthletic.Model
                 return "/Content/img/post_platform_logo.png";
             }
         }
+
+        public bool InTestMode
+        {
+            get
+            {
+                return Mode == (int)User.ModeEnum.Test;
+            }
+        }
     }
 }

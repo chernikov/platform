@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Manage Coaches";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
 @section styles {
     <link href="~/Content/fineuploader.css" rel="stylesheet" />
@@ -31,7 +32,9 @@
 
                 <h2>Manage Coaches</h2>
                 <hr/>
-                <div class="btn btn-primary btn-lg forbitBtn" data-message="Coaches cannot be added while in test mode" id="Create">Create</div>
+                <div class="btn btn-primary btn-lg @(currentUser != null && currentUser.InTestMode ? "forbitBtn" :"")" 
+                     data-message="Coaches cannot be added while in test mode" 
+                     id="@(currentUser != null && !currentUser.InTestMode ? "Create" : "")">Create</div>
                 <br/><br />
                 <table class="table table-coaches">
                     <thead>
@@ -73,6 +76,7 @@
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-success btn-margin btn-margin-md editUser" data-id="@item.ID">Edit</a>
                                         <a href="#" class="btn btn-primary btn-margin btn-margin-md removeUser" data-id="@item.ID">Remove</a>
+                                        <button class="btn btn-success btn-margin btn-margin-md sendActivation" data-id="@item.ID">Send activation</button>
                                     </div>
                                 </td>
                             </tr>

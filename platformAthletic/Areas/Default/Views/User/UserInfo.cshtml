@@ -47,7 +47,7 @@
                 <td class="value" colspan="3">@Model.Team.State.Name</td>
             </tr>
         } 
-        @if (Model.InRoles("individual"))
+        @if (Model.InRoles("individual") && Model.State != null)
         {
             <tr class="hidden-xs">
                 <td class="header">STATE</td>
@@ -98,7 +98,7 @@
                 <td class="value"><strong>State:</strong> @Model.Team.State.Name</td>
             </tr>
         }
-        @if (Model.InRoles("individual"))
+        @if (Model.InRoles("individual") && Model.State != null)
         {
             <tr class="hidden-lg  hidden-md hidden-sm">
                 <td class="value"><strong>State:</strong> @Model.State.Name</td>

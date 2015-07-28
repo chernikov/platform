@@ -92,6 +92,23 @@ namespace platformAthletic.Areas.Default.Controllers
             return View("_OK");
         }
 
+
+        [HttpGet]
+        public ActionResult SendActivation(int id)
+        {
+            var user = Repository.Users.FirstOrDefault(p => p.ID == id);
+            if (user != null)
+            {
+                NotifyMail.SendNotify(Config, "Register", user.Email,
+                      (u, format) => format,
+                      (u, format) => string.Format(format, u.Email, u.Password),
+                      user);
+                Repository.ResendRegister(user);
+                return View(user);
+            }
+            return View("_OK");
+        }
+
         [HttpPost]
         public ActionResult Delete(AssistantUserView assistantUserView)
         {
