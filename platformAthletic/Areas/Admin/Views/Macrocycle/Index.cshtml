@@ -24,6 +24,9 @@
         <tr>
             <th>Default week
             </th>
+            <th>
+                Cycle
+            </th>
             <th>Name
             </th>
             <th>WWS</th>
@@ -35,6 +38,9 @@
         <tr>
             <td class="macrocycle-week-wrapper" data-id="@item.ID">
                 <div class="macrocycle-week"> @item.Week.Number</div>
+            </td>
+            <td>
+                @item.Week.Phase.Cycle.Name
             </td>
             <td class="macrocycle-name-wrapper"  data-id="@item.ID">
                <div class="macrocycle-name"> @item.Name</div>
