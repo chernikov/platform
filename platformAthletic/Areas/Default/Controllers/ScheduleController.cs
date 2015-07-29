@@ -396,5 +396,76 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(calendarRowInfo);
         }
 
+
+        public ActionResult Year(int year, int? groupId = null)
+        {
+            ViewBag.TeamID = CurrentUser.OwnTeam.ID;
+            var date = new DateTime(year, 1, 1);
+            int diff = date.DayOfWeek - DayOfWeek.Sunday;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
+
+            date =  date.AddDays(-1 * diff + 7).Date;
+            ViewBag.Date = date;
+
+            ViewBag.GroupID = groupId;
+            return View();
+        }
+
+        public ActionResult Row(DateTime date, int teamId, int? groupId = null)
+        {
+            var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
+            if (team != null)
+            {
+                var currentSeason = team.User.SeasonByDateAndGroup(date, groupId, true);
+                int numberOfWeek = (int)(((int)(date - currentSeason.StartDay).TotalDays) / 7);
+                int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
+                numberOfWeek = numberOfWeek % totalWeeks + 1;
+                if ((date - currentSeason.StartDay).TotalDays < 0)
+                {
+                    numberOfWeek--;
+                }
+                var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
+                if (week == null)
+                {
+                    return View(new CalendarRowInfo()
+                    {
+                        CurrentSunday = date
+                    });
+                }
+                var macrocycle = week.Macrocycles.FirstOrDefault();
+                var calendarRowInfo = new CalendarRowInfo()
+                {
+                    CurrentSunday = date,
+                    Macrocycle = macrocycle,
+                    NumberOfWeek = numberOfWeek,
+                    IsDefault = true
+                };
+                if (groupId.HasValue)
+                {
+                    var schedule = Repository.Schedules.FirstOrDefault(p => p.Number == numberOfWeek && p.TeamID == teamId && p.GroupID == groupId && p.UserSeasonID == currentSeason.ID);
+                    if (schedule != null)
+                    {
+                        calendarRowInfo.Macrocycle = schedule.Macrocycle;
+                        calendarRowInfo.IsDefault = false;
+                    }
+                }
+                else
+                {
+                    var schedule = Repository.Schedules.FirstOrDefault(p => p.Number == numberOfWeek && p.TeamID == teamId && p.GroupID == null && p.UserSeasonID == currentSeason.ID);
+                    if (schedule != null)
+                    {
+                        calendarRowInfo.Macrocycle = schedule.Macrocycle;
+                        calendarRowInfo.IsDefault = false;
+                    }
+                }
+              
+                return View(calendarRowInfo);
+            }
+            return null;
+        }
+
     }
 }

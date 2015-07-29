@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Year";
+}
+@{
+    var startDate = ViewBag.Date;
+    var teamId = ViewBag.TeamID;
+    var groupId = ViewBag.GroupID;
+}
+
+<h2>Year</h2>
+@{
+    var currentSunday = startDate;
+}
+<table>
+
+    <tr>
+        <th>Date</th>
+        <th>Season</th>
+        <th>Macrocycle</th>
+        <th>IsDefault</th>
+    </tr>
+    @while (currentSunday.Year == startDate.Year)
+    {
+        @Html.Action("Row", "Schedule", new { date = currentSunday, teamId = teamId, groupId = groupId })
+        currentSunday = currentSunday.AddDays(7);
+    }
+</table>

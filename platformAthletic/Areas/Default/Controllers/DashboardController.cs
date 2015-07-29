@@ -165,6 +165,21 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddPlayers(BatchPlayersView batchPlayersView)
         {
+            var listDoubleEmail = batchPlayersView.Players.GroupBy(p => p.Value.Email)
+                .Select(group => new {
+                    Email = group.Key, 
+                    Count = group.Count()
+                });
+            if (listDoubleEmail.Any(p => p.Count > 1))
+            {
+                var doubleEmails = listDoubleEmail.Where(p => p.Count > 1).Select(p => p.Email);
+                foreach(var player in batchPlayersView.Players) {
+                    if (doubleEmails.Any(p => p == player.Value.Email))
+                    {
+                        ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "The same email are added");
+                    }
+                }
+            }
             if (ModelState.IsValid)
             {
                 if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo && batchPlayersView.Players.Count > 0)

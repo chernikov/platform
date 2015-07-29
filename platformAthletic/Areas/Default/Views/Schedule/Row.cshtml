@@ -1,0 +1,40 @@
+﻿@model platformAthletic.Models.ViewModels.CalendarRowInfo
+@{
+    var diffWeeks = (Model.CurrentSunday - DateTime.Now.Current().StartOfWeek(DayOfWeek.Sunday)).TotalDays / 7;
+}
+
+@if (Model.Macrocycle != null)
+{
+    <tr>
+        <td>
+            @Model.CurrentSunday
+        </td>
+        <td>
+            @Model.Macrocycle.Season.Name
+        </td>
+        <td>
+            @Model.Macrocycle.Name
+        </td>
+        <td>
+            @Model.IsDefault
+        </td>
+    </tr>
+}
+else
+{
+    <tr>
+        <td>
+            No data
+        </td>
+        <td>
+            No data
+        </td>
+        <td>
+            No data
+        </td>
+        <td>
+            No data
+        </td>
+    </tr>
+    
+}

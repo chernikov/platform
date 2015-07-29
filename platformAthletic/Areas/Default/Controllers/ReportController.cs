@@ -133,14 +133,6 @@ namespace platformAthletic.Areas.Default.Controllers
                         cData.Add((int)sbc.Clean);
                         tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
                     }
-                    else
-                    {
-                        labels.Add(currentSunday.ToString("MMM/dd"));
-                        sData.Add(0);
-                        bData.Add(0);
-                        cData.Add(0);
-                        tData.Add(0);
-                    }
                     currentSunday = currentSunday.AddDays(7);
                 }
 
@@ -229,14 +221,6 @@ namespace platformAthletic.Areas.Default.Controllers
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
                         tData.Add((int)(sbc.Squat + sbc.Bench + sbc.Clean));
-                    }
-                    else
-                    {
-                        labels.Add(currentMonth.ToString("MMM/dd"));
-                        sData.Add(0);
-                        bData.Add(0);
-                        cData.Add(0);
-                        tData.Add(0);
                     }
                     currentMonth = currentMonth.AddMonths(1);
                 }

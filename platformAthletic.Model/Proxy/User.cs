@@ -555,14 +555,27 @@ namespace platformAthletic.Model
             return SBCValues.Where(p => p.AddedDate <= date).OrderBy(p => p.ID).LastOrDefault();
         }
 
+        private SBCValue _last12Week;
+
+
         public SBCValue Last12Week
         {
             get
             {
+                if (_last12Week != null)
+                {
+                    return _last12Week;
+                }
                 var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
                 var date12WeekAgo = startWeek.AddDays(-7 * 11);
                 var sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
-                return sbc;
+                while ((sbc == null || sbc.Equals(SBCValue.EmptySBCValue))  && date12WeekAgo <= startWeek)
+                {
+                    date12WeekAgo = date12WeekAgo.AddDays(7);
+                    sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
+                }
+                _last12Week = sbc;
+                return _last12Week;
             }
         }
 
