@@ -669,9 +669,12 @@
     <Content Include="Media\images\layot1.png" />
     <Content Include="Media\images\layot2.png" />
     <Content Include="Media\images\logoBW.jpg" />
+    <Content Include="Content\img\logo_30.png" />
+    <Content Include="Media\images\logo_53.png" />
     <Content Include="Media\images\logo_new.png" />
     <Content Include="Media\images\logo_platform.png" />
     <Content Include="Media\images\logo_table.png" />
+    <Content Include="Media\images\logo_table_70.png" />
     <Content Include="Media\images\logo_table_small.png" />
     <Content Include="Media\images\marr.png" />
     <Content Include="Media\images\menubg.png" />
