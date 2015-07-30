@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
-    public class ErrorController : Controller
+    public class ErrorController : DefaultController
     {
        
         public ActionResult Index()

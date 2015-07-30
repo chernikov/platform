@@ -4857,3 +4857,32 @@ a.clear-search {
     a.clear-search:focus {
         text-decoration: none; 
     }
+
+.page-not-found-container {
+    padding-top: 5%;
+    text-align:center;
+}
+
+    .page-not-found-container img {
+        margin:auto;
+        display:block;
+    }
+
+@media(max-width: 767px) {
+    .page-not-found-container img {
+        width:250px;
+    }
+}
+
+    .page-not-found-container a {
+        font-size: 14px;
+        padding: 0px 0px 0px 25px;
+        background: url("/Content/img/error/back.png") 0px 2px no-repeat;
+        font-weight: bold;
+        color: #fc8675;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+        .page-not-found-container a:hover {
+            text-decoration: underline;
+        }

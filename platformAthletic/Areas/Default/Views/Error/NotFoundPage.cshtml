@@ -1,7 +1,11 @@
 ﻿@{
-    Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     ViewBag.Title = "Page not found";
 }
-
-<h2>Page not found</h2>
-<a href="/">Back to home</a>
+<div class="side-body">
+    <div class="page-not-found-container">
+        <img src="~/Content/img/error/page_not_found.png">
+        <a href="/">BACK TO HOME</a>
+    </div>
+</div>
