@@ -555,6 +555,12 @@ namespace platformAthletic.Model
             return SBCValues.Where(p => p.AddedDate <= date).OrderBy(p => p.ID).LastOrDefault();
         }
 
+        public SBCValue SBCFirstHistory()
+        {
+            return SBCValues.OrderBy(p => p.ID).FirstOrDefault();
+        }
+
+
         private SBCValue _last12Week;
 
 

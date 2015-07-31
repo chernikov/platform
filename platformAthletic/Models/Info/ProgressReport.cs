@@ -96,8 +96,13 @@ namespace platformAthletic.Models.Info
                     {
                         foreach (var user in users)
                         {
-                            var sbcValueStart = user.SBCHistory(Search.StartPeriod.Value);
-                            var sbcValueEnd = user.SBCHistory(Search.EndPeriod?? DateTime.Now.Current());
+                            var startDay = Search.StartPeriod.Value;
+                            var sbcValueStart = user.SBCHistory(startDay);
+                            if (sbcValueStart == null)
+                            {
+                                sbcValueStart = user.SBCFirstHistory();
+                            }
+                            var sbcValueEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current());
                             if (sbcValueStart != null && sbcValueEnd != null)
                             {
                                 List.Add(new Record()

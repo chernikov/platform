@@ -176,7 +176,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 foreach(var player in batchPlayersView.Players) {
                     if (doubleEmails.Any(p => p == player.Value.Email))
                     {
-                        ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "The same email are added");
+                        ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Email address should be unique");
                     }
                 }
             }
