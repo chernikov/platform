@@ -143,7 +143,6 @@ namespace platformAthletic.Models.Info
                         Search.Page = index / 20 + 1;
                     }
                 }
-
                 WorkoutComplete = new Record()
                 {
                     AllTime = List.Sum(p => p.AllTime),
