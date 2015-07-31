@@ -40,13 +40,13 @@
                     <thead>
                         <tr>
                             <th class="hidden-xs">
-                                NAME
+                                FIRST NAME
+                            </th>
+                            <th class="hidden-xs">
+                                LAST NAME
                             </th>
                             <th class="hidden-xs">
                                 EMAIL
-                            </th>
-                            <th class="hidden-xs">
-                                PHONE NUMBER
                             </th>
                             <th class="hidden-lg hidden-md hidden-sm"> Info</th>
                            
@@ -58,14 +58,14 @@
                         {
                             <tr>
                                 <td class="name hidden-xs">
-                                    <img src="@item.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.FirstName @item.LastName</span>
+                                    <img src="@item.FullAvatarPath?w=24&h=24&mode=crop" class="img-circle" />&nbsp;&nbsp; <span class="user-name">@item.FirstName</span>
                                 </td>
                            
                                 <td class="hidden-xs">
-                                    @item.Email
+                                    @item.LastName
                                 </td>
                                 <td class="hidden-xs">
-                                    @item.PhoneNumber
+                                    @item.Email
                                 </td>
                                 <td class="hidden-lg hidden-md hidden-sm">
                                     @item.FirstName @item.LastName <br/>

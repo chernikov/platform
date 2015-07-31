@@ -97,7 +97,8 @@
     this.addInfo = function () {
         var data = $("#AddUserInfoForm").serialize();
         $('.summary-message-errors').hide();
-        if (_this.checkDateValid() === false | _this.checkSportId() === false | _this.checkPositionId() === false) {
+        if (_this.checkDateValid() === false | _this.checkSportId() === false |
+            _this.checkPositionId() === false | _this.checkGradYear() === false) {
             $('.summary-message-errors').show();
             return false
         }
@@ -122,6 +123,18 @@
                 $("#AddPlayerInfoWrapper").html(data);
             }
         });
+    }
+
+    this.checkGradYear = function () {
+        var birth_year = parseInt($("#BirthdayYear").val());
+        var val = parseInt($(".grad-year input").val());
+
+        if (!$(".grad-year").hasClass("hidden") && !(val > birth_year)) {
+            $(".grad-year-message-error").show();
+            return false;
+        }
+        $(".grad-year-message-error").hide();
+        return true;
     }
 
     this.checkSportId = function () {
@@ -168,7 +181,8 @@
     this.addPlayerInfo = function () {
         var data = $("#AddPlayerUserInfoForm").serialize();
         $('.summary-message-errors').hide();
-        if (_this.checkDateValid() === false | _this.checkSportId() === false | _this.checkPositionId() === false) {
+        if (_this.checkDateValid() === false | _this.checkSportId() === false |
+            _this.checkPositionId() === false | _this.checkGradYear() === false) {
             $('.summary-message-errors').show();
             return false
         }

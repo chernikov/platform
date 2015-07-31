@@ -4218,7 +4218,7 @@ hr.video {
 
 
 .manage-user-wrapper .table thead th {
-    background-color: #60b1c2;
+    background-color: #FC8675;
     color: #fff;
     border: none;
     padding-left: 30px;
@@ -4485,6 +4485,7 @@ hr.video {
         font-weight: bold;
         font-size: 32px;
         color: #495b6c;
+        margin-left: 11%;
     }
 
     .form-register-wrapper .btn-apply {
@@ -4816,6 +4817,10 @@ table.table report-table thead tr.report-header th {
     display: none;
 }
 
+.grad-year-message-error {
+    display:none;
+}
+
 
 .coach-text {
     font-size: 12px;
@@ -4842,6 +4847,7 @@ table.table report-table thead tr.report-header th {
     display: none;
     text-align: left;
 }
+
 
 a.clear-search {
     color: grey;

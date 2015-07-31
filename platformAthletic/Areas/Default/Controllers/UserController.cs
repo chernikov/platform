@@ -504,7 +504,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
             if (individualUserInfoView.IsGradYear && individualUserInfoView.GradYear == 0)
             {
-                ModelState.AddModelError("GradYear", "");
+                ModelState.AddModelError("GradYear", "Please, enter your grad year");
             }
             if (!individualUserInfoView.SportID.HasValue)
             {
@@ -580,7 +580,7 @@ namespace platformAthletic.Areas.Default.Controllers
                
             if (playerUserInfoView.IsGradYear && playerUserInfoView.GradYear == 0)
             {
-                ModelState.AddModelError("GradYear", "");
+                ModelState.AddModelError("GradYear", "Please, enter your grad year");
             }
             if (!playerUserInfoView.SportID.HasValue)
             {
