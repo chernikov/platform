@@ -30,12 +30,14 @@ namespace platformAthletic.Model
                     if (setting != null)
                     {
                         currentDateTime = DateTime.Parse(setting.Value, CultureInfo.InvariantCulture).Date;
-                    } else {
+                    }
+                    else
+                    {
                         currentDateTime = source.Date;
                     }
                 }
                 return currentDateTime.Value.AddHours(source.Hour).AddMinutes(source.Minute).AddSeconds(source.Second);
-                
+                return DateTime.Now;
             }
         }
     }

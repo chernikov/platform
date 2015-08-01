@@ -63,9 +63,9 @@ namespace platformAthletic.Areas.Default.Controllers
                     };
                     Repository.CreateUserRole(userRole);
 
-                    NotifyMail.SendNotify(Config, "Register", user.Email,
+                    NotifyMail.SendNotify(Config, "RegisterAssistant", user.Email,
                         (u, format) => format,
-                        (u, format) => string.Format(format, u.Email, u.Password),
+                        (u, format) => string.Format(format, CurrentUser.FirstName + " " + CurrentUser.LastName, u.Email, u.Password),
                         user);
                     Repository.StartTutorial(user.ID);
                 }
@@ -99,9 +99,9 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
-                NotifyMail.SendNotify(Config, "Register", user.Email,
+                NotifyMail.SendNotify(Config, "RegisterAssistant", user.Email,
                       (u, format) => format,
-                      (u, format) => string.Format(format, u.Email, u.Password),
+                      (u, format) => string.Format(format, CurrentUser.FirstName + " " + CurrentUser.LastName, u.Email, u.Password),
                       user);
                 Repository.ResendRegister(user);
                 return View(user);

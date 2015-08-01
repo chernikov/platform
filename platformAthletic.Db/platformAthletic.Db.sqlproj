@@ -149,6 +149,9 @@
     <None Include="Migrations\MigrationScript_022.sql" />
     <None Include="Migrations\MigrationScript_023.sql" />
     <None Include="Migrations\MigrationScript_024.sql" />
+    <None Include="Migrations\UpdateItentitiesAndForeignKeys.sql" />
+    <None Include="Migrations\MigrationScript_25.sql" />
+    <None Include="Migrations\UpdateIdentityPLT4M.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="platformAthletic.Db.refactorlog" />

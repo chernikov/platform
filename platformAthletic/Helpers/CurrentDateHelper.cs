@@ -13,6 +13,7 @@ namespace platformAthletic.Helpers
         {
             var repository = DependencyResolver.Current.GetService<IRepository>();
             return repository.CurrentDateTime;
+            return source;
         }
     }
 }
