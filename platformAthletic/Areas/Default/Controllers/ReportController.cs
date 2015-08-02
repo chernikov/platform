@@ -117,6 +117,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var sunday = endDate.AddDays(-(int)endDate.DayOfWeek);
                 var currentSunday = startDate.AddDays(-(int)startDate.DayOfWeek);
+                var isFirst = true;
                 var labels = new List<string>();
                 var sData = new List<int>();
                 var bData = new List<int>();
@@ -131,6 +132,15 @@ namespace platformAthletic.Areas.Default.Controllers
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
                     }
+                    else if (isFirst)
+                    {
+                        sbc = user.SBCFirstHistory();
+                        labels.Add(currentSunday.ToString("MMM/dd"));
+                        sData.Add((int)sbc.Squat);
+                        bData.Add((int)sbc.Bench);
+                        cData.Add((int)sbc.Clean);
+                    }
+                    isFirst = false;
                     currentSunday = currentSunday.AddDays(7);
                 }
 
@@ -191,6 +201,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var month = endDate.AddDays(-(int)endDate.Day).AddMonths(1);
                 var currentMonth = startDate.AddDays(-(int)startDate.Day).AddDays(1).AddMonths(-1);
+                var isFirst = true;
                 var labels = new List<string>();
                 var sData = new List<int>();
                 var bData = new List<int>();
@@ -205,6 +216,15 @@ namespace platformAthletic.Areas.Default.Controllers
                         bData.Add((int)sbc.Bench);
                         cData.Add((int)sbc.Clean);
                     }
+                    else if(isFirst)
+                    {
+                        sbc = user.SBCFirstHistory();
+                        labels.Add(currentMonth.ToString("MMM/dd"));
+                        sData.Add((int)sbc.Squat);
+                        bData.Add((int)sbc.Bench);
+                        cData.Add((int)sbc.Clean);
+                    }
+                    isFirst = false;
                     currentMonth = currentMonth.AddMonths(1);
                 }
                 var datasets = new List<PerformanceGraphInfo>();

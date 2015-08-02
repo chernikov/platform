@@ -79,6 +79,12 @@
                 }
             });
         }
+
+        $("input[name=PublicLevel]").change(function () {
+            _this.updateShare();
+        });
+
+        _this.updateShare();
     }
 
     this.updatePassword = function ()
@@ -99,6 +105,13 @@
         });
     }
 
+    this.updateShare = function () {
+        if ($("input[name=PublicLevel]:checked").val() == "2") {
+            $(".social-panel").show();
+        } else {
+            $(".social-panel").hide();
+        }
+    }
     this.UpdateColors = function ()
     {
         $(".primaryColor").css("color", $("#PrimaryColor").val());

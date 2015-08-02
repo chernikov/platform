@@ -3,6 +3,7 @@
     ViewBag.Title = "Billing";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
+    var openPayment = (bool)ViewBag.OpenPayment;
 }
 @section header {
     <script src="~/Scripts/default/billing.js"></script>
@@ -54,8 +55,8 @@
                         <hr />
                     </div>
                 </div>
-                <div id="PaymentWrapper" style="display:none;">
-                    @using (Html.BeginForm("Index", "Billing", FormMethod.Post))
+                <div id="PaymentWrapper" style="@(openPayment ? "" : "display:none;")">
+                    @using (Html.BeginForm("Billing", "Billing", FormMethod.Post))
                     {
                         <div class="row">
                             <div class="col-lg-10 col-lg-offset-1"><h3>Credit Card Information</h3></div>

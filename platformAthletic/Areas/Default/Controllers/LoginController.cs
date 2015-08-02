@@ -73,6 +73,10 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Logout()
         {
             Auth.LogOut();
+            if (!Request.IsLocal)
+            {
+                return Redirect("http://plt4m.com");
+            }
             return RedirectToAction("Index", "Home");
         }
 

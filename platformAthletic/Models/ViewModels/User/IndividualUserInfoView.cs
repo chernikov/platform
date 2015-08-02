@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Models.ViewModels.User
 {
@@ -34,7 +35,7 @@ namespace platformAthletic.Models.ViewModels.User
 
         public bool Gender { get; set; }
 
-        public int GradYear { get; set; }
+        public int? GradYear { get; set; }
 
         public bool IsGradYear
         {
@@ -43,6 +44,19 @@ namespace platformAthletic.Models.ViewModels.User
                 return GradYearLevels.Any(p => p.ID == LevelID);
             }
         }
+
+        public IEnumerable<SelectListItem> SelectListGradYear
+        {
+            get
+            {
+                yield return new SelectListItem() { Value = "", Text = "Not selected", Selected = !GradYear.HasValue };
+                for (var i = DateTime.Now.Current().Year + 9; i >= DateTime.Now.Current().Year; i--)
+                {
+                    yield return new SelectListItem() { Value = i.ToString(), Text = i.ToString(), Selected = GradYear == i };
+                }
+            }
+        }
+
 
         public IEnumerable<SelectListItem> SelectListGender
         {
@@ -103,6 +117,7 @@ namespace platformAthletic.Models.ViewModels.User
                 return repository.Sports.ToList();
             }
         }
+
 
         public IEnumerable<SelectListItem> SelectListSports
         {

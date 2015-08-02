@@ -5,6 +5,11 @@
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
 @section styles {
+    <meta property="og:title" content="@Model.FirstName @Model.LastName" />
+    @if (!string.IsNullOrWhiteSpace(Model.AvatarPath))
+    {
+        <meta property="og:image" content="http://app.plt4m.com/@Model.AvatarPath" />
+    }
     <link href="~/Content/fineuploader.css" rel="stylesheet" />
     <link href="~/Content/jquery.mCustomScrollbar.css" rel="stylesheet" />
 }

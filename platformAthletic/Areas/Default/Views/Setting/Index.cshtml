@@ -6,6 +6,7 @@
 }
 
 @section styles {
+    <meta property="og:title" content="@currentUser.FirstName @currentUser.LastName" />
     <link href="~/Content/fineuploader.css" rel="stylesheet" />
 }
 @section header {
@@ -13,6 +14,7 @@
     <script src="~/Scripts/jquery.ImageColorPicker.js"></script>
     <script src="~/Scripts/jquery.fineuploader-3.0.js"></script>
     <script src="~/Scripts/default/setting-info.js"></script>
+<script src="~/Scripts/default/social-sharing.js"></script>
 }
 <div class="container-fluid">
     <div class="side-body">
@@ -148,6 +150,14 @@
                                     <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Private, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Private) <strong>Private: </strong> No one can see your profile except you and your coach.</label>
                                     <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Limited, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Limited) <strong>Limited: </strong> Only members of Platform Athletics can see your profile.</label>
                                     <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Public, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Public) <strong>Public: </strong> Profile can be viewed by anyone (makes sharing on social media easy)</label>
+                                </div>
+
+                                <div class="social-panel">
+                                    <h2>Share</h2>
+                                    <span class='facebook' data-id="@currentUser.ID"></span>
+                                    <span class='google' data-id="@currentUser.ID"></span>
+                                    <span class='twitter' data-id="@currentUser.ID"></span>
+                                    <span class='linkedin' data-id="@currentUser.ID"></span>
                                 </div>
                             </div>
                         </div>

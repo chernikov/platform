@@ -28,6 +28,16 @@ function AddPlayers() {
             $(this).closest(".add-player-item").remove();
         });
 
+        $(document).on("click", "#NoBtn", function () {
+            $("#FirstPanel").show();
+            $("#SecondPanel").hide();
+        });
+
+        $(document).on("click", ".try-close", function () {
+            $("#FirstPanel").hide();
+            $("#SecondPanel").show();
+        });
+
         $(document).on("click", "#SubmitAddPlayers", function () {
             var data = $("#AddPlayersForm").serialize();
             $.ajax({
@@ -46,6 +56,8 @@ function AddPlayers() {
                 }
             })
         });
+
+
     }
 
     this.showAddPlayers = function () {

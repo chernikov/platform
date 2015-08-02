@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Models.ViewModels.User
 {
@@ -215,6 +216,18 @@ namespace platformAthletic.Models.ViewModels.User
         public string Weight { get; set; }
 
         public string Vertical { get; set; }
+
+        public IEnumerable<SelectListItem> SelectListGradYear
+        {
+            get
+            {
+                yield return new SelectListItem() { Value = "", Text = "Not selected", Selected = !GradYear.HasValue };
+                for (var i = DateTime.Now.Current().Year + 9; i >= DateTime.Now.Current().Year; i--)
+                {
+                    yield return new SelectListItem() { Value = i.ToString(), Text = i.ToString(), Selected = GradYear == i };
+                }
+            }
+        }
 
         public UserInfoView()
         {

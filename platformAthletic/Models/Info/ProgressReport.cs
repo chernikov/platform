@@ -175,14 +175,18 @@ namespace platformAthletic.Models.Info
                     Search.StartPeriod = firstSbc.AddedDate;
                 }
             }
-            var lastSbc = Repository.SBCValues.Where(p => listIDs.Contains(p.UserID)).OrderByDescending(p => p.AddedDate).FirstOrDefault();
-            if (lastSbc != null)
+            if (!Search.EndPeriod.HasValue)
             {
-                if (!Search.EndPeriod.HasValue || Search.EndPeriod > lastSbc.AddedDate)
-                {
-                    Search.EndPeriod = lastSbc.AddedDate;
-                }
+                Search.EndPeriod = DateTime.Now.Current();
             }
+            //var lastSbc = Repository.SBCValues.Where(p => listIDs.Contains(p.UserID)).OrderByDescending(p => p.AddedDate).FirstOrDefault();
+            //if (lastSbc != null)
+            //{
+            //    if (!Search.EndPeriod.HasValue || Search.EndPeriod > lastSbc.AddedDate)
+            //    {
+            //        Search.EndPeriod = lastSbc.AddedDate;
+            //    }
+            //}
         }
 
         protected void Order()

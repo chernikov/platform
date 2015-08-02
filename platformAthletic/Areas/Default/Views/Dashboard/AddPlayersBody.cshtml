@@ -26,7 +26,15 @@
         <strong class="todo-hint">* Enter as many players as desired and hit submit.</strong>
     }
 </div>
-<div class="modal-footer text-center">
-    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+<div class="modal-footer text-center" id="FirstPanel">
+    <button type="button" class="btn btn-default try-close">CANCEL</button>
     <button type="button" class="btn btn-primary" id="SubmitAddPlayers">SUBMIT</button>
+
+</div>
+
+<div class="modal-footer text-center" id="SecondPanel" style="display:none;">
+    <p>Are you sure you want to cancel? All information entered will be lost and players will not be added.</p>
+    <button type="button" class="btn btn-default" data-dismiss="modal">YES</button>
+    <button type="button" class="btn btn-primary" id="NoBtn">NO</button>
+
 </div>

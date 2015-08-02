@@ -31,12 +31,14 @@
 
                 </tr>
                 <tr>
-                    <td class="header">LEVEL@(Model.IsGradYear ? "/GRAD YEAR":"")</td>
+                    <td class="header">LEVEL@(Model.IsGradYear ? "/GRAD YEAR" : "")</td>
                     <td class="value" colspan="3">
                         <div class="@(Model.IsGradYear ? "half" : "full")">
                             <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
                         </div>
-                        <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">@Html.TextBox("GradYear", Model.GradYear)</div>
+                        <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">
+                            <div class="dropdown-wrapper">@Html.DropDownList("GradYear", Model.SelectListGradYear, new { @class = "full-dropdown" })</div>
+                        </div>
                     </td>
                 </tr>
             </table>
@@ -55,15 +57,15 @@
     </ul>
 </div>
 
-    <script type="text/javascript">
-        $("#SportID").change(function () {
-            if (typeof (tutorial) != "undefined") {
-                tutorial.updateAddPlayerInfo();
-            }
-        })
-        $("#LevelID").change(function () {
-            if (typeof (tutorial) != "undefined") {
-                tutorial.updateAddPlayerInfo();
-            }
-        })
-    </script>
+<script type="text/javascript">
+    $("#SportID").change(function () {
+        if (typeof (tutorial) != "undefined") {
+            tutorial.updateAddPlayerInfo();
+        }
+    })
+    $("#LevelID").change(function () {
+        if (typeof (tutorial) != "undefined") {
+            tutorial.updateAddPlayerInfo();
+        }
+    })
+</script>

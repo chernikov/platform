@@ -422,6 +422,11 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\month.png" />
     <Content Include="Content\img\platform-icon.png" />
+    <Content Include="Content\img\social\blogger.png" />
+    <Content Include="Content\img\social\facebook.png" />
+    <Content Include="Content\img\social\google.png" />
+    <Content Include="Content\img\social\linkedin.png" />
+    <Content Include="Content\img\social\twitter.png" />
     <Content Include="Content\img\squat-icon.png" />
     <Content Include="Content\img\states\ak.png" />
     <Content Include="Content\img\states\al.png" />
@@ -1575,6 +1580,7 @@
     <Content Include="Scripts\default\schedule.js" />
     <Content Include="Scripts\default\setting-info.js" />
     <Content Include="Scripts\default\register.js" />
+    <Content Include="Scripts\default\social-sharing.js" />
     <Content Include="Scripts\default\team.js" />
     <Content Include="Scripts\default\testmode.js" />
     <Content Include="Scripts\default\thanks.js" />
@@ -1733,6 +1739,7 @@
       <DependentUpon>jquery-ui-1.9.2.custom.js</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery.ba-bbq.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.fineuploader-3.0.js" />
     <Content Include="Scripts\jquery.fineuploader-3.0.min.js">
       <DependentUpon>jquery.fineuploader-3.0.js</DependentUpon>

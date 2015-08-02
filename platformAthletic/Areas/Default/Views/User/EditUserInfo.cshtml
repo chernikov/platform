@@ -43,7 +43,8 @@
                     <div class="@(Model.IsGradYear ? "half" : "full")">
                         <div class="dropdown-wrapper">@Html.DropDownList("LevelID", Model.SelectListLevel, new { @class = "full-dropdown" })</div>
                     </div>
-                    <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">@Html.TextBox("GradYear", (int?)(Model.IsGradYear ? Model.GradYear : null))</div>
+                    <div class="grad-year half @(Model.IsGradYear ? "" : "hidden")">
+                        <div class="dropdown-wrapper">@Html.DropDownList("GradYear", Model.SelectListGradYear, new { @class = "full-dropdown" })</div></div>
                 </td>
             </tr>
             @if (!currentUser.InRoles("individual"))

@@ -36,6 +36,8 @@
             window.open("/invoice", "_blank");
             return false;
         });
+
+        
     }
 
 

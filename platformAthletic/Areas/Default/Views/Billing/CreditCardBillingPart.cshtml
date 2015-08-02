@@ -1,5 +1,6 @@
 ﻿@model BillingInfoView
 
+
 @Html.Hidden("BillingInfo.ID", Model.ID)
 @Html.Hidden("BillingInfo.AutoDebit", Model.AutoDebit)
 @Html.Hidden("BillingInfo.UserID", Model.UserID)
@@ -115,7 +116,7 @@
     </div>
     <div class="col-lg-2 col-lg-offset-4  col-xs-12 submit">
         <div class=" pull-right">
-            <button class="btn btn-primary btn-lg">SUBMIT</button>
+            <button class="btn btn-primary btn-lg" id="SubmitBillingBtn">SUBMIT</button>
         </div>
     </div>
 </div>

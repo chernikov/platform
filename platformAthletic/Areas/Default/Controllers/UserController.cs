@@ -645,6 +645,11 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null && user.CanEditSBC(CurrentUser))
             {
+                if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+                {
+                    Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.EnterMaxes);
+                }
+
                 if (squat % 5 == 0 && squat >= 0)
                 {
                     Repository.SetSbcValue(id, SBCValue.SbcType.Squat, (double)squat);

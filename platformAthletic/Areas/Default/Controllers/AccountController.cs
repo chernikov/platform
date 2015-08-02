@@ -12,6 +12,7 @@ using platformAthletic.Models.Info;
 using System.IO;
 using platformAthletic.Tools;
 using System.Drawing;
+using StackExchange.Profiling;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -241,8 +242,11 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult GenerateTeam()
         {
-            
-            GeneratePhantoms();
+            var profiler = MiniProfiler.Current; // it's ok if this is null
+            using (profiler.Step("Generate Phantoms"))
+            {
+                GeneratePhantoms();
+            }
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -307,63 +311,66 @@ namespace platformAthletic.Areas.Default.Controllers
 
         private void CreateUser(string firstName, string lastName, Random rand, Group group)
         {
-
-            var user = new User()
+            var profiler = MiniProfiler.Current; // it's ok if this is null
+            using (profiler.Step("CreateUser:" + firstName + " " + lastName))
             {
-                FirstName = firstName,
-                LastName = lastName,
-                Email = firstName.ToLower() + "." + lastName.ToLower() + "@mailinator.com",
-                PlayerOfTeamID = CurrentUser.OwnTeam.ID,
-                Password = "123456",
-                GroupID = group.ID,
-                IsPhantom = true
-            };
+                var user = new User()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = firstName.ToLower() + "." + lastName.ToLower() + "@mailinator.com",
+                    PlayerOfTeamID = CurrentUser.OwnTeam.ID,
+                    Password = "123456",
+                    GroupID = group.ID,
+                    IsPhantom = true
+                };
 
-            Repository.CreateUser(user);
+                Repository.CreateUser(user);
 
-            var playerRole = new UserRole()
-            {
-                UserID = user.ID,
-                RoleID = 3 //player
-            };
-            Repository.CreateUserRole(playerRole);
-            for (int i = 0; i < 3; i++)
-            {
-                var fieldPosition = Repository.FieldPositions.ToList().OrderBy(p => Guid.NewGuid()).FirstOrDefault();
-                var userPosition = new UserFieldPosition()
+                var playerRole = new UserRole()
                 {
                     UserID = user.ID,
-                    FieldPositionID = fieldPosition.ID,
-                    SportID = fieldPosition.Sport.ID
+                    RoleID = 3 //player
                 };
-                Repository.CreateUserFieldPosition(userPosition);
-            }
-            var squat = 200 + rand.Next(20) * 5;
-            var bench = 150 + rand.Next(10) * 5;
-            var clean = 100 + rand.Next(7) * 5;
-            var startDate = DateTime.Now.Current().AddDays(-90);
-            for (int i = 0; i < 3; i++)
-            {
-                Repository.SetSbcValue(user.ID, SBCValue.SbcType.Squat, squat, startDate);
-                Repository.SetSbcValue(user.ID, SBCValue.SbcType.Bench, bench, startDate);
-                Repository.SetSbcValue(user.ID, SBCValue.SbcType.Clean, clean, startDate);
-                squat += rand.Next(10) * 5;
-                bench += rand.Next(5) * 5;
-                clean += rand.Next(3) * 5;
-                startDate = startDate.AddDays(21);
-            }
-
-            startDate = DateTime.Now.Current().AddDays(-90);
-            while (startDate < DateTime.Now)
-            {
-                startDate = startDate.AddDays(rand.Next(3) + 2);
-                var userAttendance = new UserAttendance()
+                Repository.CreateUserRole(playerRole);
+                for (int i = 0; i < 3; i++)
                 {
-                    UserID = user.ID,
-                    AddedDate = startDate,
-                    UserSeasonID = user.CurrentSeason.ID
-                };
-                Repository.CreateUserAttendance(userAttendance);
+                    var fieldPosition = Repository.FieldPositions.ToList().OrderBy(p => Guid.NewGuid()).FirstOrDefault();
+                    var userPosition = new UserFieldPosition()
+                    {
+                        UserID = user.ID,
+                        FieldPositionID = fieldPosition.ID,
+                        SportID = fieldPosition.Sport.ID
+                    };
+                    Repository.CreateUserFieldPosition(userPosition);
+                }
+                var squat = 200 + rand.Next(20) * 5;
+                var bench = 150 + rand.Next(10) * 5;
+                var clean = 100 + rand.Next(7) * 5;
+                var startDate = DateTime.Now.Current().AddDays(-90);
+                for (int i = 0; i < 3; i++)
+                {
+                    Repository.SetSbcValue(user.ID, SBCValue.SbcType.Squat, squat, startDate);
+                    Repository.SetSbcValue(user.ID, SBCValue.SbcType.Bench, bench, startDate);
+                    Repository.SetSbcValue(user.ID, SBCValue.SbcType.Clean, clean, startDate);
+                    squat += rand.Next(10) * 5;
+                    bench += rand.Next(5) * 5;
+                    clean += rand.Next(3) * 5;
+                    startDate = startDate.AddDays(21);
+                }
+
+                startDate = DateTime.Now.Current().AddDays(-90);
+                while (startDate < DateTime.Now)
+                {
+                    startDate = startDate.AddDays(rand.Next(3) + 2);
+                    var userAttendance = new UserAttendance()
+                    {
+                        UserID = user.ID,
+                        AddedDate = startDate,
+                        UserSeasonID = user.CurrentSeason.ID
+                    };
+                    Repository.CreateUserAttendance(userAttendance);
+                }
             }
         }
 
