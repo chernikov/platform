@@ -1,13 +1,13 @@
 ﻿@model platformAthletic.Models.ViewModels.LoginViewModel
 @{
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayoutNoSide.cshtml";
-    ViewBag.Title = "Forgot password";
+    ViewBag.Title = "Log In";
 }
 
 <div class="container">
+    <h1 class="register-title">Log In</h1>
     <div class="side-body">
         <div class="col-lg-8 col-lg-offset-2 form-register-wrapper">
-            <h1>Please enter email</h1>
             @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form LoginForm" }))
             {
                 <div class="row">

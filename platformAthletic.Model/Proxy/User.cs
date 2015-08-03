@@ -189,7 +189,7 @@ namespace platformAthletic.Model
         {
             get
             {
-                if (InRoles("individual") || InRoles("admin") || InRoles("coach"))
+                if (InRoles("individual") || InRoles("admin"))
                 {
                     return SecondaryColor ?? string.Empty;
                 }

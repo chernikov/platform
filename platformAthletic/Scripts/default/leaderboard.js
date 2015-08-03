@@ -78,7 +78,7 @@
 
         if ($("#StartID").val() != "") {
             $('html, body').animate({
-                scrollTop: $(".item.selected").offset().top
+                scrollTop: $(".item.selected").offset().top - 60
             }, 1000);
         }
 
