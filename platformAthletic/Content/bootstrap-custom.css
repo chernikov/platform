@@ -1087,7 +1087,8 @@ th {
 }
 
     .user-part h3 {
-        padding-top: 0px;
+        background-color: white;
+        padding: 10px 0px 10px 0px;
     }
 
     .user-part .print-icon {
@@ -1217,6 +1218,7 @@ th {
 
 .view-profile-wrp {
     padding-top: 15px;
+    background-color: #F5F5F5;
 }
 
 .platform .user-info-attendance {
@@ -4536,12 +4538,20 @@ hr.video {
         font-weight: bold;
         font-size: 32px;
         color: #495b6c;
-        margin-left: 11%;
     }
 
     .form-register-wrapper .btn-apply {
         width: 100%;
     }
+
+
+.register-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #495b6c;
+    text-align:center;
+}
 
 
 .tutorial-wrapper {
@@ -4948,4 +4958,8 @@ a.clear-search {
 
 .my-videos {
     padding-top: 6px;
+}
+
+.row.user {
+    background-color:white;
 }
