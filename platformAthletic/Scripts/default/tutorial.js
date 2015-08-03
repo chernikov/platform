@@ -127,7 +127,7 @@
 
     this.checkGradYear = function () {
         var birth_year = parseInt($("#BirthdayYear").val());
-        var val = parseInt($(".grad-year input").val());
+        var val = parseInt($("#GradYear").val());
 
         if (!$(".grad-year").hasClass("hidden") && !(val > birth_year)) {
             $(".grad-year-message-error").show();

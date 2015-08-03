@@ -14,7 +14,7 @@
     <RootNamespace>platformAthletic</RootNamespace>
     <AssemblyName>platformAthletic</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -1973,16 +1973,12 @@
     <Content Include="Areas\Default\Views\Home\WhatWeDo.cshtml" />
     <Content Include="Areas\Default\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Default\Views\Home\JoinUs.cshtml" />
-    <Content Include="Areas\Default\Views\Home\TeamRegister.cshtml" />
-    <Content Include="Areas\Default\Views\Home\IndividualRegister.cshtml" />
     <Content Include="Areas\Cms\Views\Shared\_CmsLayout.cshtml" />
     <Content Include="Areas\Cms\Views\Shared\_CmsLayoutInner.cshtml" />
     <Content Include="Areas\Default\Views\Shared\NewUserLogin.cshtml" />
     <Content Include="Areas\Cms\Views\Home\Index.cshtml" />
     <Content Include="Areas\Cms\Views\Home\SlideShow.cshtml" />
-    <Content Include="Areas\Cms\Views\Home\IndividualRegister.cshtml" />
     <Content Include="Areas\Cms\Views\Home\PostRegister.cshtml" />
-    <Content Include="Areas\Cms\Views\Home\TeamRegister.cshtml" />
     <Content Include="Areas\Cms\Views\Home\JoinUs.cshtml" />
     <Content Include="Areas\Cms\Views\Home\WhatWeDo.cshtml" />
     <Content Include="Areas\Cms\Views\Home\WhoWeAre.cshtml" />

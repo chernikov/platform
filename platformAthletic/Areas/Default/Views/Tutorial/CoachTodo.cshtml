@@ -6,11 +6,11 @@
 @{
     var i = 1;
 }
-<li><h1 class="todo">TO DO:</h1></li>
+<li class="todo-li"><h1 class="todo">TO DO:</h1></li>
 @foreach (var item in Model.List)
 {
 
-    <li class="todo-list-item">
+    <li class="todo-li todo-list-item">
         @if (item.Solved)
         {
             <span class="glyphicon glyphicon glyphicon-ok"></span>@item.Name

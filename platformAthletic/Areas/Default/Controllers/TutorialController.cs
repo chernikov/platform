@@ -80,10 +80,15 @@ namespace platformAthletic.Areas.Default.Controllers
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Todo()
+        public ActionResult Todo(int? id = null)
         {
+            
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
+                if (id.HasValue)
+                {
+                    Repository.SetTodo(CurrentUser.ID, (Model.User.TodoEnum)id.Value);
+                }
                 if (CurrentUser.InRoles("coach,assistant"))
                 {
                     var todo = new CoachTodoListInfo(CurrentUser.Todo);

@@ -9,41 +9,38 @@ function Todo() {
             _this.showTodo(id);
         }
 
-        $(document).on("click", "#PrintAll", function () {
-            _this.clear();
-        });
-
         $(document).on("click", "#AddPlayersButton", function () {
             $("#ModalWrapper").empty();
             $(".modal-backdrop").remove();
             common.clearOnBoarding();
         });
 
-        if (typeof (schedule) != "undefined" && hash.length > 0) {
-            schedule.onSetSelect = function () {
-                _this.clear();
-            }
-        }
 
         if (typeof (extendedDashboard) != "undefined" && hash.length > 0) {
             extendedDashboard.onSbcChange = function () {
-                _this.clear();
+                _this.updateTodo();
+                var href = location.protocol + '//' + location.host + location.pathname;
+                window.location = href;
             }
         }
 
-        $(".todoItem").click(function () {
-            var href = $(this).data("href");
-            var current = window.location.pathname;
-            var hash = window.location.hash;
-            if (href.indexOf(current) != -1) {
-                if (href == current + hash) {
-                    window.location.reload();
-                } else {
-                    window.location = href;
-                }
-            } else {
-                window.open(href, "_self");
-            }
+        $(document).on("click", ".todoItem", function () {
+            window.location= $(this).data("href");
+            //var current = window.location.pathname;
+            //var hash =.hash;
+            //if (href.indexOf(current) != -1) {
+            //    if (href == current + hash) {
+            //        window.location.reload();
+            //    } else {
+            //        window.open(href, "_self");
+            //        if (window.navigator.userAgent.indexOf("MSIE ") <= 0) {
+            //            window.location.reload();
+            //        }
+                   
+            //    }
+            //} else {
+            //    window.open(href, "_self");
+            //}
         });
 
         $(document).on("click", ".forbitBtn", function (e) {
@@ -58,10 +55,14 @@ function Todo() {
                 type: "GET",
                 url: "/Tutorial/StartTrainingDate",
                 success: function (data) {
-                    _this.clear();
+                    _this.updateTodo();
                 }
             });
-        })
+        });
+
+        $(document).on("click", ".todoUpdate", function () {
+            _this.updateTodo();
+        });
 
     }
 
@@ -100,6 +101,20 @@ function Todo() {
 
     this.unwrap = function () {
         common.clearOnBoarding();
+    }
+
+    this.updateTodo = function ()
+    {
+        var id = $(this).data("todo");
+        $.ajax({
+            type: "GET",
+            url: "/tutorial/todo",
+            data: { id: id },
+            success: function (data) {
+                $(".todo-li").remove();
+                $(data).insertAfter("#MainMenu li:last");
+            }
+        });
     }
 }
 

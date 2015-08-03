@@ -67,7 +67,7 @@ namespace platformAthletic.Areas.Default.Controllers
                         (u, format) => format,
                         (u, format) => string.Format(format, CurrentUser.FirstName + " " + CurrentUser.LastName, u.Email, u.Password),
                         user);
-                    Repository.StartTutorial(user.ID);
+                    //Repository.StartTutorial(user.ID);
                 }
                 else
                 {

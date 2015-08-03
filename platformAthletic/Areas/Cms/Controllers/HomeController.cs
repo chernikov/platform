@@ -50,24 +50,6 @@ namespace platformAthletic.Areas.Cms.Controllers
             return View();
         }
 
-        public ActionResult IndividualRegister()
-        {
-            var registerUserView = new RegisterIndividualView
-            {
-                RegisterType = RegisterUserView.RegisterTypeEnum.Individual,
-            };
-            return View(registerUserView);
-        }
-
-        public ActionResult TeamRegister()
-        {
-            var registerUserView = new RegisterTeamView
-            {
-                RegisterType = RegisterTeamView.RegisterTypeEnum.Coach,
-            };
-            return View(registerUserView);
-        }
-
         public ActionResult WhatWeDo()
         {
             return View();

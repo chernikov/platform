@@ -44,12 +44,7 @@
                 @item.AddedDate
             </td>
             <td>
-            @if (!item.UserID.HasValue) 
-            {
-               <em title="User deleted">@item.FirstName @item.LastName</em>
-            } else {
-                @item.FirstName<text> </text> @item.LastName
-            }
+                @item.User.FirstName<text> </text> @item.User.LastName
             </td>
             <td>
                 @item.Squat.Round5()

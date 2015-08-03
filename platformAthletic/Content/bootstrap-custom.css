@@ -397,8 +397,13 @@ th {
         left: 63px;
     }
 }
+@media(max-width:480px) {
+    .platform .navbar-default .navbar-brand {
+        padding-left : 0;
+        padding-right : 0;
+    }
 
-
+}
 .platform .navbar-default .navbar-nav > li > a > span.glyphicon {
     margin-right: 10px;
     margin-left: 5px;

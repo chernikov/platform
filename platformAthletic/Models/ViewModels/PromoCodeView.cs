@@ -15,11 +15,11 @@ namespace platformAthletic.Models.ViewModels
 
 		public int PromoActionID {get; set; }
 
-        [Required(ErrorMessage="¬ведите количество")]
+        [Required(ErrorMessage="Enter quantity")]
         public int Quantity { get; set; }
 
-        [Required(ErrorMessage = "¬ведите код")]
-		public string Code {get; set; }
+        [Required(ErrorMessage = "Enter code")]
+		public string ReferralCode {get; set; }
 
 		public bool Reusable {get; set; }
 

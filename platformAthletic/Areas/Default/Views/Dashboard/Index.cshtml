@@ -41,7 +41,7 @@
                     </ol>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-3">
-                    <button class="btn btn-primary btn-margin btn-margin-md" id="PrintAll"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
+                    <button class="btn btn-primary btn-margin btn-margin-md todoUpdate" data-todo="@((int)platformAthletic.Model.User.TodoEnum.ViewWorkOut)" id="PrintAll"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;PRINT ALL WORKOUTS</button>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-3 btn-margin btn-margin-md">
                     @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
