@@ -1726,6 +1726,7 @@
     <Content Include="Areas\Default\Views\ManageAssistant\SendActivation.cshtml" />
     <Content Include="Areas\Default\Views\Schedule\Year.cshtml" />
     <Content Include="Areas\Default\Views\Schedule\Row.cshtml" />
+    <Content Include="Areas\Default\Views\Home\Close.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

@@ -576,6 +576,14 @@ namespace platformAthletic.Areas.Default
                 new { controller = "Home", action = "Online" },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
+
+            context.MapRoute(
+                null,
+                "close",
+                new { controller = "Home", action = "Close" },
+                new[] { "platformAthletic.Areas.Default.Controllers" }
+            );
+
             context.MapRoute(
                null,
                "tutorial/{action}",
@@ -604,6 +612,8 @@ namespace platformAthletic.Areas.Default
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new[] { "platformAthletic.Areas.Default.Controllers" }
             );
+
+
         }
     }
 }

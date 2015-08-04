@@ -107,8 +107,17 @@ namespace platformAthletic.Global
                 {
                     foreach (var fieldPosition in entry.FieldPositions)
                     {
-                        rank += Regex.Matches(fieldPosition.Name.ToLowerInvariant(), regex).Count;
-                        rank += Regex.Matches(fieldPosition.Code.ToLowerInvariant(), regex).Count;
+                        if (fieldPosition != null)
+                        {
+                            if (fieldPosition.Name != null)
+                            {
+                                rank += Regex.Matches(fieldPosition.Name.ToLowerInvariant(), regex).Count;
+                            }
+                            if (fieldPosition.Code != null)
+                            {
+                                rank += Regex.Matches(fieldPosition.Code.ToLowerInvariant(), regex).Count;
+                            }
+                        }
                     }
                 }
 

@@ -98,8 +98,9 @@
 
         $(document).on("click", ".sbcChange", function () {
             var id = $(this).closest(".value-wrapper").data("id");
-            userSbc.showModal(id);
-            _this.onSbcChange();
+            userSbc.showModal(id, function () {
+                _this.onSbcChange();
+            });
         });
     }
 
