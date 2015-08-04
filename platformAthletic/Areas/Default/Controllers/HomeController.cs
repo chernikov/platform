@@ -52,6 +52,10 @@ namespace platformAthletic.Areas.Default.Controllers
                     return View("Individual", data);
                 }
             }
+            if (!Request.IsLocal)
+            {
+                return Redirect("http://plt4m.com");
+            }
             return View();
         }
 

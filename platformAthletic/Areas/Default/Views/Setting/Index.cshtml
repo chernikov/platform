@@ -151,7 +151,7 @@
                                     <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Limited, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Limited) <strong>Limited: </strong> Only members of Platform Athletics can see your profile.</label>
                                     <label>@Html.RadioButton("PublicLevel", (int)platformAthletic.Model.User.PublicLevelEnum.Public, Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Public) <strong>Public: </strong> Profile can be viewed by anyone (makes sharing on social media easy)</label>
                                 </div>
-
+                                @if (Model.PublicLevel == (int)platformAthletic.Model.User.PublicLevelEnum.Public) { 
                                 <div class="social-panel">
                                     <h2>Share</h2>
                                     <span class='facebook' data-id="@currentUser.ID"></span>
@@ -159,6 +159,7 @@
                                     <span class='twitter' data-id="@currentUser.ID"></span>
                                     <span class='linkedin' data-id="@currentUser.ID"></span>
                                 </div>
+                                }
                             </div>
                         </div>
                     }

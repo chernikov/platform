@@ -348,7 +348,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var bench = 150 + rand.Next(10) * 5;
                 var clean = 100 + rand.Next(7) * 5;
                 var startDate = DateTime.Now.Current().AddDays(-90);
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     Repository.SetSbcValue(user.ID, SBCValue.SbcType.Squat, squat, startDate);
                     Repository.SetSbcValue(user.ID, SBCValue.SbcType.Bench, bench, startDate);
@@ -360,7 +360,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
 
                 startDate = DateTime.Now.Current().AddDays(-90);
-                while (startDate < DateTime.Now)
+                while (startDate < DateTime.Now.Current())
                 {
                     startDate = startDate.AddDays(rand.Next(3) + 2);
                     var userAttendance = new UserAttendance()
@@ -384,6 +384,5 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             Repository.RemovePhantoms(CurrentUser.ID);
         }
-
     }
 }

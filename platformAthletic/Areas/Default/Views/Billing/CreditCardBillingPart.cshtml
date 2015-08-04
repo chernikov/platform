@@ -93,14 +93,14 @@
         <div class="form-group">
             <label for="BillingInfo.CVC"><span class="required">*</span>CVC</label>
             @Html.TextBox("BillingInfo.CVC", Model.CVC, new { @class = "form-control" })
-            <div></div>
+            @Html.ValidationMessage("BillingInfo.CVC")
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-4 col-lg-offset-1 col-xs-12">
         <div class="form-group">
-            <label for="BillingInfo.ReferralCode"><span class="required">*</span>Referral Code</label>
+            <label for="BillingInfo.ReferralCode">Referral Code</label>
             <div class="row">
                 <div class="col-lg-6 no-padding-left col-xs-8">
                     @Html.TextBox("BillingInfo.ReferralCode", Model.ReferralCode, new { @class = "form-control", id = "ReferralCodeValue" })
