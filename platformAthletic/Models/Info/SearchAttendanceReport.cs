@@ -154,13 +154,7 @@ namespace platformAthletic.Models.Info
             }
         }
 
-        public bool IsDateFilter
-        {
-            get
-            {
-                return StartPeriod.HasValue || EndPeriod.HasValue;
-            }
-        }
+        public bool IsDateFilter { get; set; }
         public SearchAttendanceReport()
         {
             Sort = SortEnum.AllTimeDesc;
