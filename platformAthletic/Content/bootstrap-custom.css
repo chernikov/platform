@@ -253,7 +253,10 @@ th {
 }
 
 .input-group > .input-group-btn > .btn-aslink {
-    top: -1px;
+    left: 10px;
+    top: 0px;
+    padding: 2px 5px;
+    background-color: whitesmoke;
 }
 
 .platform {
@@ -4914,8 +4917,8 @@ table.table report-table thead tr.report-header th {
 a.clear-search {
     color: grey;
     position: absolute;
-    top: 0px;
-    right: -13px;
+    top: 10px;
+    right: 34px;
     text-decoration: none;
 }
 
