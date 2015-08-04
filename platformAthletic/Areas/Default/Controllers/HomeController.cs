@@ -234,11 +234,17 @@ namespace platformAthletic.Areas.Default.Controllers
             return View(post);
         }
 
+        public ActionResult Close()
+        {
+            return View();
+        }
+
         public ActionResult Test()
         {
             throw new Exception();
             return null;
         }
 
+        
     }
 }

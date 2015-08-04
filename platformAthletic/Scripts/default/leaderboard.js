@@ -76,7 +76,7 @@
            window.location = $.param.querystring("/Leaderboard/", params);
        });
 
-        if ($("#StartID").val() != "") {
+        if ($("#StartID").val() != "" && $(".item.selected").length > 0) {
             $('html, body').animate({
                 scrollTop: $(".item.selected").offset().top - 60
             }, 1000);

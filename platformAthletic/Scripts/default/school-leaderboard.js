@@ -68,7 +68,7 @@
            window.location = $.param.querystring("/Leaderboard/School", params);
        });
 
-        if ($("#StartID").val() != "") {
+        if ($("#StartID").val() != "" && $(".item.selected").length > 0) {
             $('html, body').animate({
                 scrollTop: $(".item.selected").offset().top
             }, 1000);
