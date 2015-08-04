@@ -55,6 +55,7 @@ function Todo() {
                 type: "GET",
                 url: "/Tutorial/StartTrainingDate",
                 success: function (data) {
+                    $("#modalTutorial").modal("hide");
                     _this.updateTodo();
                 }
             });
