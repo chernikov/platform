@@ -20,6 +20,9 @@
                     if (data.result = "ok") {
                         $("#modalUserSbc").modal("hide");
                         _this.callback();
+                        if (typeof (todo) != "undefined") {
+                            todo.updateTodo();
+                        }
                     } else {
                         $.each(data.errors, function (i, item) {
                             if (item == "squat") {

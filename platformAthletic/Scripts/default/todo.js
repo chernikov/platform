@@ -62,7 +62,7 @@ function Todo() {
         });
 
         $(document).on("click", ".todoUpdate", function () {
-            _this.updateTodo();
+            _this.updateTodo($(this));
         });
 
     }
@@ -104,9 +104,11 @@ function Todo() {
         common.clearOnBoarding();
     }
 
-    this.updateTodo = function ()
+    this.updateTodo = function (item)
     {
-        var id = $(this).data("todo");
+        if (item != null) {
+            var id = item.data("todo");
+        } 
         $.ajax({
             type: "GET",
             url: "/tutorial/todo",

@@ -60,7 +60,7 @@
                                             }
                                             if (currentUser != null && currentUser.CanViewWorkOut(Model))
                                             {
-                                                <a href="@Url.Action("Index", "Table")" target="_blank" class="btn btn-success btn-margin btn-margin-md btn-lg" id="ViewWorkout">VIEW WORKOUT</a>
+                                                <a href="@Url.Action("Index", "Table")" target="_blank" class="btn btn-success btn-margin btn-margin-md btn-lg todoUpdate" data-todo="@((int)platformAthletic.Model.User.TodoEnum.ViewWorkOut)" id="ViewWorkout">VIEW WORKOUT</a>
                                             }
                                             if (Model.CanEditAttendance(currentUser))
                                             {
