@@ -4950,6 +4950,7 @@ a.clear-search {
 }
 
 .page-not-found-container a {
+    margin-right: 9%;
     font-size: 14px;
     padding: 0px 0px 0px 25px;
     background: url("/Content/img/error/back.png") 0px 2px no-repeat;

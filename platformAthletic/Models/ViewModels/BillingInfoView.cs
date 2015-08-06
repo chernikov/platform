@@ -28,22 +28,26 @@ namespace platformAthletic.Models.ViewModels
 		public bool AutoDebit {get; set; }
 
         [Required(ErrorMessage="Enter Cardholder Name")]
+        [StringLength(500, ErrorMessage = "The Name On Card can not exceed 500 characters")]
 		public string NameOnCard {get; set; }
 
         [Required(ErrorMessage = "Enter Billing Address")]
 		public string BillingAddress {get; set; }
 
         [Required(ErrorMessage = "Enter City")]
+        [StringLength(50, ErrorMessage = "The City can not exceed 50 characters")]
 		public string City {get; set; }
 
 		public int StateID {get; set; }
 
         [Required(ErrorMessage = "Enter Zip")]
-		public string ZipCode {get; set; }
+        [StringLength(50, ErrorMessage = "The Zip Code can not exceed 50 characters")]
+        public string ZipCode { get; set; }
 
 		public int CardType {get; set; }
 
         [Required(ErrorMessage = "Enter Card Number")]
+        [StringLength(50, ErrorMessage = "The Card Number can not exceed 50 characters")]
 		public string CreditCardNumber {get; set; }
 
         public string HiddenCreditCardNumber
@@ -59,8 +63,10 @@ namespace platformAthletic.Models.ViewModels
         }
 
         [Required(ErrorMessage = "Enter CVC")]
+        [StringLength(50, ErrorMessage = "The CVC can not exceed 50 characters")]
 		public string CVC {get; set; }
 
+        [StringLength(50, ErrorMessage = "The Referral Code can not exceed 50 characters")]
 		public string ReferralCode {get; set; }
 
         private IEnumerable<State> States

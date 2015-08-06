@@ -163,6 +163,7 @@
                                 <div class="form-group">
                                     <label for="BillingInfo.ExpirationMonth">Referral code</label>
                                     @Html.TextBox("BillingInfo.ReferralCode", Model.BillingInfo.ReferralCode, new { @class = "form-control", id = "ReferralCodeValue" })
+                                    @Html.ValidationMessage("BillingInfo.ReferralCode")
                                     <div class="field-validation-error" id="PromoCodeError" style="display :none;">
                                         Referral code is invalid
                                     </div>
