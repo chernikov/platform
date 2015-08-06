@@ -15,10 +15,6 @@
             var id = $(this).data("id");
             window.open("https://twitter.com/intent/tweet?url=http://app.plt4m.com/user/" + id, "_blank", 'height=560,width=530,scrollbars=true');
         });
-        $(".twitter").click(function () {
-            var id = $(this).data("id");
-            window.open("https://twitter.com/intent/tweet?url=http://app.plt4m.com/user/" + id, "_blank", 'height=560,width=530,scrollbars=true');
-        });
         $(".linkedin").click(function () {
             var id = $(this).data("id");
             window.open("https://www.linkedin.com/shareArticle?url=http://app.plt4m.com/user/" + id, "_blank", 'height=560,width=530,scrollbars=true');

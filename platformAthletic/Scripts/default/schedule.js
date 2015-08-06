@@ -99,8 +99,8 @@
 
             $(".calendar-drop-down-list").offset({ top: offset });
 
-            $(".calendar-drop-down-list .item").removeClass("selected");
-            $(".calendar-drop-down-list .item[data-id='" + selected + "']").addClass("selected");
+            $(".calendar-drop-down-list .weekItem").removeClass("selected");
+            $(".calendar-drop-down-list .weekItem[data-id='" + selected + "']").addClass("selected");
         });
 
         $(window).on("resize", function () {

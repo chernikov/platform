@@ -117,7 +117,7 @@
                                                 <th class="sortable"><span data-type="Week" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.WeekDesc ? "desc" : "")"></span>WEEK</th>
                                                 <th class="sortable"><span data-type="Month" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.MonthDesc ? "desc" : "")"></span>MONTH</th>
                                                 <th class="sortable"><span data-type="Year" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.YearDesc ? "desc" : "")"></span>YEAR</th>
-                                                <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>ALL TIME</th>
+                                                <th class="sortable"><span data-type="AllTime" class="sort @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeAsc ? "asc" : "") @(Model.Search.Sort == SearchAttendanceReport.SortEnum.AllTimeDesc ? "desc" : "")"></span>@(Model.Search.IsDateFilter ? "SELECTED" : "ALL TIME")</th>
 
                                             </tr>
                                         </thead>

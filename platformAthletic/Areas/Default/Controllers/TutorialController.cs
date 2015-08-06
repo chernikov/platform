@@ -152,7 +152,10 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
-                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+                try
+                {
+                    Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ConfirmTrainingStartDate);
+                } catch {}
             }
             return Json(new { result = "OK" }, JsonRequestBehavior.AllowGet);
         }

@@ -19,7 +19,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 search = new SearchAttendanceReport();
             }
-
+            search.IsDateFilter = search.EndPeriod.HasValue || search.StartPeriod.HasValue;
             var attendanceReport = new AttendanceReport(search, CurrentUser.OwnTeam ?? CurrentUser.Team);
             return View(attendanceReport);
         }
@@ -82,7 +82,6 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 search = new SearchProgressReport();
             }
-
             var progressReport = new ProgressReport(search, CurrentUser.OwnTeam ?? CurrentUser.Team);
             return View(progressReport);
         }

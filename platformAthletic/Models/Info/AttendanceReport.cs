@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using platformAthletic.Helpers;
 
 namespace platformAthletic.Models.Info
 {
@@ -45,18 +46,22 @@ namespace platformAthletic.Models.Info
 
         public Record WorkoutComplete { get; set; }
 
+        private Team _team;
+
         public AttendanceReport(SearchAttendanceReport search, Team team)
         {
+           
             var profiler = MiniProfiler.Current; // it's ok if this is null
             var zeroDay = new DateTime(1970, 1, 1);
-            if (search.StartPeriod.HasValue && search.StartPeriod.Value < zeroDay)
+            if (!search.StartPeriod.HasValue || search.StartPeriod.Value < zeroDay)
             {
-                search.StartPeriod = zeroDay;
+                search.StartPeriod = team.User.AddedDate;
             }
-            if (search.EndPeriod.HasValue && search.EndPeriod.Value < zeroDay)
+            if (!search.EndPeriod.HasValue || search.EndPeriod.Value < zeroDay)
             {
-                search.EndPeriod = zeroDay;
+                search.EndPeriod = DateTime.Now.Current();
             }
+
             using (profiler.Step("Calc Attendance Report"))
             {
                 List = new List<Record>();
@@ -157,13 +162,6 @@ namespace platformAthletic.Models.Info
                 if (!Search.StartID.HasValue && List.Count > 0)
                 {
                     Search.StartID = List[0].User.ID;
-                }
-
-                var allAttendances = Repository.UserAttendances.Where(p => p.User.PlayerOfTeamID == Search.TeamID).OrderBy(p => p.AddedDate);
-                if (allAttendances != null && allAttendances.Any())
-                {
-                    Search.StartPeriod = allAttendances.First().AddedDate;
-                    Search.EndPeriod = allAttendances.OrderByDescending(p => p.AddedDate).First().AddedDate;
                 }
             }
         }

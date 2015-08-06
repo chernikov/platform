@@ -307,7 +307,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartPersonalSeason(int seasonId, DateTime date)
         {
-            var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == CurrentUser.ID && p.StartDay > date);
+            var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == CurrentUser.ID && p.StartDay >= date);
             foreach (var season in futureSeasons.ToList())
             {
                 foreach (var schedule in season.Schedules.ToList())

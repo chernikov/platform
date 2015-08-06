@@ -56,13 +56,13 @@ namespace platformAthletic.Models.Info
         {
             var profiler = MiniProfiler.Current; // it's ok if this is null
             var zeroDay = new DateTime(1970, 1, 1);
-            if (search.StartPeriod.HasValue && search.StartPeriod.Value < zeroDay)
+            if (!search.StartPeriod.HasValue || search.StartPeriod.Value < zeroDay)
             {
-                search.StartPeriod = zeroDay;
+                search.StartPeriod = team.User.AddedDate;
             }
-            if (search.EndPeriod.HasValue && search.EndPeriod.Value < zeroDay)
+            if (!search.EndPeriod.HasValue || search.EndPeriod.Value < zeroDay)
             {
-                search.EndPeriod = zeroDay;
+                search.EndPeriod = DateTime.Now.Current();
             }
 
             using (profiler.Step("Calc Progress Report"))

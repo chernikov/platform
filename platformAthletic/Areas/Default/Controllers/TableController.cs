@@ -22,7 +22,11 @@ namespace platformAthletic.Areas.Default.Controllers
             }
             if (idUsers.Count() > 0 && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
-                Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+                try
+                {
+                    Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+                }
+                catch (Exception ex) { }
             }
            
             var listTables = new List<TableInfo>();
