@@ -206,8 +206,15 @@ namespace platformAthletic.Areas.Default.Controllers
             var expirationDate = new DateTime(BillingInfo.ExpirationYear, BillingInfo.ExpirationMonth, 1);
             if (expirationDate <= DateTime.Now.Current())
             {
-                ModelState.AddModelError("BillingInfo.ExpirationMonth", "Expiration Date not Valid");
-                ModelState.AddModelError("BillingInfo.ExpirationYear", "Expiration Date not Valid");
+                if (BillingInfo.ExpirationYear >= DateTime.Now.Year)
+                {
+                    ModelState.AddModelError("BillingInfo.ExpirationMonth", "Expiration Month not Valid");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("BillingInfo.ExpirationYear", "Expiration Year not Valid");                    
+                }
             }
         }
 

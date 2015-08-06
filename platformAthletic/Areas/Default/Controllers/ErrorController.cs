@@ -16,6 +16,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult NotFoundPage()
         {
+            Response.StatusCode = 404;
             return View();
         }
 
