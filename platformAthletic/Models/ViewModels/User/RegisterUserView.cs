@@ -24,6 +24,7 @@ namespace platformAthletic.Models.ViewModels.User
         public RegisterTypeEnum RegisterType { get; set; }
 
         [Required(ErrorMessage = "Enter the password")]
+        [StringLength(50, ErrorMessage = "The password can not exceed 50 characters")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm password")]
@@ -31,7 +32,7 @@ namespace platformAthletic.Models.ViewModels.User
         public string ConfirmPassword { get; set; }
 
       
-
+        [StringLength(50, ErrorMessage="The Referral Code can not exceed 50 characters")]
         public abstract string ReferralCode { get; set;  }
 
         public abstract double TotalSum { get; }

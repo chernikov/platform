@@ -12,12 +12,15 @@ namespace platformAthletic.Models.ViewModels.User
     public class RegisterIndividualView : RegisterUserView
     {
         [Required(ErrorMessage="Enter First Name")]
+        [StringLength(500, ErrorMessage = "The First Name can not exceed 500 characters")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Enter Last Name")]
+        [StringLength(500, ErrorMessage = "The Last Name can not exceed 500 characters")]
         public string LastName { get; set; }
 
 
+        [StringLength(50, ErrorMessage="Phone Number can not exceed 50 characters")]
         [ValidPhone(ErrorMessage = "Enter Correct Phone Number")]
         public string PhoneNumber { get; set; }
 
@@ -53,6 +56,7 @@ namespace platformAthletic.Models.ViewModels.User
             BillingInfo = new BillingInfoView();
         }
 
+        //[StringLength(50, ErrorMessage = "The Referral Code can not exceed 50 characters")]
         public override string ReferralCode
         {
             get
@@ -71,6 +75,7 @@ namespace platformAthletic.Models.ViewModels.User
                 }
             }
         }
+
 
         public override double TotalSum
         {

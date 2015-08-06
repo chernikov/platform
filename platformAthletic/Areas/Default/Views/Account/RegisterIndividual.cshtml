@@ -133,6 +133,7 @@
                                     <label for="BillingInfo.ExpirationMonth"><span class="required">*</span>Expiration date</label>
                                     <div class="billing-custom-style">
                                         @Html.DropDownList("BillingInfo.ExpirationMonth", Model.BillingInfo.ExpirationMonthSelectList, new { @class = "form-control" })
+                                        @Html.ValidationMessage("BillingInfo.ExpirationMonth")
                                     </div>
                                 </div>
                             </div>
@@ -141,6 +142,7 @@
                                     <label for="BillingInfo.ExpirationYear">&nbsp;</label>
                                     <div class="billing-custom-style">
                                         @Html.DropDownList("BillingInfo.ExpirationYear", Model.BillingInfo.ExpirationYearSelectList, new { @class = "form-control" })
+                                        @Html.ValidationMessage("BillingInfo.ExpirationYear")
                                     </div>
                                 </div>
                             </div>
@@ -161,6 +163,7 @@
                                 <div class="form-group">
                                     <label for="BillingInfo.ExpirationMonth">Referral code</label>
                                     @Html.TextBox("BillingInfo.ReferralCode", Model.BillingInfo.ReferralCode, new { @class = "form-control", id = "ReferralCodeValue" })
+                                    @Html.ValidationMessage("BillingInfo.ReferralCode")
                                     <div class="field-validation-error" id="PromoCodeError" style="display :none;">
                                         Referral code is invalid
                                     </div>
