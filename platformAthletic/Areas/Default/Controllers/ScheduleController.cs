@@ -280,9 +280,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 UserID = CurrentUser.ID,
                 UserSeasonID = currentSeason.ID
             };
-
             Repository.CreatePersonalSchedule(personalSchedule);
-
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -296,6 +294,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 var personalSchedule = new PersonalSchedule()
                 {
                     Number = number,
+                    UserID = CurrentUser.ID,
                     UserSeasonID = currentSeason.ID,
                     MacrocycleID = macrocycle.ID,
                 };
@@ -307,7 +306,7 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartPersonalSeason(int seasonId, DateTime date)
         {
-            var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == CurrentUser.ID && p.StartDay > date);
+            var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == CurrentUser.ID && p.StartDay >= date);
             foreach (var season in futureSeasons.ToList())
             {
                 foreach (var schedule in season.Schedules.ToList())

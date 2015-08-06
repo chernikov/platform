@@ -16,7 +16,7 @@ namespace platformAthletic.Areas.Admin.Controllers
     {
         public ActionResult Index(int page = 1, string search = null)
         {
-            var list = Repository.Users;
+            var list = Repository.Users.Where(p => !p.IsPhantom);
             if (search != null)
             {
                 list = SearchEngine.Search(search, list).AsQueryable();
