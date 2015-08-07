@@ -280,6 +280,7 @@
     <Compile Include="Global\TrimModelBinder.cs" />
     <Compile Include="Helpers\CurrentDateHelper.cs" />
     <Compile Include="Helpers\CustomHelpers.cs" />
+    <Compile Include="Helpers\ExtendsHtmlHelper.cs" />
     <Compile Include="Mappers\CommonMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\MapperCollection.cs" />

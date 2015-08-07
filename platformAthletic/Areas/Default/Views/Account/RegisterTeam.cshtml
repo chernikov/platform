@@ -79,7 +79,10 @@
                         </div>
                         <div class="form-group">
                             <label>Total</label>
-                            @Html.TextBox("TotalSum", Model.TotalSum.ToString("C"), new { @class = "form-control", @readonly = "readonly" })
+                            @using (Html.BeginDisableClientSideValidation())
+                            { 
+                                @Html.TextBox("TotalSum", Model.TotalSum.ToString("C"), new { @class = "form-control", @readonly = "readonly" })
+                            }
                         </div>
                         <div class="form-group">
                             <label>
@@ -92,7 +95,7 @@
                             </label>
                         </div>
                         <div class="form-group text-center margin-top">
-                            <button class="btn btn-primary btn-lg">START FREE TRIAL!</button>
+                            <button class="btn btn-primary btn-lg registration-button">START FREE TRIAL!</button>
                         </div>
                     </div>
                 </div>

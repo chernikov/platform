@@ -1,7 +1,7 @@
 ﻿@model platformAthletic.Models.ViewModels.User.RegisterIndividualView
 
 @{
-    ViewBag.Title = "Team registration process - Platform Athletics";
+    ViewBag.Title = "Individual registration process - Platform Athletics";
     Layout = "~/Areas/Default/Views/Shared/_BootstrapLayoutNoSide.cshtml";
 }
 @section header {
@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-lg-6 col-xs-4 no-padding-right">
                                 <div class="form-group">
-                                    <label >&nbsp;</label>
+                                    <label>&nbsp;</label>
                                     <button class="btn btn-primary btn-apply no-margin" id="ApplyReferralCode">Apply</button>
                                 </div>
                             </div>
@@ -182,13 +182,16 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="form-group">
                             <label for="FirstName">Price</label>
-                            @Html.TextBox("TotalSum", Model.TotalSum.ToString("C"), new { @class = "form-control", @readonly = "readonly" })
+                            @using (Html.BeginDisableClientSideValidation())
+                            {
+                                @Html.TextBox("TotalSum", Model.TotalSum.ToString("C"), new { @class = "form-control", @readonly = "readonly" })
+                            }
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group text-center margin-top">
-                        <button class="btn btn-primary btn-lg">START FREE TRIAL!</button>
+                        <button class="btn btn-primary btn-lg registration-button">START FREE TRIAL!</button>
                     </div>
                 </div>
             }
