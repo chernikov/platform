@@ -93,10 +93,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 };
                 Repository.CreateUserSeason(userSeason);
 
-                NotifyMail.SendNotify(Config, "RegisterIndividual", user.Email,
-                          (u, format) => format,
-                          (u, format) => string.Format(format, u.Email, u.Password),
-                          user);
+                SendWelcomeIndividualMail(user.Email, "Welcome to Platform!", user.Email, user.Password);
                 Auth.Login(user.Email);
                 Repository.StartTutorial(user.ID);
                 return Redirect("/my-page");
@@ -170,10 +167,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 };
                 Repository.CreateUserSeason(userSeason);
 
-                NotifyMail.SendNotify(Config, "Register", user.Email,
-                          (u, format) => format,
-                          (u, format) => string.Format(format, u.Email, u.Password),
-                          user);
+                SendWelcomeCoachMail(user.Email, "Welcome to Platform!", user.Email, user.Password);
                 Auth.Login(user.Email);
                 Repository.StartTutorial(user.ID);
                 return Redirect("/thanks");

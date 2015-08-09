@@ -95,10 +95,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     Repository.Users.FirstOrDefault(p => string.Compare(p.Email, forgotPasswordView.Email, true) == 0);
                 if (user != null)
                 {
-                    NotifyMail.SendNotify(Config, "ForgotPassword", user.Email,
-                                                (u, format) => string.Format(format, HostName),
-                                                (u, format) => string.Format(format, u.Email, u.Password, HostName),
-                                                user);
+                    SendForgotPasswordMail(user.Email, "Your password for plt4m.com", user.Email, user.Password);
                     return View("ForgotPasswordSuccess");
                 }
                 ModelState.AddModelError("Email", "User with this email is not found");

@@ -43,10 +43,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 if (resend)
                 {
-                    NotifyMail.SendNotify(Config, "Resend", user.Email,
-                                                (u, format) => string.Format(format, HostName),
-                                                (u, format) => string.Format(format, u.Email, u.Password, HostName),
-                                                user);
+                    SendResendMail(user.Email, "You email changed successfully! (plt4m.com)", user.Email, user.Password);
                 }
                 ViewBag.Message = "Settings updated";
             }

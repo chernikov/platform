@@ -52,6 +52,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActionMailer.Net">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
@@ -216,6 +222,7 @@
     <Compile Include="Areas\Default\Controllers\AccountController.cs" />
     <Compile Include="Areas\Default\Controllers\BillingController.cs" />
     <Compile Include="Areas\Default\Controllers\HelpController.cs" />
+    <Compile Include="Areas\Default\Controllers\MailController.cs" />
     <Compile Include="Areas\Default\Controllers\ManageAssistantController.cs" />
     <Compile Include="Areas\Default\Controllers\ContactController.cs" />
     <Compile Include="Areas\Default\Controllers\DashboardController.cs" />
@@ -286,6 +293,7 @@
     <Compile Include="Mappers\MapperCollection.cs" />
     <Compile Include="Models\Info\AttendanceDateInfo.cs" />
     <Compile Include="Models\Info\AttendanceInfo.cs" />
+    <Compile Include="Models\Info\MailInfo.cs" />
     <Compile Include="Models\Info\PlayerTodoListInfo.cs" />
     <Compile Include="Models\Info\TodoListInfo.cs" />
     <Compile Include="Models\Info\IndividualTodoListInfo.cs" />
@@ -677,6 +685,7 @@
     <Content Include="Media\images\logoBW.jpg" />
     <Content Include="Content\img\logo_30.png" />
     <Content Include="Media\images\logo_53.png" />
+    <Content Include="Media\images\logo_mail.jpg" />
     <Content Include="Media\images\logo_new.png" />
     <Content Include="Media\images\logo_platform.png" />
     <Content Include="Media\images\logo_table.png" />
@@ -1728,6 +1737,12 @@
     <Content Include="Areas\Default\Views\Schedule\Year.cshtml" />
     <Content Include="Areas\Default\Views\Schedule\Row.cshtml" />
     <Content Include="Areas\Default\Views\Home\Close.cshtml" />
+    <Content Include="Areas\Default\Views\Mail\WelcomeCoach.html.cshtml" />
+    <Content Include="Areas\Default\Views\Mail\WelcomeAssistant.html.cshtml" />
+    <Content Include="Areas\Default\Views\Mail\WelcomePlayer.html.cshtml" />
+    <Content Include="Areas\Default\Views\Mail\WelcomeIndividual.html.cshtml" />
+    <Content Include="Areas\Default\Views\Mail\ForgotPassword.html.cshtml" />
+    <Content Include="Areas\Default\Views\Mail\Resend.html.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

@@ -63,10 +63,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     };
                     Repository.CreateUserRole(userRole);
 
-                    NotifyMail.SendNotify(Config, "RegisterAssistant", user.Email,
-                        (u, format) => format,
-                        (u, format) => string.Format(format, CurrentUser.FirstName + " " + CurrentUser.LastName, u.Email, u.Password),
-                        user);
+                    SendWelcomeAssistantMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
                     //Repository.StartTutorial(user.ID);
                 }
                 else

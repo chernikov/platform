@@ -7,6 +7,9 @@ using platformAthletic.Model;
 using System;
 using platformAthletic.Helpers;
 using System.Collections.Generic;
+using platformAthletic.Models.Info;
+using System.IO;
+using platformAthletic.Tools.Mail;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -97,5 +100,115 @@ namespace platformAthletic.Areas.Default.Controllers
             }
         }
 
+
+        protected void SendWelcomeCoachMail(string email, string subject, string username, string password)
+        {
+            var mailController = new MailController();
+            var mailInfo = new MailInfo()
+            {
+                Subject = subject,
+                Email = email,
+                UserName = username, 
+                Password = password
+            };
+            var mail = mailController.WelcomeCoach(mailInfo, HostName);
+            using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+            {
+                mailInfo.Body = reader.ReadToEnd();
+            }
+            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+        }
+
+        protected void SendWelcomePlayerMail(string email, string subject, string coach, string username, string password)
+        {
+            var mailController = new MailController();
+            var mailInfo = new MailInfo()
+            {
+                Subject = subject,
+                Email = email,
+                CoachName = coach,
+                UserName = username,
+                Password = password
+            };
+            var mail = mailController.WelcomePlayer(mailInfo, HostName);
+            using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+            {
+                mailInfo.Body = reader.ReadToEnd();
+            }
+            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+        }
+
+        protected void SendWelcomeAssistantMail(string email, string subject, string coach, string username, string password)
+        {
+            var mailController = new MailController();
+            var mailInfo = new MailInfo()
+            {
+                Subject = subject,
+                Email = email,
+                CoachName = coach,
+                UserName = username,
+                Password = password
+            };
+            var mail = mailController.WelcomeAssistant(mailInfo, HostName);
+            using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+            {
+                mailInfo.Body = reader.ReadToEnd();
+            }
+            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+        }
+
+        protected void SendWelcomeIndividualMail(string email, string subject, string username, string password)
+        {
+            var mailController = new MailController();
+            var mailInfo = new MailInfo()
+            {
+                Subject = subject,
+                Email = email,
+                UserName = username,
+                Password = password
+            };
+            var mail = mailController.WelcomeIndividual(mailInfo, HostName);
+            using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+            {
+                mailInfo.Body = reader.ReadToEnd();
+            }
+            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+        }
+
+        protected void SendForgotPasswordMail(string email, string subject, string username, string password)
+        {
+            var mailController = new MailController();
+            var mailInfo = new MailInfo()
+            {
+                Subject = subject,
+                Email = email,
+                UserName = username,
+                Password = password
+            };
+            var mail = mailController.ForgotPassword(mailInfo, HostName);
+            using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+            {
+                mailInfo.Body = reader.ReadToEnd();
+            }
+            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+        }
+
+        protected void SendResendMail(string email, string subject, string username, string password)
+        {
+            var mailController = new MailController();
+            var mailInfo = new MailInfo()
+            {
+                Subject = subject,
+                Email = email,
+                UserName = username,
+                Password = password
+            };
+            var mail = mailController.Resend(mailInfo, HostName);
+            using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+            {
+                mailInfo.Body = reader.ReadToEnd();
+            }
+            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+        }
     }
 }
