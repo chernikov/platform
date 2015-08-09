@@ -118,26 +118,26 @@ namespace platformAthletic.Areas.Default.Controllers
                 var currentSunday = startDate.AddDays(-(int)startDate.DayOfWeek);
                 var isFirst = true;
                 var labels = new List<string>();
-                var sData = new List<int>();
-                var bData = new List<int>();
-                var cData = new List<int>();
+                var sData = new List<int?>();
+                var bData = new List<int?>();
+                var cData = new List<int?>();
                 while (currentSunday <= sunday)
                 {
                     var sbc = user.SBCHistory(currentSunday);
                     if (sbc != null)
                     {
                         labels.Add(currentSunday.ToString("MMM/dd"));
-                        sData.Add((int)sbc.Squat);
-                        bData.Add((int)sbc.Bench);
-                        cData.Add((int)sbc.Clean);
+                        sData.Add(sbc.Squat != 0 ? (int?)sbc.Squat : null);
+                        bData.Add(sbc.Bench != 0 ? (int?)sbc.Bench : null);
+                        cData.Add(sbc.Clean != 0 ? (int?)sbc.Clean : null);
                     }
                     else if (isFirst)
                     {
                         sbc = user.SBCFirstHistory();
                         labels.Add(currentSunday.ToString("MMM/dd"));
-                        sData.Add((int)sbc.Squat);
-                        bData.Add((int)sbc.Bench);
-                        cData.Add((int)sbc.Clean);
+                        sData.Add(sbc.Squat != 0 ? (int?)sbc.Squat : null);
+                        bData.Add(sbc.Bench != 0 ? (int?)sbc.Bench : null);
+                        cData.Add(sbc.Clean != 0 ? (int?)sbc.Clean : null);
                     }
                     isFirst = false;
                     currentSunday = currentSunday.AddDays(7);
@@ -202,26 +202,26 @@ namespace platformAthletic.Areas.Default.Controllers
                 var currentMonth = startDate.AddDays(-(int)startDate.Day).AddDays(1).AddMonths(-1);
                 var isFirst = true;
                 var labels = new List<string>();
-                var sData = new List<int>();
-                var bData = new List<int>();
-                var cData = new List<int>();
+                var sData = new List<int?>();
+                var bData = new List<int?>();
+                var cData = new List<int?>();
                 while (currentMonth <= month)
                 {
                     var sbc = user.SBCHistory(currentMonth);
                     if (sbc != null)
                     {
                         labels.Add(currentMonth.ToString("MMM/dd"));
-                        sData.Add((int)sbc.Squat);
-                        bData.Add((int)sbc.Bench);
-                        cData.Add((int)sbc.Clean);
+                        sData.Add(sbc.Squat != 0 ? (int?)sbc.Squat : null);
+                        bData.Add(sbc.Bench != 0 ? (int?)sbc.Bench : null);
+                        cData.Add(sbc.Clean != 0 ? (int?)sbc.Clean : null);
                     }
                     else if(isFirst)
                     {
                         sbc = user.SBCFirstHistory();
                         labels.Add(currentMonth.ToString("MMM/dd"));
-                        sData.Add((int)sbc.Squat);
-                        bData.Add((int)sbc.Bench);
-                        cData.Add((int)sbc.Clean);
+                        sData.Add(sbc.Squat != 0 ? (int?)sbc.Squat : null);
+                        bData.Add(sbc.Bench != 0 ? (int?)sbc.Bench : null);
+                        cData.Add(sbc.Clean != 0 ? (int?)sbc.Clean : null);
                     }
                     isFirst = false;
                     currentMonth = currentMonth.AddMonths(1);

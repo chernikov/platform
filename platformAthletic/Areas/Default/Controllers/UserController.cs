@@ -202,18 +202,18 @@ namespace platformAthletic.Areas.Default.Controllers
                 var sunday = DateTime.Now.Current().AddDays(-(int)DateTime.Now.DayOfWeek);
                 var currentSunday = sunday.AddDays(-7 * 11);
                 var labels = new List<string>();
-                var sData = new List<int>();
-                var bData = new List<int>();
-                var cData = new List<int>();
+                var sData = new List<int?>();
+                var bData = new List<int?>();
+                var cData = new List<int?>();
                 for (int i = 0; i < 11; i++)
                 {
                     var sbc = user.SBCHistory(currentSunday);
                     if (sbc != null)
                     {
                         labels.Add(currentSunday.ToString("MMM/dd"));
-                        sData.Add((int)sbc.Squat);
-                        bData.Add((int)sbc.Bench);
-                        cData.Add((int)sbc.Clean);
+                        sData.Add(sbc.Squat != 0 ? (int?)sbc.Squat : null);
+                        bData.Add(sbc.Bench != 0 ? (int?)sbc.Bench : null);
+                        cData.Add(sbc.Clean != 0 ? (int?)sbc.Clean : null);
                     }
                     currentSunday = currentSunday.AddDays(7);
                 };

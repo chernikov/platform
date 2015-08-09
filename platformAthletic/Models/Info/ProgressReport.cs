@@ -97,32 +97,47 @@ namespace platformAthletic.Models.Info
                         foreach (var user in users)
                         {
                             var startDay = Search.StartPeriod.Value;
-                            var sbcValueStart = user.SBCHistory(startDay);
-                            if (sbcValueStart == null)
+                            var sbcValueSquatStart = user.SBCHistory(startDay, SBCValue.SbcType.Squat);
+                            var sbcValueBenchStart = user.SBCHistory(startDay, SBCValue.SbcType.Bench);
+                            var sbcValueCleanStart = user.SBCHistory(startDay, SBCValue.SbcType.Clean);
+                            if (sbcValueSquatStart == null)
                             {
-                                sbcValueStart = user.SBCFirstHistory();
+                                sbcValueSquatStart = user.SBCFirstHistory(SBCValue.SbcType.Squat);
                             }
-                            var sbcValueEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current());
-                            if (sbcValueStart != null && sbcValueEnd != null)
+                            if (sbcValueBenchStart == null)
                             {
-                                List.Add(new Record()
-                                {
-                                    User = user,
-                                    Squat = (int)(sbcValueEnd.Squat - sbcValueStart.Squat),
-                                    Bench = (int)(sbcValueEnd.Bench - sbcValueStart.Bench),
-                                    Clean = (int)(sbcValueEnd.Clean - sbcValueStart.Clean),
-                                });
+                                sbcValueBenchStart = user.SBCFirstHistory(SBCValue.SbcType.Bench);
                             }
-                            else
+                            if (sbcValueCleanStart == null)
                             {
-                                List.Add(new Record()
-                                {
-                                    User = user,
-                                    Squat = 0,
-                                    Bench = 0,
-                                    Clean = 0,
-                                });
+                                sbcValueCleanStart = user.SBCFirstHistory(SBCValue.SbcType.Bench);
                             }
+
+                            var sbcValueSquatEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current(), SBCValue.SbcType.Squat);
+                            var sbcValueBenchEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current(), SBCValue.SbcType.Bench);
+                            var sbcValueCleanEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current(), SBCValue.SbcType.Clean);
+
+                            var record = new Record()
+                            {
+                                User = user
+                            };
+
+                            if (sbcValueSquatStart != null && sbcValueSquatEnd != null)
+                            {
+                                record.Squat = (int)(sbcValueSquatEnd.Squat - sbcValueSquatStart.Squat);
+                            }
+
+                            if (sbcValueBenchStart != null && sbcValueBenchEnd != null)
+                            {
+                                record.Bench = (int)(sbcValueBenchEnd.Bench - sbcValueBenchStart.Bench);
+                            }
+
+                            if (sbcValueCleanStart != null && sbcValueCleanEnd != null)
+                            {
+                                record.Clean = (int)(sbcValueCleanEnd.Clean - sbcValueCleanStart.Clean);
+                            }
+
+                            List.Add(record);
                         }
                     }
                 }

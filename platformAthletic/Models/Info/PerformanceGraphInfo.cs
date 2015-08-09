@@ -17,6 +17,6 @@ namespace platformAthletic.Models.Info
 
         public bool datasetFill { get; set; }
 
-        public List<int> data {get; set;}
+        public List<int?> data {get; set;}
     }
 }

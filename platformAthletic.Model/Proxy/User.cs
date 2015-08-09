@@ -550,19 +550,50 @@ namespace platformAthletic.Model
             }
         }
 
-        public SBCValue SBCHistory(DateTime date)
+        public SBCValue SBCHistory(DateTime date, SBCValue.SbcType? restrict = null)
         {
-            return SBCValues.Where(p => p.AddedDate <= date).OrderBy(p => p.ID).LastOrDefault();
+            if (!restrict.HasValue)
+            {
+                return SBCValues.Where(p => p.AddedDate <= date).OrderBy(p => p.ID).LastOrDefault();
+            }
+            else
+            {
+                switch (restrict.Value)
+                {
+                    case SBCValue.SbcType.Squat:
+                        return SBCValues.Where(p => p.AddedDate <= date && p.Squat > 0).OrderBy(p => p.ID).LastOrDefault();
+                    case SBCValue.SbcType.Bench:
+                        return SBCValues.Where(p => p.AddedDate <= date && p.Bench > 0).OrderBy(p => p.ID).LastOrDefault();
+                    case SBCValue.SbcType.Clean:
+                        return SBCValues.Where(p => p.AddedDate <= date && p.Clean > 0).OrderBy(p => p.ID).LastOrDefault();
+                }
+            }
+            return null;
         }
 
-        public SBCValue SBCFirstHistory()
+        public SBCValue SBCFirstHistory(SBCValue.SbcType? restrict = null)
         {
-            return SBCValues.OrderBy(p => p.ID).FirstOrDefault();
+            if (!restrict.HasValue)
+            {
+                return SBCValues.OrderBy(p => p.ID).FirstOrDefault();
+            }
+            else
+            {
+                switch (restrict.Value)
+                {
+                    case SBCValue.SbcType.Squat:
+                        return SBCValues.Where(p => p.Squat > 0).OrderBy(p => p.ID).FirstOrDefault();
+                    case SBCValue.SbcType.Bench:
+                        return SBCValues.Where(p => p.Bench > 0).OrderBy(p => p.ID).FirstOrDefault();
+                    case SBCValue.SbcType.Clean:
+                        return SBCValues.Where(p => p.Clean > 0).OrderBy(p => p.ID).FirstOrDefault();
+                }
+            }
+            return null;
         }
 
 
         private SBCValue _last12Week;
-
 
         public SBCValue Last12Week
         {
@@ -585,40 +616,94 @@ namespace platformAthletic.Model
             }
         }
 
+        private int? _diffSquat12Week;
         public int DiffSquat12Week
         {
             get
             {
-                if (Last12Week != null)
+                if (_diffSquat12Week.HasValue)
                 {
-                    return (int)(Squat - Last12Week.Squat);
+                    return _diffSquat12Week.Value;
                 }
-                return (int)Squat;
+                var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
+                var date12WeekAgo = startWeek.AddDays(-7 * 11);
+                var firstSquatSbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo && p.Squat != 0).OrderBy(p => p.ID).LastOrDefault();
+                while (firstSquatSbc == null && date12WeekAgo <= startWeek)
+                {
+                    date12WeekAgo = date12WeekAgo.AddDays(7);
+                    firstSquatSbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo && p.Squat != 0).OrderBy(p => p.ID).LastOrDefault();
+                }
+                if (firstSquatSbc != null)
+                {
+                    _diffSquat12Week = (int)Squat - (int)firstSquatSbc.Squat;
+                }
+                else
+                {
+                    _diffSquat12Week = 0;
+                }
+                return _diffSquat12Week ?? 0;
             }
         }
+
+        private int? _diffBench12Week;
 
         public int DiffBench12Week
         {
             get
             {
-                if (Last12Week != null)
+                if (_diffBench12Week.HasValue)
                 {
-                    return (int)(Bench - Last12Week.Bench);
+                    return _diffBench12Week.Value;
                 }
-                return (int)Bench;
+                var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
+                var date12WeekAgo = startWeek.AddDays(-7 * 11);
+                var firstBenchSbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo && p.Bench != 0).OrderBy(p => p.ID).LastOrDefault();
+                while (firstBenchSbc == null && date12WeekAgo <= startWeek)
+                {
+                    date12WeekAgo = date12WeekAgo.AddDays(7);
+                    firstBenchSbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo && p.Bench != 0).OrderBy(p => p.ID).LastOrDefault();
+                }
+                if (firstBenchSbc != null)
+                {
+                    _diffBench12Week = (int)Bench - (int)firstBenchSbc.Bench;
+                }
+                else
+                {
+                    _diffBench12Week = 0;
+                }
+                return _diffBench12Week ?? 0;
+
             }
         }
 
+        private int? _diffClean12Week;
 
         public int DiffClean12Week
         {
             get
             {
-                if (Last12Week != null)
+                if (_diffClean12Week.HasValue)
                 {
-                    return (int)(Clean - Last12Week.Clean);
+                    return _diffClean12Week.Value;
                 }
-                return (int)Clean;
+                var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
+                var date12WeekAgo = startWeek.AddDays(-7 * 11);
+                var firstCleanSbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo && p.Clean != 0).OrderBy(p => p.ID).LastOrDefault();
+                while (firstCleanSbc == null && date12WeekAgo <= startWeek)
+                {
+                    date12WeekAgo = date12WeekAgo.AddDays(7);
+                    firstCleanSbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo && p.Clean != 0).OrderBy(p => p.ID).LastOrDefault();
+                }
+                if (firstCleanSbc != null)
+                {
+                    _diffClean12Week = (int)Clean - (int)firstCleanSbc.Clean;
+                }
+                else
+                {
+                    _diffClean12Week = 0;
+                }
+                return _diffClean12Week ?? 0;
+
             }
         }
 
