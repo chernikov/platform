@@ -55,7 +55,14 @@ namespace platformAthletic.Models.Info
             var zeroDay = new DateTime(1970, 1, 1);
             if (!search.StartPeriod.HasValue || search.StartPeriod.Value < zeroDay)
             {
-                search.StartPeriod = team.User.AddedDate;
+                if (team.User.InTestMode && team.User.Role.ToLower() == "coach")
+                {
+                    search.StartPeriod = team.User.AddedDate.AddDays(-90);
+                }
+                else
+                {
+                    search.StartPeriod = team.User.AddedDate;
+                }
             }
             if (!search.EndPeriod.HasValue || search.EndPeriod.Value < zeroDay)
             {

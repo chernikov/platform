@@ -1,19 +1,18 @@
-﻿function TeamRegister()
+﻿
+function TeamRegister()
 {
     var _this = this;
 
     this.init = function () {
+
+       
+
         $(document).on("click", "#ApplyReferralCode", function () {
             _this.ApplyReferrerCode();
             return false;
         });
 
         $(document).on("click", ".registration-button", function (event) {
-            if (_this.checkEmail()) {
-            }
-            else {
-                event.preventDefault();
-            }
 
 
             //if individual registration page
@@ -26,33 +25,6 @@
             }
         })
     };
-
-    this.checkEmail = function () {
-        $("#Email-error").remove();
-        if (/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i.test($("#Email").val())) {
-            $("#Email").removeClass("input-validation-error");
-            $("#Email").addClass("valid");
-            $("#Email").attr("aria-invalid", "false");
-            $("[data-valmsg-for='Email']").removeClass("field-validation-error");
-            $("[data-valmsg-for='Email']").addClass("field-validation-valid");
-
-            return true;
-        }
-        else {
-            $("#Email").removeClass("valid");
-            $("#Email").addClass("input-validation-error");
-            $("#Email").attr("aria-invalid", "true");
-            $("[data-valmsg-for='Email']").removeClass("field-validation-valid");
-            $("[data-valmsg-for='Email']").addClass("field-validation-error");
-            $("[data-valmsg-for='Email']").append("<span id='Email-error' class=''>Enter Email</span>");
-
-            return false;
-        }
-    }
-
-    this.checkPhone = function () {
-        return /^[\d|\+|\(]+[\)|\d|\s|-]*[\d]$/i.test($("#PhoneNumber").val());
-    }
 
 
     this.ApplyReferrerCode = function () {
@@ -84,4 +56,18 @@ var teamRegister = null;
 $(function () {
     teamRegister = new TeamRegister();
     teamRegister.init();
+});
+
+$.validator.addMethod("validemail", function (value, element, param) {
+    alert(value);
+    alert(element);
+    alert(param);
+    var val = $("#Email").val();
+    return /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(val);
+    //return param.test(val);
+});
+
+$.validator.unobtrusive.adapters.add("validemail", ["regex"], function (options) {
+    options.rules["validemail"] = new RegExp(options.params.regex, "i");
+    options.messages["validemail"] = options.message;
 });
