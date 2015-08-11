@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
-    [Authorize(Roles = "coach")]
+    [Authorize(Roles = "coach, assistant")]
     public class ManagePlayerController : DefaultController
     {
         public ActionResult Index()

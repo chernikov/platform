@@ -14,6 +14,12 @@
         <li class="@(controllerName == "ManageAssistant" ? "open" : "")">
             <a href="/manage-coaches">Manage Coaches</a>
         </li>
+        @*<li class="@(controllerName == "ManagePlayer" ? "open" : "")">
+            <a href="/manage-players">Manage Players</a>
+        </li>*@
+    }
+    @if (currentUser != null && currentUser.InRoles("coach,assistant"))
+    {
         <li class="@(controllerName == "ManagePlayer" ? "open" : "")">
             <a href="/manage-players">Manage Players</a>
         </li>

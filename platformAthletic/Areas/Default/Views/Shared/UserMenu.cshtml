@@ -13,6 +13,7 @@
     @if (currentUser.InRoles("assistant"))
     {
         <li><a href="/settings">Account</a></li>
+        <li><a href="/manage-players">Manage Players</a></li>
         <li><a href="/equipment">Equipment Log</a></li>
     }
     @if (currentUser.InRoles("player"))

@@ -12,8 +12,7 @@ namespace platformAthletic.Attributes.Validation
     public class ValidEmailAttribute : ValidationAttribute, IClientValidatable
     {
         // old regular expretion: @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-        //protected string pattern = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-        protected string pattern = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
+        protected string pattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
 
         public override bool IsValid(object value)
         {
@@ -42,7 +41,7 @@ namespace platformAthletic.Attributes.Validation
             ModelClientValidationRule validEmailRule = new ModelClientValidationRule();
             validEmailRule.ErrorMessage = errorMessage;
             validEmailRule.ValidationType = "validemail"; // This is the name the jQuery validator will use
-            validEmailRule.ValidationParameters.Add("regex", this.pattern.Replace("\\","\\\\"));
+            validEmailRule.ValidationParameters.Add("regex", this.pattern);
             yield return validEmailRule;
         }
     }

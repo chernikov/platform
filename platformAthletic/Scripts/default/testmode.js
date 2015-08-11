@@ -11,7 +11,8 @@
 
 
         $("#ShowTestModeInfo").click(function () {
-            _this.showInfo("Test mode means the site is populated with sample players and data. Nothing you do or change while in test mode will be saved. When you are ready to begin using the site for your school, exit test mode and follow the To-Do list items on the left hand side.");
+            //_this.showInfo("Test mode means the site is populated with sample players and data. Nothing you do or change while in test mode will be saved. When you are ready to begin using the site for your school, exit test mode and follow the To-Do list items on the left hand side.");
+            _this.showInfo("Test mode means that the site is populated with fake players and data so that you can explore to your heart's delight. Once you exit test mode, changes will be erased and you will be given a blank slate to start fresh with your own players.");
         });
 
         $("#StopTestMode").click(function () {

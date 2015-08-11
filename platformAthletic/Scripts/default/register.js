@@ -59,15 +59,24 @@ $(function () {
 });
 
 $.validator.addMethod("validemail", function (value, element, param) {
-    alert(value);
-    alert(element);
-    alert(param);
     var val = $("#Email").val();
-    return /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(val);
-    //return param.test(val);
+    var pattern = new RegExp(param, "i");
+    return pattern.test(val);
+    //return /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(val);
 });
 
 $.validator.unobtrusive.adapters.add("validemail", ["regex"], function (options) {
-    options.rules["validemail"] = new RegExp(options.params.regex, "i");
+    options.rules["validemail"] = options.params.regex;
     options.messages["validemail"] = options.message;
+});
+
+$.validator.addMethod("validphone", function (value, element, param) {
+    var val = $("#PhoneNumber").val();
+    var pattern = new RegExp(param, "i");
+    return pattern.test(val);
+});
+
+$.validator.unobtrusive.adapters.add("validphone", ["regex"], function (options) {
+    options.rules["validphone"] = options.params.regex;
+    options.messages["validphone"] = options.message;
 });

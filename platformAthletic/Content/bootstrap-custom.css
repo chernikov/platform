@@ -388,9 +388,16 @@ th {
 
     .platform .navbar-default .navbar-brand {
         color: #fc8675;
-        padding-top: 20px;
+        padding-top: 17px;
         font-family: 'Montserrat', sans-serif;
     }
+
+        .platform .navbar-default .navbar-brand.test-mode {
+            border-radius: 6px;
+            background-color: #FFFFFF;
+            margin-top: 15px;
+            padding: 5px 10px 5px 10px;
+        }
 
 @media(max-width:767px) {
     .platform .navbar-default .navbar-brand.test-mode {
@@ -4837,13 +4844,13 @@ h1.todo {
 
 
 .test-mode {
-    color: #fff !important;
+    color: #000 !important;
     font-size: 14px;
     font-weight: normal;
 }
 
     .test-mode a {
-        color: #fff !important;
+        color: #000 !important;
     }
 
 
