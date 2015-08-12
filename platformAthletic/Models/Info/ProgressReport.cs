@@ -97,44 +97,47 @@ namespace platformAthletic.Models.Info
                         foreach (var user in users)
                         {
                             var startDay = Search.StartPeriod.Value;
-                            var sbcValueSquatStart = user.SBCHistory(startDay, SBCValue.SbcType.Squat);
-                            var sbcValueBenchStart = user.SBCHistory(startDay, SBCValue.SbcType.Bench);
-                            var sbcValueCleanStart = user.SBCHistory(startDay, SBCValue.SbcType.Clean);
+                            var endDate = Search.EndPeriod ?? DateTime.Now.Current();
+                            var sbcValueSquatStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Squat);
+                            var sbcValueBenchStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Bench);
+                            var sbcValueCleanStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Clean);
                             if (sbcValueSquatStart == null)
                             {
-                                sbcValueSquatStart = user.SBCFirstHistory(SBCValue.SbcType.Squat);
+                                sbcValueSquatStart = new SBCValue();// user.SBCFirstHistory(SBCValue.SbcType.Squat);
                             }
                             if (sbcValueBenchStart == null)
                             {
-                                sbcValueBenchStart = user.SBCFirstHistory(SBCValue.SbcType.Bench);
+                                sbcValueBenchStart = new SBCValue(); // user.SBCFirstHistory(SBCValue.SbcType.Bench);
                             }
                             if (sbcValueCleanStart == null)
                             {
-                                sbcValueCleanStart = user.SBCFirstHistory(SBCValue.SbcType.Bench);
+                                sbcValueCleanStart = new SBCValue();  // user.SBCFirstHistory(SBCValue.SbcType.Bench);
                             }
 
-                            var sbcValueSquatEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current(), SBCValue.SbcType.Squat);
-                            var sbcValueBenchEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current(), SBCValue.SbcType.Bench);
-                            var sbcValueCleanEnd = user.SBCHistory(Search.EndPeriod ?? DateTime.Now.Current(), SBCValue.SbcType.Clean);
-
+                            var sbcValueEnd = user.SBCHistory(endDate);
+                            if (sbcValueEnd == null)
+                            {
+                                sbcValueEnd = new SBCValue();
+                            }
+                      
                             var record = new Record()
                             {
                                 User = user
                             };
 
-                            if (sbcValueSquatStart != null && sbcValueSquatEnd != null)
+                            if (sbcValueSquatStart != null)
                             {
-                                record.Squat = (int)(sbcValueSquatEnd.Squat - sbcValueSquatStart.Squat);
+                                record.Squat = (int)(sbcValueEnd.Squat - sbcValueSquatStart.Squat);
                             }
 
-                            if (sbcValueBenchStart != null && sbcValueBenchEnd != null)
+                            if (sbcValueBenchStart != null)
                             {
-                                record.Bench = (int)(sbcValueBenchEnd.Bench - sbcValueBenchStart.Bench);
+                                record.Bench = (int)(sbcValueEnd.Bench - sbcValueBenchStart.Bench);
                             }
 
-                            if (sbcValueCleanStart != null && sbcValueCleanEnd != null)
+                            if (sbcValueCleanStart != null)
                             {
-                                record.Clean = (int)(sbcValueCleanEnd.Clean - sbcValueCleanStart.Clean);
+                                record.Clean = (int)(sbcValueEnd.Clean - sbcValueCleanStart.Clean);
                             }
 
                             List.Add(record);

@@ -571,6 +571,27 @@ namespace platformAthletic.Model
             return null;
         }
 
+        public SBCValue SBCForward(DateTime date, DateTime endDate, SBCValue.SbcType? restrict = null)
+        {
+            if (!restrict.HasValue)
+            {
+                return SBCValues.Where(p => p.AddedDate <= date && p.AddedDate <= endDate).OrderBy(p => p.ID).LastOrDefault();
+            }
+            else
+            {
+                switch (restrict.Value)
+                {
+                    case SBCValue.SbcType.Squat:
+                        return SBCValues.Where(p => p.AddedDate >= date && p.AddedDate <= endDate && p.Squat > 0).OrderBy(p => p.ID).FirstOrDefault();
+                    case SBCValue.SbcType.Bench:
+                        return SBCValues.Where(p => p.AddedDate >= date && p.AddedDate <= endDate && p.Bench > 0).OrderBy(p => p.ID).FirstOrDefault();
+                    case SBCValue.SbcType.Clean:
+                        return SBCValues.Where(p => p.AddedDate >= date && p.AddedDate <= endDate && p.Clean > 0).OrderBy(p => p.ID).FirstOrDefault();
+                }
+            }
+            return null;
+        }
+
         public SBCValue SBCFirstHistory(SBCValue.SbcType? restrict = null)
         {
             if (!restrict.HasValue)
