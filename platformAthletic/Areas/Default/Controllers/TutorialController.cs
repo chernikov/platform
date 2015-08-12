@@ -125,6 +125,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     name = "TodoPlayer_";
                 }
+
                 return View(name + id.ToString("D2"));
             }
             return null;
