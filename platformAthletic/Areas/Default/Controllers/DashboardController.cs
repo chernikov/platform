@@ -203,7 +203,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     };
 
                     Repository.CreateUserRole(userRole);
-                    SendWelcomePlayerMail(user.Email, "Welcome to The Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
+                    SendWelcomePlayerMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
                     var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
                     if (existFailMail != null)
                     {

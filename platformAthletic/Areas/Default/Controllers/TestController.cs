@@ -245,15 +245,15 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult Mail(string email = "chernikov@gmail.com")
         {
-            MailSender.SendMail(email, "Welcome to The Platform!", "TEST");
+            MailSender.SendMail(email, "Welcome to Platform!", "TEST");
 
-            SendWelcomeCoachMail(email, "Welcome to The Platform!", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomeCoachMail(email, "Welcome to Platform!", CurrentUser.Email, CurrentUser.Password);
 
-            SendWelcomeIndividualMail(email, "Welcome to The Platform!", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomeIndividualMail(email, "Welcome to Platform!", CurrentUser.Email, CurrentUser.Password);
 
-            SendWelcomePlayerMail(email, "Welcome to The Platform!", "Your coach", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomePlayerMail(email, "Welcome to Platform!", "Your coach", CurrentUser.Email, CurrentUser.Password);
 
-            SendWelcomeAssistantMail(email, "Welcome to The Platform!", "Your coach", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomeAssistantMail(email, "Welcome to Platform!", "Your coach", CurrentUser.Email, CurrentUser.Password);
 
             SendForgotPasswordMail(email, "Your password for plt4m.com",  CurrentUser.Email, CurrentUser.Password);
 
