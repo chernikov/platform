@@ -11,8 +11,8 @@ namespace platformAthletic.Helpers
     {
         public static DateTime Current(this DateTime source)
         {
-            var repository = DependencyResolver.Current.GetService<IRepository>();
-            return repository.CurrentDateTime;
+            //var repository = DependencyResolver.Current.GetService<IRepository>();
+            //return repository.CurrentDateTime;
             return source;
         }
     }
