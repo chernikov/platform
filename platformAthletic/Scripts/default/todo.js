@@ -6,7 +6,11 @@ function Todo() {
         var hash = window.location.hash;
         if (hash.length > 0) {
             var id = hash.substr("#todo-".length);
-            _this.showTodo(id);
+
+            if (_this.checkToDoNotSolve(id)) {
+                _this.showTodo(id);
+            }
+            
         }
 
         $(document).on("click", "#AddPlayersButton", function () {
@@ -65,6 +69,22 @@ function Todo() {
             _this.updateTodo($(this));
         });
 
+    }
+
+    //parse todo list panel and find not solved todo
+    this.checkToDoNotSolve = function (id) {
+        var result = false;
+        $(".todo-list-item").each(function () {
+            var val = $(this).children(".todoItem").data("href");
+            val = val ? val : "";
+            val = val.split("#");
+            if (val[1]) {
+                if (val[1].substr("todo-".length) == id) {
+                    result = true;
+                }
+            }
+        });
+        return result;
     }
 
     this.showTodo = function (id) {

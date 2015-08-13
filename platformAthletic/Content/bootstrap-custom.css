@@ -358,7 +358,7 @@ th {
             padding-top: 10px;
         }
 
-        .platform .side-menu .navbar-nav {
+        .platform .side-menu .navbar-nav:last-of-type {
             padding-bottom: 120px;
         }
 
@@ -396,14 +396,14 @@ th {
             border-radius: 6px;
             background-color: #FFFFFF;
             margin-top: 15px;
-            padding: 5px 10px 5px 10px;
+            padding: 6px 10px 6px 10px;
         }
 
 @media(max-width:767px) {
     .platform .navbar-default .navbar-brand.test-mode {
         width: 80%;
         position: absolute;
-        top: 42px;
+        top: 56px;
         left: 63px;
     }
 }
