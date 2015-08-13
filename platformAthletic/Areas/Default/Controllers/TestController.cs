@@ -247,13 +247,13 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             MailSender.SendMail(email, "Welcome to Platform!", "TEST");
 
-            SendWelcomeCoachMail(email, "Welcome to Platform!", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomeCoachMail(email, "Welcome to Platform! (coach)", CurrentUser.Email, CurrentUser.Password);
 
-            SendWelcomeIndividualMail(email, "Welcome to Platform!", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomeIndividualMail(email, "Welcome to Platform! (individual)", CurrentUser.Email, CurrentUser.Password);
 
-            SendWelcomePlayerMail(email, "Welcome to Platform!", "Your coach", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomePlayerMail(email, "Welcome to Platform! (athlete)", "Your coach", CurrentUser.Email, CurrentUser.Password);
 
-            SendWelcomeAssistantMail(email, "Welcome to Platform!", "Your coach", CurrentUser.Email, CurrentUser.Password);
+            SendWelcomeAssistantMail(email, "Welcome to Platform! (assistant)", "Your coach", CurrentUser.Email, CurrentUser.Password);
 
             SendForgotPasswordMail(email, "Your password for plt4m.com",  CurrentUser.Email, CurrentUser.Password);
 

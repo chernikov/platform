@@ -96,10 +96,7 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
-                NotifyMail.SendNotify(Config, "RegisterAssistant", user.Email,
-                      (u, format) => format,
-                      (u, format) => string.Format(format, CurrentUser.FirstName + " " + CurrentUser.LastName, u.Email, u.Password),
-                      user);
+                SendWelcomeAssistantMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
                 Repository.ResendRegister(user);
                 return View(user);
             }
