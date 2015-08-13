@@ -60,7 +60,9 @@
             var item = $("#VideoContent .inside .item.selected");
             $("#VideoContent").mCustomScrollbar("scrollTo", item);
         });
+
     }
+
 
     this.showVideo = function (item, callback)
     {
@@ -74,7 +76,7 @@
             success: function (data)
             {
                 $("#VideoWrapper").html(data);
-                youtubeResizer.init();
+                youtubeResizer.init({width: "", height: ""});
                 $("#VideoScroll").mCustomScrollbar({ theme: "minimal-dark" });
                 if (callback != null) {
                     callback();

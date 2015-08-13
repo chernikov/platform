@@ -6,6 +6,12 @@
             _this.showCreatePopup();
         });
 
+        $(document).on("click", ".test-mode-add-player-btn", function () {
+            $(".modal-backdrop").remove();
+            common.clearOnBoarding();
+            _this.showCreatePopup(true);
+        });
+
         $(".editUser").click(function () {
             _this.showEditPopup($(this).data("id"));
         });
@@ -116,11 +122,14 @@
         return true;
     }
 
-    this.showCreatePopup = function ()
+
+    this.showCreatePopup = function (testMode)
     {
+        testMode = testMode || false;
         $.ajax({
             type : "GET",
             url: "/ManagePlayer/Create",
+            data: { testMode: testMode },
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalEditPlayer").modal();

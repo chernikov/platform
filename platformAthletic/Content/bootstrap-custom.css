@@ -178,6 +178,7 @@ th {
 
     .height-lg {
         height: auto;
+        width: 100%;
     }
 }
 /*  current date */
@@ -4980,4 +4981,8 @@ a.clear-search {
 
 .team-table-button {
     padding: 7px 10px 0px 0px;
+}
+
+#modalEditPlayer {
+    padding-top: 30px;
 }
