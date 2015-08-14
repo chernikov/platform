@@ -23,7 +23,7 @@
             <div class="btn btn-default margin-top" style="display: @(!string.IsNullOrWhiteSpace(Model.TitleImagePath) ? "" : "none")" id="RemoveTitleImage">REMOVE TITLE IMAGE</div>
         </div>
         <div class="form-group" style="@(!string.IsNullOrWhiteSpace(Model.VideoCode) ? "" : "display:none;")" id="VideoCodeWrapper">
-            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Youtube url" })
+            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Only Youtube and Vimeo links allowed." })
             @Html.ValidationMessage("VideoUrl")
         </div>
         <div class="form-group">

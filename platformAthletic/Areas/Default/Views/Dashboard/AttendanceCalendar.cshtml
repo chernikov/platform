@@ -1,4 +1,7 @@
 ﻿@model AttendanceInfo
+
+<h3>ATTENDANCE CALENDAR</h3>
+
 <div class="panel attendance-panel">
     <div class="pull-left">
         <a class="btn attendanceMonth" data-id="@Model.User.ID" data-date="@Model.Date.AddMonths(-1).ToString("MM/dd/yyyy")"><span class="calendar-arrow-left"></span></a>
