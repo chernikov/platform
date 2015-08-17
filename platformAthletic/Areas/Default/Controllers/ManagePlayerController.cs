@@ -20,8 +20,12 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(bool testMode=false)
         {
+            if (CurrentUser.InTestMode && !testMode)
+            {
+                return View("TestModeMessage");
+            }
             return View("Edit", new PlayerUserView());
         }
 

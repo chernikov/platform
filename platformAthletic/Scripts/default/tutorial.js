@@ -4,7 +4,7 @@
     this.init = function ()
     {
         _this.showTutorial(0);
-        $(document).on("click", ".nextBtn", function () {
+        $(document).on("click", ".nextBtn, .backBtn", function () {
             var id = $(this).data("step");
             if (id == "end") {
                 _this.endTutorial();

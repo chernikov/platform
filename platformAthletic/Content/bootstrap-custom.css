@@ -178,6 +178,7 @@ th {
 
     .height-lg {
         height: auto;
+        width: 100%;
     }
 }
 /*  current date */
@@ -1099,6 +1100,7 @@ th {
     .user-part h3 {
         background-color: white;
         padding: 10px 0px 10px 15px;
+        margin: 0px 0px 3px 0px;
     }
 
     .user-part .print-icon {
@@ -1133,7 +1135,8 @@ th {
         font-size: 18px;
         font-weight: bold;
         margin-top: 0px;
-        padding-top: 0px;
+        padding-top: 10px;
+        color: #495b6c;
     }
 
 
@@ -4978,6 +4981,15 @@ a.clear-search {
     background-color:white;
 }
 
+.row.user > div:nth-of-type(2) {
+    height:205px;
+}
+
 .team-table-button {
-    padding: 7px 10px 0px 0px;
+    padding: 8px 10px 8px 10px;
+    border-left: 3px solid whitesmoke;
+}
+
+#modalEditPlayer {
+    padding-top: 30px;
 }
