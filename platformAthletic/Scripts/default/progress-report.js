@@ -72,7 +72,6 @@
 
         $("#StartPeriod,#EndPeriod").datepicker({
             autoclose: true,
-            endDate: '+1d'
         });
 
         $(document).on("click", ".userName", function () {

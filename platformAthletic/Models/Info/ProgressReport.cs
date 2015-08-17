@@ -94,10 +94,10 @@ namespace platformAthletic.Models.Info
                 {
                     using (profiler.Step("Fill"))
                     {
+                        var startDay = Search.StartPeriod.Value.Date;
+                        var endDate = (Search.EndPeriod ?? DateTime.Now.Current()).Date;
                         foreach (var user in users)
                         {
-                            var startDay = Search.StartPeriod.Value;
-                            var endDate = Search.EndPeriod ?? DateTime.Now.Current();
                             var sbcValueSquatStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Squat);
                             var sbcValueBenchStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Bench);
                             var sbcValueCleanStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Clean);

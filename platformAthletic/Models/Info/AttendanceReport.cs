@@ -55,18 +55,18 @@ namespace platformAthletic.Models.Info
             var zeroDay = new DateTime(1970, 1, 1);
             if (!search.StartPeriod.HasValue || search.StartPeriod.Value < zeroDay)
             {
-                if (team.User.InTestMode && team.User.Role.ToLower() == "coach")
+                if (team.User.InTestMode && team.User.InRoles("coach"))
                 {
-                    search.StartPeriod = team.User.AddedDate.AddDays(-90);
+                    search.StartPeriod = team.User.AddedDate.AddDays(-90).Date;
                 }
                 else
                 {
-                    search.StartPeriod = team.User.AddedDate;
+                    search.StartPeriod = team.User.AddedDate.Date;
                 }
             }
             if (!search.EndPeriod.HasValue || search.EndPeriod.Value < zeroDay)
             {
-                search.EndPeriod = DateTime.Now.Current();
+                search.EndPeriod = DateTime.Now.Current().Date;
             }
 
             using (profiler.Step("Calc Attendance Report"))
@@ -91,6 +91,7 @@ namespace platformAthletic.Models.Info
                 {
                     Filter(ref users);
                 }
+
                 using (profiler.Step("Fill"))
                 {
                     var startYear = new DateTime(SqlSingleton.sqlRepository.CurrentDateTime.Year, 1, 1);
@@ -100,6 +101,7 @@ namespace platformAthletic.Models.Info
                     {
                         diff += 7;
                     }
+                    var today = DateTime.Now.Current().Date;
                     var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-1 * diff).Date;
                     foreach (var user in users)
                     {
@@ -115,7 +117,7 @@ namespace platformAthletic.Models.Info
                             }
                             if (Search.EndPeriod.HasValue)
                             {
-                                selectedAttendances = selectedAttendances.Where(p => p.AddedDate < Search.EndPeriod.Value);
+                                selectedAttendances = selectedAttendances.Where(p => p.AddedDate <= Search.EndPeriod.Value);
                             }
                             allTime = selectedAttendances.Count();
                         }
@@ -124,9 +126,9 @@ namespace platformAthletic.Models.Info
                             allTime = attendances.Count();
                         }
 
-                        var year = attendances.Count(p => p.AddedDate >= startYear);
-                        var month = attendances.Count(p => p.AddedDate >= startMonth);
-                        var week = attendances.Count(p => p.AddedDate >= startWeek);
+                        var year = attendances.Count(p => p.AddedDate >= startYear && p.AddedDate <= today);
+                        var month = attendances.Count(p => p.AddedDate >= startMonth && p.AddedDate <= today);
+                        var week = attendances.Count(p => p.AddedDate >= startWeek && p.AddedDate <= today);
                         List.Add(new Record()
                         {
                             User = user,
