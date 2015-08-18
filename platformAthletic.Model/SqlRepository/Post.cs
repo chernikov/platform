@@ -76,5 +76,22 @@ namespace platformAthletic.Model
             }
             return false;
         }
+
+        public bool PromotePost(int idPost)
+        {
+            var cache = Db.Posts.FirstOrDefault(p => p.ID == idPost);
+            if (cache != null)
+            {
+                foreach (var post in Db.Posts)
+                {
+                    post.Promoted = false;
+                }
+                cache.Promoted = true;
+                Db.Posts.Context.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
     }
 }

@@ -603,6 +603,8 @@ namespace platformAthletic.Model
         bool ViewPost(int idPost);
         
         bool RemovePost(int idPost);
+
+        bool PromotePost(int idPost);
         
         #endregion 
 

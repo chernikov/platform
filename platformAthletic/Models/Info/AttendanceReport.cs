@@ -66,12 +66,7 @@ namespace platformAthletic.Models.Info
             }
             if (!search.EndPeriod.HasValue || search.EndPeriod.Value < zeroDay)
             {
-<<<<<<< HEAD
                 search.EndPeriod = DateTime.Now.Current().Date;
-=======
-                //search.EndPeriod = DateTime.Now.Current();
-                search.EndPeriod = DateTime.Now;
->>>>>>> bbc785cea0d480740066f500755518575bc42b3f
             }
 
             using (profiler.Step("Calc Attendance Report"))

@@ -21,7 +21,7 @@ namespace platformAthletic.Areas.Admin.Controllers
 
         public ActionResult Index(int page = 1)
         {
-            var list = Repository.Posts;
+            var list = Repository.Posts.OrderByDescending(p => p.ID);
             var data = new PageableData<Post>();
             data.Init(list, page, "Index");
             return View(data);
@@ -96,6 +96,18 @@ namespace platformAthletic.Areas.Admin.Controllers
             if (post != null)
             {
                 Repository.RemovePost(post.ID);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Promote(int id)
+        {
+            var post = Repository.Posts.FirstOrDefault(p => p.ID == id);
+
+            if (post != null)
+            {
+                Repository.PromotePost(post.ID);
             }
             return RedirectToAction("Index");
         }

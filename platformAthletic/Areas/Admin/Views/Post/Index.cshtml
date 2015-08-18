@@ -15,6 +15,9 @@
             </th>
             <th>Header
             </th>
+            <th>
+                Promoted
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -32,8 +35,20 @@
                 @item.Header
             </td>
             <td>
+                @if (item.Promoted)
+                {
+                    <span class="badge badge-success">Promoted</span>
+                }
+                
+            </td>
+            <td>
                 @Html.ActionLink("Edit", "Edit", "Post", new { id = item.ID }, new { @class = "btn" })
+                
                 @Html.ActionLink("Remove", "Delete", "Post", new { id = item.ID }, new { @class = "btn" })
+                @if (!item.Promoted) 
+                { 
+                    @Html.ActionLink("Promote", "Promote", "Post", new { id = item.ID }, new { @class = "btn" })
+                }
             </td>
         </tr>
     }
