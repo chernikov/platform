@@ -107,7 +107,12 @@ namespace platformAthletic.Areas.Admin.Controllers
             var user = Repository.Users.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
+                if (user.InRoles("coach"))
+                {
+                    Repository.RemoveWholeTeamByCoachId(user.ID);
+                }
                 Repository.RemoveUser(user.ID);
+
             }
             return RedirectToAction("Index");
         }

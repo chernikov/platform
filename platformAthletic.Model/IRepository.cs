@@ -266,6 +266,8 @@ namespace platformAthletic.Model
 
         bool UpdateTeamCount(Team instance);
         bool RemoveTeam(int idTeam);
+
+        bool RemoveWholeTeamByCoachId(int idCoach);
         
         #endregion 
 

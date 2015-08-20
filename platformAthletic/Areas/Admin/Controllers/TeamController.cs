@@ -13,7 +13,7 @@ namespace platformAthletic.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            var list = Repository.Teams.OrderBy(p => p.Name).ToList();
+            var list = Repository.Teams.Where(p => !p.User.IsDeleted).OrderBy(p => p.Name).ToList();
             return View(list);
         }
 

@@ -103,5 +103,25 @@ namespace platformAthletic.Model
             }
             return false;
         }
+
+        public bool RemoveWholeTeamByCoachId(int idCoach)
+        {
+            var team = Db.Teams.FirstOrDefault(p => p.UserID == idCoach);
+            if (team != null)
+            {
+                foreach (var player in team.Players)
+                {
+                    player.IsDeleted = true;
+                }
+                foreach (var assistant in team.Assistants)
+                {
+                    assistant.IsDeleted = true;
+                }
+
+                Db.Teams.Context.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

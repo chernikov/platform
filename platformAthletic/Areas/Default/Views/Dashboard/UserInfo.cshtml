@@ -10,22 +10,13 @@
         <h3>PLAYER INFORMATION</h3>
         <div class="row user">
             <div class="col-sm-6 col-md-6 col-xs-6 no-padding-left">
-                @*<div class="platform-icon">
+                <div class="platform-icon">
                     @if (Model.AvatarPath != null)
                     {
-                        <img src="@Model.AvatarPath?w=205&h=205&mode=max" />
+                        <img src="@Model.AvatarPath?w=205&h=205&mode=crop&scale=both" />
                     }
 
-                </div>*@
-                @if (Model.AvatarPath != null)
-                {
-                    <img src="@Model.AvatarPath?w=205&h=205&mode=max" />
-                }
-                else
-                {
-                    <div class="platform-icon"></div>
-                }
-                
+                </div>
             </div>
             <div class="col-sm-6 col-md-6 col-xs-6">
                 <h1>@Model.FirstName @Model.LastName</h1>
