@@ -592,6 +592,8 @@ namespace platformAthletic.Model
             return null;
         }
 
+       
+
         public SBCValue SBCFirstHistory(SBCValue.SbcType? restrict = null)
         {
             if (!restrict.HasValue)

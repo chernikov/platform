@@ -110,18 +110,18 @@ namespace platformAthletic.Models.Info
                             var sbcValueSquatStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Squat);
                             var sbcValueBenchStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Bench);
                             var sbcValueCleanStart = user.SBCForward(startDay, endDate, SBCValue.SbcType.Clean);
-                            if (sbcValueSquatStart == null)
-                            {
-                                sbcValueSquatStart = new SBCValue();// user.SBCFirstHistory(SBCValue.SbcType.Squat);
-                            }
-                            if (sbcValueBenchStart == null)
-                            {
-                                sbcValueBenchStart = new SBCValue(); // user.SBCFirstHistory(SBCValue.SbcType.Bench);
-                            }
-                            if (sbcValueCleanStart == null)
-                            {
-                                sbcValueCleanStart = new SBCValue();  // user.SBCFirstHistory(SBCValue.SbcType.Bench);
-                            }
+                            //if (sbcValueSquatStart == null)
+                            //{
+                            //    sbcValueSquatStart = new SBCValue();// user.SBCFirstHistory(SBCValue.SbcType.Squat);
+                            //}
+                            //if (sbcValueBenchStart == null)
+                            //{
+                            //    sbcValueBenchStart = new SBCValue(); // user.SBCFirstHistory(SBCValue.SbcType.Bench);
+                            //}
+                            //if (sbcValueCleanStart == null)
+                            //{
+                            //    sbcValueCleanStart = new SBCValue();  // user.SBCFirstHistory(SBCValue.SbcType.Bench);
+                            //}
 
                             var sbcValueEnd = user.SBCHistory(endDate);
                             if (sbcValueEnd == null)
