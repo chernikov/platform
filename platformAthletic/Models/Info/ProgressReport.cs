@@ -70,6 +70,7 @@ namespace platformAthletic.Models.Info
             if (!search.EndPeriod.HasValue || search.EndPeriod.Value < zeroDay)
             {
                 //search.EndPeriod = DateTime.Now.Current();
+                //search.EndPeriod = DateTime.Now.Current().Date;
                 search.EndPeriod = DateTime.Now;
             }
 

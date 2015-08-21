@@ -13,7 +13,7 @@
                 <div class="platform-icon">
                     @if (Model.AvatarPath != null)
                     {
-                        <img src="@Model.AvatarPath?w=205&h=205&mode=max" />
+                        <img src="@Model.AvatarPath?w=205&h=205&mode=crop&scale=both" />
                     }
 
                 </div>
@@ -79,7 +79,7 @@
                         </div>
                     }
                 </div>
-                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-xs-12 text-center view-profile-wrp">
                     <a href="@Url.Action("Index", "User", new {id =Model.ID })" class="btn btn-primary">VIEW PROFILE</a>
@@ -194,7 +194,7 @@
                                 <canvas id="PerformanceChart"></canvas>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="tab-pane active attendance" id="attendance">
                         <div class="no-padding-left text-center">

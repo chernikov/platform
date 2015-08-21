@@ -10,7 +10,7 @@
                 <p>Attendance Calendar for:</p>
                 <h2>@Model.User.LastName, @Model.User.FirstName</h2>
                 <div id="ModalCalendarBodyWrapper">
-                    @Html.Action("AttendanceCalendarBody", "Report", new { id = Model.User.ID, date = Model.Date });
+                    @Html.Action("AttendanceCalendarBody", "Report", new { id = Model.User.ID, date = Model.Date })
                 </div>
             </div>
         </div>
