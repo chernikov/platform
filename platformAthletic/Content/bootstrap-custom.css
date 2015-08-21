@@ -4991,7 +4991,19 @@ a.clear-search {
     background-color:white;
 }
 
-.row.user > div:nth-of-type(2) {
+.row.user > div:nth-of-type(1):before {
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+}
+.row.user > div:nth-of-type(1) img, .row.user > div:nth-of-type(1) div {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -3px;
+}
+
+.row.user > div:nth-of-type(-n+2) {
     height:205px;
 }
 
@@ -5010,4 +5022,8 @@ a.clear-search {
 
 .attendanceModalMonth {
     padding: 0px 10px 0px 10px;
+}
+
+.breadcrumb span.nextBtn {
+    cursor: pointer;
 }
