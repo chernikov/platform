@@ -14,9 +14,9 @@ namespace platformAthletic.Areas.Default.Controllers
             return View();
         }
 
-        public ActionResult NotFoundPage()
+        public new ActionResult NotFoundPage()
         {
-            Response.StatusCode = 404;
+            /*Response.StatusCode = 404;*/
             return View();
         }
 

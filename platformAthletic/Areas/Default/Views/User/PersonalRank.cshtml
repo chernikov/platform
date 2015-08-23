@@ -1,13 +1,17 @@
 ﻿@model User
 @{
-    var rank = (RankInfo)ViewBag.RankInfo; 
+    var rank = (RankInfo)ViewBag.RankInfo;
+    var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
 }
 <table class="leaderboard-table table personal" id="PersonalRankWrapper">
     <thead>
         <tr class="header">
             <td colspan="4">
                 <div class="pull-right">
-                    <a href="/leaderboard" class="btn btn-large btn-primary">LEADERBOARD</a>
+                    @if (currentUser != null)
+                    {
+                        <a href="/leaderboard" class="btn btn-large btn-primary">LEADERBOARD</a>
+                    }
                 </div>
                 <h1>LEADERBOARD RANKS</h1>
             </td>

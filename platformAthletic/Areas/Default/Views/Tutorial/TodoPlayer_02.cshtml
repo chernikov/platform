@@ -1,12 +1,30 @@
 ﻿<script>
     $("#ViewWorkout").wrap("<div class='tutorial-highlight left little-top'></div>");
 </script>
-<div class="modal fade" id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="position: fixed; top: 350px; left : 40%">
+@if (Request.Browser.IsMobileDevice) {
+    <div class="modal fade" id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="position: fixed; bottom: 0px; left : 10px">
+            <div class="modal-content tutorial-wrapper">
+                <div class="modal-body">
+                    <h1>VIEW WORKOUT</h1>
+
+                    <p>
+                        New workouts are available every Sunday.
+                    </p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Check it out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+} else {
+    <div class="modal fade" id="modalTutorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="position: fixed; top: 300px; right : 10px">
         <div class="modal-content tutorial-wrapper">
             <div class="modal-body">
                 <h1>VIEW WORKOUT</h1>
-                
+
                 <p>
                 New workouts are available every Sunday.
                 </p>
@@ -17,3 +35,4 @@
         </div>
     </div>
 </div>
+}

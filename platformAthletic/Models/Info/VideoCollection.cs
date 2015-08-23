@@ -106,7 +106,8 @@ namespace platformAthletic.Models.Info
             }
             else
             {
-                var item = Videos.FirstOrDefault(p => p.Header.IndexOf(SearchString, StringComparison.InvariantCultureIgnoreCase) != -1);
+                var lowerString = SearchString.ToLower();
+                var item = repository.Videos.FirstOrDefault(p => p.Header.ToLower() == lowerString);
                 if (item != null)
                 {
                     StartID = item.ID;

@@ -40,7 +40,6 @@ namespace platformAthletic.Model
 				cache.Header = instance.Header;
 				cache.Text = instance.Text;
                 cache.TitleImagePath = instance.TitleImagePath;
-                cache.Promoted = instance.Promoted;
                 cache.IsVideo = instance.IsVideo;
                 cache.VideoUrl = instance.VideoUrl;
                 cache.VideoCode = instance.VideoCode;

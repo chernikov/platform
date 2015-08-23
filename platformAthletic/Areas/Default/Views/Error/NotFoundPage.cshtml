@@ -1,6 +1,11 @@
 ﻿@{
     //Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
-    Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    if (HttpContext.Current.User.ToString() != "anonym") 
+    { 
+        Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    } else {
+        Layout = "~/Areas/Default/Views/Shared/_BootstrapLayoutNoSide.cshtml";
+    }
     ViewBag.Title = "Page not found";
 }
 <div class="side-body">

@@ -49,15 +49,34 @@ namespace platformAthletic.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var video = (Video)ModelMapper.Map(videoView, typeof(VideoView), typeof(Video));
-                video.Preview = GetPreview(video.VideoUrl);
-                video.VideoCode = VideoHelper.GetVideoByUrl(video.VideoUrl);
                 if (video.ID == 0)
                 {
+                    video.Preview = GetPreview(video.VideoUrl);
+                    video.VideoCode = VideoHelper.GetVideoByUrl(video.VideoUrl);
                     Repository.CreateVideo(video);
                 }
                 else
                 {
+                    var existVideo = Repository.Videos.FirstOrDefault(p => p.ID == video.ID);
+                    if (existVideo != null)
+                    {
+                        if (existVideo.VideoUrl != video.VideoUrl)
+                        {
+                            video.Preview = GetPreview(video.VideoUrl);
+                            video.VideoCode = VideoHelper.GetVideoByUrl(video.VideoUrl);
+                        }
+                        else
+                        {
+                            video.Preview = existVideo.Preview;
+                            video.VideoCode = existVideo.VideoCode;
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                     Repository.UpdateVideo(video);
                 }
                 return RedirectToAction("Index");
@@ -71,12 +90,13 @@ namespace platformAthletic.Areas.Admin.Controllers
             var webClient = new WebClient();
             var bytes = webClient.DownloadData(url);
             var stream = new MemoryStream(bytes);
-
             var uFile = StringExtension.GenerateNewFile() + Path.GetExtension(url);
             var urlFile = "/" + Path.Combine(DestinationDir, uFile);
             var filePath = Path.Combine(Path.Combine(Server.MapPath("~"), DestinationDir), uFile);
             var fileStream = System.IO.File.Create(filePath);
             stream.CopyTo(fileStream);
+            stream.Close();
+            fileStream.Close();
             return urlFile;
         }
 
