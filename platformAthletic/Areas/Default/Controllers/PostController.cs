@@ -38,19 +38,19 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult List(int page = 1)
         {
             IQueryable<Post> list = null;
-            if (CurrentUser.InRoles("coach,player"))
+            if (CurrentUser.InRoles("coach,player,assistant"))
             {
                 var team = CurrentUser.TeamOfPlay ?? CurrentUser.OwnTeam;
                 if (team != null)
                 {
                     var coach = team.User;
                     var admins = Repository.Users.Where(p => p.UserRoles.Any(r => string.Compare(r.Role.Code, "admin", true) == 0)).Select(p => p.ID);
-                    list = Repository.Posts.Where(p => p.UserID == coach.ID || admins.Contains(p.UserID)).OrderByDescending(p => p.ID).Skip(2);
+                    list = Repository.Posts.Where(p => p.UserID == coach.ID || admins.Contains(p.UserID) && !p.Promoted).OrderByDescending(p => p.ID).Skip(2);
                 }
             } else 
             {
                 var admins = Repository.Users.Where(p => p.UserRoles.Any(r => string.Compare(r.Role.Code, "admin", true) == 0)).Select(p => p.ID);
-                list = Repository.Posts.Where(p => admins.Contains(p.UserID)).OrderByDescending(p => p.ID);
+                list = Repository.Posts.Where(p => admins.Contains(p.UserID) && !p.Promoted).OrderByDescending(p => p.ID);
             }
             if (list != null)
             {

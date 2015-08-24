@@ -41,7 +41,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 if (CurrentUser.InRoles("individual"))
                 {
                     var admins = Repository.Users.Where(p => p.UserRoles.Any(r => string.Compare(r.Role.Code, "admin", true) == 0)).Select(p => p.ID);
-
                     var list = Repository.Posts.Where(p => admins.Contains(p.UserID)).OrderByDescending(p => p.ID);
                     var data = new PageableData<Post>();
                     data.Init(list, page, "Index", itemPerPage: 2);

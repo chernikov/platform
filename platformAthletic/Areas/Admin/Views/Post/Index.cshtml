@@ -45,7 +45,7 @@
                 @Html.ActionLink("Edit", "Edit", "Post", new { id = item.ID }, new { @class = "btn" })
                 
                 @Html.ActionLink("Remove", "Delete", "Post", new { id = item.ID }, new { @class = "btn" })
-                @if (!item.Promoted) 
+                @if (!item.Promoted && item.User.InRoles("admin")) 
                 { 
                     @Html.ActionLink("Promote", "Promote", "Post", new { id = item.ID }, new { @class = "btn" })
                 }
