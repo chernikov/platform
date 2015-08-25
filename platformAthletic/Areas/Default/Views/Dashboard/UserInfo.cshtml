@@ -58,27 +58,26 @@
                     </div>
                 </div>
             </div>
+            <div class="clear"></div>
 
-            <div class="row">
+            <div class="row user-sport-position">
 
-                <div class="clear">
-                    @foreach (var item in Model.SubPositions)
-                    {
+                @foreach (var item in Model.SubPositions)
+                {
 
-                        <div class="col-sm-6 col-md-6 col-xs-5 no-padding-left no-padding-right">
-                            <div class="sport">
-                                <div class="header-wrp">SPORT:</div>
-                                <div class="value-wrp">@item.Sport.Name</div>
-                            </div>
+                    <div class="col-sm-6 col-md-6 col-xs-5 no-padding-left no-padding-right">
+                        <div class="sport">
+                            <div class="header-wrp">SPORT:</div>
+                            <div class="value-wrp">@item.Sport.Name</div>
                         </div>
-                        <div class="col-sm-6 col-md-6 col-xs-7 no-padding-left no-padding-right">
-                            <div class="sport">
-                                <div class="header-wrp">POSITION:</div>
-                                <div class="value-wrp">@item.FieldPosition.Name</div>
-                            </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-7 no-padding-left no-padding-right">
+                        <div class="sport">
+                            <div class="header-wrp">POSITION:</div>
+                            <div class="value-wrp">@item.FieldPosition.Name</div>
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-xs-12 text-center view-profile-wrp">

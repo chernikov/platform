@@ -3,14 +3,17 @@
     if (HttpContext.Current.User.ToString() != "anonym") 
     { 
         Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
-    } else {
+    } 
+    else
+    {
         Layout = "~/Areas/Default/Views/Shared/_BootstrapLayoutNoSide.cshtml";
     }
     ViewBag.Title = "Page not found";
 }
 <div class="side-body">
     <div class="page-not-found-container">
-        <img src="~/Content/img/error/page_not_found.png">
-        <a href="/">BACK TO HOME</a>
+        <img src="~/Content/img/error/logo.png">
+        <p>Whoops! Looks like there was an error.</p>
+        @Html.ActionLink("< RETURN HOME", "Index", "Home")
     </div>
 </div>

@@ -426,6 +426,7 @@
     <Content Include="Content\img\all-time.png" />
     <Content Include="Content\img\bench-icon.png" />
     <Content Include="Content\img\clean-icon.png" />
+    <Content Include="Content\img\error\logo.png" />
     <Content Include="Content\img\error\back.png" />
     <Content Include="Content\img\error\page_not_found.png" />
     <Content Include="Content\img\logo.png" />

@@ -1,6 +1,19 @@
 ﻿@{
-    Layout = null;
+    //Layout = "~/Areas/Default/Views/Shared/_Layout.cshtml";
+    if (HttpContext.Current.User.ToString() != "anonym")
+    {
+        Layout = "~/Areas/Default/Views/Shared/_BootstrapLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Areas/Default/Views/Shared/_BootstrapLayoutNoSide.cshtml";
+    }
     ViewBag.Title = "Error";
 }
-
-<h2>Error</h2>
+<div class="side-body">
+    <div class="page-not-found-container">
+        <img src="~/Content/img/error/logo.png">
+        <p>Whoops! Looks like there was an error.</p>
+        @Html.ActionLink("< RETURN HOME", "Index", "Home")
+    </div>
+</div>
