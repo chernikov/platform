@@ -136,9 +136,15 @@
 
     this.CheckHeader = function () {
         var value = $("#Header").val();
-        var error = "The length of the Title should not exceed 50 characters";
+        var error = "";
         $("#header-error-message").remove();
-        if (value.length > 50) {
+        if (value.length == 0) {
+            error = "The Title is required.";
+        }
+        else if (value.length > 50) {
+            error = "The length of the Title should not exceed 50 characters";
+        }
+        if (error.length > 0) {
             $("#Header").parent().addClass("has-error");
             $("#Header").after('<div id="header-error-message" class="error">' + error + '</div>');
             return false;
@@ -153,7 +159,7 @@
         var parser = document.createElement("a");
         parser.href = url;
         if (parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com" ||
-            parser.hostname === "vimeo.com" || parser.hostname === "www.vimeo.com")
+            parser.hostname === "vimeo.com" || parser.hostname === "www.vimeo.com" || parser.hostname === "www.hudl.com")
             return true;
         else
             return false;
@@ -161,10 +167,10 @@
     }
 
     this.ToggleUrlVideoError = function () {
-        var youtubeURL = $("#VideoUrl").val().trim();
+        var videoURL = $("#VideoUrl").val().trim();
         $("#VideoUrl").parent().removeClass('has-error');
-        if (youtubeURL.length > 0) {
-            if (_this.CheckVideoURL(youtubeURL)) {
+        if (videoURL.length > 0) {
+            if (_this.CheckVideoURL(videoURL)) {
                 $("#url-error-message").remove();
             }
             else {

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using HtmlAgilityPack;
 
 namespace platformAthletic.Tools.Video
 {
@@ -18,7 +19,7 @@ namespace platformAthletic.Tools.Video
 
         public static string GetVideoByUrl(string url)
         {
-            return GetVideoByUrl(url, 420, 315);
+            return GetVideoByUrl(url, 800, 600);
         }
 
         public static string GetVideoByUrl(string url, int width, int height)
@@ -57,6 +58,13 @@ namespace platformAthletic.Tools.Video
                             resultCode = "<iframe width='" + widthStr + "' height='"+heightStr+"' src='https://www.youtube.com/embed/" + id + "' frameborder='0' allowfullscreen></iframe>";
                         }
                         break;
+                    case "www.hudl.com":
+                        //example:
+                        //http://www.hudl.com/athlete/2122944/highlights/206727383/v2
+                        //http://www.hudl.com/team/42273/highlights/101619817
+                        //resultCode = "<iframe  width='" + widthStr + "' height='" + heightStr + "' src='http://www.hudl.com/embed/" + uriResult.Segments[1] + uriResult.Segments[2] + "highlights/" + uriResult.Segments[4] + "' frameborder='0' allowfullscreen></iframe>";
+                        resultCode = "<iframe  width='" + widthStr + "' height='" + heightStr + "' src='http://www.hudl.com/embed/" + String.Join("", uriResult.Segments.Skip(1).Take(2)) + "highlights/" + uriResult.Segments[4] + "' frameborder='0' allowfullscreen></iframe>";
+                        break;
                 }
                 return resultCode;
             }
@@ -75,7 +83,8 @@ namespace platformAthletic.Tools.Video
                         urlVideo.Host != "www.youtube.com" &&
                         urlVideo.Host != "youtube.com" &&
                         urlVideo.Host != "vimeo.com" &&
-                        urlVideo.Host != "www.vimeo.com")
+                        urlVideo.Host != "www.vimeo.com" &&
+                        urlVideo.Host != "www.hudl.com" )
                     {
                         return "This source is not supported";
                     }
@@ -134,6 +143,19 @@ namespace platformAthletic.Tools.Video
                                 logger.Error("Max resolution thumb can't be downloaded (" + ex.Message + ")");
                                 resultCode = string.Format("http://img.youtube.com/vi/{0}/default.jpg", id);
                             }
+                        }
+                        break;
+                    case "www.hudl.com":
+                        webClient = new WebClient();
+                        webClient.Encoding = UTF8Encoding.UTF8;
+                        string page = webClient.DownloadString(uriResult.AbsoluteUri);
+                        HtmlAgilityPack.HtmlDocument doc = new HtmlDocument();
+                        doc.LoadHtml(page);
+                        HtmlAgilityPack.HtmlNode node = doc.DocumentNode.SelectSingleNode("//meta[@property='og:image']");
+                        resultCode = node.GetAttributeValue("content", String.Empty);
+                        if (!String.IsNullOrEmpty(resultCode))
+                        {
+                            resultCode = resultCode.Split('?')[0];
                         }
                         break;
                 }
