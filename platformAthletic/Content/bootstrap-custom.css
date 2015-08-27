@@ -1082,7 +1082,7 @@ th {
 }
 
 .platform-icon {
-    background: #eee url("/Content/img/platform-icon.png") no-repeat center center;
+/*    background: #eee url("/Content/img/platform-icon.png") no-repeat center center;*/
     width: 205px;
     height: 205px;
     border: #e3e2e2;
