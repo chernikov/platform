@@ -168,14 +168,29 @@
 
     this.ToggleUrlVideoError = function () {
         var videoURL = $("#VideoUrl").val().trim();
+        var error_msg = ""
         $("#VideoUrl").parent().removeClass('has-error');
+        $("#url-error-message").remove();
+        //if (videoURL.length > 0) {
+        //    if (_this.CheckVideoURL(videoURL)) {
+        //        $("#url-error-message").remove();
+        //    }
+        //    else {
+        //        $("#url-error-message").remove();
+        //        $("#VideoUrl").after('<div id="url-error-message" class="error">This source is not supported</div>');
+        //        $("#VideoUrl").parent().addClass('has-error');
+        //        return false;
+        //    }
+        //}
         if (videoURL.length > 0) {
-            if (_this.CheckVideoURL(videoURL)) {
-                $("#url-error-message").remove();
+            if (!_this.CheckVideoURL(videoURL)) {
+                error_msg += "This source is not supported. ";
             }
-            else {
-                $("#url-error-message").remove();
-                $("#VideoUrl").after('<div id="url-error-message" class="error">This source is not supported</div>');
+            if (videoURL.length > 500) {
+                error_msg += "Video link should not exceed 500 characters.";
+            }
+            if (error_msg.length > 0) {
+                $("#VideoUrl").after('<div id="url-error-message" class="error">' + error_msg + '</div>');
                 $("#VideoUrl").parent().addClass('has-error');
                 return false;
             }

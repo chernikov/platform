@@ -295,13 +295,13 @@
         var parser = document.createElement("a");
         parser.href = $("#VideoUrl").val();
         if (!(parser.hostname === "youtu.be" || parser.hostname === "www.youtube.com" || parser.hostname === "youtube.com" ||
-            parser.hostname === "vimeo.com" || parser.hostname === "www.vimeo.com")) {
-            error_msg = "This source is not supported";
+            parser.hostname === "vimeo.com" || parser.hostname === "www.vimeo.com" || parser.hostname === "www.hudl.com")) {
+            error_msg += "This source is not supported. ";
         }
         if ($("#VideoUrl").val().length === 0)
-            error_msg = "Enter link video";
+            error_msg += "Enter link video. ";
         if ($("#VideoUrl").val().length > 500)
-            error_msg = "Video link should not exceed 500 characters";
+            error_msg += "Video link should not exceed 500 characters.";
 
         $("#videourl-error-message").remove();
         $("#VideoUrl").parent().removeClass("has-error");

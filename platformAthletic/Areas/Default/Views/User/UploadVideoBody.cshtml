@@ -14,7 +14,8 @@
     <div class="form-group">
         <label for="VideoUrl" class="col-sm-2 control-label">Video</label>
         <div class="col-sm-10">
-            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "like: https://www.youtube.com/watch?v=xfU5UXCxU04" })
+            @*@Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "like: https://www.youtube.com/watch?v=xfU5UXCxU04" })*@
+            @Html.TextBox("VideoUrl", Model.VideoUrl, new { @class = "form-control", placeholder = "Only Hudl, Youtube and Vimeo links allowed." })
 
             @Html.ValidationMessage("VideoUrl")
         </div>
