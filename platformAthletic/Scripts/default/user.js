@@ -5,7 +5,7 @@
         _this.drawPerformance();
 
         $(".edit-profile").click(function () {
-            if ($(this).data("mode") == "edit") {
+            if ($(this).data("mode") === "edit") {
                 _this.stopEdit();
                 $(this).text("EDIT PROFILE");
                 $(this).data("mode", "no-edit");
@@ -68,7 +68,7 @@
 
         $("#ToggleAttendance").click(function () {
             _this.changeTodayAttendance($(this));
-        })
+        });
 
 
         $(document).on("click", ".sbcChange", function () {
@@ -87,7 +87,7 @@
         $(document).on("blur", "#VideoUrl", function () {
             _this.checkVideoUrl();
         });
-    }
+    };
 
     this.drawPerformance = function () {
 
@@ -110,7 +110,7 @@
             scaleShowVerticalLines: false,
             responsive: true
         });
-    }
+    };
 
     this.stopEdit = function () {
         console.log("Stop edit");
@@ -122,7 +122,7 @@
                 $("#UserInfoWrapper").html(data);
             }
         });
-    }
+    };
 
     this.startEdit = function () {
         console.log("Start edit");
@@ -135,7 +135,7 @@
                 _this.onEdit();
             }
         });
-    }
+    };
 
     this.updateEdit = function () {
         var data = $("#EditUserInfoForm").serialize();
@@ -148,7 +148,7 @@
                 _this.onEdit();
             }
         });
-    }
+    };
 
     this.onEdit = function () {
         $('#Birthday').mask("00/00/0000", { placeholder: "__/__/____" });
@@ -176,7 +176,7 @@
                 allowedExtensions: ["jpeg", "png", "jpg"]
             }
         });
-    }
+    };
 
     this.save = function (item) {
         console.log("Save " + item.attr("name") + " " + item.val());
@@ -192,7 +192,7 @@
                 console.log(data);
             }
         });
-    }
+    };
 
     this.changeSbc = function (item) {
         var id = $("#UserID").val();
@@ -212,7 +212,7 @@
                 _this.updateRank();
             }
         });
-    }
+    };
 
     this.updateSbc = function () {
         $.ajax({
@@ -225,7 +225,7 @@
                 $("#SbcWrapper").html(data);
             }
         });
-    }
+    };
 
     this.updateRank = function () {
         $.ajax({
@@ -238,7 +238,7 @@
                 $("#RankWrapper").html(data);
             }
         });
-    }
+    };
 
     this.updateSchoolRank = function () {
         $.ajax({
@@ -251,7 +251,7 @@
                 $("#SchoolRankWrapper").html(data);
             }
         });
-    }
+    };
 
 
 
@@ -265,8 +265,8 @@
                 $("#ModalWrapper").html(data);
                 $("#uploadVideoModal").modal();
             }
-        })
-    }
+        });
+    };
 
     this.checkHeader = function () {
         var val = $("#Header").val();
@@ -285,10 +285,10 @@
             var element_msg = '<div class="error" id="head-error-message">' + error_msg + '</div>';
             $("#Header").after(element_msg);
             $("#Header").parent().addClass("has-error");
-            return false
+            return false;
         }
         return true;
-    }
+    };
 
     this.checkVideoUrl = function () {
         var error_msg = "";
@@ -310,10 +310,10 @@
             var element_msg = '<div class="error" id="videourl-error-message">' + error_msg + '</div>';
             $("#VideoUrl").after(element_msg);
             $("#VideoUrl").parent().addClass("has-error");
-            return false
+            return false;
         }
         return true;
-    }
+    };
 
     this.uploadVideo = function () {
 
@@ -327,8 +327,8 @@
             success: function (data) {
                 $("#UploadVideoBodyWrapper").html(data);
             }
-        })
-    }
+        });
+    };
 
 
     this.showRemoveVideo = function (id) {
@@ -340,8 +340,8 @@
                 $("#ModalWrapper").html(data);
                 $("#removeVideoModal").modal();
             }
-        })
-    }
+        });
+    };
 
     this.removeVideo = function (id) {
         $.ajax({
@@ -352,8 +352,8 @@
                 window.location.reload();
 
             }
-        })
-    }
+        });
+    };
 
 
     this.showAttendanceCalendar = function () {
@@ -365,8 +365,8 @@
                 $("#ModalWrapper").html(data);
                 $("#modalCalendar").modal();
             }
-        })
-    }
+        });
+    };
 
     this.changeAttendanceCalendar = function (id, date) {
         $.ajax({
@@ -379,8 +379,8 @@
             success: function (data) {
                 $("#ModalCalendarBodyWrapper").html(data);
             }
-        })
-    }
+        });
+    };
 
     this.changeAttendance = function (item) {
         var id = item.data("id");
@@ -395,17 +395,17 @@
                 attendance: attendance
             },
             success: function (data) {
-                if (data.result == "ok") {
+                if (data.result === "ok") {
                     $("span", item).toggleClass("attendance");
                 }
             }
-        })
-    }
+        });
+    };
 
     this.changeTodayAttendance = function (item) {
         var id = item.data("id");
         var date = item.data("date");
-        var attendance = $("span", item).length == 0;
+        var attendance = $("span", item).length === 0;
         $.ajax({
             type: "POST",
             url: "/User/SetAttendance",
@@ -415,7 +415,7 @@
                 attendance: attendance
             },
             success: function (data) {
-                if (data.result == "ok") {
+                if (data.result === "ok") {
                     if (attendance) {
                         item.html("<span class=\"glyphicon glyphicon-ok\"></span> ATTENDANCE LOGGED");
                     } else {
@@ -424,8 +424,8 @@
                     }
                 }
             }
-        })
-    }
+        });
+    };
 }
 
 var user = null;

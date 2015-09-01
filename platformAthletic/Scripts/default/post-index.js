@@ -1,8 +1,6 @@
-﻿function PostIndex()
-{
+﻿function PostIndex() {
     var _this = this;
-    this.init = function ()
-    {
+    this.init = function () {
         if (common.isMobile()) {
             $(".video-wrapper").each(function () {
                 $("iframe").attr("width", "100%");
@@ -25,7 +23,7 @@
             return false;
         });
 
-       
+
 
         $(document).on("click", "#SubmitEditPostBtn", function () {
             _this.SubmitPost();
@@ -44,7 +42,7 @@
         });
 
         $(document).on("blur", "#VideoUrl", function () {
-            _this.ToggleUrlVideoError()
+            _this.ToggleUrlVideoError();
         });
 
         $(document).on("input", "#Header", function () {
@@ -56,7 +54,7 @@
             $.ajax({
                 type: "GET",
                 url: "/Post/Edit",
-                data : {id : $(this).data("id")},
+                data: { id: $(this).data("id") },
                 success: function (data) {
                     wrapper.html(data);
                     if (!common.isMobile()) {
@@ -104,7 +102,7 @@
             });
             return false;
         });
-    }
+    };
 
     this.ChangeListPost = function (href) {
 
@@ -115,15 +113,13 @@
                 $("#PostListWrapper").html(data);
             }
         });
-    }
+    };
 
-    this.ShowAddPost = function ()
-    {
+    this.ShowAddPost = function () {
         $.ajax({
             type: "GET",
             url: "/Post/Create",
-            success: function (data)
-            {
+            success: function (data) {
                 $("#AddPostWrapper").html(data);
                 if (!common.isMobile()) {
                     CKEDITOR.replace('Text');
@@ -132,13 +128,13 @@
                 _this.onEdit();
             }
         });
-    }
+    };
 
     this.CheckHeader = function () {
         var value = $("#Header").val();
         var error = "";
         $("#header-error-message").remove();
-        if (value.length == 0) {
+        if (value.length === 0) {
             error = "The Title is required.";
         }
         else if (value.length > 50) {
@@ -153,7 +149,7 @@
             $("#Header").parent().removeClass("has-error");
             return true;
         }
-    }
+    };
 
     this.CheckVideoURL = function (url) {
         var parser = document.createElement("a");
@@ -164,11 +160,11 @@
         else
             return false;
 
-    }
+    };
 
     this.ToggleUrlVideoError = function () {
         var videoURL = $("#VideoUrl").val().trim();
-        var error_msg = ""
+        var error_msg = "";
         $("#VideoUrl").parent().removeClass('has-error');
         $("#url-error-message").remove();
         //if (videoURL.length > 0) {
@@ -196,18 +192,19 @@
             }
         }
         return true;
-    }
+    };
 
     this.SubmitPost = function () {
         if (!common.isMobile()) {
             $("#Text").val(CKEDITOR.instances.Text.getData());
         }
-        if (_this.ToggleUrlVideoError() === false || _this.CheckHeader() === false)
-            return false
+        if (_this.ToggleUrlVideoError() === false || _this.CheckHeader() === false) {
+            return false;
+        }
 
         $.ajax({
             type: "POST",
-            data : $("#EditPostForm").serialize(),
+            data: $("#EditPostForm").serialize(),
             url: "/Post/EditPost",
             success: function (data) {
                 $("#AddPostWrapper").html(data);
@@ -218,39 +215,38 @@
                 _this.onEdit();
             }
         });
-    }
+    };
 
-    this.onEdit = function ()
-    {
+    this.onEdit = function () {
         //if (!common.isMobile()) {
-            var obj = new qq.FineUploader({
-                element: $("#AddImage")[0],
-                multiple: false,
-                request: {
-                    endpoint: "/Post/UploadFile",
-                },
-                text: {
-                    uploadButton: "ADD TITLE IMAGE"
-                },
-                callbacks: {
-                    onComplete: function (id, fileName, responseJSON) {
-                        if (responseJSON.success) {
-                            $("#TitleImagePath").val(responseJSON.fileUrl);
-                            $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=400&h=300&mode=crop&scale=both");
-                            $("#ImagePreview").show();
-                            $("#RemoveTitleImage").show();
-                        }
+        var obj = new qq.FineUploader({
+            element: $("#AddImage")[0],
+            multiple: false,
+            request: {
+                endpoint: "/Post/UploadFile",
+            },
+            text: {
+                uploadButton: "ADD TITLE IMAGE"
+            },
+            callbacks: {
+                onComplete: function (id, fileName, responseJSON) {
+                    if (responseJSON.success) {
+                        $("#TitleImagePath").val(responseJSON.fileUrl);
+                        $("#ImagePreview").attr("src", responseJSON.fileUrl + "?w=400&h=300&mode=crop&scale=both");
+                        $("#ImagePreview").show();
+                        $("#RemoveTitleImage").show();
                     }
-                },
-                validation: {
-                    allowedExtensions: ["jpeg", "png", "jpg"]
                 }
-            });
+            },
+            validation: {
+                allowedExtensions: ["jpeg", "png", "jpg"]
+            }
+        });
         //} else {
         //    $("#AddImage").hide();
         //}
-    }
-}
+    };
+};
 
 var postIndex = null;
 $(function () {
