@@ -17,7 +17,7 @@ namespace platformAthletic.Models.ViewModels
         {
             Visa = 0x01, 
             MasterCard = 0x02, 
-            AmericanExpress = 0x03, 
+       /*     AmericanExpress = 0x03, */
             Discovery = 0x04
         }
 
@@ -97,7 +97,7 @@ namespace platformAthletic.Models.ViewModels
             {
                 yield return new SelectListItem() { Value = ((int)CardTypeEnum.Visa).ToString(), Text = "Visa", Selected = CardType == (int)CardTypeEnum.Visa };
                 yield return new SelectListItem() { Value = ((int)CardTypeEnum.MasterCard).ToString(), Text = "MasterCard", Selected = CardType == (int)CardTypeEnum.MasterCard };
-                yield return new SelectListItem() { Value = ((int)CardTypeEnum.AmericanExpress).ToString(), Text = "AmEx", Selected = CardType == (int)CardTypeEnum.AmericanExpress };
+           /*     yield return new SelectListItem() { Value = ((int)CardTypeEnum.AmericanExpress).ToString(), Text = "AmEx", Selected = CardType == (int)CardTypeEnum.AmericanExpress };*/
                 yield return new SelectListItem() { Value = ((int)CardTypeEnum.Discovery).ToString(), Text = "Discovery", Selected = CardType == (int)CardTypeEnum.Discovery };
             }
         }
