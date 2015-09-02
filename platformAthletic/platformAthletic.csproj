@@ -1801,6 +1801,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery-1.9.0.min.map" />
+    <Content Include="Views\Shared\GoogleAnalytics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1819,7 +1820,6 @@
     <Folder Include="Media\files\upload\" />
     <Folder Include="Media\files\uservideos\" />
     <Folder Include="Media\logs\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
