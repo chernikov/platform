@@ -1,7 +1,7 @@
 ﻿@model Post
 
 <a href="@Url.Action("Index", "Post", new {id = Model.ID })" class="promoted">
-    <div class="promoted-post">PROMOTED POST</div>
+    <div class="promoted-post">FEATURED POST</div>
     <div class="img-link">
 
         @if (!string.IsNullOrWhiteSpace(Model.TitleImagePath))
@@ -13,7 +13,7 @@
         }
     </div>
 
-    <div class="best-articles">BEST ARTICLES</div>
+    @*<div class="best-articles">BEST ARTICLES</div>*@
     <h1>@Model.Header</h1>
     <div class="views-count"><span class="glyphicon  glyphicon-eye-open"></span>@Model.CountOfView</div>
 

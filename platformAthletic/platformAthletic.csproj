@@ -434,6 +434,7 @@
     <Content Include="Content\img\error\back.png" />
     <Content Include="Content\img\error\page_not_found.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\Logo_30_1.png" />
     <Content Include="Content\img\month.png" />
     <Content Include="Content\img\platform-icon.png" />
     <Content Include="Content\img\social\blogger.png" />

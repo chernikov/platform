@@ -6,7 +6,7 @@
 {
     <div class="post admin-post">
         <div class="pull-left author-icon">
-            <img src="~/Content/img/logo_30.png" />
+            <img src="~/Content/img/logo_30_1.png" />
         </div>
 
         <div class="pull-right date">
@@ -56,7 +56,8 @@ else
             </div>
         }
         <div class="text">
-            @Html.Raw(Model.Text.NlToBr())
+            @*@Html.Raw(Model.Text.NlToBr())*@
+            @Html.Raw(Model.Text)
         </div>
 
         @if (Model.UserID == currentUser.ID)
