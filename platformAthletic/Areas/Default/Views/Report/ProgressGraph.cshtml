@@ -1,4 +1,10 @@
 ﻿@model ProgressGraphInfo
+@{
+    var diffClean = Model.EndSBC.Clean - Model.StartSBC.Clean;
+    var diffBench = Model.EndSBC.Bench - Model.StartSBC.Bench;
+    var diffSquat = Model.EndSBC.Squat - Model.StartSBC.Squat;
+    var diffTotal = diffClean + diffBench + diffSquat;
+}
 <div class="modal fade" id="modalProgressGraph" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -21,17 +27,145 @@
                 <div id="playerTabs-content" class="tab-content">
                     <div class="tab-pane active performance7" id="7-day">
 
-                        <div class="performance-chart-wrapper">
+                        <div class="performance-chart-wrapper pull-left">
                             <canvas id="PerformanceChart" class="performance-chart"></canvas>
+                        </div>
+                        <div class="pull-right perfomance-change">
+                            <div class="badge badge-performance squat">
+                                <h2 class="text-center">
+                                    SQUAT
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffSquat > 0)
+                                    {
+                                        <text>+@diffSquat</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffSquat</text>
+                                    }
+                                </h1>
+
+                            </div>
+                            <div class="badge badge-performance bench">
+                                <h2 class="text-center">
+                                    BENCH
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffBench > 0)
+                                    {
+                                        <text>+@diffBench</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffBench</text>
+                                    }
+                                </h1>
+                            </div>
+                            <div class="badge badge-performance clean">
+                                <h2 class="text-center">
+                                    CLEAN
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffClean > 0)
+                                    {
+                                        <text>+@diffClean</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffClean</text>
+                                    }
+                                </h1>
+                            </div>
+                            <div class="badge badge-performance total">
+                                <h2 class="text-center">
+                                    TOTAL
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffTotal > 0)
+                                    {
+                                        <text>+@diffTotal</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffTotal</text>
+                                    }
+                                </h1>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane performance30" id="30-day">
-                        <div class="performance-chart-wrapper">
+                        <div class="performance-chart-wrapper pull-left">
                             <canvas id="PerformanceChart30" class="performance-chart"></canvas>
                         </div>
-                    </div>
-                </div>
+                        <div class="pull-right perfomance-change">
+                            <div class="badge badge-performance squat">
+                                <h2 class="text-center">
+                                    SQUAT
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffSquat > 0)
+                                    {
+                                        <text>+@diffSquat</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffSquat</text>
+                                    }
+                                </h1>
 
+                            </div>
+                            <div class="badge badge-performance bench">
+                                <h2 class="text-center">
+                                    BENCH
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffBench > 0)
+                                    {
+                                        <text>+@diffBench</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffBench</text>
+                                    }
+                                </h1>
+                            </div>
+                            <div class="badge badge-performance clean">
+                                <h2 class="text-center">
+                                    CLEAN
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffClean > 0)
+                                    {
+                                        <text>+@diffClean</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffClean</text>
+                                    }
+                                </h1>
+                            </div>
+                            <div class="badge badge-performance total">
+                                <h2 class="text-center">
+                                    TOTAL
+                                </h2>
+                                <h1 class="text-center">
+                                    @if (diffTotal > 0)
+                                    {
+                                        <text>+@diffTotal</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@diffTotal</text>
+                                    }
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                
                
             </div>
         </div>

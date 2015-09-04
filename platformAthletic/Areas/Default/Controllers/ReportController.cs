@@ -92,11 +92,18 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
+                
+                SBCValue startSBC = user.SBCHistory(startDate);
+                SBCValue endSBC = user.SBCHistory(endDate);
+                startSBC = startSBC == null ? new SBCValue() : startSBC;
+                endSBC = endSBC == null ? new SBCValue() : endSBC;
                 var progressInfo = new ProgressGraphInfo()
                 {
                     User = user,
                     StartDate = startDate,
-                    EndDate = endDate
+                    EndDate = endDate,
+                    StartSBC = startSBC,
+                    EndSBC = endSBC
                 };
                 return View(progressInfo);
             }

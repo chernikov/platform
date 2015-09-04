@@ -14,6 +14,8 @@ namespace platformAthletic.Models.Info
 
         public DateTime EndDate { get; set; }
 
+        public SBCValue StartSBC { get; set; }
 
+        public SBCValue EndSBC { get; set; }
     }
 }

@@ -94,7 +94,7 @@
            if (document.location.search.length !== 0) {
                var loc = document.location;
                var oldPath = loc.href;
-               var newPath = new Array();
+               var newPath = [];
                oldPath = oldPath.split("&");
 
                for (var i in oldPath) {
@@ -116,12 +116,12 @@
                $("#SearchAthlete").val("");
            }
        });
-    }
+    };
 
     this.getCurrentFilter = function () {
         var href = "";
         href = $.param.querystring(href, 'SportID=' + $("#SportID").val());
-        if ($("#SportID").val() != "") {
+        if ($("#SportID").val() !== "") {
             href = $.param.querystring(href, 'FieldPositionID=' + $("#FieldPositionID").val());
         } else {
             href = $.param.querystring(href, 'FieldPositionID=');
@@ -134,20 +134,20 @@
         href = $.param.querystring(href, 'Sort=TotalDesc');
         console.log(href);
         return href;
-    }
+    };
 
     this.filterAll = function () {
         var currentFilter = _this.getCurrentFilter();
-        if ($("#StartPeriod").val() == "") {
+        if ($("#StartPeriod").val() === "") {
             $("#StartPeriodError").show();
             return;
         }
-        if ($("#EndPeriod").val() == "") {
+        if ($("#EndPeriod").val() === "") {
             $("#EndPeriodError").show();
             return;
         }
         window.location = $.param.querystring(window.location.href, currentFilter);
-    }
+    };
 
     this.showGraph = function (id) {
         $.ajax({
@@ -158,8 +158,7 @@
                 startDate: $("#StartDate").val(),
                 endDate: $("#EndDate").val()
             },
-            success: function (data)
-            {
+            success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalProgressGraph").modal();
                 $("#modalProgressGraph").on("shown.bs.modal", function () {
@@ -167,14 +166,14 @@
                 });
 
                 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                    if (e.currentTarget.hash == "#30-day") {
+                    if (e.currentTarget.hash === "#30-day") {
                         _this.drawGraph30(id);
-                    };
+                    }
                 });
-                
+
             }
-        })
-    }
+        });
+    };
     this.drawGraph = function (id) {
         // This will get the first returned node in the jQuery collection.
         var data = null;
@@ -193,12 +192,12 @@
                     bezierCurve: false,
                     scaleShowVerticalLines: false,
                     maintainAspectRatio: false,
-                    responsive : true
+                    responsive: true
                 });
 
             },
         });
-    }
+    };
 
     
     this.drawGraph30 = function (id) {
@@ -223,7 +222,7 @@
                 });
             },
         });
-    }
+    };
 
     this.substringMatcher = function (strs) {
         return function findMatches(q, cb) {
@@ -259,7 +258,7 @@
                 $("#modalPlayerInfo").modal();
             }
         });
-    }
+    };
 
 }
 
