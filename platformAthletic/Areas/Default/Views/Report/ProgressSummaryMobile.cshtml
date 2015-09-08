@@ -18,7 +18,7 @@
                     }
                     else if(squat < 0)
                     {
-                        <span class="sign minus">-</span>
+                        <span class="sign minus"></span>
                     }
                     <span class="value @(squat > 0 ? "plus" : "") @(squat < 0 ? "minus" : "")">@Model.Squat</span>
                     <span class="lbs">lbs</span>
@@ -35,7 +35,7 @@
                     }
                     else if (bench < 0)
                     {
-                        <span class="sign minus">-</span>
+                        <span class="sign minus"></span>
                     }
                     <span class="value @(bench > 0 ? "plus" : "") @(bench < 0 ? "minus" : "")">@Model.Bench</span>
                     <span class="lbs">lbs</span>
@@ -53,7 +53,7 @@
                     }
                     else if (clean < 0)
                     {
-                        <span class="sign minus">-</span>
+                        <span class="sign minus"></span>
                     }<span class="value @(clean > 0 ? "plus" : "") @(clean < 0 ? "minus" : "")">@Model.Clean</span>
                     <span class="lbs">lbs</span>
                 </td>
@@ -68,7 +68,7 @@
                     }
                     else if (total < 0)
                     {
-                        <span class="sign minus">-</span>
+                        <span class="sign minus"></span>
                     }
                     <span class="value @(total > 0 ? "plus" : "") @(total < 0 ? "minus" : "")">@Model.Total</span>
                     <span class="lbs">lbs</span>

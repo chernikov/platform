@@ -64,5 +64,14 @@ namespace platformAthletic.Areas.Default.Controllers
             mail.Host = host;
             return Email("Resend", mail);
         }
+
+        public EmailResult ServerError(Dictionary<string,object> data)
+        {                        
+            To.Add(data["Email"].ToString());
+            Subject = data["Subject"].ToString();
+            MessageEncoding = Encoding.UTF8;  
+            return Email("ServerError", data);
+        }
+
     }
 }

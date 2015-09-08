@@ -18,6 +18,12 @@ using platformAthletic.Tools.Mail;
 using platformAthletic.Global;
 using Ninject.Web.Common;
 using platformAthletic.Areas.Cms;
+using System.Collections.Specialized;
+using platformAthletic.Areas.Default.Controllers;
+using platformAthletic.Models.Info;
+using System.Collections.Generic;
+using System.IO;
+using platformAthletic.Controllers;
 
 
 namespace platformAthletic
@@ -177,6 +183,133 @@ namespace platformAthletic
             var config = AppKernel.Get<IConfig>();
             FailMessage.Check(repository);
             FailMessage.Process(repository, config);*/
+        }
+
+        protected void Application_Error()
+        {
+            if ((Request.Path ?? "").ToLower().StartsWith("/media/")
+                || (Request.Path ?? "").ToLower().StartsWith("/content/")
+                )
+                return;
+
+            string debug = System.Configuration.ConfigurationManager.AppSettings["DebugErrors"];
+            if (debug == "1") return;
+
+            var exception = Server.GetLastError();
+            if (exception.Message.Contains("dangerous Request"))
+            {
+                return;
+            }
+            HttpException httpException = null;
+            if (exception is HttpException) httpException = exception as HttpException;
+
+            Response.Clear();
+            Server.ClearError();
+            Response.TrySkipIisCustomErrors = true;
+
+            var routeData = new RouteData();
+            routeData.Values["controller"] = "Error";
+            if (httpException != null)
+            {
+                Response.StatusCode = httpException.GetHttpCode();
+                if (httpException.GetHttpCode() == 404) routeData.Values["action"] = "NotFoundPage";
+                else if (httpException.GetHttpCode() == 410) routeData.Values["action"] = "NotFoundPage";
+                else if (httpException.GetHttpCode() == 403) routeData.Values["action"] = "Index";
+                else
+                {
+                    if (httpException.GetType().Name == "HttpRequestValidationException")
+                    {
+                        Response.StatusCode = 403;
+                        routeData.Values["action"] = "Index";
+
+                    }
+                    else routeData.Values["action"] = "Index";
+                }
+            }
+            else
+            {
+                routeData.Values["action"] = "ServerError";
+                Response.StatusCode = 500;
+                if (!string.IsNullOrEmpty(exception.Message))
+                {
+                    if (exception.Message.Contains("timeout") || exception.Message.Contains("Timeout"))
+                    {
+                        routeData.Values["action"] = "Index";
+                        Response.StatusCode = 504;
+                    }
+                }
+            }
+
+            if (routeData.Values["action"].ToString() == "ServerError")
+            {
+                try
+                {
+                    string paramInfo = "";
+                    NameValueCollection pColl = Request.Params;
+                    for (int i = 0; i <= pColl.Count - 1; i++)
+                    {
+                        paramInfo += "[" + pColl.GetKey(i) + "] = ";
+                        string[] pValues = pColl.GetValues(i);
+                        for (int j = 0; j <= pValues.Length - 1; j++)
+                        {
+                            paramInfo += pValues[j] + ", ";
+                        }
+                        paramInfo += "\n";
+                    }
+                    string formInfo = "";
+                    NameValueCollection fColl = Request.Form;
+                    for (int i = 0; i <= fColl.Count - 1; i++)
+                    {
+                        formInfo += "[" + fColl.GetKey(i) + "] = ";
+                        string[] pValues = fColl.GetValues(i);
+                        for (int j = 0; j <= pValues.Length - 1; j++)
+                        {
+                            formInfo += pValues[j] + ", ";
+                        }
+                        formInfo += "\n";
+                    }
+                    /*MAIL*/
+                    string _serviceEmail = System.Configuration.ConfigurationManager.AppSettings["ServiceEmail"];
+                    var serviceEmails = _serviceEmail.Split(',');
+
+                    foreach (var email in serviceEmails)
+                    {
+                        var mailController = new MailController();
+                        var mailInfo = new Dictionary<string, object> 
+                        {
+                          { "Subject", "Server Error Athletic Platforms" },
+                          { "Email",  email},
+                          { "Link", Request.Path },
+                          { "LinkFull", Request.Url.AbsolutePath },
+                          { "Method", Request.HttpMethod },                      
+                          { "Params", formInfo },                      
+                          { "AllParams", paramInfo },                      
+                          { "Error", exception },                      
+                          { "ErrorCode", 500 }                      
+                        };
+
+                        var mail = mailController.ServerError(mailInfo);
+                        using (var reader = new StreamReader(mail.Mail.AlternateViews[0].ContentStream))
+                        {
+                            mailInfo["Body"] = reader.ReadToEnd();
+                        }
+                        MailSender.SendMail(mailInfo["Email"].ToString(), mailInfo["Subject"].ToString(), mailInfo["Body"].ToString());
+                    }
+
+                    /* -- */
+                }
+                catch { }
+            }
+
+
+
+            Response.Redirect("/" + routeData.Values["controller"] + "/" + routeData.Values["action"]);
+
+            /*routeData.Values.Add("area", "default");
+            IController errorsController = new platformAthletic.Areas.Default.Controllers.ErrorController();
+            var rc = new RequestContext(new HttpContextWrapper(Context), routeData);             
+            errorsController.Execute(rc);
+             * */
         }
     }
 }
