@@ -203,9 +203,9 @@ namespace platformAthletic
             HttpException httpException = null;
             if (exception is HttpException) httpException = exception as HttpException;
 
-            Response.Clear();
+            /*Response.Clear();
             Server.ClearError();
-            Response.TrySkipIisCustomErrors = true;
+            Response.TrySkipIisCustomErrors = true;*/
 
             var routeData = new RouteData();
             routeData.Values["controller"] = "Error";
@@ -303,7 +303,7 @@ namespace platformAthletic
 
 
 
-            Response.Redirect("/" + routeData.Values["controller"] + "/" + routeData.Values["action"]);
+            //Response.Redirect("/" + routeData.Values["controller"] + "/" + routeData.Values["action"]);
 
             /*routeData.Values.Add("area", "default");
             IController errorsController = new platformAthletic.Areas.Default.Controllers.ErrorController();

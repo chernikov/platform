@@ -1,8 +1,8 @@
 ﻿@{
     var currentUser = ((platformAthletic.Controllers.BaseController)ViewContext.Controller).CurrentUser;
     var mode = currentUser != null ? (platformAthletic.Model.User.ModeEnum)currentUser.Mode : platformAthletic.Model.User.ModeEnum.Normal;
-    string logo = "Content/img/logo_30.png";
-    if (!String.IsNullOrEmpty(currentUser.TeamLogo))
+    string logo = "/Content/img/logo_30.png";
+    if (currentUser != null && !String.IsNullOrEmpty(currentUser.TeamLogo))
     {
 
         logo = currentUser.TeamLogo + "?maxwidth=100&maxheight=40&crop=auto";
@@ -31,7 +31,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header pull-left">
                 <a class="navbar-brand" href="/">
-                    <img src="@logo" />
+                    <img src=@logo />
                 </a>
             </div>
             <div class="navbar-header pull-left">

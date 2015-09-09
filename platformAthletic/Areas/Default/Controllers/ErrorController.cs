@@ -16,12 +16,13 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult ServerError()
         {
+            Response.StatusCode = 500;
             return View("Index");
         }
 
         public new ActionResult NotFoundPage()
         {
-            /*Response.StatusCode = 404;*/
+            Response.StatusCode = 404;
             return View();
         }
 
