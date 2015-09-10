@@ -248,25 +248,33 @@ namespace platformAthletic
                     NameValueCollection pColl = Request.Params;
                     for (int i = 0; i <= pColl.Count - 1; i++)
                     {
-                        paramInfo += "[" + pColl.GetKey(i) + "] = ";
-                        string[] pValues = pColl.GetValues(i);
-                        for (int j = 0; j <= pValues.Length - 1; j++)
+                        try
                         {
-                            paramInfo += pValues[j] + ", ";
+                            paramInfo += "[" + pColl.GetKey(i) + "] = ";
+                            string[] pValues = pColl.GetValues(i);
+                            for (int j = 0; j <= pValues.Length - 1; j++)
+                            {
+                                paramInfo += pValues[j] + ", ";
+                            }
+                            paramInfo += "\n";
                         }
-                        paramInfo += "\n";
+                        catch { }
                     }
                     string formInfo = "";
                     NameValueCollection fColl = Request.Form;
                     for (int i = 0; i <= fColl.Count - 1; i++)
                     {
-                        formInfo += "[" + fColl.GetKey(i) + "] = ";
-                        string[] pValues = fColl.GetValues(i);
-                        for (int j = 0; j <= pValues.Length - 1; j++)
+                        try
                         {
-                            formInfo += pValues[j] + ", ";
+                            formInfo += "[" + fColl.GetKey(i) + "] = ";
+                            string[] pValues = fColl.GetValues(i);
+                            for (int j = 0; j <= pValues.Length - 1; j++)
+                            {
+                                formInfo += pValues[j] + ", ";
+                            }
+                            formInfo += "\n";
                         }
-                        formInfo += "\n";
+                        catch { }
                     }
                     /*MAIL*/
                     string _serviceEmail = System.Configuration.ConfigurationManager.AppSettings["ServiceEmail"];

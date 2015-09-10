@@ -1,0 +1,26 @@
+﻿@model Dictionary<string,object>
+
+@{
+    Layout = null;    
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<h1 style="color:Red;font-size: 18pt;">Ошибка приложения @Model["Method"] @Model["Link"]</h1>
+<p>
+    <pre>@Model["Params"]</pre>
+</p>
+<p style="font-family: Verdana;background-color:#ffffcc;">
+    <code>
+        <pre>@Model["Error"]</pre>
+    </code>
+</p>
+<br />
+<br />
+<a href="@Model["LinkFull"]">@Model["LinkFull"]</a>
+<br />
+<br />
+@DateTime.Now.ToShortDateString() - @DateTime.Now.ToShortTimeString()
+<p>
+    <pre>@Model["AllParams"]</pre>
+</p>
+</html>
