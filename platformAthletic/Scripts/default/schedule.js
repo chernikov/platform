@@ -77,8 +77,7 @@
             _this.loadCalendarPersonal(month);
         });
 
-
-        $(document).on('click', '.edit-week', function () {
+        $(document).on('click', '.edit-week', function (e) {
             _this.number = $(this).data("id");
             _this.date = $(this).data("date");
             var selected = $(this).data("macrocycle");

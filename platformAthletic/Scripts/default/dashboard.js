@@ -77,6 +77,7 @@ function Dashboard() {
                 }
             });
         });
+        
         var sbcChange = false;
         $(document).on("click", ".sbc-player-change", function () {
             if (sbcChange) return false;

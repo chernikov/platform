@@ -1,11 +1,11 @@
-﻿@model Dictionary<string,object>
+﻿@model Dictionary<string, object>
 
 @{
-    Layout = null;    
+    Layout = null;
 }
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<h1 style="color:Red;font-size: 18pt;">Ошибка приложения @Model["Method"] @Model["Link"]</h1>
+<h1 style="color:Red;font-size: 18pt;">Application Error @Model["Method"] @Model["Link"]</h1>
 <p>
     <pre>@Model["Params"]</pre>
 </p>

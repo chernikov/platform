@@ -281,7 +281,7 @@ namespace platformAthletic
 
                     /*MAIL*/
                     string _serviceEmail = System.Configuration.ConfigurationManager.AppSettings["ServiceEmail"];
-                    var serviceEmails = _serviceEmail.Split(',');
+                    var serviceEmails = _serviceEmail.Replace(" ", "").Split(',');
 
                     foreach (var email in serviceEmails)
                     {
