@@ -77,8 +77,10 @@ function Dashboard() {
                 }
             });
         });
-
+        var sbcChange = false;
         $(document).on("click", ".sbc-player-change", function () {
+            if (sbcChange) return false;
+            sbcChange = true;
             var parent = $(this).closest(".item");
             var valueWrapper = $(".value", parent);
             var id = $(this).data("id");
@@ -95,6 +97,7 @@ function Dashboard() {
                 success: function (data)
                 {
                     valueWrapper.text(data.value);
+                    sbcChange = false;
                 }
             });
         });
