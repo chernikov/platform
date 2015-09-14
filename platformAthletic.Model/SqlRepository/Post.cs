@@ -39,7 +39,7 @@ namespace platformAthletic.Model
 				cache.UserID = instance.UserID;
 				cache.Header = instance.Header;
 				cache.Text = instance.Text;
-                // this line for test crash in admin area
+                // next line for test crash in admin area when edit post
                 //cache.TitleImagePath = instance.TitleImagePath;
                 cache.TitleImagePath = instance.TitleImagePath != null ? instance.TitleImagePath : cache.TitleImagePath;
                 cache.IsVideo = instance.IsVideo;

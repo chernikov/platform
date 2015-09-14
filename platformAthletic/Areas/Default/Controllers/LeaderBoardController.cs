@@ -8,6 +8,7 @@ using platformAthletic.Attributes;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
+    [Authorize]
     public class LeaderboardController : DefaultController
     {
         public ActionResult Index(SearchNationalLeaderboard search)

@@ -10,6 +10,7 @@ using platformAthletic.Attributes;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
+    [Authorize]
     public class TableController : DefaultController
     {
 

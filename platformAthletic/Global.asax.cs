@@ -185,7 +185,7 @@ namespace platformAthletic
             FailMessage.Process(repository, config);*/
         }
 
-        protected void Application_Error()
+        protected void Application_Error(Object sender, EventArgs e)
         {
             if ((Request.Path ?? "").ToLower().StartsWith("/media/")
                 || (Request.Path ?? "").ToLower().StartsWith("/content/")
@@ -200,6 +200,8 @@ namespace platformAthletic
             {
                 return;
             }
+               
+
             HttpException httpException = null;
             if (exception is HttpException) httpException = exception as HttpException;
 
@@ -275,7 +277,8 @@ namespace platformAthletic
                             formInfo += "\n";
                         }
                         catch { }
-                    }
+                    }                       
+
                     /*MAIL*/
                     string _serviceEmail = System.Configuration.ConfigurationManager.AppSettings["ServiceEmail"];
                     var serviceEmails = _serviceEmail.Split(',');
@@ -285,15 +288,15 @@ namespace platformAthletic
                         var mailController = new MailController();
                         var mailInfo = new Dictionary<string, object> 
                         {
-                          { "Subject", "Server Error Athletic Platforms" },
-                          { "Email",  email},
-                          { "Link", Request.Path },
-                          { "LinkFull", Request.Url.AbsolutePath },
-                          { "Method", Request.HttpMethod },                      
-                          { "Params", formInfo },                      
-                          { "AllParams", paramInfo },                      
-                          { "Error", exception },                      
-                          { "ErrorCode", 500 }                      
+                            { "Subject", "Server Error Athletic Platforms" },
+                            { "Email",  email},
+                            { "Link", Request.Path },
+                            { "LinkFull", Request.Url.AbsolutePath },
+                            { "Method", Request.HttpMethod },                      
+                            { "Params", formInfo },                      
+                            { "AllParams", paramInfo },                      
+                            { "Error", exception },                      
+                            { "ErrorCode", 500 }                      
                         };
 
                         var mail = mailController.ServerError(mailInfo);
@@ -301,7 +304,9 @@ namespace platformAthletic
                         {
                             mailInfo["Body"] = reader.ReadToEnd();
                         }
+
                         MailSender.SendMail(mailInfo["Email"].ToString(), mailInfo["Subject"].ToString(), mailInfo["Body"].ToString());
+                        
                     }
 
                     /* -- */

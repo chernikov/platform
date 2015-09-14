@@ -15,6 +15,7 @@ using System.Web.Mvc;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
+    [Authorize]
     public class SettingController : DefaultController
     {
         protected string DestinationDir = "Media/files/uploads/";

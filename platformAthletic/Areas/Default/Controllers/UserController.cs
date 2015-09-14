@@ -17,6 +17,7 @@ using System.Web.Mvc;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
+    [Authorize]
     public class UserController : DefaultController
     {
         protected string DestinationDir = "Media/files/avatars/";
@@ -42,6 +43,7 @@ namespace platformAthletic.Areas.Default.Controllers
             return RedirectToNotFoundPage;
         }
 
+        [Authorize(Roles="player,individual")]
         public ActionResult MyPage()
         {
             return View("Index", CurrentUser);
