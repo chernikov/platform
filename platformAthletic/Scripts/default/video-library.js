@@ -48,7 +48,20 @@
             }
         });
 
-        $("#VideoContent").mCustomScrollbar({ theme: "minimal-dark" });
+        var scrollTimeOut;
+        var scrollTimeOutDelay = 300;
+        $("#VideoContent").mCustomScrollbar({
+            theme: "minimal-dark",
+            callbacks: {
+                onInit: function () {
+                    if (scrollTimeOut) clearTimeout(scrollTimeOut);
+                    scrollTimeOut = setTimeout(function () {
+                        var item = $("#VideoContent .inside .item.selected");
+                        $("#VideoContent").mCustomScrollbar("scrollTo", item);
+                    }, scrollTimeOutDelay);
+                }
+            }
+        });
 
         $("#VideoContent .item").click(function () {
             $("#VideoContent .item").removeClass("selected");
@@ -57,8 +70,12 @@
         });
 
         _this.showVideo($("#VideoContent .item.selected"), function () {
-            var item = $("#VideoContent .inside .item.selected");
-            $("#VideoContent").mCustomScrollbar("scrollTo", item);
+            if (scrollTimeOut) clearTimeout(scrollTimeOut);
+            scrollTimeOut = setTimeout(function () {
+                var item = $("#VideoContent .inside .item.selected");
+                $("#VideoContent").mCustomScrollbar("scrollTo", item);
+            }, scrollTimeOutDelay);
+
         });
 
     }
