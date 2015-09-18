@@ -92,19 +92,36 @@ namespace platformAthletic.Areas.Default.Controllers
             var user = team.ActiveUsers.FirstOrDefault(p => p.ID == id);
             if (user != null)
             {
-                
-                SBCValue startSBC = user.SBCHistory(startDate);
+                var sbcValueSquatStart = user.SBCForward(startDate, endDate, SBCValue.SbcType.Squat);
+                var sbcValueBenchStart = user.SBCForward(startDate, endDate, SBCValue.SbcType.Bench);
+                var sbcValueCleanStart = user.SBCForward(startDate, endDate, SBCValue.SbcType.Clean);
+
+                //SBCValue startSBC = user.SBCHistory(startDate);
                 SBCValue endSBC = user.SBCHistory(endDate);
-                startSBC = startSBC == null ? new SBCValue() : startSBC;
+                //startSBC = startSBC == null ? new SBCValue() : startSBC;
                 endSBC = endSBC == null ? new SBCValue() : endSBC;
                 var progressInfo = new ProgressGraphInfo()
                 {
                     User = user,
                     StartDate = startDate,
                     EndDate = endDate,
-                    StartSBC = startSBC,
-                    EndSBC = endSBC
+                    //StartSBC = startSBC,
+                    //EndSBC = endSBC
                 };
+                if (sbcValueSquatStart != null)
+                {
+                    progressInfo.Squat = (int)(endSBC.Squat - sbcValueSquatStart.Squat);
+                }
+
+                if (sbcValueBenchStart != null)
+                {
+                    progressInfo.Bench = (int)(endSBC.Bench - sbcValueBenchStart.Bench);
+                }
+
+                if (sbcValueCleanStart != null)
+                {
+                    progressInfo.Clean = (int)(endSBC.Clean - sbcValueCleanStart.Clean);
+                }
                 return View(progressInfo);
             }
             return null;

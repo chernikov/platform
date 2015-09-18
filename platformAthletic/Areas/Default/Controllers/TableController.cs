@@ -15,13 +15,24 @@ namespace platformAthletic.Areas.Default.Controllers
     {
 
         [Authorize(Roles = "coach,assistant")]
-        public ActionResult Team(int[] idUsers)
+        public ActionResult Team(int? groupId, int[] idUsers)
         {
-            if (idUsers == null)
+            IQueryable<User> list;
+            if (!groupId.HasValue)
+            {
+                list = Repository.Users.Where( p => p.PlayerOfTeamID == CurrentUser.OwnTeam.ID);
+            }
+            else
+            {
+                list = Repository.Users.Where(p => p.GroupID == groupId);
+            }
+
+            if (list.Any() == false)
             {
                 return null;
             }
-            if (idUsers.Count() > 0 && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+
+            if (list.Any() == true && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
             {
                 try
                 {
@@ -29,9 +40,22 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 catch (Exception ex) { }
             }
-           
+
+            //if (idUsers == null)
+            //{
+            //    return null;
+            //}
+            //if (idUsers.Count() > 0 && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+            //{
+            //    try
+            //    {
+            //        Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+            //    }
+            //    catch (Exception ex) { }
+            //} 
+            
             var listTables = new List<TableInfo>();
-            var list = Repository.Users.Where(p => idUsers.Contains(p.ID));
+            //var list = Repository.Users.Where(p => idUsers.Contains(p.ID));
             foreach (var user in list)
             {
                 var currentSeason = user.CurrentSeason;

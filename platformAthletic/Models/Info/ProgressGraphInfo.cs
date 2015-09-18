@@ -14,8 +14,14 @@ namespace platformAthletic.Models.Info
 
         public DateTime EndDate { get; set; }
 
-        public SBCValue StartSBC { get; set; }
+        //public SBCValue StartSBC { get; set; }
 
-        public SBCValue EndSBC { get; set; }
+        //public SBCValue EndSBC { get; set; }
+
+        public int Squat { get; set; }
+
+        public int Bench { get; set; }
+
+        public int Clean { get; set; }
     }
 }

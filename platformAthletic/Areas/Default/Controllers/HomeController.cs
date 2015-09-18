@@ -120,7 +120,11 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             if (CurrentUser != null)
             {
-                Repository.OnlineUser(CurrentUser.ID);
+                try
+                {
+                    Repository.OnlineUser(CurrentUser.ID);
+                }
+                catch { }
             }
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
