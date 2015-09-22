@@ -12,7 +12,6 @@
     <link rel='stylesheet' href='/Media/css/jquery.bxslider.css' type='text/css' media='all' />
     
     @RenderSection("links", false)
-    @Html.Partial("~/Views/Shared/GoogleAnalytics.cshtml")
 </head>
 <body>
     <div class="main-wrapper">
@@ -58,5 +57,6 @@
     <script src="/Media/scripts/renderedfont-0.8.min.js#free"></script>
     <script src="/Media/scripts/new/common.js"></script>
     @RenderSection("header", false)
+    @Html.Partial("~/Views/Shared/GoogleAnalytics.cshtml")
 </body>
 </html>

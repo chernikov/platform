@@ -14,10 +14,10 @@
     <script src="/Media/scripts/default/print.js" type="text/javascript"></script>
     <title>@Model.User.FirstName @Model.User.LastName 
     </title>
-    @Html.Partial("~/Views/Shared/GoogleAnalytics.cshtml")
 </head>
 <body>
     <div class="print print_2">Print</div>
     @Html.Partial("Table", Model)
+    @Html.Partial("~/Views/Shared/GoogleAnalytics.cshtml")
 </body>
 </html>
