@@ -18,44 +18,50 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult Team(int? groupId, int[] idUsers)
         {
             IQueryable<User> list;
-            if (!groupId.HasValue)
+            if (idUsers == null)
             {
-                list = Repository.Users.Where( p => p.PlayerOfTeamID == CurrentUser.OwnTeam.ID);
+                if (!groupId.HasValue)
+                {
+                    list = Repository.Users.Where(p => p.PlayerOfTeamID == CurrentUser.OwnTeam.ID);
+                }
+                else
+                {
+                    list = Repository.Users.Where(p => p.GroupID == groupId);
+                }
+
+                if (list.Any() == false)
+                {
+                    return null;
+                }
+
+                if (list.Any() == true && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+                {
+                    try
+                    {
+                        Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+                    }
+                    catch (Exception ex) { }
+                }
             }
             else
             {
-                list = Repository.Users.Where(p => p.GroupID == groupId);
-            }
-
-            if (list.Any() == false)
-            {
-                return null;
-            }
-
-            if (list.Any() == true && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
-            {
-                try
+                if (idUsers == null)
                 {
-                    Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+                    return null;
                 }
-                catch (Exception ex) { }
+                if (idUsers.Count() > 0 && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
+                {
+                    try
+                    {
+                        Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
+                    }
+                    catch (Exception ex) { }
+                }
+
+                list = Repository.Users.Where(p => idUsers.Contains(p.ID));
             }
 
-            //if (idUsers == null)
-            //{
-            //    return null;
-            //}
-            //if (idUsers.Count() > 0 && CurrentUser.Mode == (int)Model.User.ModeEnum.Todo)
-            //{
-            //    try
-            //    {
-            //        Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.ViewWorkOut);
-            //    }
-            //    catch (Exception ex) { }
-            //} 
-            
             var listTables = new List<TableInfo>();
-            //var list = Repository.Users.Where(p => idUsers.Contains(p.ID));
             foreach (var user in list)
             {
                 var currentSeason = user.CurrentSeason;
