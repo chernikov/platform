@@ -151,6 +151,18 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [HttpGet]
+        public ActionResult ChooseOption()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ImportPlayer()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult AddPlayerItem()
         {
             return View(new KeyValuePair<string, PlayerView>(Guid.NewGuid().ToString("N"), new PlayerView()));

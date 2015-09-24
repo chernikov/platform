@@ -4,13 +4,31 @@ function AddPlayers() {
 
     this.init = function ()
     {
-        $("#AddPlayersButton").click(function () {
+        $(document).on('click', "#ChooseOption", function () {
+            if (typeof (testmode) != "undefined") {
+                testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
+                    _this.showChooseOption();
+                });
+            } else {
+                _this.showChooseOption();
+            }
+        });
+        $(document).on('click', "#AddPlayersButton", function () {
             if (typeof (testmode) != "undefined") {
                 testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
                     _this.showAddPlayers();
                 });
             } else {
                 _this.showAddPlayers();
+            }
+        });
+        $(document).on('click', "#ImportPlayerButton", function () {
+            if (typeof (testmode) != "undefined") {
+                testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
+                    _this.showImportPlayers();
+                });
+            } else {
+                _this.showImportPlayers();
             }
         });
 
@@ -57,9 +75,32 @@ function AddPlayers() {
             })
         });
 
-
     }
 
+    this.showImportPlayers = function () {
+        $.ajax({
+            url: "/dashboard/ImportPlayer",
+            type: "GET",
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                if ($(".modal-backdrop.fade.in").length > 0) {
+                    $(".modal-backdrop.fade.in").remove();
+                }
+                $("#ModalImportPlayer").modal();
+            }
+        });
+    }
+    //"#AddPlayersButton"
+    this.showChooseOption = function () {
+        $.ajax({
+            url: "/dashboard/ChooseOption",
+            type: "GET",
+            success: function (data) {
+                $("#ModalWrapper").html(data);
+                $("#ModalChooseOption").modal();
+            }
+        });
+    }
     this.showAddPlayers = function () {
         $.ajax({
             url: "/dashboard/AddPlayers",

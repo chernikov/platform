@@ -5079,3 +5079,16 @@ a.clear-search {
             font-size: 12px !important;
         }
 }
+
+#ModalChooseOption.modal.modal-wide .modal-dialog {
+    width: 600px;
+}
+#ModalChooseBodyWrapper .modal-body.text-center .btn.btn-primary{
+    margin: 10px 15px 10px 15px;
+}
+
+@media (max-width: 767px) {
+    #ModalChooseOption.modal.modal-wide .modal-dialog {
+        width: auto;
+    }
+}
