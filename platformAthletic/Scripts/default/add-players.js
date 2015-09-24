@@ -4,6 +4,8 @@ function AddPlayers() {
 
     this.init = function ()
     {
+        
+
         $(document).on('click', "#ChooseOption", function () {
             if (typeof (testmode) != "undefined") {
                 testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
@@ -86,7 +88,26 @@ function AddPlayers() {
                 if ($(".modal-backdrop.fade.in").length > 0) {
                     $(".modal-backdrop.fade.in").remove();
                 }
+
+                jQuery('#FileUpload').uploadify({
+                    swf: '/Scripts/uploadify.swf',
+                    uploader: '/dashboard/UploadFile/',
+                    auto: false,
+                    multi: false,
+                    onUploadComplete: function (file) {
+                        alert('The file ' + file.name + ' finished processing.');
+                    },
+                    onUploadSuccess: function (file, data, response) {
+                        alert(data);
+                    }
+                });
+
+                $(document).on("click", "#UploadFile", function () {
+                    jQuery('#FileUpload').uploadify('upload');
+                });
+
                 $("#ModalImportPlayer").modal();
+
             }
         });
     }

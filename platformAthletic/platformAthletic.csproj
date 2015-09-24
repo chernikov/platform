@@ -289,6 +289,7 @@
     <Compile Include="Global\PagePartProvider.cs" />
     <Compile Include="Global\SearchEngine.cs" />
     <Compile Include="Global\TrimModelBinder.cs" />
+    <Compile Include="Helpers\CsvParser.cs" />
     <Compile Include="Helpers\CurrentDateHelper.cs" />
     <Compile Include="Helpers\CustomHelpers.cs" />
     <Compile Include="Helpers\ExtendsHtmlHelper.cs" />
@@ -518,6 +519,7 @@
     <Content Include="Content\tether-theme-basic.css" />
     <Content Include="Content\tether.css" />
     <Content Include="Content\tooltipster.css" />
+    <Content Include="Content\uploadify.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -830,6 +832,7 @@
     <Content Include="Media\images\trainer.png" />
     <Content Include="Media\images\transparent.png" />
     <Content Include="Media\images\tw.png" />
+    <Content Include="Media\images\uploadify-cancel.png" />
     <Content Include="Media\images\vidbor.png" />
     <Content Include="Media\images\vline.png" />
     <Content Include="Media\images\wwa1.png" />
@@ -1781,6 +1784,7 @@
     <Content Include="Scripts\jquery.tooltipster.js" />
     <Content Include="Scripts\jquery.tooltipster.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1794,6 +1798,7 @@
     <Content Include="Scripts\typeahead.bundle.min.js" />
     <Content Include="Scripts\typeahead.jquery.js" />
     <Content Include="Scripts\typeahead.jquery.min.js" />
+    <Content Include="Scripts\uploadify.swf" />
     <Content Include="Scripts\youtube-resizer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

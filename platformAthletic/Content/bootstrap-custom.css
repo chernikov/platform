@@ -5092,3 +5092,7 @@ a.clear-search {
         width: auto;
     }
 }
+
+#ModalImportPlayerWrapper button {
+    margin: 0 0 10px 0;
+}

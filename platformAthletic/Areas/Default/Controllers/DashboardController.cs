@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 
 namespace platformAthletic.Areas.Default.Controllers
@@ -160,6 +161,23 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult ImportPlayer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult UploadFile(FormCollection form)
+        {
+
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            {
+                Stream fileStream = Request.Files[0].InputStream;
+                using (CsvParser csvParser = new CsvParser(fileStream))
+                {
+                    var result = csvParser.Parse();
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new { Emplty = true }, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
