@@ -12,7 +12,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-
+using RegularExpressions = System.Text.RegularExpressions;
+using Regex = System.Text.RegularExpressions.Regex;
+using System.ComponentModel.DataAnnotations;
 
 namespace platformAthletic.Areas.Default.Controllers
 {
@@ -163,8 +165,31 @@ namespace platformAthletic.Areas.Default.Controllers
             return View();
         }
 
+        private bool CheckPlayerDoubleEmail(BatchPlayersView batchPlayersView)
+        {
+            bool result = true;
+            var listDoubleEmail = batchPlayersView.Players.GroupBy(p => p.Value.Email).Select(group => new
+            {
+                Email = group.Key,
+                Count = group.Count()
+            });
+            if (listDoubleEmail.Any(p => p.Count > 1))
+            {
+                var doubleEmails = listDoubleEmail.Where(p => p.Count > 1).Select(p => p.Email);
+                foreach (var player in batchPlayersView.Players)
+                {
+                    if (doubleEmails.Any(p => p == player.Value.Email))
+                    {
+                        ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Email address should be unique");
+                        result = false;  
+                    }
+                }
+            }
+            return result;
+        }
+
         [HttpPost]
-        public JsonResult UploadFile(FormCollection form)
+        public ActionResult UploadFile(FormCollection form)
         {
 
             if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
@@ -172,11 +197,59 @@ namespace platformAthletic.Areas.Default.Controllers
                 Stream fileStream = Request.Files[0].InputStream;
                 using (CsvParser csvParser = new CsvParser(fileStream))
                 {
-                    var result = csvParser.Parse();
-                    return Json(result, JsonRequestBehavior.AllowGet);
+                    BatchPlayersView batchPlayersView = csvParser.Parse();
+                    string pattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+                    foreach (var player in batchPlayersView.Players)
+                    {
+                        //check FirstName
+                        if (String.IsNullOrEmpty(player.Value.FirstName) || String.IsNullOrWhiteSpace(player.Value.FirstName))
+                        {
+                            ModelState.AddModelError("Players[" + player.Key + "].Value.FirstName", "Enter first name");
+                        }
+                        //check LastName
+                        if (String.IsNullOrEmpty(player.Value.LastName) || String.IsNullOrWhiteSpace(player.Value.LastName))
+                        {
+                            ModelState.AddModelError("Players[" + player.Key + "].Value.LastName", "Enter last name");
+                        }
+                        //chek Email for required
+                        if (String.IsNullOrEmpty(player.Value.Email) || String.IsNullOrWhiteSpace(player.Value.Email))
+                        {
+                            ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Enter Email");
+                        }
+                        //check email for correct
+                        else if (!Regex.IsMatch(player.Value.Email, pattern, RegularExpressions.RegexOptions.Compiled | RegularExpressions.RegexOptions.IgnoreCase))
+                        {
+                            ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Enter correct Email");
+                        } //check email for already existed 
+                        else if (Repository.Users.Count(p => string.Compare(p.Email, player.Value.Email, true) == 0) > 0)
+                        {
+                            ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Email already registered");
+                        }
+                    }
+                    CheckPlayerDoubleEmail(batchPlayersView);
+
+                    Regex regex = new Regex(@"\[([a-zA-Z0-9]+)\]", RegularExpressions.RegexOptions.Compiled | RegularExpressions.RegexOptions.IgnoreCase);
+                    HashSet<string> errors = new HashSet<string>(
+                        ModelState.AsQueryable()
+                        .Where(f => f.Value.Errors.Count > 0)
+                        .Select(x => regex.Match(x.Key).Groups[1].Value)
+                    );
+
+                    var unvalidPlayers =  batchPlayersView.Players.Where(x => errors.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                    var unvalidBatchPlayers = new BatchPlayersView() 
+                    {
+                        Players = unvalidPlayers
+                    };
+                    var validPlayers = batchPlayersView.Players.Where(x => !errors.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                    var validBatchPlayers = new BatchPlayersView()
+                    {
+                        Players = validPlayers
+                    };
+
+                    return View("AddPlayers", unvalidBatchPlayers);
                 }
             }
-            return Json(new { Emplty = true }, JsonRequestBehavior.AllowGet);
+            return AddPlayers();
 
         }
 
@@ -195,21 +268,7 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult AddPlayers(BatchPlayersView batchPlayersView)
         {
-            var listDoubleEmail = batchPlayersView.Players.GroupBy(p => p.Value.Email)
-                .Select(group => new {
-                    Email = group.Key, 
-                    Count = group.Count()
-                });
-            if (listDoubleEmail.Any(p => p.Count > 1))
-            {
-                var doubleEmails = listDoubleEmail.Where(p => p.Count > 1).Select(p => p.Email);
-                foreach(var player in batchPlayersView.Players) {
-                    if (doubleEmails.Any(p => p == player.Value.Email))
-                    {
-                        ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Email address should be unique");
-                    }
-                }
-            }
+            CheckPlayerDoubleEmail(batchPlayersView);
             if (ModelState.IsValid)
             {
                 if (CurrentUser.Mode == (int)Model.User.ModeEnum.Todo && batchPlayersView.Players.Count > 0)

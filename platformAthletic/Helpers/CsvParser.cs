@@ -1,4 +1,5 @@
-﻿using System;
+﻿using platformAthletic.Models.ViewModels.User;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,9 +38,9 @@ namespace platformAthletic.Helpers
 
 
         /// <summary>
-        /// Parse csv file
+        /// Parse csv file to json and return him
         /// </summary>
-        public string Parse()
+        public string ParseToJson()
         {
             List<UserInfo> toJSON = new List<UserInfo>();
 
@@ -68,6 +69,35 @@ namespace platformAthletic.Helpers
 
 
         /// <summary>
+        /// Parse csv and return BatchPlayersView instance
+        /// </summary>
+        /// <returns>BatchPlayersView</returns>
+        public BatchPlayersView Parse()
+        {
+            string line;
+            string[] elemets;
+            BatchPlayersView batchPlayersView = new BatchPlayersView();
+            //this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
+            while ((line = this.FileStreamReader.ReadLine()) != null)
+            {
+                //Console.WriteLine(line);
+                elemets = line.Split(';');
+                if (elemets.Length >= 3 && elemets.Length <= 4)
+                {
+                    batchPlayersView.Players.Add(Guid.NewGuid().ToString("N"), new PlayerView()
+                    {
+                        FirstName = EscapeData(elemets[this.Position["FirstName"]]),
+                        LastName = EscapeData(elemets[this.Position["LastName"]]),
+                        Email = EscapeData(elemets[this.Position["Email"]])
+                    });
+                }
+            }
+            return batchPlayersView;
+        }
+
+
+        /// <summary>
         /// Check Headers position
         /// </summary>
         public bool CheckHeaders()
@@ -75,7 +105,10 @@ namespace platformAthletic.Helpers
             bool checkedFirstName = false;
             bool checkedLastName = false;
             bool checkedEmail = false;
+            //uint cursorPos = (uint) this.FileStreamReader.BaseStream.Position;
 
+            //this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
             string[] line = this.FileStreamReader.ReadLine().Split(';');
             //Console.WriteLine(String.Format("Headers: {0} {1} {2}", line[0], line[1], line[2]));
             for (byte i = 0; i < line.Length; i++)
@@ -119,6 +152,9 @@ namespace platformAthletic.Helpers
             //    "Positions - First Name: {0}, Last Name: {1}, Email: {2}",
             //    this.Position["FirstName"], this.Position["LastName"], this.Position["Email"]
             //));
+            //this.FileStreamReader.BaseStream.Seek(cursorPos, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
+
             return checkedFirstName && checkedLastName && checkedEmail;
 
         } // end method
@@ -180,6 +216,11 @@ namespace platformAthletic.Helpers
             Dispose(false);
         }
 
+        protected string EscapeData(string data)
+        {
+            return HttpUtility.HtmlEncode(data.Replace(">", "&#62;").Replace("<", "&#60;").Trim());
+        } 
+
     } /*end class*/
 
     class UserInfo
@@ -192,7 +233,7 @@ namespace platformAthletic.Helpers
             }
             set
             {
-                _FirstName = EscapeData(HttpUtility.HtmlEncode(value));
+                _FirstName = EscapeData(value);
                 FirstNameValid = CheckFirstNameValid();
             }
         }
@@ -206,7 +247,7 @@ namespace platformAthletic.Helpers
             }
             set
             {
-                _LastName = EscapeData(HttpUtility.HtmlEncode(value));
+                _LastName = EscapeData(value);
                 LastNameValid = CheckLastNameValid();
             }
         }
@@ -220,7 +261,7 @@ namespace platformAthletic.Helpers
             }
             set
             {
-                _Email = EscapeData(HttpUtility.HtmlEncode(value));
+                _Email = EscapeData(value);
                 EmailValid = CheckEmailValid();
             }
         }
@@ -258,7 +299,7 @@ namespace platformAthletic.Helpers
 
         protected string EscapeData(string data)
         {
-            return data.Replace(">", "&#62;").Replace("<", "&#60;");
+            return HttpUtility.HtmlEncode(data.Replace(">", "&#62;").Replace("<", "&#60;"));
         }
     }
 }

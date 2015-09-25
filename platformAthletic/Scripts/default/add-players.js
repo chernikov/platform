@@ -94,11 +94,15 @@ function AddPlayers() {
                     uploader: '/dashboard/UploadFile/',
                     auto: false,
                     multi: false,
+                    uploadLimit: 1,
                     onUploadComplete: function (file) {
-                        alert('The file ' + file.name + ' finished processing.');
+                        //alert('The file ' + file.name + ' finished processing.');
                     },
                     onUploadSuccess: function (file, data, response) {
-                        alert(data);
+                        $("#ModalImportPlayer").modal("hide");
+                        $(".modal-backdrop.fade.in").remove();
+                        $("#ModalWrapper").html(data);
+                        $("#modalAddPlayers").modal();
                     }
                 });
 
@@ -111,7 +115,6 @@ function AddPlayers() {
             }
         });
     }
-    //"#AddPlayersButton"
     this.showChooseOption = function () {
         $.ajax({
             url: "/dashboard/ChooseOption",
