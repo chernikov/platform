@@ -1757,6 +1757,10 @@
     <Content Include="Areas\Default\Views\Mail\ServerError.html.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\ChooseOption.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\ImportPlayer.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\UploadFile.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\UploadSuccess.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\UploadPlayersBody.cshtml" />
+    <Content Include="Media\sample_upload_template.csv" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

@@ -189,15 +189,15 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadFile(FormCollection form)
+        public ActionResult UploadFile(BatchPlayersView batchPlayersView, FormCollection form)
         {
 
-            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+            if (Request.Files.Count > 0 && System.IO.Path.GetExtension(Request.Files[0].FileName) == ".csv" && Request.Files[0].ContentLength > 0)
             {
                 Stream fileStream = Request.Files[0].InputStream;
                 using (CsvParser csvParser = new CsvParser(fileStream))
                 {
-                    BatchPlayersView batchPlayersView = csvParser.Parse();
+                    batchPlayersView = csvParser.Parse();
                     string pattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
                     foreach (var player in batchPlayersView.Players)
                     {
@@ -241,17 +241,51 @@ namespace platformAthletic.Areas.Default.Controllers
                         Players = unvalidPlayers
                     };
                     var validPlayers = batchPlayersView.Players.Where(x => !errors.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
-                    var validBatchPlayers = new BatchPlayersView()
+                    if (validPlayers.Count > 0)
                     {
-                        Players = validPlayers
-                    };
+                        var validBatchPlayers = new BatchPlayersView()
+                        {
+                            Players = validPlayers
+                        };
+                        //SavePlayers(validBatchPlayers);
+                    }
+                    
 
-                    return View("AddPlayers", unvalidBatchPlayers);
-                }
+                    ViewBag.AddPlayersCount = validPlayers.Count;
+                    if (unvalidPlayers.Count > 0)
+                    {
+                        ViewBag.TotalPlayersCount = batchPlayersView.Players.Count;
+                        return View(unvalidBatchPlayers);
+                    }
+                    else
+                    {
+                        return View("UploadSuccess");
+                    }
+                }//end using
+            }//end if
+            else if (batchPlayersView.Players.Count > 0 && ModelState.IsValid)
+            {
+                //TODO Save players
+                //SavePlayers(batchPlayersView);
             }
-            return AddPlayers();
+            else if (batchPlayersView.Players.Count > 0 && !ModelState.IsValid)
+            {
+                CheckPlayerDoubleEmail(batchPlayersView);
+                return View("UploadPlayersBody", batchPlayersView);
+            }
 
+            return Json(new { result = "success", count = batchPlayersView.Players.Count}, JsonRequestBehavior.AllowGet);
+            return View("_OK");
+           
         }
+
+        [HttpPost]
+        public ActionResult UploadSuccess(int count)
+        {
+            ViewBag.AddPlayersCount = count;
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult AddPlayerItem()
@@ -275,33 +309,38 @@ namespace platformAthletic.Areas.Default.Controllers
                 {
                     Repository.SetTodo(CurrentUser.ID, Model.User.TodoEnum.AddPlayers);
                 }
-                foreach (var playerView in batchPlayersView.Players.Values)
-                {
-                    var user = (User)ModelMapper.Map(playerView, typeof(PlayerView), typeof(User));
-                    user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
-                    user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
-                    user.TutorialStep = 1;
-                    user.Mode = (int)Model.User.ModeEnum.Tutorial;
-                    user.IsPhantom = (User.ModeEnum)CurrentUser.Mode == Model.User.ModeEnum.Test;
-                    Repository.CreateUser(user);
-
-                    var userRole = new UserRole()
-                    {
-                        UserID = user.ID,
-                        RoleID = 3 //player
-                    };
-
-                    Repository.CreateUserRole(userRole);
-                    SendWelcomePlayerMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
-                    var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
-                    if (existFailMail != null)
-                    {
-                        Repository.RemoveFailedMail(existFailMail.ID);
-                    }
-                }
+                SavePlayers(batchPlayersView);
                 return View("_OK");
             }
             return View("AddPlayersBody", batchPlayersView);
+        }
+
+        private void SavePlayers(BatchPlayersView batchPlayersView)
+        {
+            foreach (var playerView in batchPlayersView.Players.Values)
+            {
+                var user = (User)ModelMapper.Map(playerView, typeof(PlayerView), typeof(User));
+                user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
+                user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
+                user.TutorialStep = 1;
+                user.Mode = (int)Model.User.ModeEnum.Tutorial;
+                user.IsPhantom = (User.ModeEnum)CurrentUser.Mode == Model.User.ModeEnum.Test;
+                Repository.CreateUser(user);
+
+                var userRole = new UserRole()
+                {
+                    UserID = user.ID,
+                    RoleID = 3 //player
+                };
+
+                Repository.CreateUserRole(userRole);
+                SendWelcomePlayerMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
+                var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
+                if (existFailMail != null)
+                {
+                    Repository.RemoveFailedMail(existFailMail.ID);
+                }
+            }
         }
 
         public ActionResult DeletePlayer(int id)

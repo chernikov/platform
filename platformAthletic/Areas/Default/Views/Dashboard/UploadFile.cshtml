@@ -1,0 +1,28 @@
+﻿@model platformAthletic.Models.ViewModels.User.BatchPlayersView
+<div class="modal modal-wide fade" id="modalUploadFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close try-close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">MISSING INFORMATION</h4>
+            </div>
+            <div class="modal-body text-center" id="UploadInfo">
+                <p>
+                    @ViewBag.AddPlayersCount Players added successfully
+                </p>
+                <p>
+                    @(ViewBag.TotalPlayersCount - ViewBag.AddPlayersCount) Players were missing information. Please review players below, and add requried info or delete player(s)
+                </p>
+            </div>
+            <div id="AddPlayersBodyWrapper">
+                @Html.Partial("UploadPlayersBody", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        $("#modalUploadFile").modal();
+    })();
+</script>

@@ -77,6 +77,38 @@ function AddPlayers() {
             })
         });
 
+        $(document).on("click", "#SubmitUploadPlayers", function () {
+            var data = $("#AddPlayersForm").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/dashboard/UploadFile",
+                data: data,
+                beforeSend: function () {
+                    $("#SubmitUploadPlayers").attr("disabled", "disabled");
+                },
+                success: function (data) {
+                    if (data.result === "success") {
+                        $("#modalUploadFile").modal('hide');
+                        $(".modal-backdrop.fade.in").remove();
+                        $.ajax({
+                            type: "POST",
+                            url: "/dashboard/UploadSuccess",
+                            data: {count : data.count},
+                            success: function (data) {
+                                $("#ModalWrapper").html(data);
+                            }
+                        });
+                    }
+                    else {
+                        $("#AddPlayersBodyWrapper").html(data);
+                    }
+                },
+                complete: function () {
+                    $("#SubmitUploadPlayers").removeAttr("disabled");
+                }
+            })
+        });
+
     }
 
     this.showImportPlayers = function () {
@@ -94,6 +126,7 @@ function AddPlayers() {
                     uploader: '/dashboard/UploadFile/',
                     auto: false,
                     multi: false,
+                    height: 30,
                     uploadLimit: 1,
                     onUploadComplete: function (file) {
                         //alert('The file ' + file.name + ' finished processing.');
@@ -102,7 +135,6 @@ function AddPlayers() {
                         $("#ModalImportPlayer").modal("hide");
                         $(".modal-backdrop.fade.in").remove();
                         $("#ModalWrapper").html(data);
-                        $("#modalAddPlayers").modal();
                     }
                 });
 

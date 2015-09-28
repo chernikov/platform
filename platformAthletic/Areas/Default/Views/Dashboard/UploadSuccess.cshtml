@@ -1,0 +1,23 @@
+﻿<div class="modal modal-wide fade" id="modalUploadSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">SUCCESS!</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>
+                    @ViewBag.AddPlayersCount out of @ViewBag.AddPlayersCount plyers upload successfully.
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        $("#modalUploadSuccess").modal();
+    })();
+</script>
