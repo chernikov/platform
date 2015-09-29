@@ -5097,32 +5097,55 @@ a.clear-search {
     margin: 0 0 10px 0;
 }
 
-#modalUploadFile p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
 
+#modalUploadFile .modal-body, #modalUploadSuccess .modal-body {
+    padding-bottom: 0;
 }
-#modalUploadFile .modal-body {
+#modalSubmitUploadFile .modal-body {
     padding-bottom: 0;
 }
 
-#ModalImportPlayer p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
+#modalSubmitUploadFile .modal-body.add-players {
+    padding-top: 5px;
 }
+#modalSubmitUploadFile .modal-content > .text-center p:first-child {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #efefef;
+    margin: 0;
+    color: #9a9a9a;
+}
+
+.modal-body.add-players
+
 
 #modalUploadSuccess .modal-content {
     width: 450px;
 }
-    #modalUploadSuccess .modal-content .modal-body {
-        padding-bottom: 0;
-    }
 
-#modalUploadSuccess p {
+#modalUploadSuccess p, #modalSubmitUploadFile p, #modalUploadFile p, #ModalImportPlayer p {
     font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
 }
 
-#modalUploadFile #ListOfFields .add-player-item:first-child .remove {
+#modalUploadFile #ListOfFields .add-player-item:first-child .remove, 
+#modalSubmitUploadFile #ListOfFields .add-player-item:first-child .remove {
     display:block;
+}
+.add-player-headers {
+    color: #65CEA7;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+/*#modalUploadFile select {
+    color: #65CEA7;
+    border: none;
+    box-shadow: none;
+    background: none;
+}*/
+
+#modalUploadFile .modal-body.add-players {
+    padding-top: 7px;
 }
 

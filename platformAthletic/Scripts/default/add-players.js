@@ -6,7 +6,7 @@ function AddPlayers() {
     {
         
 
-        $(document).on('click', "#ChooseOption", function () {
+        $(document).on('click', "#ChooseOption, #CancelUploadFile", function () {
             if (typeof (testmode) != "undefined") {
                 testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
                     _this.showChooseOption();
@@ -24,7 +24,7 @@ function AddPlayers() {
                 _this.showAddPlayers();
             }
         });
-        $(document).on('click', "#ImportPlayerButton", function () {
+        $(document).on('click', "#ImportPlayerButton, #BackToUploadFile", function () {
             if (typeof (testmode) != "undefined") {
                 testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
                     _this.showImportPlayers();
@@ -58,6 +58,7 @@ function AddPlayers() {
             $("#SecondPanel").show();
         });
 
+
         $(document).on("click", "#SubmitAddPlayers", function () {
             var data = $("#AddPlayersForm").serialize();
             $.ajax({
@@ -77,11 +78,26 @@ function AddPlayers() {
             })
         });
 
+        $(document).on('click', '#ConfirmUploadPlayers', function () {
+            $("#ConfirmUploadPlayers").prop("disabled", true);
+            var data = $("#AddPlayersForm").serialize();
+            $.ajax({
+                type: 'POST',
+                url: "/dashboard/SubmitUploadFile",
+                data: data + "&firstCheck=true",
+                success: function (data) {
+                    $('#modalUploadFile').modal('hide');
+                    $('.modal-backdrop.fade.in').remove();
+                    $('#ModalWrapper').html(data);
+                }
+            });
+        });
+
         $(document).on("click", "#SubmitUploadPlayers", function () {
             var data = $("#AddPlayersForm").serialize();
             $.ajax({
                 type: "POST",
-                url: "/dashboard/UploadFile",
+                url: "/dashboard/SubmitUploadFile",
                 data: data,
                 beforeSend: function () {
                     $("#SubmitUploadPlayers").attr("disabled", "disabled");
@@ -109,7 +125,70 @@ function AddPlayers() {
             })
         });
 
-    }
+        $(document).on("change", "select.first-column, select.second-column, select.third-column", function (eve) {
+            var current_select = this;
+            var to_change_select;
+            var headers = [];
+            $("#modalUploadFile select").each(function () {
+                if (current_select !== this && $(this).val() === $(current_select).val()) {
+                    to_change_select = this;
+                }
+                headers.push($(this).val());
+            });
+
+            if ($.inArray("FirstName", headers) === -1) {
+                $(to_change_select).val('FirstName');
+            }
+            else if ($.inArray("LastName", headers) === -1) {
+                $(to_change_select).val('LastName');
+            }
+            else if ($.inArray("Email", headers) === -1) {
+                $(to_change_select).val('Email');
+            }
+            //$("#ListOfFields .first-column").each(function (eve) {
+            //    var $input = $(this).children("input");
+            //    var $span = $(this).children("span");
+            //    var change_column = $("select.first-column").val();
+            //    var player_index = $(this).siblings("input#Players_index").val();
+            //    var new_input_id = "Players_" + player_index + "__Value_" + change_column;
+            //    var new_input_name = "Players[" + player_index + "].Value." + change_column;
+            //    var new_input_placeholder = change_column.match(/[A-Z][a-z]+/g);
+            //    $.each(new_input_placeholder, function (index, item) {
+            //        new_input_placeholder[index] = item.toUpperCase();
+            //    });
+            //    new_input_placeholder = new_input_placeholder.join(" ") + " *";
+            //    $input.attr("id", new_input_id);
+            //    $input.attr("name", new_input_name);
+            //    $input.attr("placeholder", new_input_placeholder);
+            //    $span.attr("data-valmsg-for", new_input_name);
+            //});
+            changeColumnElemetsData(".first-column");
+            changeColumnElemetsData(".second-column");
+            changeColumnElemetsData(".third-column");
+        });
+
+        function changeColumnElemetsData(header_selector) {
+            $("#ListOfFields " + header_selector).each(function (eve) {
+                var $input = $(this).children("input");
+                var $span = $(this).children("span");
+                var change_column = $("select" + header_selector).val();
+                var player_index = $(this).siblings("input#Players_index").val();
+                var new_input_id = "Players_" + player_index + "__Value_" + change_column;
+                var new_input_name = "Players[" + player_index + "].Value." + change_column;
+                var new_input_placeholder = change_column.match(/[A-Z][a-z]+/g);
+                $.each(new_input_placeholder, function (index, item) {
+                    new_input_placeholder[index] = item.toUpperCase();
+                });
+                new_input_placeholder = new_input_placeholder.join(" ") + " *";
+                $input.attr("id", new_input_id);
+                $input.attr("name", new_input_name);
+                $input.attr("placeholder", new_input_placeholder);
+                $span.attr("data-valmsg-for", new_input_name);
+            });
+        }
+
+
+    }//end init func
 
     this.showImportPlayers = function () {
         $.ajax({
@@ -124,6 +203,7 @@ function AddPlayers() {
                 jQuery('#FileUpload').uploadify({
                     swf: '/Scripts/uploadify.swf',
                     uploader: '/dashboard/UploadFile/',
+                    buttonText: "SELECT FILE",
                     auto: false,
                     multi: false,
                     height: 30,
@@ -153,6 +233,7 @@ function AddPlayers() {
             type: "GET",
             success: function (data) {
                 $("#ModalWrapper").html(data);
+                $(".modal-backdrop.fade.in").remove();
                 $("#ModalChooseOption").modal();
             }
         });
