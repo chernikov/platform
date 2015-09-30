@@ -105,46 +105,52 @@ namespace platformAthletic.Helpers
             bool checkedFirstName = false;
             bool checkedLastName = false;
             bool checkedEmail = false;
-            //uint cursorPos = (uint) this.FileStreamReader.BaseStream.Position;
 
-            //this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
-            //this.FileStreamReader.DiscardBufferedData();
+            string patternFirstName = @"^first\s+name$";
+            string patternLastName = @"^last\s+name$";
+            string patternEmail = @"^email$";
+
+            Dictionary<string, byte> tempPosition = new Dictionary<string, byte>(this.Position);
+            uint cursorPos = (uint)this.FileStreamReader.BaseStream.Position;
+            this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+            this.FileStreamReader.DiscardBufferedData();
             string[] line = this.FileStreamReader.ReadLine().Split(';');
             //Console.WriteLine(String.Format("Headers: {0} {1} {2}", line[0], line[1], line[2]));
+
             for (byte i = 0; i < line.Length; i++)
             {
                 string key;
 
-                if (Regex.IsMatch(line[i].Trim(' '), @"^first\s+name$", RegexOptions.IgnoreCase) && !checkedFirstName)
+                if (Regex.IsMatch(line[i].Trim(' '), patternFirstName, RegexOptions.IgnoreCase) && !checkedFirstName)
                 {
-                    if (this.Position["FirstName"] != i)
+                    if (tempPosition["FirstName"] != i)
                     {
-                        key = this.Position.FirstOrDefault(x => x.Value == i).Key;
-                        this.Position[key] = Position["FirstName"];
+                        key = tempPosition.FirstOrDefault(x => x.Value == i).Key;
+                        tempPosition[key] = Position["FirstName"];
                     }
-                    this.Position["FirstName"] = i;
+                    tempPosition["FirstName"] = i;
                     checkedFirstName = true;
                 }
 
-                if (Regex.IsMatch(line[i].Trim(' '), @"last\s+name$", RegexOptions.IgnoreCase) && !checkedLastName)
+                else if (Regex.IsMatch(line[i].Trim(' '), patternLastName, RegexOptions.IgnoreCase) && !checkedLastName)
                 {
-                    if (this.Position["LastName"] != i)
+                    if (tempPosition["LastName"] != i)
                     {
-                        key = this.Position.FirstOrDefault(x => x.Value == i).Key;
-                        this.Position[key] = Position["LastName"];
+                        key = tempPosition.FirstOrDefault(x => x.Value == i).Key;
+                        tempPosition[key] = Position["LastName"];
                     }
-                    this.Position["LastName"] = i;
+                    tempPosition["LastName"] = i;
                     checkedLastName = true;
                 }
 
-                if (Regex.IsMatch(line[i].Trim(' '), @"^email$", RegexOptions.IgnoreCase) && !checkedEmail)
+                else if (Regex.IsMatch(line[i].Trim(' '), patternEmail, RegexOptions.IgnoreCase) && !checkedEmail)
                 {
-                    if (this.Position["Email"] != i)
+                    if (tempPosition["Email"] != i)
                     {
-                        key = this.Position.FirstOrDefault(x => x.Value == i).Key;
-                        this.Position[key] = Position["Email"];
+                        key = tempPosition.FirstOrDefault(x => x.Value == i).Key;
+                        tempPosition[key] = Position["Email"];
                     }
-                    this.Position["Email"] = i;
+                    tempPosition["Email"] = i;
                     checkedEmail = true;
                 }
             }
@@ -152,8 +158,17 @@ namespace platformAthletic.Helpers
             //    "Positions - First Name: {0}, Last Name: {1}, Email: {2}",
             //    this.Position["FirstName"], this.Position["LastName"], this.Position["Email"]
             //));
-            //this.FileStreamReader.BaseStream.Seek(cursorPos, SeekOrigin.Begin);
-            //this.FileStreamReader.DiscardBufferedData();
+            if (checkedFirstName && checkedLastName && checkedEmail)
+            {
+                this.Position = new Dictionary<string, byte>(tempPosition);
+            }
+            else
+            {
+                this.FileStreamReader.BaseStream.Seek(cursorPos, SeekOrigin.Begin);
+                this.FileStreamReader.DiscardBufferedData();
+            }
+
+            
 
             return checkedFirstName && checkedLastName && checkedEmail;
 

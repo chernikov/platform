@@ -145,23 +145,7 @@ function AddPlayers() {
             else if ($.inArray("Email", headers) === -1) {
                 $(to_change_select).val('Email');
             }
-            //$("#ListOfFields .first-column").each(function (eve) {
-            //    var $input = $(this).children("input");
-            //    var $span = $(this).children("span");
-            //    var change_column = $("select.first-column").val();
-            //    var player_index = $(this).siblings("input#Players_index").val();
-            //    var new_input_id = "Players_" + player_index + "__Value_" + change_column;
-            //    var new_input_name = "Players[" + player_index + "].Value." + change_column;
-            //    var new_input_placeholder = change_column.match(/[A-Z][a-z]+/g);
-            //    $.each(new_input_placeholder, function (index, item) {
-            //        new_input_placeholder[index] = item.toUpperCase();
-            //    });
-            //    new_input_placeholder = new_input_placeholder.join(" ") + " *";
-            //    $input.attr("id", new_input_id);
-            //    $input.attr("name", new_input_name);
-            //    $input.attr("placeholder", new_input_placeholder);
-            //    $span.attr("data-valmsg-for", new_input_name);
-            //});
+
             changeColumnElemetsData(".first-column");
             changeColumnElemetsData(".second-column");
             changeColumnElemetsData(".third-column");
@@ -200,18 +184,16 @@ function AddPlayers() {
                     $(".modal-backdrop.fade.in").remove();
                 }
 
-                jQuery('#FileUpload').uploadify({
-                    swf: '/Scripts/uploadify.swf',
-                    uploader: '/dashboard/UploadFile/',
+                jQuery('#FileUpload').uploadifive({
+                    //swf: '/Scripts/uploadify.swf',
+                    uploadScript: '/dashboard/UploadFile/',
                     buttonText: "SELECT FILE",
                     auto: false,
                     multi: false,
                     height: 30,
                     uploadLimit: 1,
-                    onUploadComplete: function (file) {
+                    onUploadComplete: function (file, data) {
                         //alert('The file ' + file.name + ' finished processing.');
-                    },
-                    onUploadSuccess: function (file, data, response) {
                         $("#ModalImportPlayer").modal("hide");
                         $(".modal-backdrop.fade.in").remove();
                         $("#ModalWrapper").html(data);
@@ -219,7 +201,7 @@ function AddPlayers() {
                 });
 
                 $(document).on("click", "#UploadFile", function () {
-                    jQuery('#FileUpload').uploadify('upload');
+                    jQuery('#FileUpload').uploadifive('upload');
                 });
 
                 $("#ModalImportPlayer").modal();

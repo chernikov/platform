@@ -5106,7 +5106,7 @@ a.clear-search {
 }
 
 #modalSubmitUploadFile .modal-body.add-players {
-    padding-top: 5px;
+    padding-top: 10px;
 }
 #modalSubmitUploadFile .modal-content > .text-center p:first-child {
     padding-top: 10px;
@@ -5119,13 +5119,14 @@ a.clear-search {
 .modal-body.add-players
 
 
-#modalUploadSuccess .modal-content {
+#modalUploadSuccess .modal-content, #modalImportError .modal-content{
     width: 450px;
 }
 
-#modalUploadSuccess p, #modalSubmitUploadFile p, #modalUploadFile p, #ModalImportPlayer p {
+#modalUploadSuccess p, #modalSubmitUploadFile p, #modalUploadFile p, #ModalImportPlayer p , #modalImportError p{
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
+    color: #495b6c;
 }
 
 #modalUploadFile #ListOfFields .add-player-item:first-child .remove, 
@@ -5146,6 +5147,26 @@ a.clear-search {
 }*/
 
 #modalUploadFile .modal-body.add-players {
-    padding-top: 7px;
+    padding-top: 10px;
 }
+
+#modalUploadFile select {
+    border: 1px solid #65CEA7;
+    box-shadow: none;
+    color: #65CEA7;
+    appearance:none;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+}
+
+#modalImportError .modal-footer {
+    margin-top: 0;
+}
+@media (max-width: 767px) {
+    #modalUploadFile .modal-footer button, #modalSubmitUploadFile .modal-footer button{
+        float:none !important;
+        margin-top: 5px;
+    }
+}
+
 

@@ -191,7 +191,7 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult UploadFile()
         {
-            if (Request.Files.Count > 0 && System.IO.Path.GetExtension(Request.Files[0].FileName) == ".csv" && Request.Files[0].ContentLength > 0)
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && System.IO.Path.GetExtension(Request.Files[0].FileName) == ".csv")
             {
                 Stream fileStream = Request.Files[0].InputStream;
                 using (CsvParser csvParser = new CsvParser(fileStream))
@@ -225,12 +225,31 @@ namespace platformAthletic.Areas.Default.Controllers
                     //        ModelState.AddModelError("Players[" + player.Key + "].Value.Email", "Email already registered");
                     //    }
                     //    CheckPlayersDoubleEmail(batchPlayersView);
-
                     //}
-                    return View(batchPlayersView);
-                }
+                    if (batchPlayersView.Players.Count == 0)
+                    {
+                        ViewBag.TitleError = "DATA NOT FOUND";
+                        ViewBag.TextError = "Sorry, but data about players were not found in uploaded file.";
+                        return View("ImportError");
+                    }
+                    else 
+                    {
+                        return View(batchPlayersView);
+                    }
+                }//end uding
             }
-            return View("_OK");
+            else if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && System.IO.Path.GetExtension(Request.Files[0].FileName) != ".csv")
+            {
+                ViewBag.TitleError = "FILE EXTENTION";
+                ViewBag.TextError = "Sorry, but the downloaded file is not csv.";
+                return View("ImportError");
+            }
+            else
+            {
+                ViewBag.TitleError = "DOWNLOAD ERROR";
+                ViewBag.TextError = "Sorry, but there was an error when loading the file.";
+                return View("ImportError");
+            }
         }
 
         [HttpPost]

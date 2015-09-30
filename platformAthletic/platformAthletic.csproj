@@ -508,6 +508,8 @@
     <Content Include="Content\jquery.mCustomScrollbar.css" />
     <Content Include="Content\jquery.mCustomScrollbar.min.css" />
     <Content Include="Content\img\side-phone.png" />
+    <Content Include="Content\uploadifive.css" />
+    <Content Include="Scripts\jquery.uploadifive.min.js" />
     <Content Include="Content\shepherd-theme-arrows-plain-buttons.css" />
     <Content Include="Content\shepherd-theme-arrows.css" />
     <Content Include="Content\shepherd-theme-dark.css" />
@@ -519,7 +521,6 @@
     <Content Include="Content\tether-theme-basic.css" />
     <Content Include="Content\tether.css" />
     <Content Include="Content\tooltipster.css" />
-    <Content Include="Content\uploadify.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1763,6 +1764,7 @@
     <Content Include="Media\sample_upload_template.csv" />
     <Content Include="Areas\Default\Views\Dashboard\SubmitUploadFile.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\SubmitUploadPlayersBody.cshtml" />
+    <Content Include="Areas\Default\Views\Dashboard\ImportError.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1790,7 +1792,6 @@
     <Content Include="Scripts\jquery.tooltipster.js" />
     <Content Include="Scripts\jquery.tooltipster.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1804,7 +1805,6 @@
     <Content Include="Scripts\typeahead.bundle.min.js" />
     <Content Include="Scripts\typeahead.jquery.js" />
     <Content Include="Scripts\typeahead.jquery.min.js" />
-    <Content Include="Scripts\uploadify.swf" />
     <Content Include="Scripts\youtube-resizer.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
