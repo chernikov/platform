@@ -1619,7 +1619,7 @@ th {
     }
 
     .add-player-item .remove {
-        right: -16px;
+        right: -18px;
         width: 16px;
     }
 }
@@ -5121,18 +5121,22 @@ a.clear-search {
 
 #modalUploadSuccess .modal-content, #modalImportError .modal-content{
     width: 450px;
+
 }
 
 #modalUploadSuccess p, #modalSubmitUploadFile p, #modalUploadFile p, #ModalImportPlayer p , #modalImportError p{
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     color: #495b6c;
+    margin-top: 5px;
 }
 
 #modalUploadFile #ListOfFields .add-player-item:first-child .remove, 
 #modalSubmitUploadFile #ListOfFields .add-player-item:first-child .remove {
     display:block;
 }
+
+
 .add-player-headers {
     color: #65CEA7;
     font-size: 14px;
@@ -5154,9 +5158,27 @@ a.clear-search {
     border: 1px solid #65CEA7;
     box-shadow: none;
     color: #65CEA7;
-    appearance:none;
+    /*appearance:none;
     -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari and Chrome */
+    /*-webkit-appearance:none; /* Safari and Chrome */*/
+}
+
+#preLoader {
+    display:none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    width: 23%;
+    margin-top: 0px;
+    float: left;
+    color: #495b6c;
+}
+
+#modalUploadFile #preLoader {
+    margin-left: 59px;
+}
+
+#modalSubmitUploadFile #preLoader {
+    margin-left: 180px;
 }
 
 #modalImportError .modal-footer {
@@ -5167,6 +5189,63 @@ a.clear-search {
         float:none !important;
         margin-top: 5px;
     }
+    .modal-body.add-players #modalUploadSuccess .modal-content, #modalImportError .modal-content {
+        width: auto;
+    }
+    #modalUploadFile #preLoader, #modalSubmitUploadFile #preLoader {
+        margin: auto;
+        margin-top: 4px;
+        width: 100%;
+    }
+
+    #modalUploadFile .show-other-players span:before,
+    #modalUploadFile .show-other-players span:after {
+        width: 45px !important;
+    }
+
+}
+
+#ModalImportPlayer a.popup-upload-csv {
+    cursor:pointer;
+}
+
+#ModalImportPlayer .popover-content {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #495b6c;
+}
+#modalUploadFile .show-other-players {
+    text-align:center;
+}
+
+.hidden-players {
+    display:none;
 }
 
 
+    #modalUploadFile .show-other-players span {
+        font-size: 13px;
+        font-family: 'Montserrat', sans-serif;
+        color: #65CEA7;
+        cursor:pointer;
+        display: inline-block;
+        position: relative;  
+    }
+
+    #modalUploadFile .show-other-players span:before,
+    #modalUploadFile .show-other-players span:after {
+        content: "";
+        position: absolute;
+        height: 12px;
+        border-bottom: 2px solid #65CEA7;
+        top: 0;
+        width: 180px;
+    }
+    #modalUploadFile .show-other-players span:before {
+        right: 100%;
+        margin-right: 15px;
+    }
+    #modalUploadFile .show-other-players span:after {
+        left: 100%;
+        margin-left: 15px;
+    }

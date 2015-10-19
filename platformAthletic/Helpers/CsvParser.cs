@@ -17,22 +17,52 @@ namespace platformAthletic.Helpers
             {"LastName", 1},
             {"Email", 2}
         };
+        /// <summary>
+        /// path to file
+        /// </summary>
         protected string Path;
-        StreamReader FileStreamReader;
+
+        /// <summary>
+        /// Instance stream file which is parsed
+        /// </summary>
+        private StreamReader FileStreamReader;
+
+        /// <summary>
+        /// column separator in csv file
+        /// </summary>
+        private char ColumnSeparator = ';';
+
+        /// <summary>
+        /// Position in stream where begin data about players, and where headers end
+        /// </summary>
+        private long StartDataPos = 0;
+
         // Track whether Dispose has been called.
         private bool disposed = false;
+
+        private List<string> LinesList;
+
+        private bool IsHeadersValid = false;
+
+
 
 
         public CsvParser(string path)
         {
             this.Path = path;
             this.FileStreamReader = new StreamReader(path, Encoding.Default);
+            this.StreamToList();
+            this.DefineColumnSeparator();
             this.CheckHeaders();
+
+
         }
 
         public CsvParser(Stream stream)
         {
             this.FileStreamReader = new StreamReader(stream, Encoding.Default);
+            this.StreamToList();
+            this.DefineColumnSeparator();
             this.CheckHeaders();
         }
 
@@ -44,25 +74,31 @@ namespace platformAthletic.Helpers
         {
             List<UserInfo> toJSON = new List<UserInfo>();
 
-            string line;
+            //string line;
             string[] elemets;
+            List<string> lines = this.IsHeadersValid ? this.LinesList.Skip(1).ToList() : this.LinesList; ;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            while ((line = this.FileStreamReader.ReadLine()) != null)
+            //this.FileStreamReader.BaseStream.Seek(this.StartDataPos, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
+            //while ((line = this.FileStreamReader.ReadLine()) != null)
+            foreach (string line in lines)
             {
-                //Console.WriteLine(line);
-                elemets = line.Split(';');
-                if (elemets.Length >= 3 && elemets.Length <= 4)
+                elemets = line.Split(this.ColumnSeparator);
+                byte notEmptyElemetCount = (byte)elemets.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
+                if (elemets.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
                 {
                     toJSON.Add(new UserInfo()
                     {
-                        FirstName = elemets[this.Position["FirstName"]].Trim(),
-                        LastName = elemets[this.Position["LastName"]].Trim(),
-                        Email = elemets[this.Position["Email"]].Trim()
+                        FirstName = this.Position["FirstName"] < notEmptyElemetCount ?
+                                    EscapeData(elemets[this.Position["FirstName"]]) : String.Empty,
+                        LastName  = this.Position["LastName"] < notEmptyElemetCount ?
+                                    EscapeData(elemets[this.Position["LastName"]]) : String.Empty,
+                        Email     = this.Position["Email"] < notEmptyElemetCount ?
+                                    EscapeData(elemets[this.Position["Email"]]) : String.Empty
                     });
                 }
             }
             var result = serializer.Serialize(toJSON);
-            //Console.WriteLine(result);
             return result;
 
         }//end method
@@ -74,28 +110,68 @@ namespace platformAthletic.Helpers
         /// <returns>BatchPlayersView</returns>
         public BatchPlayersView Parse()
         {
-            string line;
+            //string line;
             string[] elemets;
+            List<string> lines = this.IsHeadersValid ? this.LinesList.Skip(1).ToList() : this.LinesList; ;
             BatchPlayersView batchPlayersView = new BatchPlayersView();
-            //this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+            //this.FileStreamReader.BaseStream.Seek(this.StartDataPos, SeekOrigin.Begin);
             //this.FileStreamReader.DiscardBufferedData();
-            while ((line = this.FileStreamReader.ReadLine()) != null)
+            //while ((line = this.FileStreamReader.ReadLine()) != null)
+            foreach (string line in lines)
             {
-                //Console.WriteLine(line);
-                elemets = line.Split(';');
-                if (elemets.Length >= 3 && elemets.Length <= 4)
+                elemets = line.Split(this.ColumnSeparator);
+                byte notEmptyElemetCount = (byte)elemets.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
+                if (elemets.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
                 {
                     batchPlayersView.Players.Add(Guid.NewGuid().ToString("N"), new PlayerView()
                     {
-                        FirstName = EscapeData(elemets[this.Position["FirstName"]]),
-                        LastName = EscapeData(elemets[this.Position["LastName"]]),
-                        Email = EscapeData(elemets[this.Position["Email"]])
+                        FirstName = this.Position["FirstName"] < notEmptyElemetCount ?
+                                    EscapeData(elemets[this.Position["FirstName"]]) : String.Empty, 
+                        LastName  = this.Position["LastName"] < notEmptyElemetCount ?
+                                    EscapeData(elemets[this.Position["LastName"]]) : String.Empty,
+                        Email     = this.Position["Email"] < notEmptyElemetCount ?
+                                    EscapeData(elemets[this.Position["Email"]]) : String.Empty
                     });
                 }
             }
             return batchPlayersView;
         }
 
+        private void DefineColumnSeparator()
+        {
+            const char comma = ',';
+            const char semicolon = ';';
+            //uint cursorPos = (uint)this.FileStreamReader.BaseStream.Position;
+            //this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
+            //string line = this.FileStreamReader.ReadLine();
+            string line = this.LinesList[0];
+            string patternForComma = @"^(.*[^,]),(.*[^,]),(.*[^,])$";
+            string patternForSemicolon = @"^(.*[^;]);(.*[^;]);(.*[^;])$";
+            if (Regex.IsMatch(line, patternForSemicolon, RegexOptions.Compiled | RegexOptions.IgnoreCase))
+            {
+                this.ColumnSeparator = semicolon;
+            }
+            else if (Regex.IsMatch(line, patternForComma, RegexOptions.Compiled | RegexOptions.IgnoreCase))
+            {
+                this.ColumnSeparator = comma;
+            }
+
+            //this.FileStreamReader.BaseStream.Seek(cursorPos, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
+
+        }
+
+        private void StreamToList()
+        {
+            string line;
+            List<string> list = new List<string>();
+            while ((line = this.FileStreamReader.ReadLine()) != null)
+            {
+                list.Add(line);
+            }
+            this.LinesList = list;
+        }
 
         /// <summary>
         /// Check Headers position
@@ -111,11 +187,11 @@ namespace platformAthletic.Helpers
             string patternEmail = @"^email$";
 
             Dictionary<string, byte> tempPosition = new Dictionary<string, byte>(this.Position);
-            uint cursorPos = (uint)this.FileStreamReader.BaseStream.Position;
-            this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
-            this.FileStreamReader.DiscardBufferedData();
-            string[] line = this.FileStreamReader.ReadLine().Split(';');
-            //Console.WriteLine(String.Format("Headers: {0} {1} {2}", line[0], line[1], line[2]));
+            //uint cursorPos = (uint)this.FileStreamReader.BaseStream.Position;
+            //this.FileStreamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+            //this.FileStreamReader.DiscardBufferedData();
+            //string[] line = this.FileStreamReader.ReadLine().Split(this.ColumnSeparator);
+            string[] line = this.LinesList[0].Split(this.ColumnSeparator);
 
             for (byte i = 0; i < line.Length; i++)
             {
@@ -154,21 +230,19 @@ namespace platformAthletic.Helpers
                     checkedEmail = true;
                 }
             }
-            //Console.WriteLine(String.Format(
-            //    "Positions - First Name: {0}, Last Name: {1}, Email: {2}",
-            //    this.Position["FirstName"], this.Position["LastName"], this.Position["Email"]
-            //));
+
             if (checkedFirstName && checkedLastName && checkedEmail)
             {
                 this.Position = new Dictionary<string, byte>(tempPosition);
+                this.IsHeadersValid = true;
+                //this.StartDataPos = this.FileStreamReader.BaseStream.Position;
             }
             else
             {
-                this.FileStreamReader.BaseStream.Seek(cursorPos, SeekOrigin.Begin);
-                this.FileStreamReader.DiscardBufferedData();
+                this.IsHeadersValid = false;
+                //this.FileStreamReader.BaseStream.Seek(cursorPos, SeekOrigin.Begin);
+                //this.FileStreamReader.DiscardBufferedData();
             }
-
-            
 
             return checkedFirstName && checkedLastName && checkedEmail;
 
@@ -234,7 +308,7 @@ namespace platformAthletic.Helpers
         protected string EscapeData(string data)
         {
             return HttpUtility.HtmlEncode(data.Replace(">", "&#62;").Replace("<", "&#60;").Trim());
-        } 
+        }
 
     } /*end class*/
 

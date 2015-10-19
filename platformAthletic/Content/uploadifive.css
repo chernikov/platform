@@ -4,39 +4,12 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 */
 
 .uploadifive-button {
-	background-color: #FFF;
-	background-image: linear-gradient(bottom, #FFF 0%, #FFF 100%);
-	background-image: -o-linear-gradient(bottom, #FFF 0%, #FFF 100%);
-	background-image: -moz-linear-gradient(bottom, #FFF 0%, #FFF 100%);
-	background-image: -webkit-linear-gradient(bottom, #FFF 0%, #FFF 100%);
-	background-image: -ms-linear-gradient(bottom, #FFF 0%, #FFF 100%);
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, #FFF),
-		color-stop(1, #FFF)
-	);
-	background-position: center top;
-	background-repeat: no-repeat;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	border: 2px solid #65CEA7;
-	color: #65CEA7;
-	font: /*bold*/ 12px 'Montserrat', Sans-serif, Arial, Helvetica, sans-serif;
-	text-align: center;
-	/*text-shadow: 0 -1px 0 rgba(0,0,0,0.25);*/
-	text-transform: uppercase;
-	width: 100%;
-}
-.uploadifive-button:hover {
 	background-color: #65CEA7;
-	background-image: linear-gradient(top, #65CEA7 0%, #65CEA7 100%);
-	background-image: -o-linear-gradient(top, #65CEA7 0%, #65CEA7 100%);
-	background-image: -moz-linear-gradient(top, #65CEA7 0%, #65CEA7 100%);
-	background-image: -webkit-linear-gradient(top, #65CEA7 0%, #65CEA7 100%);
-	background-image: -ms-linear-gradient(top, #65CEA7 0%, #65CEA7 100%);
+	background-image: linear-gradient(bottom, #65CEA7 0%, #65CEA7 100%);
+	background-image: -o-linear-gradient(bottom, #65CEA7 0%, #65CEA7 100%);
+	background-image: -moz-linear-gradient(bottom, #65CEA7 0%, #65CEA7 100%);
+	background-image: -webkit-linear-gradient(bottom, #65CEA7 0%, #65CEA7 100%);
+	background-image: -ms-linear-gradient(bottom, #65CEA7 0%, #65CEA7 100%);
 	background-image: -webkit-gradient(
 		linear,
 		left bottom,
@@ -44,7 +17,36 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 		color-stop(0, #65CEA7),
 		color-stop(1, #65CEA7)
 	);
-    color: white;
+	background-position: center top;
+	background-repeat: no-repeat;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 2px solid #65CEA7;
+	color: #FFF;
+	font: /*bold*/ 14px 'Montserrat', Sans-serif, Arial, Helvetica, sans-serif;
+	text-align: center;
+	/*text-shadow: 0 -1px 0 rgba(0,0,0,0.25);*/
+	/*text-transform: uppercase;*/
+    display:inline-block;
+    float: left;
+	width: 100%;
+}
+.uploadifive-button:hover {
+	background-color: #FFF;
+	background-image: linear-gradient(top, #FFF 0%, #FFF 100%);
+	background-image: -o-linear-gradient(top, #FFF 0%, #FFF 100%);
+	background-image: -moz-linear-gradient(top, #FFF 0%, #FFF 100%);
+	background-image: -webkit-linear-gradient(top, #FFF 0%, #FFF 100%);
+	background-image: -ms-linear-gradient(top, #FFF 0%, #FFF 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, #FFF),
+		color-stop(1, #FFF)
+	);
+    color: #65CEA7;
 	cursor: pointer;
 	background-position: center bottom;
 }
@@ -55,9 +57,25 @@ Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	font: 12px 'Montserrat', sans-serif, Arial, Helvetica;
-	margin-top: 3px;
+	margin-top: 0;
+    width: 75%;
+    float:right;
+    height: 35px;
 	padding: 5px;
     padding-bottom: 0;
+}
+
+@media(max-width: 550px) {
+    .uploadifive-queue-item {
+        width: 68%;
+    }
+}
+
+@media(max-width: 410px) {
+    .uploadifive-queue-item {
+        margin-top: 5px;
+        width: 100%;
+    }
 }
 .uploadifive-queue-item .close {
 	background: url('../Media/images/uploadify-cancel.png') 0 0 no-repeat;

@@ -8,23 +8,26 @@
             <div id="ModalImportPlayerWrapper">
                 <div class="modal-body text-center">
                     <div class="col-md-10">
-                        <input id="FileUpload" type="file" name="FileUpload" />
+                        <input id="FileUpload" type="file" accept=".csv" name="FileUpload" />
+                        <div class="clear"></div>
                         <p class="text-left">
-                            *file must be saved as .csv<br />
+                            *file must be saved as .csv, maximum size allowed 50 KB<br />
                             *file must have three columns containing First Name, Last Name, Email<br />
-                            *for your convenlence, you can use <a href="~/Media/sample_upload_template.csv" target="_blank">our template</a> <br />
+                            *for your convenience, you can use <a href="~/Media/sample_upload_template.csv" target="_blank">our template</a> <br />
+                            <a class="popup-upload-csv" role="button" data-container=".modal-content" data-placement="auto left" data-toggle="popover" data-content='To save file as .csv, open your existing file, and go to " file> Save As". Select the "Format" drop down and select either "Windows Comma Separated (.csv)" or "MS-DOS comma separated (.csv)"'>Need Help?</a>
                         </p>
                     </div>
                     <div class="col-md-2">
-                        <div class="row">
-                            <button type="button" class="btn btn-primary" id="UploadFile">UPLOAD</button>
-                        </div>
-                        <div class="row">
-                            <button type="button" class="btn btn-default" id="CancelUploadFile"data-dismiss="modal">CANSEL</button>
-                        </div>
+                        <button type="button" class="btn btn-default" id="CancelUploadFile" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-primary" id="UploadFile">UPLOAD</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function () {
+        $("a.popup-upload-csv").popover();
+    });
+</script>

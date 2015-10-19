@@ -191,7 +191,10 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult UploadFile()
         {
-            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && System.IO.Path.GetExtension(Request.Files[0].FileName) == ".csv")
+            const int MAX_FILE_SIZE = 50 * 1024;
+            if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 &&
+                Request.Files[0].ContentLength <= MAX_FILE_SIZE &&
+                System.IO.Path.GetExtension(Request.Files[0].FileName) == ".csv")
             {
                 Stream fileStream = Request.Files[0].InputStream;
                 using (CsvParser csvParser = new CsvParser(fileStream))
@@ -229,19 +232,28 @@ namespace platformAthletic.Areas.Default.Controllers
                     if (batchPlayersView.Players.Count == 0)
                     {
                         ViewBag.TitleError = "DATA NOT FOUND";
-                        ViewBag.TextError = "Sorry, but data about players were not found in uploaded file.";
+                        ViewBag.TextError = "Sorry, players data is absent in uploaded file.";
                         return View("ImportError");
                     }
                     else 
                     {
+                        ViewBag.PlayerCount = batchPlayersView.Players.Count;
                         return View(batchPlayersView);
                     }
                 }//end uding
             }
-            else if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && System.IO.Path.GetExtension(Request.Files[0].FileName) != ".csv")
+            else if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 && 
+                     System.IO.Path.GetExtension(Request.Files[0].FileName) != ".csv")
             {
-                ViewBag.TitleError = "FILE EXTENTION";
-                ViewBag.TextError = "Sorry, but the downloaded file is not csv.";
+                ViewBag.TitleError = "FILE EXTENSION";
+                ViewBag.TextError = "Sorry, selected file was not a .csv file.";
+                return View("ImportError");
+            }
+            else if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0 &&
+                     Request.Files[0].ContentLength >= MAX_FILE_SIZE)
+            {
+                ViewBag.TitleError = "FILE SIZE";
+                ViewBag.TextError = "Sorry, selected file exceeds the file size limit.";
                 return View("ImportError");
             }
             else
@@ -255,9 +267,8 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult SubmitUploadFile(BatchPlayersView batchPlayersView, bool firstCheck=false)
         {
-                    
+            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
             CheckPlayersDoubleEmail(batchPlayersView);
-
             if (firstCheck == true)
             {
                 Regex regex = new Regex(@"\[([a-zA-Z0-9]+)\]", RegularExpressions.RegexOptions.Compiled | RegularExpressions.RegexOptions.IgnoreCase);
@@ -266,34 +277,39 @@ namespace platformAthletic.Areas.Default.Controllers
                     .Where(f => f.Value.Errors.Count > 0)
                     .Select(x => regex.Match(x.Key).Groups[1].Value)
                 );
-
-                var unvalidPlayers = batchPlayersView.Players.Where(x => errors.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
-                var unvalidBatchPlayers = new BatchPlayersView()
+                var invalidPlayers = batchPlayersView.Players.Where(x => errors.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                var invalidBatchPlayers = new BatchPlayersView()
                 {
-                    Players = unvalidPlayers
+                    Players = invalidPlayers
                 };
                 var validPlayers = batchPlayersView.Players.Where(x => !errors.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                
                 if (validPlayers.Count > 0)
                 {
                     var validBatchPlayers = new BatchPlayersView()
                     {
                         Players = validPlayers
                     };
+                    stopwatch.Stop();
+                    var firstPoint = stopwatch.ElapsedMilliseconds;
+                    stopwatch.Reset();
+                    stopwatch.Start();
                     SavePlayers(validBatchPlayers);
+                    stopwatch.Stop();
+                    var secondPoint = stopwatch.ElapsedMilliseconds;
                 }
 
                 ViewBag.AddPlayersCount = validPlayers.Count;
-                if (unvalidPlayers.Count > 0)
+                if (invalidPlayers.Count > 0)
                 {
                     ViewBag.TotalPlayersCount = batchPlayersView.Players.Count;
-                    return View(unvalidBatchPlayers);
+                    return View(invalidBatchPlayers);
                 }
-                else if (unvalidPlayers.Count == 0)
+                else if (invalidPlayers.Count == 0)
                 {
                     return View("UploadSuccess");
                 }
             }
-           
 
             if (batchPlayersView.Players.Count > 0 && ModelState.IsValid)
             {
@@ -348,8 +364,12 @@ namespace platformAthletic.Areas.Default.Controllers
 
         private void SavePlayers(BatchPlayersView batchPlayersView)
         {
+            List<long> timeCreatePlayers = new List<long>();
+            List<long> timeCreateUserRole = new List<long>();
+            List<long> timeSendEmail = new List<long>();
             foreach (var playerView in batchPlayersView.Players.Values)
             {
+                System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
                 var user = (User)ModelMapper.Map(playerView, typeof(PlayerView), typeof(User));
                 user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
                 user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
@@ -357,21 +377,36 @@ namespace platformAthletic.Areas.Default.Controllers
                 user.Mode = (int)Model.User.ModeEnum.Tutorial;
                 user.IsPhantom = (User.ModeEnum)CurrentUser.Mode == Model.User.ModeEnum.Test;
                 Repository.CreateUser(user);
-
+                stopwatch.Stop();
+                long cretePlayerTime = stopwatch.ElapsedMilliseconds;
+                stopwatch.Reset();
+                stopwatch.Start();
                 var userRole = new UserRole()
                 {
                     UserID = user.ID,
                     RoleID = 3 //player
                 };
-
                 Repository.CreateUserRole(userRole);
+                stopwatch.Stop();
+                long createUserRoleTime = stopwatch.ElapsedMilliseconds;
+                stopwatch.Reset();
+                stopwatch.Start();
                 SendWelcomePlayerMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
                 var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
                 if (existFailMail != null)
                 {
                     Repository.RemoveFailedMail(existFailMail.ID);
                 }
+                stopwatch.Stop();
+                long sendEmailTime = stopwatch.ElapsedMilliseconds;
+                stopwatch.Reset();
+                timeCreatePlayers.Add(cretePlayerTime);
+                timeCreateUserRole.Add(createUserRoleTime);
+                timeSendEmail.Add(sendEmailTime);
             }
+            double averageCretePlayerTime = timeCreatePlayers.Average();
+            double averageCreateUserRoleTime = timeCreateUserRole.Average();
+            double averageSendEmailTime = timeSendEmail.Average();
         }
 
         public ActionResult DeletePlayer(int id)

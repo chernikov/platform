@@ -4,9 +4,7 @@ function AddPlayers() {
 
     this.init = function ()
     {
-        
-
-        $(document).on('click', "#ChooseOption, #CancelUploadFile", function () {
+        $(document).on('click', "#ChooseOption", function () {
             if (typeof (testmode) != "undefined") {
                 testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
                     _this.showChooseOption();
@@ -15,23 +13,31 @@ function AddPlayers() {
                 _this.showChooseOption();
             }
         });
-        $(document).on('click', "#AddPlayersButton", function () {
-            if (typeof (testmode) != "undefined") {
-                testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
-                    _this.showAddPlayers();
-                });
-            } else {
-                _this.showAddPlayers();
-            }
+
+        $(document).on('click', "#CancelUploadFile", function () {
+            _this.showChooseOption();
         });
+
+        $(document).on('click', "#AddPlayersButton", function () {
+            //if (typeof (testmode) != "undefined") {
+            //    testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
+            //        _this.showAddPlayers();
+            //    });
+            //} else {
+            //    _this.showAddPlayers();
+            //}
+            _this.showAddPlayers();
+        });
+
         $(document).on('click', "#ImportPlayerButton, #BackToUploadFile", function () {
-            if (typeof (testmode) != "undefined") {
-                testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
-                    _this.showImportPlayers();
-                });
-            } else {
-                _this.showImportPlayers();
-            }
+            //if (typeof (testmode) != "undefined") {
+            //    testmode.showInfoExtended("You are still in Test Mode. Players added will not be saved, once you exit test mode.", "Understood", function () {
+            //        _this.showImportPlayers();
+            //    });
+            //} else {
+            //    _this.showImportPlayers();
+            //}
+            _this.showImportPlayers();
         });
 
         $(document).on("click", "#AddMoreRow", function () {
@@ -80,6 +86,7 @@ function AddPlayers() {
 
         $(document).on('click', '#ConfirmUploadPlayers', function () {
             $("#ConfirmUploadPlayers").prop("disabled", true);
+            $("#preLoader").css('display', 'block')
             var data = $("#AddPlayersForm").serialize();
             $.ajax({
                 type: 'POST',
@@ -94,6 +101,7 @@ function AddPlayers() {
         });
 
         $(document).on("click", "#SubmitUploadPlayers", function () {
+            $("#preLoader").css('display', 'block')
             var data = $("#AddPlayersForm").serialize();
             $.ajax({
                 type: "POST",
@@ -151,6 +159,15 @@ function AddPlayers() {
             changeColumnElemetsData(".third-column");
         });
 
+        $(document).on("hide.bs.modal", "#modalUploadSuccess", function (event) {
+            var href = location.protocol + '//' + location.host + location.pathname;
+            window.location = href;
+        });
+
+        $(document).on("click", "#modalUploadFile .show-other-players span", function (eve) {
+            $(".hidden-players").toggle(0);
+        });
+
         function changeColumnElemetsData(header_selector) {
             $("#ListOfFields " + header_selector).each(function (eve) {
                 var $input = $(this).children("input");
@@ -185,23 +202,46 @@ function AddPlayers() {
                 }
 
                 jQuery('#FileUpload').uploadifive({
-                    //swf: '/Scripts/uploadify.swf',
                     uploadScript: '/dashboard/UploadFile/',
-                    buttonText: "SELECT FILE",
+                    buttonText: "Browse Files",
+                    fileType: '.csv',
+                    //overrideEvents: ['onDialogClose', 'onError'],
                     auto: false,
                     multi: false,
-                    height: 30,
+                    height: 35,
+                    queueSizeLimit: 1,
                     uploadLimit: 1,
+                    fileSizeLimit: 50,
                     onUploadComplete: function (file, data) {
                         //alert('The file ' + file.name + ' finished processing.');
                         $("#ModalImportPlayer").modal("hide");
                         $(".modal-backdrop.fade.in").remove();
                         $("#ModalWrapper").html(data);
-                    }
+                    },
+                    onAddQueueItem: function (file) {
+                        if ($('.uploadifive-queue-item').length > 1) {
+                            $('.uploadifive-queue-item').first().hide();
+                            $('#FileUpload').uploadifive('cancel', $('.uploadifive-queue-item').first().data('file'))
+                        }
+                        //alert("onAddQueueItem");
+                    },
+                    onSelect: function (queue) {
+                        //alert("onSelect");
+                    },
+                    onCancel: function (file) {
+                        //alert("onCancel");
+                    },
+                    onDialogClose: function (queueData) {
+
+                    },
+                    onError: function (errorType) {
+                        //alert('Error!');
+                    },
                 });
 
                 $(document).on("click", "#UploadFile", function () {
                     jQuery('#FileUpload').uploadifive('upload');
+                    //$("#UploadFile").prop("disabled", true);
                 });
 
                 $("#ModalImportPlayer").modal();
@@ -226,6 +266,7 @@ function AddPlayers() {
             type: "GET",
             success: function (data) {
                 $("#ModalWrapper").html(data);
+                $('.modal-backdrop.fade.in').remove();
                 $("#modalAddPlayers").modal();
             }
         });

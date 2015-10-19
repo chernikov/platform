@@ -7,25 +7,42 @@
     @using (Html.BeginForm("UploadFile", "Dashboard", FormMethod.Post, new { id = "AddPlayersForm" }))
     {
         <div id="ListOfFields">
-            @if (Model.Players != null)
-            {
-                foreach (var player in Model.Players)
+            <div class="visible">
+                @if (Model.Players != null)
                 {
-                    @Html.Partial("AddPlayerItem", player)
+                    int counter = 0;
+                    foreach (var player in Model.Players)
+                    {
+                        if (counter == 5)
+                        {
+                            @Html.Raw("</div><div class='hidden-players'>");
+                        }
+                        @Html.Partial("AddPlayerItem", player)
+                        counter++;
+
+                    }
                 }
-            }
+            </div>
         </div>
     }
 </div>
+@if (ViewBag.PlayerCount > 5)
+{
+    <div class="show-other-players">
+        <span>Show/Hide other rows.</span>
+    </div>
+}
+
 <div class="modal-footer text-center" id="FirstPanel">
-    <button type="button" class="btn btn-default pull-left" id="BackToUploadFile" data-dismiss="modal">CANCEL AND GO BACK</button>
+    <button type="button" class="btn btn-default pull-left try-close" @*data-dismiss="modal"*@>CANCEL AND GO BACK</button>
+    <div id="preLoader">The process can take a few minutes <img src="~/Media/images/icons/loading_file.gif" /></div>
     <button type="button" class="btn btn-primary pull-right" id="ConfirmUploadPlayers">CONFIRM AND UPLOAD</button>
 
 </div>
 
 <div class="modal-footer text-center" id="SecondPanel" style="display:none;">
     <p>Are you sure you want to cancel? All information entered will be lost and players will not be added.</p>
-    <button type="button" class="btn btn-default" data-dismiss="modal">YES</button>
+    <button type="button" class="btn btn-default" id="BackToUploadFile" data-dismiss="modal">YES</button>
     <button type="button" class="btn btn-primary" id="NoBtn">NO</button>
 
 </div>

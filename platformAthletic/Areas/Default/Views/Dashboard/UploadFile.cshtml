@@ -8,32 +8,36 @@
             </div>
             <div class="modal-body text-center">
                 <p>
-                    Match the column info to the header using drop downs.
+                    Please match the column info from your file to the headers using the drop downs.<br>
+                    @if (ViewBag.PlayerCount > 5)
+                    {
+                        @Html.Raw("*not all rows shown. This is for matching purposes only.")
+                    }
                 </p>
                 <div class="row">
                     <div class="col-sm-4 col-xs-12 text-left">
                         <select class="form-control first-column">
-                            <option value="FirstName" selected>FIRST NAME *</option>
-                            <option value="LastName">LAST NAME *</option>
-                            <option value="Email">EMAIL *</option>
+                            <option value="FirstName" selected>FIRST NAME</option>
+                            <option value="LastName">LAST NAME</option>
+                            <option value="Email">EMAIL</option>
                         </select>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-left">
                         <select class="form-control second-column">
-                            <option value="FirstName">FIRST NAME *</option>
-                            <option value="LastName" selected>LAST NAME *</option>
-                            <option value="Email">EMAIL *</option>
+                            <option value="FirstName">FIRST NAME</option>
+                            <option value="LastName" selected>LAST NAME</option>
+                            <option value="Email">EMAIL</option>
                         </select>
                     </div>
                     <div class="col-sm-4 col-xs-12 text-left">
                         <select class="form-control third-column">
-                            <option value="FirstName">FIRST NAME *</option>
-                            <option value="LastName">LAST NAME *</option>
-                            <option value="Email" selected>EMAIL *</option>
+                            <option value="FirstName">FIRST NAME</option>
+                            <option value="LastName">LAST NAME</option>
+                            <option value="Email" selected>EMAIL</option>
                         </select>
                     </div>
-                 </div>
-             </div>
+                </div>
+            </div>
             <div id="AddPlayersBodyWrapper">
                 @Html.Partial("UploadPlayersBody", Model)
             </div>
