@@ -63,6 +63,7 @@
     <Compile Include="Proxy\Cell.cs" />
     <Compile Include="Proxy\Cycle.cs" />
     <Compile Include="Proxy\Day.cs" />
+    <Compile Include="Proxy\DelayedJob.cs" />
     <Compile Include="Proxy\Equipment.cs" />
     <Compile Include="Proxy\FailedMail.cs" />
     <Compile Include="Proxy\Faq.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="SqlRepository\Cell.cs" />
     <Compile Include="SqlRepository\Cycle.cs" />
     <Compile Include="SqlRepository\Day.cs" />
+    <Compile Include="SqlRepository\DelayedJob.cs" />
     <Compile Include="SqlRepository\Equipment.cs" />
     <Compile Include="SqlRepository\FailedMail.cs" />
     <Compile Include="SqlRepository\Faq.cs" />

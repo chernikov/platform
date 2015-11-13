@@ -159,7 +159,7 @@ function AddPlayers() {
             changeColumnElemetsData(".third-column");
         });
 
-        $(document).on("hide.bs.modal", "#modalUploadSuccess", function (event) {
+        $(document).on("hide.bs.modal", "#modalUploadSuccess, #modalSubmitUploadFile", function (event) {
             var href = location.protocol + '//' + location.host + location.pathname;
             window.location = href;
         });

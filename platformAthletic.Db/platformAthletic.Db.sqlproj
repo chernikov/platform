@@ -120,6 +120,7 @@
     <Build Include="dbo\Tables\Level.sql" />
     <Build Include="dbo\Tables\UserVideo.sql" />
     <None Include="Migrations\MigrationScript_020.sql" />
+    <Build Include="dbo\Tables\DelayedJob.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="platformAthletic.Db.publish.xml" />

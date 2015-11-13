@@ -89,12 +89,9 @@ namespace platformAthletic.Helpers
                 {
                     toJSON.Add(new UserInfo()
                     {
-                        FirstName = this.Position["FirstName"] < notEmptyElemetCount ?
-                                    EscapeData(elemets[this.Position["FirstName"]]) : String.Empty,
-                        LastName  = this.Position["LastName"] < notEmptyElemetCount ?
-                                    EscapeData(elemets[this.Position["LastName"]]) : String.Empty,
-                        Email     = this.Position["Email"] < notEmptyElemetCount ?
-                                    EscapeData(elemets[this.Position["Email"]]) : String.Empty
+                        FirstName = EscapeData(elemets[this.Position["FirstName"]]) ?? String.Empty,
+                        LastName  = EscapeData(elemets[this.Position["LastName"]]) ?? String.Empty,
+                        Email     = EscapeData(elemets[this.Position["Email"]]) ?? String.Empty
                     });
                 }
             }
@@ -125,12 +122,9 @@ namespace platformAthletic.Helpers
                 {
                     batchPlayersView.Players.Add(Guid.NewGuid().ToString("N"), new PlayerView()
                     {
-                        FirstName = this.Position["FirstName"] < notEmptyElemetCount ?
-                                    EscapeData(elemets[this.Position["FirstName"]]) : String.Empty, 
-                        LastName  = this.Position["LastName"] < notEmptyElemetCount ?
-                                    EscapeData(elemets[this.Position["LastName"]]) : String.Empty,
-                        Email     = this.Position["Email"] < notEmptyElemetCount ?
-                                    EscapeData(elemets[this.Position["Email"]]) : String.Empty
+                        FirstName = EscapeData(elemets[this.Position["FirstName"]]) ?? String.Empty, 
+                        LastName  = EscapeData(elemets[this.Position["LastName"]]) ?? String.Empty,
+                        Email     = EscapeData(elemets[this.Position["Email"]]) ?? String.Empty
                     });
                 }
             }
@@ -146,8 +140,8 @@ namespace platformAthletic.Helpers
             //this.FileStreamReader.DiscardBufferedData();
             //string line = this.FileStreamReader.ReadLine();
             string line = this.LinesList[0];
-            string patternForComma = @"^(.*[^,]),(.*[^,]),(.*[^,])$";
-            string patternForSemicolon = @"^(.*[^;]);(.*[^;]);(.*[^;])$";
+            string patternForComma = @"^(.*[^,]?),(.*[^,]?),(.*[^,]?)$";
+            string patternForSemicolon = @"^(.*[^;]?);(.*[^;]?);(.*[^;]?)$";
             if (Regex.IsMatch(line, patternForSemicolon, RegexOptions.Compiled | RegexOptions.IgnoreCase))
             {
                 this.ColumnSeparator = semicolon;

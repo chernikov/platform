@@ -752,6 +752,18 @@ namespace platformAthletic.Model
         bool RemoveUserVideo(int idUserVideo);
 
         #endregion 
+
+        #region DelayedJob
+
+        IQueryable<DelayedJob> DelayedJobs { get; }
+
+        bool CreateDelayedJob(DelayedJob instance);
+
+        bool RemoveDelayedJob(int idDelayedJob);
+
+        bool ChangeDelayedJobStatus(int idDelayedJob, string status);
+
+        #endregion 
         
     }
 }

@@ -267,7 +267,6 @@ namespace platformAthletic.Areas.Default.Controllers
         [HttpPost]
         public ActionResult SubmitUploadFile(BatchPlayersView batchPlayersView, bool firstCheck=false)
         {
-            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
             CheckPlayersDoubleEmail(batchPlayersView);
             if (firstCheck == true)
             {
@@ -290,13 +289,7 @@ namespace platformAthletic.Areas.Default.Controllers
                     {
                         Players = validPlayers
                     };
-                    stopwatch.Stop();
-                    var firstPoint = stopwatch.ElapsedMilliseconds;
-                    stopwatch.Reset();
-                    stopwatch.Start();
                     SavePlayers(validBatchPlayers);
-                    stopwatch.Stop();
-                    var secondPoint = stopwatch.ElapsedMilliseconds;
                 }
 
                 ViewBag.AddPlayersCount = validPlayers.Count;
@@ -364,12 +357,8 @@ namespace platformAthletic.Areas.Default.Controllers
 
         private void SavePlayers(BatchPlayersView batchPlayersView)
         {
-            List<long> timeCreatePlayers = new List<long>();
-            List<long> timeCreateUserRole = new List<long>();
-            List<long> timeSendEmail = new List<long>();
             foreach (var playerView in batchPlayersView.Players.Values)
             {
-                System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
                 var user = (User)ModelMapper.Map(playerView, typeof(PlayerView), typeof(User));
                 user.Password = StringExtension.CreateRandomPassword(8, "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789");
                 user.PlayerOfTeamID = CurrentUser.OwnTeam.ID;
@@ -377,36 +366,75 @@ namespace platformAthletic.Areas.Default.Controllers
                 user.Mode = (int)Model.User.ModeEnum.Tutorial;
                 user.IsPhantom = (User.ModeEnum)CurrentUser.Mode == Model.User.ModeEnum.Test;
                 Repository.CreateUser(user);
-                stopwatch.Stop();
-                long cretePlayerTime = stopwatch.ElapsedMilliseconds;
-                stopwatch.Reset();
-                stopwatch.Start();
                 var userRole = new UserRole()
                 {
                     UserID = user.ID,
                     RoleID = 3 //player
                 };
                 Repository.CreateUserRole(userRole);
-                stopwatch.Stop();
-                long createUserRoleTime = stopwatch.ElapsedMilliseconds;
-                stopwatch.Reset();
-                stopwatch.Start();
-                SendWelcomePlayerMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
-                var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
-                if (existFailMail != null)
+                //SendWelcomePlayerMail(user.Email, "Welcome to Platform!", CurrentUser.FirstName + " " + CurrentUser.LastName, user.Email, user.Password);
+                //var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, user.Email, true) == 0);
+                //if (existFailMail != null)
+                //{
+                //    Repository.RemoveFailedMail(existFailMail.ID);
+                //}
+                DelayedJob delayedJob = new DelayedJob() 
                 {
-                    Repository.RemoveFailedMail(existFailMail.ID);
-                }
-                stopwatch.Stop();
-                long sendEmailTime = stopwatch.ElapsedMilliseconds;
-                stopwatch.Reset();
-                timeCreatePlayers.Add(cretePlayerTime);
-                timeCreateUserRole.Add(createUserRoleTime);
-                timeSendEmail.Add(sendEmailTime);
+                    Email = user.Email,
+                    Subject = "Welcome to Platform!",
+                    Coach = CurrentUser.FirstName + " " + CurrentUser.LastName,
+                    Password = user.Password
+                };
+                Repository.CreateDelayedJob(delayedJob);
             }
-            double averageCretePlayerTime = timeCreatePlayers.Average();
-            double averageCreateUserRoleTime = timeCreateUserRole.Average();
-            double averageSendEmailTime = timeSendEmail.Average();
+        }
+
+        [AllowAnonymous]
+        public void SendDelayedEmail()
+        {
+            List<DelayedJob> delayedJobs = Repository.DelayedJobs.Where(dj => dj.Status != "failed" || dj.Status == null).ToList();
+            if (delayedJobs.Count > 0)
+            {
+                try
+                {
+                    using (StreamWriter sw = System.IO.File.AppendText(String.Format(@"{0}Media\logs\sendmail.txt", System.AppDomain.CurrentDomain.BaseDirectory)))
+                    {
+                        sw.WriteLine("{0} - start send email for {1} players", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), delayedJobs.Count);
+                    }
+                }
+                catch { }
+                
+                foreach (DelayedJob delayedJob in delayedJobs)
+                {
+                    User recipient = Repository.Users.FirstOrDefault(u => u.Email == delayedJob.Email);
+                    bool result = true;
+                    if (recipient != null)
+                    {
+                        result = SendWelcomePlayerMail(delayedJob.Email, "Welcome to Platform!", delayedJob.Coach, delayedJob.Email, delayedJob.Password);
+                        var existFailMail = Repository.FailedMails.FirstOrDefault(p => string.Compare(p.FailEmail, delayedJob.Email, true) == 0);
+                        if (existFailMail != null)
+                        {
+                            Repository.RemoveFailedMail(existFailMail.ID);
+                        }
+                    }
+                    if (result)
+                    {
+                        Repository.RemoveDelayedJob(delayedJob.ID);
+                    }
+                    else
+                    {
+                        Repository.ChangeDelayedJobStatus(delayedJob.ID, "failed");
+                    }
+                }
+                try
+                {
+                    using (StreamWriter sw = System.IO.File.AppendText(String.Format(@"{0}Media\logs\sendmail.txt", System.AppDomain.CurrentDomain.BaseDirectory)))
+                    {
+                        sw.WriteLine("{0} - end send email for {1} players", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), delayedJobs.Count);
+                    }
+                }
+                catch { }
+            }
         }
 
         public ActionResult DeletePlayer(int id)

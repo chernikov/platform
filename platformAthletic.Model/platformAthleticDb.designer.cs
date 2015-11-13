@@ -655,6 +655,14 @@ namespace platformAthletic.Model
 				return this.GetTable<Aphorism>();
 			}
 		}
+
+        public System.Data.Linq.Table<DelayedJob> DelayedJobs
+        {
+            get
+            {
+                return this.GetTable<DelayedJob>();
+            }
+        }
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Equipment")]
@@ -2047,6 +2055,110 @@ namespace platformAthletic.Model
 			}
 		}
 	}
+
+    [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DelayedJob")]
+    public partial class DelayedJob
+    {
+        private int _ID;
+        private string _Email;
+        private string _Password;
+        private string _Coach;
+        private string _Subject;
+        private int _Type;
+        private string _Status;
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
+        public int ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this._ID = value;
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Email", DbType = "nvarchar(150) NOT NULL")]
+        public string Email
+        {
+            get
+            {
+                return this._Email;
+            }
+            set
+            {
+                this._Email = value;
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Password", DbType = "nvarchar(50) NOT NULL")]
+        public string Password
+        {
+            get
+            {
+                return this._Password;
+            }
+            set
+            {
+                this._Password = value;
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Coach", DbType = "nvarchar(1100) NOT NULL")]
+        public string Coach
+        {
+            get
+            {
+                return this._Coach;
+            }
+            set
+            {
+                this._Coach = value;
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Subject", DbType = "nvarchar(150) NOT NULL")]
+        public string Subject
+        {
+            get
+            {
+                return this._Subject;
+            }
+            set
+            {
+                this._Subject = value;
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Type", DbType = "int NOT NULL DEFAULT 0")]
+        public int Type
+        {
+            get
+            {
+                return this._Type;
+            }
+            set
+            {
+                this._Type = value;
+            }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Status", DbType = "nvarchar(150) NULL")]
+        public string Status
+        {
+            get
+            {
+                return this._Status;
+            }
+            set
+            {
+                this._Status = value;
+            }
+        }
+
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserRole")]
 	public partial class UserRole : INotifyPropertyChanging, INotifyPropertyChanged

@@ -5,7 +5,9 @@ using System.Web;
 using System.Net.Mail;
 using System.Text;
 using System.Net;
+using System.IO;
 using platformAthletic.Global.Config;
+using System.Web.Hosting;
 
 namespace platformAthletic.Tools.Mail
 {
@@ -58,6 +60,58 @@ namespace platformAthletic.Tools.Mail
             {
                 logger.ErrorException("Mail send exception", ex);
             }
+        }
+
+        public static bool SendMailForPlayer(string email, string subject, string body, MailAddress mailAddress = null)
+        {
+
+            try
+            {
+                if (config.EnableMail)
+                {
+                    if (mailAddress == null)
+                    {
+                        mailAddress = new MailAddress(config.MailSettings.SmtpReply, config.MailSettings.SmtpUser);
+                    }
+                    MailMessage message = new MailMessage(
+                        mailAddress,
+                        new MailAddress(email))
+                    {
+                        Subject = subject,
+                        BodyEncoding = Encoding.UTF8,
+                        Body = body,
+                        IsBodyHtml = true,
+                        SubjectEncoding = Encoding.UTF8
+                    };
+                    SmtpClient client = new SmtpClient
+                    {
+                        Host = config.MailSettings.SmtpServer,
+                        Port = config.MailSettings.SmtpPort,
+                        UseDefaultCredentials = false,
+                        EnableSsl = config.MailSettings.EnableSsl,
+                        Credentials =
+                            new NetworkCredential(config.MailSettings.SmtpUserName,
+                                                  config.MailSettings.SmtpPassword),
+                        DeliveryMethod = SmtpDeliveryMethod.Network
+                    };
+                    client.Send(message);
+                }
+                else
+                {
+                    logger.Debug("Email : {0} {1} \t Subject: {2} {3} Body: {4}", email, Environment.NewLine, subject, Environment.NewLine, body);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.ErrorException("Mail send exception", ex);
+                //using (StreamWriter sw = File.AppendText(String.Format(@"{0}Media\logs\sendmail.txt", HostingEnvironment.ApplicationPhysicalPath)))
+                using (StreamWriter sw = System.IO.File.AppendText(String.Format(@"{0}Media\logs\sendmail.txt", System.AppDomain.CurrentDomain.BaseDirectory)))
+                {
+                    sw.WriteLine("{0} {1} {2} {3}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), email, ex.Message, ex.Source);
+                }
+                return false;
+            }
+            return true;
         }
     }
 }

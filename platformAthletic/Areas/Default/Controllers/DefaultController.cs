@@ -119,7 +119,7 @@ namespace platformAthletic.Areas.Default.Controllers
             MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
         }
 
-        protected void SendWelcomePlayerMail(string email, string subject, string coach, string username, string password)
+        protected bool SendWelcomePlayerMail(string email, string subject, string coach, string username, string password)
         {
             var mailController = new MailController();
             var mailInfo = new MailInfo()
@@ -135,7 +135,8 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 mailInfo.Body = reader.ReadToEnd();
             }
-            MailSender.SendMail(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+            bool result = MailSender.SendMailForPlayer(mailInfo.Email, mailInfo.Subject, mailInfo.Body);
+            return result;
         }
 
         protected void SendWelcomeAssistantMail(string email, string subject, string coach, string username, string password)
