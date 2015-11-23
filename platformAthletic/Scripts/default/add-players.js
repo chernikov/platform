@@ -217,6 +217,8 @@ function AddPlayers() {
                         $("#ModalImportPlayer").modal("hide");
                         $(".modal-backdrop.fade.in").remove();
                         $("#ModalWrapper").html(data);
+                        ga('send', 'show_modal', 'modal', 'show', 'dashboard_add_players_column_match', 1);
+                        hj('show_dashboard_add_players_column_match');
                     },
                     onAddQueueItem: function (file) {
                         if ($('.uploadifive-queue-item').length > 1) {
@@ -245,7 +247,8 @@ function AddPlayers() {
                 });
 
                 $("#ModalImportPlayer").modal();
-
+                ga('send', 'show_modal', 'modal', 'show', 'dashboard_add_players_upload_file', 1);
+                hj('show_dashboard_add_players_upload_file');
             }
         });
     }
@@ -257,6 +260,8 @@ function AddPlayers() {
                 $("#ModalWrapper").html(data);
                 $(".modal-backdrop.fade.in").remove();
                 $("#ModalChooseOption").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'dashboard_add_players_choose_an_option', 1);
+                hj('show_dashboard_add_players_choose_an_option');
             }
         });
     }
@@ -268,6 +273,8 @@ function AddPlayers() {
                 $("#ModalWrapper").html(data);
                 $('.modal-backdrop.fade.in').remove();
                 $("#modalAddPlayers").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'dashboard_add_players_details', 1);
+                hj('show_dashboard_add_players_details');
             }
         });
     }

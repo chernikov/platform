@@ -134,6 +134,8 @@
                 $("#ModalWrapper").html(data);
                 $("#modalEditPlayer").modal();
                 _this.onEdit();
+                ga('send', 'show_modal', 'modal', 'show', 'create_player_modal', 1);
+                hj('show_create_player_modal');
             }
         });
     }
@@ -147,6 +149,10 @@
                 $("#ModalWrapper").html(data);
                 $("#modalEditPlayer").modal();
                 _this.onEdit();
+                ga('send', 'show_modal', 'modal', 'show', 'edit_player_modal', 1);
+                hj('show_edit_player_modal');
+
+
             }
         });
     }
@@ -159,6 +165,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalRemovePlayer").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'remove_player_modal', 1);
+                hj('show_remove_player_modal');
             }
         });
     }

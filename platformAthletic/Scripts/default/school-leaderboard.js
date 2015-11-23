@@ -188,6 +188,8 @@
             {
                 $("#ModalWrapper").html(data);
                 $("#modalPlayerInfo").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'leaderboard_school_player_profile', 1);
+                hj('show_leaderboard_school_player_profile_modal');
             }
         });
     }

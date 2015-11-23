@@ -166,6 +166,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalAttendanceCalendar").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'report_attedance_calendar', 1);
+                hj('show_report_attedance_calendar_modal');
             }
         })
     }
@@ -216,6 +218,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalPlayerInfo").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'report_attedance_player_profile', 1);
+                hj('show_attedance_player_profile_modal');
             }
         });
     }

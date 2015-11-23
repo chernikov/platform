@@ -108,6 +108,7 @@
             }
         });
 
+        ////
         $(document).on('click', '.calendar-drop-down-list .team-item', function () {
             _this.setSelected(_this.number, $(this).data("id"), _this.date);
         });
@@ -116,6 +117,7 @@
             _this.startSeason($(this).data("id"), _this.date);
         });
 
+        //////
         $(document).on('click', '.calendar-drop-down-list .cycle-item', function () {
             _this.startCycle(_this.number, $(this).data("id"), _this.date);
         });
@@ -184,7 +186,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalGroup").modal();
-                
+                ga('send', 'show_modal', 'modal', 'show', 'scheduling_create_group', 1);
+                hj('show_scheduling_create_group');
             }
         });
     }
@@ -197,6 +200,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalGroup").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'scheduling_edit_group', 1);
+                hj('show_scheduling_edit_group');
             }
         });
     }
@@ -209,6 +214,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalRemoveGroup").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'scheduling_delete_group', 1);
+                hj('show_scheduling_delete_group');
             }
         });
     }

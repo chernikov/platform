@@ -170,7 +170,8 @@
                         _this.drawGraph30(id);
                     }
                 });
-
+                ga('send', 'show_modal', 'modal', 'show', 'report_progress_graph', 1);
+                hj('show_report_progress_graph_modal');
             }
         });
     };
@@ -256,6 +257,8 @@
             success: function (data) {
                 $("#ModalWrapper").html(data);
                 $("#modalPlayerInfo").modal();
+                ga('send', 'show_modal', 'modal', 'show', 'report_progress_player_profile', 1);
+                hj('show_report_progress_player_profile_modal');
             }
         });
     };

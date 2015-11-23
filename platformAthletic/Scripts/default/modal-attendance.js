@@ -16,6 +16,8 @@
                 success: function (data) {
                     $("#ModalWrapper").html(data);
                     $("#modalCalendar").modal();
+                    ga('send', 'show_modal', 'modal', 'show', 'dashboard_attendance_calendar_modal', 1);
+                    hj('show_dashboard_attendance_calendar_modal');
                 }
             })
         });
