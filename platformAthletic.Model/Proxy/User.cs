@@ -237,7 +237,7 @@ namespace platformAthletic.Model
 
         public UserSeason SeasonByDateAndGroup(DateTime dateTime, int? groupID = null, bool getTeam = false)
         {
-            var season = UserSeasons.OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= dateTime && p.GroupID == groupID);
+            var season = UserSeasons.Where(p => p.GroupID == groupID || p.Schedules.Any(r => r.GroupID == groupID)).OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= dateTime);
             if (season == null && groupID == null)
             {
                 season = UserSeasons.Where(p => p.StartDay >= dateTime && p.GroupID == groupID).OrderBy(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault();
