@@ -128,5 +128,15 @@ namespace platformAthletic.Model.Properties {
                 return ((string)(this["new_plt4mConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SATURN\\MSSQL;Initial Catalog=1gb_platform;Integrated Security=True")]
+        public string _1gb_platformConnectionString {
+            get {
+                return ((string)(this["_1gb_platformConnectionString"]));
+            }
+        }
     }
 }

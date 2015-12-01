@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="new_plt4m" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SATURN\MSSQL;Initial Catalog=new_plt4m;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="new_plt4mConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="1gb_platform" Class="platformAthleticDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SATURN\MSSQL;Initial Catalog=1gb_platform;Integrated Security=True" SettingsObjectName="platformAthletic.Model.Properties.Settings" SettingsPropertyName="_1gb_platformConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.About" Member="Abouts">
     <Type Name="About">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -88,17 +88,6 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Day_TrainingDay" Member="TrainingDays" ThisKey="ID" OtherKey="DayID" Type="TrainingDay" />
       <Association Name="Day_TrainingSet" Member="TrainingSets" ThisKey="ID" OtherKey="DayID" Type="TrainingSet" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DelayedJob" Member="DelayedJobs">
-    <Type Name="DelayedJob">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Coach" Type="System.String" DbType="NVarChar(1100)" CanBeNull="true" />
-      <Column Name="Subject" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-      <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Equipment" Member="Equipments">
@@ -649,6 +638,17 @@
       <Column Name="VideoCode" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Preview" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Association Name="Training_Video" Member="Training" ThisKey="TrainingID" OtherKey="ID" Type="Training" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DelayedJob" Member="DelayedJobs">
+    <Type Name="DelayedJob">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Coach" Type="System.String" DbType="NVarChar(1100) NOT NULL" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NChar(150)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
