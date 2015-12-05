@@ -241,8 +241,7 @@ namespace platformAthletic
                     }
                 }
             }
-
-            if (routeData.Values["action"].ToString() == "ServerError")
+            if (!Request.IsLocal && routeData.Values["action"].ToString() == "ServerError")
             {
                 try
                 {
@@ -280,6 +279,7 @@ namespace platformAthletic
                     }                       
 
                     /*MAIL*/
+                    
                     string _serviceEmail = System.Configuration.ConfigurationManager.AppSettings["ServiceEmail"];
                     var serviceEmails = _serviceEmail.Replace(" ", "").Split(',');
 

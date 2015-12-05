@@ -189,6 +189,7 @@
     <Compile Include="Areas\Admin\Controllers\MacrocycleController.cs" />
     <Compile Include="Areas\Admin\Controllers\PeopleSayingController.cs" />
     <Compile Include="Areas\Admin\Controllers\SportController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TableController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\YoutubeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentDetailController.cs" />
@@ -300,6 +301,9 @@
     <Compile Include="Models\Info\AttendanceInfo.cs" />
     <Compile Include="Models\Info\MailInfo.cs" />
     <Compile Include="Models\Info\PlayerTodoListInfo.cs" />
+    <Compile Include="Models\Info\ScheduleTableInfo.cs" />
+    <Compile Include="Models\Info\ScheduleTableItem.cs" />
+    <Compile Include="Models\Info\ScheduleRowInfo.cs" />
     <Compile Include="Models\Info\TodoListInfo.cs" />
     <Compile Include="Models\Info\IndividualTodoListInfo.cs" />
     <Compile Include="Models\Info\CoachTodoListInfo.cs" />
@@ -1765,6 +1769,7 @@
     <Content Include="Areas\Default\Views\Dashboard\SubmitUploadFile.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\SubmitUploadPlayersBody.cshtml" />
     <Content Include="Areas\Default\Views\Dashboard\ImportError.cshtml" />
+    <Content Include="Areas\Admin\Views\Table\Index.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

@@ -91,5 +91,155 @@ namespace platformAthletic.Areas.Admin.Controllers
                 WeekID = ""
             });
         }
+
+        public ActionResult FixScheduleToUserSeason()
+        {
+            FixSchedule();
+            FixPersonalSchedule();
+            return null;
+        }
+
+        private void FixSchedule()
+        {
+            var schedules = Repository.Schedules.ToList();
+            var enumerator = schedules.GetEnumerator();
+            var set = new List<Schedule>();
+            int? checksum = null;
+            var number = 0;
+            enumerator.MoveNext();
+            var current = enumerator.Current;
+            while (current != null)
+            {
+                if (checksum == current.Number - current.ID && current.Macrocycle.Week.Number != null)
+                {
+                    set.Add(current);
+                }
+                else
+                {
+                    if (checksum != null)
+                    {
+                        if (set.Count > 2)
+                        {
+                            //save previous
+                            var setFirst = set.First();
+                            var userSeason = new UserSeason()
+                            {
+                                SeasonID = setFirst.UserSeason.SeasonID,
+                                UserID = setFirst.Team.UserID,
+                                StartDay = setFirst.UserSeason.StartDay.AddDays(number * 7),
+                                StartFrom = setFirst.Macrocycle.Week.Number.Value,
+                                GroupID = setFirst.GroupID,
+
+                            };
+                            Repository.CreateUserSeason(userSeason);
+                            checksum = null;
+                            number = 0;
+                            foreach (var schedule in set)
+                            {
+                                Repository.RemoveSchedule(schedule.ID);
+                            }
+                            set.Clear();
+                        }
+                        else
+                        {
+                            foreach (var schedule in set)
+                            {
+                                var numberWeek = schedule.Number;
+                                var seasonStartDay = schedule.UserSeason.StartDay;
+                                schedule.Date = seasonStartDay.AddDays(7 * numberWeek);
+                                Repository.UpdateSchedule(schedule);
+                            }
+                            set.Clear();
+                        }
+                    }
+                    checksum = current.Number - current.ID;
+                    if (current.Macrocycle.Week.Number != null)
+                    {
+                        set.Add(current);
+
+                    }
+                    else
+                    {
+                        var numberWeek = current.Number;
+                        var seasonStartDay = current.UserSeason.StartDay;
+                        current.Date = seasonStartDay.AddDays(7 * numberWeek);
+                        Repository.UpdateSchedule(current);
+                    }
+                }
+                enumerator.MoveNext();
+                current = enumerator.Current;
+            }
+
+        }
+
+        private void FixPersonalSchedule()
+        {
+            var schedules = Repository.PersonalSchedules.ToList();
+            var enumerator = schedules.GetEnumerator();
+            var set = new List<PersonalSchedule>();
+            int? checksum = null;
+            var number = 0;
+            enumerator.MoveNext();
+            var current = enumerator.Current;
+            while (current != null)
+            {
+                if (checksum == current.Number - current.ID && current.Macrocycle.Week.Number != null)
+                {
+                    set.Add(current);
+                }
+                else
+                {
+                    if (checksum != null)
+                    {
+                        if (set.Count > 2)
+                        {
+                            //save previous
+                            var setFirst = set.First();
+                            var userSeason = new UserSeason()
+                            {
+                                SeasonID = setFirst.UserSeason.SeasonID,
+                                UserID = setFirst.UserID,
+                                StartDay = setFirst.UserSeason.StartDay.AddDays(number * 7),
+                                StartFrom = setFirst.Macrocycle.Week.Number.Value,
+                            };
+                            Repository.CreateUserSeason(userSeason);
+                            checksum = null;
+                            number = 0;
+                            foreach (var schedule in set)
+                            {
+                                Repository.RemovePersonalSchedule(schedule.ID);
+                            }
+                            set.Clear();
+                        }
+                        else
+                        {
+                            foreach (var schedule in set)
+                            {
+                                var numberWeek = schedule.Number;
+                                var seasonStartDay = schedule.UserSeason.StartDay;
+                                schedule.Date = seasonStartDay.AddDays(7 * numberWeek);
+                                Repository.UpdatePersonalSchedule(schedule);
+                            }
+                            set.Clear();
+                        }
+                    }
+                    checksum = current.Number - current.ID;
+                    if (current.Macrocycle.Week.Number != null)
+                    {
+                        set.Add(current);
+
+                    }
+                    else
+                    {
+                        var numberWeek = current.Number;
+                        var seasonStartDay = current.UserSeason.StartDay;
+                        current.Date = seasonStartDay.AddDays(7 * numberWeek);
+                        Repository.UpdatePersonalSchedule(current);
+                    }
+                }
+                enumerator.MoveNext();
+                current = enumerator.Current;
+            }
+        }
     }
 }

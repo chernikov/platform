@@ -21,16 +21,18 @@ namespace platformAthletic.Model
         {
             if (instance.ID == 0)
             {
-
                 Schedule exist = null;
-
                 if (instance.GroupID != null)
                 {
-                    exist = Db.Schedules.FirstOrDefault(p => p.Number == instance.Number && p.GroupID == instance.GroupID && p.TeamID == instance.TeamID);
+                    exist = Db.Schedules.FirstOrDefault(p => p.Number == instance.Number 
+                        && p.GroupID == instance.GroupID 
+                        && p.TeamID == instance.TeamID);
                 }
                 else
                 {
-                    exist = Db.Schedules.FirstOrDefault(p => p.Number == instance.Number && p.GroupID == null && p.TeamID == instance.TeamID);
+                    exist = Db.Schedules.FirstOrDefault(p => p.Number == instance.Number 
+                        && p.GroupID == null 
+                        && p.TeamID == instance.TeamID);
                 }
 
                 if (exist != null)
@@ -56,6 +58,7 @@ namespace platformAthletic.Model
                 cache.UserSeasonID = instance.UserSeasonID;
 				cache.Number = instance.Number;
 				cache.MacrocycleID = instance.MacrocycleID;
+                cache.Date = instance.Date;
                 Db.Schedules.Context.SubmitChanges();
                 return true;
             }
@@ -65,7 +68,7 @@ namespace platformAthletic.Model
 
         public bool RemoveSchedule(int idSchedule)
         {
-            Schedule instance = Db.Schedules.FirstOrDefault(p => p.ID == idSchedule);
+            var instance = Db.Schedules.FirstOrDefault(p => p.ID == idSchedule);
             if (instance != null)
             {
                 Db.Schedules.DeleteOnSubmit(instance);

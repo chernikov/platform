@@ -181,9 +181,9 @@
       <Column Name="TeamID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="IsPhantom" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Group_Schedule" Member="Schedules" ThisKey="ID" OtherKey="GroupID" Type="Schedule" />
       <Association Name="Group_User" Member="Users" ThisKey="ID" OtherKey="GroupID" Type="User" />
       <Association Name="Group_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="GroupID" Type="UserSeason" />
+      <Association Name="Group_Schedule" Member="Schedules" ThisKey="ID" OtherKey="GroupID" Type="Schedule" />
       <Association Name="Team_Group" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -216,9 +216,9 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="WeekID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Macrocycle_TrainingDay" Member="TrainingDays" ThisKey="ID" OtherKey="MacrocycleID" Type="TrainingDay" />
       <Association Name="Macrocycle_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="MacrocycleID" Type="PersonalSchedule" />
       <Association Name="Macrocycle_Schedule" Member="Schedules" ThisKey="ID" OtherKey="MacrocycleID" Type="Schedule" />
-      <Association Name="Macrocycle_TrainingDay" Member="TrainingDays" ThisKey="ID" OtherKey="MacrocycleID" Type="TrainingDay" />
       <Association Name="Week_Macrocycle" Member="Week" ThisKey="WeekID" OtherKey="ID" Type="Week" IsForeignKey="true" />
     </Type>
   </Table>
@@ -255,18 +255,6 @@
       <Column Name="Author" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="ImagePath" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Text" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PersonalSchedule" Member="PersonalSchedules">
-    <Type Name="PersonalSchedule">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserSeasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MacrocycleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Macrocycle_PersonalSchedule" Member="Macrocycle" ThisKey="MacrocycleID" OtherKey="ID" Type="Macrocycle" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="User_PersonalSchedule" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="UserSeason_PersonalSchedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Phase" Member="Phases">
@@ -355,20 +343,6 @@
       <Association Name="User_SBCValue" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Schedule" Member="Schedules">
-    <Type Name="Schedule">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserSeasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MacrocycleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Group_Schedule" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="Macrocycle_Schedule" Member="Macrocycle" ThisKey="MacrocycleID" OtherKey="ID" Type="Macrocycle" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Team_Schedule" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
-      <Association Name="UserSeason_Schedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Season" Member="Seasons">
     <Type Name="Season">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -419,9 +393,9 @@
       <Column Name="MaxCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Team_Group" Member="Groups" ThisKey="ID" OtherKey="TeamID" Type="Group" />
       <Association Name="Team_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="TeamID" Type="SBCValue" />
-      <Association Name="Team_Schedule" Member="Schedules" ThisKey="ID" OtherKey="TeamID" Type="Schedule" />
       <Association Name="Team_User" Member="Users" ThisKey="ID" OtherKey="PlayerOfTeamID" Type="User" />
       <Association Name="Team_User1" Member="Users1" ThisKey="ID" OtherKey="AssistantOfTeamID" Type="User" />
+      <Association Name="Team_Schedule" Member="Schedules" ThisKey="ID" OtherKey="TeamID" Type="Schedule" />
       <Association Name="State_Team" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
       <Association Name="User_Team" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -533,7 +507,6 @@
       <Association Name="User_BillingInfo" Member="BillingInfos" ThisKey="ID" OtherKey="UserID" Type="BillingInfo" />
       <Association Name="User_Invoice" Member="Invoices" ThisKey="ID" OtherKey="UserID" Type="Invoice" />
       <Association Name="User_PaymentDetail" Member="PaymentDetails" ThisKey="ID" OtherKey="UserID" Type="PaymentDetail" />
-      <Association Name="User_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserID" Type="PersonalSchedule" />
       <Association Name="User_Post" Member="Posts" ThisKey="ID" OtherKey="UserID" Type="Post" />
       <Association Name="User_SBCValue" Member="SBCValues" ThisKey="ID" OtherKey="UserID" Type="SBCValue" />
       <Association Name="User_Team" Member="Teams" ThisKey="ID" OtherKey="UserID" Type="Team" />
@@ -542,8 +515,9 @@
       <Association Name="User_UserFieldPosition" Member="UserFieldPositions" ThisKey="ID" OtherKey="UserID" Type="UserFieldPosition" />
       <Association Name="User_UserPillar" Member="UserPillars" ThisKey="ID" OtherKey="UserID" Type="UserPillar" />
       <Association Name="User_UserRole" Member="UserRoles" ThisKey="ID" OtherKey="UserID" Type="UserRole" />
-      <Association Name="User_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="UserID" Type="UserSeason" />
       <Association Name="User_UserVideo" Member="UserVideos" ThisKey="ID" OtherKey="UserID" Type="UserVideo" />
+      <Association Name="User_UserSeason" Member="UserSeasons" ThisKey="ID" OtherKey="UserID" Type="UserSeason" />
+      <Association Name="User_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserID" Type="PersonalSchedule" />
       <Association Name="Group_User" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
       <Association Name="State_User" Member="State" ThisKey="IndividualStateID" OtherKey="ID" Type="State" IsForeignKey="true" />
       <Association Name="Level_User" Member="Level" ThisKey="LevelID" OtherKey="ID" Type="Level" IsForeignKey="true" />
@@ -602,21 +576,6 @@
       <Association Name="User_UserRole" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.UserSeason" Member="UserSeasons">
-    <Type Name="UserSeason">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="StartDay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="UserSeason_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserSeasonID" Type="PersonalSchedule" />
-      <Association Name="UserSeason_Schedule" Member="Schedules" ThisKey="ID" OtherKey="UserSeasonID" Type="Schedule" />
-      <Association Name="UserSeason_UserAttendance" Member="UserAttendances" ThisKey="ID" OtherKey="UserSeasonID" Type="UserAttendance" />
-      <Association Name="Group_UserSeason" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
-      <Association Name="Season_UserSeason" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="User_UserSeason" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.UserVideo" Member="UserVideos">
     <Type Name="UserVideo">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -649,6 +608,50 @@
       <Column Name="Subject" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserSeason" Member="UserSeasons">
+    <Type Name="UserSeason">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SeasonID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StartFrom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="UserSeason_UserAttendance" Member="UserAttendances" ThisKey="ID" OtherKey="UserSeasonID" Type="UserAttendance" />
+      <Association Name="UserSeason_PersonalSchedule" Member="PersonalSchedules" ThisKey="ID" OtherKey="UserSeasonID" Type="PersonalSchedule" />
+      <Association Name="UserSeason_Schedule" Member="Schedules" ThisKey="ID" OtherKey="UserSeasonID" Type="Schedule" />
+      <Association Name="Group_UserSeason" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" />
+      <Association Name="Season_UserSeason" Member="Season" ThisKey="SeasonID" OtherKey="ID" Type="Season" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_UserSeason" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PersonalSchedule" Member="PersonalSchedules">
+    <Type Name="PersonalSchedule">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserSeasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MacrocycleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Macrocycle_PersonalSchedule" Member="Macrocycle" ThisKey="MacrocycleID" OtherKey="ID" Type="Macrocycle" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="User_PersonalSchedule" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="UserSeason_PersonalSchedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Schedule" Member="Schedules">
+    <Type Name="Schedule">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserSeasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MacrocycleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Group_Schedule" Member="Group" ThisKey="GroupID" OtherKey="ID" Type="Group" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Macrocycle_Schedule" Member="Macrocycle" ThisKey="MacrocycleID" OtherKey="ID" Type="Macrocycle" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Team_Schedule" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
+      <Association Name="UserSeason_Schedule" Member="UserSeason" ThisKey="UserSeasonID" OtherKey="ID" Type="UserSeason" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

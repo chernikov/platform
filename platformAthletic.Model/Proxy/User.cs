@@ -237,7 +237,7 @@ namespace platformAthletic.Model
 
         public UserSeason SeasonByDateAndGroup(DateTime dateTime, int? groupID = null, bool getTeam = false)
         {
-            var season = UserSeasons.Where(p => p.GroupID == groupID || p.Schedules.Any(r => r.GroupID == groupID)).OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= dateTime);
+            var season = UserSeasons.Where(p => p.GroupID == groupID).OrderByDescending(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault(p => p.StartDay <= dateTime);
             if (season == null && groupID == null)
             {
                 season = UserSeasons.Where(p => p.StartDay >= dateTime && p.GroupID == groupID).OrderBy(p => p.StartDay).ThenByDescending(p => ID).FirstOrDefault();
@@ -501,9 +501,11 @@ namespace platformAthletic.Model
             {
                 if (CurrentSeason != null)
                 {
-                    int numberOfWeek = (int)(((int)((SqlSingleton.sqlRepository.CurrentDateTime - CurrentSeason.StartDay).TotalDays) / 7));
-                    int totalWeeks = CurrentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-                    numberOfWeek = numberOfWeek % totalWeeks + 1;
+                    int numberOfWeek = CurrentSeason.NumberOfWeek(SqlSingleton.sqlRepository.CurrentDateTime);
+                    if (SqlSingleton.sqlRepository.CurrentDateTime < CurrentSeason.StartDay)
+                    {
+                        return false;
+                    }
                     return CurrentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Any(p => p.Number == numberOfWeek);
                 }
                 return false;
@@ -592,7 +594,7 @@ namespace platformAthletic.Model
             return null;
         }
 
-       
+
 
         public SBCValue SBCFirstHistory(SBCValue.SbcType? restrict = null)
         {
@@ -629,7 +631,7 @@ namespace platformAthletic.Model
                 var startWeek = SqlSingleton.sqlRepository.CurrentDateTime.AddDays(-(int)SqlSingleton.sqlRepository.CurrentDateTime.DayOfWeek).Date;
                 var date12WeekAgo = startWeek.AddDays(-7 * 11);
                 var sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
-                while ((sbc == null || sbc.Equals(SBCValue.EmptySBCValue))  && date12WeekAgo <= startWeek)
+                while ((sbc == null || sbc.Equals(SBCValue.EmptySBCValue)) && date12WeekAgo <= startWeek)
                 {
                     date12WeekAgo = date12WeekAgo.AddDays(7);
                     sbc = SBCValues.Where(p => p.AddedDate <= date12WeekAgo).OrderBy(p => p.ID).LastOrDefault();
@@ -846,7 +848,7 @@ namespace platformAthletic.Model
                     return true;
                 }
                 //limited
-                if (user != null && PublicLevel == (int)User.PublicLevelEnum.Limited) 
+                if (user != null && PublicLevel == (int)User.PublicLevelEnum.Limited)
                 {
                     return true;
                 }

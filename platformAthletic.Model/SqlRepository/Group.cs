@@ -23,6 +23,35 @@ namespace platformAthletic.Model
             {
                 Db.Groups.InsertOnSubmit(instance);
                 Db.Groups.Context.SubmitChanges();
+                var userSeasons = Db.UserSeasons.Where(p => p.GroupID == null && p.UserID == instance.Team.UserID).ToList();
+                foreach (var userSeason in userSeasons)
+                {
+                    var newUserSeason = new UserSeason()
+                    {
+                        SeasonID = userSeason.SeasonID,
+                        UserID = userSeason.UserID,
+                        GroupID = instance.ID,
+                        StartDay = userSeason.StartDay,
+                        StartFrom = userSeason.StartFrom
+                    };
+                    Db.UserSeasons.InsertOnSubmit(newUserSeason);
+                    Db.UserSeasons.Context.SubmitChanges();
+                    var schedules = Db.Schedules.Where(p => p.GroupID == null && p.TeamID == instance.TeamID && p.UserSeasonID == userSeason.ID).ToList();
+                    foreach (var schedule in schedules)
+                    {
+                        var newSchedule = new Schedule()
+                        {
+                            UserSeasonID = newUserSeason.ID,
+                            TeamID = schedule.TeamID,
+                            GroupID = instance.ID,
+                            Number = schedule.Number,
+                            MacrocycleID = schedule.MacrocycleID,
+                            Date = schedule.Date
+                        };
+                        Db.Schedules.InsertOnSubmit(newSchedule);
+                    }
+                    Db.Schedules.Context.SubmitChanges();
+                }
                 return true;
             }
 

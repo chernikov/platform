@@ -14,5 +14,14 @@ namespace platformAthletic.Model
                 return Phases.SelectMany(p => p.Weeks).SelectMany(p => p.Macrocycles);
             }
         }
+
+        public int FirstNumberOfWeek
+        {
+            get
+            {
+                var week = Phases.SelectMany(p => p.Weeks).Where(p => p.Number.HasValue).OrderBy(p => p.Number).FirstOrDefault();
+                return week != null ? (week.Number ?? 0) : 0;
+            }
+        }
 	}
 }

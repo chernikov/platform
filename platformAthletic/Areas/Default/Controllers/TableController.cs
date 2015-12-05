@@ -65,13 +65,11 @@ namespace platformAthletic.Areas.Default.Controllers
             foreach (var user in list)
             {
                 var currentSeason = user.CurrentSeason;
-                int numberOfWeek = (int)(((int)((DateTime.Now.Current() - currentSeason.StartDay).TotalDays) / 7));
                 if (DateTime.Now.Current() < currentSeason.StartDay)
                 {
                     continue;
                 }
-                int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-                numberOfWeek = numberOfWeek % totalWeeks + 1;
+                int numberOfWeek = currentSeason.NumberOfWeek(DateTime.Now.Current());
                 var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
                 var macrocycle = week.Macrocycle;
                 if (user.GroupID.HasValue)
@@ -117,10 +115,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 ViewBag.StartDate = currentSeason.StartDay;
                 return View("NoData");
             }
-            int numberOfWeek = (int)(((int)((DateTime.Now.Current() - currentSeason.StartDay).TotalDays) / 7));
-            int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-            numberOfWeek = numberOfWeek % totalWeeks + 1;
-
+            int numberOfWeek = currentSeason.NumberOfWeek(DateTime.Now.Current());
             var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
             var macrocycle = week.Macrocycle;
             if (CurrentUser.InRoles("individual"))

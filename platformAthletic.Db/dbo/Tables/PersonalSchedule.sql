@@ -4,6 +4,7 @@
     [UserID]       INT NOT NULL,
     [Number]       INT NOT NULL,
     [MacrocycleID] INT NOT NULL,
+	[Date]         DATETIME NOT NULL DEFAULT(GETDATE()),
     CONSTRAINT [PK_PersonalSchedule] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_PersonalSchedule_Macrocycle] FOREIGN KEY ([MacrocycleID]) REFERENCES [dbo].[Macrocycle] ([ID]) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT [FK_PersonalSchedule_User] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID]) ON DELETE CASCADE ON UPDATE CASCADE,

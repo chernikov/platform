@@ -112,9 +112,7 @@ namespace platformAthletic.Areas.Default.Controllers
             {
                 var currentSeason = team.User.SeasonByDateAndGroup(month, groupId, true);
                 var seasons = Repository.Seasons.ToList();
-                int numberOfWeek = (int)(((int)(month - currentSeason.StartDay).TotalDays) / 7);
-                int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-                numberOfWeek = (totalWeeks + numberOfWeek) % totalWeeks + 1;
+                int numberOfWeek = currentSeason.NumberOfWeek(month);
 
                 var calendarInfo = new CalendarInfo()
                 {
@@ -141,12 +139,10 @@ namespace platformAthletic.Areas.Default.Controllers
             if (team != null)
             {
                 var currentSeason = team.User.SeasonByDateAndGroup(date, groupId, true);
-                int numberOfWeek = (int)(((int)(date - currentSeason.StartDay).TotalDays) / 7);
-                int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-                numberOfWeek = numberOfWeek % totalWeeks + 1;
+                int numberOfWeek = currentSeason.NumberOfWeek(date);
                 if ((date - currentSeason.StartDay).TotalDays < 0)
                 {
-                    numberOfWeek--;
+                    numberOfWeek = -1;
                 }
                 var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
                 if (week == null)
@@ -173,7 +169,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 };
                 if (groupId.HasValue)
                 {
-                    var schedule = Repository.Schedules.FirstOrDefault(p => p.Number == numberOfWeek && p.TeamID == teamId && p.GroupID == groupId && p.UserSeasonID == currentSeason.ID);
+                    var schedule = Repository.Schedules.FirstOrDefault(p => p.Date == date && p.TeamID == teamId && p.GroupID == groupId && p.UserSeasonID == currentSeason.ID);
                     if (schedule != null)
                     {
                         calendarRowInfo.Macrocycle = schedule.Macrocycle;
@@ -182,7 +178,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 else
                 {
-                    var schedule = Repository.Schedules.FirstOrDefault(p => p.Number == numberOfWeek && p.TeamID == teamId && p.GroupID == null && p.UserSeasonID == currentSeason.ID);
+                    var schedule = Repository.Schedules.FirstOrDefault(p => p.Date == date && p.TeamID == teamId && p.GroupID == null && p.UserSeasonID == currentSeason.ID);
                     if (schedule != null)
                     {
                         calendarRowInfo.Macrocycle = schedule.Macrocycle;
@@ -209,7 +205,8 @@ namespace platformAthletic.Areas.Default.Controllers
                 UserSeasonID = currentSeason.ID,
                 MacrocycleID = macrocycleId,
                 TeamID = teamId,
-                GroupID = groupId
+                GroupID = groupId, 
+                Date = date
             };
             Repository.CreateSchedule(schedule);
 
@@ -219,29 +216,38 @@ namespace platformAthletic.Areas.Default.Controllers
         public ActionResult StartCycle(int number, int cycleId, int teamId, int? groupId, DateTime date)
         {
             var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
-
-            var currentSeason = team.User.SeasonByDateAndGroup(date, groupId, true);
             var cycle = Repository.Cycles.FirstOrDefault(p => p.ID == cycleId);
-
-            foreach (var macrocycle in cycle.Macrocycles)
+            RemoveFutureSeasons(date, groupId, team);
+            var newUserSeason = new UserSeason()
             {
-                var schedule = new Schedule()
-                {
-                    Number = number,
-                    UserSeasonID = currentSeason.ID,
-                    MacrocycleID = macrocycle.ID,
-                    TeamID = teamId,
-                    GroupID = groupId
-                };
-                number++;
-                Repository.CreateSchedule(schedule);
-            }
+                SeasonID = cycle.SeasonID,
+                UserID = team.UserID,
+                GroupID = groupId,
+                StartDay = date,
+                StartFrom = cycle.FirstNumberOfWeek
+            };
+            Repository.CreateUserSeason(newUserSeason);
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult StartSeason(int seasonId, DateTime date, int teamId, int? groupId)
         {
             var team = Repository.Teams.FirstOrDefault(p => p.ID == teamId);
+            RemoveFutureSeasons(date, groupId, team);
+            var newUserSeason = new UserSeason()
+            {
+                SeasonID = seasonId,
+                UserID = team.UserID,
+                GroupID = groupId,
+                StartDay = date,
+                StartFrom = 0,
+            };
+            Repository.CreateUserSeason(newUserSeason);
+            return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void RemoveFutureSeasons(DateTime date, int? groupId, Team team)
+        {
             var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == team.UserID && p.StartDay >= date);
             if (groupId != null)
             {
@@ -259,15 +265,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 Repository.RemoveUserSeason(season.ID);
             }
-            var newUserSeason = new UserSeason()
-            {
-                SeasonID = seasonId,
-                UserID = team.UserID,
-                GroupID = groupId,
-                StartDay = date,
-            };
-            Repository.CreateUserSeason(newUserSeason);
-            return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SetPersonalSchedule(int number, int macrocycleId, DateTime date)
@@ -278,7 +275,8 @@ namespace platformAthletic.Areas.Default.Controllers
                 Number = number,
                 MacrocycleID = macrocycleId,
                 UserID = CurrentUser.ID,
-                UserSeasonID = currentSeason.ID
+                UserSeasonID = currentSeason.ID, 
+                Date = date
             };
             Repository.CreatePersonalSchedule(personalSchedule);
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
@@ -286,25 +284,34 @@ namespace platformAthletic.Areas.Default.Controllers
 
         public ActionResult StartPersonalCycle(int number, int cycleId,  DateTime date)
         {
-            var currentSeason = CurrentUser.SeasonByDateAndGroup(date);
+            RemovePersonalFutureSeasons(date);
             var cycle = Repository.Cycles.FirstOrDefault(p => p.ID == cycleId);
-
-            foreach (var macrocycle in cycle.Macrocycles)
+            var newUserSeason = new UserSeason()
             {
-                var personalSchedule = new PersonalSchedule()
-                {
-                    Number = number,
-                    UserID = CurrentUser.ID,
-                    UserSeasonID = currentSeason.ID,
-                    MacrocycleID = macrocycle.ID,
-                };
-                number++;
-                Repository.CreatePersonalSchedule(personalSchedule);
-            }
+                SeasonID = cycle.SeasonID,
+                UserID = CurrentUser.ID,
+                StartDay = date,
+                StartFrom = cycle.FirstNumberOfWeek
+            };
+            Repository.CreateUserSeason(newUserSeason);
             return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult StartPersonalSeason(int seasonId, DateTime date)
+        {
+            RemovePersonalFutureSeasons(date);
+            var newUserSeason = new UserSeason()
+            {
+                SeasonID = seasonId,
+                UserID = CurrentUser.ID,
+                StartDay = date,
+                StartFrom = 0,
+            };
+            Repository.CreateUserSeason(newUserSeason);
+            return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
+        }
+
+        private void RemovePersonalFutureSeasons(DateTime date)
         {
             var futureSeasons = Repository.UserSeasons.Where(p => p.UserID == CurrentUser.ID && p.StartDay >= date);
             foreach (var season in futureSeasons.ToList())
@@ -315,14 +322,6 @@ namespace platformAthletic.Areas.Default.Controllers
                 }
                 Repository.RemoveUserSeason(season.ID);
             }
-            var newUserSeason = new UserSeason()
-            {
-                SeasonID = seasonId,
-                UserID = CurrentUser.ID,
-                StartDay = date,
-            };
-            Repository.CreateUserSeason(newUserSeason);
-            return Json(new { result = "ok" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -336,9 +335,7 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             var currentSeason = CurrentUser.SeasonByDateAndGroup(month);
             var seasons = Repository.Seasons.ToList();
-            int numberOfWeek = (int)(((int)(month - currentSeason.StartDay).TotalDays) / 7);
-            int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-            numberOfWeek = numberOfWeek % totalWeeks + 1;
+            int numberOfWeek = currentSeason.NumberOfWeek(month);
             var calendarInfo = new PersonalCalendarInfo()
             {
                 Season = currentSeason.Season,
@@ -354,12 +351,10 @@ namespace platformAthletic.Areas.Default.Controllers
         {
             var currentSeason = CurrentUser.SeasonByDateAndGroup(date);
 
-            int numberOfWeek = (int)(((int)(date - currentSeason.StartDay).TotalDays) / 7);
-            int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-            numberOfWeek = numberOfWeek % totalWeeks + 1;
+            int numberOfWeek = currentSeason.NumberOfWeek(date);
             if ((date - currentSeason.StartDay).TotalDays < 0)
             {
-                numberOfWeek--;
+                numberOfWeek = -1;
             }
             var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
             if (week == null)
@@ -383,7 +378,7 @@ namespace platformAthletic.Areas.Default.Controllers
                 Macrocycle = macrocycle,
                 NumberOfWeek = numberOfWeek
             };
-            var schedule = Repository.PersonalSchedules.FirstOrDefault(p => p.Number == numberOfWeek && p.UserID == CurrentUser.ID && p.UserSeasonID == currentSeason.ID);
+            var schedule = Repository.PersonalSchedules.FirstOrDefault(p => p.Date == date && p.UserID == CurrentUser.ID && p.UserSeasonID == currentSeason.ID);
             if (schedule != null)
             {
                 calendarRowInfo.Macrocycle = schedule.Macrocycle;
@@ -419,12 +414,10 @@ namespace platformAthletic.Areas.Default.Controllers
             if (team != null)
             {
                 var currentSeason = team.User.SeasonByDateAndGroup(date, groupId, true);
-                int numberOfWeek = (int)(((int)(date - currentSeason.StartDay).TotalDays) / 7);
-                int totalWeeks = currentSeason.Season.Cycles.SelectMany(p => p.Phases).SelectMany(p => p.Weeks).Where(p => p.Number != null).Count();
-                numberOfWeek = numberOfWeek % totalWeeks + 1;
+                int numberOfWeek = currentSeason.NumberOfWeek(date); 
                 if ((date - currentSeason.StartDay).TotalDays < 0)
                 {
-                    numberOfWeek--;
+                    numberOfWeek = -1;
                 }
                 var week = Repository.Weeks.FirstOrDefault(p => p.Number == numberOfWeek && p.Phase.Cycle.SeasonID == currentSeason.SeasonID);
                 if (week == null)

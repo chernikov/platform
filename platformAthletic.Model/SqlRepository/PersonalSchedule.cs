@@ -47,6 +47,7 @@ namespace platformAthletic.Model
 				cache.UserID = instance.UserID;
 				cache.Number = instance.Number;
 				cache.MacrocycleID = instance.MacrocycleID;
+                cache.Date = instance.Date;
                 Db.PersonalSchedules.Context.SubmitChanges();
                 return true;
             }

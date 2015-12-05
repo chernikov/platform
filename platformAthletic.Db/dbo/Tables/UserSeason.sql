@@ -4,6 +4,7 @@
     [UserID]   INT      NOT NULL,
 	[GroupID]   INT     NULL,
     [StartDay] DATETIME NOT NULL,
+	[StartFrom] INT NOT NULL DEFAULT(0),
     CONSTRAINT [PK_UserSeason] PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [FK_UserSeason_Season] FOREIGN KEY ([SeasonID]) REFERENCES [dbo].[Season] ([ID]) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT [FK_UserSeason_User] FOREIGN KEY ([UserID]) REFERENCES [dbo].[User] ([ID]),
