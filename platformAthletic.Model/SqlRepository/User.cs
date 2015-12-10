@@ -753,6 +753,12 @@ namespace platformAthletic.Model
                 Db.Users.Context.SubmitChanges();
 
                 var groups = Db.Groups.Where(p => p.TeamID == team.ID && p.IsPhantom).ToList();
+
+                foreach (var group in groups)
+                {
+                    var userSeasonsGroups = Db.UserSeasons.Where(p => p.GroupID == group.ID).ToList();
+                    Db.UserSeasons.DeleteAllOnSubmit(userSeasonsGroups);
+                }
                 Db.Groups.DeleteAllOnSubmit(groups);
                 Db.Users.Context.SubmitChanges();
 

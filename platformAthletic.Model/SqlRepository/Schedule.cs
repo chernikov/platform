@@ -26,13 +26,15 @@ namespace platformAthletic.Model
                 {
                     exist = Db.Schedules.FirstOrDefault(p => p.Number == instance.Number 
                         && p.GroupID == instance.GroupID 
-                        && p.TeamID == instance.TeamID);
+                        && p.TeamID == instance.TeamID
+                        && p.UserSeasonID == instance.UserSeasonID);
                 }
                 else
                 {
                     exist = Db.Schedules.FirstOrDefault(p => p.Number == instance.Number 
                         && p.GroupID == null 
-                        && p.TeamID == instance.TeamID);
+                        && p.TeamID == instance.TeamID
+                        && p.UserSeasonID == instance.UserSeasonID);
                 }
 
                 if (exist != null)
