@@ -752,19 +752,19 @@ namespace platformAthletic.Model
                 }
                 Db.Users.Context.SubmitChanges();
 
-                var groups = Db.Groups.Where(p => p.TeamID == team.ID && p.IsPhantom).ToList();
+                var schedules = Db.Schedules.Where(p => p.TeamID == team.ID).ToList();
+                Db.Schedules.DeleteAllOnSubmit(schedules);
+                Db.Schedules.Context.SubmitChanges();
 
+                var groups = Db.Groups.Where(p => p.TeamID == team.ID && p.IsPhantom).ToList();
                 foreach (var group in groups)
                 {
                     var userSeasonsGroups = Db.UserSeasons.Where(p => p.GroupID == group.ID).ToList();
                     Db.UserSeasons.DeleteAllOnSubmit(userSeasonsGroups);
                 }
+                Db.UserSeasons.Context.SubmitChanges();
                 Db.Groups.DeleteAllOnSubmit(groups);
-                Db.Users.Context.SubmitChanges();
-
-                var schedules = Db.Schedules.Where(p => p.TeamID == team.ID).ToList();
-                Db.Schedules.DeleteAllOnSubmit(schedules);
-                Db.Schedules.Context.SubmitChanges();
+                Db.Groups.Context.SubmitChanges();
 
                 var personalSchedules = Db.PersonalSchedules.Where(p => p.UserID == idUser).ToList();
                 Db.PersonalSchedules.DeleteAllOnSubmit(personalSchedules);
