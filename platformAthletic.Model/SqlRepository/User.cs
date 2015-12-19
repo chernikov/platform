@@ -756,7 +756,7 @@ namespace platformAthletic.Model
                 Db.Schedules.DeleteAllOnSubmit(schedules);
                 Db.Schedules.Context.SubmitChanges();
 
-                var groups = Db.Groups.Where(p => p.TeamID == team.ID && p.IsPhantom).ToList();
+                var groups = Db.Groups.Where(p => p.TeamID == team.ID).ToList();
                 foreach (var group in groups)
                 {
                     var userSeasonsGroups = Db.UserSeasons.Where(p => p.GroupID == group.ID).ToList();

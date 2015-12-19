@@ -16,7 +16,7 @@ namespace platformAthletic
 
         public static void Check(IRepository repository)
         {
-           /* var messages = MailReceiver.GetMails();
+            var messages = MailReceiver.GetMails();
 
             foreach (var message in messages)
             {
@@ -38,7 +38,7 @@ namespace platformAthletic
                             {
                                 var failMail = new FailedMail
                                 {
-                                    AddedDate = DateTime.Now.Current(),
+                                    AddedDate = DateTime.Now,
                                     FailEmail = email, 
                                     Subject = mailMessage.Subject, 
                                     Body = mailMessage.Body,
@@ -51,7 +51,7 @@ namespace platformAthletic
                         }
                     }
                 }
-            }*/
+            }
         }
 
         public static void Process(IRepository repository, IConfig config)

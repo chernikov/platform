@@ -179,10 +179,10 @@ namespace platformAthletic
 
         private static void PeriodCheck()
         {
-           /* var repository = AppKernel.Get<IRepository>();
+            var repository = AppKernel.Get<IRepository>();
             var config = AppKernel.Get<IConfig>();
             FailMessage.Check(repository);
-            FailMessage.Process(repository, config);*/
+            FailMessage.Process(repository, config);
         }
 
         protected void Application_Error(Object sender, EventArgs e)
