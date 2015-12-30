@@ -75,7 +75,7 @@ namespace platformAthletic.Helpers
             List<UserInfo> toJSON = new List<UserInfo>();
 
             //string line;
-            string[] elemets;
+            string[] elements;
             List<string> lines = this.IsHeadersValid ? this.LinesList.Skip(1).ToList() : this.LinesList; ;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             //this.FileStreamReader.BaseStream.Seek(this.StartDataPos, SeekOrigin.Begin);
@@ -83,15 +83,15 @@ namespace platformAthletic.Helpers
             //while ((line = this.FileStreamReader.ReadLine()) != null)
             foreach (string line in lines)
             {
-                elemets = line.Split(this.ColumnSeparator);
-                byte notEmptyElemetCount = (byte)elemets.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
-                if (elemets.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
+                elements = line.Split(this.ColumnSeparator);
+                byte notEmptyElemetCount = (byte)elements.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
+                if (elements.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
                 {
                     toJSON.Add(new UserInfo()
                     {
-                        FirstName = EscapeData(elemets[this.Position["FirstName"]]) ?? String.Empty,
-                        LastName  = EscapeData(elemets[this.Position["LastName"]]) ?? String.Empty,
-                        Email     = EscapeData(elemets[this.Position["Email"]]) ?? String.Empty
+                        FirstName = EscapeData(elements[this.Position["FirstName"]]) ?? String.Empty,
+                        LastName = EscapeData(elements[this.Position["LastName"]]) ?? String.Empty,
+                        Email = EscapeData(elements[this.Position["Email"]]) ?? String.Empty
                     });
                 }
             }
@@ -108,7 +108,7 @@ namespace platformAthletic.Helpers
         public BatchPlayersView Parse()
         {
             //string line;
-            string[] elemets;
+            string[] elements;
             List<string> lines = this.IsHeadersValid ? this.LinesList.Skip(1).ToList() : this.LinesList; ;
             BatchPlayersView batchPlayersView = new BatchPlayersView();
             //this.FileStreamReader.BaseStream.Seek(this.StartDataPos, SeekOrigin.Begin);
@@ -116,15 +116,15 @@ namespace platformAthletic.Helpers
             //while ((line = this.FileStreamReader.ReadLine()) != null)
             foreach (string line in lines)
             {
-                elemets = line.Split(this.ColumnSeparator);
-                byte notEmptyElemetCount = (byte)elemets.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
-                if (elemets.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
+                elements = line.Split(this.ColumnSeparator);
+                byte notEmptyElemetCount = (byte)elements.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
+                if (elements.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
                 {
                     batchPlayersView.Players.Add(Guid.NewGuid().ToString("N"), new PlayerView()
                     {
-                        FirstName = EscapeData(elemets[this.Position["FirstName"]]) ?? String.Empty, 
-                        LastName  = EscapeData(elemets[this.Position["LastName"]]) ?? String.Empty,
-                        Email     = EscapeData(elemets[this.Position["Email"]]) ?? String.Empty
+                        FirstName = NoEscapeData(elements[this.Position["FirstName"]]) ?? String.Empty,
+                        LastName = NoEscapeData(elements[this.Position["LastName"]]) ?? String.Empty,
+                        Email = NoEscapeData(elements[this.Position["Email"]]) ?? String.Empty
                     });
                 }
             }
@@ -303,7 +303,10 @@ namespace platformAthletic.Helpers
         {
             return HttpUtility.HtmlEncode(data.Replace(">", "&#62;").Replace("<", "&#60;").Trim());
         }
-
+        protected string NoEscapeData(string data)
+        {
+            return data.Replace(">", "&#62;").Replace("<", "&#60;").Trim();
+        }
     } /*end class*/
 
     class UserInfo

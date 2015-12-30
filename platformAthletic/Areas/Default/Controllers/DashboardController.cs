@@ -265,6 +265,7 @@ namespace platformAthletic.Areas.Default.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SubmitUploadFile(BatchPlayersView batchPlayersView, bool firstCheck=false)
         {
             CheckPlayersDoubleEmail(batchPlayersView);
