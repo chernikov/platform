@@ -118,7 +118,7 @@ namespace platformAthletic.Helpers
             {
                 elements = line.Split(this.ColumnSeparator);
                 byte notEmptyElemetCount = (byte)elements.Where(e => !String.IsNullOrEmpty(e) && !String.IsNullOrWhiteSpace(e)).ToList().Count;
-                if (elements.Length <= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
+                if (elements.Length >= 3 && notEmptyElemetCount > 0 && notEmptyElemetCount <= 3)
                 {
                     batchPlayersView.Players.Add(Guid.NewGuid().ToString("N"), new PlayerView()
                     {
